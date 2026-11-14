@@ -87,6 +87,9 @@ class ErrorActivity : AppCompatActivity() {
         // print current time, as zoned ISO8601 timestamp
         currentTimeStamp = ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 
+        // Merak: reports go to Merak's GitHub issues only. The e-mail address belongs to
+        // the NewPipe team, which does not handle reports from this unofficial app.
+        binding.errorReportEmailButton.visibility = android.view.View.GONE
         binding.errorReportEmailButton.setOnClickListener { _ ->
             openPrivacyPolicyDialog(this, "EMAIL")
         }
@@ -150,7 +153,7 @@ class ErrorActivity : AppCompatActivity() {
                         .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
                         .putExtra(Intent.EXTRA_TEXT, buildJson())
                     ShareUtils.openIntentInApp(context, intent)
-                } else if (action == "GITHUB") { // open the NewPipe issue page on GitHub
+                } else if (action == "GITHUB") { // open Merak's issue page on GitHub
                     ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL)
                 }
             }
@@ -277,6 +280,6 @@ class ErrorActivity : AppCompatActivity() {
         private const val ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org"
         private const val ERROR_EMAIL_SUBJECT = "Exception in "
 
-        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/TeamNewPipe/NewPipe/issues"
+        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/ninjaeu/Merak/issues"
     }
 }

@@ -167,7 +167,7 @@
     <string name="youtube_restricted_mode_enabled_title">Uključite \"Ograničeni način rada\" na YouTubeu</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube nudi \"Ograničeni način rada\" koji skriva potencijalno sadržaj za odrasle</string>
     <string name="restricted_video">Ovaj video ima dobno ograničenje.\n\nUključite \"%1$s\" u postavkama ako ga želite pogledati.</string>
-    <string name="restricted_video_no_stream">Ovaj video ima dobno ograničenje. \nZbog novih YouTube pravila o videozapisima s dobnim ograničenjem, NewPipe ne može pristupiti nijednom od svojih video tokova i stoga ga ne može reproducirati.</string>
+    <string name="restricted_video_no_stream">Ovaj video ima dobno ograničenje. \nZbog novih YouTube pravila o videozapisima s dobnim ograničenjem, Merak ne može pristupiti nijednom od svojih video tokova i stoga ga ne može reproducirati.</string>
     <string name="duration_live">Uživo</string>
     <string name="downloads">Preuzimanja</string>
     <string name="downloads_title">Preuzimanja</string>
@@ -193,10 +193,9 @@
     <string name="just_once">Samo jednom</string>
     <string name="file">Datoteka</string>
     <string name="notifications">Obavijesti</string>
-    <string name="notification_channel_name">Obavještenje o novoj cijevi</string>
-    <string name="notification_channel_description">Obavještenja za NewPipeovog igrača</string>
+    <string name="notification_channel_description">Obavještenja za Merakovog igrača</string>
     <string name="app_update_notification_channel_name">Obavještenje o ažuriranju aplikacije</string>
-    <string name="app_update_notification_channel_description">Obavještenja za nove verzije NewPipe-a</string>
+    <string name="app_update_notification_channel_description">Obavještenja za nove verzije Merak-a</string>
     <string name="hash_channel_name">Obavještenje o hešu videa</string>
     <string name="hash_channel_description">Obavještenja o napretku heširanja videa</string>
     <string name="streams_notification_channel_name">Novi tokovi</string>
@@ -213,7 +212,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA kolačići su obrisani</string>
     <string name="import_data_summary">Zaobilazi vašu trenutnu historiju, pretplate, liste pjesama i (opcionalno) postavke</string>
     <string name="export_data_summary">Izvoz historije, pretplata, plejlista i postavki</string>
-    <string name="clear_cookie_summary">Obrišite kolačiće koje NewPipe pohranjuje kada riješite reCAPTCHA</string>
+    <string name="clear_cookie_summary">Obrišite kolačiće koje Merak pohranjuje kada riješite reCAPTCHA</string>
     <string name="clear_views_history_title">Obriši historiju gledanja</string>
     <string name="clear_views_history_summary">Briše historiju reprodukovanih tokova i pozicije reprodukcije</string>
     <string name="delete_view_history_alert">Izbrisati cijelu historiju gledanja?</string>
@@ -257,7 +256,7 @@
     <string name="permission_display_over_apps">Dozvoli prikaz preko drugih aplikacija</string>
     <string name="permission_display_over_apps_message">Da biste koristili Popup Player, odaberite %1$s u sljedećem meniju postavki Androida i omogućite %2$s.</string>
     <string name="permission_display_over_apps_permission_name">\"Dozvoli prikaz preko drugih aplikacija\"</string>
-    <string name="error_report_notification_title">NewPipe je naišao na grešku, dodirnite za prijavu</string>
+    <string name="error_report_notification_title">Merak je naišao na grešku, dodirnite za prijavu</string>
     <string name="error_report_notification_toast">Došlo je do greške, pogledajte obavještenje</string>
     <string name="sorry_string">Žao mi je, to se nije trebalo desiti.</string>
     <string name="error_report_button_text">Prijavi putem e-pošte</string>
@@ -313,7 +312,7 @@
     <string name="msg_name">Naziv datoteke</string>
     <string name="msg_threads">Teme</string>
     <string name="msg_error">Greška</string>
-    <string name="msg_running">Preuzimanje NewPipe-a</string>
+    <string name="msg_running">Preuzimanje Merak-a</string>
     <string name="msg_running_detail">Dodirnite za detalje</string>
     <string name="msg_calculating_hash">Izračunavanje heša</string>
     <string name="msg_wait">Molimo pričekajte…</string>
@@ -334,7 +333,7 @@
     <string name="settings_file_replacement_character_title">Zamjenski lik</string>
     <string name="charset_letters_and_digits">Slova i brojevi</string>
     <string name="charset_most_special_characters">Većina specijalnih znakova</string>
-    <string name="title_activity_about">O NewPipe-u</string>
+    <string name="title_activity_about">O Merak-u</string>
     <string name="title_licenses">Licence trećih strana</string>
     <string name="copyright">© %1$s od %2$s pod %3$s</string>
     <string name="tab_licenses">Dozvole</string>
@@ -343,15 +342,12 @@
     <string name="contribution_encouragement">Bez obzira da li imate ideje za: prevod, promjene dizajna, čišćenje koda ili zaista velike promjene koda - pomoć je uvijek dobrodošla. Što se više uradi, to bolje postaje!</string>
     <string name="view_on_github">Pogledajte na GitHubu</string>
     <string name="donation_title">Donirajte</string>
-    <string name="donation_encouragement">NewPipe je razvijen od strane volontera koji svoje slobodno vrijeme provode pružajući vam najbolje korisničko iskustvo. Doprinesite programerima kako biste ih učinili još boljim dok uživaju u šoljici kafe.</string>
     <string name="give_back">Vratite</string>
     <string name="website_title">Web stranica</string>
-    <string name="website_encouragement">Posjetite web stranicu NewPipe za više informacija i novosti.</string>
-    <string name="privacy_policy_title">Politika privatnosti kompanije NewPipe</string>
-    <string name="privacy_policy_encouragement">Projekat NewPipe veoma ozbiljno shvata vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka.\nPolitika privatnosti NewPipe-a detaljno objašnjava koji se podaci šalju i pohranjuju kada pošaljete izvještaj o padu sistema.</string>
+    <string name="privacy_policy_title">Politika privatnosti kompanije Merak</string>
     <string name="read_privacy_policy">Pročitajte politiku privatnosti</string>
-    <string name="app_license_title">NewPipe-ova licenca</string>
-    <string name="app_license">NewPipe je copyleft libre softver: Možete ga koristiti, proučavati, dijeliti i poboljšavati po volji. Konkretno, možete ga redistribuirati i/ili mijenjati pod uvjetima GNU Opće javne licence koju je objavila Fondacija za slobodni softver, bilo verzije 3 Licence ili (po vašem izboru) bilo koje kasnije verzije.</string>
+    <string name="app_license_title">Merak-ova licenca</string>
+    <string name="app_license">Merak je copyleft libre softver: Možete ga koristiti, proučavati, dijeliti i poboljšavati po volji. Konkretno, možete ga redistribuirati i/ili mijenjati pod uvjetima GNU Opće javne licence koju je objavila Fondacija za slobodni softver, bilo verzije 3 Licence ili (po vašem izboru) bilo koje kasnije verzije.</string>
     <string name="read_full_license">Pročitaj licencu</string>
     <string name="faq_title">Često postavljana pitanja</string>
     <string name="faq_description">Ako imate problema s korištenjem aplikacije, obavezno pogledajte ove odgovore na česta pitanja!</string>
@@ -477,7 +473,7 @@
     <string name="playback_reset">Resetuj</string>
     <string name="percent">Postotak</string>
     <string name="semitone">Poluton</string>
-    <string name="start_accept_privacy_policy">Kako bismo se pridržavali Opće uredbe o zaštiti podataka (GDPR), ovim putem skrećemo vašu pažnju na politiku privatnosti kompanije NewPipe. Molimo vas da je pažljivo pročitate.\nMorate je prihvatiti da biste nam poslali izvještaj o grešci.</string>
+    <string name="start_accept_privacy_policy">Kako bismo se pridržavali Opće uredbe o zaštiti podataka (GDPR), ovim putem skrećemo vašu pažnju na politiku privatnosti kompanije Merak. Molimo vas da je pažljivo pročitate.\nMorate je prihvatiti da biste nam poslali izvještaj o grešci.</string>
     <string name="accept">Prihvati</string>
     <string name="decline">Odbij</string>
     <string name="limit_data_usage_none_description">Bez ograničenja</string>
@@ -490,7 +486,7 @@
     <string name="updates_setting_title">Nadogradnje</string>
     <string name="updates_setting_description">Prikaži obavještenje za podsticanje ažuriranja aplikacije kada je dostupna nova verzija</string>
     <string name="check_for_updates">Provjeri ažuriranja</string>
-    <string name="auto_update_check_description">NewPipe može automatski provjeravati nove verzije s vremena na vrijeme i obavijestiti vas kada budu dostupne.\nŽelite li ovo omogućiti?</string>
+    <string name="auto_update_check_description">Merak može automatski provjeravati nove verzije s vremena na vrijeme i obavijestiti vas kada budu dostupne.\nŽelite li ovo omogućiti?</string>
     <string name="manual_update_description">Ručno provjerite nove verzije</string>
     <string name="minimize_on_exit_title">Minimiziraj pri prebacivanju aplikacija</string>
     <string name="minimize_on_exit_summary">Radnja prilikom prelaska na drugu aplikaciju iz glavnog video plejera — %s</string>
@@ -509,8 +505,8 @@
     <string name="high_quality_larger">Visok kvalitet (veći)</string>
     <string name="low_quality_smaller">Nizak kvalitet (manji)</string>
     <string name="dont_show">Ne prikazuj</string>
-    <string name="app_update_unavailable_toast">Koristite najnoviju verziju NewPipe-a</string>
-    <string name="app_update_available_notification_title">Ažuriranje NewPipe-a je dostupno!</string>
+    <string name="app_update_unavailable_toast">Koristite najnoviju verziju Merak-a</string>
+    <string name="app_update_available_notification_title">Ažuriranje Merak-a je dostupno!</string>
     <string name="app_update_available_notification_text">Dodirnite za preuzimanje %s</string>
     <string name="missions_header_finished">Završeno</string>
     <string name="missions_header_pending">Na čekanju</string>
@@ -542,7 +538,7 @@
     <string name="error_http_unsupported_range">Server ne prihvata višenitna preuzimanja, pokušajte ponovo sa @string/msg_threads = 1</string>
     <string name="error_http_not_found">Nije pronađeno</string>
     <string name="error_postprocessing_failed">Naknadna obrada nije uspjela</string>
-    <string name="error_postprocessing_stopped">NewPipe je zatvoren tokom rada na datoteci</string>
+    <string name="error_postprocessing_stopped">Merak je zatvoren tokom rada na datoteci</string>
     <string name="error_insufficient_storage">Nema dovoljno slobodnog prostora na uređaju</string>
     <string name="error_insufficient_storage_left">Nema više prostora na uređaju</string>
     <string name="error_progress_lost">Napredak je izgubljen jer je datoteka izbrisana</string>
@@ -599,18 +595,18 @@
     <string name="feed_update_threshold_option_always_update">Uvijek ažuriraj</string>
     <string name="feed_load_error">Greška pri učitavanju feeda</string>
     <string name="feed_load_error_account_info">Nije moguće učitati feed za \'%s\'.</string>
-    <string name="feed_load_error_terminated">Autorov račun je ukinut. \nNewPipe ubuduće neće moći učitavati ovaj sažetak. \nŽeliš li ukinuti pretplatu za ovaj kanal?</string>
+    <string name="feed_load_error_terminated">Autorov račun je ukinut. \nMerak ubuduće neće moći učitavati ovaj sažetak. \nŽeliš li ukinuti pretplatu za ovaj kanal?</string>
     <string name="feed_load_error_fast_unknown">Režim brzog hranjenja ne pruža više informacija o ovome.</string>
     <string name="feed_use_dedicated_fetch_method_title">Preuzmi iz namjenskog feeda kada je dostupan</string>
     <string name="feed_use_dedicated_fetch_method_summary">Dostupno u nekim servisima, obično je mnogo brže, ali može vratiti ograničen broj artikala i često nepotpune informacije (npr. bez trajanja, vrste artikla, bez aktivnog statusa)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Omogući brzi način rada</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Onemogući brzi način rada</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Mislite li da je učitavanje feeda previše sporo? Ako je tako, pokušajte omogućiti brzo učitavanje (možete ga promijeniti u postavkama ili pritiskom na dugme ispod).\n\nNewPipe nudi dvije strategije učitavanja feeda:\n• Preuzimanje cijelog pretplatničkog kanala, što je sporo, ali potpuno.\n• Korištenje namjenske krajnje tačke usluge, što je brzo, ali obično nije potpuno.\n\nRazlika između ove dvije je u tome što brza obično nema neke informacije, poput trajanja ili vrste stavke (ne može razlikovati videozapise uživo od normalnih) i može vratiti manje stavki.\n\nYouTube je primjer usluge koja nudi ovu brzu metodu sa svojim RSS feedom.\n\nDakle, izbor se svodi na to šta preferirate: brzinu ili precizne informacije.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Mislite li da je učitavanje feeda previše sporo? Ako je tako, pokušajte omogućiti brzo učitavanje (možete ga promijeniti u postavkama ili pritiskom na dugme ispod).\n\nMerak nudi dvije strategije učitavanja feeda:\n• Preuzimanje cijelog pretplatničkog kanala, što je sporo, ali potpuno.\n• Korištenje namjenske krajnje tačke usluge, što je brzo, ali obično nije potpuno.\n\nRazlika između ove dvije je u tome što brza obično nema neke informacije, poput trajanja ili vrste stavke (ne može razlikovati videozapise uživo od normalnih) i može vratiti manje stavki.\n\nYouTube je primjer usluge koja nudi ovu brzu metodu sa svojim RSS feedom.\n\nDakle, izbor se svodi na to šta preferirate: brzinu ili precizne informacije.</string>
     <string name="feed_hide_streams_title">Prikaži sljedeće tokove</string>
     <string name="feed_show_hide_streams">Prikaži/Sakrij tokove</string>
     <string name="feed_fetch_channel_tabs">Dohvati kartice kanala</string>
     <string name="feed_fetch_channel_tabs_summary">Kartice koje treba preuzeti prilikom ažuriranja feeda. Ova opcija nema efekta ako se kanal ažurira pomoću brzog načina rada.</string>
-    <string name="content_not_supported">Ovaj sadržaj još uvijek nije podržan od strane NewPipe-a.\n\nNadamo se da će biti podržan u budućoj verziji.</string>
+    <string name="content_not_supported">Ovaj sadržaj još uvijek nije podržan od strane Merak-a.\n\nNadamo se da će biti podržan u budućoj verziji.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Sličica avatara kanala</string>
     <string name="channel_created_by">Kreirao/la %s</string>
     <string name="video_detail_by">Napisao %s</string>
@@ -623,12 +619,12 @@
     <string name="no_appropriate_file_manager_message">Nije pronađen odgovarajući upravitelj datoteka za ovu radnju.\nMolimo instalirajte upravitelj datoteka ili pokušajte onemogućiti \'%s\' u postavkama preuzimanja</string>
     <string name="no_appropriate_file_manager_message_android_10">Nije pronađen odgovarajući upravitelj datoteka za ovu radnju.\nMolimo instalirajte upravitelj datoteka kompatibilan sa Storage Access Frameworkom</string>
     <string name="georestricted_content">Ovaj sadržaj nije dostupan u vašoj zemlji.</string>
-    <string name="soundcloud_go_plus_content">Ovo je pjesma na SoundCloud Go+ platformi, barem u vašoj zemlji, tako da je NewPipe ne može strimovati ili preuzeti.</string>
-    <string name="private_content">Ovaj sadržaj je privatan, tako da ga NewPipe ne može strimovati ili preuzimati.</string>
-    <string name="youtube_music_premium_content">Ovaj video je dostupan samo članovima YouTube Music Premium-a, tako da ga NewPipe ne može strimovati ili preuzeti.</string>
+    <string name="soundcloud_go_plus_content">Ovo je pjesma na SoundCloud Go+ platformi, barem u vašoj zemlji, tako da je Merak ne može strimovati ili preuzeti.</string>
+    <string name="private_content">Ovaj sadržaj je privatan, tako da ga Merak ne može strimovati ili preuzimati.</string>
+    <string name="youtube_music_premium_content">Ovaj video je dostupan samo članovima YouTube Music Premium-a, tako da ga Merak ne može strimovati ili preuzeti.</string>
     <string name="account_terminated">Račun ukinut</string>
     <string name="account_terminated_service_provides_reason">Račun ukinut\n\n%1$s navodi ovaj razlog: %2$s</string>
-    <string name="paid_content">Ovaj sadržaj je dostupan samo korisnicima koji su platili, tako da ga NewPipe ne može strimovati ili preuzimati.</string>
+    <string name="paid_content">Ovaj sadržaj je dostupan samo korisnicima koji su platili, tako da ga Merak ne može strimovati ili preuzimati.</string>
     <string name="featured">Istaknuto</string>
     <string name="radio">Radio</string>
     <string name="auto_device_theme_title">Automatski (tema uređaja)</string>
@@ -815,6 +811,6 @@
         <item quantity="few">%s odgovora</item>
         <item quantity="other">%s odgovora</item>
     </plurals>
-    <string name="migration_info_7_8_message">YouTube je ukinuo kombinovanu stranicu s trendovima od 21. jula 2025. NewPipe je zamijenio zadanu stranicu s trendovima s trendovima uživo prijenosa.\n\nTakođer možete odabrati različite stranice s trendovima u \"Postavke &gt; Sadržaj &gt; Sadržaj glavne stranice\".</string>
+    <string name="migration_info_7_8_message">YouTube je ukinuo kombinovanu stranicu s trendovima od 21. jula 2025. Merak je zamijenio zadanu stranicu s trendovima s trendovima uživo prijenosa.\n\nTakođer možete odabrati različite stranice s trendovima u \"Postavke &gt; Sadržaj &gt; Sadržaj glavne stranice\".</string>
     <string name="unsupported_content_in_country">Ovaj sadržaj nije dostupan za trenutno odabranu zemlju sadržaja.\n\nPromijenite svoj odabir u \"Postavke &gt; Sadržaj &gt; Zadana zemlja sadržaja\".</string>
 </resources>

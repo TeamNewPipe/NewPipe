@@ -114,10 +114,10 @@
     <string name="always">सधैं</string>
     <string name="just_once">केवल एकपटक</string>
     <string name="file">फाइल</string>
-    <string name="notification_channel_name">NewPipe सूचना</string>
-    <string name="notification_channel_description">NewPipe पृष्ठभूमि र पपअप प्लेयरहरू लागि सूचनाहरू</string>
+    <string name="notification_channel_name">Merak सूचना</string>
+    <string name="notification_channel_description">Merak पृष्ठभूमि र पपअप प्लेयरहरू लागि सूचनाहरू</string>
     <string name="app_update_notification_channel_name">एप अपडेट सूचना</string>
-    <string name="app_update_notification_channel_description">नयाँ NewPipe संस्करण लागि सूचनाहरू</string>
+    <string name="app_update_notification_channel_description">नयाँ Merak संस्करण लागि सूचनाहरू</string>
     <string name="unknown_content">[अज्ञात]</string>
     <string name="switch_to_background">पृष्ठभूमि स्विच गर्नुहोस्</string>
     <string name="switch_to_popup">पपअप स्विच गर्नुहोस्</string>
@@ -200,7 +200,7 @@
     <string name="msg_name">msg</string>
     <string name="msg_threads">सूत्रहरू</string>
     <string name="msg_error">त्रुटि</string>
-    <string name="msg_running">NewPipe डाउनलोड गर्दै</string>
+    <string name="msg_running">Merak डाउनलोड गर्दै</string>
     <string name="msg_running_detail">विवरण लागि ट्याप गर्नुहोस्</string>
     <string name="msg_wait">कृपया पर्खनुहोस्…</string>
     <string name="msg_copied">क्लिपबोर्डमा प्रतिलिपि</string>
@@ -214,7 +214,6 @@
     <string name="settings_file_replacement_character_title">प्रतिस्थापन वर्ण</string>
     <string name="charset_letters_and_digits">अक्षर र अंक</string>
     <string name="charset_most_special_characters">सबै विशेष वर्णहरु</string>
-    <string name="title_activity_about">न्यू पाइपको बारेमा</string>
     <string name="title_licenses">तेस्रो-पक्ष इजाजत पत्र</string>
     <string name="copyright" formatted="true">©%1$s को %2$s द्वारा %3$s अन्तर्गत</string>
     <string name="tab_about">बारेमा</string>
@@ -224,15 +223,12 @@
     <string name="contribution_encouragement">तपाईं को विचार छ कि छैन; अनुवाद, डिजाइन परिवर्तन, कोड सफाई, वा वास्तविक भारी कोड परिवर्तन-मद्दत सधैं छ स्वागत गर्दछौं। अधिक राम्रो यो हुन्छ गरिन्छ!</string>
     <string name="view_on_github">(GitHub)गिटहबमा हेर्नुहोस्</string>
     <string name="donation_title">दान</string>
-    <string name="donation_encouragement">(NewPipe)न्यु पाइप तपाईं ल्याउन सबै भन्दा राम्रो प्रयोगकर्ता अनुभव आफ्नो स्वतन्त्र समय खर्च स्वयंसेवकहरु विकास गरिएको छ। NewPipe अझ राम्रो तिनीहरू एक कप कफी आनन्द गर्दा बनाउन मद्दत विकासकर्ताहरूले फिर्ता दिनुहोस्।</string>
     <string name="give_back">फिर्ता दिनुहोस</string>
     <string name="website_title">वेबसाइट</string>
-    <string name="website_encouragement">थप जानकारी र समाचार लागि NewPipe वेबसाइट मा जानुहोस्।</string>
-    <string name="privacy_policy_title">NewPipe गोपनीयता नीति</string>
-    <string name="privacy_policy_encouragement">न्यू पाइप परियोजना आफ्नो गोपनीयता धेरै गम्भीरतापूर्वक लिन्छ। तसर्थ, तपाईँको सहमति बिना कुनै पनि डाटा संकलन गर्दैन। \nन्यू पाइपको गोपनीयता नीतिले क्र्यास रिपोर्ट पठाउने बित्तिकै कुन डाटा पठाइएको र भण्डारण गरिएको छ भनेर विस्तृत वर्णन गर्दछ।</string>
+    <string name="privacy_policy_title">Merak गोपनीयता नीति</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ्नुहोस्</string>
-    <string name="app_license_title">NewPipe इजाजत पत्र</string>
-    <string name="app_license">NewPipe copyleft छ मुफ्त सफ्टवेयर: तपाईं प्रयोग गर्न सक्नुहुन्छ, अध्ययन शेयर र इच्छामा सुधार। विशेष तपाईं redistribute गर्न सक्नुहुन्छ र / वा रूपमा फ्री सफ्टवेयर फाउंडेशन द्वारा प्रकाशित GNU जनरल सार्वजनिक लाइसेन्स सर्तहरू अन्तर्गत यो परिमार्जन, कि त लाइसेन्स को संस्करण 3, वा (तपाईँको विकल्प मा) कुनै पनि पछि संस्करण।</string>
+    <string name="app_license_title">Merak इजाजत पत्र</string>
+    <string name="app_license">Merak copyleft छ मुफ्त सफ्टवेयर: तपाईं प्रयोग गर्न सक्नुहुन्छ, अध्ययन शेयर र इच्छामा सुधार। विशेष तपाईं redistribute गर्न सक्नुहुन्छ र / वा रूपमा फ्री सफ्टवेयर फाउंडेशन द्वारा प्रकाशित GNU जनरल सार्वजनिक लाइसेन्स सर्तहरू अन्तर्गत यो परिमार्जन, कि त लाइसेन्स को संस्करण 3, वा (तपाईँको विकल्प मा) कुनै पनि पछि संस्करण।</string>
     <string name="read_full_license">लाइसेन्स पढ्नुहोस्</string>
     <string name="title_activity_history">इतिहास</string>
     <string name="action_history">इतिहास</string>
@@ -315,7 +311,6 @@
     <string name="skip_silence_checkbox">मौन समयमा छिटो-फर्वार्ड</string>
     <string name="playback_step">चरण</string>
     <string name="playback_reset">रिसेट</string>
-    <string name="start_accept_privacy_policy">यूरोपीय सामान्य डाटा संरक्षण नियमन (GDPR) अनुपालन गर्न, हामी हर्बी न्यूपिपको गोपनीयता नीतिमा तपाईंको ध्यान आकर्षित गर्दछौं। कृपया यसलाई ध्यानपूर्वक पढ्नुहोस्। \nतपाईंले हामीलाई बग रिपोर्ट पठाउन यसलाई स्वीकार्नुपर्दछ।</string>
     <string name="accept">स्वीकार</string>
     <string name="decline">अस्वीकार</string>
     <string name="limit_data_usage_none_description">असीमित</string>
@@ -331,7 +326,7 @@
     <string name="list">सूची</string>
     <string name="grid">ग्रिड</string>
     <string name="auto">स्वतः</string>
-    <string name="app_update_available_notification_title">NewPipe अपडेट उपलब्ध छ!</string>
+    <string name="app_update_available_notification_title">Merak अपडेट उपलब्ध छ!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">रोकिएको</string>
     <string name="paused">पज</string>
@@ -371,7 +366,7 @@
     <string name="overwrite_finished_warning">यो नाम सितको डाउनलोड गरिएको फाइल पहिले नै अवस्थित छ</string>
     <string name="overwrite_failed">फाइल अधिलेखन गर्न सकिएन</string>
     <string name="download_already_pending">यसै नाम सितको एक फाइल डाउनलोड हुने प्रक्रियामा छ</string>
-    <string name="error_postprocessing_stopped">फाइल मा काम गर्दा NewPipe बन्द भएको थियो</string>
+    <string name="error_postprocessing_stopped">फाइल मा काम गर्दा Merak बन्द भएको थियो</string>
     <string name="error_insufficient_storage_left">उपकरणमा कुनै ठाउँ बाकी छैन</string>
     <string name="error_progress_lost">प्रगति हरायो, किनभने फाइल मेटिएको थियो</string>
     <string name="error_timeout">जडान समय सकियो</string>
@@ -431,7 +426,6 @@
     <string name="new_seek_duration_toast">ExoPlayer अवरोधका कारण खोजी अवधि %d सेकेन्डमा सेट गरियो</string>
     <string name="mute">म्युट</string>
     <string name="unmute">ध्वनि सुचारु</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">के तपाईलाई लाग्छ फिड लोडि एकदम ढिलो छ? यदि हो भने, छिटो लोडिङ् सक्षम गर्न प्रयास गर्नुहोस् (तपाईं यसलाई सेटिंङ्हरूमा वा तलको बटन थिचेर बदल्न सक्नुहुन्छ)। \n \nनयाँ पाइपले दुई फिड लोड गर्ने रणनीति प्रदान गर्दछ: \nसम्पूर्ण सदस्यता च्यानल ल्याउँदै, जुन ढिलो तर पूरा छ। \nएक समर्पित सेवा अन्तिम पोइन्ट प्रयोग गर्दै, जुन छिटो छ तर सामान्यतया पूरा हुँदैन। \n \nदुई बीचको भिन्नता यो छ कि द्रुत गतिमा सामान्यतया केही जानकारीको अभाव हुन्छ, जस्तै वस्तुको अवधि वा प्रकार (प्रत्यक्ष भिडियोहरू र सामान्य बिचमा भिन्नता लिन सक्दैन) र यसले कम वस्तुहरू फिर्ता गर्न सक्छ। \n \n(YouTube) युटुब एक सेवाको उदाहरण हो जुन यस आरएसएस फिडको साथ यो द्रुत विधि प्रदान गर्दछ। \n \nत्यसो भए छनौटमा तपाईको प्राथमिकतामा निर्भर छ: गति वा सटीक जानकारी।</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">द्रुत मोड असक्षम गर्नुहोस्</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">फास्ट मोड सक्षम पार्नुहोस्</string>
     <string name="feed_use_dedicated_fetch_method_summary">केहि सेवाहरूमा उपलब्ध छ, यो प्राय: धेरै छिटो हुन्छ तर सीमित वस्तुहरू र अक्सर अपूर्ण जानकारी फिर्ता गर्न सक्दछ (उदाहरणका लागि कुनै अवधि, वस्तुको प्रकार, कुनै लाइभ स्थिति)।</string>
@@ -482,7 +476,7 @@
     <string name="youtube_restricted_mode_enabled_title">यूट्यूब प्रतिबन्धित मोड</string>
     <string name="video_detail_by">%s द्वारा</string>
     <string name="channel_created_by">%s द्वारा सिर्जना गरिएको</string>
-    <string name="content_not_supported">यो सामग्री अझै NewPipeमा समर्थित छैन। \n… \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
+    <string name="content_not_supported">यो सामग्री अझै Merakमा समर्थित छैन। \n… \nआशा छ कि भविष्यको संस्करणमा समर्थित हुनेछ।</string>
     <string name="remove_watched_popup_partially_watched_streams">हो र आंशिक रूपमा हेरिएको भिडियोहरू</string>
     <string name="notification_colorize_title">सूचना पाटी रंगिन बनाउनु</string>
     <string name="notification_action_nothing">केहि छैन</string>

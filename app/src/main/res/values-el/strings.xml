@@ -125,8 +125,8 @@
     <string name="always">Πάντα</string>
     <string name="just_once">Μόνο μία φορά</string>
     <string name="file">Αρχείο</string>
-    <string name="notification_channel_name">Ειδοποίηση NewPipe</string>
-    <string name="notification_channel_description">Ειδοποιήσεις του αναπαραγωγέα του NewPipe</string>
+    <string name="notification_channel_name">Ειδοποίηση Merak</string>
+    <string name="notification_channel_description">Ειδοποιήσεις του αναπαραγωγέα του Merak</string>
     <string name="unknown_content">[Άγνωστο]</string>
     <string name="switch_to_background">Αλλαγή σε Παρασκήνιο</string>
     <string name="switch_to_popup">Αλλαγή σε Αναδυόμενο Παράθυρο</string>
@@ -191,7 +191,7 @@
     <string name="ok">Εντάξει</string>
     <string name="msg_name">Όνομα αρχείου</string>
     <string name="msg_threads">Νήματα</string>
-    <string name="msg_running">Λήψη NewPipe</string>
+    <string name="msg_running">Λήψη Merak</string>
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
     <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="no_available_dir">Παρακαλώ ορίστε έναν φάκελο λήψεων αργότερα στις ρυθμίσεις</string>
@@ -203,7 +203,7 @@
     <string name="settings_file_replacement_character_summary">Οι μη έγκυροι χαρακτήρες αντικαθίστανται με αυτήν την τιμή</string>
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
-    <string name="title_activity_about">Σχετικά με το NewPipe</string>
+    <string name="title_activity_about">Σχετικά με το Merak</string>
     <string name="title_licenses">Άδειες τρίτων κατασκευαστών</string>
     <string name="copyright" formatted="true">© %1$s από %2$s υπό %3$s</string>
     <string name="tab_about">Πληροφορίες και συχνές ερωτήσεις</string>
@@ -212,15 +212,12 @@
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής, η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
     <string name="donation_title">Κάνε δωρεά</string>
-    <string name="donation_encouragement">Το NewPipe αναπτύσσεται από εθελοντές που δαπανούν τον ελεύθερο χρόνο τους για να σας προσφέρουν τη βέλτιστη δυνατή εμπειρία χρήστη. Ανταποδώστε το, για να βοηθήσετε τους προγραμματιστές του NewPipe να το κάνουν ακόμα καλύτερο, όσο απολαμβάνουν ένα φλιτζάνι καφέ.</string>
     <string name="give_back">Προσφέρετε</string>
     <string name="website_title">Ιστοτόπος</string>
-    <string name="website_encouragement">Επισκευτείτε τον ιστότοπο του NewPipe για περισσότερες πληροφορίες και νέα.</string>
-    <string name="privacy_policy_title">Πολιτική ιδιωτικού απόρρητου του NewPipe</string>
-    <string name="privacy_policy_encouragement">Το NewPipe παίρνει πολύ σοβαρά την ιδιωτικότητα σας. Έτσι, η εφαρμογή αυτή δεν συλλέγει δεδομένα από εσάς χωρίς τη συγκατάθεσή σας. \nΗ πολιτική ιδιωτικού απόρρητου του NewPipe εξηγεί λεπτομερώς ποια δεδομένα αποστέλλονται και αποθηκεύονται όταν επιλέγετε να στείλετε μια αναφορά σφαλμάτων.</string>
+    <string name="privacy_policy_title">Πολιτική ιδιωτικού απόρρητου του Merak</string>
     <string name="read_privacy_policy">Ανάγνωση της πολιτικής ιδιωτικού απόρρητου</string>
-    <string name="app_license_title">Η άδεια του NewPipe</string>
-    <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της άδειας, είτε (προαιρετικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
+    <string name="app_license_title">Η άδεια του Merak</string>
+    <string name="app_license">Το Merak είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της άδειας, είτε (προαιρετικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
     <string name="read_full_license">Ανάγνωση της άδειας</string>
     <string name="delete_item_search_history">Θέλετε να σβήσετε αυτό το αντικείμενο από το ιστορικό αναζήτησης;</string>
     <string name="title_last_played">Τελευταία αναπαραγωγή</string>
@@ -299,7 +296,7 @@
     <string name="skip_silence_checkbox">Γρήγορη αναπαραγωγή κατά τη διάρκεια της σίγασης</string>
     <string name="playback_step">Βήμα</string>
     <string name="playback_reset">Επαναφορά</string>
-    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας εφιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά. \nΘα πρέπει να την αποδεχτείτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
+    <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας εφιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του Merak. Παραλούμε, διαβάστε την προσεκτικά. \nΘα πρέπει να την αποδεχτείτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
     <string name="accept">Αποδοχή</string>
     <string name="decline">Απόρριψη</string>
     <string name="limit_data_usage_none_description">Χωρίς όριο</string>
@@ -314,7 +311,7 @@
     <string name="events">Συμβάντα</string>
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
     <string name="app_update_notification_channel_name">Ειδοποίηση ενημέρωσης εφαρμογής</string>
-    <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του NewPipe</string>
+    <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του Merak</string>
     <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
     <string name="download_to_sdcard_error_message">Η αποθήκευση στην SD κάρτα δεν είναι δυνατή. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
     <string name="saved_tabs_invalid_json">Δεν ήταν δυνατή η ανάγνωση των αποθηκευμένων καρτελών. Θα γίνει χρήση των προεπιλεγμένων</string>
@@ -329,7 +326,7 @@
     <string name="list">Λίστα</string>
     <string name="grid">Πλέγμα</string>
     <string name="auto">Αυτόματο</string>
-    <string name="app_update_available_notification_title">Μια νέα έκδοση του NewPipe είναι διαθέσιμη!</string>
+    <string name="app_update_available_notification_title">Μια νέα έκδοση του Merak είναι διαθέσιμη!</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
     <string name="missions_header_pending">Εκκρεμεί</string>
     <string name="paused">σε παύση</string>
@@ -373,7 +370,7 @@
     <string name="missing_file">Το αρχείο μετακινήθηκε ή διαγράφηκε</string>
     <string name="overwrite_failed">δεν είναι δυνατή η αντικατάσταση του αρχείου</string>
     <string name="download_already_pending">Υπάρχει μια εκκρεμής λήψη με αυτό το όνομα</string>
-    <string name="error_postprocessing_stopped">Το NewPipe τερματίστηκε ενώ επεξεργάζονταν το αρχείο</string>
+    <string name="error_postprocessing_stopped">Το Merak τερματίστηκε ενώ επεξεργάζονταν το αρχείο</string>
     <string name="error_insufficient_storage_left">Δεν υπάρχει αρκετός χώρος στη συσκευή</string>
     <string name="error_progress_lost">Η πρόοδος χάθηκε, επειδή το αρχείο διαγράφηκε</string>
     <string name="error_timeout">Λήξη χρονικού ορίου σύνδεσης</string>
@@ -413,7 +410,7 @@
     <string name="search_showing_result_for">Εμφάνιση αποτελεσμάτων για: %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ενεργοποίηση γρήγορης λειτουργίας</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Απενεργοποίηση γρήγορης λειτουργίας</string>
-    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το NewPipe. \n \nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
+    <string name="content_not_supported">Αυτό το περιεχόμενο δεν υποστηρίζεται ακόμη από το Merak. \n \nΕλπίζουμε ότι θα υποστηριχθεί σε μια μελλοντική έκδοση.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Μικρογραφία avatar του καναλιού</string>
     <string name="channel_created_by">Δημιουργήθηκε από %s</string>
     <string name="playlist_page_summary">Σελίδα λίστας αναπαραγωγής</string>
@@ -464,7 +461,7 @@
     <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί). \n \nΤο NewPipe προσφέρει δύο στρατηγικές φόρτωσης ροής: \n- Λήψη ολόκληρου του καναλιού συνδρομής, το οποίο είναι αργό αλλά πλήρες. \n- Χρήση ενός αποκλειστικού τελικού σημείου υπηρεσίας, το οποίο είναι γρήγορο αλλά συνήθως δεν είναι πλήρες. \n \nΗ διαφορά μεταξύ των δύο είναι ότι η γρήγορη συνήθως στερείται κάποιες πληροφορίες, όπως η διάρκεια ή ο τύπος του στοιχείου (δεν μπορεί να διακρίνει μεταξύ ζωντανών βίντεο και κανονικών) και μπορεί να επιστρέψει λιγότερα στοιχεία. \n \nΤο YouTube είναι ένα παράδειγμα υπηρεσίας της γρήγορης μεθόδου με τη ροή RSS. \n \nΣυνεπώς επιλέγετε ανάλογα: ταχύτητα ή ακριβείς πληροφορίες.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Πιστεύετε ότι η ροή φορτώνει πολύ αργά; Δοκιμάστε να ενεργοποιήσετε τη γρήγορη φόρτωση (από τις ρυθμίσεις ή πατώντας το παρακάτω κουμπί). \n \nΤο Merak προσφέρει δύο στρατηγικές φόρτωσης ροής: \n- Λήψη ολόκληρου του καναλιού συνδρομής, το οποίο είναι αργό αλλά πλήρες. \n- Χρήση ενός αποκλειστικού τελικού σημείου υπηρεσίας, το οποίο είναι γρήγορο αλλά συνήθως δεν είναι πλήρες. \n \nΗ διαφορά μεταξύ των δύο είναι ότι η γρήγορη συνήθως στερείται κάποιες πληροφορίες, όπως η διάρκεια ή ο τύπος του στοιχείου (δεν μπορεί να διακρίνει μεταξύ ζωντανών βίντεο και κανονικών) και μπορεί να επιστρέψει λιγότερα στοιχεία. \n \nΤο YouTube είναι ένα παράδειγμα υπηρεσίας της γρήγορης μεθόδου με τη ροή RSS. \n \nΣυνεπώς επιλέγετε ανάλογα: ταχύτητα ή ακριβείς πληροφορίες.</string>
     <string name="feed_oldest_subscription_update">Η ροή ανανεώθηκε: %s</string>
     <string name="feed_notification_loading">Φόρτωση ροής…</string>
     <string name="feed_processing_message">Επεξεργασία ροής…</string>
@@ -509,7 +506,6 @@
     <string name="enqueue_stream">Προσθήκη σε ουρά</string>
     <string name="most_liked">Πιο αγαπημένα</string>
     <string name="error_report_open_github_notice">Παρακαλούμε ελέγξτε αν το πρόβλημα σας έχει ήδη αναφερθεί. Οι διπλές αναφορές μας στερούν το χρόνο που θα μπορούσαμε να διαθέσουμε για την επίλυση του προβλήματος.</string>
-    <string name="clear_cookie_summary">Εκκαθάριση των cookies που αποθηκεύει η εφαρμογή όταν επιλύετε ένα reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Τα reCAPTCHA cookies εκκαθαρίστηκαν</string>
     <string name="clear_cookie_title">Εκκαθάριση reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">Το YouTube διαθέτει «Περιορισμένη Λειτουργία» η οποία κρύβει πιθανώς ακατάλληλο περιεχόμενο</string>
@@ -541,12 +537,12 @@
     <string name="open_with">Άνοιγμα με</string>
     <string name="no_app_to_open_intent">Καμία εφαρμογή στη συσκευή σας δεν μπορεί το ανοίξει</string>
     <string name="crash_the_app">Κατάρρευση εφαρμογής</string>
-    <string name="paid_content">Αυτό το περιεχόμενο είναι διαθέσιμο μόνο σε χρήστες που έχουν πληρώσει και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
-    <string name="youtube_music_premium_content">Αυτό το βίντεο είναι διαθέσιμο μόνο για τα μέλη του YouTube Music Premium και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
-    <string name="private_content">Αυτό το περιεχόμενο είναι ιδιωτικό και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Αυτό είναι ένα κομμάτι SoundCloud Go+, τουλάχιστον στη χώρα σας. Έτσι δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το NewPipe.</string>
+    <string name="paid_content">Αυτό το περιεχόμενο είναι διαθέσιμο μόνο σε χρήστες που έχουν πληρώσει και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το Merak.</string>
+    <string name="youtube_music_premium_content">Αυτό το βίντεο είναι διαθέσιμο μόνο για τα μέλη του YouTube Music Premium και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το Merak.</string>
+    <string name="private_content">Αυτό το περιεχόμενο είναι ιδιωτικό και δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το Merak.</string>
+    <string name="soundcloud_go_plus_content">Αυτό είναι ένα κομμάτι SoundCloud Go+, τουλάχιστον στη χώρα σας. Έτσι δεν μπορεί να αναπαραχθεί ή να το κατεβάσετε με το Merak.</string>
     <string name="georestricted_content">Αυτό το περιεχόμενο δεν είναι διαθέσιμο στη χώρα σας.</string>
-    <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας. \nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το NewPipe δεν μπορεί να το αναπαράγει.</string>
+    <string name="restricted_video_no_stream">Αυτό το βίντεο έχει περιορισμό ηλικίας. \nΛόγω της νέας πολιτικής του YouTube για αυτά τα βίντεο, το Merak δεν μπορεί να το αναπαράγει.</string>
     <string name="featured">Επιλεγμένα</string>
     <string name="radio">Ράδιο</string>
     <string name="recaptcha_solve">Λύση</string>
@@ -575,7 +571,7 @@
     <string name="open_website_license">Ανοικτή ιστοσελίδα</string>
     <string name="account_terminated">Ο λογαριασμός διαγράφηκε</string>
     <string name="feed_load_error_fast_unknown">Η κατάσταση γρήγορης τροφοδοσίας δεν παρέχει περισσότερες πληροφορίες.</string>
-    <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί. \nΤο NewPipe δε θα μπορεί να φορτώσει αυτή την τροφοδοσία στο μέλλον. \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
+    <string name="feed_load_error_terminated">Ο λογαριασμός του δημιουργού έχει διαγραφεί. \nΤο Merak δε θα μπορεί να φορτώσει αυτή την τροφοδοσία στο μέλλον. \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
     <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το Πλαίσιο Πρόσβασης Αποθήκευσης υποστηρίζεται</string>
@@ -621,7 +617,7 @@
     <string name="create_error_notification">Δημιουργία ειδοποίησης σφάλματος</string>
     <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια. \nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων</string>
     <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια. \nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης</string>
-    <string name="error_report_notification_title">Το NewPipe παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
+    <string name="error_report_notification_title">Το Merak παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
     <string name="show_error_snackbar">Εμφάνιση μιας snackbar σφάλματος</string>
     <string name="detail_pinned_comment_view_description">Καρφιτσωμένο σχόλιο</string>
     <string name="leak_canary_not_available">Το LeakCanary δεν είναι διαθέσιμο</string>
@@ -665,7 +661,7 @@
     <string name="fast_mode">Γρήγορη λειτουργία</string>
     <string name="import_subscriptions_hint">Εισάγετε ή εξάγετε συνδρομές από το μενού 3 κουκκίδων</string>
     <string name="app_update_available_notification_text">Πατήστε για λήψη %s</string>
-    <string name="app_update_unavailable_toast">Έχετε την πιο πρόσφατη έκδοση του NewPipe</string>
+    <string name="app_update_unavailable_toast">Έχετε την πιο πρόσφατη έκδοση του Merak</string>
     <string name="night_theme_available">Αυτή η επιλογή είναι διαθέσιμη μόνο εάν έχει επιλεγεί %s για Θέμα</string>
     <string name="unset_playlist_thumbnail">Κατάργηση μόνιμης μικρογραφίας</string>
     <string name="msg_failed_to_copy">Αποτυχία αντιγραφής στο πρόχειρο</string>
@@ -767,7 +763,7 @@
     <string name="no">Όχι</string>
     <string name="yes">Ναι</string>
     <string name="settings_category_backup_restore_title">Αντίγραφο ασφαλείας και επαναφορά</string>
-    <string name="auto_update_check_description">Το NewPipe μπορεί να ελέγχει αυτόματα για νέες εκδόσεις και να σας ειδοποιεί μόλις είναι διαθέσιμες. \nΘέλετε να το ενεργοποιήσετε;</string>
+    <string name="auto_update_check_description">Το Merak μπορεί να ελέγχει αυτόματα για νέες εκδόσεις και να σας ειδοποιεί μόλις είναι διαθέσιμες. \nΘέλετε να το ενεργοποιήσετε;</string>
     <string name="reset_settings_title">Επαναφορά ρυθμίσεων</string>
     <string name="reset_settings_summary">Επαναφορά όλων των ρυθμίσεων στις αρχικές τιμές τους</string>
     <string name="reset_all_settings">Η επαναφορά όλων των ρυθμίσεων θα απορρίψει όλες τις τροποποιημένες ρυθμίσεις σας και θα επανεκκινήσει την εφαρμογή. \n \nΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;</string>
@@ -784,7 +780,7 @@
     <string name="migration_info_6_7_title">Η σελίδα των SoundCloud Top 50 αφαιρέθηκε</string>
     <string name="migration_info_6_7_message">Το SoundCloud έχει καταργήσει τα αρχικά charts με τα Top 50. Η αντίστοιχη καρτέλα έχει αφαιρεθεί από την κύρια σελίδα σας.</string>
     <string name="migration_info_7_8_title">Οι συνδυασμένες τάσεις στο YouTube καταργήθηκαν</string>
-    <string name="migration_info_7_8_message">Το YouTube έχει καταργήσει τη συνδυασμένη σελίδα με τάσεις από την 21 Ιουλίου 2025. Το NewPipe αντικατέστησε την προεπιλεγμένη σελίδα τάσεων με τις ζωντανές ροές τάσεων.\n\nΜπορείτε επίσης να επιλέξετε διαφορετικές σελίδες με τάσεις στις \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Περιεχόμενο κύριας σελίδας\".</string>
+    <string name="migration_info_7_8_message">Το YouTube έχει καταργήσει τη συνδυασμένη σελίδα με τάσεις από την 21 Ιουλίου 2025. Το Merak αντικατέστησε την προεπιλεγμένη σελίδα τάσεων με τις ζωντανές ροές τάσεων.\n\nΜπορείτε επίσης να επιλέξετε διαφορετικές σελίδες με τάσεις στις \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Περιεχόμενο κύριας σελίδας\".</string>
     <string name="trending_gaming">Τάσεις παιχνιδιών</string>
     <string name="trending_podcasts">Τάσεις podcasts</string>
     <string name="trending_movies">Τάσεις ταινιών και εκπομπών</string>
@@ -805,7 +801,6 @@
     <string name="unsupported_content_in_country">Αυτό το περιεχόμενο δεν είναι διαθέσιμο για την τρέχουσα επιλεγμένη χώρα περιεχομένου.\n\nΑλλάξτε την επιλογή σας από \"Ρυθμίσεις &gt; Περιεχόμενο &gt; Προεπιλεγμένη χώρα περιεχομένου\".</string>
     <string name="kao_dialog_more_info">Λεπτομέρειες</string>
     <string name="kao_solution">Λύση</string>
-    <string name="kao_dialog_warning">Τον Αύγουστο του 2025, η Google ανακοίνωσε ότι από τον Σεπτέμβριο του 2026, η εγκατάσταση εφαρμογών θα απαιτεί επαλήθευση προγραμματιστή για όλες τις εφαρμογές Android σε πιστοποιημένες συσκευές, συμπεριλαμβανομένων εκείνων που είναι εγκατεστημένες εκτός του Play Store. Δεδομένου ότι οι προγραμματιστές του NewPipe δεν συμφωνούν με αυτήν την απαίτηση, το NewPipe δεν θα λειτουργεί πλέον σε πιστοποιημένες συσκευές Android μετά από αυτό το χρονικό διάστημα.</string>
     <plurals name="export_subscriptions">
         <item quantity="one">Εξαγωγή %d συνδρομής…</item>
         <item quantity="other">Εξαγωγή %d συνδρομών…</item>
@@ -823,7 +818,7 @@
     <string name="import_subscriptions_summary">Εισαγωγή συνδρομών από προηγούμενη εξαγωγή</string>
     <string name="export_subscriptions_summary">Εξαγωγή των συνδρομών σας σε αρχείο .json</string>
     <string name="import_from_previous_export">Εισαγωγή από προηγούμενη εξαγωγή</string>
-    <string name="api23_requirement_dialog_title">Το NewPipe καταργεί την υποστήριξη για το Android 5</string>
-    <string name="api23_requirement_dialog_message">Δυστυχώς, το NewPipe βασίζεται σε ορισμένες βιβλιοθήκες που έχουν σταματήσει να υποστηρίζουν τα Android 5.0 και 5.1. Ως εκ τούτου, η επόμενη έκδοση του NewPipe θα λειτουργεί μόνο σε συσκευές με Android 6 ή νεότερη έκδοση, δυστυχώς. Διαβάστε περισσότερα στην ανάρτηση του ιστολογίου.</string>
+    <string name="api23_requirement_dialog_title">Το Merak καταργεί την υποστήριξη για το Android 5</string>
+    <string name="api23_requirement_dialog_message">Δυστυχώς, το Merak βασίζεται σε ορισμένες βιβλιοθήκες που έχουν σταματήσει να υποστηρίζουν τα Android 5.0 και 5.1. Ως εκ τούτου, η επόμενη έκδοση του Merak θα λειτουργεί μόνο σε συσκευές με Android 6 ή νεότερη έκδοση, δυστυχώς. Διαβάστε περισσότερα στην ανάρτηση του ιστολογίου.</string>
     <string name="api23_requirement_dialog_blogpost">Δημοσίευση στο ιστολόγιο</string>
 </resources>

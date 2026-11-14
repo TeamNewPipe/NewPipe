@@ -51,7 +51,7 @@
     <string name="checksum">Контрольная сумма</string>
     <string name="msg_name">Имя файла</string>
     <string name="msg_error">Ошибка</string>
-    <string name="msg_running">NewPipe загружает</string>
+    <string name="msg_running">Merak загружает</string>
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите папку для загрузки позже в настройках</string>
@@ -100,8 +100,8 @@
     <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
     <string name="show_higher_resolutions_title">Высокие разрешения</string>
-    <string name="title_activity_about">О NewPipe</string>
-    <string name="app_license_title">Лицензия NewPipe</string>
+    <string name="title_activity_about">О Merak</string>
+    <string name="app_license_title">Лицензия Merak</string>
     <string name="tab_licenses">Лицензии</string>
     <string name="title_licenses">Лицензии сторонних компонентов</string>
     <string name="tab_about">О приложении и ответы на вопросы</string>
@@ -127,8 +127,8 @@
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
-    <string name="notification_channel_name">Уведомление NewPipe</string>
-    <string name="notification_channel_description">Уведомления для плеера NewPipe</string>
+    <string name="notification_channel_name">Уведомление Merak</string>
+    <string name="notification_channel_description">Уведомления для плеера Merak</string>
     <string name="settings_category_downloads_title">Скачать</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
     <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>&gt;
@@ -207,10 +207,8 @@
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">NewPipe разрабатывают волонтёры, которые тратят свободное время, чтобы сделать приложение как можно удобнее. Поддержите разработчиков и помогите им сделать NewPipe ещё лучше - хотя бы за чашкой кофе.</string>
     <string name="give_back">Поддержать проект</string>
     <string name="website_title">Веб-сайт</string>
-    <string name="website_encouragement">Посетите сайт NewPipe, чтобы узнать больше и ознакомиться с новостями.</string>
     <string name="drawer_open">Открыть боковую панель</string>
     <string name="drawer_close">Закрыть боковую панель</string>
     <string name="video_player">Видеоплеер</string>
@@ -302,13 +300,12 @@
     <string name="delete_search_history_alert">Удалить всю историю поиска?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
-    <string name="app_license">NewPipe - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, NewPipe можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
+    <string name="app_license">Merak - свободное программное обеспечение, распространяемое на условиях копилефта. Вы можете свободно использовать, изучать, распространять и улучшать его. В частности, Merak можно распространять и/или изменять на условиях Стандартной общественной лицензии GNU, опубликованной Фондом свободного программного обеспечения, версии 3 либо, по вашему выбору, любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
-    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Приложение не собирает никакие данные без вашего согласия. \nПолитика конфиденциальности подробно объясняет, какие данные обрабатываются и хранятся при отправке отчёта о сбоях.</string>
+    <string name="privacy_policy_title">Политика конфиденциальности Merak</string>
     <string name="read_privacy_policy">Ознакомиться с политикой конфиденциальности</string>
-    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно ознакомьтесь с ней. \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
+    <string name="start_accept_privacy_policy">В соответствии с Общим регламентом по защите данных ЕС (GDPR), обращаем ваше внимание на политику конфиденциальности Merak. Пожалуйста, внимательно ознакомьтесь с ней. \nВам необходимо принять её условия, чтобы отправить нам отчёт об ошибке.</string>
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
     <string name="limit_data_usage_none_description">Без ограничений</string>
@@ -341,10 +338,10 @@
     <string name="settings_category_updates_title">Обновления</string>
     <string name="file_deleted">Файл удалён</string>
     <string name="app_update_notification_channel_name">Уведомление об обновлении приложения</string>
-    <string name="app_update_notification_channel_description">Уведомления о новых версиях NewPipe</string>
+    <string name="app_update_notification_channel_description">Уведомления о новых версиях Merak</string>
     <string name="updates_setting_title">Обновления</string>
     <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
-    <string name="app_update_available_notification_title">Доступно обновление NewPipe!</string>
+    <string name="app_update_available_notification_title">Доступно обновление Merak!</string>
     <string name="missions_header_finished">Завершено</string>
     <string name="paused">приостановлено</string>
     <string name="queued">в очереди</string>
@@ -386,7 +383,7 @@
     <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
     <string name="overwrite_failed">не удаётся перезаписать файл</string>
     <string name="download_already_pending">В очереди уже есть загрузка с таким именем</string>
-    <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
+    <string name="error_postprocessing_stopped">Merak была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage_left">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
     <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы?</string>
@@ -489,12 +486,12 @@
     <string name="feed_update_threshold_option_always_update">Обновлять всегда</string>
     <string name="feed_group_dialog_empty_selection">Подписки не выбраны</string>
     <string name="feed_groups_header_title">Группы каналов</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Если подписки обновляются слишком медленно, попробуйте быстрый режим (включите в настройках или кнопкой внизу). \n \nNewPipe может обновлять подписки двумя способами: \n• получение канала целиком, медленное, с полными сведениями; \n• обновление по RSS, быстрое, с потерей сведений. \n \nПри быстром обновлении теряются длительность элемента и его тип (трансляция или обычное видео), могут быть получены не все элементы канала. \n \nКак пример, YouTube поддерживает быстрое обновление. \n \nВыбор за вами: скорость или точность.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Если подписки обновляются слишком медленно, попробуйте быстрый режим (включите в настройках или кнопкой внизу). \n \nMerak может обновлять подписки двумя способами: \n• получение канала целиком, медленное, с полными сведениями; \n• обновление по RSS, быстрое, с потерей сведений. \n \nПри быстром обновлении теряются длительность элемента и его тип (трансляция или обычное видео), могут быть получены не все элементы канала. \n \nКак пример, YouTube поддерживает быстрое обновление. \n \nВыбор за вами: скорость или точность.</string>
     <string name="feed_use_dedicated_fetch_method_title">Получать из выделенной ленты, когда доступно</string>
     <string name="feed_use_dedicated_fetch_method_summary">Доступно для некоторых сервисов, быстрое, может возвращать не всё содержимое канала и не содержать часть сведений (длительность, статус трансляции)</string>
     <string name="feed_update_threshold_summary">Период актуальности подписок после обновления — %s</string>
     <string name="restricted_video">Это видео имеет возрастное ограничение. \n \nВключите «%1$s» в настройках, если хотите его видеть.</string>
-    <string name="content_not_supported">NewPipe не поддерживает этот контент. \n \nВозможно, поддержка появится в следующих версиях.</string>
+    <string name="content_not_supported">Merak не поддерживает этот контент. \n \nВозможно, поддержка появится в следующих версиях.</string>
     <string name="infinite_videos">∞ видео</string>
     <string name="more_than_100_videos">100+ видео</string>
     <string name="songs">Треки</string>
@@ -548,7 +545,6 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube предоставляет «Безопасный режим», скрывая потенциально взрослый контент</string>
     <string name="enqueued">Добавлено в очередь</string>
     <string name="enqueue_stream">Добавить в очередь</string>
-    <string name="clear_cookie_summary">Удалить сохранённые при решении reCAPTCHA куки</string>
     <string name="notification_colorize_summary">Окрашивать уведомление основным цветом миниатюры. Поддерживается не всеми устройствами</string>
     <string name="notification_colorize_title">Цветное уведомление</string>
     <string name="show_thumbnail_summary">Использовать миниатюру для фона уведомлений и экрана блокировки</string>
@@ -568,17 +564,17 @@
     <string name="open_with">Открыть в</string>
     <string name="no_app_to_open_intent">Подходящее приложение не найдено</string>
     <string name="crash_the_app">Вызвать сбой приложения</string>
-    <string name="paid_content">Этот контент доступен только оплатившим его пользователям, поэтому NewPipe не может воспроизвести или загрузить его.</string>
-    <string name="youtube_music_premium_content">Это видео доступно только для пользователей YouTube Music Premium, поэтому NewPipe не может воспроизвести или загрузить его.</string>
-    <string name="private_content">Это частный контент, поэтому NewPipe не может воспроизвести или загрузить его.</string>
-    <string name="soundcloud_go_plus_content">Этот трек требует SoundCloud Go+, по крайней мере в Вашей стране. Поэтому NewPipe не может воспроизвести или загрузить его.</string>
+    <string name="paid_content">Этот контент доступен только оплатившим его пользователям, поэтому Merak не может воспроизвести или загрузить его.</string>
+    <string name="youtube_music_premium_content">Это видео доступно только для пользователей YouTube Music Premium, поэтому Merak не может воспроизвести или загрузить его.</string>
+    <string name="private_content">Это частный контент, поэтому Merak не может воспроизвести или загрузить его.</string>
+    <string name="soundcloud_go_plus_content">Этот трек требует SoundCloud Go+, по крайней мере в Вашей стране. Поэтому Merak не может воспроизвести или загрузить его.</string>
     <string name="georestricted_content">Этот контент недоступен в вашей стране.</string>
     <string name="download_has_started">Загрузка началась</string>
     <string name="select_night_theme_toast">Вы можете выбрать предпочтительную ночную тему ниже</string>
     <string name="night_theme_summary">Выберите предпочтительную ночную тему — %s</string>
     <string name="auto_device_theme_title">Автоматически (тема устройства)</string>
     <string name="radio">Радио</string>
-    <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения. \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями NewPipe не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
+    <string name="restricted_video_no_stream">Это видео имеет возрастные ограничения. \nСогласно новой политике YouTube в отношении видео с возрастными ограничениями Merak не может иметь доступ ни к одному потоку этого видео и, таким образом, не может воспроизвести его.</string>
     <string name="night_theme_title">Ночная тема</string>
     <string name="featured">Популярное</string>
     <string name="recaptcha_solve">Решить</string>
@@ -601,7 +597,7 @@
     <string name="metadata_host">Сервер</string>
     <string name="metadata_privacy">Доступность</string>
     <string name="feed_load_error_fast_unknown">В быстром режиме обновления подробности об этом не предоставляются.</string>
-    <string name="feed_load_error_terminated">Аккаунт автора отключён. \nNewPipe не сможет загружать эту подписку в будущем. \nОтписаться от этого канала?</string>
+    <string name="feed_load_error_terminated">Аккаунт автора отключён. \nMerak не сможет загружать эту подписку в будущем. \nОтписаться от этого канала?</string>
     <string name="feed_load_error_account_info">Не удалось загрузить подписку \'%s\'.</string>
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
@@ -660,7 +656,7 @@
     <string name="crash_the_player">Вызвать сбой плеера</string>
     <string name="error_report_channel_name">Уведомление отчёта об ошибке</string>
     <string name="error_report_channel_description">Уведомления для отчётов об ошибках</string>
-    <string name="error_report_notification_title">Ошибка NewPipe, нажмите для отчёта</string>
+    <string name="error_report_notification_title">Ошибка Merak, нажмите для отчёта</string>
     <string name="error_report_notification_toast">Произошла ошибка, подробнее в уведомлении</string>
     <string name="show_error_snackbar">Показать снэк-бар с ошибкой</string>
     <string name="create_error_notification">Показать уведомление об ошибке</string>
@@ -688,7 +684,6 @@
     <string name="faq_description">Если у вас есть проблемы с использованием приложения, проверьте ответы на часто задаваемые вопросы!</string>
     <string name="faq">Посмотреть на сайте</string>
     <string name="sort">Сортировка</string>
-    <string name="app_update_unavailable_toast">У вас последняя версия</string>
     <string name="fast_mode">Быстрый режим</string>
     <string name="import_subscriptions_hint">Импорт и экспорт подписок в меню с 3-мя точками</string>
     <string name="app_update_available_notification_text">Нажмите для загрузки %s</string>
@@ -797,7 +792,7 @@
     <string name="no">Нет</string>
     <string name="settings_category_backup_restore_title">Резервное копирование и восстановление</string>
     <string name="reset_settings_title">Сбросить настройки</string>
-    <string name="auto_update_check_description">NewPipe может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны. \nЖелаете включить эту функцию?</string>
+    <string name="auto_update_check_description">Merak может автоматически проверять наличие обновлений и уведомить вас, когда они будут доступны. \nЖелаете включить эту функцию?</string>
     <string name="reset_all_settings">Сброс всех настроек приведёт к сбросу всех ваших настроек и перезапуску приложения. \n \nВы уверены, что хотите продолжить?</string>
     <string name="import_settings_vulnerable_format">Настройки в импортируемом экспорте используют уязвимый формат, который устарел с версии NewPipe 0.27.0. Убедитесь, что импортируемый экспорт получен из надёжного источника, и в будущем предпочтительнее использовать только экспорт, полученный из NewPipe 0.27.0 или новее. Поддержка импорта настроек в этом уязвимом формате скоро будет полностью удалена, и тогда старые версии NewPipe больше не смогут импортировать настройки из экспорта из новых версий.</string>
     <string name="audio_track_type_secondary">вторичный</string>
@@ -816,7 +811,7 @@
     <string name="short_billion">%sмлрд</string>
     <string name="trending_gaming">Игровые тренды</string>
     <string name="migration_info_7_8_title">Удалены объединённые тренды YouTube</string>
-    <string name="migration_info_7_8_message">YouTube прекратил поддержку объединённой страницы трендов 21 июля 2025 года. NewPipe заменил страницу трендов по умолчанию на тренды в прямых трансляциях.\n\nВы также можете выбрать другие страницы трендов в \"Настройки &gt; Контент &gt; Главная страница\".</string>
+    <string name="migration_info_7_8_message">YouTube прекратил поддержку объединённой страницы трендов 21 июля 2025 года. Merak заменил страницу трендов по умолчанию на тренды в прямых трансляциях.\n\nВы также можете выбрать другие страницы трендов в \"Настройки &gt; Контент &gt; Главная страница\".</string>
     <string name="trending_podcasts">Тренды в подкастах</string>
     <string name="trending_movies">Тренды в фильмах и шоу</string>
     <string name="trending_music">Тренды в музыке</string>
@@ -831,7 +826,6 @@
     <string name="youtube_player_http_403">Во время воспроизведения получена ошибка HTTP 403 от сервера, вероятно, вызванная блокировкой IP-адреса или проблемами деобфускации URL-адреса потоковой передачи</string>
     <string name="sign_in_confirm_not_bot_error">%1$s отказался предоставить данные, запросив вход в аккаунт для подтверждения, что запрашивающий не является ботом.\n\nВозможно, ваш IP-адрес временно заблокирован %1$s, вы можете подождать некоторое время или переключиться на другой IP-адрес (например, включив/выключив VPN или переключившись с Wi-Fi на мобильный интернет).\n\nПожалуйста посмотрите <a href="%2$s">этот пункт FAQ</a> для получения дополнительной информации.</string>
     <string name="unsupported_content_in_country">Этот контент недоступен для выбранной страны контента.\n\nИзмените свой выбор в разделе «Настройки &gt; Контент &gt; Страна контента по умолчанию».</string>
-    <string name="kao_dialog_warning">В августе 2025 года, Google анонсировала, что с сентября 2026 года, установка приложений потребует верификации разработчика для всех Android приложений на сертифицированных устройствах, включая те, которые были установлены не через Play Store. Поскольку разработчики NewPipe не согласны с этим требованием, NewPipe перестанет работать на сертифицированных Android устройствах после этой даты.</string>
     <string name="kao_dialog_more_info">Подробнее</string>
     <string name="kao_solution">Решение</string>
     <plurals name="export_subscriptions">
@@ -857,7 +851,7 @@
     <string name="import_subscriptions_summary">Импорт подписок из предыдущего экспорта .json</string>
     <string name="export_subscriptions_summary">Экспорт ваших подписок в .json файл</string>
     <string name="import_from_previous_export">Импорт из предыдущего экспорта</string>
-    <string name="api23_requirement_dialog_title">NewPipe прекращает поддержку Android 5</string>
-    <string name="api23_requirement_dialog_message">К сожалению, NewPipe зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск NewPipe будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
+    <string name="api23_requirement_dialog_title">Merak прекращает поддержку Android 5</string>
+    <string name="api23_requirement_dialog_message">К сожалению, Merak зависит от нескольких библиотек, которые прекратили поддерживать Android 5.0 и 5.1. Таким образом, к сожалению следующий выпуск Merak будет работать только на устройствах с Android 6 или выше. Подробности в посте в блоге.</string>
     <string name="api23_requirement_dialog_blogpost">Пост в блоге</string>
 </resources>

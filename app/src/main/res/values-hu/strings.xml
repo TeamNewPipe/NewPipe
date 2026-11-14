@@ -72,7 +72,7 @@
     <string name="msg_name">Fájlnév</string>
     <string name="msg_threads">Szálak</string>
     <string name="msg_error">Hiba</string>
-    <string name="msg_running">A NewPipe letölt</string>
+    <string name="msg_running">A Merak letölt</string>
     <string name="msg_running_detail">Koppintson a részletekért</string>
     <string name="msg_wait">Kis türelmet…</string>
     <string name="msg_copied">Vágólapra másolva</string>
@@ -117,8 +117,8 @@
     <string name="play_all">Összes lejátszása</string>
     <string name="always">Mindig</string>
     <string name="just_once">Csak egyszer</string>
-    <string name="notification_channel_name">NewPipe értesítés</string>
-    <string name="notification_channel_description">Értesítések a NewPipe lejátszójához</string>
+    <string name="notification_channel_name">Merak értesítés</string>
+    <string name="notification_channel_description">Értesítések a Merak lejátszójához</string>
     <string name="unknown_content">[Ismeretlen]</string>
     <string name="import_data_title">Adatbázis importálása</string>
     <string name="export_data_title">Adatbázis exportálása</string>
@@ -193,7 +193,7 @@
     <string name="settings_file_replacement_character_title">Helyettesítő karakter</string>
     <string name="charset_letters_and_digits">Betűk és számjegyek</string>
     <string name="charset_most_special_characters">A legtöbb speciális karakter</string>
-    <string name="title_activity_about">A NewPipe névjegye</string>
+    <string name="title_activity_about">A Merak névjegye</string>
     <string name="tab_about">Névjegy és GYIK</string>
     <string name="tab_licenses">Licencek</string>
     <string name="app_description">Szabad és könnyed közvetítés Androidon.</string>
@@ -201,14 +201,11 @@
     <string name="contribution_encouragement">Legyen szó fordításról, dizájnmódosításokról, kódtisztításról vagy komolyabb fejlesztésekről, minden segítséget szívesen fogadunk. Minél többen járulnak hozzá, annál jobb lesz a projekt!</string>
     <string name="view_on_github">Megtekintés a GitHubon</string>
     <string name="donation_title">Adakozás</string>
-    <string name="donation_encouragement">A NewPipe-ot önkéntesek fejlesztik a szabadidejükben, hogy a lehető legjobb felhasználói élményt nyújtsák. Támogatásával hozzájárulhat ahhoz, hogy a fejlesztők egy csésze kávé mellett még jobbá tehessék a NewPipe-ot.</string>
     <string name="give_back">Támogatás</string>
     <string name="website_title">Weboldal</string>
-    <string name="website_encouragement">Látogassa meg a NewPipe weboldalát további információkért és hírekért.</string>
-    <string name="privacy_policy_title">A NewPipe adatvédelmi irányelvei</string>
-    <string name="privacy_policy_encouragement">A NewPipe projekt kiemelten fontosnak tartja az Ön adatainak védelmét. Ezért az alkalmazás az Ön hozzájárulása nélkül semmilyen adatot nem gyűjt.\nA NewPipe adatvédelmi irányelvei részletesen ismertetik, hogy összeomlási jelentés küldésekor milyen adatok kerülnek továbbításra és tárolásra.</string>
+    <string name="privacy_policy_title">A Merak adatvédelmi irányelvei</string>
     <string name="read_privacy_policy">Adatvédelmi irányelvek megtekintése</string>
-    <string name="app_license_title">A NewPipe licence</string>
+    <string name="app_license_title">A Merak licence</string>
     <string name="read_full_license">Licenc megtekintése</string>
     <string name="title_activity_history">Előzmények</string>
     <string name="action_history">Előzmények</string>
@@ -300,7 +297,7 @@
     <string name="seek_duration_title">Előre- és visszatekerés időtartama</string>
     <string name="enable_playback_resume_summary">Utolsó lejátszási pozíció visszaállítása</string>
     <string name="enable_playback_resume_title">Lejátszás folytatása</string>
-    <string name="app_update_notification_channel_description">Értesítések az új NewPipe verziókról</string>
+    <string name="app_update_notification_channel_description">Értesítések az új Merak verziókról</string>
     <string name="app_update_notification_channel_name">Alkalmazásfrissítés értesítése</string>
     <string name="file_deleted">Fájl törölve</string>
     <string name="settings_category_updates_title">Frissítések</string>
@@ -328,7 +325,7 @@
     <string name="error_timeout">Kapcsolati időtúllépés</string>
     <string name="error_progress_lost">Az előrehaladás elveszett, mert a fájlt törölték</string>
     <string name="error_insufficient_storage_left">Nincs hely az eszközön</string>
-    <string name="error_postprocessing_stopped">A NewPipe leállt a fájl feldolgozása közben</string>
+    <string name="error_postprocessing_stopped">A Merak leállt a fájl feldolgozása közben</string>
     <string name="error_postprocessing_failed">Az utófeldolgozás sikertelen</string>
     <string name="error_http_not_found">Nincs talalat</string>
     <string name="error_http_unsupported_range">A kiszolgáló nem fogad többszálú letöltést, próbálkozzon újra ezzel: @string/msg_threads = 1</string>
@@ -352,7 +349,7 @@
     <string name="paused">szüneteltetve</string>
     <string name="missions_header_pending">Függőben lévő</string>
     <string name="missions_header_finished">Befejezett</string>
-    <string name="app_update_available_notification_title">NewPipe frissítés érhető el!</string>
+    <string name="app_update_available_notification_title">Merak frissítés érhető el!</string>
     <string name="auto">Automatikus</string>
     <string name="grid">Rács</string>
     <string name="list">Lista</string>
@@ -377,7 +374,7 @@
     <string name="auto_queue_toggle">Automatikus sorba állítás</string>
     <string name="show_description_summary">Kapcsolja ki, hogy elrejtse a videó leírását és a további információkat</string>
     <string name="restore_defaults_confirmation">Visszaállítja az alapértelmezéseket?</string>
-    <string name="restricted_video_no_stream">Ez a videó korhatáros. \nAz új, korhatáros videókkal kapcsolatos YouTube irányelvek miatt a NewPipe nem férhet hozzá a videófolyamokhoz, így nem tudja lejátszani.</string>
+    <string name="restricted_video_no_stream">Ez a videó korhatáros. \nAz új, korhatáros videókkal kapcsolatos YouTube irányelvek miatt a Merak nem férhet hozzá a videófolyamokhoz, így nem tudja lejátszani.</string>
     <string name="description_tab_description">Leírás</string>
     <string name="comments_tab_description">Hozzászólások</string>
     <string name="copy_for_github">Formázott jelentés másolása</string>
@@ -399,7 +396,7 @@
     <string name="new_seek_duration_toast">Az ExoPlayer korlátai miatt az előre- és visszatekerés időtartama %d másodpercre lett állítva</string>
     <string name="feed_groups_header_title">Csatornacsoportok</string>
     <string name="systems_language">Rendszer alapértelmezése</string>
-    <string name="start_accept_privacy_policy">Az Általános adatvédelmi rendeletnek (GDPR) való megfelelés érdekében felhívjuk figyelmét a NewPipe adatvédelmi irányelveire. Olvassa el figyelmesen. \nEl kell fogadnia, ha hibajelentést szeretne küldeni.</string>
+    <string name="start_accept_privacy_policy">Az Általános adatvédelmi rendeletnek (GDPR) való megfelelés érdekében felhívjuk figyelmét a Merak adatvédelmi irányelveire. Olvassa el figyelmesen. \nEl kell fogadnia, ha hibajelentést szeretne küldeni.</string>
     <string name="crash_the_app">Alkalmazás összeomlasztása</string>
     <string name="show_memory_leaks">Memóriaszivárgások megjelenítése</string>
     <string name="enable_leak_canary_summary">A memóriaszivárgás figyelése a heap kiírásakor az alkalmazás lefagyását okozhatja</string>
@@ -439,7 +436,7 @@
     <string name="more_than_100_videos">100+ videó</string>
     <string name="error_report_open_issue_button_text">Jelentés a GitHubon</string>
     <string name="restore_defaults">Alapértelmezések visszaállítása</string>
-    <string name="clear_cookie_summary">Sütik törlése, amelyeket a NewPipe akkor ment, amikor megold egy reCAPTCHA-t</string>
+    <string name="clear_cookie_summary">Sütik törlése, amelyeket a Merak akkor ment, amikor megold egy reCAPTCHA-t</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA sütik törölve</string>
     <string name="clear_cookie_title">reCAPTCHA sütik törlése</string>
     <string name="artists">Előadók</string>
@@ -487,13 +484,13 @@
         <item quantity="other">%d kiválasztva</item>
     </plurals>
     <string name="feed_create_new_group_button_title">Új</string>
-    <string name="content_not_supported">Ezt a tartalmat még nem támogatja a NewPipe. \n \nRemélhetőleg egy következő verzióban már támogatott lesz.</string>
+    <string name="content_not_supported">Ezt a tartalmat még nem támogatja a Merak. \n \nRemélhetőleg egy következő verzióban már támogatott lesz.</string>
     <string name="no_app_to_open_intent">Az eszközén nincs olyan alkalmazás, amely meg tudná nyitni ezt</string>
-    <string name="youtube_music_premium_content">Ez a videó csak YouTube Music Prémium előfizetők számára érhető el, így nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
+    <string name="youtube_music_premium_content">Ez a videó csak YouTube Music Prémium előfizetők számára érhető el, így nem tekinthető meg és nem tölthető le a Merak-pal.</string>
     <string name="auto_device_theme_title">Automatikus (eszköz témája)</string>
-    <string name="paid_content">Ez a tartalom csak előfizetőknek érhető el, nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
+    <string name="paid_content">Ez a tartalom csak előfizetőknek érhető el, nem tekinthető meg és nem tölthető le a Merak-pal.</string>
     <string name="georestricted_content">Ez a tartalom nem érhető el az országában.</string>
-    <string name="private_content">Ez a tartalom privát, így nem tekinthető meg és nem tölthető le a NewPipe-pal.</string>
+    <string name="private_content">Ez a tartalom privát, így nem tekinthető meg és nem tölthető le a Merak-pal.</string>
     <string name="download_has_started">A letöltés elkezdődött</string>
     <string name="notification_scale_to_square_image_summary">Az értesítésben megjelenő bélyegkép levágása 16:9-es helyett 1:1-es képarányra</string>
     <string name="chapters">Fejezetek</string>
@@ -521,7 +518,7 @@
     <string name="show_channel_details">Csatorna részleteinek megjelenítése</string>
     <string name="hold_to_append">Tartsa a sorba állításhoz</string>
     <string name="default_kiosk_page_summary">Alapértelmezett témagyűjtemény</string>
-    <string name="app_license">A NewPipe copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
+    <string name="app_license">A Merak copyleft, szabad szoftver: Ön szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. Különösen jogosult arra, hogy a Free Software Foundation által közzétett GNU General Public License feltételei szerint terjessze és/vagy módosítsa, akár a licenc 3-as verziója, akár – saját belátása szerint – bármely későbbi verziója alapján.</string>
     <string name="recaptcha_solve">Megoldás</string>
     <string name="subtitle_activity_recaptcha">Nyomja meg a „Kész” gombot, ha megoldotta</string>
     <string name="msg_calculating_hash">Ujjlenyomat számítása</string>
@@ -549,11 +546,11 @@
     <string name="settings_category_feed_title">Hírfolyam</string>
     <string name="feed_update_threshold_title">Hírfolyam frissítési küszöb</string>
     <string name="feed_update_threshold_summary">A legutóbbi frissítés óta eltelt idő, ami után a feliratkozás elavultnak számít – %s</string>
-    <string name="feed_load_error_terminated">A szerző fiókját eltávolították. \nA NewPipe nem fogja tudni betölteni ezt a hírfolyamot a jövőben. \nLeiratkozik erről a csatornáról?</string>
+    <string name="feed_load_error_terminated">A szerző fiókját eltávolították. \nA Merak nem fogja tudni betölteni ezt a hírfolyamot a jövőben. \nLeiratkozik erről a csatornáról?</string>
     <string name="feed_load_error_fast_unknown">A gyors hírfolyammód nem szolgáltat több információt.</string>
     <string name="feed_use_dedicated_fetch_method_title">Lekérés egy dedikált hírfolyamból, ha lehetséges</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Gyors mód engedélyezése</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Úgy gondolja, hogy a hírfolyam betöltése lassú? Ha így van, akkor próbálja engedélyezni a gyors betöltést (ezt a beállításokban változtathatja meg, vagy a lenti gomb megnyomásával). \n \nA NewPipe két hírfolyam betöltési stratégiát kínál: \n• A teljes feliratkozott csatorna lekérése, amely lassú, de teljes. \n• Egy dedikált szolgáltatási végpont, amely gyors, de általában nem teljes. \n \nA különbség a kettő között az, hogy a gyorsból általában hiányoznak egyes információk, mint az elem hossza vagy a típusa (nem lehet megkülönböztetni az élő videókat a normálaktól), valamint kevesebb elemet adhat vissza. \n \nA YouTube például egy olyan szolgáltatás, amely ezt a gyors módot RSS hírcsatornával kínálja. \n \nÍgy a választása azon múlik, hogy melyiket tartja fontosabbnak: a sebességet vagy a pontos információkat.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Úgy gondolja, hogy a hírfolyam betöltése lassú? Ha így van, akkor próbálja engedélyezni a gyors betöltést (ezt a beállításokban változtathatja meg, vagy a lenti gomb megnyomásával). \n \nA Merak két hírfolyam betöltési stratégiát kínál: \n• A teljes feliratkozott csatorna lekérése, amely lassú, de teljes. \n• Egy dedikált szolgáltatási végpont, amely gyors, de általában nem teljes. \n \nA különbség a kettő között az, hogy a gyorsból általában hiányoznak egyes információk, mint az elem hossza vagy a típusa (nem lehet megkülönböztetni az élő videókat a normálaktól), valamint kevesebb elemet adhat vissza. \n \nA YouTube például egy olyan szolgáltatás, amely ezt a gyors módot RSS hírcsatornával kínálja. \n \nÍgy a választása azon múlik, hogy melyiket tartja fontosabbnak: a sebességet vagy a pontos információkat.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Csatorna profilképének bélyegképe</string>
     <string name="recent">Legutóbbi</string>
     <string name="featured">Kiemelt</string>
@@ -589,11 +586,11 @@
     <string name="detail_heart_img_view_description">Készítő által szívecskézve</string>
     <string name="on">Be</string>
     <string name="feed_load_error_account_info">A(z) „%s” hírfolyam nem tölthető be.</string>
-    <string name="soundcloud_go_plus_content">Ez egy SoundCloud Go+ szám, legalábbis az Ön országában, így nem játszható le vagy tölthető le a NewPipe-pal.</string>
+    <string name="soundcloud_go_plus_content">Ez egy SoundCloud Go+ szám, legalábbis az Ön országában, így nem játszható le vagy tölthető le a Merak-pal.</string>
     <string name="show_meta_info_summary">Kapcsolja ki, hogy elrejtse a metainformációs dobozokat, melyek további információkat tartalmaznak a közvetítés létrehozójáról, annak tartalmáról vagy egy keresési kérésről</string>
     <string name="error_report_channel_name">Hibajelentési értesítés</string>
     <string name="error_report_channel_description">Értesítések a hibák jelentéséhez</string>
-    <string name="error_report_notification_title">A NewPipe hibát észlelt, koppintson a jelentéséhez</string>
+    <string name="error_report_notification_title">A Merak hibát észlelt, koppintson a jelentéséhez</string>
     <string name="error_report_notification_toast">Hiba történt, lásd az értesítést</string>
     <string name="disable_media_tunneling_title">Médiatunneling letiltása</string>
     <string name="show_error_snackbar">Hibaüzenet megjelenítése értesítősávban</string>
@@ -665,7 +662,6 @@
     <string name="faq_description">Ha problémái adódnak az alkalmazás használata során, érdemes áttekintenie a gyakori kérdésekre adott válaszokat!</string>
     <string name="fast_mode">Gyors mód</string>
     <string name="import_subscriptions_hint">Feliratkozások importálása vagy exportálása a 3 pontos menüből</string>
-    <string name="app_update_unavailable_toast">Ön a Newpipe legfrissebb verzióját futtatja</string>
     <string name="app_update_available_notification_text">Nyomjon a %s letöltéséhez</string>
     <string name="left_gesture_control_title">Bal oldali gesztusművelet</string>
     <string name="right_gesture_control_title">Jobb oldali gesztusművelet</string>
@@ -767,7 +763,7 @@
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
     <string name="settings_category_backup_restore_title">Biztonsági mentés és visszaállítás</string>
-    <string name="auto_update_check_description">A NewPipe időről időre automatikusan ellenőrzi az új verziókat, és értesít, amint azok elérhetővé válnak. \nSzeretné engedélyezni ezt?</string>
+    <string name="auto_update_check_description">A Merak időről időre automatikusan ellenőrzi az új verziókat, és értesít, amint azok elérhetővé válnak. \nSzeretné engedélyezni ezt?</string>
     <string name="reset_settings_title">Beállítások alaphelyzetbe állítása</string>
     <string name="reset_settings_summary">Minden beállítás visszaállítása alapértelmezett értékre</string>
     <string name="reset_all_settings">Az összes beállítás visszaállítása elveti az összes preferált beállítást, és újraindítja az alkalmazást. \n \nBiztosan folytatja?</string>
@@ -784,7 +780,7 @@
     <string name="migration_info_6_7_title">SoundCloud Top 50 oldal eltávolítva</string>
     <string name="migration_info_6_7_message">A SoundCloud megszüntette az eredeti Top 50-es listákat. A megfelelő lap el lett távolítva a főoldalról.</string>
     <string name="migration_info_7_8_title">YouTube „felkapott lapok” eltávolítva</string>
-    <string name="migration_info_7_8_message">A YouTube 2025. július 21-től megszüntette a „felkapott” oldalt. A NewPipe a korábbi alapértelmezett „felkapott” oldalt felkapott élő közvetítésekkel helyettesítette.\n\nA „Beállítások &gt; Tartalom &gt; Főoldal tartalma” menüpontban különböző felkapott lapokat is kiválaszthat.</string>
+    <string name="migration_info_7_8_message">A YouTube 2025. július 21-től megszüntette a „felkapott” oldalt. A Merak a korábbi alapértelmezett „felkapott” oldalt felkapott élő közvetítésekkel helyettesítette.\n\nA „Beállítások &gt; Tartalom &gt; Főoldal tartalma” menüpontban különböző felkapott lapokat is kiválaszthat.</string>
     <string name="trending_gaming">Felkapott játékok</string>
     <string name="trending_podcasts">Felkapott podcastok</string>
     <string name="trending_movies">Felkapott filmek és sorozatok</string>
@@ -803,7 +799,6 @@
     <string name="youtube_player_http_403">HTTP 403-as hiba érkezett a kiszolgálótól a lejátszás közben, valószínűleg IP-tiltás vagy a közvetítési hivatkozás feloldási problémák miatt</string>
     <string name="sign_in_confirm_not_bot_error">%1$s visszautasította az adatok szolgáltatását, és bejelentkezést kér annak megerősítésére, hogy a kérés nem robot által érkezik.\n\nElőfordulhat, hogy az IP-címét ideiglenesen letiltotta %1$s, várhat egy keveset, vagy váltson egy másik IP-címre (például VPN be-/kikapcsolásával, vagy Wi-Fi-ről mobiladat-forgalomra váltva).\n\nTovábbi információért tekintse meg <a href="%2$s">ezt a GYIK-bejegyzést</a>.</string>
     <string name="unsupported_content_in_country">Ez a tartalom a jelenleg kiválasztott tartalom országában nem elérhető.\n\nVáltoztassa meg a „Beállítások &gt; Tartalom &gt;Tartalom alapértelmezett országa” menüpontban.</string>
-    <string name="kao_dialog_warning">2025 augusztusában a Google bejelentette, hogy 2026 szeptemberétől az alkalmazások telepítéséhez fejlesztői ellenőrzésre lesz szükség a tanúsított eszközökön található összes Android-alkalmazáshoz, beleértve a Play Áruházon kívül telepített alkalmazásokat is. Mivel a NewPipe fejlesztői nem értenek egyet ezzel a követelménnyel, a NewPipe ezután nem fog működni a tanúsított Android-eszközökön.</string>
     <string name="kao_dialog_more_info">Részletek</string>
     <string name="kao_solution">Megoldás</string>
     <plurals name="export_subscriptions">
@@ -823,8 +818,8 @@
     <string name="import_subscriptions_summary">Feliratkozások importálása korábbi .json-fájlból</string>
     <string name="export_subscriptions_summary">Feliratkozások exportálása .json-fájlba</string>
     <string name="import_from_previous_export">Importálás korábbi exportból</string>
-    <string name="api23_requirement_dialog_title">A NewPipe megszünteti az Android 5 támogatását</string>
-    <string name="api23_requirement_dialog_message">Sajnos a NewPipe néhány olyan programkönyvtárra támaszkodik, amelyek megszüntették az Android 5.0 és 5.1 verziójának támogatását. A NewPipe következő verziója ezért sajnos csak Android 6 vagy újabb rendszerrel rendelkező eszközökön fog működni. További információt a blogbejegyzésben olvashat.</string>
+    <string name="api23_requirement_dialog_title">A Merak megszünteti az Android 5 támogatását</string>
+    <string name="api23_requirement_dialog_message">Sajnos a Merak néhány olyan programkönyvtárra támaszkodik, amelyek megszüntették az Android 5.0 és 5.1 verziójának támogatását. A Merak következő verziója ezért sajnos csak Android 6 vagy újabb rendszerrel rendelkező eszközökön fog működni. További információt a blogbejegyzésben olvashat.</string>
     <string name="api23_requirement_dialog_blogpost">Blogbejegyzés</string>
     <string name="channel_tab_podcasts">Podcastok</string>
     <string name="channel_tab_courses">Tanfolyamok</string>

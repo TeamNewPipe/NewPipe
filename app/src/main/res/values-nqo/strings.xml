@@ -135,13 +135,11 @@
     <string name="play_all">ߞߵߊ߬ ߓߍ߯ ߕߏߟߏ߲߫</string>
     <string name="always">ߞߘߊߎ߫</string>
     <string name="app_update_notification_channel_name">ߟߥߊߟߌߟߊ߲߫ ߟߏ߲ߘߐߦߊߟߌ߫ ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲</string>
-    <string name="app_update_notification_channel_description">ߣߌߎߔߌߔ ߓߐߞߏ߫ ߞߎߘߊ ߟߎ߫ ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬</string>
     <string name="switch_to_popup">ߞߊ߬ ߦߟߍ߬ߡߊ߲߫ ߝߎ߲ߞߊ߲ߡߊ ߘߐ߫</string>
     <string name="switch_to_main">ߞߊ߬ ߦߟߍ߬ߡߊ߲߫ ߓߊߖߎ ߘߐ߫</string>
     <string name="export_data_title">ߞߊ߬ ߟߐ߲ߕߊߓߘߐ ߟߊߝߏ߬ߦߌ߬</string>
     <string name="recaptcha_cookies_cleared">ߡߐ߰ߦߊ߬ߟߐ߲߫ ߦߟߌߘߏ߲ ߠߎ߬ ߓߘߊ߫ ߝߌߘߊ߲߫</string>
     <string name="export_data_summary">ߘߝߐ߬ߦߊ ߣߌ߫ ߡߊ߬ߝߘߎ߬ߟߌ ߟߎ߬ ߣߌ߫ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߎ߬ ߣߌ߫ ߢߊߓߐߟߌ ߟߎ߬ ߟߊߝߏ߬ߦߌ߬</string>
-    <string name="clear_cookie_summary">ߦߟߌߘߏ߲ ߠߎ߬ ߖߏ߬ߛߌ߬߸ ߣߌߎߔߌߔ ߦߋ߫ ߡߍ߲ ߠߎ߬ ߟߊߡߊ߲߬ߘߌ߬ ߟߊ߫ ߡߐ߰ߦߊ߬ߟߐ߲ ߘߏ߫ ߝߎߟߋ߲߫ ߕߎߡߊ ߌ ߓߟߏ߫</string>
     <string name="clear_views_history_title">ߦߋߞߏ߫ ߘߝߐ߬ߦߊ ߝߌߘߊ߲߫</string>
     <string name="delete_playback_states_alert">ߞߊ߬ ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߬ ߓߍ߯ ߖߐ߬ߛߌ߫؟</string>
     <string name="watch_history_states_deleted">ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߬ ߓߍ߯ ߓߘߊ߫ ߖߐ߬ߛߌ߫</string>
@@ -189,10 +187,8 @@
     <string name="show_age_restricted_content_title">ߞߊ߬ ߞߣߐߘߐ߫ ߛߐ߬ߘߐ߲߬ߛߌ߯ ߘߊ߲߬ߠߊߕߍ߰ߣߍ߲ ߦߌ߬ߘߊ߬</string>
     <string name="show_age_restricted_content_summary">ߞߊ߬ ߞߣߐߘߐ ߟߎ߬ ߦߌ߬ߘߊ߬ ߤߊߟߌ߬ ߘߋ߲ߣߍ߲ ߠߎ߬ ߡߊ߲ߞߊ߲߫ ߞߊ߬ ߡߍ߲ ߡߊߝߍߣߍ߲߫ (ߦߏ߫ +߁߈)</string>
     <string name="restricted_video">ߛߐ߬ߘߐ߲߬ߛߌ߰ ߘߊ߲ߠߊߕߍ߮ ߦߋ߫ ߖߌ߬ߦߊ߬ߖߟߎ ߣߌ߲߬ ߠߊ߫. \n \n\"%1$s\" ߟߊߢߊ߯ ߢߊߓߐߟߌ ߟߎ߬ ߘߐ߫ ߣߴߌ ߦߴߊ߬ ߝߍ߬ ߞߵߊ߬ ߝߟߍ߫.</string>
-    <string name="restricted_video_no_stream">ߛߐ߬ߘߐ߲߬ߛߌ߰ ߘߊ߲ߠߊߕߍ߯ ߦߋ߫ ߖߌ߬ߦߊ߬ߖߟߎ ߣߌ߲߬ ߠߊ߫. \nߦߕߎߓߎ߫ ߟߊ߫ ߓߘߍ߬ߓߘߍ߬ߟߌ ߞߏߛߐ߲߬ ߞߊ߬ ߓߍ߲߬ ߖߌ߬ߦߊ߬ߖߟߎ߫ ߛߐ߬ߘߐ߲߬ߛߌ߯ ߘߊ߲ߠߊߕߍ߰ߣߍ߲ ߠߎ߬ ߠߊ߫ ߞߏ ߡߊ߬، ߣߌߎߔߌߔ ߕߍ߫ ߛߋ߫ ߦߋߡߍ߲ߕߊ߫ ߥߦߏ ߣߌ߲߬ ߛߌ߫ ߟߊߛߐ߬ߘߐ߲߬ ߠߊ߫߸ ߏ߬ ߞߏߟߐ߲߬ ߊ߬ ߕߍ߫ ߛߴߊ߬ߟߎ߬ ߕߏߟߏ߲߫ ߠߊ߫.</string>
     <string name="import_data_title">ߞߊ߬ ߟߐ߲ߕߊߓߘߐ ߟߊߛߣߍ߫</string>
     <string name="file_deleted">ߞߐߕߐ߮ ߓߘߊ߫ ߖߏ߬ߛߌ߫</string>
-    <string name="notification_channel_description">ߣߌߎߔߌߔ ߕߏߟߏ߲ߟߊ߲߫ ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬</string>
     <string name="import_data_summary">ߌ ߟߊ߫ ߘߝߐ߬ߦߊ߸ ߡߊ߬ߝߘߎ߬ߟߌ ߟߎ߬߸ ߕߏߟߏ߲߫ ߛߙߍߘߍ ߟߎ߬ ߊ߬ߣߌ߫ (ߢߣߊߕߊߟߌ ߘߐ߫) ߢߊߓߐߟߌ ߟߎ߬ ߘߌ߫ ߣߐ߬ߘߐߓߌ߬ߟߊ߬</string>
     <string name="clear_playback_states_title">ߞߊ߬ ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߫ ߖߐ߬ߛߌ߫</string>
     <string name="clear_search_history_title">ߞߊ߬ ߢߌߣߌ߲ߠߌ߲߫ ߘߝߐ߬ߦߊ ߟߎ߬ ߝߌߘߊ߲߫</string>
@@ -231,7 +227,6 @@
     <string name="users">ߕߣߐ߬ߓߐ߬ߟߊ ߟߎ߬</string>
     <string name="albums">ߕߌߛߐ߲ ߠߎ߬</string>
     <string name="notifications">ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬</string>
-    <string name="notification_channel_name">ߣߌߎߔߌߔ ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲</string>
     <string name="just_once">ߛߎ߬ߢߊ߬ ߞߋߟߋ߲߫ ߔߋ߫</string>
     <string name="file">ߞߐߕߐ߮</string>
     <string name="error_report_channel_description">ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߠߎ߬ ߞߊ߬ ߝߎ߬ߕߎ߲߬ߕߌ ߟߎ߬ ߞߐߡߌ߲ߦߊ߫</string>
@@ -256,7 +251,6 @@
     <string name="audio_streams_empty">ߡߍ߲ߕߊ߫ ߥߦߏ߫ ߛߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬</string>
     <string name="player_stream_failure">ߥߏ߬ߦߏ ߣߌ߲߬ ߕߍ߫ ߛߋ߫ ߟߊ߫ ߕߏߟߏ߲߫ ߠߊ߫</string>
     <string name="permission_display_over_apps">ߞߵߊ߬ ߝߍ߲߬ߛߍ߲߬ߠߌ߲ ߠߊߘߌ߬ߢߍ߬ ߟߥߊߟߌߟߊ߲߫ ߜߘߍ߫ ߟߎ߫ ߞߐߞߊ߲߬</string>
-    <string name="error_report_notification_title">ߣߌߎߔߌߔ ߓߘߊ߫ ߝߎ߬ߕߎ߲߬ߕߌ ߘߏ߫ ߛߐ߬ߘߐ߲߬߸ ߊ߬ ߛߐ߲߬ߞߌ߲߫ ߞߵߊ߬ ߘߊ߲߭ߕߍ߰</string>
     <string name="restore_defaults">ߞߊ߬ ߡߐ߬ߟߐ߲߬ ߖߏߣߡߊ ߟߎ߬ ߟߊߛߊ߬ߦߌ߬</string>
     <string name="restore_defaults_confirmation">ߌ ߦߴߊ߬ ߝߍ߬ ߞߊ߬ ߡߐ߬ߟߐ߲߬ ߖߏߣߡߊ ߟߎ߬ ߟߊߛߊ߬ߦߌ߬ ؟</string>
     <string name="error_report_button_text">ߞߵߊ߬ ߞߏߝߐ߫ ߢߎߡߍߙߋ߲ߞߏ߲ߘߏ ߟߊ߫</string>
@@ -301,16 +295,13 @@
     <string name="msg_name">ߞߐߕߐ߯ ߕߐ߮</string>
     <string name="msg_threads">ߜߊ߲߬ߞߎ߲߬ߠߌ߲߫ ߢߐ߲߰ߝߍ</string>
     <string name="msg_error">ߝߎ߬ߕߎ߲߬ߕߌ</string>
-    <string name="msg_running">ߣߌߎߔߌߔ ߦߋ߫ ߟߊ߬ߖߌ߰ߟߌ ߟߊ߫</string>
     <string name="msg_running_detail">ߊ߬ ߛߐ߲߬ߞߌ߲߫ ߞߵߊ߬ ߕߐ߬ߝߍ߬ߦߊ߫</string>
     <string name="no_dir_yet">ߟߊ߬ߖߌ߰ߟߌ߬ ߞߎ߲ߓߍ߲߫ ߛߌ߫ ߡߊ߫ ߘߊ߬ߠߊߕߍ߰ ߡߎߣߎ߲߬߸ ߟߊ߬ߖߌ߰ߟߌ߬ ߞߎ߲ߓߍ߲߬ ߖߏߣߡߊ ߛߎߥߊ߲ߘߌ߫ ߛߌߛߍ߲߬</string>
     <string name="recaptcha_solve">ߞߵߊ߬ ߝߎߟߋ߲߫</string>
     <string name="charset_most_special_characters">ߞߟߏߘߋ߲߫ ߞߙߍߞߙߍߣߍ߲ ߝߊ߲߬ߓߊ</string>
-    <string name="title_activity_about">ߣߌߎߔߌߔ ߞߊ߲߬</string>
     <string name="copyright">© %1$s߸ %2$s ߓߟߏ߫ %3$s ߞߘߐ߫</string>
     <string name="tab_about">ߊ߬ ߞߊ߲߬ &amp; ߢߞߛ</string>
     <string name="contribution_title">ߡߊ߬ߜߍ߲߬ߠߌ߲ ߞߍ߫</string>
-    <string name="app_license_title">ߣߌߎߔߌߔ ߟߊ߬ߘߌߜߍ</string>
     <string name="faq_title">ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ߬ ߞߍߣߍ߲߫ ߛߌߦߊߡߊ߲ ߠߎ߬</string>
     <string name="faq_description">ߣߴߌ ߞߊ߬ ߜߟߍ߬ߦߊ߬ ߡߊߛߐ߬ߘߐ߲߬ ߟߥߊߟߌߟߊ߲ ߠߊߓߊ߯ߙߊ ߘߐ߫߸ ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ߬ ߞߍߣߍ߲߫ ߛߌߦߊߡߊ߲ ߠߎ߬ ߡߊߝߍߣߍ߲߫ ߹</string>
     <string name="action_history">ߘߝߐ߬ߦߊ</string>
@@ -383,8 +374,6 @@
     <string name="give_back">ߞߊ߬ ߓߟߏߢߐ߲߯ߠߊߛߊ߬ߦߌ߬</string>
     <string name="contribution_encouragement">ߊ߬ ߞߍ߫ ߘߊ߫ ߘߟߊߡߌߣߊߟߌ߫ ߡߙߌߦߊ߫ ߘߌ߫ ߓߊ߬߸ ߥߟߊ߫ ߡߊ߬ߞߙߍ߬ߟߌ߫߸ ߥߟߊ߫ ߘߏߝߙߍߕߍ߫ ߟߛߊߣߌ߲ߧߊ߫߸ ߤߊߡߊ߲ߕߍ߫ ߘߏߝߙߍߕߍ߫ ߡߝߊߟߋ߲. ߘߍ߬ߡߍ߲ ߞߍ߫ ߘߊ߫ ߢߊ߫ ߛߌ߫ ߡߊ߬߸ ߊ߬ ߞߊߢߌ߲߬. ߏ߬ ߟߋ ߦߴߊ߬ ߟߊߢߊ߬ ߟߊ߫ ߓߘߍߞߍ߹</string>
     <string name="website_title">ߗߍߦߙߐ</string>
-    <string name="website_encouragement">ߣߌߎߔߌߔ ߟߊ߫ ߗߍߦߙߐ ߡߊߝߍߣߍ߲߫ ߞߊ߬ ߟߌ߬ߤߟߊ ߟߎ߬ ߣߌ߫ ߗߍߞߎߘߊ ߟߎ߫ ߛߐ߬ߘߐ߲߬.</string>
-    <string name="privacy_policy_title">ߣߌߎߔߌߔ ߟߊ߫ ߜߎ߲߬ߘߎ߬ߞߏ ߓߘߍ߬ߓߘߍ߬ߟߌ</string>
     <string name="read_privacy_policy">ߞߊ߬ ߜߎ߲߬ߘߎ߬ߞߏ ߓߘߍ߬ߓߘߍ߬ߟߌ ߞߊ߬ߙߊ߲߬</string>
     <string name="read_full_license">ߞߊ߬ ߟߊ߬ߘߌߢߍ ߞߊ߬ߙߊ߲߬</string>
     <string name="faq">ߊ߬ ߡߊߝߍߣߍ߲߫ ߗߍߦߙߐ ߟߊ߫</string>
@@ -439,9 +428,7 @@
     <string name="no_available_dir">ߘߌ߬ߢߍ߬ ߦߋ߫ ߟߊ߬ߖߌ߰ߟߌ߬ ߞߎ߲ߓߍ߲ ߛߎߥߊ߲ߘߌ߫ ߢߊߓߐߟߌ ߟߎ߬ ߘߐ߫ ߞߐߟߊ߫</string>
     <string name="charset_letters_and_digits">ߛߓߍߘߋ߲ ߣߋ߫ ߖߊ߬ߕߋ߬ߘߋ߲ ߠߎ߬</string>
     <string name="app_description">ߥߦߏ߬ ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߊ ߞߊߟߌ߲ ߣߌ߫ ߝߍ߯ߡߊ߲ ߊ߲ߘߙߏߦߌߘ ߞߊ߲߬.</string>
-    <string name="donation_encouragement">ߣߌߎߔߌߔ ߟߊߥߙߌߞߌߣߍ߲߫ ߓߐߒߖߘߍߘߐߓߊ߮ ߟߎ߫ ߟߋ߬ ߓߟߏ߫ ߊ߬ߟߎ߬ ߟߊ߫ ߕߎ߬ߡߊ߬ ߘߐ߬ߞߏߟߏ߲ ߠߎ߬ ߘߐ߫߸ ߞߴߊ߬ ߟߊߢߊ߬ ߊ߬ߟߎ߬ ߛߋߞߏ߫ ߘߊ߬ߡߊ߬ߦߌߙߊ ߟߊ߫. ߌ ߘߌ߫ ߛߋ߫ ߝߌ߬ߙߋ߲߬ߕߎ߬ ߛߐ߲ߞߐ ߘߌ߫ ߟߴߊ߬ߟߎ߫ ߡߊ߬߸ ߞߴߊ߬ߟߎ߬ ߞߣߐߘߐߘߌߦߊ߫ ߟߢߊ߬ߟߌ ߟߊ߫ ߓߘߍߞߍ.</string>
-    <string name="privacy_policy_encouragement">ߣߌߎߔߌߔ ߘߊߞߎ߲ ߦߴߊߟߎ߫ ߜߎ߲߬ߘߎ߬ߞߏ ߕߊ߬ ߟߊ߫ ߛߍ߬ߓߍ ߖߍ߬ߘߍߖߍ߬ߘߍ ߟߋ߬ ߟߊ߫. ߏ߬ ߘߐ߫߸ ߟߥߊߟߌߟߊ߲ ߕߍ߫ ߟߐ߲ߕߊ߫ ߛߌ߫ ߟߥߊ߫ ߟߊ߫ ߣߴߊ߬ ߡߴߌ ߟߊ߫ ߘߌ߬ߢߍ ߢߌߣߌ߲߫. \nߣߌߎߔߌߔ ߟߊ߫ ߜߎ߲߬ߘߎ߬ߞߏ ߓߘߍ߬ߓߘߍ߬ߟߌ ߦߴߊ߬ ߝߊߙߊ߲ߝߊ߯ߛߌ߫ ߟߴߌ ߢߍ߫ ߟߋ߬ ߥߘߋ߬ߥߘߋ߬ߟߌ ߘߝߊߣߍ߲ ߘߐ߫߸ ߟߐ߲ߕߊ߫ ߢߌ߬ߡߊ߲߬ ߠߥߊߕߐ߫ ߊ߬ ߣߌ߫ ߢߌ߬ߡߊ߲߬ ߠߊߞߎ߲߬ߘߎ߲߬ߕߐ߫ ߌ ߓߊ߫ ߞߍ߫ ߜߊߛߊ߲ߠߌ߲߫ ߘߊ߲߬ߕߍ߰ߟߌ ߟߥߊ߫ ߟߊ߫.</string>
-    <string name="app_license">ߣߌߎߔߌߔ (NewPipe) ߦߋ߫ ߡߊ߬ߞߏ߬ߟߊ߬ߓߐ߬ ߛߎ߲ߝߘߍ߫ ߟߊߓߌ߬ߟߊ߬ߣߍ߲ ߠߋ߬ ߘߌ߫: ߌ ߘߌ߫ ߛߴߊ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߞߵߊ߬ ߞߊ߬ߙߊ߲߬߸ ߞߵߊ߬ ߘߐߕߟߊ߫߸ ߊ߬ߣߌ߫ ߞߵߊ߬ ߟߊߢߊ߬ ߦߏ߫ ߊ߬ ߘߎߡߊ߲߫ ߌ ߢߍ߫ ߢߊ ߡߍ߲. ߊ߬ ߕߌ߯ߕߌ߮ ߘߐ߫߸ ߌ ߘߌ߫ ߛߴߊ߬ ߟߊߖߍ߲ߛߍ߲߫ ߠߊ߫ ߥߟߊ߫ ߞߊ߬ ߘߐ߬ߝߊ߬ߟߋ߲߬ߠߌ߲ ߞߍ߫ ߊ߬ ߘߐ߫ ߝߘߏ߬ߓߊ߬ ߟߊߘߌߢߍ߫ ߛߙߊߕߌ ߟߎ߬ ߞߘߐ߫ (GNU General Public License) ߦߏ߫ ߊ߬ ߟߊߖߍ߲ߛߍ߲ߣߍ߲߫ ߛߎ߲ߝߘߍ߫ ߟߊߓߌ߬ߟߊ߬ߣߍ߲ ߠߎ߬ ߛߌ߲ߘߌߘߊ ߓߟߏ߫ ߢߊ ߡߍ߲ (Free Software Foundation) ߊ߬ ߓߐߞߏ߫ ߃߲ ߘߐ߫߸ ߥߟߊ߫߸ ߌ ߛߊ߬ߥߏ߬ߣߍ߲߬ߕߊ ߟߊ߫ ߞߊ߬ ߓߍ߲߬ ߊ߬ ߓߐߞߏ߫ ߞߘߐ߫ ߛߌ߫ ߡߊ߬.</string>
+    <string name="app_license">ߣߌߎߔߌߔ (Merak) ߦߋ߫ ߡߊ߬ߞߏ߬ߟߊ߬ߓߐ߬ ߛߎ߲ߝߘߍ߫ ߟߊߓߌ߬ߟߊ߬ߣߍ߲ ߠߋ߬ ߘߌ߫: ߌ ߘߌ߫ ߛߴߊ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߞߵߊ߬ ߞߊ߬ߙߊ߲߬߸ ߞߵߊ߬ ߘߐߕߟߊ߫߸ ߊ߬ߣߌ߫ ߞߵߊ߬ ߟߊߢߊ߬ ߦߏ߫ ߊ߬ ߘߎߡߊ߲߫ ߌ ߢߍ߫ ߢߊ ߡߍ߲. ߊ߬ ߕߌ߯ߕߌ߮ ߘߐ߫߸ ߌ ߘߌ߫ ߛߴߊ߬ ߟߊߖߍ߲ߛߍ߲߫ ߠߊ߫ ߥߟߊ߫ ߞߊ߬ ߘߐ߬ߝߊ߬ߟߋ߲߬ߠߌ߲ ߞߍ߫ ߊ߬ ߘߐ߫ ߝߘߏ߬ߓߊ߬ ߟߊߘߌߢߍ߫ ߛߙߊߕߌ ߟߎ߬ ߞߘߐ߫ (GNU General Public License) ߦߏ߫ ߊ߬ ߟߊߖߍ߲ߛߍ߲ߣߍ߲߫ ߛߎ߲ߝߘߍ߫ ߟߊߓߌ߬ߟߊ߬ߣߍ߲ ߠߎ߬ ߛߌ߲ߘߌߘߊ ߓߟߏ߫ ߢߊ ߡߍ߲ (Free Software Foundation) ߊ߬ ߓߐߞߏ߫ ߃߲ ߘߐ߫߸ ߥߟߊ߫߸ ߌ ߛߊ߬ߥߏ߬ߣߍ߲߬ߕߊ ߟߊ߫ ߞߊ߬ ߓߍ߲߬ ߊ߬ ߓߐߞߏ߫ ߞߘߐ߫ ߛߌ߫ ߡߊ߬.</string>
     <string name="import_settings">ߌ ߦߴߊ߬ ߝߍ߬ ߟߋ߬ ߞߊ߬ ߢߊߓߐߟߌ ߟߎ߬ ߝߊߣߊ߲߫ ߟߊߛߣߍ߫؟</string>
     <string name="start_here_on_background">ߞߊ߬ ߕߏߟߏ߲ ߘߊߡߌ߬ߣߊ߬ ߝߊ߲߬ߝߘߊ ߞߘߐ߫</string>
     <string name="processing_may_take_a_moment">ߦߙߍߞߍߟߌ ߦߴߌߘߐ߫... ߊ߬ ߘߌ߫ ߛߋ߫ ߥߛߎ߬ ߞߎߘߎ߲߬ߣߍ߲߫ ߕߊ߬ ߟߊ߫</string>
@@ -460,7 +447,6 @@
     <string name="import_network_expensive_warning">ߦߴߊ߬ ߟߐ߲߫ ߞߏ߫ ߗߋߥߊߟߌ ߣߌ߲߬ ߘߌߣߊ߬ ߞߙߏ߬ߝߏ߫ ߜߊ߲߬ߞߎ߲߬ߠߌ߲ ߖߛߐ߫ ߞߏߛߓߍ߫. \n \nߞߵߊ߬ ߓߟߏߕߎ߲߰؟</string>
     <string name="playback_reset">ߞߵߊ߬ ߢߡߊߛߊ߬ߦߌ߬</string>
     <string name="semitone">ߞߊ߲ߡߊߛߙߋ߫-ߕߟߊ</string>
-    <string name="start_accept_privacy_policy">ߞߊ߬ ߓߍ߲߬ ߟߐ߲ߕߊ ߟߎ߬ ߟߊߞߊ߲ߘߊ߫ ߝߘߏ߬ߓߊ߬ ߞߎߙߎ߲ߘߎ (GDPR) ߡߊߓߏ߲߬ߧߊ ߡߊ߬߸ ߊ߲ ߧߴߌ ߖߊ߲߭ߓߌ߬ߟߊ߬ ߟߊ߫ ߣߌߎߔߌߔ ߟߊ߫ ߜߎ߲߬ߘߎ߬ߞߏ߫ ߓߘߍ߬ߓߘߍ߬ߟߌ ߞߐ߫. ߘߌ߬ߢߍ߬ ߦߴߊ߬ ߘߐߞߊ߬ߙߊ߲߬ ߞߏߢߌ߲߬ߡߊ߬. \nߌ ߞߊߞߊ߲߫ ߠߋ߬ ߞߵߌ ߛߐ߲߬ ߊ߬ ߡߊ߬ ߞߏ߫ ߛߴߌ ߘߌ߫ ߛߋ߫ ߜߊߛߊ߲ߠߌ߲߫ ߘߊ߲߬ߕߍ߰ߟߌ ߟߥߊ߫ ߊ߲ ߡߊ߬.</string>
     <string name="accept">ߌ ߛߐ߲߬</string>
     <string name="decline">ߌ ߓߊ߲߬</string>
     <string name="limit_data_usage_none_description">ߘߊ߲߬ ߕߴߊ߬ ߟߊ߫</string>
@@ -482,7 +468,6 @@
     <string name="seekbar_preview_thumbnail_title">ߞߊ߬ ߢߍߕߊ߮ ߜߊߟߊ߲ߞߊ ߟߊߕߌ߲ ߦߌ߬ߘߊ߬ ߞߏ߬ߋߞߏ߬ߋ ߞߊ߲߬</string>
     <string name="low_quality_smaller">ߓߘߍ߬ߦߊ߫ ߘߎ߰ߟߊ߬ߕߊ (ߘߐ߰ߡߊ߬ߣߍ߲)</string>
     <string name="dont_show">ߊ߬ ߞߣߊ߫ ߦߌ߬ߘߊ߬</string>
-    <string name="app_update_unavailable_toast">ߌ ߦߋ߫ ߣߌߎߔߌߔ ߓߐߞߏ߫ ߟߊߓߊ߲ ߠߋ߬ ߟߊߓߊ߯ߙߊ ߟߊ߫</string>
     <string name="app_update_available_notification_text">ߊ߬ ߕߐߘߐ߲߫ ߞߵߊ߬ ߟߊߖߌ߰ %s</string>
     <string name="missions_header_finished">ߊ߬ ߓߘߊ߫ ߓߊ߲߫</string>
     <string name="missions_header_pending">ߘߞߐ߬ߣߐ߲߬ߠߌ߲</string>
@@ -502,7 +487,6 @@
     <string name="error_http_no_content">ߛߐߘߊ ߕߍ߫ ߟߐ߲ߕߊ߫ ߟߊߣߊ߬ ߟߊ߫</string>
     <string name="error_http_not_found">ߊ߬ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="error_postprocessing_failed">ߞߐߝߍ߫-ߦߙߍߞߍߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫</string>
-    <string name="error_postprocessing_stopped">ߣߌߎߔߌߔ ߘߊߕߎ߲߯ ߘߊ߫ ߟߋ߬ ߞߵߊ߬ ߕߘߍ߬ ߊ߬ ߦߋ߫ ߓߊ߯ߙߊ߫ ߟߊ߫ ߞߐߕߐ߮ ߞߊ߲߬</string>
     <string name="error_insufficient_storage_left">ߜߍߞߣߍ߫ ߛߌ߫ ߕߍ߫ ߕߙߏߞߏ ߞߊ߲߬</string>
     <string name="error_progress_lost">ߢߍߕߊ߮ ߓߘߊ߫ ߝߏ߫߸ ߓߊߏ߬ ߞߐߕߐ߮ ߓߘߊ߫ ߖߏ߬ߛߌ߫</string>
     <string name="error_download_resource_gone">ߟߊ߬ߖߌ߰ߟߌ ߣߌ߲߬ ߕߍ߫ ߛߋ߫ ߟߊߛߊ߬ߦߌ߬ ߟߊ߫</string>
@@ -555,7 +539,6 @@
     <string name="minimize_on_exit_summary">ߞߍߥߟߌ߫ ߞߍߕߊ߸ ߌ ߓߊ߫ ߞߍ߫ ߦߟߍ߬ߡߊ߲߬ ߠߊ߫ ߟߥߊߟߌߟߊ߲߫ ߜߘߍ߫ ߞߣߐ߫ ߞߵߌ ߕߏ߫ ߦߋߡߍ߲ߕߊ߫ ߘߐߛߊߙߌߟߊ߲ ߓߊߖߎ ߞߊ߲߬ — %s</string>
     <string name="list">ߛߙߍߘߍ</string>
     <string name="high_quality_larger">ߓߘߍ߬ߦߊ߫ ߛߊ߲ߘߐߕߊ (ߓߟߋ߬ߓߟߋ߬ߓߊ)</string>
-    <string name="app_update_available_notification_title">ߣߌߎߔߌߔ ߟߏ߲ߘߐߦߊߟߌ ߘߏ߫ ߡߊߛߐ߬ߘߐ߲߬ߕߊ ߦߋ߫߹</string>
     <string name="overwrite_failed">ߞߐߕߐ߮ ߕߍ߫ ߛߋ߫ ߞߊ߲߬ߟߊ߫ ߟߊ߫</string>
     <string name="error_path_creation">ߞߎ߲߬ߕߋߟߋ߲߫ ߞߎ߲ߓߍ߲ ߕߍ߫ ߛߋ߫ ߛߌ߲ߘߌ߫ ߟߊ߫</string>
     <string name="error_http_unsupported_range">ߛߐߘߊ ߕߍ߫ ߛߐ߲߬ ߠߊ߫ ߟߊ߬ߖߌ߰ߟߌ߬ ߥߙߍ ߟߎ߫ ߡߊ߬߸ ߘߌ߬ߢߍ߬ ߦߴߊ߬ ߡߊߛߊ߬ߦߌ߬ @string/msg_threads = 1 ߟߊ߫</string>
@@ -595,10 +578,8 @@
     <string name="feed_update_threshold_summary">ߕߎ߬ߡߊ ߡߍ߲ ߕߊ߬ߡߌ߲ ߞߐ ߘߐ߫߸ ߥߏ߬ߦߏ ߟߎ߬ ߞߊߞߊ߲߫ ߞߊ߬ ߖߊ߬ߕߋ߬ ߞߘߐ߬ߡߊ߲ ߘߌ߫ — %s</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">ߞߊ߬ ߞߊߟߌ߲ ߗߏ߯ߦߊ ߟߊߢߊ߯</string>
     <string name="feed_show_hide_streams">ߞߊ߬ ߥߏ߬ߦߏ ߟߎ߫ ߦߌ߬ߘߊ߬/ߢߡߊߘߏ߲߰</string>
-    <string name="content_not_supported">ߣߌߎߔߌߔ ߕߍ߫ ߞߣߐߘߐ ߣߌ߲߬ ߕߊ߬ ߟߊ߫ ߡߎߣߎ߲߬. \n \nߕߎ߬ߡߊ߬ ߘߐ߫߸ ߊ߬ ߘߌ߫ ߛߴߊ߬ ߕߊ߬ ߟߊ߫ ߓߐߞߏ߫ ߣߊ߬ߕߐ ߟߎ߬ ߘߐ߫.</string>
     <string name="detail_sub_channel_thumbnail_view_description">ߥߙߏߝߋ߫ ߞߐߖߌߦߊ߫ ߞߏ߬ߋߞߏ߬ߋ</string>
     <string name="no_appropriate_file_manager_message_android_10">ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲߫ ߛߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬ ߞߋߥߊߟߌ ߣߌ߲߬ ߞߊ߲ߡߊ߬. \nߘߌ߬ߢߍ߬ ߦߋ߫ ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲ ߘߏ߫ ߡߊߞߍ߫ ߡߍ߲ ߣߌ߫ ߡߙߊ߬ߘߐ߬ߦߊ ߟߊߛߐ߬ߘߐ߲ ߡߎ߬ߙߊ߲߬ߞߊ߲ߞߋ ߘߌ߫ ߓߍ߲߬</string>
-    <string name="youtube_music_premium_content">ߦߋߡߍ߲ߕߊ ߘߌ߫ ߡߊߛߐ߬ߘߐ߲߬ YouTube Music Premium ߛߌ߲߬ߝߏ߲ ߠߎ߬ ߟߋ߬ ߘߐߙߐ߲߫ ߓߟߏ߫߸ ߏ߬ ߘߐ߫ ߊ߬ ߕߍ߫ ߛߋ߫ ߘߐߛߊߙߌ߫ ߟߊ߫ ߥߟߊ߫ ߞߵߊ߬ ߟߊߖߌ߰ ߣߌߎߔߌߔ ߓߟߏ.</string>
     <string name="featured">ߛߊ߲ߞߊߥߟߌ</string>
     <string name="radio">ߥߎߢߊ߲ߓߍ߲</string>
     <string name="auto_device_theme_title">ߖߘߍ߬ߢߍ߫ (ߕߙߏߞߏ߫ ߛߊߛߊ)</string>
@@ -649,7 +630,6 @@
     </plurals>
     <string name="feed_load_error">ߝߎ߬ߕߎ߲߬ߕߌ ߥߏ߬ߦߏ ߖߛߐ߫ ߕߎߡߊ</string>
     <string name="feed_load_error_account_info">\'%s\' ߥߏ߬ߦߏ ߕߍ߫ ߛߋ߫ ߖߛߐ߫ ߟߊ߫.</string>
-    <string name="feed_load_error_terminated">ߛߌ߲ߘߌߓߊ߮ ߟߊ߫ ߖߊ߬ߕߋ߬ߘߊ ߓߘߊ߫ ߕߍ߰. \nߣߌߎߔߌߔ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߥߏ߬ߦߏ ߣߌ߲߬ ߖߛߐ߫ ߟߊ߫ ߡߎ߬ߕߎ߲߬. \nߞߊ߬ ߡߊ߬ߝߘߎ߬ߟߌ ߛߊ߬ ߥߙߏߝߋ ߣߌ߲߬ ߡߊ߬ ؟</string>
     <string name="feed_load_error_fast_unknown">ߥߦߏ߬ ߞߊߟߌ߲ ߗߏ߯ߦߊ ߕߍ߫ ߟߌ߬ߤߟߊ߬ ߘߌߦߊߡߊ߲߫ ߘߌ߫ ߟߊ߫ ߝߐߡߊ ߣߌ߲߬ ߞߊ߲߬.</string>
     <string name="feed_use_dedicated_fetch_method_title">ߞߵߊ߬ ߟߊߛߐ߬ߘߐ߲߬ ߥߦߏ߬ ߓߟߏߡߊߞߊ߬ߣߍ߲ ߘߏ߫ ߝߍ߬ ߣߴߏ ߘߌ߫ ߓߍ߲߬</string>
     <string name="feed_update_threshold_option_always_update">ߞߵߊ߬ ߟߊߞߎߘߦߊ߫ ߞߘߊߎ߫</string>
@@ -664,16 +644,12 @@
     <string name="show_thumbnail_title">ߞߊ߬ ߞߏ߬ߋߞߏ߬ߋ ߦߌ߬ߘߊ߬</string>
     <string name="no_app_to_open_intent">ߟߥߊߟߌߟߊ߲߫ ߛߌ߫ ߕߴߌ ߟߊ߫ ߕߙߏߞߏ ߞߊ߲߬ ߡߍ߲ ߘߌ߫ ߛߋ߫ ߣߌ߲߬ ߠߊߞߊ߬ ߟߊ߫</string>
     <string name="no_appropriate_file_manager_message">ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲߫ ߛߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬ ߞߋߥߊߟߌ ߣߌ߲߬ ߞߊ߲ߡߊ߬. \nߘߌ߬ߢߍ߬ ߦߋ߫ ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲ ߘߏ߫ ߡߊߞߍ߫ ߥߟߊ߫ ߦߴߊ߬ ߡߊߝߍߣߍ߲߫ ߞߊ߬ \'%s\' ߟߊߛߊ߬ ߟߊ߬ߖߌ߰ߟߌ߲߫ ߢߊߓߐߟߌ ߟߎ߬ ߘߐ߫</string>
-    <string name="private_content">ߞߣߐߘߐ ߣߌ߲߬ ߦߋ߫ ߘߎ߲߬ߘߎ߬ߡߊ ߟߋ߬ ߘߌ߫߸ ߏ߬ ߘߐ߫ ߊ߬ ߕߍ߫ ߛߋ߫ ߘߐߛߊߙߌ߫ ߟߊ߫ ߥߟߊ߫ ߞߵߊ߬ ߟߊߖߌ߰ ߣߌߎߔߌߔ ߓߟߏ߫.</string>
     <string name="account_terminated">ߖߊ߬ߕߋ߬ߘߊ ߓߘߊ߫ ߓߍ߰</string>
     <string name="description_select_enable">ߞߊ߬ ߞߟߏߜߍ߫ ߓߊߕߐߡߐ߲ ߠߊߢߊ߯ ߞߊ߲߬ߛߓߍ ߘߐ߫</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer ߡߐ߬ߟߐ߲߬ ߖߏߣߡߊ</string>
     <string name="you_successfully_subscribed">ߝߙߏߝߋ ߣߌ߲߬ ߡߊߝߘߎߣߌ߲߫ ߌ ߓߟߏ߫ ߡߎ߬ߕߎ߲߬</string>
     <string name="open_website_license">ߞߊ߬ ߞߍߦߙߐ ߘߊߦߟߍ߬</string>
-    <string name="soundcloud_go_plus_content">ߣߌ߲߬ ߦߋ߫ SoundCloud Go+ ߜߋ߬ߙߋ ߘߏ߫ ߟߋ߬ ߘߌ߫߸ ߡߍ߲ ߕߴߌ ߟߊ߫ ߖߡߊ߬ߣߊ ߞߣߐ߫߸ ߏ߬ ߘߐ߫ ߊ߬ ߕߍ߫ ߛߋ߫ ߘߐߛߊߙߌ߫ ߟߊ߫ ߥߟߊ߫ ߞߵߊ߬ ߟߊߖߌ߰ ߣߌߎߔߌߔ ߓߟߏ߫.</string>
     <string name="feed_use_dedicated_fetch_method_summary">ߊ߬ ߦߋ߫ ߗߋߢߊ ߘߏ߫ ߟߎ߫ ߘߐ߫߸ ߊ߬ߟߋ߬ ߞߊߟߌߡߊ߲ߓߊ ߟߋ߬ ߝߊߣߊ߲߫ ߦߋ߫߸ ߞߏ߬ߣߌ߲߬ ߊ߬ ߘߌ߫ ߛߋ߫ ߝߌ߬ߛߌ߫ ߘߊ߲߬ߠߊߕߍ߰ߣߍ߲ ߠߥߊ߫ ߟߊ߫ ߊ߬ߣߌ߫ ߟߌ߬ߤߟߊ߬ ߘߝߊߓߊߟߌ ߟߎ߬ (ߟߊߒߡߊ߫ ߘߐ߫߸ ߥߎ߬ߛߎ߸ ߝߌ߬ߛߌ ߛߎ߯ߦߊ ߥߟߊ߫ ߝߊ߲ߞߢߊ߫ ߟߌ߬ߤߟߊ)</string>
-    <string name="paid_content">ߞߣߐߘߐ ߣߌ߲߬ ߦߋ߫ ߡߊߛߐ߬ߘߐ߲߬ ߠߊ߫ ߕߣߐ߬ߓߐ߬ߟߊ߫ ߛߙߊ߬ߓߐ߬ߟߊ ߟߎ߬ ߟߋ߬ ߘߐߙߐ߲߫ ߓߟߏ߫߸ ߏ߬ ߘߐ߫ ߊ߬ ߕߍ߫ ߛߋ߫ ߘߐߛߊߙߌ߫ ߟߊ߫ ߥߟߊ߫ ߞߵߊ߬ ߟߊߖߌ߰ ߣߌߎߔߌߔ ߓߟߏ.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ߊ߬ ߦߴߌ ߢߣߊ߫ ߟߋ߬ ߞߏ߫ ߥߏ߬ߦߏ ߟߎ߬ ߖߛߐ ߟߊߛߎߡߊߡߊ߲߫ ߠߋ߬ ߞߏߖߎ߯ߦߊ߫؟ ߣߴߏ߬ ߟߋ߸ ߖߛߐߟߌ߫ ߞߊߟߌ߲ ߡߊߝߍߣߍ߲߫ (ߌ ߘߌ߫ ߛߴߊ߬ ߡߊߝߊ߬ߟߋ߲߬ ߠߊ߫ ߢߊߓߐߟߌ ߟߎ߬ ߘߐ߫ ߥߟߊ߫ ߘߎ߰ߟߊ߬ߘߐ߬ ߞߘߎ ߣߌ߲߬ ߛߐ߲߬ߞߌ߲߫). \n \nߣߌߎߔߌߔ ߘߌ߫ ߛߋ߫ ߥߏ߬ߦߏ ߟߎ߬ ߟߊߞߎߘߦߊ߫ ߟߊ߫ ߢߊ߫ ߝߌ߬ߟߊ߫ ߟߋ߫ ߡߊ߬: \n• ߞߊ߬ ߝߙߏߝߋ߫ ߡߊߝߘߎߣߍ߲ ߠߎ߬ ߡߎ߰ߡߍ ߡߊߛߐ߲߬ߘߐ߲߬߸ ߏ߬ ߛߎߡߊߡߊ߲߫ ߞߏ߬ߣߌ߲߬ ߊ߬ ߘߝߊߣߍ߲߫. \n• ߞߊ߬ ߗߋߢߊ߫ ߓߟߏߡߞߊ߬ߣߍ߲ ߘߏ߫ ߟߊߓߊ߯ߙߊ߫߸ ߏ߬ ߟߞߊߟߌߡߊ߲߫ ߞߏ߬ߣߌ߲߬ ߊ߬ ߘߝߊߣߍ߲߫ ߕߍ߫. \n \nߞߍߢߊ߫ ߝߌ߬ߟߊ ߏ߬ ߘߊ߲߬ߝߘߊ߬ߓߐ ߦߋ߫ ߟߋ߬߸ ߡߍ߲ ߞߊߟߌߡߊ߲߫ ߏ߬ ߕߍ߫ ߟߌ߬ߤߟߊ߫ ߓߍ߯ ߛߐ߬ߘߐ߲߬ ߠߊ߫߸ ߦߏ߫ ߝߌ߬ߛߌ ߥߎ߬ߛߎ ߣߴߊ߬ ߛߎ߯ߦߊ (ߢߟߊ߫ ߦߋߟߌ ߘߐ߫ ߘߊ߲߬ߝߘߊ߬ߓߐ߬ ߕߴߊ߬ ߝߊ߲ߞߢߊ߫ ߦߋߡߍ߲ߕߊ ߟߎ߬ ߣߌ߫ ߘߏ߫ ߜߘߍ߫ ߟߎ߫ ߕߍ߫)߸ ߊ߬ ߘߏ߲߬ ߘߌ߫ ߛߋ߫ ߞߍ߫ ߟߴߊ߬ ߡߊ߫ ߥߙߏߝߋ߫ ߝߌ߬ߛߌ ߟߎ߬ ߓߍ߯ ߡߊߛߐ߬ߘߐ߲߬. \n \nߟߊߒߡߊ߫ ߘߐ߫߸ ߦߕߎߓߎ ߦߋ߫ ߟߊ߬ߞߎ߬ߘߦߊ߬ߟߌ߬ ߞߊߟߌ߲ (RSS ߥߏ߬ߦߏ) ߕߊ߬ ߟߊ߫. \n \nߏ߬ ߘߐ߫߸ ߌߟߋ ߟߵߊ߬ ߡߊߝߍߣߍ߲ߣߍ߲߫ ߠߊ߫: ߣߴߌ ߦߋ߫ ߞߊߟߌߦߊ ߟߋ߫ ߝߍ߬ ߥߟߊ߫ ߟߌ߬ߤߟߊ߬ ߖߐ߲ߖߐ߲.</string>
     <string name="georestricted_content">ߞߣߐߘߐ ߣߌ߲߬ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬ ߌ ߟߊ߫ ߖߡߊ߬ߣߊ ߞߣߐ߫.</string>
     <string name="night_theme_available">ߢߣߊߕߊ ߣߌ߲߬ ߘߌ߫ ߡߊߛߐ߬ߘߐ߲߫ ߠߋ߬ ߘߐߙߐ߲߫ ߣߌ߫ %s ߛߎߥߊ߲ߘߌߣߍ߲߫ ߛߊߛߊ ߢߍ߫</string>
     <string name="description_select_note">ߌ ߘߌ߫ ߛߋ߫ ߞߟߏߜߍ ߓߊߕߐߡߐ߲߫ ߠߊ߫ ߞߊ߲߬ߛߓߍ ߘߐ߫ ߡߎ߬ߕߎ߲߬. ߦߴߊ߬ ߟߐ߲߫ ߞߏ߫ ߞߐߜߍ߫ ߘߌ߫ ߛߋ߫ ߡߣߍߡߣߍ߫ ߟߊ߫ ߊ߬ߣߌ߫ ߛߘߌ߬ߜߋ߲ ߠߎ߬ ߝߊߣߊ߲߫ ߘߌ߫ ߛߋ߫ ߟߊߝߏߦߊ߫ ߟߴߊ߬ ߘߐ߫.</string>

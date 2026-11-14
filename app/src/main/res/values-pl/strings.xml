@@ -72,7 +72,7 @@
     <string name="msg_name">Nazwa pliku</string>
     <string name="msg_threads">Wątki</string>
     <string name="msg_error">Błąd</string>
-    <string name="msg_running">Pobieranie NewPipe</string>
+    <string name="msg_running">Pobieranie Merak</string>
     <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
     <string name="msg_copied">Skopiowano do schowka</string>
@@ -103,13 +103,13 @@
     <string name="settings_category_downloads_title">Pobieranie</string>
     <string name="settings_file_replacement_character_summary">Nieprawidłowe znaki są zastępowane tą wartością</string>
     <string name="charset_letters_and_digits">Litery i cyfry</string>
-    <string name="title_activity_about">O NewPipe</string>
+    <string name="title_activity_about">O Merak</string>
     <string name="title_licenses">Licencje innych firm</string>
     <string name="tab_about">O aplikacji i FAQ</string>
     <string name="tab_licenses">Licencje</string>
     <string name="app_description">Lekkie przesyłanie strumieniowe w systemie Android.</string>
     <string name="view_on_github">Zobacz na GitHubie</string>
-    <string name="app_license_title">Licencja NewPipe</string>
+    <string name="app_license_title">Licencja Merak</string>
     <string name="contribution_encouragement">Niezależnie od tego, czy masz pomysł na tłumaczenie, zmiany w projekcie, oczyszczenie kodu źródłowego, czy na naprawdę ciężkie zmiany w kodzie — pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
     <string name="read_full_license">Przeczytaj licencję</string>
     <string name="contribution_title">Wkład</string>
@@ -129,8 +129,8 @@
     <string name="enable_watch_history_summary">Śledź obejrzane wideo</string>
     <string name="resume_on_audio_focus_gain_title">Wznawiaj odtwarzanie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
-    <string name="notification_channel_name">Powiadomienie NewPipe</string>
-    <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe</string>
+    <string name="notification_channel_name">Powiadomienie Merak</string>
+    <string name="notification_channel_description">Powiadomienia dla odtwarzacza Merak</string>
     <string name="title_activity_history">Historia</string>
     <string name="action_history">Historia</string>
     <string name="settings_category_player_title">Odtwarzacz</string>
@@ -169,10 +169,8 @@
     </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe jest rozwijany przez wolontariuszy, którzy poświęcają swój wolny czas, zapewniając Ci najlepsze wrażenia z użytkowania. To dobry moment na wsparcie programistów i sprawienie, aby NewPipe był jeszcze lepszy, podczas gdy oni będą mogli delektować się filiżanką kawy.</string>
     <string name="give_back">Wspomóż</string>
     <string name="website_title">Strona internetowa</string>
-    <string name="website_encouragement">Odwiedź stronę NewPipe, aby uzyskać więcej informacji i najnowsze wiadomości.</string>
     <string name="delete_item_search_history">Czy chcesz usunąć tę pozycję z historii wyszukiwania?</string>
     <string name="main_page_content">Zawartość strony głównej</string>
     <string name="blank_page_summary">Pusta strona</string>
@@ -292,12 +290,11 @@
     <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania?</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania</string>
     <string name="one_item_deleted">Usunięto jedną pozycję</string>
-    <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
+    <string name="app_license">Merak jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, udostępniać i ulepszać je do woli. W szczególności możesz je redystrybuować i/lub modyfikować zgodnie z warunkami GNU General Public License, opublikowanej przez Free Software Fundation, w wersji 3 albo (według Twojego wyboru) jakiejkolwiek późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
-    <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuje Twoją prywatność, dlatego aplikacja nie gromadzi żadnych danych bez Twojej zgody. \nPolityka prywatności NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, gdy wysyłasz raport o awarii aplikacji.</string>
+    <string name="privacy_policy_title">Polityka prywatności Merak</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
-    <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego rozporządzenia o ochronie danych (RODO) chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Prosimy przeczytać ją uważnie. \nMusisz ją zaakceptować, aby przesyłać nam raporty o błędach.</string>
+    <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego rozporządzenia o ochronie danych (RODO) chcielibyśmy zwrócić Twoją uwagę na politykę prywatności Merak. Prosimy przeczytać ją uważnie. \nMusisz ją zaakceptować, aby przesyłać nam raporty o błędach.</string>
     <string name="accept">Akceptuj</string>
     <string name="decline">Odrzuć</string>
     <string name="limit_data_usage_none_description">Bez limitu</string>
@@ -319,7 +316,7 @@
     <string name="settings_category_updates_title">Aktualizacje</string>
     <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
-    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach NewPipe</string>
+    <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach Merak</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
     <string name="download_to_sdcard_error_message">Pobieranie na kartę pamięci nie jest możliwe. Zresetować lokalizację folderu zapisywania?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
@@ -333,7 +330,7 @@
     <string name="list">Lista</string>
     <string name="grid">Siatka</string>
     <string name="auto">Automatyczny</string>
-    <string name="app_update_available_notification_title">Dostępna jest aktualizacja NewPipe!</string>
+    <string name="app_update_available_notification_title">Dostępna jest aktualizacja Merak!</string>
     <string name="missions_header_finished">Zakończone</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
@@ -379,7 +376,7 @@
     <string name="overwrite_unrelated_warning">Plik o tej nazwie już istnieje</string>
     <string name="overwrite_failed">Nie udało się nadpisać pliku</string>
     <string name="download_already_pending">Plik o tej samej nazwie oczekuje na pobranie</string>
-    <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
+    <string name="error_postprocessing_stopped">Merak został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage_left">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Utracono postęp, ponieważ plik został usunięty</string>
     <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania, czy usunąć wszystkie pobrane pliki?</string>
@@ -444,7 +441,7 @@
     <string name="new_seek_duration_toast">Wielkość skoku przewijania została ustawiona na %d sekund ze względu na ograniczenia odtwarzacza ExoPlayer</string>
     <string name="mute">Wycisz</string>
     <string name="unmute">Wyłącz wyciszenie</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Czy uważasz, że ładowanie kanałów jest zbyt powolne? Jeśli tak, spróbuj włączyć szybkie ładowanie (możesz je zmienić w ustawieniach lub naciskając przycisk poniżej). \n \nNewPipe oferuje dwie strategie ładowania kanału: \n• Pobieranie całego kanału subskrypcji, co jest powolne, ale kompletne. \n• Korzystanie z dedykowanego punktu końcowego usługi, co jest szybkie, ale zwykle nie jest kompletne. \n \nRóżnica między nimi polega na tym, że w szybkim zwykle brakuje pewnych informacji, takich jak czas trwania lub typ pozycji (nie można odróżnić wideo na żywo od zwykłych), i może zwrócić mniej pozycji. \n \nYouTube jest przykładem usługi, która oferuje tę szybką metodę z kanałem RSS. \n \nTak więc wybór sprowadza się do tego, co wolisz: szybkość czy precyzyjne informacje.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Czy uważasz, że ładowanie kanałów jest zbyt powolne? Jeśli tak, spróbuj włączyć szybkie ładowanie (możesz je zmienić w ustawieniach lub naciskając przycisk poniżej). \n \nMerak oferuje dwie strategie ładowania kanału: \n• Pobieranie całego kanału subskrypcji, co jest powolne, ale kompletne. \n• Korzystanie z dedykowanego punktu końcowego usługi, co jest szybkie, ale zwykle nie jest kompletne. \n \nRóżnica między nimi polega na tym, że w szybkim zwykle brakuje pewnych informacji, takich jak czas trwania lub typ pozycji (nie można odróżnić wideo na żywo od zwykłych), i może zwrócić mniej pozycji. \n \nYouTube jest przykładem usługi, która oferuje tę szybką metodę z kanałem RSS. \n \nTak więc wybór sprowadza się do tego, co wolisz: szybkość czy precyzyjne informacje.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Wyłącz tryb szybki</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Włącz tryb szybki</string>
     <string name="feed_use_dedicated_fetch_method_summary">Dostępne w niektórych usługach. Jest zwykle znacznie szybsze, ale może zwrócić ograniczoną liczbę pozycji i często niekompletne informacje (np. brak czasu trwania, typu pozycji, statusu na żywo)</string>
@@ -487,7 +484,7 @@
         <item quantity="many">%d minut</item>
         <item quantity="other">%d minut</item>
     </plurals>
-    <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez NewPipe. \n \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
+    <string name="content_not_supported">Ta treść nie jest jeszcze obsługiwana przez Merak. \n \nMiejmy nadzieję, że będzie obsługiwana w przyszłej wersji.</string>
     <string name="infinite_videos">∞ wideo</string>
     <string name="more_than_100_videos">100+ wideo</string>
     <string name="artists">Artyści</string>
@@ -537,7 +534,7 @@
     <string name="enqueued">Dodano do kolejki</string>
     <string name="enqueue_stream">Dodaj do kolejki</string>
     <string name="show_memory_leaks">Pokaż wycieki pamięci</string>
-    <string name="clear_cookie_summary">Usuwa ciasteczka, które NewPipe przechowuje po rozwiązaniu reCAPTCHA</string>
+    <string name="clear_cookie_summary">Usuwa ciasteczka, które Merak przechowuje po rozwiązaniu reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Ciasteczka reCAPTCHA zostały wyczyszczone</string>
     <string name="clear_cookie_title">Wyczyść ciasteczka reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube udostępnia „Tryb ograniczonego dostępu”, który ukrywa potencjalne treści dla dorosłych</string>
@@ -561,12 +558,12 @@
     <string name="no_app_to_open_intent">Na twoim urządzeniu nie ma aplikacji, która mogłaby to otworzyć</string>
     <string name="related_items_tab_description">Powiązane pozycje</string>
     <string name="crash_the_app">Zepsuj aplikację</string>
-    <string name="paid_content">Ta treść dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może być strumieniowana ani pobierana przez NewPipe.</string>
-    <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może być strumieniowane ani pobierane przez NewPipe.</string>
-    <string name="private_content">Ta treść jest prywatna, więc nie może być strumieniowana ani pobierana przez NewPipe.</string>
+    <string name="paid_content">Ta treść dostępna jest tylko dla użytkowników, którzy za nią zapłacili. Nie może być strumieniowana ani pobierana przez Merak.</string>
+    <string name="youtube_music_premium_content">To wideo dostępne jest tylko dla subskrybentów usługi YouTube Music Premium. Nie może być strumieniowane ani pobierane przez Merak.</string>
+    <string name="private_content">Ta treść jest prywatna, więc nie może być strumieniowana ani pobierana przez Merak.</string>
     <string name="georestricted_content">Ta treść nie jest dostępna w Twoim kraju.</string>
-    <string name="restricted_video_no_stream">To wideo jest objęte ograniczeniem wiekowym. \nZe względu na nowe zasady YouTube dotyczące wideo z ograniczeniami wiekowymi NewPipe nie może uzyskać dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
-    <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może być strumieniowany ani pobierany przez NewPipe.</string>
+    <string name="restricted_video_no_stream">To wideo jest objęte ograniczeniem wiekowym. \nZe względu na nowe zasady YouTube dotyczące wideo z ograniczeniami wiekowymi Merak nie może uzyskać dostępu do żadnego z jego strumieni wideo i dlatego nie jest w stanie go odtworzyć.</string>
+    <string name="soundcloud_go_plus_content">To jest utwór SoundCloud Go+ (przynajmniej w Twoim kraju). Nie może być strumieniowany ani pobierany przez Merak.</string>
     <string name="radio">Radio</string>
     <string name="featured">Polecane</string>
     <string name="recaptcha_solve">Rozwiąż</string>
@@ -595,7 +592,7 @@
     <string name="description_select_note">Teraz możesz zaznaczyć tekst wewnątrz opisu. Pamiętaj, że w trybie zaznaczania strona może migotać i linki nie będą klikalne.</string>
     <string name="account_terminated">Konto zamknięte.</string>
     <string name="feed_load_error_fast_unknown">Tryb szybki dla ładowania kanału nie dostarcza więcej informacji na ten temat.</string>
-    <string name="feed_load_error_terminated">Konto autora zostało zawieszone. \nNewPipe nie będzie w stanie załadować tego kanału w przyszłości. \nCzy chcesz anulować subskrypcję tego kanału?</string>
+    <string name="feed_load_error_terminated">Konto autora zostało zawieszone. \nMerak nie będzie w stanie załadować tego kanału w przyszłości. \nCzy chcesz anulować subskrypcję tego kanału?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
     <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko Storage Access Framework</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik</string>
@@ -641,7 +638,7 @@
     <string name="show_crash_the_player_title">Pokazuj „Zepsuj odtwarzacz”</string>
     <string name="error_report_channel_name">Powiadomienie raportu o błędach</string>
     <string name="error_report_channel_description">Powiadomienia do zgłaszania błędów</string>
-    <string name="error_report_notification_title">NewPipe napotkał błąd. Naciśnij, aby zgłosić</string>
+    <string name="error_report_notification_title">Merak napotkał błąd. Naciśnij, aby zgłosić</string>
     <string name="error_report_notification_toast">Wystąpił błąd, zobacz powiadomienie</string>
     <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
     <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
@@ -691,7 +688,7 @@
     <string name="app_update_available_notification_text">Naciśnij, aby pobrać %s</string>
     <string name="fast_mode">Tryb szybki</string>
     <string name="import_subscriptions_hint">Importuj lub eksportuj subskrypcje z menu z trzema kropkami.</string>
-    <string name="app_update_unavailable_toast">Używasz najnowszej wersji NewPipe</string>
+    <string name="app_update_unavailable_toast">Używasz najnowszej wersji Merak</string>
     <string name="night_theme_available">Ta opcja jest dostępna tylko wtedy, gdy %s jest wybrany jako motyw</string>
     <string name="unset_playlist_thumbnail">Usuń stałą miniaturę</string>
     <string name="msg_failed_to_copy">Nie udało się skopiować do schowka</string>
@@ -798,7 +795,7 @@
     <string name="reset_all_settings">Zresetowanie wszystkich ustawień odrzuci wszystkie Twoje preferowane ustawienia i ponownie uruchomi aplikację. \n \nCzy na pewno chcesz kontynuować?</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
-    <string name="auto_update_check_description">NewPipe może od czasu do czasu automatycznie sprawdzać dostępność nowych wersji i powiadamiać Cię, gdy tylko będą dostępne. \nCzy chcesz to włączyć?</string>
+    <string name="auto_update_check_description">Merak może od czasu do czasu automatycznie sprawdzać dostępność nowych wersji i powiadamiać Cię, gdy tylko będą dostępne. \nCzy chcesz to włączyć?</string>
     <string name="import_settings_vulnerable_format">Ustawienia w importowanym eksporcie korzystają z podatnego na ataki formatu, który został wycofany od wersji NewPipe 0.27.0. Upewnij się, że importowany eksport pochodzi z zaufanego źródła, i w przyszłości używaj wyłącznie eksportów uzyskanych z NewPipe 0.27.0 lub nowszego. Obsługa importowania ustawień w tym podatnym formacie zostanie wkrótce całkowicie usunięta, a wtedy starsze wersje NewPipe nie będą już mogły importować ustawień z eksportu z nowych wersji.</string>
     <string name="audio_track_type_secondary">dodatkowa</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Udostępnij jako tymczasową playlistę YouTube</string>
@@ -812,7 +809,7 @@
     <string name="migration_info_6_7_title">Usunięto stronę SoundCloud 50 najlepszych</string>
     <string name="migration_info_6_7_message">SoundCloud wycofał oryginalną listę 50 najlepszych. Odpowiadająca karta została usunięta ze strony głównej.</string>
     <string name="migration_info_7_8_title">Usunięto połączone Na czasie YouTube</string>
-    <string name="migration_info_7_8_message">Od 21 lipca 2025 r. YouTube zaprzestał korzystania z połączonego Na czasie. NewPipe zastąpił domyślną stronę Na czasie popularnymi transmisjami na żywo.\n\nMożesz także wybrać różne strony Na czasie w „Ustawienia &gt; Zawartość &gt; Zawartość strony głównej”.</string>
+    <string name="migration_info_7_8_message">Od 21 lipca 2025 r. YouTube zaprzestał korzystania z połączonego Na czasie. Merak zastąpił domyślną stronę Na czasie popularnymi transmisjami na żywo.\n\nMożesz także wybrać różne strony Na czasie w „Ustawienia &gt; Zawartość &gt; Zawartość strony głównej”.</string>
     <string name="trending_gaming">Gry na czasie</string>
     <string name="trending_podcasts">Podcasty na czasie</string>
     <string name="trending_movies">Filmy i programy na czasie</string>
@@ -831,7 +828,6 @@
     <string name="youtube_player_http_403">Podczas odtwarzania otrzymano od serwera błąd HTTP 403, prawdopodobnie spowodowany blokadą adresu IP lub problemami z odszyfrowaniem adresu URL strumienia.</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmówił dostarczenia danych, prosząc o zalogowanie się w celu potwierdzenia, że nie jest się botem.\n\nTwoje IP mogło zostać tymczasowo zablokowane przez %1$s. Możesz chwilę poczekać lub zmienić adres IP (na przykład włączając/wyłączając VPN lub przełączając się z sieci Wi-Fi na dane komórkowe).\n\nZobacz <a href="%2$s">ten wpis w FAQ</a>, aby uzyskać więcej informacji.</string>
     <string name="unsupported_content_in_country">Ta treść nie jest dostępna dla aktualnie wybranego kraju treści.\n\nZmień swój wybór w „Ustawienia &gt; Zawartość &gt; Domyślny kraj treści”.</string>
-    <string name="kao_dialog_warning">W sierpniu 2025 r. Google ogłosił, że od września 2026 r. instalowanie aplikacji będzie wymagać weryfikacji ich twórców w przypadku wszystkich aplikacji na Androida na certyfikowanych urządzeniach, w tym tych zainstalowanych poza sklepem Google Play. Ponieważ programiści NewPipe nie zgadzają się z tym wymogiem, NewPipie nie będzie już działać na certyfikowanych urządzeniach z Androidem po tym czasie.</string>
     <string name="kao_dialog_more_info">Szczegóły</string>
     <string name="kao_solution">Rozwiązanie</string>
     <plurals name="export_subscriptions">
@@ -857,8 +853,8 @@
     <string name="import_subscriptions_summary">Zaimportuj subskrypcje z poprzedniego eksportu do .json</string>
     <string name="export_subscriptions_summary">Wyeksportuj swoje subskrypcje do pliku .json</string>
     <string name="import_from_previous_export">Importuj z poprzedniego eksportu</string>
-    <string name="api23_requirement_dialog_title">NewPipe przestaje obsługiwać Androida 5</string>
-    <string name="api23_requirement_dialog_message">Niestety, NewPipe zależy od kilku bibliotek, które przestały obsługiwać Androida 5.0 i 5.1. W związku z tym kolejna wersja NewPipe będzie działać wyłącznie na urządzeniach z Androidem 6 lub nowszym. Czytaj więcej we wpisie na blogu.</string>
+    <string name="api23_requirement_dialog_title">Merak przestaje obsługiwać Androida 5</string>
+    <string name="api23_requirement_dialog_message">Niestety, Merak zależy od kilku bibliotek, które przestały obsługiwać Androida 5.0 i 5.1. W związku z tym kolejna wersja Merak będzie działać wyłącznie na urządzeniach z Androidem 6 lub nowszym. Czytaj więcej we wpisie na blogu.</string>
     <string name="api23_requirement_dialog_blogpost">Wpis na blogu</string>
     <string name="channel_tab_podcasts">Podcasty</string>
     <string name="channel_tab_courses">Kursy</string>

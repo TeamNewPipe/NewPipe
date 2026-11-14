@@ -17,11 +17,11 @@
     <string name="md5">MD5</string>
     <string name="sha1">SHA-1</string>
     <string name="recaptcha">reCAPTCHA</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="github_url">https://github.com/ninjaeu/Merak</string>
     <string name="donation_url">https://newpipe.net/donate/</string>
-    <string name="website_url">https://newpipe.net/</string>
-    <string name="privacy_policy_url">https://newpipe.net/legal/privacy/</string>
-    <string name="faq_url">https://newpipe.net/FAQ/</string>
+    <string name="website_url">https://github.com/ninjaeu/Merak</string>
+    <string name="privacy_policy_url">https://github.com/ninjaeu/Merak/blob/title-search/MERAK.md#privacy</string>
+    <string name="faq_url">https://github.com/ninjaeu/Merak/blob/title-search/MERAK.md</string>
     <string name="service_kiosk_string">%1$s/%2$s</string>
     <string name="youtube">YouTube</string>
     <string name="preferred_open_action_share_menu_title">@string/app_name</string>

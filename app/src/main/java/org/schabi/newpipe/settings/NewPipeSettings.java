@@ -99,7 +99,8 @@ public final class NewPipeSettings {
     }
 
     private static String getNewPipeChildFolderPathForDir(final File dir) {
-        return new File(dir, "NewPipe").toURI().toString();
+        // Merak: download into a "Merak" folder, separate from NewPipe's.
+        return new File(dir, "Merak").toURI().toString();
     }
 
     public static boolean useStorageAccessFramework(final Context context) {

@@ -110,7 +110,7 @@
     <string name="disabled">செயலிழக்கச் செய்யப்பட்டுள்ளது</string>
     <string name="undo">முந்தய நிலைக்குச் செல்</string>
     <string name="play_all">அனைத்தையும் இயக்கு</string>
-    <string name="notification_channel_name">NewPipe அறிவிப்பு</string>
+    <string name="notification_channel_name">Merak அறிவிப்பு</string>
     <string name="unknown_content">[அறியப்படவில்லை]</string>
     <string name="switch_to_background">பின்னனிக்கு மாறு</string>
     <string name="show_hold_to_append_title">\"சாரைபடுத்த நீண்டழுத்து\" துணுக்குதவியைக் காட்டு</string>
@@ -123,7 +123,7 @@
     <string name="delete_search_history_alert">தேடல் வரலாறு முழுவதையும் அழி?</string>
     <string name="general_error">பிழை</string>
     <string name="best_resolution">சிறந்த திரைத் தெளிவுத்திறன்</string>
-    <string name="notification_channel_description">NewPipe இயக்கிக்கான அறிவிப்புகள்</string>
+    <string name="notification_channel_description">Merak இயக்கிக்கான அறிவிப்புகள்</string>
     <string name="switch_to_popup">பாப்அப் இயக்கிக்கு மாறு</string>
     <string name="unsubscribe">சந்தாநீக்கு</string>
     <string name="enqueue">சாரைபடுத்து</string>
@@ -159,7 +159,7 @@
     <string name="settings_category_updates_title">புதுப்பித்தல்கள்</string>
     <string name="file_deleted">கோப்பு அழிக்கப்பட்டது</string>
     <string name="app_update_notification_channel_name">செயலி புதுப்பித்தல் அறிவிப்பு</string>
-    <string name="app_update_notification_channel_description">புதிய NewPipe பதிப்புக்கான அறிவிப்புகள்</string>
+    <string name="app_update_notification_channel_description">புதிய Merak பதிப்புக்கான அறிவிப்புகள்</string>
     <string name="download_to_sdcard_error_title">வெளி சேமிப்பு இயலாது</string>
     <string name="subscribers_count_not_available">சந்தாதாரர் எண்ணிக்கை கிடைக்கவில்லை</string>
     <string name="events">நிகழ்வுகள்</string>
@@ -207,7 +207,6 @@
     <string name="search_showing_result_for">%s :க்கான முடிவுகளைக் காட்டுகிறது</string>
     <string name="open_with">இதனுடன் திற</string>
     <string name="tab_about">பற்றி &amp; கேள்விகள்</string>
-    <string name="title_activity_about">நியூபைப் பற்றி</string>
     <string name="trending">நடப்பு</string>
     <string name="download_failed">பதிவிறக்கம் தோல்வியடைந்தது</string>
     <string name="low_quality_smaller">குறைந்த தரம்</string>
@@ -228,7 +227,7 @@
     <string name="clear_cookie_title">reCAPTCHA நினைவிகளைத் துடை</string>
     <string name="restore_defaults_confirmation">இயல்பிருப்புகளை மீட்டெடுக்க வேண்டுமா?</string>
     <string name="related_items_tab_description">உறவுடைய உருப்படிகள்</string>
-    <string name="clear_cookie_summary">reCAPTCHAஐ தீர்க்கையில் NewPipe சேமிக்கும் நினைவிகளைத் துடை</string>
+    <string name="clear_cookie_summary">reCAPTCHAஐ தீர்க்கையில் Merak சேமிக்கும் நினைவிகளைத் துடை</string>
     <string name="start_main_player_fullscreen_title">முதன்மை இயக்கியை முழுதிரையில் துவக்கு</string>
     <string name="peertube_instance_add_fail">நிகழ்வை செல்லுபடுயாக்க முடியவில்லை</string>
     <string name="clear_playback_states_summary">எல்லா இயக்கக குறியிடங்களையும் அழிக்கும்</string>
@@ -254,7 +253,7 @@
     <string name="clear_playback_states_title">இயக்கக குறியிடங்களை அழி</string>
     <string name="could_not_setup_download_menu">பதிவிறக்கச்சிறுபட்டியை அமைக்க முடியவில்லை</string>
     <string name="restore_defaults">இயல்பிருப்புகளை மீட்டெடு</string>
-    <string name="error_report_notification_title">NewPipe பிழையைச் எதிர்கொண்டது, புகாரளிக்க தட்டு</string>
+    <string name="error_report_notification_title">Merak பிழையைச் எதிர்கொண்டது, புகாரளிக்க தட்டு</string>
     <string name="error_snackbar_action">புகாரளி</string>
     <string name="info_labels">என்ன:\nகோரிக்கை:\nஉள்ளடக்க மொழி:\nஉள்ளடக்க நாடு:\nசெயலி மொழி:\nசேவை:\nGMT நேரம்:\nசிப்பம்:\nபதிப்பு:\nOS பதிப்பு:</string>
     <string name="detail_thumbnail_view_description">காணொளியை இயக்கு, காலவளவு:</string>
@@ -304,7 +303,7 @@
     <string name="error_download_resource_gone">இப்பதிவிறக்கத்தை மீட்டெடுக்க முடியவில்லை</string>
     <string name="main_page_content_swipe_remove">உருப்படிகளை அகற்ற அவற்றைத் தேய்</string>
     <string name="create_error_notification">பிழை அறிவிப்பைப் படை</string>
-    <string name="app_update_available_notification_title">NewPipe புதுப்பிப்பு கிடைக்கிறது!</string>
+    <string name="app_update_available_notification_title">Merak புதுப்பிப்பு கிடைக்கிறது!</string>
     <string name="wifi_only">அருகலையில் மட்டும்</string>
     <string name="never">ஒருபோதுமில்லை</string>
     <string name="list_view_mode">பட்டியல் பார்வை முறை</string>
@@ -359,7 +358,7 @@
     <string name="streams_notification_channel_name">புதிய நீரோடைகள்</string>
     <string name="hash_channel_description">வீடியோ ஹேஷிங் முன்னேற்றத்திற்கான அறிவிப்புகள்</string>
     <string name="streams_notification_channel_description">சந்தாவுக்கான புதிய ஸ்ட்ரீம்கள் பற்றிய அறிவிப்புகள்</string>
-    <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது. \nவயது வரம்புக்குட்பட்ட வீடியோக்கள் கொண்ட புதிய YouTube கொள்கைகள் காரணமாக, NewPipe ஆல் அதன் எந்த வீடியோ ஸ்ட்ரீம்களையும் அணுக முடியாது, இதனால் அதை இயக்க முடியவில்லை.</string>
+    <string name="restricted_video_no_stream">இந்த வீடியோ வயது வரம்புக்குட்பட்டது. \nவயது வரம்புக்குட்பட்ட வீடியோக்கள் கொண்ட புதிய YouTube கொள்கைகள் காரணமாக, Merak ஆல் அதன் எந்த வீடியோ ஸ்ட்ரீம்களையும் அணுக முடியாது, இதனால் அதை இயக்க முடியவில்லை.</string>
     <string name="fast_mode">வேகமான பயன்முறை</string>
     <string name="yes">ஆம்</string>
     <string name="no">இல்லை</string>
@@ -408,7 +407,6 @@
     <string name="title_activity_recaptcha">ரெக்காப்ட்சா அறைகூவல்</string>
     <string name="subtitle_activity_recaptcha">தீர்க்கும்போது \"முடிந்தது\" என்பதை அழுத்தவும்</string>
     <string name="done">முடிந்தது</string>
-    <string name="privacy_policy_title">நியூபைப்பின் தனியுரிமைக் கொள்கை</string>
     <string name="faq_title">அடிக்கடி கேட்கப்படும் கேள்விகள்</string>
     <string name="top_50">முதல் 50</string>
     <string name="loading_stream_details">ச்ட்ரீம் விவரங்களை ஏற்றுகிறது…</string>
@@ -470,7 +468,6 @@
     <string name="share_playlist_with_list">முகவரி பட்டியலைப் பகிரவும்</string>
     <string name="show_more">மேலும் காட்டு</string>
     <string name="show_less">குறைவாகக் காட்டு</string>
-    <string name="error_postprocessing_stopped">கோப்பில் பணிபுரியும் போது நியூபைப் மூடப்பட்டது</string>
     <string name="on">ஆன்</string>
     <string name="max_retry_msg">அதிகபட்ச முயற்சிகள்</string>
     <string name="metadata_tags">குறிச்சொற்கள்</string>
@@ -580,7 +577,6 @@
     <string name="msg_name">கோப்புப்பெயர்</string>
     <string name="msg_threads">நூல்கள்</string>
     <string name="msg_error">பிழை</string>
-    <string name="msg_running">நியூபைப் பதிவிறக்குதல்</string>
     <string name="msg_running_detail">விவரங்களுக்கு தட்டவும்</string>
     <string name="msg_failed_to_copy">இடைநிலைப்பலகைக்கு நகலெடுப்பதில் தோல்வி</string>
     <string name="charset_letters_and_digits">கடிதங்கள் மற்றும் இலக்கங்கள்</string>
@@ -591,11 +587,6 @@
     <string name="app_description">ஆண்ட்ராய்டு இல் லிப்ரே லைட்வெயிட் ச்ட்ரீமிங்.</string>
     <string name="contribution_title">பங்களிப்பு</string>
     <string name="contribution_encouragement">உங்களிடம் சிந்தனைகள் உள்ளதா; மொழிபெயர்ப்பு, வடிவமைப்பு மாற்றங்கள், குறியீடு தூய்மை அல்லது உண்மையான கனமான குறியீடு மாற்றங்கள் - உதவி எப்போதும் வரவேற்கத்தக்கது. மேலும் சிறப்பாகச் செய்யப்படுகிறது!</string>
-    <string name="donation_encouragement">புதிய பயனர் அனுபவத்தை கொண்டு வரும் தன்னார்வலர்கள் தங்கள் இலவச நேரத்தை செலவழிப்பதன் மூலம் புதிய பாடத்தை உருவாக்கியுள்ளனர். உருவாக்குபவர்கள் ஒரு கப் காபியை அனுபவிக்கும் போது புதிய பக்கத்தை இன்னும் சிறப்பாக செய்ய உதவ உதவுகின்றன.</string>
-    <string name="website_encouragement">மேலும் செய்தி மற்றும் செய்திகளுக்கு நியூபைப் வலைத்தளத்தைப் பார்வையிடவும்.</string>
-    <string name="privacy_policy_encouragement">நியூபைப் திட்டம் உங்கள் தனியுரிமையை மிகவும் தீவிரமாக எடுத்துக்கொள்கிறது. எனவே, பயன்பாடு உங்கள் அனுமதியின்றி எந்த தரவையும் சேகரிக்காது.\n நீங்கள் ஒரு செயலிழப்பு அறிக்கையை அனுப்பும்போது என்ன தரவு அனுப்பப்படுகிறது மற்றும் சேமிக்கப்படுகிறது என்பதை நியூபிப்பின் தனியுரிமைக் கொள்கை விரிவாக விளக்குகிறது.</string>
-    <string name="app_license_title">நியூபைப்பின் உரிமம்</string>
-    <string name="app_license">நியூபைப் என்பது நகலெடுக்கப்பட்ட லிப்ரே மென்பொருள்: நீங்கள் அதைப் பயன்படுத்தலாம், படிக்கலாம், பகிரலாம் மற்றும் மேம்படுத்தலாம். குறிப்பாக நீங்கள் இலவச மென்பொருள் அறக்கட்டளையால் வெளியிடப்பட்ட குனு பொது பொதுமக்கள் உரிமத்தின் விதிமுறைகளின் கீழ் மறுபகிர்வு மற்றும்/அல்லது மாற்றியமைக்கலாம், உரிமத்தின் பதிப்பு 3 அல்லது (உங்கள் விருப்பத்தில்) பின்னர் எந்தப் பதிப்பையும் மாற்றலாம்.</string>
     <string name="faq_description">பயன்பாட்டைப் பயன்படுத்துவதில் சிக்கல் இருந்தால், பொதுவான கேள்விகளுக்கு இந்த பதில்களைப் பார்க்கவும்!</string>
     <string name="faq">இணையதளத்தில் காண்க</string>
     <string name="title_last_played">கடைசியாக விளையாடியது</string>
@@ -657,7 +648,6 @@
     <string name="skip_silence_checkbox">ம .னத்தின் போது வேகமாக முன்னோக்கி</string>
     <string name="percent">விழுக்காடு</string>
     <string name="semitone">செமிடோன்</string>
-    <string name="start_accept_privacy_policy">ஐரோப்பிய பொது தரவு பாதுகாப்பு ஒழுங்குமுறை (சிடிபிஆர்) உடன் இணங்குவதற்காக, நியூபைப்பின் தனியுரிமைக் கொள்கைக்கு இதன்மூலம் உங்கள் கவனத்தை ஈர்க்கிறோம். தயவுசெய்து அதை கவனமாகப் படியுங்கள்.\n பிழை அறிக்கையை எங்களுக்கு அனுப்ப நீங்கள் அதை ஏற்றுக்கொள்ள வேண்டும்.</string>
     <string name="decline">வீழ்ச்சி</string>
     <string name="enable_streams_notifications_title">புதிய ச்ட்ரீம்கள் அறிவிப்புகள்</string>
     <string name="enable_streams_notifications_summary">சந்தாக்களிலிருந்து புதிய ச்ட்ரீம்கள் பற்றி அறிவிக்கவும்</string>
@@ -665,7 +655,6 @@
     <string name="streams_notifications_network_title">தேவையான பிணைய இணைப்பு</string>
     <string name="any_network">எந்த பிணையமும்</string>
     <string name="check_for_updates">புதுப்பிப்புகளை சரிபார்க்கவும்</string>
-    <string name="auto_update_check_description">நியூபைப் தானாகவே புதிய பதிப்புகள் அவ்வப்போது சரிபார்க்கலாம் மற்றும் அவை கிடைத்தவுடன் உங்களுக்குத் தெரிவிக்கலாம்.\n இதை இயக்க விரும்புகிறீர்களா?</string>
     <string name="manual_update_description">புதிய பதிப்புகளை கைமுறையாக சரிபார்க்கவும்</string>
     <string name="minimize_on_exit_title">பயன்பாட்டு சுவிட்சில் குறைக்கவும்</string>
     <string name="minimize_on_exit_summary">முதன்மையான வீடியோ பிளேயரிடமிருந்து பிற பயன்பாட்டிற்கு மாறும்போது செயல் - %s</string>
@@ -673,7 +662,6 @@
     <string name="minimize_on_exit_background_description">பின்னணி பிளேயருக்குக் குறைக்கவும்</string>
     <string name="autoplay_summary">பிளேபேக்கை தானாகத் தொடங்குங்கள் - %s</string>
     <string name="card">அட்டை</string>
-    <string name="app_update_unavailable_toast">நீங்கள் நியூபைப்பின் அண்மைக் கால பதிப்பை இயக்குகிறீர்கள்</string>
     <string name="queued">வரிசையில்</string>
     <string name="post_processing">பிந்தைய செயலாக்கம்</string>
     <string name="recovering">மீண்டு</string>
@@ -710,21 +698,14 @@
     <string name="feed_create_new_group_button_title">புதிய</string>
     <string name="feed_update_threshold_option_always_update">எப்போதும் புதுப்பிக்கவும்</string>
     <string name="feed_load_error_account_info">\'%s\' க்கு ஊட்டத்தை ஏற்ற முடியவில்லை.</string>
-    <string name="feed_load_error_terminated">ஆசிரியரின் கணக்கு நிறுத்தப்பட்டுள்ளது.\n நியூபைப் எதிர்காலத்தில் இந்த ஊட்டத்தை ஏற்ற முடியாது.\n இந்த சேனலில் இருந்து குழுவிலக விரும்புகிறீர்களா?</string>
     <string name="feed_load_error_fast_unknown">ஃபாச்ட் ஃபீட் பயன்முறை இது குறித்த கூடுதல் தகவலை வழங்காது.</string>
     <string name="feed_use_dedicated_fetch_method_title">கிடைக்கும்போது பிரத்யேக ஊட்டத்திலிருந்து பெறுங்கள்</string>
     <string name="feed_use_dedicated_fetch_method_summary">சில சேவைகளில் கிடைக்கிறது, இது பொதுவாக மிக வேகமாக இருக்கும், ஆனால் ஒரு குறிப்பிட்ட அளவு உருப்படிகள் மற்றும் பெரும்பாலும் முழுமையற்ற தகவல்களைத் தரக்கூடும் (எ.கா. காலம், உருப்படி வகை, நேரடி நிலை இல்லை)</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">வேகமான பயன்முறையை முடக்கு</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">தீவன ஏற்றுதல் மிகவும் மெதுவாக இருப்பதாக நீங்கள் நினைக்கிறீர்களா? அப்படியானால், வேகமாக ஏற்றுவதை இயக்க முயற்சிக்கவும் (நீங்கள் அதை அமைப்புகளில் மாற்றலாம் அல்லது கீழே உள்ள பொத்தானை அழுத்துவதன் மூலம்).\n\n நியூபைப் இரண்டு தீவன ஏற்றுதல் உத்திகளை வழங்குகிறது:\n சந்தா சேனலைப் பெறுதல், இது மெதுவாக ஆனால் முழுமையானது.\n பணி ஒரு பிரத்யேக பணி இறுதிப் புள்ளியைப் பயன்படுத்துதல், இது வேகமானது ஆனால் பொதுவாக முழுமையடையாது.\n\n இரண்டிற்கும் இடையிலான வேறுபாடு என்னவென்றால், வேகமானவருக்கு வழக்கமாக உருப்படியின் காலம் அல்லது வகை போன்ற சில தகவல்கள் இல்லை (நேரடி வீடியோக்களுக்கும் சாதாரணமானவற்றுக்கும் இடையில் வேறுபடுத்த முடியாது) மற்றும் அது குறைவான உருப்படிகளைத் தரக்கூடும்.\n\n இந்த வேகமான முறையை அதன் ஆர்எச்எச் ஊட்டத்துடன் வழங்கும் சேவைக்கு யூடியூப் ஒரு எடுத்துக்காட்டு.\n\n எனவே தேர்வு நீங்கள் விரும்புவதைக் குறைக்கிறது: விரைவு அல்லது துல்லியமான செய்தி.</string>
     <string name="feed_fetch_channel_tabs">சேனல் தாவல்களைப் பெறுங்கள்</string>
-    <string name="content_not_supported">இந்த உள்ளடக்கத்தை இன்னும் நியூபைப் ஆதரிக்கவில்லை.\n\n இது எதிர்கால பதிப்பில் ஆதரிக்கப்படும்.</string>
     <string name="video_detail_by">மூலம் %s</string>
     <string name="no_appropriate_file_manager_message">இந்த செயலுக்கு பொருத்தமான கோப்பு மேலாளர் எதுவும் கிடைக்கவில்லை.\n தயவுசெய்து ஒரு கோப்பு மேலாளரை நிறுவவும் அல்லது பதிவிறக்க அமைப்புகளில் \'%s\' ஐ முடக்க முயற்சிக்கவும்</string>
-    <string name="soundcloud_go_plus_content">இது ஒரு சவுண்ட்க்ளூட் கோ+ டிராக் ஆகும், குறைந்தபட்சம் உங்கள் நாட்டில், எனவே இதை நியூபைப் மூலம் ச்ட்ரீம் செய்யவோ பதிவிறக்கம் செய்யவோ முடியாது.</string>
-    <string name="private_content">இந்த உள்ளடக்கம் தனிப்பட்டது, எனவே இதை நியூபைப் மூலம் ச்ட்ரீம் செய்யவோ பதிவிறக்கம் செய்யவோ முடியாது.</string>
-    <string name="youtube_music_premium_content">இந்த வீடியோ யூடியூப் மியூசிக் காப்பீடு உறுப்பினர்களுக்கு மட்டுமே கிடைக்கிறது, எனவே இதை நியூபைப்பால் ச்ட்ரீம் செய்யவோ பதிவிறக்கம் செய்யவோ முடியாது.</string>
     <string name="account_terminated">கணக்கு நிறுத்தப்பட்டது</string>
-    <string name="paid_content">இந்த உள்ளடக்கம் பணம் செலுத்திய பயனர்களுக்கு மட்டுமே கிடைக்கிறது, எனவே இதை நியூபைப் மூலம் ச்ட்ரீம் செய்யவோ பதிவிறக்கம் செய்யவோ முடியாது.</string>
     <string name="radio">வானொலி</string>
     <string name="night_theme_available">கருப்பொருளுக்கு %s தேர்ந்தெடுக்கப்பட்டால் மட்டுமே இந்த விருப்பம் கிடைக்கும்</string>
     <string name="download_has_started">பதிவிறக்கம் தொடங்கியது</string>

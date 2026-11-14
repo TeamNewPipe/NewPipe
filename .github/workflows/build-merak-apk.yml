@@ -1,6 +1,7 @@
-# Builds an installable APK of NewPipe_Search and publishes it under Releases.
-# Runs on every push to the title-search branch, or by hand from the Actions tab.
-name: Build NewPipe_Search APK
+# Builds an installable APK of Merak and publishes it under Releases.
+# Merak is an unofficial app based on NewPipe; it is not affiliated with or endorsed by
+# TeamNewPipe. Runs on every push to the title-search branch, or by hand from Actions.
+name: Build Merak APK
 
 on:
   workflow_dispatch:
@@ -10,7 +11,7 @@ on:
 
 # Run builds one at a time, so each build reuses the saved signing key.
 concurrency:
-  group: newpipe-search-apk
+  group: merak-apk
   cancel-in-progress: false
 
 permissions:
@@ -55,24 +56,24 @@ jobs:
       - name: build APK
         run: ./gradlew assembleContinuous --stacktrace -DskipFormatKtlint
 
-      # Names every output "NewPipe_Search <build>", for example NewPipe_Search 1.0.2.
+      # Names every output "Merak <build>", for example Merak 2.0.0.
       - name: name the APK
         run: |
           CONFIG=buildSrc/src/main/kotlin/ProjectConfig.kt
           BASE=$(sed -n 's/^const val NEWPIPE_VERSION_NAME = "\(.*\)"$/\1/p' "$CONFIG")
-          SUFFIX=$(sed -n 's/^const val TITLE_SEARCH_VERSION_SUFFIX = "\(.*\)"$/\1/p' "$CONFIG")
+          SUFFIX=$(sed -n 's/^const val FORK_VERSION_SUFFIX = "\(.*\)"$/\1/p' "$CONFIG")
           if [ -z "$BASE" ] || [ -z "$SUFFIX" ]; then
             echo "Could not read the version from $CONFIG" >&2
             exit 1
           fi
-          BUILD="${SUFFIX#-search.}"
+          BUILD="${SUFFIX#-merak.}"
           {
             echo "BASE=$BASE"
             echo "VERSION=${BASE}${SUFFIX}"
             echo "BUILD=$BUILD"
           } >> "$GITHUB_ENV"
           mkdir -p out
-          cp app/build/outputs/apk/continuous/*.apk "out/NewPipe_Search-${BUILD}.apk"
+          cp app/build/outputs/apk/continuous/*.apk "out/Merak-${BUILD}.apk"
           ls -l out
 
       - name: verify signature and supported Android versions
@@ -87,7 +88,7 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: NewPipe_Search-${{ env.BUILD }}
+          name: Merak-${{ env.BUILD }}
           path: out/*.apk
           if-no-files-found: error
 
@@ -99,23 +100,25 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           TAG="v${VERSION}"
-          ASSET="out/NewPipe_Search-${BUILD}.apk"
+          ASSET="out/Merak-${BUILD}.apk"
 
-          # Remove releases published under the earlier name "NewPipe title search".
+          # Remove releases published under earlier names that used the NewPipe mark.
           gh release list --limit 100 --json tagName,name \
-            --jq '.[] | select(.name | startswith("NewPipe title search")) | .tagName' \
+            --jq '.[] | select(.name | startswith("NewPipe")) | .tagName' \
             | while read -r OLD_TAG; do
                 gh release delete "$OLD_TAG" --yes --cleanup-tag
               done
 
           cat > notes.md <<NOTES
-          NewPipe_Search, based on NewPipe ${BASE}: search by title in the Playlists tab, local playlists, online playlists, and Subscriptions.
+          Merak ${BUILD}: a streaming app with title search in the Playlists tab, local playlists, online playlists, and Subscriptions.
 
-          **Install:** download NewPipe_Search-${BUILD}.apk below and open it on your Android phone (Android 6.0 or newer).
-          App version: ${VERSION}.
-          Full steps, including Samsung One UI settings: https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/NEWPIPE_SEARCH.md
+          **Install:** download Merak-${BUILD}.apk below and open it on your Android phone (Android 6.0 or newer).
+          Full steps, including Samsung One UI settings: https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/MERAK.md
 
-          Built from commit ${GITHUB_SHA::7}.
+          **Unofficial app.** Merak is based on NewPipe ${BASE} and modified by ninjaeu. It is not affiliated with or endorsed by TeamNewPipe or NewPipe e.V., and TeamNewPipe did not build this file. Merak is a separate app from official NewPipe releases: it installs alongside them and keeps its own data. "NewPipe" is a registered word mark of NewPipe e.V.
+
+          License: GNU GPL v3 or later. Source: https://github.com/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}
+          App version ${VERSION}, built from commit ${GITHUB_SHA::7}.
           NOTES
 
           if gh release view "$TAG" >/dev/null 2>&1; then
@@ -123,7 +126,7 @@ jobs:
           fi
           gh release create "$TAG" "$ASSET" \
             --target "$GITHUB_SHA" \
-            --title "NewPipe_Search ${BUILD}" \
+            --title "Merak ${BUILD}" \
             --notes-file notes.md \
             --latest
 

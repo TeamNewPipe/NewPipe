@@ -95,8 +95,8 @@
     <string name="best_resolution">רזולוציה מיטבית</string>
     <string name="undo">ביטול</string>
     <string name="play_all">לנגן הכול</string>
-    <string name="notification_channel_name">התראה מ־NewPipe</string>
-    <string name="notification_channel_description">התראות עבור הנגן של NewPipe</string>
+    <string name="notification_channel_name">התראה מ־Merak</string>
+    <string name="notification_channel_description">התראות עבור הנגן של Merak</string>
     <string name="unknown_content">[לא ידוע]</string>
     <string name="player_stream_failure">נגינת התזרים לא הצליחה</string>
     <string name="player_unrecoverable_failure">אירעה תקלה בנגן ממנה לא ניתן להשתקם</string>
@@ -138,7 +138,7 @@
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">תהליכי משנה</string>
     <string name="msg_error">שגיאה</string>
-    <string name="msg_running">NewPipe בהורדה</string>
+    <string name="msg_running">Merak בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
     <string name="msg_wait">נא להמתין…</string>
     <string name="msg_copied">הועתק ללוח</string>
@@ -152,7 +152,7 @@
     <string name="settings_file_replacement_character_title">תו חלופי</string>
     <string name="charset_letters_and_digits">אותיות וספרות</string>
     <string name="charset_most_special_characters">רוב התווים המיוחדים</string>
-    <string name="title_activity_about">על NewPipe</string>
+    <string name="title_activity_about">על Merak</string>
     <string name="title_licenses">רישיונות צד־שלישי</string>
     <string name="copyright" formatted="true">© %1$s ע״י %2$s תחת %3$s</string>
     <string name="tab_about">על אודות ושו״ת</string>
@@ -162,11 +162,9 @@
     <string name="contribution_encouragement">אם יש לך רעיונות ליכולות מסוימות, בא לך לתרגם, לשנות את העיצוב או לבצע שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים נעשים ככה הוא נהיה טוב יותר!</string>
     <string name="view_on_github">הצגה ב־GitHub</string>
     <string name="donation_title">תרומה</string>
-    <string name="donation_encouragement">NewPipe מפותח על ידי מתנדבים שמשקיעים את זמן החופשי כדי לספק לך את חוויית המשתמש הטובה ביותר. אפשר לתת בחזרה כדי לסייע למפתחים לשפר את NewPipe עוד יותר תוך שהם נהנים מכוס קפה.</string>
     <string name="give_back">לתת בחזרה</string>
     <string name="website_title">אתר</string>
-    <string name="website_encouragement">יש לבקר באתר של NewPipe למידע נוסף ולחדשות.</string>
-    <string name="app_license_title">הרישיון של NewPipe</string>
+    <string name="app_license_title">הרישיון של Merak</string>
     <string name="read_full_license">הצגת הרישיון</string>
     <string name="title_activity_history">היסטוריה</string>
     <string name="action_history">היסטוריה</string>
@@ -271,10 +269,9 @@
     <string name="invalid_source">אין מקור תיקייה/תוכן</string>
     <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
     <string name="no_streams_available_download">אין תזרימים זמינים להורדה</string>
-    <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
-    <string name="privacy_policy_encouragement">מיזם NewPipe שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך. \nמדיניות הפרטיות של NewPipe מסבירה בפרטי פרטים אילו נתונים נשלחים ומאוחסנים בעת שליחת דיווח על תקלה.</string>
+    <string name="privacy_policy_title">מדיניות הפרטיות של Merak</string>
     <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
-    <string name="app_license">NewPipe הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
+    <string name="app_license">Merak הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
     <string name="title_last_played">התנגנו אחרונים</string>
     <string name="title_most_played">הכי נצפים</string>
     <string name="could_not_import_all_files">אזהרה: ייבוא חלק מהקבצים נכשל.</string>
@@ -309,7 +306,7 @@
     <string name="settings_category_updates_title">עדכונים</string>
     <string name="file_deleted">קובץ נמחק</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
-    <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של NewPipe</string>
+    <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של Merak</string>
     <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
     <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה?</string>
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של ברירת המחדל</string>
@@ -325,14 +322,14 @@
     <string name="playback_speed_control">בקרי מהירות נגינה</string>
     <string name="playback_pitch">גובה צליל</string>
     <string name="limit_mobile_data_usage_title">הגבלת הרזולוציה בעת שימוש בנתונים סלולריים</string>
-    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של NewPipe. נא לקרוא אותה בעיון רב. \nעליך לאשר את הסכמתך למדיניות כדי לשלוח לנו דיווחים על תקלות.</string>
+    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של Merak. נא לקרוא אותה בעיון רב. \nעליך לאשר את הסכמתך למדיניות כדי לשלוח לנו דיווחים על תקלות.</string>
     <string name="updates_setting_title">עדכונים</string>
     <string name="updates_setting_description">הצגת התראה כדי להודיע על עדכון ליישומון כשיוצאת גרסה חדשה לאור</string>
     <string name="list_view_mode">מצב תצוגת רשימה</string>
     <string name="list">רשימה</string>
     <string name="grid">טבלה</string>
     <string name="auto">אוטומטית</string>
-    <string name="app_update_available_notification_title">יצא עדכון ל־NewPipe!</string>
+    <string name="app_update_available_notification_title">יצא עדכון ל־Merak!</string>
     <string name="missions_header_finished">הסתיים</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
@@ -376,7 +373,7 @@
     <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
     <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
     <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
-    <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
+    <string name="error_postprocessing_stopped">Merak נסגר בזמן העבודה על הקובץ</string>
     <string name="error_insufficient_storage_left">לא נשאר מקום במכשיר</string>
     <string name="error_progress_lost">התהליך אבד כיוון שהקובץ נמחק</string>
     <string name="error_timeout">החיבור המתין זמן רב מדי</string>
@@ -476,8 +473,8 @@
     <string name="feed_update_threshold_summary">הזמן לאחר העדכון האחרון בטרם מינוי נחשב לבלתי עדכני — %s</string>
     <string name="feed_use_dedicated_fetch_method_title">לקבל מהזנה ייעודית כשניתן</string>
     <string name="feed_use_dedicated_fetch_method_summary">זמין בחלק מהשירותים, האפשרות הזאת בדרך כלל מהירה יותר אך עשויה להחזיר כמות מוגבלת של פריטים ולעתים פרטים חלקיים (למשל: חסר משך הפרק, סוג הפריט, אין מצב חי)</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן). \n \nהיישומון NewPipe מציע שתי אסטרטגיות לטעינת הזנה: \n• הורדת כל ערוץ המינוי, אטי אבל שלם. \n• באמצעות נקודת קצה ייעודית, מהיר אבל חלקי. \n \nההבדל בין השתיים הוא שבמהירה חסרים פרטים, כמו משך הפריט או סוגו (אין אפשרות להבדיל בין סרטונים חיים לרגילים) והיא עשויה להחזיר פחות פריטים. \n \nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו. \n \nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
-    <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי NewPipe. \n \nאנו מקווים שתתווסף תמיכה בגרסאות עתידיות.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">לדעתך הטעינה אטית מדי? אם זה המצב אצלך, כדאי לנסות להפעיל טעינה מהירה (ניתן לשנות בהגדרות או על ידי לחיצה על הכפתור שלהלן). \n \nהיישומון Merak מציע שתי אסטרטגיות לטעינת הזנה: \n• הורדת כל ערוץ המינוי, אטי אבל שלם. \n• באמצעות נקודת קצה ייעודית, מהיר אבל חלקי. \n \nההבדל בין השתיים הוא שבמהירה חסרים פרטים, כמו משך הפריט או סוגו (אין אפשרות להבדיל בין סרטונים חיים לרגילים) והיא עשויה להחזיר פחות פריטים. \n \nYouTube זאת דוגמה לשירות שמציע את השיטה המהירה הזאת עם הזנת ה־RSS שלו. \n \nלכן עומדת בפניך הבחירה: מהירות או דיוק בפרטים.</string>
+    <string name="content_not_supported">תוכן זה לא נתמך עדיין על ידי Merak. \n \nאנו מקווים שתתווסף תמיכה בגרסאות עתידיות.</string>
     <string name="infinite_videos">∞ סרטונים</string>
     <string name="more_than_100_videos">למעלה מ־100 סרטונים</string>
     <string name="artists">אמנים</string>
@@ -527,7 +524,7 @@
     <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
     <string name="enqueued">נוסף לתור</string>
     <string name="enqueue_stream">הוספה לתור</string>
-    <string name="clear_cookie_summary">לנקות עוגיות שנשמרות על ידי NewPipe בעת פתרון reCAPTCHA</string>
+    <string name="clear_cookie_summary">לנקות עוגיות שנשמרות על ידי Merak בעת פתרון reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">העוגיות של ה־reCAPTCHA נמחקו</string>
     <string name="clear_cookie_title">פינוי עוגיות reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">פלטפורמת YouTube מספקת „מצב מוגבל” שמסתיר תוכן שעשוי להתאים למבוגרים בלבד</string>
@@ -551,12 +548,12 @@
     <string name="open_with">פתיחה באמצעות</string>
     <string name="no_app_to_open_intent">אין יישומון על המכשיר שלך שיכול לפתוח את זה</string>
     <string name="crash_the_app">להקריס את היישומון</string>
-    <string name="paid_content">התוכן הזה זמין רק למשתמשים ששילמו, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
-    <string name="youtube_music_premium_content">סרטון זה זמין רק למנויי YouTube Music Premium, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
-    <string name="private_content">זה תוכן פרטי, לכן לא ניתן להזרים או להוריד אותו עם NewPipe.</string>
-    <string name="soundcloud_go_plus_content">רצועה זו של SoundCloud Go+‎ מוגבלת, לפחות במדינה שלך, לכן לא ניתן להזרים או להוריד אותה עם NewPipe.</string>
+    <string name="paid_content">התוכן הזה זמין רק למשתמשים ששילמו, לכן לא ניתן להזרים או להוריד אותו עם Merak.</string>
+    <string name="youtube_music_premium_content">סרטון זה זמין רק למנויי YouTube Music Premium, לכן לא ניתן להזרים או להוריד אותו עם Merak.</string>
+    <string name="private_content">זה תוכן פרטי, לכן לא ניתן להזרים או להוריד אותו עם Merak.</string>
+    <string name="soundcloud_go_plus_content">רצועה זו של SoundCloud Go+‎ מוגבלת, לפחות במדינה שלך, לכן לא ניתן להזרים או להוריד אותה עם Merak.</string>
     <string name="georestricted_content">תוכן זה אינו זמין במדינה שלך.</string>
-    <string name="restricted_video_no_stream">הצפייה בסרטון הזה מוגבלת בגיל. \nעקב מדיניות חדשה ב־YouTube בנוגע לסרטונים מוגבלי גיל, ל־NewPipe אין אפשרות לגשת לתזרימי הווידאו של השירות ולכן אין אפשרות לנגן אותם.</string>
+    <string name="restricted_video_no_stream">הצפייה בסרטון הזה מוגבלת בגיל. \nעקב מדיניות חדשה ב־YouTube בנוגע לסרטונים מוגבלי גיל, ל־Merak אין אפשרות לגשת לתזרימי הווידאו של השירות ולכן אין אפשרות לנגן אותם.</string>
     <string name="download_has_started">ההורדה החלה</string>
     <string name="select_night_theme_toast">באפשרותך לבחור את ערכת העיצוב הלילית המועדפת עליך להלן</string>
     <string name="night_theme_summary">נא לבחור את ערכת העיצוב הלילית המועדפת עליך — %s</string>
@@ -583,7 +580,7 @@
     <string name="description_select_disable">השבתת בחירת טקסט בתיאור</string>
     <string name="description_select_enable">הפעלת בחירת טקסט בתיאור</string>
     <string name="description_select_note">מעתה ניתן לבחור טקסט בתוך התיאור. נא לשים לב שהעמוד עשוי להבהב והקישורים לא יהיו לחיצים בזמן מצב הבחירה.</string>
-    <string name="feed_load_error_terminated">חשבון היוצר הושמד. \nל־NewPipe לא תהיה אפשרות להוריד את ההזנה הזאת בעתיד. \nלהסיר את המינוי מהערוץ הזה?</string>
+    <string name="feed_load_error_terminated">חשבון היוצר הושמד. \nל־Merak לא תהיה אפשרות להוריד את ההזנה הזאת בעתיד. \nלהסיר את המינוי מהערוץ הזה?</string>
     <string name="open_website_license">פתיחת האתר</string>
     <string name="account_terminated">החשבון הושמד</string>
     <string name="feed_load_error_fast_unknown">מצב ההזנה המהירה לא מספק מידע נוסף על כך.</string>
@@ -630,7 +627,7 @@
     <string name="error_report_channel_description">התראות לדיווח על שגיאות</string>
     <string name="show_error_snackbar">הצגת חלונית בזק עם שגיאה</string>
     <string name="create_error_notification">יצירת התראת שגיאה</string>
-    <string name="error_report_notification_title">NewPipe נתקל בשגיאה, לחיצה תדווח על כך</string>
+    <string name="error_report_notification_title">Merak נתקל בשגיאה, לחיצה תדווח על כך</string>
     <string name="error_report_notification_toast">אירעה שגיאה, נא לקרוא את ההתראה</string>
     <string name="no_appropriate_file_manager_message">לא נמצא מנהל קבצים מתאים לפעולה זו. \nנא להתקין מנהל קבצים או לנסות להשבית את ‚%s’ בהגדרות ההורדה</string>
     <string name="error_report_channel_name">התראת דיווח שגיאה</string>
@@ -678,7 +675,7 @@
     <string name="import_subscriptions_hint">ניתן לייבא או לייצא מינויים מתפריט 3 הנקודות</string>
     <string name="app_update_available_notification_text">נגיעה כאן תוריד את %s</string>
     <string name="fast_mode">מצב מהיר</string>
-    <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של NewPipe</string>
+    <string name="app_update_unavailable_toast">זאת הגרסה העדכנית ביותר של Merak</string>
     <string name="night_theme_available">אפשרות זאת זמינה רק אם נבחרה ערכת נושא %s</string>
     <string name="unset_playlist_thumbnail">ביטול הגדרת תמונה ייצוגית קבועה</string>
     <string name="card">כרטיס</string>
@@ -777,7 +774,7 @@
         <item quantity="other">%s תשובות</item>
     </plurals>
     <string name="notification_actions_summary_android13">אפשר לערוך כל פעולה בהתראה להלן על ידי נגיעה בה. שלוש הפעולות הראשונות (נגינה/השהיה, הקודם והבא) מוגדרות על ידי המערכת ונעולות לעריכה.</string>
-    <string name="auto_update_check_description">NewPipe יכול לבדוק אוטומטית אם יש גרסאות חדשות מעת לעת ולהודיע כאשר הן זמינות. \nלהפעיל את היכולת הזאת?</string>
+    <string name="auto_update_check_description">Merak יכול לבדוק אוטומטית אם יש גרסאות חדשות מעת לעת ולהודיע כאשר הן זמינות. \nלהפעיל את היכולת הזאת?</string>
     <string name="reset_settings_title">איפוס הגדרות</string>
     <string name="reset_settings_summary">איפוס כל ההגדרות לערכי ברירת המחדל שלהן</string>
     <string name="yes">כן</string>
@@ -811,7 +808,7 @@
     <string name="trending_music">מוזיקה מובילה</string>
     <string name="entry_deleted">הרשומה נמחקה</string>
     <string name="migration_info_6_7_message">SoundCloud הפסיקו את מצעדי 50 הלהיטים המקוריים. הלשונית התואמת הוסרה מהעמוד הראשי שלך.</string>
-    <string name="migration_info_7_8_message">ב־YouTube הושבת עמוד המובילים המשולב החל מ־21 ביולי 2025. NewPipe החליפה את עמוד המובילים המוגדר כברירת מחדל בשידורים חיים מובילים.\n\nניתן גם לבחור עמודי מובילים שונים תחת „הגדרות &gt; תוכן &gt; תוכן הדף הראשי”.</string>
+    <string name="migration_info_7_8_message">ב־YouTube הושבת עמוד המובילים המשולב החל מ־21 ביולי 2025. Merak החליפה את עמוד המובילים המוגדר כברירת מחדל בשידורים חיים מובילים.\n\nניתן גם לבחור עמודי מובילים שונים תחת „הגדרות &gt; תוכן &gt; תוכן הדף הראשי”.</string>
     <string name="player_http_403">שגיאת HTTP 403 שהתקבלה מהשרת בזמן השמעה, ככל הנראה נגרמת עקב פקיעת כתובת URL של סטרימינג או חסימת IP</string>
     <string name="player_http_invalid_status">שגיאת HTTP %1$s התקבלה מהשרת בזמן הניגון</string>
     <string name="youtube_player_http_403">שגיאת HTTP‏ 403 שהתקבלה מהשרת בזמן הניגון, ככל הנראה נגרמה עקב חסימת IP או בעיות בהסרת ערפול כתובת תזרים</string>
@@ -837,10 +834,9 @@
     <string name="import_subscriptions_summary">ייבוא מנויים מייצוא קודם בקובץ .json</string>
     <string name="export_subscriptions_summary">ייצא את המינויים שלך לקובץ .json</string>
     <string name="import_from_previous_export">ייבוא מייצוא קודם</string>
-    <string name="kao_dialog_warning">באוגוסט 2025, גוגל הודיעה כי החל מספטמבר 2026, התקנת יישומים תדרוש אימות מפתח עבור כל יישומי אנדרואיד במכשירים מוסמכים, כולל אלה שהותקנו מחוץ לחנות Play. מכיוון שהמפתחים של NewPipe אינם מסכימים לדרישה זו, NewPipe כבר לא יעבוד על מכשירי אנדרואיד מוסמכים לאחר זמן זה.</string>
     <string name="kao_dialog_more_info">פרטים</string>
     <string name="kao_solution">פתרון</string>
-    <string name="api23_requirement_dialog_title">NewPipe מורידה את התמיכה באנדרואיד 5</string>
-    <string name="api23_requirement_dialog_message">למרבה הצער, NewPipe תלויה במספר ספריות שהורידו את התמיכה באנדרואיד 5.0 ו־5.1. הגירסה החדשה הבאה תעבוד רק על מכשירים עם אנדרואיד 6 ומעלה, למרבה הצער. קרא עוד בבלוג.</string>
+    <string name="api23_requirement_dialog_title">Merak מורידה את התמיכה באנדרואיד 5</string>
+    <string name="api23_requirement_dialog_message">למרבה הצער, Merak תלויה במספר ספריות שהורידו את התמיכה באנדרואיד 5.0 ו־5.1. הגירסה החדשה הבאה תעבוד רק על מכשירים עם אנדרואיד 6 ומעלה, למרבה הצער. קרא עוד בבלוג.</string>
     <string name="api23_requirement_dialog_blogpost">פוסט בבלוג</string>
 </resources>

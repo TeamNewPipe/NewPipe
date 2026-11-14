@@ -91,8 +91,8 @@
     <string name="always">هەمیشە</string>
     <string name="just_once">تەنها ئێستا</string>
     <string name="file">فایل</string>
-    <string name="notification_channel_name">پەیامی NewPipe</string>
-    <string name="notification_channel_description">پەیامەکانی NewPipe بۆ پاشبنەما و لێدانەکانی پەنجەرە</string>
+    <string name="notification_channel_name">پەیامی Merak</string>
+    <string name="notification_channel_description">پەیامەکانی Merak بۆ پاشبنەما و لێدانەکانی پەنجەرە</string>
     <string name="unknown_content">(نەزانراو)</string>
     <string name="switch_to_background">گۆڕین بۆ پاشبنەما</string>
     <string name="switch_to_popup">گۆڕین بۆ پەنجەرە</string>
@@ -159,7 +159,6 @@
     <string name="msg_name">ناوی فایل</string>
     <string name="msg_threads">دابەشکراوەکان</string>
     <string name="msg_error">کێشە ڕوویدا</string>
-    <string name="msg_running">دابەزاندنەکانی ئەپ</string>
     <string name="msg_running_detail">کرتە بکە بۆ وردەکاری</string>
     <string name="msg_wait">تکایە چاوەڕێبکە…</string>
     <string name="msg_copied">لەبەرگیرایەوە</string>
@@ -170,7 +169,6 @@
     <string name="settings_category_downloads_title">دابەزاندن</string>
     <string name="charset_letters_and_digits">پیت و ژمارەکان</string>
     <string name="charset_most_special_characters">هێما تایبەتییەکان</string>
-    <string name="title_activity_about">لەبارەی ئەپ</string>
     <string name="copyright" formatted="true">© %1$s لەلایەن %2$s لەژێر %3$s</string>
     <string name="tab_about">سەبارەت</string>
     <string name="tab_licenses">مۆڵەتەکان</string>
@@ -178,10 +176,8 @@
     <string name="contribution_encouragement">هەرکاتێ بیرۆکەیەکت هەبوو وەک ; وەرگێڕان، گۆڕینی دیزاین ، سڕینەوەی کۆد ،یان هەر گۆڕانکارییەکیتر ئەوا یارمەتییەکەت لەسەرچاوانمانە. ئێمە هەمیشە دەمانەوێ ئەپەکە زیاتر بەرەوپێش ببەین!</string>
     <string name="view_on_github">بینین لە GitHub</string>
     <string name="donation_title">بەخشین</string>
-    <string name="donation_encouragement">ئەم ئەپە لەلایەن چەند خۆبەخشێکەوە دروستکراوە کەکاتی خۆیان پێ بەخشیووە تاکو باشترین خزمەتگوزاریت پێشکەش بکەن. هیچ نەبێت بە کڕینی کوپێک قاوە یارمەتی گەشەپێدەرەکانمان بدە بۆ ئەوەی کاتی زیاتر تەرخان بکەین بۆ بەرەوپێشبردنی NewPipe.</string>
     <string name="give_back">پێدانەوە</string>
     <string name="website_title">ماڵپەڕ</string>
-    <string name="website_encouragement">سەردانی ماڵپەڕی ئەپەکەمان بکە بۆ زانیاری و هەواڵی نوێ.</string>
     <string name="read_full_license">خوێندنەوەی مۆڵەتنامە</string>
     <string name="title_activity_history">مێژوو</string>
     <string name="action_history">مێژوو</string>
@@ -246,9 +242,6 @@
     <string name="delete_search_history_alert">تەواوی گەڕانەکانت بسڕدرێنەوە؟</string>
     <string name="search_history_deleted">مێژووی گەڕانەکانت سڕانەوە.</string>
     <string name="one_item_deleted">1 بابەت سڕایەوە.</string>
-    <string name="app_license">ئەم ئەپە سەرچاوە کراوەیە : دەتوانی بەکاریبهێنی، بیخوێنیتەوە و هاوبەشی پێبکەیت و بەرەوپێشی ببەیت. \nبەتایبەتی دەتوانی دابەشیبکەیتەوە یاخوود بگۆڕیت بەپێی مەرجەکانی GNU مۆڵەتنامەی گشتی وەک ئەپێکی بڵاوی خۆڕایی!</string>
-    <string name="privacy_policy_title">سیاسەتی تایبەتی ئەپ</string>
-    <string name="privacy_policy_encouragement">پڕۆژەی ئەپەکە زانیارییە تایبەتییەکانت بەوردی دەپارێزێ. هەروەها ئەپەکە هیچ داتایەک بەبێ ئاگاداری تۆ بەکارنابات. \nسیاسەتی تایبەتی ئەپ بەوردەکاری ڕوونکردنەوەت دەداتێ لەسەر ئەو داتایانەی وەریاندەگرێ و بەکاریاندەبات.</string>
     <string name="read_privacy_policy">خوێندنەوەی سیاسەتی تایبەتی</string>
     <string name="channels">کەناڵەکان</string>
     <string name="playlists">لیستەلێدانەکان</string>
@@ -260,7 +253,6 @@
     <string name="settings_category_updates_title">نوێکارییەکان</string>
     <string name="file_deleted">فایل سڕایەوە</string>
     <string name="app_update_notification_channel_name">پەیامی نوێکاری ئەپ</string>
-    <string name="app_update_notification_channel_description">پەیامەکانی وەشانی نوێی ئەپ</string>
     <string name="download_to_sdcard_error_title">بیرگەی دەرەکی بەردەست نییە</string>
     <string name="download_to_sdcard_error_message">دابەزاندن لە بیرگەی دەرەکی ناکرێت. \nشوێنی فۆڵدەری دابەزاندنەکان دابنرێتەوە؟</string>
     <string name="restore_defaults">گێڕانەوە بۆ بنەڕەت</string>
@@ -319,7 +311,6 @@
     <string name="settings_file_replacement_character_title">هێمای جێگۆڕین</string>
     <string name="title_licenses">مۆڵەتنامەی ئەپ</string>
     <string name="app_description">ئەپێکی خۆڕایی و کێشی کەم تایبەت بە یوتوب لەسەر ئەندرۆید.</string>
-    <string name="app_license_title">مۆڵەتنامەی ئەپ</string>
     <string name="blank_page_summary">پەڕەی بەتاڵ</string>
     <string name="kiosk_page_summary">پەڕەی کیۆسک</string>
     <string name="channel_page_summary">پەڕەی کەناڵەکان</string>
@@ -341,7 +332,6 @@
     <string name="preferred_open_action_settings_title">کرداری ’کردنەوە’ی پێشنیارکراو</string>
     <string name="preferred_open_action_settings_summary">کرداری بنەڕەتی لەکاتی کردنەوەی بابەت — %s</string>
     <string name="import_settings">ئایا دەتەوێت ڕێکخستنەکانیش هەناردەبکرێن؟</string>
-    <string name="start_accept_privacy_policy">بۆ جێبەجێکردنی فرمانەکان لەگەڵ یاسای پاراستنی داتای گشتی ئەوروپیدا (GDPR) , ئێمە سەرنجت ڕادەکێشین بۆ سیاسەتە تایبەتییەکانی ئەپەکەمان. تکایە بەئاگادارییەوە بیخوێنەوە. \nپێویستە قبوڵی بکەیت بۆ ناردنی سکاڵاکانت.</string>
     <string name="accept">پەسەند</string>
     <string name="decline">ڕەتکردنەوە</string>
     <string name="limit_data_usage_none_description">بێ سنوور</string>
@@ -362,7 +352,6 @@
     <string name="list">خشتە</string>
     <string name="grid">چوارخانە</string>
     <string name="auto">خۆکاری</string>
-    <string name="app_update_available_notification_title">وەشانی نوێی ئەپ بەردەستە!</string>
     <string name="missions_header_finished">تەواوبوو</string>
     <string name="missions_header_pending">لە نۆرەیە</string>
     <string name="paused">وەستاوە</string>
@@ -397,7 +386,6 @@
     <string name="pause_downloads_on_mobile">ڕاوەستا لەسەر کێشەی هێڵ</string>
     <string name="pause_downloads_on_mobile_desc">بەسوودە بۆ کاتی گۆڕینی هێڵ بۆ داتای مۆبایل, لەگەڵ ئەوەشدا زۆربەی دابەزاندنەکان ڕاناگرێت</string>
     <string name="close">داخستن</string>
-    <string name="error_postprocessing_stopped">ئەپ داخرا لەکاتی کارکردن لەسەر ئەو پەڕگەیە</string>
     <string name="error_insufficient_storage_left">بیرگەی ناوەکیت پڕبووە</string>
     <string name="error_progress_lost">کردارەکە شکستی هێنا, چونکە ئەو پەڕگەیە سڕاوەتەوە</string>
     <string name="error_timeout">هێڵی ئینتەرنێت نەما</string>
@@ -466,8 +454,6 @@
     <string name="feed_use_dedicated_fetch_method_summary">لەهەندێ خزمەتگوزاریدا بەردەستە، هەمیشە خێرایە بەڵام ڕەنگە هەندێ لە بابەتەکان زانیارییەکانیان ناتەواو بێت (وەک نەبوونی ماوە، جۆری بابەت ، نەبوونی پەخش).</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">چالاککردنی دۆخی خێرا</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">چالاک نەکردنی دۆخی خێرا</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ئایا توانای بارکردن لاوازە؟ گەر وایە ئەوا بارکردنی خێرا تاقی بکەرەوە (دەتوانی بیگۆڕیت لە بەشی ڕێکخستنەکان لەڕێگای گرتەکردن لەم دوگمەیەی خوارەوە). \n \nئەم ئەپە دوو شێوازی بارکردنت بۆ پێشنیاز دەکات: \n- بارکردنی تەواوی کەناڵە بەشدارییەکانت، ئەمەیان خاوە بەڵام تەواوە. \n- تەرخانکردنی خزمەتگوزارییەکان ئەمەیان خێرایە بەڵام زۆر تەواو نییە.</string>
-    <string name="content_not_supported">ئەم ناوەڕۆکە پشتگیری نەکراوە لەلایەن ئەپەکەمانەوە. \n \nهیوادارین بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
     <string name="restricted_video">ئەم ڤیدیۆیە بۆ تەمەن سنوردارە. \n \n%1$s کارا بکە لە ڕێکخستنەکان گەر دەتەوێت بیبینیت.</string>
     <string name="infinite_videos">∞ ڤیدیۆ</string>
     <string name="more_than_100_videos">+١٠٠ ڤیدیۆ</string>

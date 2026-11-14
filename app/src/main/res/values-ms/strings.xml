@@ -107,10 +107,10 @@
     <string name="always">Sentiasa</string>
     <string name="just_once">Hanya sekali</string>
     <string name="file">Fail</string>
-    <string name="notification_channel_name">Pemberitahuan NewPipe</string>
-    <string name="notification_channel_description">Pemberitahuan untuk pemain latar belakang dan pemain popup NewPipe</string>
+    <string name="notification_channel_name">Pemberitahuan Merak</string>
+    <string name="notification_channel_description">Pemberitahuan untuk pemain latar belakang dan pemain popup Merak</string>
     <string name="app_update_notification_channel_name">Pemberitahuan Kemas Kini App</string>
-    <string name="app_update_notification_channel_description">Pemberitahuan untuk versi NewPipe baru</string>
+    <string name="app_update_notification_channel_description">Pemberitahuan untuk versi Merak baru</string>
     <string name="unknown_content">[Tidak diketahui]</string>
     <string name="switch_to_background">Beralih ke Latar Belakang</string>
     <string name="switch_to_popup">Beralih ke Popup</string>
@@ -191,7 +191,7 @@
     <string name="msg_name">Nama fail</string>
     <string name="msg_threads">Thread</string>
     <string name="msg_error">Ralat</string>
-    <string name="msg_running">NewPipe sedang memuat turun</string>
+    <string name="msg_running">Merak sedang memuat turun</string>
     <string name="msg_running_detail">Ketuk untuk butiran</string>
     <string name="msg_wait">Sila tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
@@ -206,7 +206,7 @@
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter yang paling istimewa</string>
-    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="title_activity_about">Tentang Merak</string>
     <string name="title_licenses">Lesen Pihak Ketiga</string>
     <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
     <string name="tab_about">Tentang</string>
@@ -216,15 +216,12 @@
     <string name="contribution_encouragement">Sama ada anda mempunyai idea; terjemahan, perubahan reka bentuk, pembersihan kod, atau perubahan kod sebenar yang berat-bantuan sentiasa dialu-alukan. Semakin banyak yang dilakukan semakin baik!</string>
     <string name="view_on_github">Lihat di GitHub</string>
     <string name="donation_title">Derma</string>
-    <string name="donation_encouragement">NewPipe dibangunkan oleh sukarelawan menghabiskan masa membawa pengalaman terbaik. Beri balik untuk membantu pemaju membuat NewPipe lebih baik sambil menikmati secawan kopi.</string>
     <string name="give_back">Bagi balik</string>
     <string name="website_title">Laman Web</string>
-    <string name="website_encouragement">Lawati Laman Web NewPipe untuk maklumat lanjut dan berita.</string>
-    <string name="privacy_policy_title">Dasar Privasi NewPipe</string>
-    <string name="privacy_policy_encouragement">Projek NewPipe mengambil perhatian privasi anda dengan sangat serius. Oleh itu, aplikasi tidak mengumpulkan sebarang data tanpa persetujuan anda. \nDasar privasi NewPipe menerangkan secara terperinci apa data dihantar dan disimpan apabila anda menghantar laporan ranap.</string>
+    <string name="privacy_policy_title">Dasar Privasi Merak</string>
     <string name="read_privacy_policy">Baca dasar privasi</string>
-    <string name="app_license_title">Lesen NewPipe</string>
-    <string name="app_license">NewPipe adalah perisian copyleft percuma: Anda boleh menggunakan, berkongsi kajian dan memperbaikinya mengikut kehendak. Khususnya anda boleh mengagihkan semula dan / atau mengubahnya di bawah syarat GNU General Public License seperti yang diterbitkan oleh Free Software Foundation, sama ada versi 3 dari Lesen, atau (pada pilihan anda) versi yang lebih baru.</string>
+    <string name="app_license_title">Lesen Merak</string>
+    <string name="app_license">Merak adalah perisian copyleft percuma: Anda boleh menggunakan, berkongsi kajian dan memperbaikinya mengikut kehendak. Khususnya anda boleh mengagihkan semula dan / atau mengubahnya di bawah syarat GNU General Public License seperti yang diterbitkan oleh Free Software Foundation, sama ada versi 3 dari Lesen, atau (pada pilihan anda) versi yang lebih baru.</string>
     <string name="read_full_license">Baca lesen</string>
     <string name="title_activity_history">Sejarah</string>
     <string name="action_history">Sejarah</string>
@@ -306,7 +303,7 @@
     <string name="skip_silence_checkbox">Cepat ke hadapan semasa berdiam diri</string>
     <string name="playback_step">Langkah</string>
     <string name="playback_reset">Tetapkan semula</string>
-    <string name="start_accept_privacy_policy">Untuk mematuhi Peraturan Perlindungan Data Umum Eropah (GDPR), kami dengan ini menarik perhatian anda kepada dasar privasi NewPipe. Sila baca dengan teliti. \nAnda mesti menerimanya untuk menghantar laporan bug kepada kami.</string>
+    <string name="start_accept_privacy_policy">Untuk mematuhi Peraturan Perlindungan Data Umum Eropah (GDPR), kami dengan ini menarik perhatian anda kepada dasar privasi Merak. Sila baca dengan teliti. \nAnda mesti menerimanya untuk menghantar laporan bug kepada kami.</string>
     <string name="accept">Terima</string>
     <string name="decline">Tolak</string>
     <string name="limit_data_usage_none_description">Tiada had</string>
@@ -322,7 +319,7 @@
     <string name="list">Senarai</string>
     <string name="grid">Grid</string>
     <string name="auto">Auto</string>
-    <string name="app_update_available_notification_title">Kemas kini NewPipe Tersedia!</string>
+    <string name="app_update_available_notification_title">Kemas kini Merak Tersedia!</string>
     <string name="missions_header_finished">Selesai</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>

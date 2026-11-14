@@ -82,7 +82,7 @@
     <string name="error_timeout">Koha e lidhjes skadoi</string>
     <string name="error_progress_lost">Progresi humbi, pasi skedari është fshirë</string>
     <string name="error_insufficient_storage_left">Nuk ka vend bosh në pajisje</string>
-    <string name="error_postprocessing_stopped">NewPipe u mbyll ndërkohë që po punohej mbi skedarin</string>
+    <string name="error_postprocessing_stopped">Merak u mbyll ndërkohë që po punohej mbi skedarin</string>
     <string name="error_postprocessing_failed">Procesimi dështoi</string>
     <string name="error_http_not_found">Nuk u gjet</string>
     <string name="error_http_unsupported_range">Serveri nuk pranon shkarkime paralele, riprovoni me @string/msg_threads = 1</string>
@@ -108,7 +108,7 @@
     <string name="queued">e shtuar në radhë</string>
     <string name="paused">ndalur</string>
     <string name="missions_header_finished">Përfunduar</string>
-    <string name="app_update_available_notification_title">Përditësim i ri i NewPipe është i disponueshëm!</string>
+    <string name="app_update_available_notification_title">Përditësim i ri i Merak është i disponueshëm!</string>
     <string name="auto">Automatike</string>
     <string name="list">Listë</string>
     <string name="list_view_mode">Pamja e listës</string>
@@ -124,7 +124,7 @@
     <string name="limit_data_usage_none_description">Pa limit</string>
     <string name="decline">Refuzo</string>
     <string name="accept">Prano</string>
-    <string name="start_accept_privacy_policy">Për të qenë në përputhje me Rregulloren e Përgjithshme Evropiane për Mbrojtjen e të Dhënave (GDPR), ne ju tërheqim vëmendjen tek politika e privatësisë së NewPipe. Ju lutemi lexojeni me kujdes. \nJu duhet ta pranoni atë për të na dërguar raportin e problemit.</string>
+    <string name="start_accept_privacy_policy">Për të qenë në përputhje me Rregulloren e Përgjithshme Evropiane për Mbrojtjen e të Dhënave (GDPR), ne ju tërheqim vëmendjen tek politika e privatësisë së Merak. Ju lutemi lexojeni me kujdes. \nJu duhet ta pranoni atë për të na dërguar raportin e problemit.</string>
     <string name="playback_reset">Rikthe</string>
     <string name="playback_step">Shkallë</string>
     <string name="skip_silence_checkbox">Shtyje përpara gjatë momenteve të heshtura</string>
@@ -213,14 +213,11 @@
     <string name="title_activity_history">Historiku</string>
     <string name="action_history">Historiku</string>
     <string name="read_full_license">Lexo licensën</string>
-    <string name="app_license_title">Licensa e NewPipe</string>
+    <string name="app_license_title">Licensa e Merak</string>
     <string name="read_privacy_policy">Lexoni politikën e privatësisë</string>
-    <string name="privacy_policy_encouragement">Projekti NewPipe e merr privatësinë tuaj seriozisht. Kështu, aplikacioni nuk mbledh të dhëna pa dijeninë tuaj. \nPolitika e privatësisë së NewPipe shpjegon në detaje se çfarë të dhënat dërgohen dhe ruhen kur ju dërgoni një raport dështimi/crash.</string>
-    <string name="privacy_policy_title">Politika e Privatësisë së NewPipe</string>
-    <string name="website_encouragement">Shfletoni faqen e internetit të NewPipe për më tepër informacion dhe lajme.</string>
+    <string name="privacy_policy_title">Politika e Privatësisë së Merak</string>
     <string name="website_title">Faqja e internetit</string>
     <string name="give_back">Jep</string>
-    <string name="donation_encouragement">NewPipe zhvillohet nga zhvillues të cilët shpenzojnë kohën e tyre të lirë për t\'u prurë juve eksperiencën më të mirë për përdoruesin. Ktheni nderin duke ndihmuar zhvilluesit që ta bëjnë NewPipe akoma edhe më të mirë ndërkohë që ata pijnë një filxhan kafe.</string>
     <string name="donation_title">Dhuro</string>
     <string name="view_on_github">Shikoje në GitHub</string>
     <string name="contribution_encouragement">Nëse keni ide rreth; përkthimeve, ndryshimeve në dizajn, pastrimit të kodit, apo ndryshime rrënjësore të kodit—ndihma është gjithnjë e mirëpritur. Sa më shumë të bëhet aq më mirë do jetë!</string>
@@ -230,7 +227,7 @@
     <string name="tab_about">Rreth</string>
     <string name="copyright" formatted="true">© %1$s nga %2$s nën %3$s</string>
     <string name="title_licenses">Licensat e palëve të treta</string>
-    <string name="title_activity_about">Rreth NewPipe</string>
+    <string name="title_activity_about">Rreth Merak</string>
     <string name="charset_most_special_characters">Shumica e karaktereve speciale</string>
     <string name="charset_letters_and_digits">Shkronjat dhe numrat</string>
     <string name="settings_file_replacement_character_title">Karakteri zëvendësues</string>
@@ -247,7 +244,7 @@
     <string name="msg_copied">U kopjua në tabelën e kopjeve</string>
     <string name="msg_wait">Ju lutem prisni…</string>
     <string name="msg_running_detail">Shtyp për detajet</string>
-    <string name="msg_running">NewPipe duke shkarkuar</string>
+    <string name="msg_running">Merak duke shkarkuar</string>
     <string name="msg_error">Gabim</string>
     <string name="msg_threads">Veprimet paralele</string>
     <string name="msg_name">Emri i skedarit</string>
@@ -343,10 +340,10 @@
     </plurals>
     <string name="controls_popup_title">Popup</string>
     <string name="tracks">Pistë</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë). \n \nNewPipe ofron dy strategji të ndryshme të ngarkimit: \n• Të merret i gjithë kanali i abonuar, më e ngadaltë por e plotë \n• Të përdoret një shërbim i dedikuar, i cili është i shpejtë por jo i plotë. \n \nNdryshimi midis të dyjave është se i shpejti zakonisht ka më pak informacion, si psh kohëzgjatja e objektit apo lloji (nuk mund të bëjë dallimin midis videove në kohë reale apo atyre normale) dhe mund të kthejë më pak objekte. \n \nYouTube është një shembull i një shërbimi i cili e ofron këtë metodë të shpejtë me anë të listës së vetë RSS. \n \nSi përfundim, zgjedhja mbetet në dorën tuaj dhe se çfarë ju preferoni: shpejtësi apo informacion të saktë.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Mendoni se lista po ngarkohet shumë ngadalë? Nëse po, provoni të aktivizoni ngarkimin e shpejtë (ju mund ta ndryshoni tek aranzhimet ose duke shtypur butonin më poshtë). \n \nMerak ofron dy strategji të ndryshme të ngarkimit: \n• Të merret i gjithë kanali i abonuar, më e ngadaltë por e plotë \n• Të përdoret një shërbim i dedikuar, i cili është i shpejtë por jo i plotë. \n \nNdryshimi midis të dyjave është se i shpejti zakonisht ka më pak informacion, si psh kohëzgjatja e objektit apo lloji (nuk mund të bëjë dallimin midis videove në kohë reale apo atyre normale) dhe mund të kthejë më pak objekte. \n \nYouTube është një shembull i një shërbimi i cili e ofron këtë metodë të shpejtë me anë të listës së vetë RSS. \n \nSi përfundim, zgjedhja mbetet në dorën tuaj dhe se çfarë ju preferoni: shpejtësi apo informacion të saktë.</string>
     <string name="enable_disposed_exceptions_summary">Detyroni raportimin e përjashtimeve Rx të padërgueshme jashtë fragmentit apo ciklit jetësor të aktivitetit pas hedhjes</string>
-    <string name="app_license">NewPipe është program i lirë copyleft: Ju mund ta përdorni, ta studioni, ta ndani me të tjerët dhe ta përmirësoni sipas dëshirës. Specifikisht ju mund ta rishpërndani dhe/ose ta modifikoni sipas kushteve të Licensës GNU General Public siç është publikuar nga Fondacioni për Softuerin e Lirë (FSF), sipas versionit 3 të Licensës, ose (sipas mundësive tuaja) në një version më të ri.</string>
-    <string name="content_not_supported">Kjo përmbajtje nuk është ende e mbështetur nga NewPipe. \n \nShpresojmë se do të mbështetet në një version të ardhshëm.</string>
+    <string name="app_license">Merak është program i lirë copyleft: Ju mund ta përdorni, ta studioni, ta ndani me të tjerët dhe ta përmirësoni sipas dëshirës. Specifikisht ju mund ta rishpërndani dhe/ose ta modifikoni sipas kushteve të Licensës GNU General Public siç është publikuar nga Fondacioni për Softuerin e Lirë (FSF), sipas versionit 3 të Licensës, ose (sipas mundësive tuaja) në një version më të ri.</string>
+    <string name="content_not_supported">Kjo përmbajtje nuk është ende e mbështetur nga Merak. \n \nShpresojmë se do të mbështetet në një version të ardhshëm.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Çaktivizo</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Aktivizo modalitetin e shpejtë</string>
     <string name="feed_use_dedicated_fetch_method_summary">E disponueshme në disa shërbime, zakonisht është shumë më e shpejtë por mund të kthejë një numër të limituar objektesh dhe shpesh informacion të paplotë (psh. pa kohëzgjatje, lloj objekti, status në kohë reale)</string>
@@ -392,10 +389,10 @@
     <string name="switch_to_popup">Kaloje në Popup</string>
     <string name="switch_to_background">Kaloje në Sfond</string>
     <string name="unknown_content">[E panjohur]</string>
-    <string name="app_update_notification_channel_description">Njoftimet për versionet e reja të NewPipe</string>
+    <string name="app_update_notification_channel_description">Njoftimet për versionet e reja të Merak</string>
     <string name="app_update_notification_channel_name">Njoftimi për Përditësime të Aplikacionit</string>
-    <string name="notification_channel_description">Njoftimet për luajtësit në sfond dhe popup të NewPipe</string>
-    <string name="notification_channel_name">Njoftim nga NewPipe</string>
+    <string name="notification_channel_description">Njoftimet për luajtësit në sfond dhe popup të Merak</string>
+    <string name="notification_channel_name">Njoftim nga Merak</string>
     <string name="file">Skedar</string>
     <string name="just_once">Vetëm një Herë</string>
     <string name="always">Gjithmonë</string>
@@ -533,13 +530,13 @@
     <string name="show_description_title">Shfaq përshkrimin</string>
     <string name="notification_colorize_summary">Lejoje Android që të modifikojë ngjyrën e njoftimit bazuar tek ngjyra kryesore në pamjen miniaturë (mbani mend që kjo nuk është e disponueshme në të gjitha pajisjet)</string>
     <string name="open_with">Hape me</string>
-    <string name="clear_cookie_summary">Pastroni biskotat që NewPipe ruan kur zgjidhni një reCAPTCHA</string>
+    <string name="clear_cookie_summary">Pastroni biskotat që Merak ruan kur zgjidhni një reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube ofron një \"Modalitet të Kufizuar\" që fsheh përmbajtje vetëm për të rritur</string>
     <string name="show_age_restricted_content_summary">Shfaq përmbajtje ndoshta të papërshtatshme për fëmijë sepse ka një kufi moshe (si 18+)</string>
     <string name="featured">E përzgjedhur</string>
-    <string name="paid_content">Kjo përmbajtje është e disponueshme vetëm për përdoruesit që kanë paguar, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
-    <string name="youtube_music_premium_content">Kjo video është e disponueshme vetëm për anëtarët e YouTube Music Premium, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Ky është një skedar SoundCloud Go+, të paktën në shtetin tuaj, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="paid_content">Kjo përmbajtje është e disponueshme vetëm për përdoruesit që kanë paguar, kështu që nuk mund të luhet apo shkarkohet nga Merak.</string>
+    <string name="youtube_music_premium_content">Kjo video është e disponueshme vetëm për anëtarët e YouTube Music Premium, kështu që nuk mund të luhet apo shkarkohet nga Merak.</string>
+    <string name="soundcloud_go_plus_content">Ky është një skedar SoundCloud Go+, të paktën në shtetin tuaj, kështu që nuk mund të luhet apo shkarkohet nga Merak.</string>
     <string name="show_meta_info_summary">Fikeni për të fshehur kutitë e të dhënave meta me information ekstra rreth krijuesit të stream, përmbajtjen e stream dhe kërkimit</string>
     <string name="off">Fikur</string>
     <string name="on">Ndezur</string>
@@ -566,11 +563,11 @@
     <string name="auto_device_theme_title">Automatike (tema e pajisjes)</string>
     <string name="radio">Radio</string>
     <string name="account_terminated">Llogaria është mbyllur</string>
-    <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga NewPipe.</string>
+    <string name="private_content">Kjo përmbajtje është private, kështu që nuk mund të luhet apo shkarkohet nga Merak.</string>
     <string name="georestricted_content">Kjo përmbajtje nuk është e disponueshme në shtetin tuaj.</string>
     <string name="show_thumbnail_summary">Përdor pamje statike për sfondin e ekranit të kyçur si dhe për njoftimet</string>
     <string name="feed_load_error_fast_unknown">Modaliteti i feed-it të shpejtë nuk mundëson më tepër informacion mbi këtë.</string>
-    <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar. \nNewPipe nuk do mund ta ngarkojë këtë feed në të ardhmen. \nA doni të ç\'abonoheni nga ky kanal?</string>
+    <string name="feed_load_error_terminated">Llogaria e autorit është bllokuar. \nMerak nuk do mund ta ngarkojë këtë feed në të ardhmen. \nA doni të ç\'abonoheni nga ky kanal?</string>
     <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
     <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
     <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
@@ -583,7 +580,7 @@
     <string name="show_channel_details">Shfaq detajet e kanalit</string>
     <string name="recaptcha_solve">Zgjidh</string>
     <string name="no_dir_yet">Nuk ka ende një skedar të zgjedhur të shkarkimeve, zgjidheni skedarin e paravendosur tani</string>
-    <string name="restricted_video_no_stream">Kjo video është e kufizuar në moshë. \nPër shkak të politikave të reja të YouTube në lidhje me videot e kufizuara në moshë, NewPipe nuk mund të aksesojë asnjë nga videot dhe nuk mund t\'i luajë ato.</string>
+    <string name="restricted_video_no_stream">Kjo video është e kufizuar në moshë. \nPër shkak të politikave të reja të YouTube në lidhje me videot e kufizuara në moshë, Merak nuk mund të aksesojë asnjë nga videot dhe nuk mund t\'i luajë ato.</string>
     <string name="night_theme_title">Tema e natës</string>
     <string name="detail_heart_img_view_description">E pëlqyer nga krijuesi</string>
     <string name="dont_show">Mos shfaq</string>

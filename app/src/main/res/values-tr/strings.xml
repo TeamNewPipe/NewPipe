@@ -71,7 +71,7 @@
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
     <string name="msg_error">Hata</string>
-    <string name="msg_running">NewPipe İndiriliyor</string>
+    <string name="msg_running">Merak İndiriliyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı</string>
@@ -100,14 +100,14 @@
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Arama yaparken öneriler gösterilsin mi</string>
     <string name="best_resolution">En iyi çözünürlük</string>
-    <string name="title_activity_about">NewPipe Hakkında</string>
+    <string name="title_activity_about">Merak Hakkında</string>
     <string name="title_licenses">Üçüncü Taraf Lisansları</string>
     <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
     <string name="tab_about">Hakkında ve SSS</string>
     <string name="tab_licenses">Lisanslar</string>
     <string name="app_description">Android\'de özgür ve hafif bir oynatıcı.</string>
     <string name="view_on_github">GitHub\'da Görüntüle</string>
-    <string name="app_license_title">NewPipe\'ın Lisansı</string>
+    <string name="app_license_title">Merak\'ın Lisansı</string>
     <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği ya da gerçek köklü kod değişikleri olsun yardımınıza her zaman açığız. Ne kadar çok yapılırsa o kadar iyi olur!</string>
     <string name="read_full_license">Lisansı oku</string>
     <string name="contribution_title">Katkıda bulunun</string>
@@ -134,8 +134,8 @@
     <string name="settings_category_player_behavior_title">Davranış</string>
     <string name="settings_category_history_title">Geçmiş ve önbellek</string>
     <string name="undo">Geri al</string>
-    <string name="notification_channel_name">NewPipe bildirimi</string>
-    <string name="notification_channel_description">NewPipe oynatıcısı için bildirimler</string>
+    <string name="notification_channel_name">Merak bildirimi</string>
+    <string name="notification_channel_description">Merak oynatıcısı için bildirimler</string>
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_list_subtitle">Burada cırcır böceklerinden başka bir şey yok</string>
     <string name="no_subscribers">Abone yok</string>
@@ -176,10 +176,8 @@
     <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
     <string name="start_here_on_popup">Açılır pencerede oynatmayı başlat</string>
     <string name="donation_title">Bağışta bulunun</string>
-    <string name="donation_encouragement">NewPipe, boş zamanlarını size en iyi kullanıcı deneyimi sunmak için harcayan gönüllüler tarafından geliştirilmiştir. Geliştiricilerin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha iyi hale getirmelerine yardımcı olun.</string>
     <string name="give_back">Bağışta bulunun</string>
     <string name="website_title">Web sitesi</string>
-    <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
     <string name="default_content_country_title">Öntanımlı içerik ülkesi</string>
     <string name="switch_to_background">Arka Plana Geç</string>
     <string name="switch_to_popup">Açılır Pencereye Geç</string>
@@ -282,12 +280,11 @@
     <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi?</string>
     <string name="search_history_deleted">Arama geçmişi silindi</string>
     <string name="one_item_deleted">1 öge silindi.</string>
-    <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
+    <string name="app_license">Merak, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir ve geliştirebilirsiniz. Özellikle, Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı 3. sürümü veya (isterseniz) daha sonraki sürümleri koşulları altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.</string>
     <string name="import_settings">Ayarları da içe aktarmak istiyor musunuz?</string>
-    <string name="privacy_policy_title">NewPipe\'ın Gizlilik İlkesi</string>
-    <string name="privacy_policy_encouragement">NewPipe projesi, gizliliğinizi çok önemsiyor. Bu nedenle, uygulama izniniz olmadan herhangi bir veri toplamaz.\nNewPipe\'ın gizlilik ilkesi, çökme raporu gönderdiğinizde hangi verilerin gönderildiğini ve saklandığını ayrıntılı olarak açıklar.</string>
+    <string name="privacy_policy_title">Merak\'ın Gizlilik İlkesi</string>
     <string name="read_privacy_policy">Gizlilik ilkesini oku</string>
-    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi NewPipe\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
+    <string name="start_accept_privacy_policy">Avrupa Genel Veri Koruma Yönetmeliğine (GDPR) uymak için, dikkatinizi Merak\'ın gizlilik ilkesine çekiyoruz. Lütfen dikkatlice okuyun. \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Reddet</string>
     <string name="limit_data_usage_none_description">Sınır yok</string>
@@ -309,7 +306,7 @@
     <string name="settings_category_updates_title">Güncellemeler</string>
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama güncelleme bildirimi</string>
-    <string name="app_update_notification_channel_description">Yeni NewPipe sürümleri için bildirimler</string>
+    <string name="app_update_notification_channel_description">Yeni Merak sürümleri için bildirimler</string>
     <string name="download_to_sdcard_error_title">Dış depolama kullanılamıyor</string>
     <string name="download_to_sdcard_error_message">Dış SD karta indirilemiyor. İndirme klasörü konumu sıfırlansın mı?</string>
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
@@ -368,7 +365,7 @@
     <string name="overwrite_unrelated_warning">Bu isimde bir dosya zaten bulunuyor</string>
     <string name="overwrite_failed">dosyanın üzerine yazılamaz</string>
     <string name="download_already_pending">Bu isim ile bekleyen bir indirme var</string>
-    <string name="error_postprocessing_stopped">NewPipe bu dosya üzerinde çalışırken kapandı</string>
+    <string name="error_postprocessing_stopped">Merak bu dosya üzerinde çalışırken kapandı</string>
     <string name="error_insufficient_storage_left">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
@@ -465,8 +462,8 @@
     <string name="feed_use_dedicated_fetch_method_summary">Bazı servislerde kullanılabilir, genellikle daha hızlıdır ancak kısıtlı sayıda öge ve eksik bilgi (örn. süre, öge türü, canlı durumu olmaksızın) getirilebilir</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Hızlı kipi etkinleştir</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Hızlı kipi devre dışı bırak</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz). \n \nNewPipe iki akış yükleme yordamı sunar: \n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır. \n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir. \n \nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir. \n \nYouTube, RSS akışıyla bu hızlı yöntemi sunan servislerden biridir. \n \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
-    <string name="content_not_supported">Bu içerik henüz NewPipe tarafından desteklenmiyor. \n \nUmarım gelecekteki bir sürümde desteklenir.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Akışın çok yavaş yüklendiğini mi düşünüyorsunuz? Öyleyse, hızlı yüklemeyi etkinleştirin (ayarlardan değiştirebilir veya aşağıdaki düğmeye dokunabilirsiniz). \n \nMerak iki akış yükleme yordamı sunar: \n• Tüm abonelik kanalını edinme, bu yavaş ancak tamdır. \n• Adanmış hizmet son noktası kullanır, bu hızlıdır ancak genellikle tam değildir. \n \nİkisinin arasındaki fark, hızlı olanın genellikle ögenin süresi veya türü (canlı ve sıradan videoları ayrımsayamaz) gibi bazı bilgilerden yoksunluğu ve daha az öge getirmesidir. \n \nYouTube, RSS akışıyla bu hızlı yöntemi sunan servislerden biridir. \n \nSeçim, sizin neyi yeğlediğinize kalmış: hız veya kusursuz bilgi.</string>
+    <string name="content_not_supported">Bu içerik henüz Merak tarafından desteklenmiyor. \n \nUmarım gelecekteki bir sürümde desteklenir.</string>
     <string name="infinite_videos">∞ video</string>
     <string name="more_than_100_videos">100+ video</string>
     <string name="artists">Sanatçılar</string>
@@ -516,7 +513,7 @@
     <string name="show_memory_leaks">Bellek sızıntılarını göster</string>
     <string name="enqueued">Sıraya eklendi</string>
     <string name="enqueue_stream">Kuyruğa ekle</string>
-    <string name="clear_cookie_summary">reCAPTCHA çözdüğünüzde NewPipe\'ın sakladığı çerezleri temizle</string>
+    <string name="clear_cookie_summary">reCAPTCHA çözdüğünüzde Merak\'ın sakladığı çerezleri temizle</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA çerezleri temizlendi</string>
     <string name="clear_cookie_title">reCAPTCHA çerezlerini temizle</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube, olası yetişkin içeriği gizleyen \"Kısıtlı Kip\" sağlamaktadır</string>
@@ -540,12 +537,12 @@
     <string name="open_with">Birlikte aç</string>
     <string name="no_app_to_open_intent">Aygıtınızdaki hiçbir uygulama bunu açamıyor</string>
     <string name="crash_the_app">Uygulamayı çöktür</string>
-    <string name="paid_content">Bu içerik yalnızca ücretini ödemiş kullanıcılara açıktır, bu nedenle NewPipe tarafından oynatılamaz ve indirilemez.</string>
-    <string name="youtube_music_premium_content">Bu video yalnızca YouTube Müzik Premium üyelerine açıktır, bu nedenle NewPipe tarafından oynatılamaz veya indirilemez.</string>
-    <string name="private_content">Bu içerik özeldir, bu nedenle NewPipe tarafından oynatılamaz ve indirilemez.</string>
-    <string name="soundcloud_go_plus_content">Bu SoundCloud Go+ parçasıdır, en azından sizin ülkenizde, bu nedenle NewPipe tarafından oynatılamaz ve indirilemez.</string>
+    <string name="paid_content">Bu içerik yalnızca ücretini ödemiş kullanıcılara açıktır, bu nedenle Merak tarafından oynatılamaz ve indirilemez.</string>
+    <string name="youtube_music_premium_content">Bu video yalnızca YouTube Müzik Premium üyelerine açıktır, bu nedenle Merak tarafından oynatılamaz veya indirilemez.</string>
+    <string name="private_content">Bu içerik özeldir, bu nedenle Merak tarafından oynatılamaz ve indirilemez.</string>
+    <string name="soundcloud_go_plus_content">Bu SoundCloud Go+ parçasıdır, en azından sizin ülkenizde, bu nedenle Merak tarafından oynatılamaz ve indirilemez.</string>
     <string name="georestricted_content">Bu içerik ülkenizde kullanılamaz.</string>
-    <string name="restricted_video_no_stream">Bu video yaş kısıtlıdır. \nYouTube\'un yeni yaş kısıtlı videolar ilkesi gereği, NewPipe böylesi videoların akışına erişemez ve bu nedenle oynatamaz.</string>
+    <string name="restricted_video_no_stream">Bu video yaş kısıtlıdır. \nYouTube\'un yeni yaş kısıtlı videolar ilkesi gereği, Merak böylesi videoların akışına erişemez ve bu nedenle oynatamaz.</string>
     <string name="featured">Öne çıkan</string>
     <string name="radio">Radyo</string>
     <string name="recaptcha_solve">Çöz</string>
@@ -575,7 +572,7 @@
     <string name="open_website_license">Web sitesini aç</string>
     <string name="account_terminated">Hesap sonlandırıldı</string>
     <string name="feed_load_error_fast_unknown">Hızlı besleme kipi bununla ilgili daha çok bilgi sağlamıyor.</string>
-    <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış. \nNewPipe, bu beslemeyi gelecekte yükleyemeyecek. \nBu kanalın aboneliğinden çıkmak ister misiniz?</string>
+    <string name="feed_load_error_terminated">Yazarın hesabı sonlandırılmış. \nMerak, bu beslemeyi gelecekte yükleyemeyecek. \nBu kanalın aboneliğinden çıkmak ister misiniz?</string>
     <string name="feed_load_error_account_info">\'%s\' için besleme yüklenemedi.</string>
     <string name="feed_load_error">Besleme yüklenirken hata</string>
     <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
@@ -612,7 +609,7 @@
     <string name="checking_updates_toast">Güncellemeler denetleniyor…</string>
     <string name="feed_new_items">Yeni akış ögeleri</string>
     <string name="error_report_channel_name">Hata raporlama bildirimi</string>
-    <string name="error_report_notification_title">NewPipe hatayla karşılaştı, bildirmek için dokun</string>
+    <string name="error_report_notification_title">Merak hatayla karşılaştı, bildirmek için dokun</string>
     <string name="error_report_notification_toast">Hata oluştu, bildirime bakın</string>
     <string name="show_crash_the_player_title">\"Oynatıcıyı çöktür\"ü göster</string>
     <string name="create_error_notification">Hata bildirimi oluştur</string>
@@ -662,8 +659,8 @@
     <string name="faq_description">Uygulamayı kullanırken sorun yaşıyorsanız, sık sorulan sorulara verilen bu yanıtlara göz atmayı unutmayın!</string>
     <string name="sort">Sırala</string>
     <string name="fast_mode">Hızlı kip</string>
-    <string name="app_update_unavailable_toast">En yeni NewPipe sürümünü kullanıyorsunuz</string>
-    <string name="app_update_available_notification_title">NewPipe güncellemesi var!</string>
+    <string name="app_update_unavailable_toast">En yeni Merak sürümünü kullanıyorsunuz</string>
+    <string name="app_update_available_notification_title">Merak güncellemesi var!</string>
     <string name="app_update_available_notification_text">%s indirmek için dokunun</string>
     <string name="import_subscriptions_hint">3-nokta menüsünden abonelikleri içe veya dışa aktarın</string>
     <string name="night_theme_available">Bu seçenek yalnızca tema için %s seçildiğinde kullanılabilir</string>
@@ -770,7 +767,7 @@
     <string name="reset_all_settings">Tüm ayarları sıfırlamak, tercih edilen tüm ayarlarınızı kaldırır ve uygulamayı yeniden başlatır. \n \nDevam etmek istediğinizden emin misiniz?</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
-    <string name="auto_update_check_description">NewPipe zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir. \nBunu etkinleştirmek istiyor musunuz?</string>
+    <string name="auto_update_check_description">Merak zaman zaman yeni sürümleri kendiliğinden denetleyebilir ve kullanılabilir olduklarında sizi bilgilendirebilir. \nBunu etkinleştirmek istiyor musunuz?</string>
     <string name="import_settings_vulnerable_format">İçe aktarılmakta olan dışa aktarımdaki ayarlar, NewPipe 0.27.0\'dan itibaren kullanımdan kaldırılan güvenlik açığı olan bir biçim kullanmaktadır. İçe aktarılmakta olan dışa aktarımın güvenilir bir kaynaktan alındığından emin olun ve gelecekte yalnızca NewPipe 0.27.0 veya daha yeni sürümlerden alınan dışa aktarımları kullanmayı tercih edin. Bu güvenlik açığı bulunan biçimdeki ayarları içe aktarma desteği yakında tamamen kaldırılacak ve ardından NewPipe\'ın eski sürümleri artık yeni sürümlerden dışa aktarılan ayarların içe aktarımını yapamayacaktır.</string>
     <string name="audio_track_type_secondary">ikincil</string>
     <string name="tab_bookmarks_short">Oynatma Listeleri</string>
@@ -787,7 +784,7 @@
     <string name="short_million">%sM</string>
     <string name="short_billion">%sB</string>
     <string name="migration_info_7_8_title">YouTube birleşik trendler kaldırıldı</string>
-    <string name="migration_info_7_8_message">YouTube, 21 Temmuz 2025\'ten sonra birleşik trendler sayfasını kaldırdı. NewPipe, öntanımlı trendler sayfasını trend canlı akışlarla değiştirdi.\n\n\"Ayarlar &gt; İçerik &gt; Ana sayfanın içeriği\"nden başka trend sayfalar seçebilirsiniz.</string>
+    <string name="migration_info_7_8_message">YouTube, 21 Temmuz 2025\'ten sonra birleşik trendler sayfasını kaldırdı. Merak, öntanımlı trendler sayfasını trend canlı akışlarla değiştirdi.\n\n\"Ayarlar &gt; İçerik &gt; Ana sayfanın içeriği\"nden başka trend sayfalar seçebilirsiniz.</string>
     <string name="trending_gaming">Oyun trendleri</string>
     <string name="trending_podcasts">Trend podcastler</string>
     <string name="trending_movies">Trend film ve gösteriler</string>
@@ -803,7 +800,6 @@
     <string name="youtube_player_http_403">Oynatırken sunucudan HTTP 403 hatası alındı, IP engeli ya da akış URL’si çözme sorunları olabilir</string>
     <string name="sign_in_confirm_not_bot_error">%1$s veri sağlamıyor, istekçinin robot olmadığını doğrulaması için oturum açmasını istiyor.\n\n%1$s, IP adresinizi geçici olarak engellemiş olabilir, bir süre bekleyebilir ya da başka IP\'ye geçebilirsiniz (örneğin VPN\'i açıp/kapatarak ya da WiFi\'den mobil veriye geçerek).\n\nDaha çok bilgi için <a href="%2$s">bu SSS girdisine</a> bakın.</string>
     <string name="unsupported_content_in_country">Bu içerik şu anda seçili içerik ülkesinde kullanılamıyor.\n\nSeçiminizi \"Ayarlar &gt; İçerik &gt; Öntanımlı içerik ülkesi\"nden değiştirin.</string>
-    <string name="kao_dialog_warning">Google, Eylül 2026\'dan sonra sertifikalı Android aygıtlarda Play Store dışından kurulmuşlarla birlikte tüm uygulamaların, geliştiricilerin kişisel kimlik bilgilerini doğrudan Google’a göndermesini gerektireceğini duyurdu. NewPipe geliştiricileri bu zorunluluğu kabul etmediğinden, NewPipe bu tarihten sonra sertifikalı Android aygıtlarda çalışmayacaktır.</string>
     <string name="kao_dialog_more_info">Ayrıntılar</string>
     <string name="kao_solution">Çözüm</string>
     <plurals name="export_subscriptions">
@@ -823,8 +819,8 @@
     <string name="import_subscriptions_summary">Abonelikleri önceki dışarı aktarmadaki .json dosyası ile içeri aktar</string>
     <string name="export_subscriptions_summary">Aboneliklerini bir .json dosyasında dışarı aktar</string>
     <string name="import_from_previous_export">Önceki dışarı aktarmadan içe aktar</string>
-    <string name="api23_requirement_dialog_title">NewPipe, Android 5 desteğini bırakıyor</string>
-    <string name="api23_requirement_dialog_message">NewPipe ne yazık ki Android 5.0 ve 5.1 desteğini bırakan birkaç kitaplığa bağlıdır. Üzücü ki sıradaki NewPipe sürümü yalnızca Android 6 ve üstü aygıtlarda çalışacaktır. Daha çoğunu blog gönderisinde okuyun.</string>
+    <string name="api23_requirement_dialog_title">Merak, Android 5 desteğini bırakıyor</string>
+    <string name="api23_requirement_dialog_message">Merak ne yazık ki Android 5.0 ve 5.1 desteğini bırakan birkaç kitaplığa bağlıdır. Üzücü ki sıradaki Merak sürümü yalnızca Android 6 ve üstü aygıtlarda çalışacaktır. Daha çoğunu blog gönderisinde okuyun.</string>
     <string name="api23_requirement_dialog_blogpost">Blog gönderisi</string>
     <string name="channel_tab_podcasts">Podcastler</string>
     <string name="channel_tab_courses">Dersler</string>

@@ -72,7 +72,7 @@
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråder</string>
     <string name="msg_error">Feil</string>
-    <string name="msg_running">NewPipe laster ned</string>
+    <string name="msg_running">Merak laster ned</string>
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle</string>
@@ -111,15 +111,15 @@
     <string name="enable_watch_history_summary">Lagre visningshistorikk</string>
     <string name="clear">Tøm</string>
     <string name="best_resolution">Beste oppløsning</string>
-    <string name="notification_channel_name">NewPipe-merknad</string>
-    <string name="notification_channel_description">Merknad for NewPipe sin avspiller</string>
+    <string name="notification_channel_name">Merak-merknad</string>
+    <string name="notification_channel_description">Merknad for Merak sin avspiller</string>
     <string name="settings_category_downloads_title">Last ned</string>
     <string name="settings_file_charset_title">Tillate tegn i filnavn</string>
     <string name="settings_file_replacement_character_summary">Ugyldige tegn erstattes av denne verdien</string>
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
     <string name="charset_letters_and_digits">Bokstaver og tall</string>
     <string name="charset_most_special_characters">De fleste spesialtegn</string>
-    <string name="title_activity_about">Om NewPipe</string>
+    <string name="title_activity_about">Om Merak</string>
     <string name="title_licenses">Tredjepartslisenser</string>
     <string name="copyright" formatted="true">© %1$s av %2$s lisensiert %3$s</string>
     <string name="tab_about">Om og ofte stilte spørsmål</string>
@@ -149,7 +149,7 @@
         <item quantity="other">%s videoer</item>
     </plurals>
     <string name="view_on_github">Se på GitHub</string>
-    <string name="app_license_title">NewPipes lisens</string>
+    <string name="app_license_title">Meraks lisens</string>
     <string name="contribution_encouragement">Uansett om du har idéer om: oversettelse, designendringer, kodeforbedring, eller virkelig tunge kodeendringer så er hjelp alltid velkommen. Jo mer som blir gjort, jo bedre blir det!</string>
     <string name="read_full_license">Les lisens</string>
     <string name="contribution_title">Bidra</string>
@@ -180,10 +180,8 @@
     <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
     <string name="start_here_on_popup">Start avspilling i et oppsprett</string>
     <string name="donation_title">Donér</string>
-    <string name="donation_encouragement">NewPipe utvikles av bidragsytere som bruker fritiden sin på å gi deg den beste brukeropplevelsen. Gi tilbake til miljøet for å hjelpe utviklerne med å gjøre NewPipe enda bedre mens de nyter en kopp kaffe.</string>
     <string name="give_back">Gi tilbake</string>
     <string name="website_title">Nettside</string>
-    <string name="website_encouragement">Besøk NewPipe-nettsiden for mer info og nyheter.</string>
     <string name="default_content_country_title">Forvalgt innholdsland</string>
     <string name="switch_to_background">Bytt til bakgrunnsmodus</string>
     <string name="switch_to_popup">Bytt til oppsprettsmodus</string>
@@ -276,7 +274,7 @@
     <string name="one_item_deleted">Ett element slettet.</string>
     <string name="caption_setting_title">Undertekst</string>
     <string name="caption_setting_description">Modifiser avspillingsundertekststørrelse og bakgrunnsstiler. Krever restart av app for å tre i kraft</string>
-    <string name="app_license">NewPipe er copyleft fri programvare: Du kan bruke, studere og forbedre den etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere den i henhold til vilkårene gitt i GNU General Public-lisensen, som er publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
+    <string name="app_license">Merak er copyleft fri programvare: Du kan bruke, studere og forbedre den etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere den i henhold til vilkårene gitt i GNU General Public-lisensen, som er publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
@@ -288,10 +286,9 @@
     <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
-    <string name="privacy_policy_title">NewPipes personvernerklæring</string>
-    <string name="privacy_policy_encouragement">NewPipe-prosjektet tar personvernet ditt veldig seriøst. Derfor samler ikke appen inn noe data uten ditt samtykke.\nNewPipes personvernerklæring forklarer i detalj hvilke data som sendes og lagres når du sender en kræsjrapport.</string>
+    <string name="privacy_policy_title">Meraks personvernerklæring</string>
     <string name="read_privacy_policy">Les personvernerklæring</string>
-    <string name="start_accept_privacy_policy">For å overholde EUs personvernforordning (GDPR), vil vi rette oppmerksomheten din mot NewPipe sin personvernerklæring. Vennligst les den nøye. \nDu må godta den, for å sende oss feilrapporten.</string>
+    <string name="start_accept_privacy_policy">For å overholde EUs personvernforordning (GDPR), vil vi rette oppmerksomheten din mot Merak sin personvernerklæring. Vennligst les den nøye. \nDu må godta den, for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
     <string name="limit_data_usage_none_description">Ingen begrensning</string>
@@ -314,7 +311,7 @@
     <string name="events">Hendelser</string>
     <string name="file_deleted">Fil slettet</string>
     <string name="app_update_notification_channel_name">Varsel om appoppdatering</string>
-    <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
+    <string name="app_update_notification_channel_description">Merknader for nye Merak-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
     <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe?</string>
     <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
@@ -329,7 +326,7 @@
     <string name="list">Liste</string>
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
-    <string name="app_update_available_notification_title">Ny NewPipe-versjon er tilgjengelig!</string>
+    <string name="app_update_available_notification_title">Ny Merak-versjon er tilgjengelig!</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
     <string name="queued">I kø</string>
@@ -373,7 +370,7 @@
     <string name="overwrite_unrelated_warning">En fil ved dette navnet finnes allerede</string>
     <string name="overwrite_failed">Kan ikke overskrive filen</string>
     <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
-    <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
+    <string name="error_postprocessing_stopped">Merak ble lukket under arbeid med filen</string>
     <string name="error_insufficient_storage_left">Ingen ledig plass på enheten</string>
     <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
     <string name="error_timeout">Tilkoblingsavbrudd</string>
@@ -485,7 +482,7 @@
     <string name="show_original_time_ago_title">Vis opprinnelig tidsforskjell for elementer</string>
     <string name="notification_action_buffering">Bygger mellomlager</string>
     <string name="notification_action_shuffle">Tilfeldig rekkefølge</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor). \n \nNewPipe tilbyr to strøminnlastingsstrategier: \n• Hent hele abonnementskanalen, noe som er tregt, men fullstendig. \n• Bruk av et dedikert tjenesteendepunkt, noe som er raskt men vanligvis ikke fullstendig. \n \nForskjellen mellom dem er at den raske vanligvis mangler info, som elementers varighet eller type (kan ikke skille mellom direktesendinger og normale videoer) og det kan gi færre elementer. \n \nYouTube er et eksempel på en tjeneste som tilbyr denne raske metoden med sin RSS-informasjonskanal. \n \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Synes du at strøminnlastingen er for treg? Prøv å skru på rask innlasting (du kan endre det i innstillingene, eller ved å trykke på knappen nedenfor). \n \nMerak tilbyr to strøminnlastingsstrategier: \n• Hent hele abonnementskanalen, noe som er tregt, men fullstendig. \n• Bruk av et dedikert tjenesteendepunkt, noe som er raskt men vanligvis ikke fullstendig. \n \nForskjellen mellom dem er at den raske vanligvis mangler info, som elementers varighet eller type (kan ikke skille mellom direktesendinger og normale videoer) og det kan gi færre elementer. \n \nYouTube er et eksempel på en tjeneste som tilbyr denne raske metoden med sin RSS-informasjonskanal. \n \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
     <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
     <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
@@ -498,7 +495,7 @@
     <string name="remove_watched_popup_warning">Videoer som har blitt sett før og etter at de er lagt til spillelisten, vil bli fjernet. \nEr du sikker? Dette kan ikke angres!</string>
     <string name="autoplay_summary">Start avspilling automatisk — %s</string>
     <string name="unsupported_url_dialog_message">Kunne ikke gjenkjenne angitt nettadresse. Åpne den med et annet program?</string>
-    <string name="content_not_supported">Innholdet støttes ikke enda av NewPipe. \n \nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
+    <string name="content_not_supported">Innholdet støttes ikke enda av Merak. \n \nStøtte vil forhåpentligvis komme til i en senere versjon.</string>
     <string name="playlist_page_summary">Spillelisteside</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalens avatar-miniatyrbilde</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Skru på hurtigmodus</string>
@@ -519,7 +516,7 @@
     <string name="enqueue_stream">Legg i kø</string>
     <string name="clear_cookie_title">Tøm reCAPTCHA-kaker</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-kaker har blitt slettet</string>
-    <string name="clear_cookie_summary">Tøm kaker som NewPipe lagrer når du løser en reCAPTCHA</string>
+    <string name="clear_cookie_summary">Tøm kaker som Merak lagrer når du løser en reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube tilbyr «Begrenset modus» som skjuler innhold antatt å være for voksne</string>
     <string name="show_age_restricted_content_summary">Vis innhold som muligens er uegnet for barn fordi det har en aldersgrense (som 18+)</string>
     <string name="notification_colorize_summary">La Android tilpasse varselets farge i henhold til hovedfargen i miniatyrbildet (merk at dette ikke er tilgjengelig på alle enheter)</string>
@@ -541,11 +538,11 @@
     <string name="show_description_title">Vis beskrivelse</string>
     <string name="open_with">Åpne med</string>
     <string name="crash_the_app">Krasj programmet</string>
-    <string name="restricted_video_no_stream">Denne videoen er aldersbegrenset. \nSom følge av YouTube sin praksis med slike har ikke NewPipe tilgang til videostrømmene, og kan derfor ikke spille den.</string>
-    <string name="paid_content">Innholdet er kun tilgjengelig for brukere som har betalt, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
-    <string name="private_content">Innholdet er privat, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
-    <string name="youtube_music_premium_content">Videoen er kun tilgjengelig for YouTube Music Premium-medlemmer, så den kan ikke strømmes eller lastes ned av NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Dette er et spor fra SoundCloud Go+, ihvertfall i ditt land, så det kan ikke strømmes eller lastes ned av NewPipe.</string>
+    <string name="restricted_video_no_stream">Denne videoen er aldersbegrenset. \nSom følge av YouTube sin praksis med slike har ikke Merak tilgang til videostrømmene, og kan derfor ikke spille den.</string>
+    <string name="paid_content">Innholdet er kun tilgjengelig for brukere som har betalt, så det kan ikke strømmes eller lastes ned av Merak.</string>
+    <string name="private_content">Innholdet er privat, så det kan ikke strømmes eller lastes ned av Merak.</string>
+    <string name="youtube_music_premium_content">Videoen er kun tilgjengelig for YouTube Music Premium-medlemmer, så den kan ikke strømmes eller lastes ned av Merak.</string>
+    <string name="soundcloud_go_plus_content">Dette er et spor fra SoundCloud Go+, ihvertfall i ditt land, så det kan ikke strømmes eller lastes ned av Merak.</string>
     <string name="georestricted_content">Innholdet er ikke tilgjengelig i din region.</string>
     <string name="download_has_started">Nedlastingen har startet</string>
     <string name="select_night_theme_toast">Du kan velge ditt favoritt-nattema nedenfor</string>
@@ -560,7 +557,7 @@
     <string name="disable_media_tunneling_title">Skru av media-tunnelering</string>
     <string name="description_select_note">Du kan nå velge tekst inne i beskrivelsen. Merk at siden kan flimre og lenker er kanskje ikke klikkbare i utvalgsmodus.</string>
     <string name="feed_load_error_fast_unknown">Hurtigmodus for informasjonskanal tilbyr ikke mer info om dette.</string>
-    <string name="feed_load_error_terminated">Skaperens konto har blitt terminert. \nNewPipe vil ikke kunne laste inn denne informasjonskanalen i fremtiden. \nØnsker du å oppheve ditt abonnement på denne kanalen?</string>
+    <string name="feed_load_error_terminated">Skaperens konto har blitt terminert. \nMerak vil ikke kunne laste inn denne informasjonskanalen i fremtiden. \nØnsker du å oppheve ditt abonnement på denne kanalen?</string>
     <string name="description_select_disable">Skru av merking av tekst i beskrivelsen</string>
     <string name="description_select_enable">Skru på merking av tekst i beskrivelsen</string>
     <string name="account_terminated">Konto terminert</string>
@@ -619,7 +616,7 @@
     <string name="detail_pinned_comment_view_description">Festet kommentar</string>
     <string name="error_report_channel_name">Feilrapport-merknad</string>
     <string name="error_report_channel_description">Merknader for innrapportering av feil</string>
-    <string name="error_report_notification_title">NewPipe oppdaget en feil, trykk for å rapportere</string>
+    <string name="error_report_notification_title">Merak oppdaget en feil, trykk for å rapportere</string>
     <string name="create_error_notification">Opprett en feilmerknad</string>
     <string name="show_error_snackbar">Vis en feil hurtigbar</string>
     <string name="no_appropriate_file_manager_message">Ingen passende filbehandler ble funnet for denne handlingen. \nVennligst installer en filbehandler, eller prøv å skru av \'%s\' i nedlastingsinnstillingene</string>
@@ -667,7 +664,7 @@
     <string name="night_theme_available">Dette valget er kun tilgjengelig dersom %s er valgt som tema</string>
     <string name="msg_failed_to_copy">Klarte ikke å kopiere til utklippstavlen</string>
     <string name="app_update_available_notification_text">Trykk for å laste ned %s</string>
-    <string name="app_update_unavailable_toast">Du bruker den nyeste versjonen av NewPipe</string>
+    <string name="app_update_unavailable_toast">Du bruker den nyeste versjonen av Merak</string>
     <string name="card">Kort</string>
     <string name="import_subscriptions_hint">Importer eller eksporter fra trepunktsmenyen</string>
     <string name="fast_mode">Hurtigmodus</string>

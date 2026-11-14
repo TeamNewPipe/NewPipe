@@ -77,8 +77,8 @@
     <string name="clear">Pyyhi</string>
     <string name="best_resolution">Paras resoluutio</string>
     <string name="undo">Peru</string>
-    <string name="notification_channel_name">NewPipe ilmoitus</string>
-    <string name="notification_channel_description">Ilmoitukset NewPipen soittimille</string>
+    <string name="notification_channel_name">Merak ilmoitus</string>
+    <string name="notification_channel_description">Ilmoitukset Merakn soittimille</string>
     <string name="general_error">Virhe</string>
     <string name="network_error">Verkkovirhe</string>
     <string name="could_not_load_thumbnails">Kaikkia esikatselukuvia ei voitu ladata</string>
@@ -125,7 +125,7 @@
     <string name="msg_name">Tiedostonimi</string>
     <string name="msg_threads">Säikeet</string>
     <string name="msg_error">Virhe</string>
-    <string name="msg_running">NewPipe Lataus käynnissä</string>
+    <string name="msg_running">Merak Lataus käynnissä</string>
     <string name="msg_running_detail">Napauta nähdäksesi lisää</string>
     <string name="msg_wait">Odota…</string>
     <string name="msg_copied">Kopioitu leikepöydälle</string>
@@ -139,13 +139,13 @@
     <string name="settings_file_replacement_character_title">Korvaava merkki</string>
     <string name="charset_letters_and_digits">Kirjaimet ja numerot</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
-    <string name="title_activity_about">Tietoja NewPipestä</string>
+    <string name="title_activity_about">Tietoja Merakstä</string>
     <string name="title_licenses">Kolmannen osapuolen lisenssit</string>
     <string name="tab_about">Tietoja ja UKK</string>
     <string name="tab_licenses">Lisenssit</string>
     <string name="app_description">Vapaata ja kevyttä suoratoistoa Androidilla.</string>
     <string name="view_on_github">Näytä GitHub:ssa</string>
-    <string name="app_license_title">NewPipen lisenssi</string>
+    <string name="app_license_title">Merakn lisenssi</string>
     <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, designmuutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
     <string name="read_full_license">Lue lisenssi</string>
     <string name="contribution_title">Osallistu</string>
@@ -180,10 +180,8 @@
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ponnahdusikkunassa</string>
     <string name="donation_title">Lahjoita</string>
-    <string name="donation_encouragement">NewPipe on vapaaehtoisten vapaa-ajallaan kehittämä tuoden sinulle parhaan mahdollisen käyttäjäkokemuksen. Nyt on aika auttaa kehittäjiä tekemään NewPipesta vielä parempi heidän nauttiessaan kupin kahvia.</string>
     <string name="give_back">Anna takaisin</string>
     <string name="website_title">Verkkosivusto</string>
-    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipestä.</string>
     <string name="no_player_found_toast">Suoratoistosoitinta ei löytynyt (voit asentaa VLC:n toistaaksesi).</string>
     <string name="controls_download_desc">Lataa suoratoistotiedosto</string>
     <string name="show_info">Näytä lisätietoja</string>
@@ -233,12 +231,11 @@
     <string name="dismiss">Hylkää</string>
     <string name="rename">Nimeä uudelleen</string>
     <string name="one_item_deleted">1 poistettu.</string>
-    <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
-    <string name="privacy_policy_encouragement">NewPipe ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi.\nNewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="privacy_policy_title">Merakn tietosuojakäytäntö</string>
     <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
     <string name="auto_queue_title">Lisää ehdotettu suoratoistosisältö automaattisesti soittolistaan</string>
     <string name="no_streams_available_download">Suoratoistosisältöä ei saatavilla ladattavaksi</string>
-    <string name="app_license">NewPipe on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
+    <string name="app_license">Merak on vapaata ohjelmistoa. Voit käyttää, opiskella, jakaa ja parantaa sitä mielesi mukaan. Tarkemmin sanottuna voit jakaa sitä edelleen tai muokata sitä Free Software Foundationin julkaiseman GNU General Public Licensen, version 3 tai uudemman, ehdoilla.</string>
     <string name="title_last_played">Viimeksi toistettu</string>
     <string name="title_most_played">Eniten toistetut</string>
     <string name="export_complete_toast">Vienti valmis</string>
@@ -298,7 +295,7 @@
     <string name="skip_silence_checkbox">Kelaa eteenpäin hiljaisissa kohdissa</string>
     <string name="playback_step">Askel</string>
     <string name="playback_reset">Nollaa</string>
-    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan NewPipen tietosuojakäytäntö. Lue se tarkkaan. \nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
+    <string name="start_accept_privacy_policy">Noudattaaksemme EU:n yleistä tietosuoja-asetusta (GDPR), meidän pitää muistuttaa sinua lukemaan Merakn tietosuojakäytäntö. Lue se tarkkaan. \nSinun pitää myös hyväksyä se, jotta voit lähettää virheraportin.</string>
     <string name="accept">Hyväksy</string>
     <string name="decline">Hylkää</string>
     <string name="limit_data_usage_none_description">Ei rajaa</string>
@@ -341,7 +338,7 @@
     <string name="missing_file">Tiedosto siirretty tai poistettu</string>
     <string name="download_to_sdcard_error_message">Lataaminen ulkoiselle SD-kortille ei ole mahdollista. Nollataanko latauskansion sijainti?</string>
     <string name="download_to_sdcard_error_title">Ulkoinen tallennustila ei käytettävissä</string>
-    <string name="app_update_notification_channel_description">Ilmoitukset uusista NewPipe-versioista</string>
+    <string name="app_update_notification_channel_description">Ilmoitukset uusista Merak-versioista</string>
     <string name="app_update_notification_channel_name">Sovelluspäivitysilmoitus</string>
     <string name="file_deleted">Tiedosto poistettu</string>
     <string name="artists">Esittäjät</string>
@@ -384,10 +381,10 @@
     <string name="show_comments_title">Näytä kommentit</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanavan hahmokuvake</string>
     <string name="video_detail_by">Kenen toimesta: %s</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta). \n \nNewPipe tarjoaa kaksi tapaa ladata syöte: \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan. \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan. \n \nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä. \n \nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla. \n \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Onko syötteen lataaminen mielestäsi liian hidas? Voit koittaa ottaa käyttöön nopean lataamisen (voit vaihtaa sen asetuksista tai painamalla alla olevaa painiketta). \n \nMerak tarjoaa kaksi tapaa ladata syöte: \n• Koko tilatun kanavan lataaminen, mikä on hidasta, mutta lataa syötteen kokonaisuudessaan. \n• Erityisen palvelu-endpointin käyttö, mikä on nopeaa, mutta yleensä ei lataa syötettä kokonaisuudessaan. \n \nNäiden kahden välinen ero on, että nopean tavan lataamista tiedoista yleensä puuttuu esim. sisällön kesto tai tyyppi (ei voi erotella livevideoita ja tavallisia) tai se ei lataa kaikkea sisältöä. \n \nYouTube on esimerkki palvelusta, joka tarjoaa nopean tavan RSS-syötteen avulla. \n \nValinta riippuu siitä, mitä halutaan: nopeutta vai tarkkoja tietoja.</string>
     <string name="default_kiosk_page_summary">Oletuskioski</string>
     <string name="channel_created_by">%s:n luoma</string>
-    <string name="content_not_supported">NewPipe ei vielä tue tätä sisältöä. \n \nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
+    <string name="content_not_supported">Merak ei vielä tue tätä sisältöä. \n \nToivottavasti sitä tuetaan myöhemmässä versiossa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Poista nopea tila käytöstä</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Ota nopea tila käyttöön</string>
     <string name="feed_use_dedicated_fetch_method_summary">Saatavilla joissakin palveluissa, on yleensä paljon nopeampi, mutta voi palauttaa rajallisen määrän sisältöä ja usein epätäydelliset tiedot (esim. ei kestoa, ei sisällön tyyppiä, ei livestatusta)</string>
@@ -444,7 +441,7 @@
     <string name="error_timeout">Yhteys aikakatkaistiin</string>
     <string name="error_progress_lost">Eteneminen menetettiin, koska tiedosto poistettiin</string>
     <string name="error_insufficient_storage_left">Laitteella ei ole tilaa</string>
-    <string name="error_postprocessing_stopped">NewPipe suljettiin, kun se käsitteli tiedostoa</string>
+    <string name="error_postprocessing_stopped">Merak suljettiin, kun se käsitteli tiedostoa</string>
     <string name="error_postprocessing_failed">Jälkikäsittely epäonnistui</string>
     <string name="error_http_not_found">Ei löytynyt</string>
     <string name="error_http_unsupported_range">Palvelin ei hyväksy monisäikeisiä latauksia, yritä uudelleen asetuksella @string/msg_threads = 1</string>
@@ -473,7 +470,7 @@
     <string name="pause_downloads_on_mobile_desc">Hyödyllinen vaihdettaessa mobiilidataan, vaikka joitakin latauksia ei voi pysäyttää</string>
     <string name="pause_downloads_on_mobile">Keskeytä, kun yhteys on käytön mukaan laskutettava</string>
     <string name="paused">tauotettu</string>
-    <string name="app_update_available_notification_title">NewPipe-päivitys on saatavilla!</string>
+    <string name="app_update_available_notification_title">Merak-päivitys on saatavilla!</string>
     <string name="list_view_mode">Listanäkymän ulkoasu</string>
     <string name="auto">Automaattinen</string>
     <string name="grid">Ruudukko</string>
@@ -517,7 +514,7 @@
     <string name="show_memory_leaks">Näytä muistivuodot</string>
     <string name="enqueued">Lisätty jonoon</string>
     <string name="enqueue_stream">Lisää jonoon</string>
-    <string name="clear_cookie_summary">Poista evästeet, jotka NewPipe tallentaa, kun ratkaiset reCAPTCHA:n</string>
+    <string name="clear_cookie_summary">Poista evästeet, jotka Merak tallentaa, kun ratkaiset reCAPTCHA:n</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA-evästeet on poistettu</string>
     <string name="clear_cookie_title">Poista reCAPTCHA-evästeet</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube tarjoaa ”Rajoitetun tilan”, joka piilottaa aikuisviihdesisällön</string>
@@ -544,16 +541,16 @@
     <string name="auto_device_theme_title">Automaattinen (laite)</string>
     <string name="radio">Radio</string>
     <string name="featured">Esitellyt</string>
-    <string name="paid_content">Tämä sisältö on saatavilla vain maksaneille käyttäjillä, joten NewPipe ei voi suoratoistaa tai ladata sitä.</string>
-    <string name="youtube_music_premium_content">Tämä video on saatavilla vain YouTube Music Premium -jäsenille, joten NewPipe ei voi suoratoistaa tai ladata sitä.</string>
-    <string name="private_content">Tämä sisältö on yksityinen, joten NewPipe ei voi suoratoistaa tai ladata sitä.</string>
-    <string name="soundcloud_go_plus_content">Tämä on SoundCloud Go+ -raita maassasi, joten NewPipe ei voi suoratoistaa tai ladata sitä.</string>
+    <string name="paid_content">Tämä sisältö on saatavilla vain maksaneille käyttäjillä, joten Merak ei voi suoratoistaa tai ladata sitä.</string>
+    <string name="youtube_music_premium_content">Tämä video on saatavilla vain YouTube Music Premium -jäsenille, joten Merak ei voi suoratoistaa tai ladata sitä.</string>
+    <string name="private_content">Tämä sisältö on yksityinen, joten Merak ei voi suoratoistaa tai ladata sitä.</string>
+    <string name="soundcloud_go_plus_content">Tämä on SoundCloud Go+ -raita maassasi, joten Merak ei voi suoratoistaa tai ladata sitä.</string>
     <string name="georestricted_content">Tämä sisältö ei ole saatavilla maassasi.</string>
     <string name="crash_the_app">Kaada sovellus</string>
     <string name="recaptcha_solve">Ratkaise</string>
     <string name="hash_channel_description">Ilmoitukset videon hajautuksen etenemisestä</string>
     <string name="hash_channel_name">Videon hajautusilmoitus</string>
-    <string name="restricted_video_no_stream">Tämä video on ikärajoitettu. \nYouTuben uusien ikärajoitusperiaatteiden mukaisesti NewPipella ei ole pääsyä videoon eikä sitä voida toistaa.</string>
+    <string name="restricted_video_no_stream">Tämä video on ikärajoitettu. \nYouTuben uusien ikärajoitusperiaatteiden mukaisesti Meraklla ei ole pääsyä videoon eikä sitä voida toistaa.</string>
     <string name="night_theme_title">Yöteema</string>
     <string name="description_select_disable">Poista käytöstä tekstinvalinta kuvauskentän sisältä</string>
     <string name="description_select_note">Voit nyt valita tekstin kuvauskentän sisältä. Huomioithan, että valintatilan aikana sivu voi vilkkua ja linkit eivät ehkä ole klikattavia.</string>
@@ -581,7 +578,7 @@
     <string name="metadata_category">Kategoria</string>
     <string name="description_select_enable">Salli tekstin valinta kuvauksessa</string>
     <string name="account_terminated">Tili suljettu</string>
-    <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu. \nNewPipe ei pysty lataamaan tätä syötettä tulevaisuudessa. \nHaluatko poistaa kanavan tilauksesta?</string>
+    <string name="feed_load_error_terminated">Tekijän käyttäjätili on suljettu. \nMerak ei pysty lataamaan tätä syötettä tulevaisuudessa. \nHaluatko poistaa kanavan tilauksesta?</string>
     <string name="feed_load_error_account_info">Ei voitu ladata syötettä hakusanalle \'%s\'.</string>
     <string name="feed_load_error">Virhe syötteen lataamisessa</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sinulta kysytään joka kerta, minne tiedosto ladataan</string>
@@ -614,7 +611,7 @@
     <string name="error_report_channel_description">Ilmoitukset, joilla raportoidaan virheistä</string>
     <string name="detail_pinned_comment_view_description">Kiinnitetty kommentti</string>
     <string name="error_report_channel_name">Virheraportti-ilmoitus</string>
-    <string name="error_report_notification_title">NewPipe kohtasi virheen, näpäytä raportoidaksesi</string>
+    <string name="error_report_notification_title">Merak kohtasi virheen, näpäytä raportoidaksesi</string>
     <string name="error_report_notification_toast">Tapahtui virhe, katso ilmoitus</string>
     <string name="create_error_notification">Luo virheilmoitus</string>
     <string name="leak_canary_not_available">LeakCanary ei ole saatavilla</string>
@@ -689,7 +686,7 @@
     <string name="check_new_streams">Suorita uusien streamien tarkistaminen</string>
     <string name="feed_fetch_channel_tabs">Hae kanavavälilehdet</string>
     <string name="faq_title">Usein kysytyt kysymykset</string>
-    <string name="app_update_unavailable_toast">Käytät uusinta NewPipen versiota</string>
+    <string name="app_update_unavailable_toast">Käytät uusinta Merakn versiota</string>
     <string name="metadata_avatars">Avatarit</string>
     <string name="use_exoplayer_decoder_fallback_summary">Ota tämä vaihtoehto käyttöön, jos sinulla on dekooderin alustusongelmia, jotka liittyvät alemman prioriteetin dekooderiin, jos ensisijaisen dekooderin alustus epäonnistuu. Tämä voi heikentää toiston suorituskykyä kuin käytettäessä ensisijaisia dekoodeja</string>
     <string name="next_stream">Seuraava stream</string>
@@ -758,7 +755,7 @@
     <string name="settings_category_backup_restore_title">Varmuuskopiointi ja palauttaminen</string>
     <string name="reset_settings_title">Nollaa asetukset</string>
     <string name="reset_settings_summary">Palauta kaikki asetukset oletusarvoihin</string>
-    <string name="auto_update_check_description">NewPipe voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla. \nHaluatko ottaa tämän käyttöön?</string>
+    <string name="auto_update_check_description">Merak voi automaattisesti tarkistaa päivitysten saatavuuden silloin tällöin ja ilmoittaa kun niitä on saatavilla. \nHaluatko ottaa tämän käyttöön?</string>
     <string name="error_insufficient_storage">Laitteella ei ole riittävästi vapaata tilaa</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Jaa tilapäisenä YouTube-soittolistana</string>
     <string name="channel_tab_tracks">Raidat</string>

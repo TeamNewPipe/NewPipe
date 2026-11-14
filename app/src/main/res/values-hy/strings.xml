@@ -83,7 +83,7 @@
         <item quantity="other">%d րոպե</item>
     </plurals>
     <string name="feed_groups_header_title">Ալիքների խմբեր</string>
-    <string name="app_update_available_notification_title">NewPipe֊ի նոր թարմացում է հասանելի</string>
+    <string name="app_update_available_notification_title">Merak֊ի նոր թարմացում է հասանելի</string>
     <string name="list">Ցանկ</string>
     <string name="never">Երբեք</string>
     <string name="minimize_on_exit_none_description">Ոչինչ</string>
@@ -124,7 +124,7 @@
     <string name="settings_category_player_behavior_title">Վարքագիծ</string>
     <string name="video">Տեսանյութ</string>
     <string name="show_comments_title">Տեսնել մեկնաբանությունները</string>
-    <string name="notification_channel_name">NewPipe ծանուցում</string>
+    <string name="notification_channel_name">Merak ծանուցում</string>
     <string name="just_once">Մեկ անգամ</string>
     <string name="always">Միշտ</string>
     <string name="download_dialog_title">Բեռնել</string>

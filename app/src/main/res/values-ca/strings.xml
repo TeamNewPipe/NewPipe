@@ -66,7 +66,7 @@
     <string name="tab_licenses">Llicències</string>
     <string name="contribution_title">Col·labora-hi</string>
     <string name="website_title">Lloc web</string>
-    <string name="app_license_title">Llicència del NewPipe</string>
+    <string name="app_license_title">Llicència del Merak</string>
     <string name="read_full_license">Llegiu la llicència</string>
     <string name="title_activity_history">Historial</string>
     <string name="action_history">Historial</string>
@@ -135,8 +135,8 @@
     <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="background_player_playing_toast">S\'està reproduint en rerefons</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
-    <string name="notification_channel_name">Notificació de NewPipe</string>
-    <string name="notification_channel_description">Notificacions per al reproductor de NewPipe</string>
+    <string name="notification_channel_name">Notificació de Merak</string>
+    <string name="notification_channel_description">Notificacions per al reproductor de Merak</string>
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>
@@ -186,17 +186,16 @@
     <string name="dismiss">Tanca</string>
     <string name="rename">Canvia el nom</string>
     <string name="msg_threads">Fils</string>
-    <string name="msg_running">Baixada del NewPipe activa</string>
+    <string name="msg_running">Baixada del Merak activa</string>
     <string name="msg_wait">Un moment…</string>
     <string name="msg_copied">S\'ha copiat al porta-retalls</string>
     <string name="settings_file_charset_title">Caràcters permesos als noms de fitxer</string>
     <string name="charset_letters_and_digits">Lletres i dígits</string>
-    <string name="title_activity_about">Quant al NewPipe</string>
+    <string name="title_activity_about">Quant al Merak</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sota %3$s</string>
     <string name="app_description">Reprodueix transmissions de manera lliure i lleugera a l\'Android.</string>
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Feu una donació</string>
-    <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre web.</string>
     <string name="title_last_played">Últimes reproduccions</string>
     <string name="title_most_played">Més reproduïts</string>
     <string name="kiosk_page_summary">Pàgina de quiosc</string>
@@ -241,7 +240,6 @@
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
     <string name="charset_most_special_characters">Principals caràcters especials</string>
     <string name="contribution_encouragement">Idees, traduccions, canvis en el disseny, neteja del codi, canvis importants de programació… La vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
-    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Feu la vostra aportació</string>
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
@@ -289,12 +287,11 @@
     <string name="delete_search_history_alert">Voleu suprimir tot l\'historial de cerca?</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
-    <string name="app_license">El NewPipe és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
+    <string name="app_license">El Merak és programari lliure sota llicència copyleft: el podeu fer servir, estudiar, compartir i millorar com vulgueu. Concretament, el podeu redistribuir i/o modificar d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, versió 3 o qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també els paràmetres?</string>
-    <string name="privacy_policy_title">Política de privadesa del NewPipe</string>
-    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privadesa. Per aquesta raó, l\'aplicació no emmagatzema cap dada sense el vostre consentiment. \nLa política de privadesa del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
+    <string name="privacy_policy_title">Política de privadesa del Merak</string>
     <string name="read_privacy_policy">Llegiu la política de privadesa</string>
-    <string name="start_accept_privacy_policy">Per complir amb el Reglament General de Protecció de Dades Europeu (GDPR), us demanem que pareu atenció a la política de privadesa del NewPipe. Llegiu-la detingudament. \nSi voleu informar d\'un error, l\'haureu d\'acceptar.</string>
+    <string name="start_accept_privacy_policy">Per complir amb el Reglament General de Protecció de Dades Europeu (GDPR), us demanem que pareu atenció a la política de privadesa del Merak. Llegiu-la detingudament. \nSi voleu informar d\'un error, l\'haureu d\'acceptar.</string>
     <string name="accept">Accepta</string>
     <string name="decline">Rebutja</string>
     <string name="limit_data_usage_none_description">Sense restriccions</string>
@@ -321,7 +318,7 @@
     <string name="list">Llista</string>
     <string name="grid">Quadrícula</string>
     <string name="auto">Automàtic</string>
-    <string name="app_update_available_notification_title">Una nova versió del NewPipe està disponible!</string>
+    <string name="app_update_available_notification_title">Una nova versió del Merak està disponible!</string>
     <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
@@ -332,7 +329,7 @@
     <string name="error_path_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
     <string name="events">Esdeveniments</string>
-    <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
+    <string name="app_update_notification_channel_description">Notificacions de noves versions del Merak</string>
     <string name="subscribers_count_not_available">Nombre de subscriptors no disponible</string>
     <string name="main_page_content_summary">Quines pestanyes es mostren a la pàgina principal</string>
     <string name="conferences">Conferències</string>
@@ -379,7 +376,7 @@
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
     <string name="permission_denied">El sistema ha denegat l\'acció</string>
-    <string name="error_postprocessing_stopped">S\'ha tancat el NewPipe mentre es treballava en el fitxer</string>
+    <string name="error_postprocessing_stopped">S\'ha tancat el Merak mentre es treballava en el fitxer</string>
     <string name="downloads_storage_ask_title">Demana on baixar</string>
     <string name="download_to_sdcard_error_message">No es pot desar a la targeta externa. Voleu restablir la carpeta de baixades?</string>
     <string name="error_http_unsupported_range">El servidor no accepta baixades simultànies. Proveu amb @string/msg_threads = 1</string>
@@ -436,8 +433,8 @@
     <string name="video_detail_by">Per %s</string>
     <string name="channel_created_by">Creat per %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Miniatura de l\'avatar del canal</string>
-    <string name="content_not_supported">El NewPipe encara no suporta aquest contingut. \n \nEsperem que en el futur ho faci.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Creieu que la càrrega de contingut és massa lenta? Si és el cas, proveu d\'activar la càrrega ràpida (podeu canviar-ho a paràmetres o al botó de sota). \n \nEl NewPipe ofereix dues formes de càrrega de contingut per als feeds: \n• Descarregant-ne el canal sencer, que és lent però complet. \n• Fent servir un servei dedicat, que és molt ràpid però sovint incomplet. \n \nLa diferència entre els dos és que el ràpid sovint retorna la informació incompleta. Per exemple, pot faltar la durada o el tipus (sense poder distingir entre una retransmissió en directe i un vídeo normal) i podria ser que faltessin alguns elements. \n \nYouTube és un exemple d\'un servei que ofereix aquest sistema de càrrega ràpida pels seus feed RSS. \n \nEn definitiva, l\'elecció depèn de si preferiu rapidesa a assegurar-vos que l\'informació és precisa.</string>
+    <string name="content_not_supported">El Merak encara no suporta aquest contingut. \n \nEsperem que en el futur ho faci.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Creieu que la càrrega de contingut és massa lenta? Si és el cas, proveu d\'activar la càrrega ràpida (podeu canviar-ho a paràmetres o al botó de sota). \n \nEl Merak ofereix dues formes de càrrega de contingut per als feeds: \n• Descarregant-ne el canal sencer, que és lent però complet. \n• Fent servir un servei dedicat, que és molt ràpid però sovint incomplet. \n \nLa diferència entre els dos és que el ràpid sovint retorna la informació incompleta. Per exemple, pot faltar la durada o el tipus (sense poder distingir entre una retransmissió en directe i un vídeo normal) i podria ser que faltessin alguns elements. \n \nYouTube és un exemple d\'un servei que ofereix aquest sistema de càrrega ràpida pels seus feed RSS. \n \nEn definitiva, l\'elecció depèn de si preferiu rapidesa a assegurar-vos que l\'informació és precisa.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Desactiva el mode ràpid</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Activa el mode ràpid</string>
     <string name="feed_use_dedicated_fetch_method_summary">Disponible en alguns serveis, normalment és més ràpid, però podria només incloure un nombre limitat de contingut i sovint informació incomplerta (per exemple, sense durada, tipus…)</string>
@@ -512,7 +509,7 @@
     <string name="error_report_open_github_notice">Si us plau, comproveu abans si el problema que ha causat aquesta fallada ja ha estat informat. Els tiquets per duplicat fan que perdem temps que podríem aprofitar resolent-los.</string>
     <string name="error_report_open_issue_button_text">Avisa del problema a GitHub</string>
     <string name="copy_for_github">Copia l\'informe d\'errors</string>
-    <string name="clear_cookie_summary">Esborra les galetes que NewPipe desa quan resoleu un reCAPTCHA</string>
+    <string name="clear_cookie_summary">Esborra les galetes que Merak desa quan resoleu un reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Les galetes del reCAPTCHA han estat esborrades</string>
     <string name="clear_cookie_title">Esborra les galetes del reCAPTCHA</string>
     <string name="hash_channel_description">Notificacions pel progrés de comprovació de vídeo</string>
@@ -549,16 +546,16 @@
     <string name="open_with">Obre amb</string>
     <string name="radio">Ràdio</string>
     <string name="featured">Destacats</string>
-    <string name="paid_content">Aquests contingut és només accessible per usuaris de pagament, així que no pot ésser ni reproduït ni baixat pel NewPipe.</string>
-    <string name="youtube_music_premium_content">Aquest vídeo és només disponible pels usuaris subscriptors de YouTube Music Premium, així que no pot ésser ni reproduït ni baixat pel NewPipe.</string>
-    <string name="private_content">Aquest contingut és privat, així que no pot ésser ni reproduït ni baixat amb el NewPipe.</string>
-    <string name="soundcloud_go_plus_content">Aquesta és una pista de SoundCloud Go+ des del territori on us trobeu, així que no pot ésser reproduïda o baixada pel NewPipe.</string>
+    <string name="paid_content">Aquests contingut és només accessible per usuaris de pagament, així que no pot ésser ni reproduït ni baixat pel Merak.</string>
+    <string name="youtube_music_premium_content">Aquest vídeo és només disponible pels usuaris subscriptors de YouTube Music Premium, així que no pot ésser ni reproduït ni baixat pel Merak.</string>
+    <string name="private_content">Aquest contingut és privat, així que no pot ésser ni reproduït ni baixat amb el Merak.</string>
+    <string name="soundcloud_go_plus_content">Aquesta és una pista de SoundCloud Go+ des del territori on us trobeu, així que no pot ésser reproduïda o baixada pel Merak.</string>
     <string name="georestricted_content">Aquest contingut no és disponible al vostre territori.</string>
     <string name="no_app_to_open_intent">El vostre dispositiu no té cap aplicació capaç d\'obrir aquest tipus de contingut</string>
     <string name="crash_the_app">Força l\'aturada de l\'aplicació</string>
     <string name="recaptcha_solve">Resol</string>
     <string name="related_items_tab_description">Reproduccions en directe relacionades</string>
-    <string name="restricted_video_no_stream">Aquest vídeo té restriccions d\'edat. \nDegut a la nova política d\'edat de YouTube, el NewPipe no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
+    <string name="restricted_video_no_stream">Aquest vídeo té restriccions d\'edat. \nDegut a la nova política d\'edat de YouTube, el Merak no pot accedir a aquest contingut i per tant no pot reproduir-lo.</string>
     <string name="show_description_summary">Desactiveu per amagar la descripció i la informació addicional del vídeo</string>
     <string name="disable_media_tunneling_title">Desactiva l\'entunelament del contingut</string>
     <string name="off">Desactiva</string>
@@ -586,7 +583,7 @@
     <string name="night_theme_summary">Selecciona el teu tema fosc favorit — %s</string>
     <string name="auto_device_theme_title">Automàtic (tema del dispositiu)</string>
     <string name="account_terminated">Usuari suspes</string>
-    <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat. \nNewPipe no serà capaç de carregar aquest fil en el futur. \nUs voleu desubscriure d\'aquest canal?</string>
+    <string name="feed_load_error_terminated">El compte de l\'autor ha estat esborrat. \nMerak no serà capaç de carregar aquest fil en el futur. \nUs voleu desubscriure d\'aquest canal?</string>
     <string name="feed_load_error_account_info">No s\'ha pogut carregar el contingut per \'%s\'.</string>
     <string name="feed_load_error">Error carregant contingut</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ara se\'t pregunrarà on vols guardar cada descàrrega</string>
@@ -619,7 +616,7 @@
     <string name="no_appropriate_file_manager_message">No s\'ha trobat cap gestor de fitxers adequat per a aquesta acció. \nInstal·leu un gestor de fitxers o intenteu desactivar «%s» als paràmetres de baixada</string>
     <string name="error_report_notification_toast">S\'ha produït un error, consulteu la notificació</string>
     <string name="enqueued_next">Afegit el següent vídeo a la cua</string>
-    <string name="error_report_notification_title">NewPipe ha trobat un error, toca per informar</string>
+    <string name="error_report_notification_title">Merak ha trobat un error, toca per informar</string>
     <string name="enqueue_next_stream">Posa a la cua el següent vídeo</string>
     <string name="create_error_notification">Crear una notificació d\'error</string>
     <string name="error_report_channel_description">Notificacions per informar d\'errors</string>
@@ -701,7 +698,7 @@
     <string name="playlist_add_stream_success_duplicate">Duplicat afegit/s %d vegada/es</string>
     <string name="disable_media_tunneling_automatic_info">El túnel multimèdia s\'ha desactivat de manera predeterminada al dispositiu perquè se sap que el vostre model de dispositiu no ho permet.</string>
     <string name="semitone">Semiton</string>
-    <string name="app_update_unavailable_toast">Estàs fent servir la darrera versió de NewPipe</string>
+    <string name="app_update_unavailable_toast">Estàs fent servir la darrera versió de Merak</string>
     <string name="error_insufficient_storage">No hi ha prou espai lliure al dispositiu</string>
     <string name="tab_bookmarks_short">Llistes de reproducció</string>
     <string name="card">Targeta</string>
@@ -709,7 +706,7 @@
     <string name="channel_tab_playlists">Llistes de reproducció</string>
     <string name="remove_duplicates">Suprimeix els duplicats</string>
     <string name="reset_settings_title">Restableix la configuració</string>
-    <string name="auto_update_check_description">NewPipe pot cercar automàticament actualitzacions i fer-t\'ho saber en estar disponibles.\nVols habilitar-ho?</string>
+    <string name="auto_update_check_description">Merak pot cercar automàticament actualitzacions i fer-t\'ho saber en estar disponibles.\nVols habilitar-ho?</string>
     <string name="remove_duplicates_title">Suprimeixo els duplicats?</string>
     <string name="reset_settings_summary">Restableix tots els paràmetres als valors per defecte</string>
     <string name="reset_all_settings">Restablir tots els paràmetres descartarà els teus paràmetres preferits i reiniciarà l\'aplicació.\n\nN\'estàs segur?</string>
@@ -834,15 +831,14 @@
     <string name="account_terminated_service_provides_reason">Compte cancel·lat %1$s proporciona aquest motiu: %2$s</string>
     <string name="migration_info_6_7_title">Pàgina Top 50 de SoundCloud eliminada</string>
     <string name="migration_info_6_7_message">SoundCloud ha descontinuat les llistes Top 50 originals. La pestanya corresponent s\'ha eliminat de la pàgina principal.</string>
-    <string name="migration_info_7_8_message">YouTube va descontinuar la pàgina de tendències combinades a partir del 21 de juliol de 2025. NewPipe va reemplaçar la pàgina de tendències predeterminada amb les transmissions en viu de tendències.\n\nTambé podeu seleccionar diferents pàgines de tendències a \"Configuració &gt; Contingut &gt; Contingut de la pàgina principal\".</string>
+    <string name="migration_info_7_8_message">YouTube va descontinuar la pàgina de tendències combinades a partir del 21 de juliol de 2025. Merak va reemplaçar la pàgina de tendències predeterminada amb les transmissions en viu de tendències.\n\nTambé podeu seleccionar diferents pàgines de tendències a \"Configuració &gt; Contingut &gt; Contingut de la pàgina principal\".</string>
     <string name="player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per l\'expiració de la URL de transmissió o un bloqueig d\'IP.</string>
     <string name="player_http_invalid_status">Error HTTP %1$s rebut del servidor durant la reproducció</string>
     <string name="youtube_player_http_403">Error HTTP 403 rebut del servidor durant la reproducció, probablement causat per un bloqueig d\'IP o problemes de desofuscació de la URL de transmissió</string>
     <string name="sign_in_confirm_not_bot_error">\'\'%1$s es va negar a proporcionar dades, sol·licitant un inici de sessió per confirmar que el sol·licitant no és un bot.\n\nÉs possible que %1$s hagi bloquejat temporalment la vostra IP. Pots esperar un temps o canviar a una IP diferent (per exemple, activant/desactivant una VPN o canviant de Wi-Fi a dades mòbils).\n\nConsulta <a href="%2$s">aquesta entrada de preguntes freqüents</a> per obtenir més informació’</string>
     <string name="unsupported_content_in_country">Aquest contingut no està disponible per al país de contingut seleccionat actualment.\n\nCanvia la teva selecció a \"Paràmetres &gt; Contingut &gt; País de contingut predeterminat\".</string>
-    <string name="kao_dialog_warning">A l\'agost del 2025, Google va anunciar que, a partir del setembre del 2026, la instal·lació d\'aplicacions requerirà la verificació del desenvolupador per a totes les aplicacions d\'Android en dispositius certificats, incloses les instal·lades fora de la Play Store. Com que els desenvolupadors de NewPipe no estan d\'acord amb aquest requisit, NewPipe deixarà de funcionar en dispositius Android certificats després d\'aquesta data.</string>
-    <string name="api23_requirement_dialog_title">NewPipe deixarà de ser compatible amb Android 5.</string>
-    <string name="api23_requirement_dialog_message">Malauradament, NewPipe depèn d\'algunes biblioteques que van deixar de ser compatibles amb Android 5.0 i 5.1. Per tant, la propera versió de NewPipe només funcionarà en dispositius amb Android 6 o superior. Llegeix més a la publicació del bloc.</string>
+    <string name="api23_requirement_dialog_title">Merak deixarà de ser compatible amb Android 5.</string>
+    <string name="api23_requirement_dialog_message">Malauradament, Merak depèn d\'algunes biblioteques que van deixar de ser compatibles amb Android 5.0 i 5.1. Per tant, la propera versió de Merak només funcionarà en dispositius amb Android 6 o superior. Llegeix més a la publicació del bloc.</string>
     <string name="channel_tab_podcasts">pòdcasts</string>
     <string name="channel_tab_courses">Cursos</string>
 </resources>

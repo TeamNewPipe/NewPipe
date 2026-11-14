@@ -89,16 +89,10 @@
     <string name="action_history">ചരിത്രം</string>
     <string name="title_activity_history">ചരിത്രം</string>
     <string name="read_full_license">ലൈസൻസ് വായിക്കൂ</string>
-    <string name="app_license">കോപ്പി‌ലെഫ്റ്റ് ലിബ്രെ സോഫ്റ്റ്വെയറാണ് ന്യൂ‌പൈപ്പ്: നിങ്ങൾക്ക് അത് ഉപയോഗിക്കാനും പഠിക്കാനും പങ്കിടാനും ഇഷ്ടാനുസരണം മെച്ചപ്പെടുത്താനും കഴിയും. സ്വതന്ത്ര സോഫ്റ്റ്‌വെയർ ഫൗണ്ടേഷൻ പ്രസിദ്ധീകരിച്ച ഗ്നു ജനറൽ പബ്ലിക് ലൈസൻസിന്റെ നിബന്ധനകൾ പ്രകാരം, ലൈസൻസിന്റെ മൂന്നാം പതിപ്പ് അല്ലെങ്കിൽ (നിങ്ങളുടെ ഓപ്ഷനിൽ) പിന്നീടുള്ള ഏതെങ്കിലും പതിപ്പ് പ്രകാരം നിങ്ങൾക്ക് ഇത് പുനർവിതരണം ചെയ്യാനും / അല്ലെങ്കിൽ പരിഷ്ക്കരിക്കാനും കഴിയും.</string>
-    <string name="app_license_title">ന്യൂപൈപ്പിന്റെ ലൈസൻസ്</string>
     <string name="read_privacy_policy">സ്വകാര്യതാനയം വായിക്കൂ</string>
-    <string name="privacy_policy_encouragement">ദ ന്യൂപൈപ്പ് പ്രോജക്ട് നിങ്ങളുടെ സ്വകാര്യതയെ മാനിക്കുന്നു. അതുകൊണ്ടുതന്നെ, നിങ്ങളുടെ ഒരു ഡേറ്റയും ഞങ്ങൾ ശേഖരിക്കുന്നില്ല. \nനിങ്ങൾ ഒരു ക്രാഷ് റിപ്പോർട്ട് അയക്കുമ്പോൾ അതിൻപ്രകാരം എന്ത് ഡാറ്റ ആണ് ശേഖരിക്കുന്നെന്നും സൂക്ഷിക്കുന്നതെന്നുമൊക്കെ ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാനയം വ്യകതമാക്കുന്നതാണ്.</string>
-    <string name="privacy_policy_title">ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാനയം</string>
-    <string name="website_encouragement">കൂടുതൽ വിവരങ്ങൾക്കും വാർത്തകൾക്കും ന്യൂപൈപ്പിന്റെ വെബ്സൈറ്റ് സന്ദർശിക്കുക.</string>
     <string name="website_title">വെബ്സൈറ്റ്</string>
     <string name="give_back">തിരികെ നൽകുക</string>
     <string name="info_labels">എന്താണ്:\nഅപേക്ഷ:\nഉള്ളടക്കത്തിന്റെ ഭാഷ:\nഉള്ളടക്കത്തിന്റെ രാജ്യം:\n അപ്ലിക്കേഷന്റെ ഭാഷ:\nസേവനം:\nGMT സമയം:\nപാക്കേജ്:\nപതിപ്പ്:\nOS ന്റെ പതിപ്പ്:</string>
-    <string name="donation_encouragement">നിങ്ങൾക്ക് മികച്ച ഉപഭോക്തൃ അനുഭവം നൽകാനായി പ്രയത്‌നിക്കുന്ന ലോകമെമ്പാടുമുള്ള വൊളന്റിയർമാരാണ് ന്യൂപൈപ്പിന്റെ ശക്തി. ന്യൂപൈപ്പിനെ ഇനിയും മികവുറ്റതാക്കാൻ നിങ്ങൾക്ക് കഴിയും, നിങ്ങളുടെ സംഭാവനയിലൂടെ.</string>
     <string name="donation_title">സംഭാവന ചെയ്യുക</string>
     <string name="view_on_github">ജിറ്റ്ഹബിൽ കാണുക</string>
     <string name="contribution_encouragement">തർജ്ജമയോ, ഡിസൈൻ മാറ്റങ്ങളോ, കോഡിങ് പരിപാടിയോ, എന്തുമാവട്ടെ, സഹായം എന്നും സ്വാഗതാർഹമാണ്. ഒത്തു പിടിച്ചാൽ മലയും പോരുംന്നല്ലേ!</string>
@@ -108,7 +102,6 @@
     <string name="tab_about">കുറിച്ച്</string>
     <string name="copyright" formatted="true">%3$s ന്റെ കീഴിൽ %2$s ന്റെ ©%1$s</string>
     <string name="title_licenses">തേർഡ്-പാർട്ടി ലൈസൻസുകൾ</string>
-    <string name="title_activity_about">ന്യൂപൈപ്പിനെക്കുറിച്ച്</string>
     <string name="charset_most_special_characters">പ്രത്യേക അടയാളങ്ങൾ</string>
     <string name="charset_letters_and_digits">അക്ഷരങ്ങളും അക്കങ്ങളും</string>
     <string name="settings_file_replacement_character_title">പകരം ഉപയോഗിക്കാവുന്ന അടയാളം</string>
@@ -125,7 +118,6 @@
     <string name="msg_copied">ക്ലിപ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="msg_wait">കാത്തിരിക്കു…</string>
     <string name="msg_running_detail">വിശദാംശങ്ങൾക്കായി തൊടൂ</string>
-    <string name="msg_running">ന്യൂപൈപ്പ് ഡൗൺലോഡിങ്ങ്</string>
     <string name="msg_error">പിശക്</string>
     <string name="msg_threads">ത്രെഡുകൾ</string>
     <string name="msg_name">ഫയൽനാമം</string>
@@ -228,15 +220,11 @@
     <string name="export_data_title">ഡാറ്റാബേസ് കയറ്റുമതി ചെയ്യുക</string>
     <string name="import_data_title">ഡാറ്റാബേസ് അവതരിപ്പിക്കുക</string>
     <string name="accept">അംഗീകരിക്കുക</string>
-    <string name="start_accept_privacy_policy">യൂറോപ്യൻ ജനറൽ ഡാറ്റാ പ്രൊട്ടക്ഷൻ റെഗുലേഷൻ (ജിഡിപിആർ) അനുസരിക്കുന്നതിന്, ന്യൂപൈപ്പിന്റെ സ്വകാര്യതാ നയത്തിലേക്ക് ഞങ്ങൾ നിങ്ങളുടെ ശ്രദ്ധ ആകർഷിക്കുന്നു. ദയവായി ഇത് ശ്രദ്ധാപൂർവ്വം വായിക്കുക. \nബഗ് റിപ്പോർട്ട് ഞങ്ങൾക്ക് അയയ്ക്കാൻ നിങ്ങൾ അത് അംഗീകരിക്കണം.</string>
     <string name="switch_to_main">പ്രധാനപ്പെട്ടതിലേക്ക് മാറുക</string>
     <string name="switch_to_popup">പോപ്പപ്പിലേക്ക് മാറുക</string>
     <string name="switch_to_background">ബാക്ക്ഗ്രൗണ്ടിലേക്ക്‌ മാറുക</string>
     <string name="unknown_content">[അജ്ഞാതം]</string>
-    <string name="app_update_notification_channel_description">പുതിയ ന്യൂപൈപ്പ് പതിപ്പിന് വേണ്ടിയുള്ള അറിയിപ്പ്</string>
     <string name="app_update_notification_channel_name">ആപ്പ് അപ്ഡേറ്റ് ചെയ്യാനുള്ള അറിയിപ്പ്</string>
-    <string name="notification_channel_description">ന്യൂപൈപ്പ് പ്ലേയറിന് വേണ്ടിയുള്ള അറിയിപ്പുകൾ</string>
-    <string name="notification_channel_name">ന്യൂപൈപ്പ് അറിയിപ്പ്</string>
     <string name="file">ഫയൽ</string>
     <string name="just_once">ഒരിക്കൽ മാത്രം</string>
     <string name="always">എപ്പോഴും</string>
@@ -366,8 +354,6 @@
     <string name="no_player_found">സ്ട്രീം പ്ലയർ കണ്ടെത്താനായില്ല. VLC ഇൻസ്റ്റാൾ ചെയ്യട്ടെ?</string>
     <string name="upload_date_text">%1$s - ന് പ്രസിദ്ധീകരിച്ചു</string>
     <string name="main_bg_subtitle">തുടങ്ങാൻ \"തിരയൽ\" അമർത്തുക.</string>
-    <string name="content_not_supported">ഈ ഉള്ളടക്കത്തെ ഇതുവരെ ന്യൂ‌പൈപ്പ് പിന്തുണയ്‌ക്കുന്നില്ല. \n \nഭാവിയിലെ ഒരു പതിപ്പിൽ ഇത് പിന്തുണയ്‌ക്കുമെന്ന് പ്രതീക്ഷിക്കുന്നു.</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">ഫീഡ് ലോഡിംഗ് വളരെ മന്ദഗതിയിലാണെന്ന് നിങ്ങൾ കരുതുന്നുണ്ടോ? അങ്ങനെയാണെങ്കിൽ, വേഗത്തിലുള്ള ലോഡിംഗ് പ്രവർത്തനക്ഷമമാക്കാൻ ശ്രമിക്കുക (നിങ്ങൾക്ക് ഇത് ക്രമീകരണങ്ങളിലോ ചുവടെയുള്ള ബട്ടൺ അമർത്തിയോ മാറ്റാം). \n \nന്യൂപൈപ്പ് രണ്ട് ഫീഡ് ലോഡിംഗ് തന്ത്രങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു: \nSlow സബ്‌സ്‌ക്രിപ്‌ഷൻ ചാനൽ മുഴുവനും ലഭ്യമാക്കുന്നു, അത് മന്ദഗതിയിലുള്ളതും എന്നാൽ പൂർണ്ണവുമാണ്. \nA ഒരു സമർപ്പിത സേവന എൻ‌ഡ്‌പോയിൻറ് ഉപയോഗിക്കുന്നു, അത് വേഗതയേറിയതും എന്നാൽ സാധാരണയായി പൂർത്തിയാകാത്തതുമാണ്. \n \nരണ്ടും തമ്മിലുള്ള വ്യത്യാസം, വേഗതയേറിയവയ്ക്ക് സാധാരണയായി ഇനത്തിന്റെ ദൈർഘ്യം അല്ലെങ്കിൽ തരം (തത്സമയ വീഡിയോകളും സാധാരണ വീഡിയോകളും തമ്മിൽ വേർതിരിച്ചറിയാൻ കഴിയില്ല) പോലുള്ള ചില വിവരങ്ങൾ ഇല്ല എന്നതാണ്, മാത്രമല്ല ഇത് കുറച്ച് ഇനങ്ങൾ തിരികെ നൽകിയേക്കാം. \n \nRSS ഫീഡിനൊപ്പം ഈ വേഗത്തിലുള്ള രീതി വാഗ്ദാനം ചെയ്യുന്ന ഒരു സേവനത്തിന്റെ ഉദാഹരണമാണ് YouTube. \n \nഅതിനാൽ ചോയ്‌സ് നിങ്ങൾ ഇഷ്ടപ്പെടുന്നതിലേക്ക് തിളച്ചുമറിയുന്നു: വേഗത അല്ലെങ്കിൽ കൃത്യമായ വിവരങ്ങൾ.</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">ഫാസ്റ്റ് മോഡ് അപ്രാപ്തമാക്കുക</string>
     <string name="enqueue">ക്യൂ</string>
     <string name="recovering">വീണ്ടെടുക്കുന്നു</string>
@@ -376,7 +362,6 @@
     <string name="paused">താൽക്കാലികമായി നിർത്തി</string>
     <string name="missions_header_pending">ശേഷിക്കുന്നു</string>
     <string name="missions_header_finished">പൂർത്തിയായി</string>
-    <string name="app_update_available_notification_title">ന്യൂപൈപ്പ് അപ്‌ഡേറ്റ് ലഭ്യമാണ്!</string>
     <string name="auto">ഓട്ടോ</string>
     <string name="grid">ഗ്രിഡ്</string>
     <string name="list">ലിസ്റ്റ്</string>
@@ -458,7 +443,6 @@
     <string name="error_timeout">കണക്ഷൻ കാലഹരണപ്പെട്ടു</string>
     <string name="error_progress_lost">ഫയൽ ഇല്ലാതാക്കിയതിനാൽ പുരോഗതി നഷ്‌ടപ്പെട്ടു</string>
     <string name="error_insufficient_storage_left">ഉപകരണത്തിൽ ഇനിയൊരു സ്ഥലവും ബാക്കിയില്ല</string>
-    <string name="error_postprocessing_stopped">ഫയലിൽ പ്രവർത്തിക്കുമ്പോൾ ന്യൂപൈപ്പ് അടച്ചു</string>
     <string name="error_postprocessing_failed">പോസ്റ്റ്-പ്രോസസ്സിംഗ് പരാജയപ്പെട്ടു</string>
     <string name="error_http_not_found">കണ്ടെത്താനായില്ല</string>
     <string name="error_http_unsupported_range">മൾട്ടി-ത്രെഡഡ് ഡൗൺലോഡുകൾ‌ സെർ‌വർ‌ സ്വീകരിക്കുന്നില്ല, വീണ്ടും ശ്രമിക്കുക @string/msg_threads = 1</string>
@@ -507,10 +491,6 @@
     <string name="auto_device_theme_title">യാന്ത്രികം (ഉപകരണ തീം)</string>
     <string name="radio">റേഡിയോ</string>
     <string name="featured">തിരഞ്ഞെടുത്തത്</string>
-    <string name="paid_content">പണമടച്ച ഉപയോക്താക്കൾക്ക് മാത്രമേ ഈ ഉള്ളടക്കം ലഭ്യമാകൂ, അതിനാൽ ഇത് ന്യൂപൈപ്പ് സ്ട്രീം ചെയ്യാനോ ഡൗൺലോഡ് ചെയ്യാനോ കഴിയില്ല.</string>
-    <string name="youtube_music_premium_content">ഈ വീഡിയോ യൂട്യൂബ് മ്യൂസിക് പ്രീമിയം അംഗങ്ങൾക്ക് മാത്രമേ ലഭ്യമാകൂ, അതിനാൽ ഇത് ന്യൂപൈപ്പ് സ്ട്രീം ചെയ്യാനോ ഡൗൺലോഡ് ചെയ്യാനോ കഴിയില്ല.</string>
-    <string name="private_content">ഈ ഉള്ളടക്കം സ്വകാര്യമാണ്, അതിനാൽ ഇത് ന്യൂപൈപ്പ് സ്ട്രീം ചെയ്യാനോ ഡൗൺലോഡ് ചെയ്യാനോ കഴിയില്ല.</string>
-    <string name="soundcloud_go_plus_content">ഇത് നിങ്ങളുടെ രാജ്യത്തെങ്കിലും ഒരു സൗണ്ട്ക്ലൗഡ് ഗോ + ട്രാക്കാണ്, അതിനാൽ ഇത് ന്യൂപൈപ്പ് സ്ട്രീം ചെയ്യാനോ ഡൗൺലോഡ് ചെയ്യാനോ കഴിയില്ല.</string>
     <string name="georestricted_content">ഈ ഉള്ളടക്കം നിങ്ങളുടെ രാജ്യത്ത് ലഭ്യമല്ല.</string>
     <string name="no_app_to_open_intent">നിങ്ങളുടെ ഉപകരണത്തിലെ ഒരു അപ്ലിക്കേഷനും ഇത് തുറക്കാൻ കഴിയില്ല</string>
     <string name="chapters">അധ്യായങ്ങൾ</string>
@@ -531,12 +511,10 @@
     <string name="description_tab_description">വിവരണം</string>
     <string name="related_items_tab_description">അനുബന്ധ ഇനങ്ങൾ</string>
     <string name="comments_tab_description">അഭിപ്രായങ്ങൾ</string>
-    <string name="clear_cookie_summary">നിങ്ങൾ ഒരു reCAPTCHA പരിഹരിക്കുമ്പോൾ ന്യൂപൈപ്പ് സംഭരിക്കുന്ന കുക്കികൾ മായ്‌ക്കുക</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA കുക്കികൾ‌ മായ്‌ച്ചു</string>
     <string name="clear_cookie_title">ReCAPTCHA കുക്കികൾ മായ്‌ക്കുക</string>
     <string name="hash_channel_description">വീഡിയോ ഹാഷിംഗ് പുരോഗതിക്കായുള്ള അറിയിപ്പുകൾ</string>
     <string name="hash_channel_name">വീഡിയോ ഹാഷ് അറിയിപ്പ്</string>
-    <string name="restricted_video_no_stream">ഈ വീഡിയോ പ്രായപരിധി നിർണ്ണയിച്ചിരിക്കുന്നു. \nപ്രായ-നിയന്ത്രിത വീഡിയോകളുള്ള പുതിയ യൂട്യൂബ് നയങ്ങൾ കാരണം, ന്യൂപൈപ്പിന് അതിന്റെ വീഡിയോ സ്ട്രീമുകളിലൊന്നും ആക്സസ് ചെയ്യാൻ കഴിയില്ല, അതിനാൽ ഇത് പ്ലേ ചെയ്യാൻ കഴിയില്ല.</string>
     <string name="youtube_restricted_mode_enabled_summary">പക്വതയുള്ള ഉള്ളടക്കം മറയ്ക്കുന്ന \"നിയന്ത്രിത മോഡ്\" യൂട്യൂബ് നൽകുന്നു</string>
     <string name="show_age_restricted_content_summary">കുട്ടികൾക്ക് അനുയോജ്യമല്ലാത്ത ഉള്ളടക്കം കാണിക്കുക കാരണം അതിന് പ്രായപരിധി ഉണ്ട് (18+ പോലെ)</string>
     <string name="unsupported_url_dialog_message">URL തിരിച്ചറിയാൻ കഴിഞ്ഞില്ല. മറ്റൊരു അപ്ലിക്കേഷൻ ഉപയോഗിച്ച് തുറക്കണോ?</string>
@@ -580,7 +558,6 @@
     <string name="description_select_note">താക്കൾക് ഇപ്പോൾ ഡിസ്ക്രിപ്ഷൻ ബോക്സിലെ ടെക്സ്റ്റ്‌ തിരഞ്ഞെടുക്കാൻ സാധിക്കും. ശ്രെദ്ധിക്കുക സെലെക്ഷൻ മോഡിൽ പേജ് ചിലപ്പോൾ മിന്നുകയും ലിങ്കുകൾ ക്ലിക്ക് ചെയ്യാനാകാതെയും വന്നേക്കാം.</string>
     <string name="account_terminated">അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു</string>
     <string name="feed_load_error_fast_unknown">ഫാസ്റ്റ് ഫീഡ് മോഡ് കൂടുതൽ വിവരങ്ങൾ നൽകില്ല.</string>
-    <string name="feed_load_error_terminated">സൃഷ്ടാവിന്റെ അക്കൗണ്ട് ഇല്ലാതായിരിക്കുന്നു. \nഭാവിയിൽ ഫീഡ് ലോഡ് ചെയ്യാൻ ന്യൂ പൈപ്പിന് സാധിക്കില്ല. \nതാക്കൾക്ക് ഈ ചാനൽ അൺ സബ്സ്ക്രൈബ് ചെയ്യണോ?</string>
     <string name="feed_load_error_account_info">\'%s\' ലെ ഫീഡ് ലോഡ് ചെയ്യാൻ സാധികില്ല.</string>
     <string name="feed_load_error">ഫീഡ് ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചിരിക്കുന്നു</string>
     <string name="downloads_storage_use_saf_summary_api_29">ആൻഡ്രോയ്ഡ് 10 മുതൽ മാത്രമേ \"സ്റ്റോറേജ് അക്സസ് ഫ്രെയിംവർക്ക്\" പിന്തുണക്കു</string>

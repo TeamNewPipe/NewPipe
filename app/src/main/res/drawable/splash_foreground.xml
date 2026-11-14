@@ -1,10 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Merak glyph: a Balkan tapan drum with crossed drumsticks (original design).
+     Geometry uses the 108-unit adaptive-icon canvas, cropped to the glyph.
+     Generated; edit the renderer to change it. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="100dp"
     android:height="100dp"
-    android:viewportWidth="100"
-    android:viewportHeight="100">
-    <path
-        android:fillColor="#ffffff"
-        android:pathData="m23.909,10.211v78.869c0,0 7.7,-4.556 12.4,-7.337V67.477,56.739 31.686c0,0 3.707,2.173 8.948,5.24 6.263,3.579 14.57,8.565 21.473,12.655 -9.358,5.483 -16.8,9.876 -22.496,13.234V77.053C57.974,68.927 75.176,58.762 90.762,49.581 75.551,40.634 57.144,29.768 43.467,21.715 31.963,14.94 23.909,10.211 23.909,10.211Z"
-        android:strokeWidth="1.2782383" />
+    android:viewportWidth="54"
+    android:viewportHeight="54">
+    <group
+        android:translateX="-27"
+        android:translateY="-24">
+        <path
+            android:fillColor="#ffffff"
+            android:pathData="M32,44L32,68A22,7 0 0,0 76,68L76,44Z" />
+        <path
+            android:fillColor="#ffffff"
+            android:pathData="M32,44a22,7 0 1,0 44,0a22,7 0 1,0 -44,0" />
+        <path
+            android:pathData="M32,44A22,7 0 0,0 76,44"
+            android:strokeWidth="1.8"
+            android:strokeColor="#5B3FD6" />
+        <path
+            android:pathData="M32,63A22,7 0 0,0 76,63"
+            android:strokeWidth="1.8"
+            android:strokeColor="#5B3FD6" />
+        <path
+            android:pathData="M35.5,50.99L41.67,65.6L47.83,53.92L54,66.8L60.17,53.92L66.33,65.6L72.5,50.99"
+            android:strokeWidth="1.8"
+            android:strokeColor="#5B3FD6" />
+        <path
+            android:pathData="M40,27L61,40.5"
+            android:strokeWidth="6.8"
+            android:strokeColor="#5B3FD6"
+            android:strokeLineCap="round" />
+        <path
+            android:fillColor="#5B3FD6"
+            android:pathData="M56.2,40.5a4.8,4.8 0 1,0 9.6,0a4.8,4.8 0 1,0 -9.6,0" />
+        <path
+            android:pathData="M40,27L61,40.5"
+            android:strokeWidth="3.2"
+            android:strokeColor="#ffffff"
+            android:strokeLineCap="round" />
+        <path
+            android:fillColor="#ffffff"
+            android:pathData="M58,40.5a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+        <path
+            android:pathData="M68,27L47,40.5"
+            android:strokeWidth="6.8"
+            android:strokeColor="#5B3FD6"
+            android:strokeLineCap="round" />
+        <path
+            android:fillColor="#5B3FD6"
+            android:pathData="M42.2,40.5a4.8,4.8 0 1,0 9.6,0a4.8,4.8 0 1,0 -9.6,0" />
+        <path
+            android:pathData="M68,27L47,40.5"
+            android:strokeWidth="3.2"
+            android:strokeColor="#ffffff"
+            android:strokeLineCap="round" />
+        <path
+            android:fillColor="#ffffff"
+            android:pathData="M44,40.5a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+    </group>
 </vector>

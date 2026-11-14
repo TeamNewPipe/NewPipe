@@ -25,12 +25,11 @@
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
     <string name="no_views">कोई विऊ नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं</string>
-    <string name="title_activity_about">न्यूपाइप के बारे में जानें</string>
     <string name="title_licenses">थर्ड-पार्टी लाइसेंस</string>
     <string name="tab_about">ऐप के बारे में और सामान्य प्रश्न</string>
     <string name="tab_licenses">लाइसेंस</string>
     <string name="view_on_github">GitHub पर देखें</string>
-    <string name="app_license_title">NewPipe का लाइसेंस</string>
+    <string name="app_license_title">Merak का लाइसेंस</string>
     <string name="read_full_license">लाइसेंस पढ़ें</string>
     <string name="contribution_title">योगदान करें</string>
     <string name="title_activity_history">इतिहास</string>
@@ -95,8 +94,6 @@
     <string name="best_resolution">उत्तम रिजॉल्युशन</string>
     <string name="undo">अन-डू करें</string>
     <string name="play_all">सभी प्ले करें</string>
-    <string name="notification_channel_name">न्यूपाइप की नोटीफिकेशन</string>
-    <string name="notification_channel_description">न्यूपाइप के प्लेयर के लिए नोटिफ़िकेशन</string>
     <string name="unknown_content">[अज्ञात]</string>
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
@@ -147,7 +144,6 @@
     <string name="msg_name">फाइल का नाम</string>
     <string name="msg_threads">थ्रेड्स</string>
     <string name="msg_error">त्रुटी</string>
-    <string name="msg_running">न्यूपाइप डाउनलोड कर रही है</string>
     <string name="msg_running_detail">विवरण के लिए टैप करें</string>
     <string name="msg_wait">कृपया प्रतीक्षा करें…</string>
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
@@ -202,10 +198,8 @@
     <string name="dismiss">ख़ारिज करें</string>
     <string name="rename">नाम बदलें</string>
     <string name="donation_title">दान करें</string>
-    <string name="donation_encouragement">न्यूपाइप वॉलंटियर्स द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय इस एप्लिकेशन को देते हैं। डेवलपर्स को मदद भेजे, ताकि वह न्यूपाइप को और अच्छा बना सके।</string>
     <string name="give_back">वापस दो</string>
     <string name="website_title">वेबसाइट</string>
-    <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
     <string name="title_last_played">पिछला चलाया गया</string>
     <string name="title_most_played">अधिकतम चलाए गए</string>
     <string name="export_complete_toast">निर्यात संपन्न हुआ</string>
@@ -268,8 +262,6 @@
     <string name="error_occurred_detail">एक त्रुटी उत्पन्न हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नहीं है</string>
     <string name="one_item_deleted">एक आइटम मिटा दी गई।</string>
-    <string name="privacy_policy_title">न्यूपाइप की प्राइवेसी पॉलिसी</string>
-    <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहुत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नहीं करता।\nन्यूपाइप की गोपनीयता नीति विस्तार से समझाती है कि कौनसा डेटा भेजा और संग्रह किया जाता है जब आप क्रेश विवरण भेजते हैं।</string>
     <string name="read_privacy_policy">प्राइवेसी पॉलिसी पढ़ें</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते हैं?</string>
     <string name="preferred_open_action_settings_title">\'खोलने\' पर तरजीही एक्शन</string>
@@ -304,14 +296,12 @@
     <string name="minimize_on_exit_none_description">कोई नहीं</string>
     <string name="minimize_on_exit_background_description">बैकग्राउंड प्लेयर में बदलें</string>
     <string name="minimize_on_exit_popup_description">पॉपअप प्लेयर में बदलें</string>
-    <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
     <string name="unsubscribe">अनसब्सक्राईब करें</string>
     <string name="tab_choose">टैब चुनें</string>
     <string name="enqueue">कतारबद्ध करें</string>
     <string name="settings_category_updates_title">अपडेटस</string>
     <string name="file_deleted">फाइल मिटा दी गयी</string>
     <string name="app_update_notification_channel_name">ऐप अपडेट नोटीफिकेशन</string>
-    <string name="app_update_notification_channel_description">नए नयूपाईप अपडेट का नोटिफ़िकेशन</string>
     <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
     <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें?</string>
     <string name="restore_defaults">डिफ़ॉल्टस पुन: स्थापित करें</string>
@@ -320,7 +310,6 @@
     <string name="main_page_content_summary">मुख्य पृष्ठ पर कौन से टैब दिखाए जाते हैं</string>
     <string name="updates_setting_title">अपडेटस</string>
     <string name="list">सूची</string>
-    <string name="app_update_available_notification_title">न्यूपाइप अपडेट उपलब्ध!</string>
     <string name="missions_header_finished">समाप्त</string>
     <string name="missions_header_pending">अपूर्ण</string>
     <string name="paused">रोका हुआ</string>
@@ -363,7 +352,6 @@
     <string name="overwrite_finished_warning">इस नाम की डाउनलोड फ़ाइल पहले से मौजूद है</string>
     <string name="overwrite_failed">फाइल को ओवरराइट नहीं कर सकते</string>
     <string name="download_already_pending">इस नाम का एक डाउनलोड बाकी है</string>
-    <string name="error_postprocessing_stopped">फ़ाइल पर कार्य करते समय न्यूपाइप बंद किया गया</string>
     <string name="error_insufficient_storage_left">डिवाइस पर जगह समाप्त</string>
     <string name="error_progress_lost">प्रगति खो गई, क्योंकि फ़ाइल मिटा दी गई थी</string>
     <string name="error_timeout">कनेक्शन का समय समाप्त</string>
@@ -380,7 +368,6 @@
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाएं?</string>
     <string name="enable_disposed_exceptions_summary">हैंडलिंग के बाद फ्रैगमेंट या एक्टिविटी लूप के बाहर अनहैंडल्ड Rx एक्सेप्शन की रिपोर्टिंग को बलपूर्वक लागू करें</string>
     <string name="import_soundcloud_instructions">साउंडक्लाउड प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये: \n \n1. अपने वेब ब्राउज़र में \"डेस्कटॉप मोड\" चालू करें (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है) \n2. इस युआरएल को खोलें: %1$s \n3. लॉग इन करें \n4. आप जिस प्रोफाइल युआरएल पे भेजे जाते हैं उसे कॉपी करें।</string>
-    <string name="start_accept_privacy_policy">यूरोपीय जनरल डेटा प्रोटेक्शन रेगुलेशन (जीडीपीआर) का अनुपालन करने के लिए, हम आपका ध्यान न्यूपाइप की गोपनीयता नीति पे डालना चाहते हैं। इसे बारीकी से पढ़िए। \nआपको अगर हमें कोई त्रुटि रिपोर्ट भेजना हो तो इसे स्वीकार करना होगा।</string>
     <string name="saved_tabs_invalid_json">सहेजे टैब्स को पढ़ने में रूकावट, इसलिए सामान्य टैब्स का इस्तेमाल हो रहा है</string>
     <string name="updates_setting_description">जब नई अपडेट उपलब्ध हो, तब एप अपडेट करने के लिए अधिसूचना दिखाई जाये</string>
     <string name="list_view_mode">सूचि देखने वाला ढंग</string>
@@ -403,8 +390,6 @@
     </plurals>
     <string name="feed_use_dedicated_fetch_method_enable_button">तेज मोड सक्षम करें</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">तेज मोड अक्षम करें</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">क्या आपको लगता है कि फीड लोडिंग बहुत धीमी है? यदि ऐसा है, तो तेज़ लोडिंग को सक्षम करने का प्रयास करें (आप इसे सेटिंग्स में या नीचे दिए गए बटन को दबाकर बदल सकते हैं)। \n \nन्यूपाइप दो फीड लोडिंग रणनीति प्रदान करता है: \n• संपूर्ण सदस्यता चैनल प्राप्त करना, जो धीमा है लेकिन पूरा होता है। \n• एक समर्पित सेवा के समापन बिंदु का उपयोग करना, जो तेज़ है लेकिन आमतौर पर पूरा नहीं होता है। \n \nदोनों के बीच अंतर यह है कि तेज वाली रणनीति में आमतौर पर कुछ जानकारी का अभाव होता है, जैसे कि आइटम की अवधि या प्रकार (लाइव वीडियो और सामान्य वीडियो के बीच अंतर पता नहीं लगा सकते हैं) और ऐसा भी हो सकता है कि ये कम आइटम दिखाए। \n \nयूट्यूब ऐसी सेवा का एक उदाहरण है जो आरएसएस फ़ीड के साथ ये तेज़ विधि प्रदान करता है। \n \nतो आखिर में चुनाव आपकी पसंद पर है: गति या फिर सटीक जानकारी।</string>
-    <string name="content_not_supported">यह सामग्री फिलहाल न्यूपाइप सपोर्ट नहीं करता है। \n \nआशा है कि भविष्य के संस्करणों में सपोर्ट किया जायेगा।</string>
     <string name="detail_sub_channel_thumbnail_view_description">चैनल का अवतार थंमनेल</string>
     <string name="video_detail_by">%s के द्वारा</string>
     <string name="channel_created_by">%s के द्वारा बनाया गया</string>
@@ -488,22 +473,16 @@
     <string name="chapters">चैप्टर</string>
     <string name="no_app_to_open_intent">आपके डिवाइस का कोई भी ऐप इसे नहीं खोल सकता है</string>
     <string name="georestricted_content">यह सामग्री आपके देश में उपलब्ध नहीं है।</string>
-    <string name="soundcloud_go_plus_content">यह एक साउंडक्लाउड गो+ ट्रैक है, कम से कम आपके देश में, इस कारण इसे न्यूपाइप द्वारा स्ट्रीम या डाउनलोड नहीं किया जा सकता है।</string>
-    <string name="paid_content">यह सामग्री केवल उन उपयोगकर्ताओं के लिए उपलब्ध है, जिन्होंने भुगतान किया हो, इस कारण इसे न्यूपाइप द्वारा स्ट्रीम या डाउनलोड नहीं किया जा सकता है।</string>
-    <string name="youtube_music_premium_content">यह वीडियो सिर्फ यूट्यूब म्यूजिक के प्रीमियम सदस्यों के लिए ही उपलब्ध है, इसलिए इसे न्यूपाइप द्वारा स्ट्रीम या डाउनलोड नहीं किया जा सकता है।</string>
-    <string name="private_content">यह सामग्री प्राइवेट है, इसलिए इसे न्यूपाइप द्वारा स्ट्रीम या डाउनलोड नहीं किया जा सकता है।</string>
     <string name="radio">रेडियो</string>
     <string name="auto_device_theme_title">ऑटोमैटिक (डिवाइस थीम)</string>
     <string name="night_theme_summary">अपनी पसंदीदा नाइट थीम चुने — %s</string>
     <string name="select_night_theme_toast">आप अपनी पसंदीदा नाइट थीम नीचे चुन सकते हैं</string>
     <string name="download_has_started">डाउनलोड शुरू हुआ</string>
-    <string name="restricted_video_no_stream">यह वीडियो आयु-प्रतिबंधित है। \nयूट्यूब की नई नीतियों के कारण न्यूपाइप किसी भी आयु प्रतिबंधित वीडियो स्ट्रीम का इस्तेमाल नहीं कर सकता है और इस कारण इसे वीडियो को प्ले करने में असमर्थ है।</string>
     <string name="peertube_instance_url_title">पियरट्यूब इंसटैंस</string>
     <string name="featured">फीचर्ड</string>
     <string name="night_theme_title">रात्रि थीम</string>
     <string name="msg_calculating_hash">हैश की गणना कर रहा है</string>
     <string name="copy_for_github">फार्मेट की हूई रिपोर्ट कॉपी करें</string>
-    <string name="clear_cookie_summary">कुकी साफ़ करें जिसे न्यूपाइप आपके द्वारा रीकैप्चा हल करने पर संग्रहित करता है</string>
     <string name="peertube_instance_add_exists">इंसटैंस पहले से मौजूद है</string>
     <string name="peertube_instance_add_fail">इंसटैंस मान्य नहीं किया जा सका</string>
     <string name="peertube_instance_add_help">इंसटैंस यूआरएल दर्ज करें</string>
@@ -524,7 +503,6 @@
     <string name="streams_notification_channel_description">सब्सक्रिप्शनस की नई स्ट्रीमों के बारे में नोटिफ़िकेशन</string>
     <string name="error_report_channel_name">त्रुटि रिपोर्ट नोटीफिकेशन</string>
     <string name="error_report_channel_description">त्रुटियों की रिपोर्ट करने के लिए नोटिफ़िकेशन</string>
-    <string name="error_report_notification_title">न्यूपाइप को एक त्रुटि का सामना करना पड़ा, रिपोर्ट करने के लिए टैप करें</string>
     <string name="recaptcha_solve">हल करें</string>
     <string name="enqueue_stream">कतारबद्ध करें</string>
     <string name="title_activity_play_queue">प्ले कतार</string>
@@ -645,7 +623,6 @@
     <string name="feed_group_show_only_ungrouped_subscriptions">केवल असमूहीकृत सब्सक्रिप्शनस दिखाएं</string>
     <string name="feed_load_error_fast_unknown">फ़ास्ट फ़ीड मोड इस पर अधिक जानकारी प्रदान नहीं करता है।</string>
     <string name="feed_update_threshold_summary">अपडेट अंतराल जब सब्सक्रिप्शन फ़ीड दोबारा अपडेट किये जा सकें — %s</string>
-    <string name="feed_load_error_terminated">लेखक का खाता समाप्त कर दिया गया है। \nन्यूपाइप भविष्य में इस फीड को लोड नहीं कर पाएगा। \nक्या आप इस चैनल की सदस्यता समाप्त करना चाहते हैं?</string>
     <string name="selected_stream_external_player_not_supported">चयनित स्ट्रीम बाहरी प्लेयरस द्वारा समर्थित नहीं है</string>
     <string name="no_appropriate_file_manager_message_android_10">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला। \nकृपया स्टोरेज एक्सेस फ्रेमवर्क संगत फ़ाइल प्रबंधक इंस्टॉल करें</string>
     <string name="metadata_privacy_private">निजी</string>
@@ -665,7 +642,6 @@
     <string name="sort">क्रमबद्ध करें</string>
     <string name="fast_mode">तेज मोड</string>
     <string name="import_subscriptions_hint">3-बिंदु वाले मेन्यू से सब्सक्रिप्शनस आयात या निर्यात करें</string>
-    <string name="app_update_unavailable_toast">आप न्यूपाइप का नवीनतम संस्करण चला रहे हैं</string>
     <string name="app_update_available_notification_text">%s डाउनलोड करने के लिए टैप करें</string>
     <string name="night_theme_available">यह विकल्प केवल तभी उपलब्ध होता है जब थीम के लिए %s का चयन किया जाता है</string>
     <string name="unset_playlist_thumbnail">स्थायी थंमनेल अनसैंट करें</string>
@@ -763,7 +739,6 @@
     <string name="show_more">और दिखाओ</string>
     <string name="notification_actions_summary_android13">नीचे दी गई प्रत्येक अधिसूचना कार्रवाई पर टैप करके उसे संपादित करें। पहली तीन क्रियाएँ (चलाएँ/रोकें, पिछली और अगली) सिस्टम द्वारा निर्धारित की जाती हैं और इन्हें अनुकूलित नहीं किया जा सकता है।</string>
     <string name="show_less">कम दिखाएं</string>
-    <string name="auto_update_check_description">न्यूपाइप समय-समय पर स्वचालित रूप से नए संस्करणों की जांच कर सकती है और उपलब्ध होने पर आपको सूचित कर सकती है। \nक्या आप इसे सक्षम करना चाहते हैं?</string>
     <string name="reset_settings_title">सेटिंग्स रीसेट करें</string>
     <string name="reset_settings_summary">सभी सेटिंग्स को उनके डिफ़ॉल्ट मानों पर रीसेट करें</string>
     <string name="reset_all_settings">सभी सेटिंग्स को रीसेट करने से आपकी सभी पसंदीदा सेटिंग्स खारिज हो जाएंगी और ऐप पुनः प्रारंभ हो जाएगा। \n \nक्या आप सुनिश्चित रूप से आगे बढ़ना चाहते हैं?</string>
@@ -793,7 +768,7 @@
     <string name="migration_info_6_7_title">साउंडक्लाउड टॉप 50 पेज हटा दिया गया</string>
     <string name="migration_info_6_7_message">साउंडक्लाउड ने ओरिजिनल टॉप 50 चार्ट बंद कर दिए हैं। इससे जुड़ा टैब आपके मेन पेज से हटा दिया गया है।</string>
     <string name="migration_info_7_8_title">YouTube कंबाइंड ट्रेंडिंग हटा दी गई</string>
-    <string name="migration_info_7_8_message">YouTube ने 21 जुलाई 2025 से कंबाइंड ट्रेंडिंग पेज बंद कर दिया है। NewPipe ने डिफ़ॉल्ट ट्रेंडिंग पेज को ट्रेंडिंग लाइवस्ट्रीम से बदल दिया है।\n\nआप \"सेटिंग्स &gt; कंटेंट &gt; मेन पेज कंटेंट\" में अलग-अलग ट्रेंडिंग पेज भी चुन सकते हैं।</string>
+    <string name="migration_info_7_8_message">YouTube ने 21 जुलाई 2025 से कंबाइंड ट्रेंडिंग पेज बंद कर दिया है। Merak ने डिफ़ॉल्ट ट्रेंडिंग पेज को ट्रेंडिंग लाइवस्ट्रीम से बदल दिया है।\n\nआप \"सेटिंग्स &gt; कंटेंट &gt; मेन पेज कंटेंट\" में अलग-अलग ट्रेंडिंग पेज भी चुन सकते हैं।</string>
     <string name="trending_gaming">गेमिंग ट्रेंडस</string>
     <string name="trending_podcasts">ट्रेंडिंग पॉडकास्ट</string>
     <string name="trending_movies">ट्रेंडिंग फिल्में और शो</string>
@@ -803,7 +778,6 @@
     <string name="youtube_player_http_403">पले करते समय सर्वर से HTTP error 403 मिला, जो शायद IP बैन या स्ट्रीमिंग URL डीओबफस्केशन की दिक्कतों की वजह से हुआ है</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ने डेटा देने से मना कर दिया, और यह कन्फर्म करने के लिए लॉगिन मांगा कि रिक्वेस्ट करने वाला बोट नहीं है।\n\nहो सकता है कि %1$s ने आपके IP को कुछ समय के लिए बैन कर दिया हो, आप कुछ समय इंतज़ार कर सकते हैं या किसी दूसरे IP पर स्विच कर सकते हैं (जैसे VPN ऑन/ऑफ करके, या WiFi से मोबाइल डेटा पर स्विच करके)।\n\nअधिक जानकारी के लिए कृपया <a href="%2$s">यह FAQ एंट्री</a> देखें।</string>
     <string name="unsupported_content_in_country">यह कंटेंट अभी चुने गए देश के कंटेंट के लिए उपलब्ध नहीं है।\n\n\"सेटिंग्स &gt; कंटेंट &gt; डिफ़ॉल्ट कंटेंट देश\" से अपना चुनाव बदलें।</string>
-    <string name="kao_dialog_warning">अगस्त 2025 में, Google ने घोषणा की कि सितंबर 2026 से, सर्टिफाइड डिवाइस पर सभी Android ऐप्स जिनमें Play Store के बाहर से इंस्टॉल किए गए ऐप्स भी शामिल हैं, को इंस्टॉल करने के लिए डेवलपर वेरिफिकेशन ज़रूरी होगा। चूंकि NewPipe के डेवलपर्स इस शर्त से सहमत नहीं हैं, इसलिए उस समय के बाद NewPipe सर्टिफाइड Android डिवाइस पर काम नहीं करेगा।</string>
     <string name="kao_dialog_more_info">विवरण</string>
     <string name="kao_solution">समाधान</string>
     <plurals name="export_subscriptions">
@@ -823,7 +797,7 @@
     <string name="import_subscriptions_summary">पिछले .json एक्सपोर्ट से सब्सक्रिप्शन इंपोर्ट करें</string>
     <string name="export_subscriptions_summary">अपनी सब्सक्रिप्शन को एक .json फ़ाइल में एक्सपोर्ट करें</string>
     <string name="import_from_previous_export">पिछले एक्सपोर्ट से इंपोर्ट करें</string>
-    <string name="api23_requirement_dialog_title">NewPipe, Android 5 के लिए सपोर्ट बंद कर रहा है</string>
-    <string name="api23_requirement_dialog_message">दुर्भाग्य से, NewPipe कुछ ऐसी लाइब्रेरीज़ पर निर्भर है जिन्होंने Android 5.0 और 5.1 के लिए सपोर्ट बंद कर दिया है। इसलिए, अफ़सोस की बात है कि NewPipe का अगला वर्शन सिर्फ़ Android 6 या उससे नए वर्शन वाले डिवाइस पर ही काम करेगा। ज़्यादा जानकारी के लिए ब्लॉग पोस्ट पढ़ें।</string>
+    <string name="api23_requirement_dialog_title">Merak, Android 5 के लिए सपोर्ट बंद कर रहा है</string>
+    <string name="api23_requirement_dialog_message">दुर्भाग्य से, Merak कुछ ऐसी लाइब्रेरीज़ पर निर्भर है जिन्होंने Android 5.0 और 5.1 के लिए सपोर्ट बंद कर दिया है। इसलिए, अफ़सोस की बात है कि Merak का अगला वर्शन सिर्फ़ Android 6 या उससे नए वर्शन वाले डिवाइस पर ही काम करेगा। ज़्यादा जानकारी के लिए ब्लॉग पोस्ट पढ़ें।</string>
     <string name="api23_requirement_dialog_blogpost">ब्लॉगपोस्ट</string>
 </resources>

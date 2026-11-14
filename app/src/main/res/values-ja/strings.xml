@@ -69,7 +69,7 @@
     <string name="msg_name">ファイル名</string>
     <string name="msg_threads">同時接続数</string>
     <string name="msg_error">エラー</string>
-    <string name="msg_running">ダウンロード中 (NewPipe)</string>
+    <string name="msg_running">ダウンロード中 (Merak)</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
@@ -100,14 +100,14 @@
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に表示する候補を選択します</string>
     <string name="best_resolution">最高</string>
-    <string name="title_activity_about">NewPipeについて</string>
+    <string name="title_activity_about">Merakについて</string>
     <string name="title_licenses">サードパーティライセンス</string>
     <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
     <string name="tab_about">概要とよくある質問</string>
     <string name="tab_licenses">ライセンス</string>
     <string name="app_description">Android向けの自由で軽量なストリーミングアプリ。</string>
     <string name="view_on_github">GitHubで見る</string>
-    <string name="app_license_title">NewPipeのライセンス</string>
+    <string name="app_license_title">Merakのライセンス</string>
     <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、大規模なコード変更など、どんな形の協力もいつでも歓迎します。手を加えるほど、より良いものになります！</string>
     <string name="read_full_license">ライセンスを読む</string>
     <string name="contribution_title">貢献する</string>
@@ -130,7 +130,7 @@
     <string name="settings_category_history_title">履歴とキャッシュ</string>
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
-    <string name="notification_channel_name">NewPipe の通知</string>
+    <string name="notification_channel_name">Merak の通知</string>
     <string name="unknown_content">[不明]</string>
     <string name="player_stream_failure">動画の再生ができませんでした</string>
     <string name="player_unrecoverable_failure">回復不能なエラーが発生しました</string>
@@ -144,9 +144,7 @@
     <string name="charset_letters_and_digits">文字と数字</string>
     <string name="charset_most_special_characters">文字と数字と、多くの特殊文字</string>
     <string name="donation_title">寄付する</string>
-    <string name="donation_encouragement">NewPipeは、最高のユーザー体験を届けるために、ボランティアが自由時間を使って開発しています。開発者がコーヒーを楽しみながらNewPipeをさらに良くできるよう、ぜひ支援してください。</string>
     <string name="website_title">ウェブサイト</string>
-    <string name="website_encouragement">詳しい情報や最新ニュースについては、NewPipeのウェブサイトをご覧ください。</string>
     <string name="title_activity_history">履歴</string>
     <string name="action_history">履歴</string>
     <string name="delete_item_search_history">このアイテムを検索履歴から削除しますか？</string>
@@ -244,7 +242,7 @@
     <string name="channels">チャンネル</string>
     <string name="playlists">プレイリスト</string>
     <string name="users">ユーザー</string>
-    <string name="privacy_policy_title">NewPipeのプライバシーポリシー</string>
+    <string name="privacy_policy_title">Merakのプライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを読む</string>
     <string name="use_inexact_seek_title">おおまかなシーク</string>
     <string name="use_inexact_seek_summary">おおまかなシークを使用することで精度が下がる代わりに高速にシークができます。5 秒、15 秒または 25 秒間隔のシークはできません</string>
@@ -261,15 +259,14 @@
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
-    <string name="privacy_policy_encouragement">NewPipeプロジェクトは、ユーザーのプライバシーを非常に重視しています。そのため、このアプリがユーザーの同意なくデータを収集することはありません。\nNewPipeのプライバシーポリシーでは、クラッシュレポートを送信した際に、どのようなデータが送信および保存されるかを詳しく説明しています。</string>
-    <string name="app_license">NewPipeは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
+    <string name="app_license">Merakは、コピーレフトの自由ソフトウェアです。自由に使用、研究、共有、改良できます。具体的には、フリーソフトウェア財団が公開しているGNU General Public Licenseのバージョン3、またはそれ以降の任意のバージョンの条件に従って、再配布や改変を行えます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生された動画</string>
     <string name="resize_zoom">拡大</string>
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しでキューに追加」のヒントを表示</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipe のプレイヤーの通知</string>
+    <string name="notification_channel_description">Merak のプレイヤーの通知</string>
     <string name="new_and_hot">新着と人気</string>
     <string name="hold_to_append">長押しでキューに追加</string>
     <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
@@ -305,19 +302,19 @@
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">更新</string>
     <string name="events">イベント</string>
-    <string name="app_update_notification_channel_description">新しい NewPipe バージョンの通知</string>
+    <string name="app_update_notification_channel_description">新しい Merak バージョンの通知</string>
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか?</string>
     <string name="subscribers_count_not_available">登録者数は利用できません</string>
     <string name="conferences">会議</string>
-    <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。 \n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
+    <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、Merakの個人情報保護方針にご注意ください。よく読んでください。 \n私たちに不具合報告を送るためには、これを受け入れなければなりません。</string>
     <string name="updates_setting_title">アプリの更新</string>
     <string name="list_view_mode">リストビュー モード</string>
     <string name="list">リスト</string>
     <string name="grid">グリッド</string>
     <string name="auto">自動</string>
-    <string name="app_update_available_notification_title">NewPipe のアップデートがあります！</string>
+    <string name="app_update_available_notification_title">Merak のアップデートがあります！</string>
     <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">順番に処理中</string>
     <string name="paused">一時停止</string>
@@ -368,7 +365,7 @@
     <string name="missing_file">ファイルが移動または削除されました</string>
     <string name="overwrite_failed">ファイルを上書きできません</string>
     <string name="download_already_pending">同じファイル名のダウンロードが既に進行中です</string>
-    <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
+    <string name="error_postprocessing_stopped">ファイルの作業中に Merak が閉じられました</string>
     <string name="error_insufficient_storage_left">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
     <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか?</string>
@@ -456,10 +453,10 @@
     <string name="feed_use_dedicated_fetch_method_summary">いくつかのサービスで利用可能。通常よりも高速ですが制限された情報が取得され、たいていの場合不完全です (例: 再生時間、種類、ライブ ステータスなどがない)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">高速モードを有効化</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">高速モードを無効化</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。 \n \nNewPipe は2つの読み込み方法を提供します: \n・登録チャンネル全体を取得します。これは低速ですが完全です。 \n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。 \n \n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。 \n \nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。 \n \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">フィードの読み込みが遅すぎると思いますか？ その場合、高速読み込みを有効化してみてください (設定、もしくは下のボタンを押して変更することができます)。 \n \nMerak は2つの読み込み方法を提供します: \n・登録チャンネル全体を取得します。これは低速ですが完全です。 \n・専用のサービス エンドポイントを使用します。これは高速ですが、たいていの場合不完全です。 \n \n2つの違いとして、高速なものは通常、再生時間や種類 (ライブと通常の動画を区別できない) などの情報が不足して、正しい量の情報より少なく取得することがあります。 \n \nYouTubeは、この高速な読み込み方法をRSSフィードで提供するサービスのひとつです。 \n \nつまり、読み込み方法の選択は速度または正確さのどちらを優先するか、あなたの好みによります。</string>
     <string name="infinite_videos">∞ の動画</string>
     <string name="more_than_100_videos">100 以上の動画</string>
-    <string name="content_not_supported">このコンテンツはまだ NewPipe でサポートされていません。 \n \n今後のバージョンでサポートされるかもしれません。</string>
+    <string name="content_not_supported">このコンテンツはまだ Merak でサポートされていません。 \n \n今後のバージョンでサポートされるかもしれません。</string>
     <string name="songs">曲</string>
     <string name="artists">アーティスト</string>
     <string name="albums">アルバム</string>
@@ -508,7 +505,7 @@
     <string name="show_age_restricted_content_summary">年齢制限 (18+ など) の理由で、子供には不適切な可能性のあるコンテンツを表示する</string>
     <string name="enqueue_stream">キューに追加</string>
     <string name="enqueued">キューに追加しました</string>
-    <string name="clear_cookie_summary">reCAPTCHA を解いたときに NewPipe が保存した Cookie を消去します</string>
+    <string name="clear_cookie_summary">reCAPTCHA を解いたときに Merak が保存した Cookie を消去します</string>
     <string name="clear_cookie_title">reCAPTCHA の Cookie を消去</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA の Cookie が消去されました</string>
     <string name="show_memory_leaks">メモリリークを表示</string>
@@ -530,13 +527,13 @@
     <string name="show_meta_info_summary">動画作成者、動画コンテンツ、検索リクエストに関する追加情報を含むメタ情報ボックスを非表示にするにはオフにします</string>
     <string name="no_app_to_open_intent">お使いのデバイス上のアプリでは、これを開くことはできません</string>
     <string name="chapters">チャプター</string>
-    <string name="paid_content">このコンテンツは有料のユーザーのみが利用できるため、NewPipeでのストリーミングやダウンロードはできません。</string>
-    <string name="youtube_music_premium_content">この動画は YouTube ミュージック プレミアム会員のみが利用できるようになっているので、NewPipe でストリーミングやダウンロードを行うことはできません。</string>
-    <string name="private_content">このコンテンツは非公開のため、NewPipeでストリーミングやダウンロードすることはできません。</string>
-    <string name="soundcloud_go_plus_content">これは SoundCloud Go+ トラックなので、少なくともあなたの国では、NewPipeではストリーミングやダウンロードができません。</string>
+    <string name="paid_content">このコンテンツは有料のユーザーのみが利用できるため、Merakでのストリーミングやダウンロードはできません。</string>
+    <string name="youtube_music_premium_content">この動画は YouTube ミュージック プレミアム会員のみが利用できるようになっているので、Merak でストリーミングやダウンロードを行うことはできません。</string>
+    <string name="private_content">このコンテンツは非公開のため、Merakでストリーミングやダウンロードすることはできません。</string>
+    <string name="soundcloud_go_plus_content">これは SoundCloud Go+ トラックなので、少なくともあなたの国では、Merakではストリーミングやダウンロードができません。</string>
     <string name="georestricted_content">このコンテンツは、お住まいの国ではご利用いただけません。</string>
     <string name="crash_the_app">アプリのクラッシュ</string>
-    <string name="restricted_video_no_stream">この動画は年齢制限があります。 \n年齢制限付き動画を含む新しい YouTube ポリシーにより、NewPipe は動画ストリームにアクセスできないため再生できません。</string>
+    <string name="restricted_video_no_stream">この動画は年齢制限があります。 \n年齢制限付き動画を含む新しい YouTube ポリシーにより、Merak は動画ストリームにアクセスできないため再生できません。</string>
     <string name="select_night_theme_toast">以下からお好みの夜間テーマを選択できます</string>
     <string name="auto_device_theme_title">自動 (デバイスのテーマ)</string>
     <string name="night_theme_summary">お好みの夜間テーマを選択 — %s</string>
@@ -571,7 +568,7 @@
     <string name="description_select_enable">説明文のテキストの選択を有効にする</string>
     <string name="description_select_note">今説明文のテキストを選択できます。選択モード中はページがちらついたりリンクがクリックできなくなったりすることに注意してください。</string>
     <string name="account_terminated">停止されたアカウント</string>
-    <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。 \nNewPipe は将来的にこのフィードを読み込めなくなります。 \nこのチャンネルの登録を解除しますか？</string>
+    <string name="feed_load_error_terminated">この投稿者のアカウントは停止されています。 \nMerak は将来的にこのフィードを読み込めなくなります。 \nこのチャンネルの登録を解除しますか？</string>
     <string name="off">オフ</string>
     <string name="on">オン</string>
     <string name="tablet_mode_title">タブレットモード</string>
@@ -604,7 +601,6 @@
     <string name="feed_new_items">新しいフィードアイテム</string>
     <string name="error_report_channel_name">エラー報告通知</string>
     <string name="error_report_notification_toast">エラーが発生しました。通知をご覧ください</string>
-    <string name="error_report_notification_title">エラーが発生しました (タップすると報告できます)</string>
     <string name="show_error_snackbar">スナックバーにエラーを表示</string>
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。 \nStorage Access Framework と互換性のあるファイルマネージャをインストールしてください</string>
@@ -648,7 +644,7 @@
     <string name="sort">並び替え</string>
     <string name="faq">ウェブサイトで見る</string>
     <string name="app_update_available_notification_text">タップして%sをダウンロード</string>
-    <string name="app_update_unavailable_toast">あなたはNewPipeの最新版を起動しています</string>
+    <string name="app_update_unavailable_toast">あなたはMerakの最新版を起動しています</string>
     <string name="faq_title">よくある質問</string>
     <string name="faq_description">アプリの使用中に問題が発生した場合は、よくある質問への回答をご確認ください！</string>
     <string name="night_theme_available">%sがテーマに選択された場合のみ、この選択肢が利用可能です</string>
@@ -753,14 +749,13 @@
     <string name="settings_category_backup_restore_title">バックアップと復元</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="auto_update_check_description">NewPipe は定期的に新しいバージョンを自動的にチェックし、更新可能になると通知します。 \n有効にしますか？</string>
+    <string name="auto_update_check_description">Merak は定期的に新しいバージョンを自動的にチェックし、更新可能になると通知します。 \n有効にしますか？</string>
     <string name="reset_settings_title">設定をリセット</string>
     <string name="reset_settings_summary">全ての設定をデフォルト状態にリセットします</string>
     <string name="reset_all_settings">全ての設定をリセットすると、優先設定が全て破棄され、アプリが再起動します。 \n \n続行しますか？</string>
     <string name="import_settings_vulnerable_format">インポートされているエクスポートの設定は、NewPipe 0.27.0以降は非推奨であった脆弱な形式を使用します。 インポートされているエクスポートは信頼できる情報源からであり、将来的にはNewPipe 0.27.0かこれより新しいバージョンから得られるエクスポートのみを優先して使用します。 この脆弱な形式で設定をインポートするための対応はすぐに完全に削除され、新しいバージョンからエクスポートの設定をインポートすることは出来ません。</string>
     <string name="share_playlist_as_youtube_temporary_playlist">YouTubeの一時的なプレイリストとして共有</string>
     <string name="audio_track_type_secondary">二次的</string>
-    <string name="kao_dialog_warning">2025年8月、Googleは、2026年9月以降、Playストア以外からインストールするアプリを含め、認定済み端末上のすべてのAndroidアプリのインストールに開発者の確認が必要になると発表しました。NewPipeの開発者はこの要件に同意していないため、それ以降、NewPipeは認定済みAndroid端末で動作しなくなります。</string>
     <string name="kao_dialog_more_info">詳細</string>
     <string name="kao_solution">解決</string>
     <string name="short_billion">%sB</string>
@@ -795,7 +790,7 @@
     <string name="migration_info_6_7_title">SoundCloudのトップ50ページを削除しました</string>
     <string name="migration_info_6_7_message">SoundCloudは従来のトップ50チャートを終了しました。該当するタブはメインページから削除されました。</string>
     <string name="migration_info_7_8_title">YouTubeの統合トレンドを削除しました</string>
-    <string name="migration_info_7_8_message">YouTubeは2025年7月21日をもって、統合トレンドページを終了しました。NewPipeでは、デフォルトのトレンドページをトレンドのライブ配信に置き換えました。\n\n設定 &gt; コンテンツ &gt; メインページのコンテンツから、別のトレンドページを選択することもできます。</string>
+    <string name="migration_info_7_8_message">YouTubeは2025年7月21日をもって、統合トレンドページを終了しました。Merakでは、デフォルトのトレンドページをトレンドのライブ配信に置き換えました。\n\n設定 &gt; コンテンツ &gt; メインページのコンテンツから、別のトレンドページを選択することもできます。</string>
     <string name="trending_gaming">ゲームのトレンド</string>
     <string name="trending_podcasts">トレンドのポッドキャスト</string>
     <string name="trending_movies">トレンドの映画と番組</string>
@@ -806,8 +801,8 @@
     <string name="youtube_player_http_403">再生中にサーバーからHTTPエラー403を受信しました。IPアドレスのブロックまたはストリーミングURLの難読化解除に関する問題が原因である可能性があります</string>
     <string name="sign_in_confirm_not_bot_error">%1$sは、リクエスト元がボットではないことを確認するためにログインを求め、データの提供を拒否しました。\n\nお使いのIPアドレスが%1$sによって一時的にブロックされている可能性があります。しばらく待つか、別のIPアドレスに切り替えてください（たとえば、VPNのオンとオフを切り替えるか、Wi-Fiからモバイルデータ通信に切り替えます）。\n\n詳しくは <a href="%2$s">こちらのFAQ項目</a> をご覧ください。</string>
     <string name="unsupported_content_in_country">このコンテンツは、現在選択されているコンテンツの国では利用できません。\n\n設定 &gt; コンテンツ &gt; デフォルトのコンテンツの国から選択を変更してください。</string>
-    <string name="api23_requirement_dialog_title">NewPipeはAndroid 5のサポートを終了します</string>
-    <string name="api23_requirement_dialog_message">残念ながら、NewPipeが依存している一部のライブラリでAndroid 5.0および5.1のサポートが終了しました。そのため、次回リリースのNewPipeはAndroid 6以降の端末でのみ動作します。詳しくはブログ記事をご覧ください。</string>
+    <string name="api23_requirement_dialog_title">MerakはAndroid 5のサポートを終了します</string>
+    <string name="api23_requirement_dialog_message">残念ながら、Merakが依存している一部のライブラリでAndroid 5.0および5.1のサポートが終了しました。そのため、次回リリースのMerakはAndroid 6以降の端末でのみ動作します。詳しくはブログ記事をご覧ください。</string>
     <string name="api23_requirement_dialog_blogpost">ブログ記事</string>
     <string name="channel_tab_podcasts">ポッドキャスト</string>
     <string name="channel_tab_courses">コース</string>

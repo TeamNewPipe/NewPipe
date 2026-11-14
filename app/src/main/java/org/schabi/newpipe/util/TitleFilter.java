@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2026 NewPipe contributors
+ * SPDX-FileCopyrightText: 2026 ninjaeu (Merak)
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 

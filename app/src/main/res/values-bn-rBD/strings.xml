@@ -93,7 +93,7 @@
     <string name="msg_name">ফাইলের নাম</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_error">ত্রুটি</string>
-    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running">Merak ডাউনলোড হচ্ছে</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
@@ -150,7 +150,6 @@
     <string name="show_search_suggestions_title">অনুসন্ধানের পরামর্শ</string>
     <string name="search_showing_result_for">ফলাফল দেখাচ্ছে: %s এর জন্যে</string>
     <string name="tab_about">পরিচিতি ও প্রশ্নসমূহ</string>
-    <string name="title_activity_about">নিউপাইপ ব্যাপারে</string>
     <string name="trending">ট্রেন্ডিং</string>
     <string name="feed_create_new_group_button_title">নতুন</string>
     <string name="feed_notification_loading">ফিড লোড হচ্ছে…</string>
@@ -194,9 +193,7 @@
     <string name="title_most_played">সবথেকে বেশি চালানো</string>
     <string name="title_last_played">শেষ চালানো</string>
     <string name="read_full_license">অনুমতিসমূহ পড়ুন</string>
-    <string name="app_license_title">নিউপাইপের অনুমতি</string>
     <string name="read_privacy_policy">পড়ুন গোপনীয়তার নীতিমালা</string>
-    <string name="privacy_policy_title">নিউপাইপের গোপনীয়তার নীতি</string>
     <string name="give_back">ফিরিয়ে দিন</string>
     <string name="view_on_github">গিটহাবে দেখুন</string>
     <string name="title_licenses">তৃতীয়পক্ষ অনুমতি</string>
@@ -235,9 +232,7 @@
     <string name="switch_to_main">মেন এ ফিরে যান</string>
     <string name="switch_to_popup">পপ-আপ এ খুলুন</string>
     <string name="switch_to_background">পেছনে নিয়ে যান</string>
-    <string name="app_update_notification_channel_description">নতুন নিউপাইপ ভার্সন এর নোটিফিকেশন</string>
     <string name="app_update_notification_channel_name">অ্যাপ আপডেট নোটিফিকেশন</string>
-    <string name="notification_channel_name">নিউ পাইপ নোটিফিকেশন</string>
     <string name="play_all">সব চালু করুন</string>
     <string name="file_deleted">ফাইল ডিলিট হয়েছে</string>
     <string name="best_resolution">সেরা রেজুলিউসন</string>
@@ -323,7 +318,6 @@
         <item quantity="one">%d মিনিট</item>
         <item quantity="other">%d মিনিট</item>
     </plurals>
-    <string name="website_encouragement">আরো তথ্য ও খবরের জন্য যান নিউপাইপ ওয়েবসাইটে ।</string>
     <string name="open_with">দিয়ে খুলো</string>
     <string name="comments_tab_description">মতামত</string>
     <string name="off">বন্ধ</string>
@@ -378,7 +372,6 @@
     <string name="notification_action_4_title">পঞ্চম পদক্ষেপ বোতাম</string>
     <string name="show_description_summary">ভিডিও বর্ণনা ও বাড়তি তথ্য লুকাতে বন্ধ করুন</string>
     <string name="dont_show">দেখিও না</string>
-    <string name="app_update_available_notification_title">নিউ পাইপ আপডেট এসেছে!</string>
     <string name="comments_are_disabled">মন্তব্যসমূহ নিষ্ক্রিয় আছে</string>
     <plurals name="views">
         <item quantity="one">%s বার দেখেছে</item>
@@ -445,8 +438,6 @@
     <string name="notification_colorize_summary">অ্যান্ড্রয়েডকে থাম্বনেইলের প্রধান রং অনুযায়ী রঙিন করুন (উল্লেখ্য যে, এটি সব ডিভাইসে উপলব্ধ নয়)</string>
     <string name="unknown_format">অজানা ধরন</string>
     <string name="contribution_encouragement">ভাষান্তর , কোড মোছা অথবা প্রয়োজনীয় গুরুত্বপূর্ণ কোড সমন্বয় করার মতো এমন ধারনা যদি আপনার থেকে থাকে তা সব সময় সাদরে গৃহীত হবে । যত উন্নত করা হবে ততই এটি ভালো হয়ে উঠবে !</string>
-    <string name="donation_encouragement">সেচ্ছাসেবক কারিগর নিজেদের অবসর সময়ে তৈরি করেছে নিউপাইপ যা আপনাকে দেয় সেরা ব্যবহাকারি অভিজ্ঞতা । কারিগরদের বিনিময়ে সাহায্য করুন যাতে নিউপাইপ আরো উন্নত হয় যেইসময়টাতে তারা তাদের এককাপ কফি উপোভোগ করছে ।</string>
-    <string name="app_license">নিউপাইপ হলো বিনামূল্যের কপিলেফট সফটও্যয়ার । যা আপনি ব্যবহার,চর্চা,ভাগাভাগি এবং স্বেচ্ছায় উন্নত করতে পারেন । বিশেষ করে এটিকে আপনি পূনর্প্রদান এবং পরিবর্তন করতে পারেন মুক্ত সফটও্যয়ার প্রতিষ্ঠানের প্রকাশিত GNU ( General Public License) এর মাধ্যমে, হয় অনুমতি পত্রের ৩য় তম সংস্করণ অথবা পুরোনো কোনো সংস্করণ অনুযায়ী ( আপনার যেটি ইচ্ছা) ।</string>
     <string name="faq_title">প্রায়ই জিজ্ঞেস করা প্রশ্নসমূহ</string>
     <string name="faq_description">আপনার যদি এই অ্যাপ ব্যবহারে অসুবিধে হয়, তবে এইসব সাধারন প্রশ্ন গুলোর উত্তরসমূহ অবশ্যই দেখেনিন ।</string>
     <string name="faq">ওয়েবসাইটে দেখুন</string>

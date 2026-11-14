@@ -87,7 +87,6 @@
     <string name="play_audio">آڈیو</string>
     <string name="notification_action_buffering">بفر کردے</string>
     <string name="settings_category_downloads_title">ڈاؤن‌لوڈ</string>
-    <string name="app_license_title">لائیسنس</string>
     <string name="theme_title">تھیم</string>
     <string name="description_tab_description">تفصیل</string>
     <string name="pause">روکو</string>
@@ -126,7 +125,6 @@
     <string name="file_deleted">فائل مٹا دتی گئی اے</string>
     <string name="play_all">سارے چلاؤ</string>
     <string name="just_once">صرف ایس بار</string>
-    <string name="notification_channel_name">نیوپائیپ نوٹ</string>
     <string name="import_data_title">ڈیٹابیس اِمپورٹ کرو</string>
     <string name="export_data_title">ڈیٹابیس ایکسپورٹ کرو</string>
     <string name="error_report_open_issue_button_text">کِٹ‌ہب تے رپورٹ کریو</string>

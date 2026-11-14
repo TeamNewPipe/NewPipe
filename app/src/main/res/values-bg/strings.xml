@@ -80,8 +80,8 @@
     <string name="best_resolution">Най-добра резолюция</string>
     <string name="undo">Отмени</string>
     <string name="play_all">Възпроизведи всички</string>
-    <string name="notification_channel_name">Известия от NewPipe</string>
-    <string name="notification_channel_description">Известия за плейъра на NewPipe</string>
+    <string name="notification_channel_name">Известия от Merak</string>
+    <string name="notification_channel_description">Известия за плейъра на Merak</string>
     <string name="unknown_content">[Неизвестен]</string>
     <string name="general_error">Грешка</string>
     <string name="network_error">Проблем с мрежата</string>
@@ -131,7 +131,7 @@
     <string name="msg_name">Име на файла</string>
     <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
-    <string name="msg_running">NewPipe Изтегляне</string>
+    <string name="msg_running">Merak Изтегляне</string>
     <string name="msg_running_detail">Докосни за подробности</string>
     <string name="msg_wait">Моля, изчакайте…</string>
     <string name="msg_copied">Копирано в клипборда</string>
@@ -139,7 +139,7 @@
     <string name="settings_file_replacement_character_summary">Невалидните символи се заменят с тази стойност</string>
     <string name="settings_file_replacement_character_title">Символ за замяна</string>
     <string name="charset_letters_and_digits">Букви и цифри</string>
-    <string name="title_activity_about">Относно NewPipe</string>
+    <string name="title_activity_about">Относно Merak</string>
     <string name="title_licenses">Лицензи на трети страни</string>
     <string name="tab_about">За нас и ЧЗВ</string>
     <string name="tab_licenses">Лицензи</string>
@@ -190,14 +190,11 @@
     <string name="contribution_title">Допринесете</string>
     <string name="contribution_encouragement">Независимо дали имате идеи за превод, промени в дизайна, почистване на кода или наистина сериозни промени в кода – помощта винаги е добре дошла. Колкото повече се направи, толкова по-добре става!</string>
     <string name="donation_title">Дарете</string>
-    <string name="donation_encouragement">NewPipe е разработен от доброволци, които прекарват свободното си време, за да ви осигурят най-доброто потребителско изживяване. Дарете, за да помогнете на разработчиците да направят NewPipe още по-добър, докато се наслаждават на чаша кафе.</string>
     <string name="give_back">Върни обратно</string>
     <string name="website_title">Уебсайт</string>
-    <string name="website_encouragement">Посетете уебсайта на NewPipe за повече информация и новини.</string>
-    <string name="privacy_policy_title">Политика за поверителност на NewPipe</string>
-    <string name="privacy_policy_encouragement">Проектът NewPipe приема вашата поверителност много сериозно. Затова приложението не събира никакви данни без вашето съгласие.\nПолитиката за поверителност на NewPipe подробно обяснява какви данни се изпращат и съхраняват при изпращане на доклад за срив.</string>
+    <string name="privacy_policy_title">Политика за поверителност на Merak</string>
     <string name="read_privacy_policy">Прочетете политиката за поверителност</string>
-    <string name="app_license_title">Лиценз на NewPipe</string>
+    <string name="app_license_title">Лиценз на Merak</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
     <string name="show_hold_to_append_summary">Покажи съвет при натискане на фона или изскачащия бутон във видеоклипа \"Подробности:“</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
@@ -214,7 +211,7 @@
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
     <string name="settings_category_downloads_title">Изтегляне</string>
     <string name="charset_most_special_characters">Повечето специални символи</string>
-    <string name="app_license">NewPipe е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
+    <string name="app_license">Merak е софтуер с авторско право: Можете да го използвате, изучавате, споделяте и подобрявате по ваше желание. По-конкретно, можете да го разпространявате и/или променяте съгласно условията на Общия публичен лиценз на GNU, публикуван от Фондацията за свободен софтуер, или версия 3 на Лиценза, или (по ваш избор) всяка по-късна версия.</string>
     <string name="read_full_license">Прочетете лиценза</string>
     <string name="title_activity_history">История</string>
     <string name="action_history">История</string>
@@ -290,7 +287,7 @@
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Височина</string>
     <string name="skip_silence_checkbox">Бързо превъртане при тишина</string>
-    <string name="start_accept_privacy_policy">За да се съобразим с Европейския общ регламент за защита на данните (GDPR), с настоящото обръщаме внимание на политиката за поверителност на NewPipe. Моля, прочетете го внимателно. \nТрябва да го приемете, за да ни изпратите доклада за грешка.</string>
+    <string name="start_accept_privacy_policy">За да се съобразим с Европейския общ регламент за защита на данните (GDPR), с настоящото обръщаме внимание на политиката за поверителност на Merak. Моля, прочетете го внимателно. \nТрябва да го приемете, за да ни изпратите доклада за грешка.</string>
     <string name="accept">Приеми</string>
     <string name="decline">Откажи</string>
     <string name="limit_data_usage_none_description">Без ограничения</string>
@@ -345,7 +342,7 @@
     <string name="never">Никога</string>
     <string name="missions_header_finished">Завършено</string>
     <string name="paused">прекъснат</string>
-    <string name="restricted_video_no_stream">Това видео е с възрастови ограничения. \nПоради новите политики на YouTube за видеа с възрастови ограничения, NewPipe не може да достъпи нито един от видеопотоците на това видео и не може да го възпроизведе.</string>
+    <string name="restricted_video_no_stream">Това видео е с възрастови ограничения. \nПоради новите политики на YouTube за видеа с възрастови ограничения, Merak не може да достъпи нито един от видеопотоците на това видео и не може да го възпроизведе.</string>
     <string name="dont_show">Не показвай</string>
     <string name="local_search_suggestions">Местни предложения за търсене</string>
     <string name="error_report_open_github_notice">Моля проверете дали има създадена дискусия за срив като този. Постъпилите дубликати са в ущърб на така ценното време за разработка.</string>
@@ -366,7 +363,7 @@
     <string name="wifi_only">Само при Wi-Fi</string>
     <string name="list_view_mode">Режим на списъчен изглед</string>
     <string name="enable_playback_resume_summary">Възстанови последната позиция</string>
-    <string name="app_update_available_notification_title">Нова версия на NewPipe е налична!</string>
+    <string name="app_update_available_notification_title">Нова версия на Merak е налична!</string>
     <string name="seekbar_preview_thumbnail_title">Миниатюри на лентата за превъртане</string>
     <string name="low_quality_smaller">Нискокачествени (малки)</string>
     <string name="queued">на опашка</string>
@@ -453,7 +450,7 @@
     <string name="max_retry_desc">Максимален брой опити преди отменяне на изтеглянето</string>
     <string name="feed_create_new_group_button_title">Създай</string>
     <string name="feed_group_dialog_delete_message">Искате ли да изтриете тази група?</string>
-    <string name="content_not_supported">Това съдържание не се поддържа от NewPipe. \n \nЕвентуално може да бъде поддържано в бъдещи версии.</string>
+    <string name="content_not_supported">Това съдържание не се поддържа от Merak. \n \nЕвентуално може да бъде поддържано в бъдещи версии.</string>
     <string name="processing_may_take_a_moment">Обработка… Ще отнеме момент</string>
     <string name="new_seek_duration_toast">Поради ограничения в ExoPlayer, стъпката за превъртане е зададена на %d секунди</string>
     <string name="remove_watched_popup_warning">Потоците, които са били гледани преди и след добавянето им към плейлиста, ще бъдат премахнати. \nСигурни ли сте?</string>
@@ -490,14 +487,14 @@
         <item quantity="other">%d дни</item>
     </plurals>
     <string name="channel_created_by">Създаден от %s</string>
-    <string name="paid_content">Съдържанието е достъпно само за хора, които са си платили, затова не може да бъде гледано или изтеглено с NewPipe.</string>
-    <string name="youtube_music_premium_content">Това видео е достъпно за абонати на YouTube Music Premium, затова не може да бъде гледано или изтеглено с NewPipe.</string>
+    <string name="paid_content">Съдържанието е достъпно само за хора, които са си платили, затова не може да бъде гледано или изтеглено с Merak.</string>
+    <string name="youtube_music_premium_content">Това видео е достъпно за абонати на YouTube Music Premium, затова не може да бъде гледано или изтеглено с Merak.</string>
     <string name="remove_watched_popup_title">Премахни изгледаните потоци?</string>
     <string name="remove_watched_popup_partially_watched_streams">Да, както и само частично изгледаните видеа</string>
     <string name="subscribers_count_not_available">Брой на абонати не е наличен</string>
     <string name="peertube_instance_add_exists">Инстанцията вече съществува</string>
     <string name="missing_file">Файлът е преместен или изтрит</string>
-    <string name="app_update_notification_channel_description">Известие за нова версия на NewPipe</string>
+    <string name="app_update_notification_channel_description">Известие за нова версия на Merak</string>
     <string name="peertube_instance_url_title">PeerTube инстанции</string>
     <string name="download_already_pending">Има насрочено изтегляне с това име</string>
     <string name="download_already_running">Вече има активно изтегляне с това име</string>
@@ -559,18 +556,18 @@
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="feed_notification_loading">Зареждане на емисия…</string>
     <string name="semitone">Полутон</string>
-    <string name="app_update_unavailable_toast">Ползвате най-новата в ерсия на NewPipe</string>
+    <string name="app_update_unavailable_toast">Ползвате най-новата в ерсия на Merak</string>
     <string name="app_update_available_notification_text">Цъкнете да изтеглите %s</string>
     <string name="enqueue">Добавяне в опашка</string>
     <string name="error_http_no_content">Сървърът не предостави данни</string>
     <string name="remove_duplicates_title">Премахни повторения?</string>
     <string name="feed_groups_header_title">Група от канали</string>
     <string name="feed_load_error_account_info">Неуспешно зареждане на емисия за \'%s\'.</string>
-    <string name="feed_load_error_terminated">Профилът на автора е бил отстранен. \nNewPipe няма да може да зареди тази емисия вече. \nИскате ли да махнете абонамента от този канал?</string>
+    <string name="feed_load_error_terminated">Профилът на автора е бил отстранен. \nMerak няма да може да зареди тази емисия вече. \nИскате ли да махнете абонамента от този канал?</string>
     <string name="feed_update_threshold_option_always_update">Винаги опреснявай</string>
     <string name="feed_load_error">Грешка при зареждане на емисия</string>
     <string name="feed_show_hide_streams">Покажи/Скрий потоци</string>
-    <string name="private_content">Съдържанието е лично, затова не може да бъде възпроизведено или изтеглено от NewPipe.</string>
+    <string name="private_content">Съдържанието е лично, затова не може да бъде възпроизведено или изтеглено от Merak.</string>
     <string name="select_night_theme_toast">Можете да изберете любимата си нощна тема по-долу</string>
     <string name="tablet_mode_title">Режим на таблет</string>
     <string name="metadata_subscribers">Абонати</string>
@@ -631,7 +628,7 @@
     <string name="select_quality_external_players">Избор на качество за външни плеъри</string>
     <string name="notifications_disabled">Известията са спрени</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer по подразбиране</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Смятате ли, че емисията зарежда прекалено бавно? Ако смятате така, може да пробвате да включите режима за бързо зареждане (може да го промените от настройките или чрез бутона по-долу). \n \nNewPipe предлага два режима за зареждане: \n• Зареждане на цялата страница на абонамента, което е бавно, но и пълно. \n• Изпозване на специална страница, предоставена от услугата, което е бързо, но обичайно е и непълно. \n \nРазликата между двете е, че бързият режим няма пълна информация, например времетраенето и вида (не може да различава между видеа на живо и обикновени) и може да върне по-малко видеа. \n \nYoutube е примерна услуга, която предоставя този метод чрез RSS емисия. \n \nНакратко, изборът се свежда до предпочинанието ви: бързина или точна информация.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Смятате ли, че емисията зарежда прекалено бавно? Ако смятате така, може да пробвате да включите режима за бързо зареждане (може да го промените от настройките или чрез бутона по-долу). \n \nMerak предлага два режима за зареждане: \n• Зареждане на цялата страница на абонамента, което е бавно, но и пълно. \n• Изпозване на специална страница, предоставена от услугата, което е бързо, но обичайно е и непълно. \n \nРазликата между двете е, че бързият режим няма пълна информация, например времетраенето и вида (не може да различава между видеа на живо и обикновени) и може да върне по-малко видеа. \n \nYoutube е примерна услуга, която предоставя този метод чрез RSS емисия. \n \nНакратко, изборът се свежда до предпочинанието ви: бързина или точна информация.</string>
     <string name="feed_oldest_subscription_update">Емисията е последно обновявана: %s</string>
     <string name="feed_use_dedicated_fetch_method_summary">Налично за някои услуги, обичайно е много по-бързо, но връща ограничено количество видеа и често пъти непълна информация (например няма времетраене, вид на видеото, дали е на живо)</string>
     <string name="peertube_instance_add_help">Въведете URL адреса на инстанцията</string>
@@ -639,10 +636,10 @@
     <string name="show_channel_details">Покажи информация за канала</string>
     <string name="playlist_no_uploader">Авто-генерирани (не е намерен ъплоудер)</string>
     <string name="create_error_notification">Създай известие за грешка</string>
-    <string name="auto_update_check_description">NewPipe може автоматично да проверява за нови версии от време на време и да ви известява при наличие. \nИскате ли да го включите?</string>
+    <string name="auto_update_check_description">Merak може автоматично да проверява за нови версии от време на време и да ви известява при наличие. \nИскате ли да го включите?</string>
     <string name="error_http_not_found">Не е намерено</string>
     <string name="error_insufficient_storage">Няма достатъчно свободно пространство на устройвството</string>
-    <string name="error_postprocessing_stopped">NewPipe бе затворен, докато обработваше файла</string>
+    <string name="error_postprocessing_stopped">Merak бе затворен, докато обработваше файла</string>
     <string name="feed_show_partially_watched">Частично гледани</string>
     <string name="unknown_audio_track">Неизвестен</string>
     <string name="you_successfully_subscribed">Абонирахте се за този канал</string>
@@ -722,7 +719,7 @@
     <string name="account_terminated">Профилът е прекратен</string>
     <string name="detail_pinned_comment_view_description">Фиксиран коментар</string>
     <string name="streams_not_yet_supported_removed">Потоци, които все още не се поддържат от програмата за изтегляне, не се показват</string>
-    <string name="soundcloud_go_plus_content">Това е песен на SoundCloud Go+, поне във вашата страна, така че не може да бъде предавана поточно или изтеглена от NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Това е песен на SoundCloud Go+, поне във вашата страна, така че не може да бъде предавана поточно или изтеглена от Merak.</string>
     <string name="description_select_note">Вече можете да изберете текст в описанието. Имайте предвид, че страницата може да трепти и връзките може да не могат да се кликват, докато сте в режим на избор.</string>
     <string name="start_main_player_fullscreen_summary">Не стартирайте видеоклипове в миниплейъра, а директно превключете в режим на цял екран, ако автоматичното завъртане е заключено. Все още можете да получите достъп до миниплейъра, като излезете от цял екран</string>
     <string name="error_report_channel_description">Известия за докладване на грешки</string>
@@ -745,7 +742,7 @@
     <string name="feed_fetch_channel_tabs">Извличане на раздели на канали</string>
     <string name="import_settings_vulnerable_format">Настройките в изнасяния файл, който се внася, използват уязвим формат, който е отпаднал от NewPipe 0.27.0. Уверете се, че внесеният износ е от надежден източник, и предпочитайте в бъдеще да използвате само изнасяния, получени от NewPipe 0.27.0 или по-нова версия. Поддръжката за внасяне на настройки в този уязвим формат скоро ще бъде напълно премахната и тогава старите версии на NewPipe вече няма да могат да внасят настройки на изнесени от нови версии.</string>
     <string name="hash_channel_name">Видео хеш известие</string>
-    <string name="clear_cookie_summary">Изчистете бисквитките, които NewPipe съхранява, когато разрешите reCAPTCHA</string>
+    <string name="clear_cookie_summary">Изчистете бисквитките, които Merak съхранява, когато разрешите reCAPTCHA</string>
     <string name="streams_notifications_network_title">Необходима мрежова връзка</string>
     <string name="reset_settings_title">Нулирайте настройките</string>
     <string name="reset_settings_summary">Нулирайте всички настройки до техните стойности по подразбиране</string>
@@ -755,7 +752,7 @@
     <string name="streams_notification_channel_name">Нови потоци</string>
     <string name="error_report_channel_name">Известие за доклад за грешка</string>
     <string name="main_tabs_position_summary">Преместване на селектора на главни раздели надолу</string>
-    <string name="error_report_notification_title">NewPipe откри грешка, докоснете, за да докладвате</string>
+    <string name="error_report_notification_title">Merak откри грешка, докоснете, за да докладвате</string>
     <string name="no_streams">Няма потоци</string>
     <string name="disable_media_tunneling_title">Деактивиране на медийното тунелиране</string>
     <string name="missions_header_pending">В очакване</string>
@@ -783,7 +780,7 @@
     <string name="channel_tab_likes">Харесвания</string>
     <string name="migration_info_6_7_title">Страница SoundCloud Top 50 е премахната</string>
     <string name="migration_info_6_7_message">SoundCloud преустанови оригиналните класации Топ 50. Съответният раздел е премахнат от главната ви страница.</string>
-    <string name="migration_info_7_8_message">YouTube преустанови комбинираната страница с популярни от 21 юли 2025 г. NewPipe замени стандартната страница с популярни с популярни предавания на живо.\n\nМожете също да изберете различни популярни страници в „Настройки &gt; Съдържание &gt; Съдържание на главната страница“.</string>
+    <string name="migration_info_7_8_message">YouTube преустанови комбинираната страница с популярни от 21 юли 2025 г. Merak замени стандартната страница с популярни с популярни предавания на живо.\n\nМожете също да изберете различни популярни страници в „Настройки &gt; Съдържание &gt; Съдържание на главната страница“.</string>
     <string name="migration_info_7_8_title">YouTube комбинирани популярни са премахнати</string>
     <string name="trending_gaming">Популярни игри</string>
     <string name="trending_podcasts">Популярни подкасти</string>
@@ -803,7 +800,6 @@
     <string name="youtube_player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от забрана на IP адреса или проблеми с деобфускацията на URL адреси за стрийминг</string>
     <string name="sign_in_confirm_not_bot_error">%1$s отказа да предостави данни, като поиска вход, за да потвърди, че заявителят не е бот.\n\nВашият IP адрес може да е временно забранен от %1$s. Можете да изчакате известно време или да превключите към друг IP адрес (например като включите/изключите VPN или като превключите от WiFi към мобилни данни).\n\nМоля, вижте <a href="%2$s">тази статия с ЧЗВ</a> за повече информация.</string>
     <string name="unsupported_content_in_country">Това съдържание не е налично за текущо избраната държава на съдържанието.\n\nПроменете избора си от \"Настройки &gt; Съдържание &gt; Държава на съдържанието по подразбиране\".</string>
-    <string name="kao_dialog_warning">През август 2025 г. Google обяви, че от септември 2026 г. инсталирането на приложения ще изисква проверка от разработчика за всички приложения за Android на сертифицирани устройства, включително тези, инсталирани извън Play Store. Тъй като разработчиците на NewPipe не са съгласни с това изискване, NewPipe вече няма да работи на сертифицирани устройства с Android след този период.</string>
     <string name="kao_dialog_more_info">Детайли</string>
     <string name="kao_solution">Решение</string>
     <plurals name="export_subscriptions">
@@ -823,8 +819,8 @@
     <string name="import_subscriptions_summary">Внасяне на абонаменти от предишен .json файл</string>
     <string name="export_subscriptions_summary">Изнесете абонаментите си в .json файл</string>
     <string name="import_from_previous_export">Внасяне от предишно изнасяне</string>
-    <string name="api23_requirement_dialog_title">NewPipe спира поддръжката си за Android 5</string>
-    <string name="api23_requirement_dialog_message">За съжаление NewPipe зависи от няколко библиотеки, които спряха поддръжката за Android 5.0 и 5.1. Следователно, за съжаление, следващата версия на NewPipe ще работи само на устройства с Android 6 или по-нова версия. Прочетете повече в публикацията в блога.</string>
+    <string name="api23_requirement_dialog_title">Merak спира поддръжката си за Android 5</string>
+    <string name="api23_requirement_dialog_message">За съжаление Merak зависи от няколко библиотеки, които спряха поддръжката за Android 5.0 и 5.1. Следователно, за съжаление, следващата версия на Merak ще работи само на устройства с Android 6 или по-нова версия. Прочетете повече в публикацията в блога.</string>
     <string name="api23_requirement_dialog_blogpost">Публикация в блога</string>
     <string name="channel_tab_podcasts">Подкасти</string>
     <string name="channel_tab_courses">Курсове</string>

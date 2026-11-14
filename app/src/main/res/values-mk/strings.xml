@@ -99,8 +99,8 @@
     <string name="always">Секогаш</string>
     <string name="just_once">Само еднаш</string>
     <string name="file">Датотека</string>
-    <string name="notification_channel_name">Известување од NewPipe</string>
-    <string name="notification_channel_description">NewPipe Известувања за подпрозорчето и заднинското пуштање</string>
+    <string name="notification_channel_name">Известување од Merak</string>
+    <string name="notification_channel_description">Merak Известувања за подпрозорчето и заднинското пуштање</string>
     <string name="unknown_content">[Непознато]</string>
     <string name="switch_to_background">Пушти во позадина</string>
     <string name="switch_to_popup">Пушти во подпрозорче</string>
@@ -172,7 +172,7 @@
     <string name="msg_name">Име на датотека</string>
     <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
-    <string name="msg_running">NewPipe Превземање</string>
+    <string name="msg_running">Merak Превземање</string>
     <string name="msg_running_detail">Притисни за детали</string>
     <string name="msg_wait">Почекајте…</string>
     <string name="msg_copied">Копирано во привремена меморија</string>
@@ -186,7 +186,7 @@
     <string name="settings_file_replacement_character_title">Знак за замена</string>
     <string name="charset_letters_and_digits">Букви и броеви</string>
     <string name="charset_most_special_characters">Повеќето посебни знаци</string>
-    <string name="title_activity_about">За NewPipe</string>
+    <string name="title_activity_about">За Merak</string>
     <string name="title_licenses">Лиценци од трети страни</string>
     <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
     <string name="tab_about">За апликацијата и често поставувани прашања</string>
@@ -196,11 +196,11 @@
     <string name="contribution_encouragement">Ако имаш идеи за; превод, дизајн, чистење или големи промени во кодот - помошта е секогаш добредојдена. Што повеќе се работи, подобра е апликацијата!</string>
     <string name="view_on_github">Види на GitHub</string>
     <string name="donation_title">Донирај</string>
-    <string name="donation_encouragement">NewPipe е разработуван од доброволци, кои го вложуваат нивното слободно време за да ви го овозможат најдоброто корисничко искуство. Возвратете им на програмерите со една чаша кафе, за да можат да го направат NewPipe уште подобар.</string>
+    <string name="donation_encouragement">Merak е неофицијална апликација заснована на NewPipe, која ја развиваат волонтери во своето слободно време. Merak не е поврзана со TeamNewPipe и нема нивна поддршка. За да ги поддржите волонтерите на NewPipe, донирајте на проектот NewPipe.</string>
     <string name="give_back">Возврати</string>
     <string name="website_title">Вебсајт</string>
-    <string name="website_encouragement">За повеќе информации и новости за NewPipe посети ја вебстраната.</string>
-    <string name="app_license_title">Лиценцата на NewPipe</string>
+    <string name="website_encouragement">Посетете го Merak на GitHub за новости, упатство за инсталација и за пријавување проблеми.</string>
+    <string name="app_license_title">Лиценцата на Merak</string>
     <string name="read_full_license">Прочитај лиценца</string>
     <string name="title_activity_history">Историја</string>
     <string name="action_history">Историја</string>
@@ -282,16 +282,16 @@
     <string name="search_history_deleted">Историјата на пребарувања е избришана.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
     <string name="one_item_deleted">1 ставка избришана.</string>
-    <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да го користиш, истражуваш и подобруваш по твоја желба. Можеш да го редистрибуираш и/или да го промениш под условите на GNU GPL лиценцата, објавена од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
+    <string name="app_license">Merak е „copyleft“ слободен софтвер: Можеш да го користиш, истражуваш и подобруваш по твоја желба. Можеш да го редистрибуираш и/или да го промениш под условите на GNU GPL лиценцата, објавена од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
     <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
     <string name="preferred_open_action_settings_title">Претпочитана акција за „отворање“</string>
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
     <string name="caption_setting_title">Преводи</string>
     <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
-    <string name="privacy_policy_title">NewPipe - политика за приватност</string>
-    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола. \nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
+    <string name="privacy_policy_title">Merak - политика за приватност</string>
+    <string name="privacy_policy_encouragement">Merak не испраќа податоци до својот развивач. Извештај за грешка го напушта вашиот телефон само кога ќе одлучите да го поднесете, како GitHub issue што го пишувате сами. Известувањето за приватност на Merak ги објаснува деталите.</string>
     <string name="read_privacy_policy">Прочитај ја политиката за приватност</string>
-    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe. \nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
+    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на Merak. \nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
     <string name="accept">Прифати</string>
     <string name="decline">Отфрли</string>
     <string name="limit_data_usage_none_description">Неограничено</string>
@@ -313,7 +313,7 @@
     <string name="settings_category_updates_title">Ажурирања</string>
     <string name="file_deleted">Дадотеката е избришана</string>
     <string name="app_update_notification_channel_name">Известување за ажурирање на апликација</string>
-    <string name="app_update_notification_channel_description">Известување за нова NewPipe верзија</string>
+    <string name="app_update_notification_channel_description">Известување за нова Merak верзија</string>
     <string name="download_to_sdcard_error_title">Надворешната меморија е недостапна</string>
     <string name="download_to_sdcard_error_message">Преземањето на SD картичка не е возможно. Да се ресетира локацијата на папката за преземања ?</string>
     <string name="subscribers_count_not_available">Бројот на претплатници не е достапен</string>
@@ -324,7 +324,7 @@
     <string name="list">Список</string>
     <string name="grid">Решетка</string>
     <string name="auto">Автоматски</string>
-    <string name="app_update_available_notification_title">NewPipe ажурирање е достапно!</string>
+    <string name="app_update_available_notification_title">Merak ажурирање е достапно!</string>
     <string name="missions_header_finished">Завршено</string>
     <string name="missions_header_pending">Во очекување</string>
     <string name="paused">Паузирано</string>
@@ -361,7 +361,7 @@
     <string name="missing_file">Дадотеката е преместена или избришана</string>
     <string name="overwrite_unrelated_warning">Ддотека со ова име веќе постои</string>
     <string name="overwrite_finished_warning">Преземената дадотека со ова име веќе постои</string>
-    <string name="error_postprocessing_stopped">NewPipe беше затворен додека го обработуваше фајлот</string>
+    <string name="error_postprocessing_stopped">Merak беше затворен додека го обработуваше фајлот</string>
     <string name="error_insufficient_storage_left">Не останува простор на уредот</string>
     <string name="error_timeout">Истечено време за поврзување</string>
     <string name="confirm_prompt">Сакате да ја исчистите историјата на преземања или да ги избришете сите преземени фајлови?</string>
@@ -415,7 +415,7 @@
     <string name="feed_create_new_group_button_title">Нова група</string>
     <string name="feed_load_error_account_info">Неуспешно вчитување на новинска лента за „%s“.</string>
     <string name="feed_show_hide_streams">Прикажи / скриј стримови</string>
-    <string name="private_content">Оваа содржина е приватна, така што не може да биде емитувана или преземена од страна на NewPipe.</string>
+    <string name="private_content">Оваа содржина е приватна, така што не може да биде емитувана или преземена од страна на Merak.</string>
     <string name="featured">Истакнато</string>
     <string name="radio">Радио</string>
     <string name="auto_device_theme_title">Автоматски (режим на уредот)</string>
@@ -444,7 +444,7 @@
     <string name="notification_scale_to_square_image_title">Исечи ја сликичката на сооднос 1:1</string>
     <string name="saved_tabs_invalid_json">Грешка при читањето на зачуваните јазичиња, ќе бидат користени стандардните јазичиња</string>
     <string name="permission_display_over_apps">Дај дозвола за прикажување врз други апликации</string>
-    <string name="error_report_notification_title">NewPipe откри грешка, допрете за да ја пријавите</string>
+    <string name="error_report_notification_title">Merak откри грешка, допрете за да ја пријавите</string>
     <string name="drawer_header_description">Вклучување на услуги, тековно избрани:</string>
     <string name="recaptcha_solve">Решете</string>
     <string name="select_a_playlist">Изберете плејлиста</string>
@@ -488,9 +488,9 @@
     <string name="notification_colorize_title">Обој го известувањето</string>
     <string name="notification_action_repeat">Повтори</string>
     <string name="notification_action_shuffle">Измешај</string>
-    <string name="paid_content">Оваа содржина е достапна само за оние корисници кои платиле, така што не може да биде емитувана или преземена од страна на NewPipe.</string>
+    <string name="paid_content">Оваа содржина е достапна само за оние корисници кои платиле, така што не може да биде емитувана или преземена од страна на Merak.</string>
     <string name="georestricted_content">Оваа содржина не е достапна во Вашата држава.</string>
-    <string name="youtube_music_premium_content">Ова видео е достапно само за претплатници на YouTube Music Premium, така што не може да биде емитувано или преземено од страна на NewPipe.</string>
+    <string name="youtube_music_premium_content">Ова видео е достапно само за претплатници на YouTube Music Premium, така што не може да биде емитувано или преземено од страна на Merak.</string>
     <string name="metadata_thumbnails">Сликички</string>
     <string name="description_select_enable">Овозможи го селектирањето на текст во описот</string>
     <string name="account_terminated">Акаунтот е укинат</string>
@@ -533,7 +533,7 @@
     <string name="enqueued_next">Следното беше додадено во редослед</string>
     <string name="faq_title">Често поставувани прашања</string>
     <string name="faq">Отвори ја веб-страницата</string>
-    <string name="content_not_supported">Оваа содржина сѐ не е поддржана од NewPipe.\n\nСе надеваме дека ќе биде поддржана во некоја идна верзија.</string>
+    <string name="content_not_supported">Оваа содржина сѐ не е поддржана од Merak.\n\nСе надеваме дека ќе биде поддржана во некоја идна верзија.</string>
     <string name="right_gesture_control_title">Дејствие со гестикулација оддесно</string>
     <string name="settings_category_player_notification_title">Известување на плеерот</string>
     <string name="downloads_storage_ask_title">Прашај ме за папка за преземање</string>
@@ -574,7 +574,7 @@
     <string name="playlist_page_summary">Страница на плејлистата</string>
     <string name="channel_created_by">Создаден од %s</string>
     <string name="video_detail_by">Од %s</string>
-    <string name="soundcloud_go_plus_content">Ова е песна на SoundCloud Go+ (барем во Вашата држава), така што не може да биде емитувана или преземена од страна на NewPipe.</string>
+    <string name="soundcloud_go_plus_content">Ова е песна на SoundCloud Go+ (барем во Вашата држава), така што не може да биде емитувана или преземена од страна на Merak.</string>
     <string name="night_theme_summary">Изберете го Вашиот омилен ноќен режим — %s</string>
     <string name="select_night_theme_toast">Можете да го изберете Вашиот омилен ноќен режим подолу</string>
     <string name="metadata_tags">Ознаки</string>
@@ -676,13 +676,13 @@
     <string name="reset_all_settings">Ресетирањето на сите поставки ќе ги отфрли сите Ваши претпочитани поставки и ќе ја рестартира апликацијата.\n\nСигурни ли сте дека сакате да продолжите?</string>
     <string name="new_seek_duration_toast">Поради ограничувања на ExoPlayer, стапката на премотување е поставена на %d секунди</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Прикажи ги само негрупираните претплати</string>
-    <string name="feed_load_error_terminated">Акаунтот на авторот е укинат.\nNewPipe нема да може да ги вчитува овие видеа во иднина.\nСакате ли да ја откажете претплатата на овој канал?</string>
+    <string name="feed_load_error_terminated">Акаунтот на авторот е укинат.\nMerak нема да може да ги вчитува овие видеа во иднина.\nСакате ли да ја откажете претплатата на овој канал?</string>
     <string name="feed_update_threshold_summary">Време по последното ажурирање пред една претплата да се смета за застарена — %s</string>
     <string name="feed_use_dedicated_fetch_method_title">Извлекување од специјална новинска лента, кога е возможно</string>
     <string name="feed_hide_streams_title">Прикажи ги следните стримови</string>
     <string name="detail_sub_channel_thumbnail_view_description">Сликичка на аватарот на каналот</string>
     <string name="metadata_privacy_internal">Внатрешно</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Сметате дека лентата со новости (новинската лента, анг. News Feed) се вчитува премногу бавно? Ако сметате така, можете да пробате да го вклучите режимот за брзо вчитување (може да го промените во поставките или со притискање на копчето подолу).\n \nNewPipe нуди два режима за вчитување на новинската лента:\n• Извлекување на целата страница на претплати, што е бавно но и целосно.\n• Користење на специјален клиент (анг. endpoint), овозможен од услугата, што е брзо, но обично е нецелосно.\n\nРазликата помеѓу двете е во тоа што брзиот режим најчесто дава нецелесни информации, како времетраењето и видот на видеото (не прави разлика помеѓу нормални видеа и преноси во живо) и можно е да врати помалку видеа.\n\nYouTube е пример за услуга која го овозможува овој брз режим со RSS новинската лента.\n\nНакратко, изборот се сведува на тоа што Вие претпочитате: брзина или точни информации.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Сметате дека лентата со новости (новинската лента, анг. News Feed) се вчитува премногу бавно? Ако сметате така, можете да пробате да го вклучите режимот за брзо вчитување (може да го промените во поставките или со притискање на копчето подолу).\n \nMerak нуди два режима за вчитување на новинската лента:\n• Извлекување на целата страница на претплати, што е бавно но и целосно.\n• Користење на специјален клиент (анг. endpoint), овозможен од услугата, што е брзо, но обично е нецелосно.\n\nРазликата помеѓу двете е во тоа што брзиот режим најчесто дава нецелесни информации, како времетраењето и видот на видеото (не прави разлика помеѓу нормални видеа и преноси во живо) и можно е да врати помалку видеа.\n\nYouTube е пример за услуга која го овозможува овој брз режим со RSS новинската лента.\n\nНакратко, изборот се сведува на тоа што Вие претпочитате: брзина или точни информации.</string>
     <string name="no_appropriate_file_manager_message_android_10">Не е пронајден соодветен менаџер за фајлови за ова дејствие.\nВе молиме инталирајте менаџер за фајлови компатибилен со Storage Access Framework</string>
     <string name="description_select_note">Режимот на селектирање е вклучен. Сега можете да селектирате текст во описот на видеото. Имајте предвид дека страницата може да трепка и линковите може да не можат да се кликнат, додека сте во режим на селектирање.</string>
     <string name="streams_not_yet_supported_removed">Стримовите кои сѐ уште не се поддржани од програмата за преземање не се прикажани</string>
@@ -705,4 +705,5 @@
     <string name="search_playlists">Пребарај плејлисти</string>
     <string name="search_in_playlist">Пребарај во плејлистата</string>
     <string name="search_subscriptions">Пребарај членства</string>
+    <string name="kao_dialog_warning">Google сега бара верификација на развивачот за апликации инсталирани надвор од Play Store на сертифицирани Android уреди. Почна во Бразил, Индонезија, Сингапур и Тајланд на 30 септември 2026, а Google планира да ја прошири низ целиот свет во 2027. Merak се инсталира надвор од Play Store, па на засегнатите уреди инсталирањето или ажурирањето може да бара „напредни“ чекори за инсталација на Google, вклучително и чекање од 24 часа.</string>
 </resources>

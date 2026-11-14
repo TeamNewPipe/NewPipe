@@ -29,7 +29,7 @@
     <string name="export_to">Sifeḍ ɣer</string>
     <string name="controls_add_to_playlist_title">Rnu ɣer</string>
     <string name="playback_step">Amecwaṛ</string>
-    <string name="msg_running">Azdam n NewPipe</string>
+    <string name="msg_running">Azdam n Merak</string>
     <string name="restore_defaults">Err-d imezwar</string>
     <string name="channel_created_by">Yerna-t %s</string>
     <string name="delete_playlist_prompt">Kkes tabdart-a n tɣuri?</string>
@@ -155,7 +155,7 @@
     <string name="network_error">Tuccḍa deg uẓeṭṭa</string>
     <string name="infinite_videos">∞ tividyutin</string>
     <string name="msg_wait">Ttxil arǧu…</string>
-    <string name="title_activity_about">Ɣef NewPipe</string>
+    <string name="title_activity_about">Ɣef Merak</string>
     <string name="video_player">Imeɣri n uvidyu</string>
     <string name="channel_tab_shorts">Shorts</string>
     <string name="channel_tab_livestreams">Srid</string>
@@ -188,7 +188,7 @@
     <string name="artists">Inaẓuren</string>
     <string name="notifications">Ilɣa</string>
     <string name="play_all">Ɣeṛ-itent-id akk</string>
-    <string name="notification_channel_name">Ilɣa n NewPipe</string>
+    <string name="notification_channel_name">Ilɣa n Merak</string>
     <string name="comments_tab_description">Iwenniten</string>
     <string name="description_tab_description">Asnummel</string>
     <string name="recaptcha_solve">Fru</string>
@@ -206,7 +206,7 @@
     <string name="audio_track_type_original">aneṣli</string>
     <string name="unbookmark_playlist">Kkes ticreḍt</string>
     <string name="import_from">Kter seg</string>
-    <string name="app_license_title">Turagt n NewPipe</string>
+    <string name="app_license_title">Turagt n Merak</string>
     <string name="read_full_license">Ɣeṛ turagt</string>
     <string name="error_http_not_found">Ur yettwaf ara</string>
     <string name="more_options">Ugar n tnefrunin</string>

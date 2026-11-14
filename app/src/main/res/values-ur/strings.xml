@@ -98,8 +98,6 @@
     <string name="always">ہمیشہ</string>
     <string name="just_once">صرف ایک بار</string>
     <string name="file">فائل</string>
-    <string name="notification_channel_name">نیو پائپ اطلاعات</string>
-    <string name="notification_channel_description">نیو پائپ پلیئرز کیلئے اطلاعات</string>
     <string name="unknown_content">[نامعلوم]</string>
     <string name="switch_to_background">پس منظر پر جائیں</string>
     <string name="switch_to_popup">پاپ اپ پر جائیں</string>
@@ -172,7 +170,6 @@
     <string name="msg_name">فائل کا نام</string>
     <string name="msg_threads">موضوعات</string>
     <string name="msg_error">خرابی</string>
-    <string name="msg_running">نیو پائپ ڈاؤن لوڈ ہو رہا ہے</string>
     <string name="msg_running_detail">تفصیلات کے لیے ٹیپ کریں</string>
     <string name="msg_wait">براۓ مہربانی انتظار کريں…</string>
     <string name="msg_copied">کلپ بورڈ میں نقل ہوا</string>
@@ -185,7 +182,6 @@
     <string name="settings_file_replacement_character_title">متبادل کریکٹر</string>
     <string name="charset_letters_and_digits">حروف اور ہندسے</string>
     <string name="charset_most_special_characters">اہم مخصوص حروف</string>
-    <string name="title_activity_about">نیو پائپ کے بارے میں</string>
     <string name="title_licenses">تیسری پارٹی کی لائسنس</string>
     <string name="copyright" formatted="true">© %1$s بذریعہ %2$s %3$s کے تحت</string>
     <string name="tab_about">کے بارے میں اور اکثر پوچھے گئے سوالات</string>
@@ -195,11 +191,8 @@
     <string name="contribution_encouragement">جو بھی آپ کے خیالات ہوں؛ ترجمہ، ڈیزائن میں تبدیلیاں، کوڈ کی درستی، یا حقیقتاً کوڈ میں بڑی تبدیلی—مدد کا ہمیشہ خیرمقدم ہے۔ جتنا زیادہ ہوگا اتنی ہی بہتری ہو گی!</string>
     <string name="view_on_github">گٹ ہب پر دیکھیں</string>
     <string name="donation_title">عطیہ</string>
-    <string name="donation_encouragement">نیو پائپ رضاکاروں کے ذریعہ تیار کیا گیا ہے جو آپ کو بہترین تجربہ فراہم کرنے میں وقت صرف کرتے ہیں۔ ایک کپ کافی سے لطف اندوز ہوتے ہوئے ڈویلپرز کو نیو پائپ کو اور بہتر بنانے میں بہتر تعاون کریں</string>
     <string name="give_back">بدلہ دیں</string>
     <string name="website_title">ویب سائٹ</string>
-    <string name="website_encouragement">مزید معلومات اور خبروں کے لئے نیو پائپ ویب سائٹ ملاحظہ کریں۔</string>
-    <string name="app_license_title">نیو پائپ کا لائسنس</string>
     <string name="read_full_license">لائسنس پڑھیں</string>
     <string name="title_activity_history">سرگزشت</string>
     <string name="action_history">سرگزشت</string>
@@ -283,12 +276,8 @@
     <string name="delete_search_history_alert">تلاش کی مکمل سرگزشت حذف کریں؟</string>
     <string name="search_history_deleted">تلاش کی سرگزشت حذف ہوئی</string>
     <string name="one_item_deleted">1 شے حذف کر دی گئی۔</string>
-    <string name="app_license">نیو پائپ کاپی لیفٹ فری سافٹ ویئر ہے: آپ استعمال، مطالعہ، شیئر اور اپنی مرضی سے اسے بہتر بنا سکتے ہیں۔ خاص طور پر آپ اسے مفت سافٹ ویئر فاؤنڈیشن کے ذریعہ شائع کردہ GNU جنرل پبلک لائسنس کی شرائط کے تحت دوبارہ تقسیم اور/یا ترمیم کرسکتے ہیں، خواہ لائسنس کا ورژن 3، یا (آپ کے اختیار پر) کسی بھی بعد کا ورژن میں۔</string>
     <string name="import_settings">کیا آپ ترتیبات بھی درآمد کرنا چاہتے ہیں؟</string>
-    <string name="privacy_policy_title">نیو پائپ کی رازداری کی پالیسی</string>
-    <string name="privacy_policy_encouragement">نیو پائپ منصوبہ آپ کی رازداری کو بہت سنجیدگی سے لیتا ہے. لہذا، ایپلی کیشن آپ کی رضامندی کے بغیر کسی بھی ڈیٹا کو جمع نہیں کرتا./nنیو پائپ کی رازداری پالیسی تفصیل سے وضاحت کرتی ہے کہ آپ کے کریش رپورٹ بھیجنے پر کیا ڈیٹا بھیجا جاتا ہے اور ذخیرہ کیا جاتا ہے ۔</string>
     <string name="read_privacy_policy">رازداری کی پالیسی پڑھیں</string>
-    <string name="start_accept_privacy_policy">یورپی جنرل ڈیٹا پروٹیکشن ریگولیشن (جی ڈی پی آر) کی تعمیل کرنے کیلئے، ہم آپ کی توجہ نیو پائپ کی رازداری کی پالیسی کی طرف مبذول کراتے ہیں۔ برائے مہربانی اسے غور سے پڑھیں۔ \nہمیں بگ رپورٹ بھیجنے کے لیے آپ کو اسے قبول کرنا ضروری ہے۔</string>
     <string name="accept">قبول</string>
     <string name="decline">رد</string>
     <string name="limit_data_usage_none_description">لا محدود</string>
@@ -311,7 +300,6 @@
     <string name="settings_category_updates_title">تازہ کاریاں</string>
     <string name="file_deleted">فائل حذف ہوگئی</string>
     <string name="app_update_notification_channel_name">ایپ اَپ ڈیٹ کی اطلاع</string>
-    <string name="app_update_notification_channel_description">جدید نیو پائپ ورژن کے لیے اطلاعات</string>
     <string name="download_to_sdcard_error_title">بیرونی ذخیرہ دستیاب نہیں</string>
     <string name="download_to_sdcard_error_message">بیرونی ایسڈی کارڈ پر ڈاؤن لوڈ ممکن نہیں۔ ڈاؤن لوڈ فولڈر کے مقام کو دوبارہ ترتیب دیں؟</string>
     <string name="saved_tabs_invalid_json">محفوظ شدہ ٹیبز نہیں پڑھ سکے لہذا پہلے سے طے شدہ کا استعمال کر رہے ہیں</string>
@@ -325,7 +313,6 @@
     <string name="list">فہرست</string>
     <string name="grid">گرڈ</string>
     <string name="auto">خودکار</string>
-    <string name="app_update_available_notification_title">نیو پائپ کی تازہ کاری دستیاب!</string>
     <string name="missions_header_finished">ختم</string>
     <string name="missions_header_pending">ملتوی</string>
     <string name="paused">توقف</string>
@@ -372,7 +359,6 @@
     <string name="overwrite_finished_warning">اس نام کی ڈاؤن لوڈ کی گئی فائل پہلے سے موجود ہے</string>
     <string name="overwrite_failed">فائل برتحریر نہیں کر سکتا</string>
     <string name="download_already_pending">اس نام کے ساتھ ڈاؤن لوڈ زیر التوا ہے</string>
-    <string name="error_postprocessing_stopped">فائل پر کام کرنے کے دوران نیو پائپ بند کردی گئی تھی</string>
     <string name="error_insufficient_storage_left">آلہ میں کوئی جگہ نہیں بچی</string>
     <string name="error_progress_lost">پیشرفت ختم ہوگئی، کیونکہ فائل کو حذف کردیا گیا تھا</string>
     <string name="error_timeout">رابطے کا وقت ختم</string>
@@ -428,7 +414,6 @@
     <string name="error_report_open_issue_button_text">گِٹ ہب میں اطلاع دیں</string>
     <string name="copy_for_github">فارمیٹڈ رپورٹ کو کاپی کریں</string>
     <string name="permission_display_over_apps">دوسرے ایپس پر نظر آنے کی اجازت دیں</string>
-    <string name="clear_cookie_summary">ان کوکیز کو صاف کریں جنہیں نیو پائپ ری کیپچا حل کرنے کے دوران جمع کرتا ہے</string>
     <string name="recaptcha_cookies_cleared">ری کیپچا کوکیز صاف ہوئیں</string>
     <string name="clear_cookie_title">ری کیپچا کوکیز کو صاف کریں</string>
     <string name="hash_channel_description">ویڈیو ہیسنگ پیشرفت کے لئے اطلاعات</string>
@@ -479,7 +464,7 @@
     <string name="faq_title">زیادہ تر پوچھے گئے سوالات</string>
     <string name="faq_description">اگر آپ کو یہ ایپ استعمال کرنے میں دشواری آ رہی ہو تو ان عام سوالات کے جوابات کو ضرور دیکھیں!</string>
     <string name="faq">ویب سائٹ پر دیکھیں</string>
-    <string name="error_report_notification_title">NewPipe کو ایک خرابی کا سامنا کرنا پڑا، رپورٹ کرنے کے لیے ٹیپ کریں</string>
+    <string name="error_report_notification_title">Merak کو ایک خرابی کا سامنا کرنا پڑا، رپورٹ کرنے کے لیے ٹیپ کریں</string>
     <string name="settings_category_player_notification_summary">موجودہ پلیئنگ اسٹریم نوٹیفکیشن کو ترتیب دیں</string>
     <string name="main_page_content_swipe_remove">آئٹمز کو ہٹانے کے لیے سوائپ کریں</string>
     <string name="night_theme_title">نائٹ تھیم</string>
@@ -505,7 +490,6 @@
     <string name="unmute">غیر خاموش</string>
     <string name="mute">خاموش</string>
     <string name="processing_may_take_a_moment">کارروائی ہو رہی ہے… کچھ وقت لگ سکتا ہے</string>
-    <string name="restricted_video_no_stream">یہ ویڈیو اٹھارہ سال سے بڑے لوگوں کے لیے ہے۔ \nیو ٹیوب کی نئی پالیسیوں کی وجہ سے نیوپائپ ان ویڈیوز تک رسائی حاصل نہیں کر سکتا لہٰذا اس ویڈیو کو چلانے سے قاصر ہے۔</string>
     <string name="prefer_original_audio_title">اصل آڈیو کو ترجیح دیں</string>
     <string name="prefer_original_audio_summary">زبان سے قطع نظر اصل آڈیو ٹریک منتخب کریں</string>
     <string name="prefer_descriptive_audio_title">وضاحتی آڈیو کو ترجیح دیں</string>

@@ -51,7 +51,7 @@
     <string name="main_bg_subtitle">Začněte klepnutím na lupu.</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
-    <string name="msg_running">NewPipe stahuje</string>
+    <string name="msg_running">Merak stahuje</string>
     <string name="msg_running_detail">Klepněte pro podrobnosti</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_name">Jméno souboru</string>
@@ -117,8 +117,8 @@
     <string name="clear">Vymazat</string>
     <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
-    <string name="notification_channel_name">Oznámení NewPipe</string>
-    <string name="notification_channel_description">Oznámení pro NewPipe přehrávač</string>
+    <string name="notification_channel_name">Oznámení Merak</string>
+    <string name="notification_channel_description">Oznámení pro Merak přehrávač</string>
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_list_subtitle">Je tu sranda jak v márnici</string>
     <string name="no_subscribers">Žádní odběratelé</string>
@@ -148,14 +148,14 @@
     <string name="settings_file_replacement_character_title">Náhradní znak</string>
     <string name="charset_letters_and_digits">Písmena a číslice</string>
     <string name="charset_most_special_characters">Většina speciálních znaků</string>
-    <string name="title_activity_about">O aplikaci NewPipe</string>
+    <string name="title_activity_about">O aplikaci Merak</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
     <string name="tab_about">O aplikaci a dotazy</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Svobodné a lehké streamování pro Android.</string>
     <string name="view_on_github">Zobrazit na GitHubu</string>
-    <string name="app_license_title">Licence NewPipe</string>
+    <string name="app_license_title">Licence Merak</string>
     <string name="contribution_encouragement">Ať máte nápady na překlad, designové změny, pročištění kódu nebo velké změny – pomoc je vždy vítána. Čím více, tím lépe!</string>
     <string name="read_full_license">Přečíst licenci</string>
     <string name="contribution_title">Přispějte</string>
@@ -186,10 +186,8 @@
     <string name="start_here_on_background">Začít přehrávat na pozadí</string>
     <string name="start_here_on_popup">Začít přehrávat v pop-upu</string>
     <string name="donation_title">Přispět</string>
-    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas tím, že vám přinášejí ten nejlepší uživatelský zážitek. Odměňte snahu vývojářů zlepšovat NewPipe a dopřejte jim šálek kávy.</string>
     <string name="give_back">Odměnit</string>
     <string name="website_title">Webové stránky</string>
-    <string name="website_encouragement">Navštivte webové stránky NewPipe pro další informace a novinky.</string>
     <string name="default_content_country_title">Země výchozího obsahu</string>
     <string name="switch_to_background">Přepnout na pozadí</string>
     <string name="switch_to_popup">Do okna</string>
@@ -292,19 +290,18 @@
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání?</string>
     <string name="search_history_deleted">Historie vyhledávání smazána</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
-    <string name="app_license">NewPipe je copyleftovaný svobodný software: můžete jej jakkoli používat, studovat, sdílet a vylepšovat. Redistribuovat a/nebo upravovat jej můžete pod podmínkami licence GNU General Public License zveřejněné nadací Free Software Foundation, buď ve verzi 3, nebo v jakékoli novější verzi (záleží na vás).</string>
+    <string name="app_license">Merak je copyleftovaný svobodný software: můžete jej jakkoli používat, studovat, sdílet a vylepšovat. Redistribuovat a/nebo upravovat jej můžete pod podmínkami licence GNU General Public License zveřejněné nadací Free Software Foundation, buď ve verzi 3, nebo v jakékoli novější verzi (záleží na vás).</string>
     <string name="channels">Kanály</string>
     <string name="playlists">Playlisty</string>
     <string name="tracks">Stopy</string>
     <string name="users">Uživatelé</string>
-    <string name="privacy_policy_title">Ochrana soukromí NewPipe</string>
-    <string name="privacy_policy_encouragement">Projekt NewPipe bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu. \nZásady ochrany soukromí NewPipe podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
+    <string name="privacy_policy_title">Ochrana soukromí Merak</string>
     <string name="read_privacy_policy">Přečíst zásady ochrany osobních údajů</string>
     <string name="import_settings">Chcete také přenést nastavení?</string>
     <string name="skip_silence_checkbox">Zrychleně vpřed během ticha</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Reset</string>
-    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v NewPipe. Přečtěte si je, prosím, pozorně. \nJe potřeba je odsouhlasit, abyste nám mohli odeslat hlášení chyb.</string>
+    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v Merak. Přečtěte si je, prosím, pozorně. \nJe potřeba je odsouhlasit, abyste nám mohli odeslat hlášení chyb.</string>
     <string name="accept">Přijmout</string>
     <string name="decline">Odmítnout</string>
     <string name="limit_data_usage_none_description">Bez omezení</string>
@@ -319,7 +316,7 @@
     <string name="settings_category_updates_title">Aktualizace</string>
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>
-    <string name="app_update_notification_channel_description">Oznámení o nových verzích NewPipe</string>
+    <string name="app_update_notification_channel_description">Oznámení o nových verzích Merak</string>
     <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
@@ -334,7 +331,7 @@
     <string name="list">Seznam</string>
     <string name="grid">Mřížka</string>
     <string name="auto">Automaticky</string>
-    <string name="app_update_available_notification_title">Aktualizace NewPipe je k dispozici!</string>
+    <string name="app_update_available_notification_title">Aktualizace Merak je k dispozici!</string>
     <string name="missions_header_finished">Dokončeno</string>
     <string name="missions_header_pending">Čekání</string>
     <string name="paused">Pozastaveno</string>
@@ -377,7 +374,7 @@
     <string name="missing_file">Soubor přemístěn nebo smazán</string>
     <string name="overwrite_failed">soubor nelze přepsat</string>
     <string name="download_already_pending">Soubor s tímto názvem již čeká na stažení</string>
-    <string name="error_postprocessing_stopped">NewPipe byl ukončen v průběhu zpracovávání souboru</string>
+    <string name="error_postprocessing_stopped">Merak byl ukončen v průběhu zpracovávání souboru</string>
     <string name="error_insufficient_storage_left">V zařízení nezbývá žádné místo</string>
     <string name="error_progress_lost">Postup ztracen, protože soubor byl smazán</string>
     <string name="confirm_prompt">Jste si jisti smazáním své historie stahování nebo smazáním všech stažených souborů?</string>
@@ -486,8 +483,8 @@
     <string name="feed_use_dedicated_fetch_method_summary">K dispozici na některých zařízeních, je obvykle mnohem rychlejší, ale může vrátit omezený počet položek a často neúplné informace (např. bez trvání, typu položky, skutečného stavu)</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">Zapnout rychlý režim</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">Vypnout rychlý režim</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). \n \nNewPipe nabízí dvě strategie načítání seznamu novinek \n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé. \n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. \n \nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek. \n \nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. \n \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
-    <string name="content_not_supported">Tento obsah ještě není podporován NewPipe. \n \nSnad bude podporován v budoucnu.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">Zdá se vám načítání příliš pomalé? Pokud ano, zkuste zapnout rychlé načítání (lze změnit v nastavení nebo stiskem tlačítka níže). \n \nMerak nabízí dvě strategie načítání seznamu novinek \n• Stažení celého kanálu vašich odběrů, což je pomalé, ale spolehlivé. \n• Použití služby k tomu určené, což je rychlé, ale obvykle neobsahuje všechny potřebné informace. \n \nRozdíl mezi těmi dvěma je, že rychlému způsobu obvykle chybí nějaká informace, např. délka videa nebo typ (nemůže rozlišit mezi živým a normálním videem) a patrně vrátí méně položek. \n \nYouTube je příklad služby, která nabízí tuto rychlou metodu pomocí RSS přísunu. \n \nVýběr je vposledku určen tím, čemu dáte přednost: rychlosti nebo přesnosti informací.</string>
+    <string name="content_not_supported">Tento obsah ještě není podporován Merak. \n \nSnad bude podporován v budoucnu.</string>
     <string name="infinite_videos">∞ videí</string>
     <string name="more_than_100_videos">100+ videí</string>
     <string name="artists">Umělci</string>
@@ -537,7 +534,7 @@
     <string name="show_memory_leaks">Zobrazit úniky paměti</string>
     <string name="enqueued">Zařazeno do fronty</string>
     <string name="enqueue_stream">Přidat do fronty</string>
-    <string name="clear_cookie_summary">Vymazat cookies, které NewPipe uloží, po vyřešení reCAPTCHA</string>
+    <string name="clear_cookie_summary">Vymazat cookies, které Merak uloží, po vyřešení reCAPTCHA</string>
     <string name="recaptcha_cookies_cleared">Cookies reCAPTCHA byly vymazány</string>
     <string name="clear_cookie_title">Vymazat cookies reCAPTCHA</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube poskytuje „Omezený režim“, který skrývá potenciální obsah pro dospělé</string>
@@ -567,14 +564,14 @@
     <string name="auto_device_theme_title">Automaticky (podle zařízení)</string>
     <string name="radio">Radio</string>
     <string name="featured">Představujeme</string>
-    <string name="paid_content">Tento obsah je dostupný jen platícím uživatelům, a tak jej NewPipe nemůže stáhnout ani přehrát.</string>
-    <string name="youtube_music_premium_content">Toto video je dostupné jen členům YouTube Music Premium, a tak je NewPipe nemůže stáhnout ani přehrát.</string>
-    <string name="private_content">Tento obsah je soukromý, a tak jej NewPipe nemůže stáhnout ani přehrát.</string>
-    <string name="soundcloud_go_plus_content">Toto je stopa SoundCloud Go+, přinejmenším ve Vaší zemi, a tak ji NewPipe nemůže stáhnout ani přehrát.</string>
+    <string name="paid_content">Tento obsah je dostupný jen platícím uživatelům, a tak jej Merak nemůže stáhnout ani přehrát.</string>
+    <string name="youtube_music_premium_content">Toto video je dostupné jen členům YouTube Music Premium, a tak je Merak nemůže stáhnout ani přehrát.</string>
+    <string name="private_content">Tento obsah je soukromý, a tak jej Merak nemůže stáhnout ani přehrát.</string>
+    <string name="soundcloud_go_plus_content">Toto je stopa SoundCloud Go+, přinejmenším ve Vaší zemi, a tak ji Merak nemůže stáhnout ani přehrát.</string>
     <string name="georestricted_content">Tento obsah není ve vaší zemi dostupný.</string>
     <string name="show_channel_details">Zobrazit podrobnosti kanálu</string>
     <string name="recaptcha_solve">Vyřešit</string>
-    <string name="restricted_video_no_stream">Toto video je věkově omezeno. \nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže NewPipe získat přístup na streamy videa, a tak je nemůže přehrát.</string>
+    <string name="restricted_video_no_stream">Toto video je věkově omezeno. \nKvůli novým pravidlům YouTube ohledně věkově omezených videí nemůže Merak získat přístup na streamy videa, a tak je nemůže přehrát.</string>
     <string name="night_theme_title">Noční motiv</string>
     <string name="disable_media_tunneling_summary">Zakažte tunelování médií, pokud máte potíže s černou obrazovkou nebo sekáním při přehrávání videa.</string>
     <string name="disable_media_tunneling_title">Zakázat tunelování médií</string>
@@ -596,7 +593,7 @@
     <string name="description_select_note">Nyní můžete vybrat v popisu text. Pamatujte, že v režimu výběru může stránka blikat a odkazy nemusí reagovat na kliknutí.</string>
     <string name="account_terminated">Účet uzavřen</string>
     <string name="feed_load_error_fast_unknown">Režim rychlého feedu o tom neposkytuje více informací.</string>
-    <string name="feed_load_error_terminated">Autorův účet byl uzavřen. \nNewPipe nebude už moci načíst tento feed. \nChcete zrušit objednávku tohoto kanálu?</string>
+    <string name="feed_load_error_terminated">Autorův účet byl uzavřen. \nMerak nebude už moci načíst tento feed. \nChcete zrušit objednávku tohoto kanálu?</string>
     <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
     <string name="feed_load_error">Chyba při načítání feedu</string>
     <string name="downloads_storage_use_saf_summary_api_29">Počínaje systémem Android 10 je podporován pouze „Storage Access Framework“</string>
@@ -634,7 +631,7 @@
     <string name="processing_may_take_a_moment">Zpracovávám... může trvat moment</string>
     <string name="manual_update_description">Ručně zkontrolovat zda je k dispozici nová verze</string>
     <string name="check_for_updates">Kontrola aktualizací</string>
-    <string name="error_report_notification_title">NewPipe narazil na problém, klikněte pro nahlášení</string>
+    <string name="error_report_notification_title">Merak narazil na problém, klikněte pro nahlášení</string>
     <string name="error_report_notification_toast">Došlo k chybě, více v oznámení</string>
     <string name="create_error_notification">Vytvořit chybové oznámení</string>
     <string name="checking_updates_toast">Kontrola aktualizací…</string>
@@ -690,7 +687,7 @@
     <string name="sort">Řazení</string>
     <string name="app_update_available_notification_text">Klepnutím stáhnete %s</string>
     <string name="fast_mode">Rychlý režim</string>
-    <string name="app_update_unavailable_toast">Používáte nejnovější verzi NewPipe</string>
+    <string name="app_update_unavailable_toast">Používáte nejnovější verzi Merak</string>
     <string name="import_subscriptions_hint">Importujte nebo exportujte odběry z 3tečkové nabídky</string>
     <string name="night_theme_available">Tato možnost je dostupná pouze, když je zvolen motiv %s</string>
     <string name="unset_playlist_thumbnail">Zrušení nastavení trvalého náhledu</string>
@@ -798,7 +795,7 @@
     <string name="reset_all_settings">Obnovením nastavení se zruší všechna preferovaná nastavení a aplikace se restartuje. \n \nJste si jisti, že chcete pokračovat?</string>
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
-    <string name="auto_update_check_description">NewPipe může čas od času automaticky kontrolovat nové verze a upozornit vás na jejich dostupnost. \nChcete tuto funkci povolit?</string>
+    <string name="auto_update_check_description">Merak může čas od času automaticky kontrolovat nové verze a upozornit vás na jejich dostupnost. \nChcete tuto funkci povolit?</string>
     <string name="import_settings_vulnerable_format">Nastavení v importovaném exportu používají zranitelný formát. NewPipe používá nový formát od verze 0.27.0. Ujistěte se, že export importujete z důvěryhodného zdroje a v budoucnu upřednostňujte používání exportů získaných z NewPipe 0.27.0 nebo novějších. Podpora importu nastavení v tomto zranitelném formátu bude brzy kompletně odstraněna, kvůli čemuž staré verze NewPipe nebudou moci importovat nastavení z exportů z nových verzí.</string>
     <string name="audio_track_type_secondary">sekundární</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Sdílet jako dočasný playlist YouTube</string>
@@ -812,7 +809,7 @@
     <string name="migration_info_6_7_title">Stránka SoundCloud Top 50 odstraněna</string>
     <string name="migration_info_6_7_message">SoundCloud zrušil původní žebříčky Top 50. Příslušná karta byla odstraněna z vaší hlavní stránky.</string>
     <string name="migration_info_7_8_title">YouTube kombinované trendy odstraněny</string>
-    <string name="migration_info_7_8_message">YouTube ukončil provoz kombinované stránky s trendy k 21. červenci 2025. NewPipe nahradil výchozí stránku s trendy stránkou s trendy živými přenosy.\n\nMůžete také vybrat různé stránky s trendy v části „Nastavení &gt; Obsah &gt; Obsah úvodní stránky“.</string>
+    <string name="migration_info_7_8_message">YouTube ukončil provoz kombinované stránky s trendy k 21. červenci 2025. Merak nahradil výchozí stránku s trendy stránkou s trendy živými přenosy.\n\nMůžete také vybrat různé stránky s trendy v části „Nastavení &gt; Obsah &gt; Obsah úvodní stránky“.</string>
     <string name="trending_gaming">Populární hry</string>
     <string name="trending_podcasts">Populární podcasty</string>
     <string name="trending_movies">Populární filmy a seriály</string>
@@ -831,7 +828,6 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 obdržená od serveru během přehrávání, pravděpodobně způsobená zákazem IP adresy nebo problémy s deobfuskací streamovací adresy URL</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zablokována službou %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z Wi-Fi na mobilní data).\n\nPro více informací si přečtěte <a href="%2$s">tento záznam v FAQ</a>.</string>
     <string name="unsupported_content_in_country">Tento obsah není pro aktuálně vybranou zemi obsahu dostupný.\n\nZměňte výběr v nabídce \"Nastavení &gt; Obsah &gt; Výchozí země obsahu\".</string>
-    <string name="kao_dialog_warning">Společnost Google oznámila, že od roku 2026/2027 budou všechny aplikace na certifikovaných zařízeních Android vyžadovat, aby vývojář odeslal své osobní identifikační údaje přímo společnosti Google. Jelikož vývojáři této aplikace s tímto požadavkem nesouhlasí, aplikace po tomto datu přestane na certifikovaných zařízeních Android fungovat.</string>
     <string name="kao_dialog_more_info">Podrobnosti</string>
     <string name="kao_solution">Řešení</string>
     <plurals name="export_subscriptions">
@@ -857,8 +853,8 @@
     <string name="import_subscriptions_summary">Importovat odběry z předchozího exportu .json</string>
     <string name="export_subscriptions_summary">Exportovat odběry do souboru .json</string>
     <string name="import_from_previous_export">Importovat z předchozího exportu</string>
-    <string name="api23_requirement_dialog_title">NewPipe ukončuje podporu systému Android 5</string>
-    <string name="api23_requirement_dialog_message">NewPipe bohužel využívá několik knihoven, které již nepodporují Android 5.0 a 5.1. Příští verze NewPipe proto bude bohužel fungovat pouze na zařízeních s Androidem 6 nebo novějším. Více se dozvíte v tomto blogovém příspěvku.</string>
+    <string name="api23_requirement_dialog_title">Merak ukončuje podporu systému Android 5</string>
+    <string name="api23_requirement_dialog_message">Merak bohužel využívá několik knihoven, které již nepodporují Android 5.0 a 5.1. Příští verze Merak proto bude bohužel fungovat pouze na zařízeních s Androidem 6 nebo novějším. Více se dozvíte v tomto blogovém příspěvku.</string>
     <string name="api23_requirement_dialog_blogpost">Blogový příspěvek</string>
     <string name="channel_tab_podcasts">Podcasty</string>
     <string name="channel_tab_courses">Kurzy</string>

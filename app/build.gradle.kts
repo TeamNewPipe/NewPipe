@@ -40,8 +40,9 @@ configure<ApplicationExtension> {
     namespace = NEWPIPE_APPLICATION_ID_OLD
 
     defaultConfig {
-        applicationId = NEWPIPE_APPLICATION_ID_OLD
-        resValue("string", "app_name", "NewPipe")
+        // Merak: its own app ID and name, separate from NewPipe's (trademark policy).
+        applicationId = FORK_APPLICATION_ID
+        resValue("string", "app_name", FORK_APP_NAME)
         minSdk {
             version = release(NEWPIPE_VERSION_SDK_MIN)
         }
@@ -52,7 +53,7 @@ configure<ApplicationExtension> {
         versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: NEWPIPE_VERSION_CODE
 
         versionName = NEWPIPE_VERSION_NAME
-        versionNameSuffix = TITLE_SEARCH_VERSION_SUFFIX
+        versionNameSuffix = FORK_VERSION_SUFFIX
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -90,14 +91,9 @@ configure<ApplicationExtension> {
             signingConfig = signingConfigs.getByName("debug")
             isDefault = true
 
-            // suffix the app id and the app name with git branch name
-            if (normalizedWorkingBranch.isEmpty() || workingBranch in defaultBranches) {
-                applicationIdSuffix = ".continuous"
-                resValue("string", "app_name", "NewPipe Continuous")
-            } else {
-                applicationIdSuffix = ".continuous.$normalizedWorkingBranch"
-                resValue("string", "app_name", NEWPIPE_SEARCH_APP_NAME)
-            }
+            // Merak: no suffix, so the release app ID stays io.github.ninjaeu.merak and every
+            // release installs as an update.
+            resValue("string", "app_name", FORK_APP_NAME)
         }
     }
 

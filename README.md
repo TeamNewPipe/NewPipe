@@ -1,3 +1,13 @@
+# Merak
+
+> **Merak is an unofficial app based on NewPipe, with title search for playlists, playlist items, and subscriptions.** Merak is not affiliated with or endorsed by TeamNewPipe or NewPipe e.V. "NewPipe" is a registered word mark of NewPipe e.V.
+>
+> **Download:** [Releases](../../releases) · **Guide:** [MERAK.md](MERAK.md) · **Report a problem:** [Issues](../../issues) (please keep Merak reports out of TeamNewPipe's tracker)
+>
+> License: GNU GPL v3 or later. The original NewPipe README follows, unchanged.
+
+---
+
 <p align="center"><a href="https://newpipe.net"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center">A libre lightweight streaming front-end for Android.</h4>

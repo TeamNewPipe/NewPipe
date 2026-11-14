@@ -165,10 +165,10 @@
     <string name="just_once">მხოლოდ ერთხელ</string>
     <string name="file">ფაილი</string>
     <string name="notifications">შეტყობინებები</string>
-    <string name="notification_channel_name">NewPipe შეტყობინება</string>
-    <string name="notification_channel_description">შეტყობინებები NewPipe-ის დამკვრელისთვის</string>
+    <string name="notification_channel_name">Merak შეტყობინება</string>
+    <string name="notification_channel_description">შეტყობინებები Merak-ის დამკვრელისთვის</string>
     <string name="app_update_notification_channel_name">აპლიკაციის განახლების შეტყობინება</string>
-    <string name="app_update_notification_channel_description">შეტყობინებები NewPipe-ის ახალი ვერსიებისთვის</string>
+    <string name="app_update_notification_channel_description">შეტყობინებები Merak-ის ახალი ვერსიებისთვის</string>
     <string name="hash_channel_name">ვიდეო ჰეშის შეტყობინება</string>
     <string name="hash_channel_description">შეტყობინებები ვიდეოების ჰეშირების პროგრესის შესახებ</string>
     <string name="streams_notification_channel_name">ახალი ნაკადები</string>
@@ -213,7 +213,7 @@
     <string name="restore_defaults">ნაგულისხმევი პარამეტრების აღდგენა</string>
     <string name="restore_defaults_confirmation">გსურთ ნაგულისხმევი პარამეტრების აღდგენა?</string>
     <string name="permission_display_over_apps">მიეცით სხვა აპებზე ჩვენების ნებართვა</string>
-    <string name="error_report_notification_title">NewPipe-ს შეექმნა შეცდომა, შეეხეთ შეტყობინებისთვის</string>
+    <string name="error_report_notification_title">Merak-ს შეექმნა შეცდომა, შეეხეთ შეტყობინებისთვის</string>
     <string name="error_report_notification_toast">მოხდა შეცდომა, იხილეთ შეტყობინება</string>
     <string name="sorry_string">უკაცრავად, ეს არ უნდა მომხდარიყო.</string>
     <string name="error_report_button_text">ელფოსტით შეტყობინება</string>
@@ -277,7 +277,7 @@
     <string name="msg_name">ფაილის სახელი</string>
     <string name="msg_threads">ძაფები</string>
     <string name="msg_error">შეცდომა</string>
-    <string name="msg_running">NewPipe-ის ჩამოტვირთვა</string>
+    <string name="msg_running">Merak-ის ჩამოტვირთვა</string>
     <string name="msg_running_detail">შეეხეთ დეტალებისთვის</string>
     <string name="msg_calculating_hash">ჰეშის გაანგარიშება</string>
     <string name="msg_wait">გთხოვთ მოიცადოთ…</string>
@@ -291,7 +291,7 @@
     <string name="done">შესრულებულია</string>
     <string name="settings_file_replacement_character_title">შემცვლელი პერსონაჟი</string>
     <string name="charset_letters_and_digits">ასოები და ციფრები</string>
-    <string name="title_activity_about">NewPipe-ის შესახებ</string>
+    <string name="title_activity_about">Merak-ის შესახებ</string>
     <string name="tab_licenses">ლიცენზიები</string>
     <string name="app_description">უფასო მსუბუქი ნაკადი Android-ზე.</string>
     <string name="contribution_title">წვლილი შეიტანეთ</string>
@@ -300,11 +300,9 @@
     <string name="donation_title">შემოწირულობა</string>
     <string name="give_back">დაბრუნება</string>
     <string name="website_title">საიტი</string>
-    <string name="website_encouragement">ეწვიეთ NewPipe ვებსაიტს დამატებითი ინფორმაციისა და სიახლეებისთვის.</string>
-    <string name="privacy_policy_title">NewPipe-ის კონფიდენციალურობის პოლიტიკა</string>
-    <string name="privacy_policy_encouragement">NewPipe პროექტი თქვენს კონფიდენციალურობას ძალიან სერიოზულად ეკიდება. ამიტომ, აპლიკაცია არ აგროვებს მონაცემებს თქვენი თანხმობის გარეშე. \nNewPipe-ის კონფიდენციალურობის პოლიტიკა დეტალურად განმარტავს, თუ რა მონაცემები იგზავნება და ინახება ავარიის ანგარიშის გაგზავნისას.</string>
+    <string name="privacy_policy_title">Merak-ის კონფიდენციალურობის პოლიტიკა</string>
     <string name="read_privacy_policy">წაიკითხეთ კონფიდენციალურობის პოლიტიკა</string>
-    <string name="app_license_title">NewPipe-ის ლიცენზია</string>
+    <string name="app_license_title">Merak-ის ლიცენზია</string>
     <string name="read_full_license">წაიკითხეთ ლიცენზია</string>
     <string name="faq_title">Ხშირად დასმული შეკითხვები</string>
     <string name="faq_description">თუ აპლიკაციის გამოყენება გიჭირთ, დარწმუნდით, რომ შეამოწმეთ ეს პასუხები საერთო კითხვებზე!</string>
@@ -513,11 +511,11 @@
     <string name="feed_update_threshold_summary">დრო ბოლო განახლებიდან გამოწერამდე ითვლება მოძველებულად — %s</string>
     <string name="feed_update_threshold_option_always_update">ყოველთვის განახლება</string>
     <string name="feed_load_error">შეცდომა არხის ჩატვირთვისას</string>
-    <string name="feed_load_error_terminated">ავტორის ანგარიში შეჩერებულია. \n NewPipe ვერ შეძლებს ამ არხის ჩატვირთვას მომავალში. \n გსურთ ამ არხის გამოწერის გაუქმება?</string>
+    <string name="feed_load_error_terminated">ავტორის ანგარიში შეჩერებულია. \n Merak ვერ შეძლებს ამ არხის ჩატვირთვას მომავალში. \n გსურთ ამ არხის გამოწერის გაუქმება?</string>
     <string name="feed_use_dedicated_fetch_method_title">მიიღეთ გამოყოფილი არხიდან, როცა ხელმისაწვდომია</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">ჩართეთ სწრაფი რეჟიმი</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">სწრაფი რეჟიმის გამორთვა</string>
-    <string name="content_not_supported">ეს შინაარსი ჯერ არ არის მხარდაჭერილი NewPipe-ის მიერ. \n \n იმედია, ის იქნება მხარდაჭერილი მომავალ ვერსიაში.</string>
+    <string name="content_not_supported">ეს შინაარსი ჯერ არ არის მხარდაჭერილი Merak-ის მიერ. \n \n იმედია, ის იქნება მხარდაჭერილი მომავალ ვერსიაში.</string>
     <string name="detail_sub_channel_thumbnail_view_description">არხის ავატარის ესკიზი</string>
     <string name="channel_created_by">შექმნილია %s-ის მიერ</string>
     <string name="video_detail_by">%s-ის მიხედვით</string>
@@ -528,9 +526,9 @@
     <string name="no_app_to_open_intent">თქვენს მოწყობილობაზე არცერთ აპლიკაციას არ შეუძლია ამის გახსნა</string>
     <string name="no_appropriate_file_manager_message_android_10">ამ მოქმედებისთვის შესაბამისი ფაილების მენეჯერი ვერ მოიძებნა. \n გთხოვთ, დააინსტალიროთ Storage Access Framework თავსებადი ფაილ მენეჯერი</string>
     <string name="georestricted_content">ეს ხელმიუწვდომელია თქვენი ქვეყნიდან.</string>
-    <string name="private_content">ეს მასალა პირადულია, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
+    <string name="private_content">ეს მასალა პირადულია, ამიტომაც Merak-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="account_terminated">ანგარიში შეწყვეტილია</string>
-    <string name="paid_content">ეს მასალა ხელმისაწვდომია მხოლოდ გადამხდელებისთვის, ამიტომაც NewPipe-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
+    <string name="paid_content">ეს მასალა ხელმისაწვდომია მხოლოდ გადამხდელებისთვის, ამიტომაც Merak-ს მისი არც მთლიანად და არც თანდათანობით ჩამოწერა არ შეუძლია.</string>
     <string name="featured">გამორჩეული</string>
     <string name="radio">რადიო</string>
     <string name="night_theme_summary">აირჩიეთ თქვენი საყვარელი ღამის თემა — %s</string>
@@ -572,9 +570,9 @@
     <string name="youtube_restricted_mode_enabled_title">ჩართეთ YouTube-ის „შეზღუდული რეჟიმი“</string>
     <string name="restricted_video">ეს ვიდეო ასაკობრივი შეზღუდულია. \n \nთუ გსურთ მისი ნახვა, ჩართეთ „%1$s“ პარამეტრებში.</string>
     <string name="duration_live">ლაივი</string>
-    <string name="restricted_video_no_stream">ეს ვიდეო ასაკობრივად შეზღუდულია. \n YouTube-ის ახალი წესების გამო ასაკობრივად შეზღუდული ვიდეოებით, NewPipe-ს არ შეუძლია წვდომა მის რომელიმე ვიდეო ნაკადზე და, შესაბამისად, ვერ ახერხებს მის დაკვრას.</string>
+    <string name="restricted_video_no_stream">ეს ვიდეო ასაკობრივად შეზღუდულია. \n YouTube-ის ახალი წესების გამო ასაკობრივად შეზღუდული ვიდეოებით, Merak-ს არ შეუძლია წვდომა მის რომელიმე ვიდეო ნაკადზე და, შესაბამისად, ვერ ახერხებს მის დაკვრას.</string>
     <string name="search_history_deleted">ძიების ისტორია წაიშალა</string>
-    <string name="clear_cookie_summary">წაშალეთ ქუქი-ფაილები, რომლებსაც NewPipe ინახავს, როდესაც თქვენ გადაჭრით reCAPTCHA</string>
+    <string name="clear_cookie_summary">წაშალეთ ქუქი-ფაილები, რომლებსაც Merak ინახავს, როდესაც თქვენ გადაჭრით reCAPTCHA</string>
     <string name="clear_views_history_summary">წაშლის ნათამაშები დაკვრილ ისტორიას და დაკვრის პოზიციებს</string>
     <string name="file_deleted">ფაილი წაიშალა</string>
     <string name="streams_notification_channel_description">შეტყობინებები ახალი ნაკადების შესახებ გამოწერებისთვის</string>
@@ -602,11 +600,10 @@
     <string name="tab_about">შესახებ &amp; ხშირად დასმული კითხვები</string>
     <string name="title_licenses">მესამე მხარის ლიცენზიები</string>
     <string name="copyright">© %1$s მიერ %2$s %3$s-ის ქვეშ</string>
-    <string name="donation_encouragement">NewPipe შემუშავებულია მოხალისეების მიერ, რომლებიც ატარებენ თავისუფალ დროს და მოგაქვთ საუკეთესო მომხმარებლის გამოცდილება. დაეხმარეთ დეველოპერებს, გააუმჯობესონ NewPipe, სანამ ფინჯანი ყავით ტკბებიან.</string>
     <string name="import_youtube_instructions">YouTube გამოწერების იმპორტი Google takeout-დან: \n \n 1. გადადით ამ URL-ზე: %1$s \n 2. შედით სისტემაში მოთხოვნისას \n 3. დააწკაპუნეთ ღილაკზე \"ყველა მონაცემი შედის\", შემდეგ \"გააუქმეთ ყველა\", შემდეგ აირჩიეთ მხოლოდ \"გამოწერა\" და დააწკაპუნეთ \"OK\" \n 4. დააწკაპუნეთ „შემდეგი ნაბიჯი“ და შემდეგ „ექსპორტის შექმნა“ \n 5. დააწკაპუნეთ ღილაკზე „ჩამოტვირთვა“ მისი გამოჩენის შემდეგ \n 6. დააწკაპუნეთ IMPORT FILE ქვემოთ და აირჩიეთ გადმოწერილი .zip ფაილი \n 7. [თუ .zip-ის შემოტანავერ მოხერხდა] ამოიღეთ</string>
     <string name="playback_pitch">მოედანი</string>
     <string name="enable_streams_notifications_title">ახალი ნაკადების შეტყობინებები</string>
-    <string name="start_accept_privacy_policy">მონაცემთა დაცვის ევროპული ზოგადი რეგულაციის (GDPR) შესაბამისობის მიზნით, ჩვენ ვაქცევთ თქვენს ყურადღებას NewPipe-ის კონფიდენციალურობის პოლიტიკაზე. გთხოვთ ყურადღებით წაიკითხოთ. \nთქვენ უნდა დაეთანხმოთ მას, რომ გამოგვიგზავნოთ ხარვეზის ანგარიში.</string>
+    <string name="start_accept_privacy_policy">მონაცემთა დაცვის ევროპული ზოგადი რეგულაციის (GDPR) შესაბამისობის მიზნით, ჩვენ ვაქცევთ თქვენს ყურადღებას Merak-ის კონფიდენციალურობის პოლიტიკაზე. გთხოვთ ყურადღებით წაიკითხოთ. \nთქვენ უნდა დაეთანხმოთ მას, რომ გამოგვიგზავნოთ ხარვეზის ანგარიში.</string>
     <string name="streams_notifications_network_title">საჭიროა ქსელის კავშირი</string>
     <string name="grid">ბადე</string>
     <string name="seekbar_preview_thumbnail_title">Seekbar-ის ესკიზის გადახედვა</string>
@@ -620,7 +617,7 @@
     <string name="overwrite_finished_warning">ჩამოტვირთული ფაილი ამ სახელით უკვე არსებობს</string>
     <string name="error_ssl_exception">უსაფრთხო კავშირის დამყარება ვერ მოხერხდა</string>
     <string name="confirm_prompt">გსურთ თქვენი ჩამოტვირთვის ისტორიის გასუფთავება ან ყველა გადმოწერილი ფაილის წაშლა?</string>
-    <string name="error_postprocessing_stopped">ფაილზე მუშაობისას NewPipe დაიხურა</string>
+    <string name="error_postprocessing_stopped">ფაილზე მუშაობისას Merak დაიხურა</string>
     <string name="error_progress_lost">პროგრესი დაიკარგა, რადგან ფაილი წაიშალა</string>
     <string name="clear_download_history">ჩამოტვირთვის ისტორიის გასუფთავება</string>
     <string name="pause_downloads_on_mobile_desc">სასარგებლოა მობილური ინტერნეტზე გადასვლისას, თუმცა ზოგიერთი ჩამოტვირთვის შეჩერება შეუძლებელია</string>
@@ -628,7 +625,7 @@
     <string name="downloads_storage_ask_title">იკითხეთ, სად უნდა ჩამოტვირთოთ</string>
     <string name="downloads_storage_ask_summary">თქვენ მოგეთხოვებათ სად შეინახოთ თითოეული ჩამოტვირთვა. \n ჩართეთ სისტემის საქაღალდის ამომრჩევი (SAF), თუ გსურთ ჩამოტვირთოთ გარე SD ბარათზე</string>
     <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება. \n დარწმუნებული ხართ?</string>
-    <string name="app_license">NewPipe არის copyleft უფასო პროგრამული უზრუნველყოფა: თქვენ შეგიძლიათ გამოიყენოთ, შეისწავლოთ, გააზიაროთ და გააუმჯობესოთ იგი სურვილისამებრ. კონკრეტულად თქვენ შეგიძლიათ გადაანაწილოთ და/ან შეცვალოთ იგი GNU-ს ზოგადი საჯარო ლიცენზიის პირობებით, როგორც ეს გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ, ლიცენზიის მე-3 ვერსიით, ან (თქვენი სურვილისამებრ) ნებისმიერი შემდგომი ვერსიით.</string>
+    <string name="app_license">Merak არის copyleft უფასო პროგრამული უზრუნველყოფა: თქვენ შეგიძლიათ გამოიყენოთ, შეისწავლოთ, გააზიაროთ და გააუმჯობესოთ იგი სურვილისამებრ. კონკრეტულად თქვენ შეგიძლიათ გადაანაწილოთ და/ან შეცვალოთ იგი GNU-ს ზოგადი საჯარო ლიცენზიის პირობებით, როგორც ეს გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ, ლიცენზიის მე-3 ვერსიით, ან (თქვენი სურვილისამებრ) ნებისმიერი შემდგომი ვერსიით.</string>
     <string name="auto">ავტო</string>
     <string name="blank_page_summary">ცარიელი გვერდი</string>
     <string name="select_a_channel">აირჩიეთ არხი</string>
@@ -653,10 +650,10 @@
     <string name="feed_load_error_account_info">„%s“-ის არხის ჩატვირთვა ვერ მოხერხდა.</string>
     <string name="feed_use_dedicated_fetch_method_summary">ხელმისაწვდომია ზოგიერთ სერვისში, როგორც წესი, ბევრად უფრო სწრაფია, მაგრამ შეიძლება დააბრუნოს შეზღუდული რაოდენობის ელემენტი და ხშირად არასრული ინფორმაცია (მაგ. ხანგრძლივობის გარეშე, ელემენტის ტიპი, არ არის ლაივის სტატუსი)</string>
     <string name="show_thumbnail_summary">გამოიყენეთ ესკიზი როგორც ჩაკეტილი ეკრანის ფონისთვის, ასევე შეტყობინებებისთვის</string>
-    <string name="feed_use_dedicated_fetch_method_help_text">როგორ ფიქრობთ, არხის ჩატვირთვა ძალიან ნელია? თუ ასეა, სცადეთ ჩართოთ სწრაფი ჩატვირთვა (შეგიძლიათ შეცვალოთ ის პარამეტრებში ან ქვემოთ მოცემულ ღილაკზე დაჭერით). \n \n NewPipe გთავაზობთ არხის ჩატვირთვის ორ სტრატეგიას: \n • მთელი სააბონენტო არხის მიღება, რომელიც ნელია, მაგრამ დასრულებულია. \n • გამოყოფილი სერვისის საბოლოო წერტილის გამოყენება, რომელიც არის სწრაფი, მაგრამ ჩვეულებრივ არასრული. \n \n ამ ორს შორის განსხვავება ისაა, რომ სწრაფს, როგორც წესი, აკლია გარკვეული ინფორმაცია, მაგალითად, ნივთის ხანგრძლივობა ან ტიპი (არ განასხვავებს პირდაპირ ვიდეოებს ჩვეულებრივ ვიდეოებს შორის) და შეიძლება დაბრუნდეს ნაკლები ელემენტი. \n \n YouTube არის სერვისის მაგალითი, რომელიც გთავაზობთ ამ სწრაფ მეთოდს თავისი RSS არხით. \n \n ასე რომ, არჩევანი დამოკიდებულია იმაზე, თუ რა გირჩევნიათ: სიჩქარე ან ზუსტი ინფორმაცია.</string>
-    <string name="soundcloud_go_plus_content">ეს არის SoundCloud Go+ სიმღერა, ყოველ შემთხვევაში თქვენს ქვეყანაში, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
+    <string name="feed_use_dedicated_fetch_method_help_text">როგორ ფიქრობთ, არხის ჩატვირთვა ძალიან ნელია? თუ ასეა, სცადეთ ჩართოთ სწრაფი ჩატვირთვა (შეგიძლიათ შეცვალოთ ის პარამეტრებში ან ქვემოთ მოცემულ ღილაკზე დაჭერით). \n \n Merak გთავაზობთ არხის ჩატვირთვის ორ სტრატეგიას: \n • მთელი სააბონენტო არხის მიღება, რომელიც ნელია, მაგრამ დასრულებულია. \n • გამოყოფილი სერვისის საბოლოო წერტილის გამოყენება, რომელიც არის სწრაფი, მაგრამ ჩვეულებრივ არასრული. \n \n ამ ორს შორის განსხვავება ისაა, რომ სწრაფს, როგორც წესი, აკლია გარკვეული ინფორმაცია, მაგალითად, ნივთის ხანგრძლივობა ან ტიპი (არ განასხვავებს პირდაპირ ვიდეოებს ჩვეულებრივ ვიდეოებს შორის) და შეიძლება დაბრუნდეს ნაკლები ელემენტი. \n \n YouTube არის სერვისის მაგალითი, რომელიც გთავაზობთ ამ სწრაფ მეთოდს თავისი RSS არხით. \n \n ასე რომ, არჩევანი დამოკიდებულია იმაზე, თუ რა გირჩევნიათ: სიჩქარე ან ზუსტი ინფორმაცია.</string>
+    <string name="soundcloud_go_plus_content">ეს არის SoundCloud Go+ სიმღერა, ყოველ შემთხვევაში თქვენს ქვეყანაში, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია Merak-ის მიერ.</string>
     <string name="no_appropriate_file_manager_message">ამ მოქმედებისთვის შესაბამისი ფაილების მენეჯერი ვერ მოიძებნა. \n გთხოვთ, დააინსტალიროთ ფაილის მენეჯერი ან სცადოთ გამორთოთ \'%s\' ჩამოტვირთვის პარამეტრებში</string>
-    <string name="youtube_music_premium_content">ეს ვიდეო ხელმისაწვდომია მხოლოდ YouTube Music Premium-ის წევრებისთვის, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია NewPipe-ის მიერ.</string>
+    <string name="youtube_music_premium_content">ეს ვიდეო ხელმისაწვდომია მხოლოდ YouTube Music Premium-ის წევრებისთვის, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია Merak-ის მიერ.</string>
     <string name="auto_device_theme_title">ავტომატური (მოწყობილობის თემა)</string>
     <string name="select_night_theme_toast">თქვენ შეგიძლიათ აირჩიოთ თქვენი საყვარელი ღამის თემა ქვემოთ</string>
     <string name="description_select_note">ახლა შეგიძლიათ აირჩიოთ ტექსტი აღწერილობაში. გაითვალისწინეთ, რომ გვერდი შეიძლება ციმციმდეს და ბმულები არ იყოს დაწკაპუნებული შერჩევის რეჟიმში.</string>
@@ -682,10 +679,10 @@
     <string name="fast_mode">სწრაფი რეჟიმი</string>
     <string name="feed_show_upcoming">მომავალი</string>
     <string name="volume">ხმა</string>
-    <string name="app_update_available_notification_title">ხელმისაწვდომია NewPipe-ის განახლება!</string>
+    <string name="app_update_available_notification_title">ხელმისაწვდომია Merak-ის განახლება!</string>
     <string name="import_subscriptions_hint">გამოწერების შეტანა/გამოტანა სამწერტილიანი მენიუდან</string>
     <string name="duplicate_in_playlist">განაცრისფერებული დასაკრავი სიები ამ ელემენტს უკვე შეიცავენ.</string>
-    <string name="app_update_unavailable_toast">თქვენი NewPipe-ის ვერსია უახლესია</string>
+    <string name="app_update_unavailable_toast">თქვენი Merak-ის ვერსია უახლესია</string>
     <string name="remove_duplicates">დუბლიკატების წაშლა</string>
     <string name="unset_playlist_thumbnail">მუდმივი მინიატურის მოხსნა</string>
     <string name="remove_duplicates_title">წავშალო დუბლიკატები?</string>
@@ -718,7 +715,7 @@
     <string name="select_a_feed_group">აირჩიეთ არხის ჯგუფი</string>
     <string name="no_feed_group_created_yet">არხის ჯგუფი ჯერ არ შექმნილა</string>
     <string name="disable_media_tunneling_automatic_info">მედიის გვირაბირება თქვენს მოწყობილობაზე ნაგულისხმევად გამორთულია, რადგან თქვენი მოწყობილობის მოდელი, როგორც ცნობილია, მას არ უჭერს მხარს.</string>
-    <string name="auto_update_check_description">NewPipe-ს შეუძლია დროდადრო ავტომატურად შეამოწმოს ახალი ვერსიები და შეგატყობინოთ, როგორც კი ისინი ხელმისაწვდომი გახდება.\nგსურთ ამის ჩართვა?</string>
+    <string name="auto_update_check_description">Merak-ს შეუძლია დროდადრო ავტომატურად შეამოწმოს ახალი ვერსიები და შეგატყობინოთ, როგორც კი ისინი ხელმისაწვდომი გახდება.\nგსურთ ამის ჩართვა?</string>
     <string name="reset_settings_title">პარამეტრების გადაყენება</string>
     <string name="reset_settings_summary">ყველა პარამეტრის ნაგულისხმევ მნიშვნელობებზე დაბრუნება</string>
     <string name="reset_all_settings">ყველა პარამეტრის გადატვირთვა გააუქმებს თქვენს მიერ არჩეულ ყველა პარამეტრს და გადატვირთავს აპლიკაციას.\n\nდარწმუნებული ხართ, რომ გსურთ გაგრძელება?</string>
@@ -780,5 +777,5 @@
     <string name="migration_info_6_7_title">SoundCloud-ის ტოპ 50 გვერდი წაიშალა</string>
     <string name="migration_info_6_7_message">SoundCloud-მა შეწყვიტა ორიგინალი ტოპ 50 ჩარტების გამოშვება. შესაბამისი ჩანართი წაიშალა თქვენი მთავარი გვერდიდან.</string>
     <string name="migration_info_7_8_title">YouTube-ის კომბინირებული ტრენდული გვერდი წაშლილია</string>
-    <string name="migration_info_7_8_message">YouTube-მა 2025 წლის 21 ივლისიდან შეწყვიტა კომბინირებული ტრენდული გვერდის არსებობა. NewPipe-მა ნაგულისხმევი ტრენდული გვერდი ტრენდული პირდაპირი ტრანსლაციებით ჩაანაცვლა.\n\nასევე შეგიძლიათ აირჩიოთ სხვადასხვა ტრენდული გვერდები „პარამეტრები &gt; მასალა &gt; მთავარი გვერდის შინაარსი“-ში.</string>
+    <string name="migration_info_7_8_message">YouTube-მა 2025 წლის 21 ივლისიდან შეწყვიტა კომბინირებული ტრენდული გვერდის არსებობა. Merak-მა ნაგულისხმევი ტრენდული გვერდი ტრენდული პირდაპირი ტრანსლაციებით ჩაანაცვლა.\n\nასევე შეგიძლიათ აირჩიოთ სხვადასხვა ტრენდული გვერდები „პარამეტრები &gt; მასალა &gt; მთავარი გვერდის შინაარსი“-ში.</string>
 </resources>
