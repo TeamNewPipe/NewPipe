@@ -18,6 +18,10 @@
   <a href="https://shields.rbtlog.dev/org.wisso.newpipematerial"><img src="https://shields.rbtlog.dev/simple/org.wisso.newpipematerial" alt="Reproducible build status"></a>
 </p>
 
+<p align="center">
+  <a href="https://wizestream.org/reviews/"><img src="https://wizestream.org/reviews/badge.php" alt="Community reviews: average rating and review count"></a>
+</p>
+
 <hr>
 
 <p align="center">
