@@ -107,8 +107,8 @@
     <string name="settings_category_video_audio_title">Video və səs</string>
     <string name="settings_category_player_behavior_title">Davranış</string>
     <string name="settings_category_player_title">Oynadıcı</string>
-    <string name="content_language_title">Cari məzmun dili</string>
-    <string name="default_content_country_title">Cari məzmun ölkəsi</string>
+    <string name="content_language_title">İlkin məzmun dili</string>
+    <string name="default_content_country_title">İlkin məzmun ölkəsi</string>
     <string name="unsupported_url_dialog_message">URL\'i tanımaq olmadı. Başqa tətbiqlə açılsın?</string>
     <string name="unsupported_url">Dəstəklənməyən URL\'i</string>
     <string name="show_hold_to_append_title">\"Növbələmək üçün basılı saxla\" tövsiyəsin göstər</string>
@@ -117,8 +117,8 @@
     <string name="import_data_summary">Cari tarixçənizi, abunəliklərinizi, pleylistlərinizi və (könüllü) tənzimləmələrinizi etibarsız edir</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA bazaları təmizləndi</string>
     <string name="clear_cookie_title">reCAPTCHA bazalarını təmizlə</string>
-    <string name="export_data_title">Məlumat bazasını ixrac et</string>
-    <string name="import_data_title">Məlumat bazasını idxal et</string>
+    <string name="export_data_title">Məlumat bazasını ixrac edin</string>
+    <string name="import_data_title">Məlumat bazasını idxal edin</string>
     <string name="switch_to_main">Əsas Görünüşə Keçid</string>
     <string name="switch_to_popup">Ani Görüntüyə Keçid</string>
     <string name="switch_to_background">Fona Keçid</string>
@@ -133,10 +133,10 @@
     <string name="duration_live">Canlı</string>
     <string name="restricted_video">Bu video yaş məhdudiyyətlidir. \n \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
-    <string name="peertube_instance_url_title">\"PeerTube\" serverləri</string>
+    <string name="peertube_instance_url_title">PeerTube serverləri</string>
     <string name="notification_actions_at_most_three">Yığcam bildirişdə göstərmək üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
     <string name="feed_update_threshold_option_always_update">Həmişə yenilə</string>
-    <string name="settings_category_feed_title">Axın</string>
+    <string name="settings_category_feed_title">Lent</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnız qrupsuz abunəlikləri göstər</string>
     <string name="feed_create_new_group_button_title">Yeni</string>
     <string name="feed_group_dialog_delete_message">Bu qrupu silmək istəyirsiniz?</string>
@@ -202,7 +202,7 @@
     <string name="limit_data_usage_none_description">Limitsiz</string>
     <string name="one_item_deleted">1 element silindi.</string>
     <string name="peertube_instance_add_title">Server əlavə et</string>
-    <string name="peertube_instance_url_summary">Sevimli \"PeerTube\" serverlərinizi seçin</string>
+    <string name="peertube_instance_url_summary">Sevimli PeerTube serverlərinizi seçin</string>
     <string name="delete_downloaded_files">Endirilmiş faylları sil</string>
     <string name="confirm_prompt">Endirmə tarixçənizi təmizləmək və ya bütün endirilmiş faylları silmək istəyirsiniz?</string>
     <string name="clear_download_history">Endirmə tarixçəsini təmizlə</string>
@@ -419,7 +419,7 @@
         <item quantity="one">%s video</item>
         <item quantity="other">%s video</item>
     </plurals>
-    <string name="check_for_updates">Yeniləmələri yoxla</string>
+    <string name="check_for_updates">Yeniləmələr üçün yoxla</string>
     <string name="seekbar_preview_thumbnail_title">Axtarış çubuğunun miniatür önizləməsi</string>
     <string name="permission_denied">Əməliyyat sistem tərəfindən ləğv edildi</string>
     <string name="auto">Avtomatik</string>
@@ -766,7 +766,7 @@
     <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="show_more">Daha çox göstər</string>
     <string name="show_less">Daha qısa göstər</string>
-    <string name="reset_all_settings">Bütün tənzimləmələri sıfırlama üstünlük verdiyiniz seçimlərin hamısın ləğv edəcək və tətbiq yenidən açılacaq. \n \n \nDavam etmək istədiyinizə əminsiniz?</string>
+    <string name="reset_all_settings">Bütün tənzimləmələri sıfırlama üstünlük verdiyiniz seçimlərin hamısın ləğv edəcək və tətbiq yenidən açılacaq. \n \nDavam etmək istədiyinizə əminsiniz?</string>
     <string name="channel_tab_livestreams">Canlı</string>
     <string name="channel_tab_albums">Albomlar</string>
     <string name="image_quality_title">Şəkil keyfiyyəti</string>

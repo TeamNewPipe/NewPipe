@@ -108,7 +108,7 @@
     <string name="app_description">Libre en lichtgewicht streamen op Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">De licentie van NewPipe</string>
-    <string name="contribution_encouragement">Hulp is altijd welkom. Of je nu nieuwe ideeën hebt, vertalingen kan aanleveren, wijzigingen in het ontwerp kan verrichten, code kan opschonen of van grote wijzigingen voorzien. Hoe meer hulp, hoe beter het wordt!</string>
+    <string name="contribution_encouragement">Of je nu ideeën hebt voor vertalingen, ontwerpaanpassingen, het opschonen van code of ingrijpende codewijzigingen: alle hulp is welkom. Hoe meer er wordt gedaan, hoe beter het wordt!</string>
     <string name="read_full_license">Licentie lezen</string>
     <string name="contribution_title">Bij­dragen</string>
     <string name="settings_category_downloads_title">Download</string>
@@ -180,7 +180,7 @@
     <string name="start_here_on_background">Op de achter­grond afspelen</string>
     <string name="start_here_on_popup">In een pop-up afspelen</string>
     <string name="donation_title">Doneren</string>
-    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
+    <string name="donation_encouragement">NewPipe wordt ontwikkeld door vrijwilligers die hun vrije tijd besteden aan het bieden van de best mogelijke gebruikerservaring. Draag je steentje bij en help de ontwikkelaars om NewPipe nog beter te maken, genietend van een kop koffie.</string>
     <string name="give_back">Terug­geven</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Bezoek de NewPipe-website voor nieuws en meer informatie.</string>
@@ -286,10 +286,10 @@
     <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
-    <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wilt. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
+    <string name="app_license">NewPipe is vrije software (copyleft): je mag de software naar eigen inzicht gebruiken, bestuderen, delen en verbeteren. Je mag de software in het bijzonder verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License, zoals gepubliceerd door de Free Software Foundation, versie 3 of (naar keuze) een latere versie.</string>
     <string name="import_settings">Wil je ook de instellingen importeren?</string>
     <string name="privacy_policy_title">Privébeleid van NewPipe</string>
-    <string name="privacy_policy_encouragement">Het NewPipe-project neemt privacy serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming. \nNewPipe\'s privacybeleid legt gedetailleerd uit welke gegevens verstuurd en opgeslagen worden als je een crashrapport verstuurt.</string>
+    <string name="privacy_policy_encouragement">Het NewPipe-project neemt je privacy zeer serieus. Daarom verzamelt de app geen gegevens zonder jouw toestemming.\nIn het privacybeleid van NewPipe wordt uitgebreid uitgelegd welke gegevens worden verzonden en opgeslagen wanneer je een crashrapport verstuurt.</string>
     <string name="read_privacy_policy">Privébeleid lezen</string>
     <string name="start_accept_privacy_policy">Om de Europese Algemene Verordening Gegevensbescherming (ook wel: AVG of GDPR) na te leven, wijzen we je op het nieuwe privacybeleid van NewPipe. Lees dit zorgvuldig. \nJe moet het beleid accepteren om ons het foutrapport te kunnen sturen.</string>
     <string name="accept">Accepteren</string>
@@ -310,7 +310,7 @@
     <string name="users">Gebruikers</string>
     <string name="unsubscribe">Afmelden</string>
     <string name="tab_choose">Kies tabblad</string>
-    <string name="settings_category_updates_title">Bijwerken</string>
+    <string name="settings_category_updates_title">Updates</string>
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">App-updates</string>
     <string name="app_update_notification_channel_description">Meldingen voor nieuwe New Pipe versies</string>
@@ -553,9 +553,9 @@
     <string name="download_has_started">Downloaden is gestart</string>
     <string name="select_night_theme_toast">U kunt uw favoriete nachtthema hieronder selecteren</string>
     <string name="night_theme_summary">Selecteer uw favoriete nachtthema — %s</string>
-    <string name="auto_device_theme_title">Automatisch (systeemthema)</string>
+    <string name="auto_device_theme_title">Automatisch (systeemkleuren)</string>
     <string name="show_channel_details">Kanaal­details tonen</string>
-    <string name="night_theme_title">Nachtthema</string>
+    <string name="night_theme_title">Nacht</string>
     <string name="metadata_privacy_internal">Intern</string>
     <string name="metadata_privacy_private">Privé</string>
     <string name="metadata_privacy_unlisted">Niet vermeld</string>
@@ -659,7 +659,7 @@
     <string name="unknown_format">Onbekend formaat</string>
     <string name="progressive_load_interval_title">Intervalgrootte tijdens afspelen</string>
     <string name="faq_title">Veelgestelde vragen</string>
-    <string name="faq_description">Als u problemen ondervindt bij het gebruik van de app, bekijk dan deze antwoorden op veelgestelde vragen!</string>
+    <string name="faq_description">Als je tegen problemen aanloopt bij het gebruik van de app, bekijk dan zeker deze antwoorden op veelgestelde vragen!</string>
     <string name="faq">Bekijken op website</string>
     <string name="sort">Sorteer</string>
     <string name="fast_mode">Snelle modus</string>
@@ -714,7 +714,7 @@
     <string name="no_streams">Geen streams</string>
     <string name="no_live_streams">Geen live-streams</string>
     <string name="disable_media_tunneling_automatic_info">Media-tunneling is standaard uitgeschakeld op uw apparaat omdat uw apparaatmodel dit niet ondersteunt.</string>
-    <string name="image_quality_title">Afbeeldings­kwaliteit</string>
+    <string name="image_quality_title">Afbeeldingskwaliteit</string>
     <string name="channel_tab_videos">Video\'s</string>
     <string name="question_mark">\?</string>
     <string name="metadata_subscribers">Abonnees</string>
@@ -822,7 +822,6 @@
     </plurals>
     <string name="import_subscriptions_summary">Importeer abonnementen vanuit een eerder geëxporteerd .json-bestand</string>
     <string name="export_subscriptions_summary">Exporteer uw abonnementen naar een .json-bestand</string>
-
     <string name="api23_requirement_dialog_title">NewPipe stopt met ondersteuning voor Android 5</string>
     <string name="api23_requirement_dialog_message">NewPipe is afhankelijk van een aantal bibliotheken die geen ondersteuning meer bieden voor Android 5.0 en 5.1. De volgende versie van NewPipe zal daarom alleen werken op apparaten met Android 6 of hoger. Lees meer in het blogbericht.</string>
     <string name="api23_requirement_dialog_blogpost">Blogbericht</string>

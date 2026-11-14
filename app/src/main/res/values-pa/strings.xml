@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">ਪਲੇਅ ਕਰਦੇ ਸਮੇਂ ਸਰਵਰ ਤੋਂ HTTP error 403 ਪ੍ਰਾਪਤ ਹੋਇਆ, ਜੋ ਸ਼ਾਇਦ IP ਬੈਨ ਜਾਂ ਸਟ੍ਰੀਮਿੰਗ URL ਡੀਔਬਫਸਕੇਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਕਾਰਨ ਹੋਈ ਹੈ</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ਨੇ ਡੇਟਾ ਪ੍ਰਦਾਨ ਕਰਨ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ, ਅਤੇ ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਲੌਗਇਨ ਕਰਨ ਲਈ ਕਿਹਾ ਕਿ ਬੇਨਤੀਕਰਤਾ ਬੋਟ ਨਹੀਂ ਹੈ।\n\nਹੋ ਸਕਦਾ ਹੈ ਕਿ %1$s ਨੇ ਤੁਹਾਡੇ IP ਨੂੰ ਅਸਥਾਈ ਤੌਰ \'ਤੇ ਪਾਬੰਦੀ ਲਗਾਈ ਹੋਵੇ, ਤੁਸੀਂ ਕੁਝ ਸਮਾਂ ਉਡੀਕ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਕਿਸੇ ਵੱਖਰੇ IP \'ਤੇ ਸਵਿੱਚ ਕਰ ਸਕਦੇ ਹੋ (ਉਦਾਹਰਣ ਵਜੋਂ VPN ਨੂੰ ਚਾਲੂ/ਬੰਦ ਕਰਕੇ, ਜਾਂ WiFi ਤੋਂ ਮੋਬਾਈਲ ਡੇਟਾ \'ਤੇ ਸਵਿੱਚ ਕਰਕੇ)।\n\nਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਕਿਰਪਾ ਕਰਕੇ <a href="%2$s">ਇਹ FAQ ਐਂਟਰੀ</a> ਵੇਖੋ।</string>
     <string name="unsupported_content_in_country">ਇਹ ਸਮੱਗਰੀ ਵਰਤਮਾਨ ਵਿੱਚ ਚੁਣੇ ਗਏ ਦੇਸ਼ ਦੀ ਸਮੱਗਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ।\n\n\"ਸੈਟਿੰਗਾਂ &gt; ਸਮੱਗਰੀ &gt; ਡਿਫ਼ਾਲਟ ਸਮੱਗਰੀ ਦੇਸ਼\" ਤੋਂ ਆਪਣੀ ਚੋਣ ਬਦਲੋ।</string>
-
     <string name="kao_dialog_more_info">ਵੇਰਵੇ</string>
     <string name="kao_solution">ਹੱਲ</string>
     <plurals name="export_subscriptions">
@@ -826,4 +825,7 @@
     <string name="api23_requirement_dialog_title">ਨਿਊਪਾਈਪ ਐਂਡਰਾਇਡ 5 ਲਈ ਸਮਰਥਨ ਬੰਦ ਕਰ ਰਿਹਾ ਹੈ</string>
     <string name="api23_requirement_dialog_message">ਬਦਕਿਸਮਤੀ ਨਾਲ NewPipe ਕੁਝ ਲਾਇਬ੍ਰੇਰੀਆਂ \'ਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ Android 5.0 ਅਤੇ 5.1 ਲਈ ਸਮਰਥਨ ਛੱਡ ਦਿੱਤਾ ਹੈ। ਇਸ ਲਈ, ਅਗਲੀ NewPipe ਰੀਲੀਜ਼ ਸਿਰਫ਼ Android 6 ਜਾਂ ਇਸ ਤੋਂ ਉੱਚੇ ਵਰਜਨ ਵਾਲੇ ਡਿਵਾਈਸਾਂ \'ਤੇ ਕੰਮ ਕਰੇਗੀ। ਬਲੌਗਪੋਸਟ ਵਿੱਚ ਹੋਰ ਪੜ੍ਹੋ।</string>
     <string name="api23_requirement_dialog_blogpost">ਬਲੌਗਪੋਸਟ</string>
+    <string name="channel_tab_podcasts">ਪੌਡਕਾਸਟ</string>
+    <string name="channel_tab_courses">ਪਾਠਕ੍ਰਮ</string>
+    <string name="kao_dialog_warning">ਗੂਗਲ ਨੇ ਐਂਡਰਾਇਡ ਡਿਵੈਲਪਰਾਂ ਲਈ ਤਸਦੀਕ (verification) ਦੀ ਇੱਕ ਨਵੀਂ ਲੋੜ ਲਾਗੂ ਕਰਨੀ ਸ਼ੁਰੂ ਕਰ ਦਿੱਤੀ ਹੈ, ਜਿਸ ਕਾਰਨ ਬ੍ਰਾਜ਼ੀਲ, ਇੰਡੋਨੇਸ਼ੀਆ, ਸਿੰਗਾਪੁਰ ਅਤੇ ਥਾਈਲੈਂਡ ਵਿੱਚ \'NewPipe\' ਨੂੰ ਇੰਸਟਾਲ ਕਰਨਾ ਔਖਾ ਹੋ ਗਿਆ ਹੈ। 2027 ਤੱਕ ਇਸਨੂੰ ਵਿਸ਼ਵ ਪੱਧਰ \'ਤੇ ਲਾਗੂ ਕਰਨ ਦੀ ਯੋਜਨਾ ਹੈ।\n\nਜੇਕਰ ਇਹਨਾਂ ਲੋੜਾਂ ਵਿੱਚ ਕੋਈ ਬਦਲਾਅ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ, ਤਾਂ ਨੇੜਲੇ ਭਵਿੱਖ ਵਿੱਚ ਪ੍ਰਮਾਣਿਤ (certified) ਐਂਡਰਾਇਡ ਡਿਵਾਈਸਾਂ \'ਤੇ \'NewPipe\' ਨੂੰ ਇੰਸਟਾਲ ਕਰਨਾ ਹੋਰ ਵੀ ਮੁਸ਼ਕਲ, ਜਾਂ ਇੱਥੋਂ ਤੱਕ ਕਿ ਅਸੰਭਵ ਵੀ ਹੋ ਸਕਦਾ ਹੈ।</string>
 </resources>

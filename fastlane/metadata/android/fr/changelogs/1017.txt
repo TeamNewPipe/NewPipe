@@ -1,0 +1,5 @@
+Il s'agit d'une mise à jour corrective qui résout les problèmes récents rencontrés avec Bandcamp et SoundCloud.
+
+[SoundCloud] Correction d'un problème empêchant l'extraction des flux audio grâce à la prise en charge des flux audio aac_96k
+[Bandcamp] Contournement de la vérification du client
+[Bandcamp] Correction de la recherche lorsque la langue du contenu n'est pas l'anglais
