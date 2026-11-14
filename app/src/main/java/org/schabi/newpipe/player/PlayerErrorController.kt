@@ -30,6 +30,7 @@ import androidx.media3.common.PlaybackException.ERROR_CODE_PARSING_MANIFEST_UNSU
 import androidx.media3.common.PlaybackException.ERROR_CODE_TIMEOUT
 import androidx.media3.common.PlaybackException.ERROR_CODE_UNSPECIFIED
 import androidx.media3.common.Player as Media3Player
+import androidx.media3.common.Timeline
 import androidx.media3.exoplayer.ExoPlaybackException
 import androidx.media3.exoplayer.ExoPlayer
 import org.schabi.newpipe.R
@@ -61,6 +62,7 @@ internal class PlayerErrorController(
     private val liveHlsRefreshGuard = PlayerHttpErrorRecovery.OneShotRecoveryGuard()
     private val liveDashRefreshGuard = PlayerHttpErrorRecovery.RecoveryGuard()
     private val liveMedia403Policy = LiveMedia403RecoveryPolicy()
+    private val liveUrlRecoveryHealth = LiveUrlRecoveryHealth()
     private val liveManifestRefresher = LiveManifestRefresher(player, videoResolver::isDvrRequiredForLiveStream)
     private val recoveryHandler = Handler(Looper.getMainLooper())
     private var pendingMediaUrlRecovery: Runnable? = null
@@ -89,6 +91,7 @@ internal class PlayerErrorController(
     )
 
     fun onPlayerError(error: PlaybackException) {
+        liveUrlRecoveryHealth.reset()
         liveReadySince = null
         cancelPendingLiveStallRecovery()
         cancelPendingLiveSegmentRecovery()
@@ -183,6 +186,7 @@ internal class PlayerErrorController(
     fun onPlayWhenReadyChanged(playWhenReady: Boolean) {
         livePreparationRecovery.onPlayWhenReadyChanged(playWhenReady)
         if (!playWhenReady) {
+            liveUrlRecoveryHealth.reset()
             liveReadySince = null
             cancelPendingLiveStallRecovery()
             cancelPendingLiveSegmentRecovery()
@@ -194,6 +198,7 @@ internal class PlayerErrorController(
     }
 
     fun onPlaybackStateChanged(playbackState: Int) {
+        if (playbackState != Media3Player.STATE_READY) liveUrlRecoveryHealth.reset()
         livePreparationRecovery.onPlaybackStateChanged(playbackState)
         val item = player.playQueue?.item
         val key = item?.let { "${it.serviceId}:${it.url}" }
@@ -311,7 +316,12 @@ internal class PlayerErrorController(
         }
     }
 
+    fun onPositionDiscontinuity() {
+        liveUrlRecoveryHealth.reset()
+    }
+
     fun resetRecovery() {
+        liveUrlRecoveryHealth.reset()
         livePreparationRecovery.reset()
         cancelPendingMediaUrlRecovery()
         cancelPendingLiveStallRecovery()
@@ -354,8 +364,12 @@ internal class PlayerErrorController(
         val item = player.playQueue?.item ?: return
         if (player.getExoPlayer() !== engine || !player.playWhenReady ||
             !isActivePlaybackState(engine) ||
-            !isYouTubeManifestLive(item) || pendingLiveSegmentRecovery != null ||
-            !liveMedia403Policy.onRejectedSegment(
+            !isYouTubeManifestLive(item) || pendingLiveSegmentRecovery != null
+        ) {
+            return
+        }
+        liveUrlRecoveryHealth.reset()
+        if (!liveMedia403Policy.onRejectedSegment(
                 "${item.serviceId}:${item.url}",
                 trackType,
                 mediaStartMs,
@@ -400,6 +414,26 @@ internal class PlayerErrorController(
             !isYouTubeManifestLive(item)
         ) {
             return
+        }
+        // Sliding live windows can keep currentPosition nearly constant at the live edge.
+        // Compare positions in the underlying period so normal window updates still count.
+        val timeline = engine.currentTimeline
+        val periodOffsetMs = if (timeline != null && engine.currentMediaItemIndex in 0 until timeline.windowCount) {
+            timeline.getWindow(engine.currentMediaItemIndex, Timeline.Window()).positionInFirstPeriodUs
+                .takeUnless { it == C.TIME_UNSET }?.div(1_000) ?: 0L
+        } else {
+            0L
+        }
+        if (liveUrlRecoveryHealth.onProgress(
+                "${item.serviceId}:${item.url}",
+                SystemClock.elapsedRealtime(),
+                engine.currentPosition + periodOffsetMs,
+                engine.isPlaying
+            )
+        ) {
+            // A later interruption on a healthy broadcast gets its own bounded URL budget.
+            // Manifest downloads or READY flickers without playback progress do not replenish it.
+            recoveryGuard.reset()
         }
         liveMedia403Policy.onLoadedSegment(
             "${item.serviceId}:${item.url}",

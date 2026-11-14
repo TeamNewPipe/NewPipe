@@ -109,6 +109,7 @@ internal class PlayerMedia3ListenerController(
                     "discontinuityReason = [$reason]"
             )
         }
+        errorController.onPositionDiscontinuity()
         val queue = player.playQueue ?: return
         sponsorBlockController.onPositionDiscontinuity(
             reason == Media3Player.DISCONTINUITY_REASON_SEEK,

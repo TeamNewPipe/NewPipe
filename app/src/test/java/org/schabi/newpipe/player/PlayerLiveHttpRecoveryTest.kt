@@ -4,6 +4,7 @@ import android.os.Looper
 import androidx.media3.common.C
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player as Media3Player
+import androidx.media3.common.Timeline
 import androidx.media3.datasource.DataSpec
 import androidx.media3.datasource.HttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
@@ -14,7 +15,9 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyString
+import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito.doAnswer
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.mockStatic
@@ -597,6 +600,70 @@ class PlayerLiveHttpRecoveryTest {
         verify(fixture.queue, never()).unsetRecovery(0)
     }
 
+    @Test
+    fun healthyLiveMediaLoadsRenewExhaustedUrlBudget() {
+        val fixture = Fixture()
+        val guard = fixture.urlGuard()
+        repeat(3) { assertTrue(guard.acquireAttempt(fixture.key()) != null) }
+        assertTrue(guard.acquireAttempt(fixture.key()) == null)
+        `when`(fixture.engine.isPlaying).thenReturn(true)
+        `when`(fixture.engine.currentPosition).thenReturn(1_000L)
+        fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 1_000)
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofSeconds(30))
+        `when`(fixture.engine.currentPosition).thenReturn(31_000L)
+        fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 31_000)
+        repeat(3) { assertTrue(guard.acquireAttempt(fixture.key()) != null) }
+        assertTrue(guard.acquireAttempt(fixture.key()) == null)
+        fixture.controller.resetRecovery()
+    }
+
+    @Test
+    fun slidingLiveWindowRenewsBudgetWhileRelativePositionStaysConstant() {
+        val fixture = Fixture()
+        val guard = fixture.urlGuard()
+        repeat(3) { guard.acquireAttempt(fixture.key()) }
+        val timeline = mock(Timeline::class.java)
+        val window = Timeline.Window()
+        `when`(timeline.windowCount).thenReturn(1)
+        `when`(timeline.getWindow(eq(0), any(Timeline.Window::class.java))).thenReturn(window)
+        `when`(fixture.engine.currentTimeline).thenReturn(timeline)
+        `when`(fixture.engine.isPlaying).thenReturn(true)
+        `when`(fixture.engine.currentPosition).thenReturn(25_000L)
+        fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 25_000)
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofSeconds(30))
+        window.positionInFirstPeriodUs = 30_000_000L
+        fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 55_000)
+        assertTrue(guard.acquireAttempt(fixture.key()) != null)
+        fixture.controller.resetRecovery()
+    }
+
+    @Test
+    fun pausedBufferingAndSeekedPlaybackDoNotRenewUrlBudget() {
+        val fixture = Fixture()
+        val guard = fixture.urlGuard()
+        repeat(3) { guard.acquireAttempt(fixture.key()) }
+        `when`(fixture.engine.isPlaying).thenReturn(true)
+        fixture.state(Media3Player.STATE_READY)
+        for (interrupt in listOf<() -> Unit>(
+            { fixture.controller.onPlayWhenReadyChanged(false) },
+            { fixture.state(Media3Player.STATE_BUFFERING) },
+            { fixture.controller.onPositionDiscontinuity() },
+            { fixture.controller.onLiveMediaSegmentRejected(fixture.engine, C.TRACK_TYPE_VIDEO, 1_000) }
+        )) {
+            fixture.state(Media3Player.STATE_READY)
+            `when`(fixture.engine.currentPosition).thenReturn(1_000L)
+            fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 1_000)
+            shadowOf(Looper.getMainLooper()).idleFor(Duration.ofSeconds(20))
+            interrupt()
+            fixture.state(Media3Player.STATE_READY)
+            shadowOf(Looper.getMainLooper()).idleFor(Duration.ofSeconds(20))
+            `when`(fixture.engine.currentPosition).thenReturn(41_000L)
+            fixture.controller.onLiveMediaSegmentLoaded(fixture.engine, C.TRACK_TYPE_VIDEO, 41_000)
+            assertTrue(guard.acquireAttempt(fixture.key()) == null)
+        }
+        fixture.controller.resetRecovery()
+    }
+
     private class Fixture {
         val player = mock(Player::class.java)
         val engine = mock(ExoPlayer::class.java)
@@ -621,6 +688,7 @@ class PlayerLiveHttpRecoveryTest {
         )
 
         init {
+            `when`(engine.currentTimeline).thenReturn(Timeline.EMPTY)
             `when`(player.exoPlayer).thenReturn(engine)
             `when`(player.getExoPlayer()).thenReturn(engine)
             `when`(player.playWhenReady).thenReturn(true)
@@ -637,6 +705,12 @@ class PlayerLiveHttpRecoveryTest {
                 null
             }.`when`(resolver).preferHlsForLiveStream(info.url)
         }
+
+        fun key(): String = "${item.serviceId}:${item.url}"
+
+        fun urlGuard(): PlayerHttpErrorRecovery.RecoveryGuard = PlayerErrorController::class.java
+            .getDeclaredField("recoveryGuard").apply { isAccessible = true }
+            .get(controller) as PlayerHttpErrorRecovery.RecoveryGuard
 
         fun state(state: Int) {
             `when`(engine.playbackState).thenReturn(state)
