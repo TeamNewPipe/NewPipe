@@ -8,6 +8,10 @@ on:
   push:
     branches:
       - title-search
+    # Text-only changes need no new APK.
+    paths-ignore:
+      - '**.md'
+      - 'assets/**'
 
 # Run builds one at a time, so each build reuses the saved signing key.
 concurrency:
