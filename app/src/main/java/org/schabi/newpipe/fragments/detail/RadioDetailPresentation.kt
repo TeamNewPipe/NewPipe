@@ -13,6 +13,7 @@ import org.schabi.newpipe.util.image.CoilHelper
 internal object RadioDetailPresentation {
     @JvmStatic
     fun show(binding: FragmentVideoDetailBinding, station: PlayQueueItem) {
+        binding.detailLocalLikes.bind(null)
         binding.detailVideoTitleView.text = station.title
         binding.detailSubChannelTextView.text = station.uploader
         binding.detailUploaderTextView.text = binding.root.context.getString(R.string.live_radio)

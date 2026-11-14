@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="local_like">Like locally</string>
+    <string name="local_liked">Liked locally</string>
+    <string name="local_liked_videos">Liked videos</string>
+    <string name="local_like_description">Like this video locally</string>
+    <string name="local_unlike_description">Remove this video from Liked videos</string>
+    <string name="local_like_explanation">Saved in your profile’s Liked videos playlist. This does not submit a vote to the video service.</string>
+    <string name="local_like_saved">Saved to Liked videos on this device</string>
+    <string name="local_like_removed">Removed from Liked videos</string>
+    <string name="local_like_failed">Could not update Liked videos. Please try again.</string>
+</resources>

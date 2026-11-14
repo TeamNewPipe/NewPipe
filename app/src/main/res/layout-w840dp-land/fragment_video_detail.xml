@@ -417,6 +417,12 @@
                             </RelativeLayout>
                         </RelativeLayout>
 
+                        <org.schabi.newpipe.local.playlist.LocalLikesView
+                            android:id="@+id/detail_local_likes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" />
+
                         <!-- CONTROLS -->
                         <LinearLayout
                             android:id="@+id/detail_control_panel"

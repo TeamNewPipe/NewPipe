@@ -23,6 +23,20 @@ Yes. They use different Android application IDs. WizeStream Nightly also has a s
 
 WizeStream supports compatible NewPipe backup data. Export from the source app, open WizeStream's **Settings > Backup and restore**, and select the exported ZIP. Keep a copy of the original backup until you have verified the imported data.
 
+## Can I like videos without a service account?
+
+Builds containing local likes show **Like locally** on video details. Tap it to save the video in
+that profile's **Liked videos** playlist, or tap **Liked locally** to remove it. The adjacent
+**Liked videos** button opens the playlist; it is also available with your other local playlists.
+Removing a video from the playlist removes its local like. Local likes do not submit a vote or
+change the service's public like count.
+
+Each profile has its own liked collection. Use a full WizeStream backup and restore its database
+and settings together to retain both the videos and the profile's playlist link. Renaming the
+playlist keeps the link; deleting it clears that collection, and a later like creates a new one.
+A synced or imported ordinary playlist does not automatically become another device's local liked
+collection.
+
 ## How does device synchronization work?
 
 Open **Settings > Device synchronization** on two WizeStream devices, show the one-time QR code on

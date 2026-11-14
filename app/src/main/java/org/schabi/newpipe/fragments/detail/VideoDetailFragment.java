@@ -813,6 +813,7 @@ public final class VideoDetailFragment
 
     @Override
     public void onDestroyView() {
+        binding.detailLocalLikes.bind(null);
         if (sponsorshipBadge != null) {
             sponsorshipBadge.clear();
             sponsorshipBadge = null;
@@ -1401,6 +1402,7 @@ public final class VideoDetailFragment
         isLoading.set(false);
         currentInfo = null;
         currentLocalItem = item;
+        binding.detailLocalLikes.bind(null);
         serviceId = item.getServiceId();
         url = item.getUrl();
         title = item.getTitle();
@@ -1495,6 +1497,7 @@ public final class VideoDetailFragment
         setInitialData(item.getServiceId(), item.getUrl(), item.getTitle(), playQueue);
         currentInfo = null;
         currentLocalItem = item;
+        binding.detailLocalLikes.bind(null);
         isLoading.set(false);
         pageAdapter.clearAllItems();
         pageAdapter.notifyDataSetUpdate();
@@ -1514,6 +1517,7 @@ public final class VideoDetailFragment
         setInitialData(item.getServiceId(), item.getUrl(), item.getTitle(), playQueue);
         currentInfo = null;
         currentLocalItem = item;
+        binding.detailLocalLikes.bind(null);
         isLoading.set(false);
         pageAdapter.clearAllItems();
         pageAdapter.notifyDataSetUpdate();
@@ -2625,6 +2629,7 @@ public final class VideoDetailFragment
 
     @Override
     public void showLoading() {
+        binding.detailLocalLikes.bind(null);
 
         if (sponsorshipBadge != null) {
             sponsorshipBadge.clear();
@@ -2703,6 +2708,7 @@ public final class VideoDetailFragment
         super.handleResult(info);
 
         currentInfo = info;
+        binding.detailLocalLikes.bind(info);
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
         applyTitleDisplayPolicy(false);
@@ -3126,6 +3132,7 @@ public final class VideoDetailFragment
         }
 
         currentInfo = info;
+        binding.detailLocalLikes.bind(info);
         setInitialData(info.getServiceId(), info.getUrl(), info.getName(), queue);
         setAutoPlay(false);
         // Delay execution just because it freezes the main thread, and while playing
