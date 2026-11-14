@@ -128,11 +128,24 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release delete "$TAG" --yes --cleanup-tag
           fi
-          gh release create "$TAG" "$ASSET" \
-            --target "$GITHUB_SHA" \
-            --title "Merak ${BUILD}" \
-            --notes-file notes.md \
-            --latest
+          # GitHub occasionally refuses a release write with HTTP 403 even though the
+          # token has contents: write (seen on Merak 2.0.1). Retry before failing.
+          for ATTEMPT in 1 2 3; do
+            if gh release create "$TAG" "$ASSET" \
+                --target "$GITHUB_SHA" \
+                --title "Merak ${BUILD}" \
+                --notes-file notes.md \
+                --latest; then
+              exit 0
+            fi
+            echo "Release attempt $ATTEMPT failed; retrying in 30 seconds." >&2
+            sleep 30
+            # A failed attempt can leave a draft or tag behind; clear it first.
+            gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          done
+          echo "Could not publish $TAG after 3 attempts. Check Settings > Actions >" \
+            "General > Workflow permissions (Read and write) and rerun this job." >&2
+          exit 1
 
       # Report only: the APK above is already uploaded when these run.
       - name: style checks and search tests
