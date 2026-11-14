@@ -11,9 +11,7 @@
   <a href="../../issues">Report a problem</a>
 </p>
 
-> **Unofficial app.** Merak is derived from NewPipe and is not affiliated with or endorsed by TeamNewPipe or NewPipe e.V. "NewPipe" is a registered word mark of NewPipe e.V., used here only to credit Merak's origin.
-
-## What Merak is
+## What is Merak?
 
 Merak lets you stream music and videos on Android with no account and no Google services. Its own addition is **title search** on four screens, so long collections stay easy to browse:
 
@@ -26,37 +24,19 @@ Merak lets you stream music and videos on Android with no account and no Google 
 
 Search ignores capital letters and accents and takes words in any order. Its labels appear in English, Spanish, Macedonian, and Serbian.
 
-**The name.** *Merak* is a word shared across the Balkans and Turkey for the joy of savoring life's simple pleasures: good music, good company, time well spent. The icon is an original drawing of a *tapan*, the double-headed drum heard at Balkan celebrations, in the red of [makedonskakafana.mk](https://makedonskakafana.mk).
+*Merak* is a word shared across the Balkans and Turkey for the joy of savoring life's simple pleasures: good music, good company, time well spent. The icon is an original drawing of a *tapan*, the double-headed drum heard at Balkan celebrations, in the red of [makedonskakafana.mk](https://makedonskakafana.mk).
 
-## Where Merak comes from
-
-Merak is built on **[NewPipe](https://github.com/TeamNewPipe/NewPipe)**, the free streaming app created and maintained by TeamNewPipe and its volunteer contributors. Everything Merak plays, downloads, and stores comes from NewPipe's code. Merak's changes sit on top:
-
-- **Base:** NewPipe 0.29.1, `dev` branch at commit `acb7dfd`.
-- **Added:** title search, the Merak name and icon, and Merak's own support links.
-- **Updates:** a scheduled check every three months merges each new official NewPipe release into Merak.
-
-To thank the people behind NewPipe, [donate to the NewPipe project](https://newpipe.net/donate/).
-
-## How Merak complies
-
-| Obligation | Source | How Merak meets it |
-|---|---|---|
-| Keep the license | GNU GPL v3 | Merak stays under GPL v3 or later; the full source is public here, and every change is dated in [the changelog](MERAK.md#changelog) and commit history |
-| Use its own name and look | [NewPipe trademark policy](https://newpipe-ev.de/policy/trademark/) | Own name, original icon, and app ID `io.github.ninjaeu.merak`; "NewPipe" appears only to credit the origin |
-| State that it is unofficial | NewPipe trademark policy | This README, the guide, the app's About screen, and every release carry the disclaimer |
-| Route support to Merak | Courtesy to TeamNewPipe | Crash reports and links lead to this repository; please keep Merak issues out of NewPipe's tracker |
-| Distribute responsibly | NewPipe README | Merak ships only through this repository's Releases, and never through Google Play |
-
-## Install
+## How to Install?
 
 1. Download the newest `.apk` from [Releases](../../releases/latest).
 2. Open it on your Android phone (Android 6.0 or newer) and allow the install.
+3. Coming from another NewPipe-based app? Export your database there, then import it in Merak under **Settings > Backup and restore**.
 
-The [install guide](MERAK.md) covers Samsung One UI settings, moving data from another NewPipe-based app, updates, and Google's developer-verification rule.
+New releases install on top and keep your data. The [install guide](MERAK.md) covers Samsung One UI settings, automatic update alerts with Obtainium, and Google's developer-verification rule.
 
-## License and credits
+## License, Credits, and Attribution
 
-- Merak is free software under the [GNU General Public License v3.0](LICENSE) or later.
-- NewPipe © TeamNewPipe and contributors, GPL v3.
-- Merak's search feature, name, and drum icon © 2026 ninjaeu, GPL v3.
+- **License:** Merak is free software under the [GNU General Public License v3.0](LICENSE) or later. The full source is in this repository, and every change is dated in [the changelog](MERAK.md#changelog).
+- **Based on NewPipe:** Merak is derived from [NewPipe](https://github.com/TeamNewPipe/NewPipe) by TeamNewPipe and its volunteer contributors (© TeamNewPipe and contributors, GPL v3). **Base:** NewPipe 0.29.1. To thank them, [donate to the NewPipe project](https://newpipe.net/donate/).
+- **Merak's additions:** the search feature, the name, and the drum icon, © 2026 ninjaeu, GPL v3.
+- **Unofficial app:** Merak is not affiliated with or endorsed by TeamNewPipe or NewPipe e.V. "NewPipe" is a registered word mark of NewPipe e.V., named here only to credit Merak's origin. Please report Merak problems in this repository's [Issues](../../issues).
