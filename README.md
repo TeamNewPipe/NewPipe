@@ -38,7 +38,7 @@ New releases install on top and keep your data. The [install guide](MERAK.md) co
 
 ## Support NewPipe
 
-Merak exists because of NewPipe. Since 2015, TeamNewPipe's volunteers have built and maintained a free, private way to enjoy music and videos, and they keep it working as streaming services change. If Merak brings you a little merak, please thank the people who made it possible:
+Merak exists because of NewPipe. Since 2015, TeamNewPipe's volunteers have built and maintained a free, private way to enjoy music and videos, and they keep it working as streaming services change. If Merak brings you a little "merak" (the joy of life's simple pleasures), please thank the people who made it possible:
 
 - **[Donate to NewPipe](https://newpipe.net/donate/)** to support their great work.
 - **[Star or contribute to NewPipe on GitHub](https://github.com/TeamNewPipe/NewPipe)**: code, translations, and bug reports all help.
