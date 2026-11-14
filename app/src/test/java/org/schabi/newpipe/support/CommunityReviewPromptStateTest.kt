@@ -60,18 +60,27 @@ class CommunityReviewPromptStateTest {
     }
 
     @Test
-    fun reviewRequestOpensTheConfiguredPageWithoutIdentifiersAndStopsAsking() {
+    fun openingReviewsDoesNotChangeTheOpeningCountReminderOrOptOut() {
         val context = RuntimeEnvironment.getApplication()
         val local = context.getSharedPreferences("community_review_prompt", Context.MODE_PRIVATE)
         local.edit().clear().commit()
         try {
             val state = CommunityReviews.state(context)
-            repeat(15) { state.recordOpening() }
+            repeat(14) { state.recordOpening() }
+            val deadline = 1_000_000L + CommunityReviewPromptState.FIVE_DAYS_MS
+            state.remindLater(1_000_000L)
             CommunityReviews.openPage(context)
             val intent = shadowOf(context).nextStartedActivity
             assertEquals("https://wizestream.org/reviews/", intent.data.toString())
             assertEquals(null, intent.data?.query)
             assertEquals(null, intent.data?.fragment)
+            assertFalse(state.shouldPrompt(Long.MAX_VALUE))
+            state.recordOpening()
+            assertEquals(deadline, state.reminderAt)
+            assertFalse(state.shouldPrompt(deadline - 1))
+            assertTrue(state.shouldPrompt(deadline))
+            state.stopAsking()
+            CommunityReviews.openPage(context)
             assertFalse(state.shouldPrompt(Long.MAX_VALUE))
         } finally {
             local.edit().clear().commit()
@@ -79,7 +88,29 @@ class CommunityReviewPromptStateTest {
     }
 
     @Test
-    fun explicitOptOutOrReviewPageRequestStopsFurtherPrompts() {
+    fun restoresLegacyPageOpenSuppressionBeforeThePromptThreshold() {
+        for (openings in 0..14) {
+            preferences.edit().clear().putBoolean("stopped", true).putInt("openings", openings).commit()
+            val state = CommunityReviewPromptState(preferences)
+            repeat(15 - openings) { state.recordOpening() }
+            assertTrue(state.shouldPrompt(1_000))
+            assertFalse(preferences.contains("stopped"))
+            assertTrue(CommunityReviewPromptState(preferences).shouldPrompt(1_000))
+        }
+    }
+
+    @Test
+    fun preservesAmbiguousLegacyStopsAndDoesNotRestoreAnExplicitOptOut() {
+        preferences.edit().putBoolean("stopped", true).putInt("openings", 15).commit()
+        assertFalse(CommunityReviewPromptState(preferences).shouldPrompt(Long.MAX_VALUE))
+        preferences.edit().clear().commit()
+        val state = CommunityReviewPromptState(preferences)
+        state.stopAsking()
+        assertFalse(CommunityReviewPromptState(preferences).shouldPrompt(Long.MAX_VALUE))
+    }
+
+    @Test
+    fun explicitOptOutStopsFurtherPrompts() {
         val state = CommunityReviewPromptState(preferences)
         repeat(15) { state.recordOpening() }
         state.stopAsking()

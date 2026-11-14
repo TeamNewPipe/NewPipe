@@ -13,12 +13,23 @@ import org.schabi.newpipe.util.external_communication.ShareUtils
 
 /** Installation-local prompt state. No counters, identifiers or review results are sent anywhere. */
 class CommunityReviewPromptState(private val preferences: SharedPreferences) {
+    init {
+        if (!preferences.contains(OPTED_OUT)) {
+            // The old flag mixed page openings with explicit opt-outs. Before 15 openings,
+            // the automatic dialog could not have offered Don't ask again, so restore reminders.
+            // At or above the threshold the old reason is unknown; preserve that choice.
+            val preserveStop = preferences.getBoolean(LEGACY_STOPPED, false) &&
+                preferences.getInt(OPENINGS, 0) >= 15
+            preferences.edit().putBoolean(OPTED_OUT, preserveStop).remove(LEGACY_STOPPED).apply()
+        }
+    }
+
     fun recordOpening() {
-        if (preferences.getBoolean(STOPPED, false)) return
+        if (preferences.getBoolean(OPTED_OUT, false)) return
         preferences.edit().putInt(OPENINGS, (preferences.getInt(OPENINGS, 0).coerceIn(0, 15) + 1).coerceAtMost(15)).apply()
     }
 
-    fun shouldPrompt(now: Long): Boolean = !preferences.getBoolean(STOPPED, false) &&
+    fun shouldPrompt(now: Long): Boolean = !preferences.getBoolean(OPTED_OUT, false) &&
         preferences.getInt(OPENINGS, 0) >= 15 && now >= reminderAt
 
     val reminderAt: Long
@@ -30,14 +41,15 @@ class CommunityReviewPromptState(private val preferences: SharedPreferences) {
     }
 
     fun stopAsking() {
-        preferences.edit().putBoolean(STOPPED, true).apply()
+        preferences.edit().putBoolean(OPTED_OUT, true).apply()
     }
 
     companion object {
         const val FIVE_DAYS_MS = 5L * 24 * 60 * 60 * 1_000
         private const val OPENINGS = "openings"
         private const val REMINDER_AT = "reminder_at"
-        private const val STOPPED = "stopped"
+        private const val OPTED_OUT = "opted_out"
+        private const val LEGACY_STOPPED = "stopped"
     }
 }
 
@@ -88,8 +100,7 @@ object CommunityReviews {
 
     fun openPage(context: Context) {
         val url = destination(context) ?: return
-        // Remember only the user's request to open the page; submission is never tracked.
-        state(context).stopAsking()
+        // Opening a browser does not confirm a submitted review or change reminder preferences.
         ShareUtils.openUrlInBrowser(context, url)
     }
 }
