@@ -96,7 +96,7 @@ configure<ApplicationExtension> {
                 resValue("string", "app_name", "NewPipe Continuous")
             } else {
                 applicationIdSuffix = ".continuous.$normalizedWorkingBranch"
-                resValue("string", "app_name", "NewPipe $workingBranch")
+                resValue("string", "app_name", NEWPIPE_SEARCH_APP_NAME)
             }
         }
     }

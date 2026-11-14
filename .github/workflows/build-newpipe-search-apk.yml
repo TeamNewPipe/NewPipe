@@ -1,12 +1,17 @@
-# Builds an installable APK of the title-search version of NewPipe.
+# Builds an installable APK of NewPipe_Search and publishes it under Releases.
 # Runs on every push to the title-search branch, or by hand from the Actions tab.
-name: Build title-search APK
+name: Build NewPipe_Search APK
 
 on:
   workflow_dispatch:
   push:
     branches:
       - title-search
+
+# Run builds one at a time, so each build reuses the saved signing key.
+concurrency:
+  group: newpipe-search-apk
+  cancel-in-progress: false
 
 permissions:
   # Write access lets the last step publish the APK under Releases.
@@ -50,11 +55,24 @@ jobs:
       - name: build APK
         run: ./gradlew assembleContinuous --stacktrace -DskipFormatKtlint
 
+      # Names every output "NewPipe_Search <build>", for example NewPipe_Search 1.0.2.
       - name: name the APK
         run: |
+          CONFIG=buildSrc/src/main/kotlin/ProjectConfig.kt
+          BASE=$(sed -n 's/^const val NEWPIPE_VERSION_NAME = "\(.*\)"$/\1/p' "$CONFIG")
+          SUFFIX=$(sed -n 's/^const val TITLE_SEARCH_VERSION_SUFFIX = "\(.*\)"$/\1/p' "$CONFIG")
+          if [ -z "$BASE" ] || [ -z "$SUFFIX" ]; then
+            echo "Could not read the version from $CONFIG" >&2
+            exit 1
+          fi
+          BUILD="${SUFFIX#-search.}"
+          {
+            echo "BASE=$BASE"
+            echo "VERSION=${BASE}${SUFFIX}"
+            echo "BUILD=$BUILD"
+          } >> "$GITHUB_ENV"
           mkdir -p out
-          cp app/build/outputs/apk/continuous/*.apk \
-            "out/NewPipe-title-search-1.0.1-${GITHUB_SHA::7}.apk"
+          cp app/build/outputs/apk/continuous/*.apk "out/NewPipe_Search-${BUILD}.apk"
           ls -l out
 
       - name: verify signature and supported Android versions
@@ -67,7 +85,7 @@ jobs:
 
       - uses: actions/upload-artifact@v7
         with:
-          name: NewPipe-title-search-apk
+          name: NewPipe_Search-${{ env.BUILD }}
           path: out/*.apk
           if-no-files-found: error
 
@@ -78,24 +96,22 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          CONFIG=buildSrc/src/main/kotlin/ProjectConfig.kt
-          BASE=$(sed -n 's/^const val NEWPIPE_VERSION_NAME = "\(.*\)"$/\1/p' "$CONFIG")
-          SUFFIX=$(sed -n 's/^const val TITLE_SEARCH_VERSION_SUFFIX = "\(.*\)"$/\1/p' "$CONFIG")
-          VERSION="${BASE}${SUFFIX}"
           TAG="v${VERSION}"
-          if [ -z "$BASE" ] || [ -z "$SUFFIX" ]; then
-            echo "Could not read the version from $CONFIG" >&2
-            exit 1
-          fi
+          ASSET="out/NewPipe_Search-${BUILD}.apk"
 
-          ASSET="NewPipe-title-search-${VERSION}.apk"
-          cp out/*.apk "$ASSET"
+          # Remove releases published under the earlier name "NewPipe title search".
+          gh release list --limit 100 --json tagName,name \
+            --jq '.[] | select(.name | startswith("NewPipe title search")) | .tagName' \
+            | while read -r OLD_TAG; do
+                gh release delete "$OLD_TAG" --yes --cleanup-tag
+              done
 
           cat > notes.md <<NOTES
-          Title search for NewPipe ${BASE}: search by title in the Playlists tab, local playlists, online playlists, and Subscriptions.
+          NewPipe_Search, based on NewPipe ${BASE}: search by title in the Playlists tab, local playlists, online playlists, and Subscriptions.
 
-          **Install:** download ${ASSET} below and open it on your Android phone (Android 6.0 or newer).
-          Full steps, including Samsung One UI settings: https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/TITLE_SEARCH.md
+          **Install:** download NewPipe_Search-${BUILD}.apk below and open it on your Android phone (Android 6.0 or newer).
+          App version: ${VERSION}.
+          Full steps, including Samsung One UI settings: https://github.com/${GITHUB_REPOSITORY}/blob/${GITHUB_REF_NAME}/NEWPIPE_SEARCH.md
 
           Built from commit ${GITHUB_SHA::7}.
           NOTES
@@ -105,12 +121,12 @@ jobs:
           fi
           gh release create "$TAG" "$ASSET" \
             --target "$GITHUB_SHA" \
-            --title "NewPipe title search ${VERSION}" \
+            --title "NewPipe_Search ${BUILD}" \
             --notes-file notes.md \
             --latest
 
       # Report only: the APK above is already uploaded when these run.
-      - name: style checks and title search tests
+      - name: style checks and search tests
         continue-on-error: true
         run: >
           ./gradlew runCheckstyle runKtlint testDebugUnitTest

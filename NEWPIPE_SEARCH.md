@@ -1,6 +1,6 @@
-# NewPipe title search
+# NewPipe_Search
 
-This branch adds title search to four NewPipe screens. It builds on TeamNewPipe/NewPipe `dev` at commit `acb7dfd` (NewPipe 0.29.1). App version: `0.29.1-search.1.0.1`.
+NewPipe_Search adds title search to four NewPipe screens. It builds on TeamNewPipe/NewPipe `dev` at commit `acb7dfd` (NewPipe 0.29.1). App version: `0.29.1-search.1.0.2`.
 
 | Screen | Search matches | Toolbar label |
 |---|---|---|
@@ -13,10 +13,10 @@ Search ignores case and accents and accepts words in any order. Labels appear in
 
 ## Get the APK
 
-1. Open this repository's **Releases** section (right column of the front page) and select the newest **NewPipe title search** release.
-2. Under **Assets**, download the file ending in `.apk`, for example `NewPipe-title-search-0.29.1-search.1.0.1.apk`. No GitHub sign-in is needed.
+1. Open this repository's **Releases** section (right column of the front page) and select the newest release, for example **NewPipe_Search 1.0.2**.
+2. Under **Assets**, download the file ending in `.apk`, for example `NewPipe_Search-1.0.2.apk`. No GitHub sign-in is needed.
 
-Every push to the `title-search` branch builds the app and publishes the release. You can also start a build from **Actions > Build title-search APK > Run workflow**.
+Every push to the `title-search` branch builds the app and publishes the release. You can also start a build from **Actions > Build NewPipe_Search APK > Run workflow**.
 
 ## Install on a Samsung phone
 
@@ -32,10 +32,10 @@ The app supports Android 6.0 and newer. Every One UI version runs Android 9 or n
 3. **Open the APK** from the browser's downloads or **My Files**. When Android asks, select **Settings**, turn on **Allow from this source**, and go back.
 4. **Select Install.** If Google Play Protect warns about an unknown app, select **More details > Install anyway**.
 
-The app installs as **NewPipe title-search**, next to any official NewPipe, and keeps its own data. To move subscriptions and playlists:
+The app installs as **NewPipe_Search**, next to any official NewPipe, and keeps its own data. To move subscriptions and playlists:
 
 1. In the official NewPipe, open **Settings > Backup and restore > Export database**.
-2. In NewPipe title-search, open the same screen and select **Import database**.
+2. In NewPipe_Search, open the same screen and select **Import database**.
 
 ## One UI compatibility
 
@@ -65,9 +65,15 @@ Builds reuse one signing key while GitHub keeps its cache, which expires 7 days 
 
 ## Undo
 
-Uninstall **NewPipe title-search**. The official NewPipe and its data stay untouched.
+Uninstall **NewPipe_Search**. The official NewPipe and its data stay untouched.
 
 ## Changelog
+
+### 1.0.2 (2026-11-13)
+
+- Renamed the app to NewPipe_Search. Releases and APK files follow the pattern "NewPipe_Search 1.0.2".
+- Removed the release published under the earlier name.
+- Builds now run one at a time, so every build signs with the same saved key.
 
 ### 1.0.1 (2026-11-13)
 
@@ -83,7 +89,7 @@ Uninstall **NewPipe title-search**. The official NewPipe and its data stay untou
 - Drag reordering pauses during a search.
 - Online playlists load more pages during a search until 30 matches show or the playlist ends.
 - Back closes an open search first.
-- Added the `Build title-search APK` GitHub workflow.
+- Added the GitHub workflow that builds the APK.
 
 ## License
 
