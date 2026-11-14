@@ -14,7 +14,7 @@ const val NEWPIPE_VERSION_NAME = "0.29.1"
 // Merak: an unofficial app based on NewPipe, with its own name and app ID as NewPipe's
 // trademark policy requires (https://newpipe-ev.de/policy/trademark/).
 // Android app only: the desktop installer needs a plain MAJOR.MINOR.PATCH version name.
-const val FORK_VERSION_SUFFIX = "-merak.2.0.0"
+const val FORK_VERSION_SUFFIX = "-merak.2.0.1"
 const val FORK_APP_NAME = "Merak"
 const val FORK_APPLICATION_ID = "io.github.ninjaeu.merak"
 

@@ -2,7 +2,7 @@
 
 > **Unofficial app.** Merak is based on [NewPipe](https://github.com/TeamNewPipe/NewPipe) and modified by ninjaeu. Merak is not affiliated with or endorsed by TeamNewPipe or NewPipe e.V., and TeamNewPipe does not build or support it. Merak is a separate app from official NewPipe releases: it installs alongside them and keeps its own data. "NewPipe" is a registered word mark of NewPipe e.V.
 
-Merak adds title search to four screens. *Merak* is a Balkan word for the joy of savoring life's simple pleasures. App version: `0.29.1-merak.2.0.0` (based on NewPipe 0.29.1).
+Merak adds title search to four screens. *Merak* is a Balkan word for the joy of savoring life's simple pleasures. App version: `0.29.1-merak.2.0.1` (based on NewPipe 0.29.1).
 
 | Screen | Search matches | Toolbar label |
 |---|---|---|
@@ -16,7 +16,7 @@ Search ignores case and accents and accepts words in any order. Labels appear in
 ## Get the APK
 
 1. Open this repository's **Releases** section and select the newest **Merak** release.
-2. Under **Assets**, download the `.apk` file, for example `Merak-2.0.0.apk`. No GitHub sign-in is needed.
+2. Under **Assets**, download the `.apk` file, for example `Merak-2.0.1.apk`. No GitHub sign-in is needed.
 
 Every push to the `title-search` branch builds the app and publishes the release.
 
@@ -94,15 +94,21 @@ Uninstall **Merak**. Official NewPipe and its data stay untouched.
 ## Credits and license
 
 - Merak builds on NewPipe by TeamNewPipe and its contributors. To support them, donate at https://newpipe.net/donate/.
-- Merak's search feature and drum icon (an original design) are by ninjaeu.
+- Merak's search feature and drum icon (an original design) are by ninjaeu. The icon red (#BA1200) follows makedonskakafana.mk.
 - Merak is free software under the GNU General Public License v3.0 or later, the same license as NewPipe. The full source is in this repository.
 
 ## Changelog
 
+### 2.0.1 (2026-11-14)
+
+- Round red icon: the drum sits on a red disc (#BA1200, the accent red of makedonskakafana.mk), so every launcher shape shows a circle.
+- Added a drum-only monochrome layer for Android themed icons.
+- Splash screen background uses the same red.
+
 ### 2.0.0 (2026-11-14)
 
 - Renamed the app **Merak**, with its own app ID `io.github.ninjaeu.merak`, to comply with NewPipe's [trademark policy](https://newpipe-ev.de/policy/trademark/). Install once and import your data; later releases install on top.
-- New original icon: a Balkan tapan drum with crossed drumsticks, in violet.
+- New original icon: a Balkan tapan drum with crossed drumsticks.
 - Replaced "NewPipe" with "Merak" wherever the app names itself, in every language. The About screen credits NewPipe and states that Merak is unofficial.
 - Crash reports open this repository's GitHub issues; the e-mail option to the NewPipe team is gone.
 - Website, FAQ, and privacy links point to this repository. The donation link still supports the NewPipe project.
