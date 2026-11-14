@@ -2,7 +2,9 @@
 
 <h1 align="center">Merak</h1>
 
-<p align="center"><b>A free Android app for music and videos, with search inside your playlists and subscriptions.</b></p>
+<p align="center"><b>UNOFFICIAL version of NewPipe</b></p>
+
+<p align="center">A free Android app for music and videos, with search inside your playlists and subscriptions.</p>
 
 <p align="center">
   <a href="../../releases/latest">Download</a> ·
