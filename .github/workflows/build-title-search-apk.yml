@@ -1,0 +1,79 @@
+# Builds an installable APK of the title-search version of NewPipe.
+# Runs on every push to the title-search branch, or by hand from the Actions tab.
+name: Build title-search APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - title-search
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    env:
+      # Optional. Base64 of a keystore saved as a repository secret. A fixed key lets
+      # every new build install over the previous one without losing app data.
+      KEYSTORE_B64: ${{ secrets.DEBUG_KEYSTORE_BASE64 }}
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: gradle/actions/wrapper-validation@v6
+
+      - name: set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: "temurin"
+          cache: 'gradle'
+
+      - name: use signing key from secret
+        if: env.KEYSTORE_B64 != ''
+        run: |
+          mkdir -p ~/.android
+          echo "$KEYSTORE_B64" | base64 --decode > ~/.android/debug.keystore
+
+      # Without the secret, keep the key that the first build generates, so later
+      # builds still install as updates (GitHub drops caches unused for 7 days).
+      - name: reuse signing key from earlier builds
+        if: env.KEYSTORE_B64 == ''
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: title-search-debug-keystore-v1
+
+      - name: build APK
+        run: ./gradlew assembleContinuous --stacktrace -DskipFormatKtlint
+
+      - name: name the APK
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/continuous/*.apk \
+            "out/NewPipe-title-search-1.0.0-${GITHUB_SHA::7}.apk"
+          ls -l out
+
+      - name: verify signature and supported Android versions
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          APK=$(ls out/*.apk)
+          "$BT/apksigner" verify --verbose "$APK"
+          "$BT/aapt2" dump badging "$APK" \
+            | grep -E "^package:|^application-label:|sdkVersion|native-code" || true
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: NewPipe-title-search-apk
+          path: out/*.apk
+          if-no-files-found: error
+
+      # Report only: the APK above is already uploaded when these run.
+      - name: style checks and title search tests
+        continue-on-error: true
+        run: >
+          ./gradlew runCheckstyle runKtlint testDebugUnitTest
+          --tests 'org.schabi.newpipe.util.TitleFilterTest'
+          --stacktrace -DskipFormatKtlint

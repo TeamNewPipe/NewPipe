@@ -611,6 +611,13 @@ public class MainActivity extends AppCompatActivity {
         // interacts with a fragment inside fragment_holder so all back presses should be
         // handled by it
         if (bottomSheetHiddenOrCollapsed()) {
+            // Close an open toolbar search (playlist and subscription title search) first.
+            // It lives in a menu action view, which the fragment back stack does not track.
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null && actionBar.collapseActionView()) {
+                return;
+            }
+
             final FragmentManager fm = getSupportFragmentManager();
             final Fragment fragment = fm.findFragmentById(R.id.fragment_holder);
             // If current fragment implements BackPressable (i.e. can/wanna handle back press)

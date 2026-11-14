@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 
+import com.evernote.android.state.State;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
@@ -51,6 +52,8 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.TitleFilter;
+import org.schabi.newpipe.util.TitleFilterMenu;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.text.TextEllipsizer;
@@ -70,6 +73,16 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, PlaylistInfo>
         implements PlaylistControlViewHolder {
+
+    /**
+     * While a title search runs, keep loading pages until at least this many matches show,
+     * so the screen fills and the user can scroll to load more.
+     */
+    private static final int MIN_VISIBLE_SEARCH_RESULTS = 30;
+
+    @State
+    String titleFilterQuery;
+    private TitleFilterMenu titleFilterMenu;
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -112,6 +125,8 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         isBookmarkButtonReady = new AtomicBoolean(false);
         remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase
                 .getInstance(requireContext()));
+        titleFilterMenu = new TitleFilterMenu(this, R.string.search_in_playlist,
+                titleFilterQuery, this::onTitleFilterChanged);
     }
 
     @Override
@@ -141,6 +156,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         // Is mini variant still relevant?
         // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
+        applyTitleFilter(titleFilterMenu.getFilter());
     }
 
     private PlayQueue getPlayQueueStartingAt(final StreamInfoItem infoItem) {
@@ -178,6 +194,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
         playlistBookmarkButton = menu.findItem(R.id.menu_item_bookmark);
         updateBookmarkButtons();
+        titleFilterMenu.addTo(menu);
     }
 
     @Override
@@ -198,6 +215,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
         }
 
         bookmarkReactor = null;
+        titleFilterMenu.release();
     }
 
     @Override
@@ -277,6 +295,7 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
     public void handleNextItems(final ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
         setStreamCountAndOverallDuration(result.getItems(), !result.hasNextPage());
+        onTitleFilterResultsChanged();
     }
 
     @Override
@@ -363,6 +382,54 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
                 .subscribe(getPlaylistBookmarkSubscriber());
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
+        onTitleFilterResultsChanged();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Title search
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void onTitleFilterChanged(@Nullable final TitleFilter filter) {
+        titleFilterQuery = titleFilterMenu.getQuery();
+        applyTitleFilter(filter);
+        onTitleFilterResultsChanged();
+    }
+
+    /**
+     * Hides streams whose title fails the search. The adapter keeps every loaded stream, so
+     * the play buttons still play the whole playlist.
+     *
+     * @param filter the search, or {@code null} to show every stream
+     */
+    private void applyTitleFilter(@Nullable final TitleFilter filter) {
+        infoListAdapter.setDisplayFilter(filter == null ? null
+                : item -> filter.matches(item.getName()));
+    }
+
+    /**
+     * Searches can only match loaded streams, so this loads further pages until enough
+     * matches show, then reports "No results" once the last page holds none.
+     */
+    private void onTitleFilterResultsChanged() {
+        if (!infoListAdapter.isFiltering()) {
+            if (emptyStateView != null && !infoListAdapter.getItemsList().isEmpty()) {
+                animate(emptyStateView, false, 200);
+            }
+            return;
+        }
+
+        final int matches = infoListAdapter.getDisplayedItemCount();
+        if (matches < MIN_VISIBLE_SEARCH_RESULTS && hasMoreItems() && !isLoading.get()) {
+            loadMoreItems();
+        }
+
+        if (emptyStateView != null && !infoListAdapter.getItemsList().isEmpty()) {
+            final boolean noMatches = matches == 0 && !hasMoreItems();
+            if (noMatches) {
+                setEmptyStateMessage(R.string.search_no_results);
+            }
+            animate(emptyStateView, noMatches, 200);
+        }
     }
 
     public PlayQueue getPlayQueue() {

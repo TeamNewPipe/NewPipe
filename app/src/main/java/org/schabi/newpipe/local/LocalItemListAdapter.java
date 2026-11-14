@@ -37,6 +37,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /*
@@ -94,6 +95,14 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private ItemViewMode itemViewMode = ItemViewMode.LIST;
     private boolean useItemHandle = false;
 
+    /**
+     * Hides items that fail a title search. {@link #localItems} always keeps every item, so
+     * saving, deleting and playing still act on the whole list; only the screen is filtered.
+     */
+    @Nullable
+    private Predicate<LocalItem> displayFilter = null;
+    private final ArrayList<LocalItem> filteredItems = new ArrayList<>();
+
     public LocalItemListAdapter(final Context context) {
         recordManager = new HistoryRecordManager(context);
         localItemBuilder = new LocalItemBuilder(context);
@@ -113,6 +122,12 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void addItems(@Nullable final List<? extends LocalItem> data) {
         if (data == null) {
+            return;
+        }
+        if (displayFilter != null) {
+            localItems.addAll(data);
+            refilter();
+            notifyDataSetChanged();
             return;
         }
         if (DEBUG) {
@@ -143,6 +158,12 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void removeItem(final LocalItem data) {
+        if (displayFilter != null) {
+            localItems.remove(data);
+            refilter();
+            notifyDataSetChanged();
+            return;
+        }
         final int index = localItems.indexOf(data);
         if (index != -1) {
             localItems.remove(index);
@@ -160,6 +181,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public boolean swapItems(final int fromAdapterPosition, final int toAdapterPosition) {
+        if (displayFilter != null) {
+            // Screen positions skip hidden items, so they cannot map to list positions.
+            return false;
+        }
         final int actualFrom = adapterOffsetWithoutHeader(fromAdapterPosition);
         final int actualTo = adapterOffsetWithoutHeader(toAdapterPosition);
 
@@ -180,11 +205,55 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             return;
         }
         localItems.clear();
+        filteredItems.clear();
         notifyDataSetChanged();
     }
 
     public void setItemViewMode(final ItemViewMode itemViewMode) {
         this.itemViewMode = itemViewMode;
+    }
+
+    /**
+     * Shows only the items that pass the filter. Pass {@code null} to show every item.
+     * Reordering stays off while a filter is set.
+     *
+     * @param filter the items to show, or {@code null} for all items
+     */
+    public void setDisplayFilter(@Nullable final Predicate<LocalItem> filter) {
+        if (filter == null && displayFilter == null) {
+            return;
+        }
+        displayFilter = filter;
+        refilter();
+        notifyDataSetChanged();
+    }
+
+    public boolean isFiltering() {
+        return displayFilter != null;
+    }
+
+    /**
+     * @return the number of items on screen, which is smaller than
+     * {@link #getItemsList()}{@code .size()} while a filter hides items
+     */
+    public int getDisplayedItemCount() {
+        return displayedItems().size();
+    }
+
+    private List<LocalItem> displayedItems() {
+        return displayFilter == null ? localItems : filteredItems;
+    }
+
+    private void refilter() {
+        filteredItems.clear();
+        if (displayFilter == null) {
+            return;
+        }
+        for (final LocalItem item : localItems) {
+            if (displayFilter.test(item)) {
+                filteredItems.add(item);
+            }
+        }
     }
 
     public void setUseItemHandle(final boolean useItemHandle) {
@@ -232,7 +301,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private int sizeConsideringHeader() {
-        return localItems.size() + (hasHeader() ? 1 : 0);
+        return displayedItems().size() + (hasHeader() ? 1 : 0);
     }
 
     public ArrayList<LocalItem> getItemsList() {
@@ -241,7 +310,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        int count = localItems.size();
+        int count = displayedItems().size();
         if (hasHeader()) {
             count++;
         }
@@ -270,10 +339,11 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         } else if (hasHeader()) {
             position--;
         }
-        if (footer != null && position == localItems.size() && showFooter) {
+        final List<LocalItem> displayed = displayedItems();
+        if (footer != null && position == displayed.size() && showFooter) {
             return FOOTER_TYPE;
         }
-        final LocalItem item = localItems.get(position);
+        final LocalItem item = displayed.get(position);
         switch (item.getLocalItemType()) {
             case PLAYLIST_LOCAL_ITEM:
                 if (useItemHandle) {
@@ -381,7 +451,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
 
             ((LocalItemHolder) holder)
-                    .updateFromItem(localItems.get(position), recordManager, dateTimeFormatter);
+                    .updateFromItem(displayedItems().get(position), recordManager,
+                            dateTimeFormatter);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && hasHeader()) {
             ((HeaderFooterHolder) holder).view = headerSupplier.get();
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
@@ -396,10 +467,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
             for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((LocalItemHolder) holder).updateState(localItems
+                    ((LocalItemHolder) holder).updateState(displayedItems()
                             .get(hasHeader() ? position - 1 : position), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((LocalItemHolder) holder).updateState(localItems
+                    ((LocalItemHolder) holder).updateState(displayedItems()
                             .get(hasHeader() ? position - 1 : position), recordManager);
                 }
             }

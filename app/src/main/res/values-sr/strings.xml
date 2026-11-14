@@ -837,4 +837,7 @@
     <string name="import_subscriptions_summary">Увези претплате из претходне датотеке .json</string>
     <string name="export_subscriptions_summary">Извези своје претплате у датотеку .json</string>
     <string name="import_from_previous_export">Увези из претходног извоза</string>
+    <string name="search_playlists">Претражи плејлисте</string>
+    <string name="search_in_playlist">Претражи у плејлисти</string>
+    <string name="search_subscriptions">Претражи праћења</string>
 </resources>

@@ -37,6 +37,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /*
@@ -92,6 +93,14 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Supplier<View> headerSupplier = null;
 
+    /**
+     * Hides items that fail a title search. {@link #infoItemList} always keeps every loaded
+     * item, so state saving and play queues still see the whole list.
+     */
+    @Nullable
+    private Predicate<InfoItem> displayFilter = null;
+    private final List<InfoItem> filteredItems = new ArrayList<>();
+
     public InfoListAdapter(final Context context) {
         layoutInflater = LayoutInflater.from(context);
         recordManager = new HistoryRecordManager(context);
@@ -127,6 +136,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (data == null) {
             return;
         }
+        if (displayFilter != null) {
+            infoItemList.addAll(data);
+            refilter();
+            notifyDataSetChanged();
+            return;
+        }
         if (DEBUG) {
             Log.d(TAG, "addInfoItemList() before > infoItemList.size() = "
                     + infoItemList.size() + ", data.size() = " + data.size());
@@ -159,7 +174,50 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return;
         }
         infoItemList.clear();
+        filteredItems.clear();
         notifyDataSetChanged();
+    }
+
+    /**
+     * Shows only the items that pass the filter. Pass {@code null} to show every item.
+     *
+     * @param filter the items to show, or {@code null} for all items
+     */
+    public void setDisplayFilter(@Nullable final Predicate<InfoItem> filter) {
+        if (filter == null && displayFilter == null) {
+            return;
+        }
+        displayFilter = filter;
+        refilter();
+        notifyDataSetChanged();
+    }
+
+    public boolean isFiltering() {
+        return displayFilter != null;
+    }
+
+    /**
+     * @return the number of items on screen, which is smaller than
+     * {@link #getItemsList()}{@code .size()} while a filter hides items
+     */
+    public int getDisplayedItemCount() {
+        return displayedItems().size();
+    }
+
+    private List<InfoItem> displayedItems() {
+        return displayFilter == null ? infoItemList : filteredItems;
+    }
+
+    private void refilter() {
+        filteredItems.clear();
+        if (displayFilter == null) {
+            return;
+        }
+        for (final InfoItem item : infoItemList) {
+            if (displayFilter.test(item)) {
+                filteredItems.add(item);
+            }
+        }
     }
 
     public void setHeaderSupplier(@Nullable final Supplier<View> headerSupplier) {
@@ -191,7 +249,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private int sizeConsideringHeaderOffset() {
-        final int i = infoItemList.size() + (hasHeader() ? 1 : 0);
+        final int i = displayedItems().size() + (hasHeader() ? 1 : 0);
         if (DEBUG) {
             Log.d(TAG, "sizeConsideringHeaderOffset() called → " + i);
         }
@@ -204,7 +262,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        int count = infoItemList.size();
+        int count = displayedItems().size();
         if (hasHeader()) {
             count++;
         }
@@ -233,10 +291,11 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (hasHeader()) {
             position--;
         }
-        if (position == infoItemList.size() && showFooter) {
+        final List<InfoItem> displayed = displayedItems();
+        if (position == displayed.size() && showFooter) {
             return FOOTER_TYPE;
         }
-        final InfoItem item = infoItemList.get(position);
+        final InfoItem item = displayed.get(position);
         switch (item.getInfoType()) {
             case STREAM:
                 if (itemMode == ItemViewMode.CARD) {
@@ -336,7 +395,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof InfoItemHolder) {
             ((InfoItemHolder) holder).updateFromItem(
                     // If header is present, offset the items by -1
-                    infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
+                    displayedItems().get(hasHeader() ? position - 1 : position), recordManager);
         }
     }
 

@@ -50,6 +50,7 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 import org.schabi.newpipe.util.ThemeHelper.getGridSpanCountChannels
+import org.schabi.newpipe.util.TitleFilterMenu
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
@@ -75,6 +76,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
     @JvmField
     var feedGroupsCarouselState: Parcelable? = null
 
+    @State
+    @JvmField
+    var titleFilterQuery: String? = null
+
+    private lateinit var titleFilterMenu: TitleFilterMenu
+
+    /** Every subscription, so a search can filter without asking the database again. */
+    private var allSubscriptions: List<Group> = emptyList()
+    private var noMatchesPlaceholderShown = false
+
     init {
         setHasOptionsMenu(true)
     }
@@ -89,6 +100,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         importExportHelper = SubscriptionsImportExportHelper(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        titleFilterMenu = TitleFilterMenu(this, R.string.search_subscriptions, titleFilterQuery) {
+            onTitleFilterChanged()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_subscription, container, false)
     }
@@ -101,6 +119,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        titleFilterMenu.release()
         _binding = null
     }
 
@@ -119,6 +138,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         activity.supportActionBar?.setDisplayShowTitleEnabled(true)
         activity.supportActionBar?.setTitle(R.string.tab_subscriptions)
 
+        titleFilterMenu.addTo(menu)
         buildImportExportMenu(menu)
     }
 
@@ -264,6 +284,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         }
 
         subscriptionsSection.setPlaceholder(ImportSubscriptionsHintPlaceholderItem())
+        noMatchesPlaceholderShown = false
         subscriptionsSection.setHideWhenEmpty(true)
 
         groupAdapter.add(
@@ -349,7 +370,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                     }
                 }
 
-                subscriptionsSection.update(result.subscriptions)
+                allSubscriptions = result.subscriptions
+                showSubscriptions()
                 subscriptionsSection.setHideWhenEmpty(false)
 
                 if (itemsListState != null) {
@@ -364,6 +386,40 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 }
             }
         }
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+    // Title search
+    // ////////////////////////////////////////////////////////////////////////
+
+    private fun onTitleFilterChanged() {
+        titleFilterQuery = titleFilterMenu.query
+        showSubscriptions()
+    }
+
+    /** Shows the subscriptions whose channel name matches the search, or all of them. */
+    private fun showSubscriptions() {
+        val titleFilter = titleFilterMenu.filter
+        val shown = if (titleFilter == null) {
+            allSubscriptions
+        } else {
+            allSubscriptions.filter { it is ChannelItem && titleFilter.matches(it.channelName) }
+        }
+
+        // The default placeholder invites an import, which misleads when a search hides
+        // existing subscriptions.
+        val showNoMatches = titleFilter != null && allSubscriptions.isNotEmpty()
+        if (showNoMatches != noMatchesPlaceholderShown) {
+            noMatchesPlaceholderShown = showNoMatches
+            subscriptionsSection.setPlaceholder(
+                if (showNoMatches) {
+                    Header(getString(R.string.search_no_results))
+                } else {
+                    ImportSubscriptionsHintPlaceholderItem()
+                }
+            )
+        }
+        subscriptionsSection.update(shown)
     }
 
     private fun handleFeedGroups(groups: List<Group>, listViewMode: Boolean) {

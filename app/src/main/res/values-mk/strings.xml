@@ -702,4 +702,7 @@
     <string name="right_gesture_control_summary">Изберете гестикулација за десната половина од екранот на плеерот</string>
     <string name="start_main_player_fullscreen_summary">Видеата нема да започнат со емитување во миниплеерот, туку директно ќе се вклучат на цел екран, доколку автоматското ротирање е заклучено. Сѐ уште можете да добиете пристап до миниплеерот, кога ќе излезете од целиот екран</string>
     <string name="unsupported_url_dialog_message">URL адресата не може да биде распознаена. Да се отвори со друга апликација?</string>
+    <string name="search_playlists">Пребарај плејлисти</string>
+    <string name="search_in_playlist">Пребарај во плејлистата</string>
+    <string name="search_subscriptions">Пребарај членства</string>
 </resources>

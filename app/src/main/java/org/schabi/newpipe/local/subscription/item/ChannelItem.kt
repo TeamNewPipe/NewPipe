@@ -19,6 +19,10 @@ class ChannelItem(
 ) : Item<GroupieViewHolder>() {
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId
 
+    /** The channel name, which the subscriptions search matches against. */
+    val channelName: String
+        get() = infoItem.name.orEmpty()
+
     enum class ItemVersion { NORMAL, MINI, GRID }
 
     override fun getLayout(): Int = when (itemVersion) {

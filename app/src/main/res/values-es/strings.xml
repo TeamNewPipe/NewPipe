@@ -848,4 +848,7 @@
     <string name="api23_requirement_dialog_blogpost">Artículo</string>
     <string name="channel_tab_podcasts">Podcasts</string>
     <string name="channel_tab_courses">Cursos</string>
+    <string name="search_playlists">Buscar listas de reproducción</string>
+    <string name="search_in_playlist">Buscar en la lista de reproducción</string>
+    <string name="search_subscriptions">Buscar suscripciones</string>
 </resources>

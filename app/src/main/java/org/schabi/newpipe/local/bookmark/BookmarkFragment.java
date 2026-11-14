@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.bookmark;
 
+import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
 import static org.schabi.newpipe.util.ThemeHelper.shouldUseGridLayout;
 
@@ -10,6 +11,8 @@ import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -41,6 +44,8 @@ import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.TitleFilter;
+import org.schabi.newpipe.util.TitleFilterMenu;
 import org.schabi.newpipe.util.debounce.DebounceSavable;
 import org.schabi.newpipe.util.debounce.DebounceSaver;
 
@@ -58,6 +63,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
     @State
     Parcelable itemsListState;
+    @State
+    String titleFilterQuery;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -74,6 +81,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
     private List<Pair<Long, LocalItem.LocalItemType>> deletedItems;
 
+    private TitleFilterMenu titleFilterMenu;
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
@@ -81,6 +90,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        titleFilterMenu = new TitleFilterMenu(this, R.string.search_playlists,
+                titleFilterQuery, this::onTitleFilterChanged);
         if (activity == null) {
             return;
         }
@@ -124,6 +135,14 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.initViews(rootView, savedInstanceState);
 
         itemListAdapter.setUseItemHandle(true);
+        applyTitleFilter(titleFilterMenu.getFilter());
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull final Menu menu,
+                                    @NonNull final MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        titleFilterMenu.addTo(menu);
     }
 
     @Override
@@ -165,7 +184,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             @Override
             public void drag(final LocalItem selectedItem,
                              final RecyclerView.ViewHolder viewHolder) {
-                if (itemTouchHelper != null) {
+                // Reordering a filtered list would scramble the hidden playlists' positions.
+                if (itemTouchHelper != null && itemListAdapter != null
+                        && !itemListAdapter.isFiltering()) {
                     itemTouchHelper.startDrag(viewHolder);
                 }
             }
@@ -218,6 +239,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         databaseSubscription = null;
         itemTouchHelper = null;
+        titleFilterMenu.release();
     }
 
     @Override
@@ -298,6 +320,38 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             itemsListState = null;
         }
         hideLoading();
+        updateTitleFilterEmptyState();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Title search
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void onTitleFilterChanged(@Nullable final TitleFilter filter) {
+        titleFilterQuery = titleFilterMenu.getQuery();
+        applyTitleFilter(filter);
+    }
+
+    private void applyTitleFilter(@Nullable final TitleFilter filter) {
+        if (itemListAdapter == null) {
+            return;
+        }
+        itemListAdapter.setDisplayFilter(filter == null ? null : item ->
+                item instanceof PlaylistLocalItem
+                        && filter.matches(((PlaylistLocalItem) item).getOrderingName()));
+        updateTitleFilterEmptyState();
+    }
+
+    /**
+     * Shows the empty view when a search hides every playlist. A list with no playlists at all
+     * keeps the regular empty state from {@link #handleResult(List)}.
+     */
+    private void updateTitleFilterEmptyState() {
+        if (itemListAdapter == null || emptyStateView == null
+                || itemListAdapter.getItemsList().isEmpty()) {
+            return;
+        }
+        animate(emptyStateView, itemListAdapter.getDisplayedItemCount() == 0, 200);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -340,6 +394,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             return;
         }
         itemListAdapter.removeItem(item);
+        updateTitleFilterEmptyState();
 
         if (item instanceof PlaylistMetadataEntry) {
             deletedItems.add(new Pair<>(item.getUid(),

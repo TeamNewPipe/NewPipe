@@ -61,6 +61,8 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PlayButtonHelper;
+import org.schabi.newpipe.util.TitleFilter;
+import org.schabi.newpipe.util.TitleFilterMenu;
 import org.schabi.newpipe.util.debounce.DebounceSavable;
 import org.schabi.newpipe.util.debounce.DebounceSaver;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -86,6 +88,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected String name;
     @State
     Parcelable itemsListState;
+    @State
+    String titleFilterQuery;
 
     private LocalPlaylistHeaderBinding headerBinding;
     private PlaylistControlBinding playlistControlBinding;
@@ -102,6 +106,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private AtomicBoolean isLoadingComplete;
     /** Used to debounce saving playlist edits to disk. */
     private DebounceSaver debounceSaver;
+
+    private TitleFilterMenu titleFilterMenu;
 
     /**
      * The pager adapter that the fragment is created from when it is used as frontpage, i.e.
@@ -142,6 +148,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         isLoadingComplete = new AtomicBoolean();
         debounceSaver = new DebounceSaver(this);
+
+        titleFilterMenu = new TitleFilterMenu(this, R.string.search_in_playlist,
+                titleFilterQuery, this::onTitleFilterChanged);
     }
 
     @Override
@@ -168,6 +177,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         setTitle(name);
+        applyTitleFilter(titleFilterMenu.getFilter());
     }
 
     @Override
@@ -210,7 +220,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void drag(final LocalItem selectedItem,
                              final RecyclerView.ViewHolder viewHolder) {
-                if (itemTouchHelper != null) {
+                // Reordering a filtered list would scramble the hidden streams' positions.
+                if (itemTouchHelper != null && itemListAdapter != null
+                        && !itemListAdapter.isFiltering()) {
                     itemTouchHelper.startDrag(viewHolder);
                 }
             }
@@ -282,6 +294,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_local_playlist, menu);
+        titleFilterMenu.addTo(menu);
     }
 
     @Override
@@ -305,6 +318,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         databaseSubscription = null;
         itemTouchHelper = null;
+        titleFilterMenu.release();
     }
 
     @Override
@@ -438,6 +452,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
+            // A search may have left "No results" in the empty view.
+            setEmptyStateMessage(R.string.empty_view_no_videos);
             showEmptyState();
             return;
         }
@@ -452,6 +468,46 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
 
         hideLoading();
+        updateTitleFilterEmptyState();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Title search
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void onTitleFilterChanged(@Nullable final TitleFilter filter) {
+        titleFilterQuery = titleFilterMenu.getQuery();
+        applyTitleFilter(filter);
+    }
+
+    /**
+     * Hides streams whose title fails the search. The adapter keeps every stream, so saving
+     * the order, deleting, sharing and the play buttons still act on the whole playlist.
+     *
+     * @param filter the search, or {@code null} to show every stream
+     */
+    private void applyTitleFilter(@Nullable final TitleFilter filter) {
+        if (itemListAdapter == null) {
+            return;
+        }
+        itemListAdapter.setDisplayFilter(filter == null ? null : item ->
+                item instanceof PlaylistStreamEntry
+                        && filter.matches(((PlaylistStreamEntry) item).getStreamEntity()
+                        .getTitle()));
+        updateTitleFilterEmptyState();
+    }
+
+    private void updateTitleFilterEmptyState() {
+        if (itemListAdapter == null || emptyStateView == null
+                || itemListAdapter.getItemsList().isEmpty()) {
+            return;
+        }
+        final boolean noMatches = itemListAdapter.getDisplayedItemCount() == 0;
+        // Restore the default text when the search ends, because an empty playlist reuses
+        // this view.
+        setEmptyStateMessage(noMatches ? R.string.search_no_results
+                : R.string.empty_view_no_videos);
+        animate(emptyStateView, noMatches, 200);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -573,6 +629,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         itemListAdapter.removeItem(item);
+        updateTitleFilterEmptyState();
         if (playlistManager.getPlaylistThumbnailStreamId(playlistId) == item.getStreamId()) {
             updateThumbnailUrl();
         }
