@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir -p out
           cp app/build/outputs/apk/continuous/*.apk \
-            "out/NewPipe-title-search-1.0.0-${GITHUB_SHA::7}.apk"
+            "out/NewPipe-title-search-1.0.1-${GITHUB_SHA::7}.apk"
           ls -l out
 
       - name: verify signature and supported Android versions

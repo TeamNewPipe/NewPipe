@@ -52,6 +52,7 @@ configure<ApplicationExtension> {
         versionCode = System.getProperty("versionCodeOverride")?.toInt() ?: NEWPIPE_VERSION_CODE
 
         versionName = NEWPIPE_VERSION_NAME
+        versionNameSuffix = TITLE_SEARCH_VERSION_SUFFIX
         System.getProperty("versionNameSuffix")?.let { versionNameSuffix = it }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
