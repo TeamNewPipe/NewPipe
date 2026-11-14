@@ -18,7 +18,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.about.changelog.ChangelogActivity
 import org.schabi.newpipe.databinding.ActivityAboutBinding
 import org.schabi.newpipe.databinding.FragmentAboutBinding
-import org.schabi.newpipe.support.CommunityReviewLink
+import org.schabi.newpipe.support.CommunityReviews
 import org.schabi.newpipe.support.GitHubStarPromptController
 import org.schabi.newpipe.util.EdgeToEdgeHelper
 import org.schabi.newpipe.util.ThemeHelper
@@ -88,11 +88,11 @@ class AboutActivity : AppCompatActivity() {
                 }
                 aboutWebsiteLink.openLink(R.string.website_url)
                 aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
-                CommunityReviewLink.configuredUrl(getString(R.string.community_reviews_url))
-                    ?.let { reviewUrl ->
+                CommunityReviews.destination(requireContext())
+                    ?.let {
                         aboutReviewSection.visibility = View.VISIBLE
                         aboutReviewLink.setOnClickListener {
-                            ShareUtils.openUrlInBrowser(requireContext(), reviewUrl)
+                            CommunityReviews.openPage(requireContext())
                         }
                     }
                 faqLink.openLink(R.string.faq_url)

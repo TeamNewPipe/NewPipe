@@ -185,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
     private NativePipController nativePipController;
     private ChangelogPromptController changelogPromptController;
     private GitHubStarPromptController githubStarPromptController;
+    private org.schabi.newpipe.support.CommunityReviewPromptController
+            communityReviewPromptController;
     private boolean searchNavigationActive;
     private int lastMainTabPosition;
     private int pendingMainTabPosition = -1;
@@ -304,6 +306,8 @@ public class MainActivity extends AppCompatActivity {
         MigrationManager.showUserInfoIfPresent(this);
         changelogPromptController = new ChangelogPromptController(this);
         githubStarPromptController = new GitHubStarPromptController(this);
+        communityReviewPromptController =
+                new org.schabi.newpipe.support.CommunityReviewPromptController(this);
     }
 
     @Override
@@ -863,6 +867,9 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null) {
             if (changelogPromptController != null) {
                 changelogPromptController.onNewIntent(intent);
+            }
+            if (communityReviewPromptController != null) {
+                communityReviewPromptController.onNewIntent(intent);
             }
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack

@@ -294,6 +294,7 @@ dependencies {
     implementation(libs.androidx.documentfile)
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.localbroadcastmanager)
     implementation(libs.androidx.media)

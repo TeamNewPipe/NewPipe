@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Set only after the no-account HTTPS review service has been deployed and verified. -->
-    <string name="community_reviews_url" translatable="false"></string>
+    <string name="community_reviews_url" translatable="false">https://wizestream.org/reviews/</string>
     <string name="community_reviews_title" tools:ignore="MissingTranslation">Community reviews</string>
     <string name="community_reviews_description" tools:ignore="MissingTranslation">Share your experience on our optional review page. Opens your browser; no account required.</string>
     <string name="community_reviews_action" tools:ignore="MissingTranslation">Leave a review</string>
+    <string name="community_review_prompt_title" tools:ignore="MissingTranslation">Review WizeStream</string>
+    <string name="community_review_prompt_message" tools:ignore="MissingTranslation">Would you like to share your experience with WizeStream? Your feedback can help others. Opens our optional review page in your browser; no account is required. Choose Remind me later to be asked again in 5 days.</string>
+    <string name="community_review_prompt_later" tools:ignore="MissingTranslation">Remind me later</string>
 </resources>
