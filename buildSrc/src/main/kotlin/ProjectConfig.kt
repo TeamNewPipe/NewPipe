@@ -12,7 +12,7 @@ const val NEWPIPE_VERSION_CODE = 1015
 const val NEWPIPE_VERSION_NAME = "0.29.1"
 
 // Android app only: the desktop installer needs a plain MAJOR.MINOR.PATCH version name.
-const val TITLE_SEARCH_VERSION_SUFFIX = "-search.1.0.2"
+const val TITLE_SEARCH_VERSION_SUFFIX = "-search.1.0.3"
 
 // Name shown on the phone for builds of this fork.
 const val NEWPIPE_SEARCH_APP_NAME = "NewPipe_Search"

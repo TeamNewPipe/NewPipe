@@ -79,7 +79,9 @@ jobs:
         run: |
           BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
           APK=$(ls out/*.apk)
-          "$BT/apksigner" verify --verbose "$APK"
+          # The certificate SHA-256 identifies the signing key; it must stay the same
+          # across releases for updates to install.
+          "$BT/apksigner" verify --verbose --print-certs "$APK"
           "$BT/aapt2" dump badging "$APK" \
             | grep -E "^package:|^application-label:|sdkVersion|native-code" || true
 

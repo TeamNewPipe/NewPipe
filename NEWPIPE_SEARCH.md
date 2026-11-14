@@ -1,6 +1,6 @@
 # NewPipe_Search
 
-NewPipe_Search adds title search to four NewPipe screens. It builds on TeamNewPipe/NewPipe `dev` at commit `acb7dfd` (NewPipe 0.29.1). App version: `0.29.1-search.1.0.2`.
+NewPipe_Search adds title search to four NewPipe screens. It builds on TeamNewPipe/NewPipe `dev` at commit `acb7dfd` (NewPipe 0.29.1). App version: `0.29.1-search.1.0.3`.
 
 | Screen | Search matches | Toolbar label |
 |---|---|---|
@@ -13,8 +13,8 @@ Search ignores case and accents and accepts words in any order. Labels appear in
 
 ## Get the APK
 
-1. Open this repository's **Releases** section (right column of the front page) and select the newest release, for example **NewPipe_Search 1.0.2**.
-2. Under **Assets**, download the file ending in `.apk`, for example `NewPipe_Search-1.0.2.apk`. No GitHub sign-in is needed.
+1. Open this repository's **Releases** section (right column of the front page) and select the newest release, for example **NewPipe_Search 1.0.3**.
+2. Under **Assets**, download the file ending in `.apk`, for example `NewPipe_Search-1.0.3.apk`. No GitHub sign-in is needed.
 
 Every push to the `title-search` branch builds the app and publishes the release. You can also start a build from **Actions > Build NewPipe_Search APK > Run workflow**.
 
@@ -61,13 +61,18 @@ These points are confirmed in the code. Phone testing is still pending.
 
 ## Updates and signing
 
-Builds reuse one signing key while GitHub keeps its cache, which expires 7 days after the last build. A new build inside that window installs as an update. After it expires, export the database, uninstall, and install the new build. A permanent key takes one repository secret, `DEBUG_KEYSTORE_BASE64`.
+Every release is signed with one permanent key, stored as the encrypted repository secret `DEBUG_KEYSTORE_BASE64`. New releases install on top of the old one and keep your data. Keep the backup file `NewPipe_Search-signing.keystore` private; losing both copies means a one-time reinstall with a new key.
 
 ## Undo
 
 Uninstall **NewPipe_Search**. The official NewPipe and its data stay untouched.
 
 ## Changelog
+
+### 1.0.3 (2026-11-13)
+
+- Signed with a permanent key stored as the repository secret `DEBUG_KEYSTORE_BASE64`. Install 1.0.3 once over a fresh uninstall; later releases install on top.
+- The build log now prints the signing certificate fingerprint, to confirm the key stays the same.
 
 ### 1.0.2 (2026-11-13)
 
