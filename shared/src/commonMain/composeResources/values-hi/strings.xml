@@ -40,4 +40,7 @@
     <string name="settings_category_debug_title">डीबग</string>
     <string name="theme_title">थीम</string>
     <string name="light_theme_title">लाइट</string>
+    <string name="channel_tab_podcasts">पॉडकास्ट</string>
+    <string name="channel_tab_courses">पाठ्यक्रम</string>
+    <string name="channel_tab_videos">वीडियोज़</string>
 </resources>

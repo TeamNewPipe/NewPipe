@@ -826,7 +826,6 @@
     <string name="migration_info_7_8_title">Аб\'яднаныя трэнды YouTube выдалены</string>
     <string name="import_subscriptions_title">Імпартаваць падпіскі</string>
     <string name="export_subscriptions_title">Экспартаваць падпіскі</string>
-
     <string name="kao_dialog_more_info">Падрабязнасці</string>
     <string name="kao_solution">Рашэнне</string>
     <string name="permission_display_over_apps_message">Каб выкарыстоўваць аконны прайгравальнік, у наступным меню налад Android выберыце %1$s і ўключыце %2$s.</string>
@@ -862,4 +861,5 @@
     <string name="sign_in_confirm_not_bot_error">%1$s адмовіўся перадаць даныя, запытаўшы ўваход у сістэму для пацвярджэння, што вы не бот.\n\nМагчыма, ваш IP-адрас быў часова заблакіраваны %1$s. Можна пачакаць некаторы час або перайсці на іншы IP-адрас (напрыклад, уключыўшы/выключыўшы VPN або пераключыўшыся з Wi-Fi на мабільныя даныя).\n\nПаглядзіце гэты <a href="%2$s">раздзел FAQ</a>, каб атрымаць дадатковую інфармацыю.</string>
     <string name="channel_tab_podcasts">Падкасты</string>
     <string name="channel_tab_courses">Курсы</string>
+    <string name="kao_dialog_warning">Google ажыццяўляе новае патрабаванне наконт абавязковай рэгістрацыі распрацоўшчыкаў Android, ужо цяпер стала складаней ўсталяваць NewPipe у Бразіліі, Інданезіі, Сінгапуры і Тайландзе. Глабальны запуск плануецца на 2027 год.\n\nКалі патрабаванні не зменяцца, усталяваць NewPipe на сертыфікаваных прыладах Android неўзабаве стане складаней або зусім немагчыма.</string>
 </resources>

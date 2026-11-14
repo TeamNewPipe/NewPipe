@@ -1,0 +1,5 @@
+這是個快速修復更新，用以解決近期 Bandcamp 與 SoundCloud 出現的問題。
+
+[SoundCloud] 透過新增對 aac_96k 音訊串流的支援，修復了無法擷取串流的問題
+[Bandcamp] 繞過客戶端驗證
+[Bandcamp] 修復了使用非英文內容語言時的搜尋功能

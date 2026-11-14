@@ -789,7 +789,6 @@
     <string name="short_thousand">%sK</string>
     <string name="short_million">%sM</string>
     <string name="short_billion">%sB</string>
-
     <string name="kao_dialog_more_info">Rincian</string>
     <string name="kao_solution">Solusi</string>
     <plurals name="export_subscriptions">
@@ -811,4 +810,5 @@
     <string name="api23_requirement_dialog_blogpost">Postingan</string>
     <string name="channel_tab_podcasts">Podcast</string>
     <string name="channel_tab_courses">Kursus</string>
+    <string name="kao_dialog_warning">Google telah mulai memberlakukan persyaratan verifikasi pengembang Android baru yang mempersulit pemasangan NewPipe di Brasil, Indonesia, Singapura, dan Thailand, dengan peluncuran global yang direncanakan pada tahun 2027.\n\nKecuali persyaratan diubah, NewPipe mungkin akan semakin sulit atau bahkan tidak mungkin di pasang pada perangkat Android bersertifikasi dalam waktu dekat.</string>
 </resources>

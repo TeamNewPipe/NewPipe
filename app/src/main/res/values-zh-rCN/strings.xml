@@ -34,7 +34,7 @@
     </plurals>
     <string name="disabled">已停用</string>
     <string name="controls_background_title">后台</string>
-    <string name="show_search_suggestions_title">显示搜索建议</string>
+    <string name="show_search_suggestions_title">搜索建议</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
     <string name="enable_watch_history_title">观看历史</string>
@@ -56,7 +56,7 @@
     <string name="settings_category_updates_title">更新</string>
     <string name="file_deleted">文件已删除</string>
     <string name="subscribers_count_not_available">无法得知订阅人数</string>
-    <string name="updates_setting_description">有新版本时，显示通知提示更新应用</string>
+    <string name="updates_setting_description">有新版时显示通知提示更新应用</string>
     <string name="grid">网格</string>
     <string name="app_update_available_notification_title">NewPipe 可更新！</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 使用 @string/msg_threads = 1 重试</string>
@@ -104,7 +104,7 @@
     <string name="dismiss">退出</string>
     <string name="rename">重命名</string>
     <string name="one_item_deleted">已删除一个项目。</string>
-    <string name="main_page_content_summary">自定义主页显示的标签页</string>
+    <string name="main_page_content_summary">主页上显示什么标签页</string>
     <string name="list_view_mode">列表视图模式</string>
     <string name="missions_header_finished">已完成</string>
     <string name="missions_header_pending">等待中</string>
@@ -125,11 +125,11 @@
     <string name="show_play_with_kodi_summary">显示通过 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
-    <string name="show_next_and_similar_title">显示“接下来”和“相似视频”</string>
+    <string name="show_next_and_similar_title">显示“下一个”和“相似”视频</string>
     <string name="settings_category_video_audio_title">音视频</string>
     <string name="background_player_playing_toast">后台播放</string>
     <string name="content">内容</string>
-    <string name="show_age_restricted_content_title">显示年龄限制的内容</string>
+    <string name="show_age_restricted_content_title">显示年龄受限内容</string>
     <string name="duration_live">直播</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>
@@ -192,7 +192,7 @@
     <string name="empty_list_subtitle">空空如也</string>
     <string name="no_views">无人观看过</string>
     <string name="delete_item_search_history">是否删除此条搜索历史记录？</string>
-    <string name="main_page_content">主页面的显示内容</string>
+    <string name="main_page_content">主页的内容</string>
     <string name="blank_page_summary">空白页</string>
     <string name="kiosk_page_summary">Kiosk 页面</string>
     <string name="channel_page_summary">频道页</string>
@@ -219,7 +219,7 @@
     <string name="give_back">回馈</string>
     <string name="website_title">官网</string>
     <string name="website_encouragement">请访问 NewPipe 网站以了解更多信息和新闻。</string>
-    <string name="default_content_country_title">视频默认国家/地区</string>
+    <string name="default_content_country_title">默认的内容地区</string>
     <string name="switch_to_background">切换到后台播放</string>
     <string name="switch_to_popup">切换到悬浮窗播放</string>
     <string name="switch_to_main">切换到主页面</string>
@@ -235,13 +235,13 @@
     <string name="preferred_player_fetcher_notification_message">正在加载请求的内容</string>
     <string name="import_data_title">导入数据库</string>
     <string name="export_data_title">导出数据库</string>
-    <string name="import_data_summary">覆盖您的当前播放历史、订阅、播放列表和设置（可选）</string>
+    <string name="import_data_summary">覆盖当前历史记录、订阅、播放列表和（可选）设置</string>
     <string name="export_data_summary">导出历史记录、订阅、播放列表和设置</string>
-    <string name="export_complete_toast">导出成功</string>
+    <string name="export_complete_toast">已导出</string>
     <string name="import_complete_toast">导入成功</string>
-    <string name="no_valid_zip_file">没有有效的 ZIP 文件</string>
-    <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
-    <string name="override_current_data">此操作会覆盖当前设置。</string>
+    <string name="no_valid_zip_file">无有效 ZIP 文件</string>
+    <string name="could_not_import_all_files">警告：无法导入全部文件。</string>
+    <string name="override_current_data">这会覆盖当前设置。</string>
     <string name="show_info">显示信息</string>
     <string name="tab_bookmarks">收藏</string>
     <string name="title_last_played">最近观看</string>
@@ -288,8 +288,8 @@
     <string name="import_youtube_instructions">从 Google takeout 导入 YouTube 订阅： \n \n1. 打开这个网址：%1$s \n2. 登录谷歌账号 \n3. 单击“包含所有数据”，然后单击“取消全选”，然后仅选择“订阅”并单击“确定” \n4. 点击“下一步”，然后点击“创建导出作业” \n5. 出现“下载”按钮后点击它 \n6. 单击下面的导入文件并选择下载的 .zip 文件 \n7.（如果 .zip 导入失败）解压 .csv文件（通常在“YouTube和YouTube Music/subscriptions/subscriptions.csv”下），点击下方的导入文件，选择解压出来的 csv 文件</string>
     <string name="import_soundcloud_instructions">通过输入网址或你的 ID 导入 SoundCloud 配置文件： \n \n1. 在浏览器中启用“电脑模式“（该网站未适配移动设备）； \n2. 打开该网站：%1$s； \n3. 登录（如果需要）； \n4. 复制得到的配置文件下载地址。</string>
     <string name="import_soundcloud_instructions_hint">你的 ID：soundcloud.com/［你的ID］</string>
-    <string name="import_network_expensive_warning">该操作消耗大量流量， \n \n你想继续吗？</string>
-    <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
+    <string name="import_network_expensive_warning">记住这个操作可能消耗大量流量。\n\n要继续吗？</string>
+    <string name="thumbnail_cache_wipe_complete_notice">擦除了图像缓存</string>
     <string name="metadata_cache_wipe_title">擦除已缓存的元数据</string>
     <string name="metadata_cache_wipe_summary">删除所有已缓存的网页数据</string>
     <string name="metadata_cache_wipe_complete_notice">已擦除元数据缓存</string>
@@ -309,7 +309,7 @@
     <string name="delete_search_history_alert">删除所有搜索历史？</string>
     <string name="search_history_deleted">已删除搜索历史</string>
     <string name="app_license">NewPipe 是 Copyleft 的自由软件：您可以随时使用、研究共享和改进它。您可以根据自由软件基金会发布的 GNU 通用公共许可证 GPLv3 或（由您选择的）任何更高版本的许可证重新分发或修改该许可证。</string>
-    <string name="import_settings">是否要导入设置？</string>
+    <string name="import_settings">也要导入设置吗？</string>
     <string name="privacy_policy_title">NewPipe 隐私政策</string>
     <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，本应用不会收集任何数据。 \nNewPipe 的隐私政策详细解释了发送崩溃报告时会发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
@@ -326,7 +326,7 @@
     <string name="tracks">曲目</string>
     <string name="users">用户</string>
     <string name="tab_choose">选择标签</string>
-    <string name="content_language_title">视频默认语言</string>
+    <string name="content_language_title">默认的内容语言</string>
     <string name="app_update_notification_channel_name">应用更新通知</string>
     <string name="app_update_notification_channel_description">NewPipe 新版本的通知</string>
     <string name="download_to_sdcard_error_title">外部存储不可用</string>
@@ -358,7 +358,7 @@
     <string name="events">事件</string>
     <string name="conferences">会议大会</string>
     <string name="show_comments_title">显示评论</string>
-    <string name="show_comments_summary">是否隐藏评论</string>
+    <string name="show_comments_summary">关闭来隐藏评论</string>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
     <string name="enable_playback_resume_title">继续播放</string>
@@ -396,8 +396,8 @@
     <plurals name="listening">
         <item quantity="other">%s 位听众</item>
     </plurals>
-    <string name="peertube_instance_url_title">PeerTube 服务器</string>
-    <string name="peertube_instance_url_summary">设置自定义 PeerTube 服务器</string>
+    <string name="peertube_instance_url_title">PeerTube 实例</string>
+    <string name="peertube_instance_url_summary">选择你喜爱的 PeerTube 实例</string>
     <string name="peertube_instance_url_help">查找你需要的服务器 %s</string>
     <string name="peertube_instance_add_title">添加服务器</string>
     <string name="peertube_instance_add_help">输入服务器网址（URL）</string>
@@ -448,12 +448,12 @@
     <string name="feed_group_dialog_empty_name">清空组名</string>
     <string name="feed_group_dialog_delete_message">您要删除该组吗？</string>
     <string name="feed_create_new_group_button_title">新建</string>
-    <string name="settings_category_feed_title">订阅</string>
-    <string name="feed_update_threshold_title">Feed 更新阈值</string>
+    <string name="settings_category_feed_title">源</string>
+    <string name="feed_update_threshold_title">源更新阈值</string>
     <string name="feed_update_threshold_summary">上次更新后，订阅被视为过期的时间 — %s</string>
     <string name="feed_update_threshold_option_always_update">始终更新</string>
-    <string name="feed_use_dedicated_fetch_method_title">可用时使用专用 feed 获取</string>
-    <string name="feed_use_dedicated_fetch_method_summary">仅在某些服务中可用，通常速度更快，但返回的视频数量可能有限，而且信息通常不完整（如无视频时长、类型，无直播状态）</string>
+    <string name="feed_use_dedicated_fetch_method_title">可用时从专用源进行获取</string>
+    <string name="feed_use_dedicated_fetch_method_summary">在某些服务中可用，通常快得多但可能返回有限数量的项目和经常不完整的信息（如没有时长、项目类型、直播状态）</string>
     <string name="feed_use_dedicated_fetch_method_enable_button">启用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_disable_button">停用快速模式</string>
     <string name="feed_use_dedicated_fetch_method_help_text">您是否觉得 feed 加载太慢？如果是这样，请尝试启用快速加载（可在设置中修改，也可使用下面的按钮修改） \n \nNewPipe 提供两种 feed 加载策略: \n•获取整个订阅频道，很慢但是很完整。 \n•使用专用的服务端点，比较快但通常不完整 \n \n两者之间的区别在于，后者通常缺少一些信息，如视频的持续时间或类型（无法区分直播视频和普通视频），并且可能返回更少的视频条目。 \n \nYouTube 是一个通过其 RSS feed 提供这种快速方法的服务示例。 \n \n因此，选择哪种方式取决于您的偏好：加载速度还是信息准确。</string>
@@ -511,7 +511,7 @@
     <string name="recaptcha_cookies_cleared">已清除 reCAPTCHA cookies</string>
     <string name="clear_cookie_title">清除 reCAPTCHA cookies</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube提供了“受限模式”，可以隐藏潜在的成人内容</string>
-    <string name="show_age_restricted_content_summary">展示有年龄限制的、可能不适合儿童观看的内容（比如 18+）</string>
+    <string name="show_age_restricted_content_summary">显示可能不适合孩子的内容，因它有年龄限制（比如 18+）</string>
     <string name="notification_colorize_summary">让 Android 系统根据视频缩略图的主色彩给通知着色（注意，该特性仅在部分设备上可用）</string>
     <string name="notification_colorize_title">自动着色通知</string>
     <string name="show_thumbnail_summary">锁屏背景和通知中使用缩略图</string>
@@ -520,14 +520,14 @@
     <string name="hash_channel_description">正在计算视频哈希值时显示的通知</string>
     <string name="msg_calculating_hash">正在计算哈希值</string>
     <string name="recent">最近</string>
-    <string name="show_meta_info_summary">关闭以隐藏包含有关流创建者、流内容或搜索请求的附加信息的元信息框</string>
-    <string name="show_meta_info_title">显示元数据信息</string>
-    <string name="show_description_title">显示简介</string>
+    <string name="show_meta_info_summary">关闭来隐藏含有关于串流创作者、串流内容或搜索请求的附加信息的元信息框</string>
+    <string name="show_meta_info_title">显示元信息</string>
+    <string name="show_description_title">显示描述</string>
     <string name="chapters">章节</string>
     <string name="description_tab_description">简介</string>
     <string name="related_items_tab_description">相关视频</string>
     <string name="comments_tab_description">评论</string>
-    <string name="show_description_summary">显示视频描述和其他信息</string>
+    <string name="show_description_summary">关闭来隐藏视频描述和附加信息</string>
     <string name="open_with">打开方式</string>
     <string name="no_app_to_open_intent">设备上没有应用可以打开这个</string>
     <string name="crash_the_app">让应用崩溃</string>
@@ -597,7 +597,7 @@
     <string name="enqueue_next_stream">下一个播放</string>
     <string name="processing_may_take_a_moment">处理中…可能需要一些时间</string>
     <string name="manual_update_description">手动检查新版本</string>
-    <string name="checking_updates_toast">检查更新中…</string>
+    <string name="checking_updates_toast">正在检查新版本…</string>
     <string name="check_for_updates">检查更新</string>
     <string name="feed_new_items">新订阅源条目</string>
     <string name="show_crash_the_player_title">显示\"使播放器崩溃\"</string>
@@ -614,11 +614,11 @@
     <string name="detail_pinned_comment_view_description">置顶评论</string>
     <string name="leak_canary_not_available">LeakCanary 不可用</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 默认</string>
-    <string name="settings_category_player_notification_summary">配置当前正在播放的串流的通知</string>
+    <string name="settings_category_player_notification_summary">配置当前正在播放的串流通知</string>
     <string name="enable_streams_notifications_title">新串流通知</string>
     <string name="streams_notifications_interval_title">检查频率</string>
-    <string name="streams_notifications_network_title">所需的网络连接</string>
-    <string name="notifications_disabled">通知已被禁用</string>
+    <string name="streams_notifications_network_title">必需的网络连接</string>
+    <string name="notifications_disabled">禁用了通知</string>
     <string name="you_successfully_subscribed">你刚刚订阅了此频道</string>
     <string name="enumeration_comma">，</string>
     <string name="toggle_all">全选</string>
@@ -634,7 +634,7 @@
     <string name="any_network">任何网络</string>
     <string name="delete_downloaded_files_confirm">清除所有下载的文件？</string>
     <string name="get_notified">获取通知</string>
-    <string name="enable_streams_notifications_summary">来自订阅的新串流的通知</string>
+    <string name="enable_streams_notifications_summary">通知来自订阅的新串流</string>
     <string name="semitone">半音</string>
     <string name="percent">百分比</string>
     <string name="unknown_format">未知格式</string>
@@ -703,14 +703,14 @@
     <string name="no_streams">无音视频流</string>
     <string name="channel_tab_videos">视频</string>
     <string name="metadata_subscribers">订阅者</string>
-    <string name="show_channel_tabs_summary">展示在频道页面上的标签页</string>
+    <string name="show_channel_tabs_summary">频道页面上显示什么标签页</string>
     <string name="show_channel_tabs">频道标签页</string>
     <string name="channel_tab_shorts">短视频</string>
     <string name="loading_metadata_title">正在加载元数据…</string>
     <string name="feed_fetch_channel_tabs">获取频道标签页</string>
     <string name="channel_tab_about">关于</string>
     <string name="channel_tab_albums">专辑</string>
-    <string name="feed_fetch_channel_tabs_summary">更新数据源时要获取的标签页。如果使用快速模式更新频道，则该选项无效果。</string>
+    <string name="feed_fetch_channel_tabs_summary">更新源时要获取的标签页。如果一个频道正使用快速模式更新则这个选项没有效果。</string>
     <string name="channel_tab_playlists">播放列表</string>
     <string name="channel_tab_tracks">歌曲</string>
     <string name="channel_tab_channels">频道</string>
@@ -726,12 +726,12 @@
     <string name="more_options">更多选项</string>
     <string name="duration">持续时间</string>
     <string name="previous_stream">上一条串流</string>
-    <string name="image_quality_title">图片质量</string>
+    <string name="image_quality_title">图像质量</string>
     <string name="question_mark">？</string>
     <string name="image_quality_low">低质量</string>
     <string name="metadata_avatars">头像</string>
     <string name="metadata_subchannel_avatars">子频道头像</string>
-    <string name="image_quality_none">不加载图片</string>
+    <string name="image_quality_none">不加载图像</string>
     <string name="image_quality_high">高质量</string>
     <string name="image_quality_medium">中等质量</string>
     <string name="metadata_uploader_avatars">上传者头像</string>
@@ -752,12 +752,12 @@
     <string name="error_insufficient_storage">设备剩余空间不足</string>
     <string name="settings_category_backup_restore_title">备份和恢复</string>
     <string name="reset_settings_title">重置设置</string>
-    <string name="reset_settings_summary">将所有设置重置为默认值</string>
-    <string name="reset_all_settings">重置所有设置会取消你所有的偏好设置并重启应用。 \n \n你确定想要继续吗？</string>
+    <string name="reset_settings_summary">重置所有设置为它们的默认值</string>
+    <string name="reset_all_settings">重置所有设置会丢弃所有偏好的设置并重启应用。\n\n确定要继续吗？</string>
     <string name="no">否</string>
     <string name="auto_update_check_description">NewPipe 可以自动时不时地检查新版本并在新版本可用时通知你。 \n你想开启该功能吗？</string>
     <string name="yes">是</string>
-    <string name="import_settings_vulnerable_format">正导入的导出文件中的设置使用了有漏洞的格式，该格式已从 NewPipe 0.27.0 版本起被弃用。请确保导入的导出文件来自可信来源，今后最好只使用从 NewPipe 0.27.0 或更新版本获取的导出文件。不久后将完全不支持导入这一有漏洞格式的设置，到时旧版 NewPipe 再不能导入来自新版应用的设置导出文件。</string>
+    <string name="import_settings_vulnerable_format">正被导入的导出文件中的设置使用 NewPipe 0.27.0 起被废弃的易受攻击的格式。确保正被导入的导出文件来自可信来源，将来最好仅使用从 0.27.0 或更高版本获取的导出文件。即将完全去除对导入该易受攻击格式的设置的支持，此后旧版 NewPipe 无法再导入新版本 NewPipe 导出文件的设置。</string>
     <string name="audio_track_type_secondary">第二</string>
     <string name="share_playlist_as_youtube_temporary_playlist">分享为 YouTube 临时播放列表</string>
     <string name="tab_bookmarks_short">播放列表</string>
@@ -802,7 +802,7 @@
     </plurals>
     <string name="import_subscriptions_title">导入订阅</string>
     <string name="export_subscriptions_title">导出订阅</string>
-    <string name="import_subscriptions_summary">从之前的 .json 导出文件导入订阅</string>
+    <string name="import_subscriptions_summary">从之前的 .json 导出导入订阅</string>
     <string name="export_subscriptions_summary">导出订阅到 .json 文件</string>
     <string name="import_from_previous_export">从之前的导出文件导入</string>
     <string name="api23_requirement_dialog_title">NewPipe 正放弃对 Android 5 的支持</string>

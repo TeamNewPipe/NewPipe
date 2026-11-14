@@ -209,8 +209,8 @@
     <string name="settings_category_debug_title">Debugowanie</string>
     <string name="switch_to_popup">Odtwarzaj w trybie okienkowym</string>
     <string name="switch_to_main">Odtwarzaj na pierwszym planie</string>
-    <string name="import_data_title">Importuj dane</string>
-    <string name="export_data_title">Eksportuj dane</string>
+    <string name="import_data_title">Importuj bazę danych</string>
+    <string name="export_data_title">Eksportuj bazę danych</string>
     <string name="import_data_summary">Zastępuje bieżącą historię, subskrypcje, playlisty i (opcjonalnie) ustawienia</string>
     <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje, playlisty i ustawienia</string>
     <string name="detail_drag_description">Przeciągnij, aby zmienić kolejność</string>

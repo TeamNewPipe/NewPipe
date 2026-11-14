@@ -1,0 +1,5 @@
+Aceasta este o actualizare de remediere rapidă care rezolvă problemele recente cu Bandcamp și SoundCloud.
+
+[SoundCloud] S-a remediat imposibilitatea de a extrage fluxuri prin adăugarea suportului pentru fluxurile audio aac_96k
+[Bandcamp] S-a ocolit verificarea clientului
+[Bandcamp] S-a remediat problema căutării atunci când se utilizează o limbă de conținut diferită de engleză

@@ -1,0 +1,5 @@
+Dies ist ein Hotfix-Update, das aktuelle Probleme mit Bandcamp und SoundCloud behebt.
+
+[SoundCloud] Das Problem behoben, dass Streams nicht extrahiert werden konnten, durch Unterstützung von aac_96k-Audiostreams
+[Bandcamp] Die Clientüberprüfung wird umgangen
+[Bandcamp] Die Suche beim Verwenden einer anderen Sprache als Englisch korrigiert

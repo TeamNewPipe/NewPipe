@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">पले करते समय सर्वर से HTTP error 403 मिला, जो शायद IP बैन या स्ट्रीमिंग URL डीओबफस्केशन की दिक्कतों की वजह से हुआ है</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ने डेटा देने से मना कर दिया, और यह कन्फर्म करने के लिए लॉगिन मांगा कि रिक्वेस्ट करने वाला बोट नहीं है।\n\nहो सकता है कि %1$s ने आपके IP को कुछ समय के लिए बैन कर दिया हो, आप कुछ समय इंतज़ार कर सकते हैं या किसी दूसरे IP पर स्विच कर सकते हैं (जैसे VPN ऑन/ऑफ करके, या WiFi से मोबाइल डेटा पर स्विच करके)।\n\nअधिक जानकारी के लिए कृपया <a href="%2$s">यह FAQ एंट्री</a> देखें।</string>
     <string name="unsupported_content_in_country">यह कंटेंट अभी चुने गए देश के कंटेंट के लिए उपलब्ध नहीं है।\n\n\"सेटिंग्स &gt; कंटेंट &gt; डिफ़ॉल्ट कंटेंट देश\" से अपना चुनाव बदलें।</string>
-
     <string name="kao_dialog_more_info">विवरण</string>
     <string name="kao_solution">समाधान</string>
     <plurals name="export_subscriptions">
@@ -826,4 +825,7 @@
     <string name="api23_requirement_dialog_title">NewPipe, Android 5 के लिए सपोर्ट बंद कर रहा है</string>
     <string name="api23_requirement_dialog_message">दुर्भाग्य से, NewPipe कुछ ऐसी लाइब्रेरीज़ पर निर्भर है जिन्होंने Android 5.0 और 5.1 के लिए सपोर्ट बंद कर दिया है। इसलिए, अफ़सोस की बात है कि NewPipe का अगला वर्शन सिर्फ़ Android 6 या उससे नए वर्शन वाले डिवाइस पर ही काम करेगा। ज़्यादा जानकारी के लिए ब्लॉग पोस्ट पढ़ें।</string>
     <string name="api23_requirement_dialog_blogpost">ब्लॉगपोस्ट</string>
+    <string name="channel_tab_podcasts">पॉडकास्ट</string>
+    <string name="channel_tab_courses">पाठ्यक्रम</string>
+    <string name="kao_dialog_warning">गूगल ने एंड्रॉइड डेवलपर्स के लिए एक नई वेरिफिकेशन शर्त लागू कर दी है। इसकी वजह से ब्राजील, इंडोनेशिया, सिंगापुर और थाईलैंड में NewPipe को इंस्टॉल करना मुश्किल हो गया है। 2027 तक इसे पूरी दुनिया में लागू करने की योजना है।\n\nअगर इन शर्तों में बदलाव नहीं किया जाता है, तो आने वाले समय में सर्टिफाइड एंड्रॉइड डिवाइस पर NewPipe को इंस्टॉल करना और भी मुश्किल, या शायद नामुमकिन हो सकता है।</string>
 </resources>

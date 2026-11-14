@@ -48,4 +48,13 @@
     <string name="night_theme_summary">گزینش زمینهٔ شب دلخواهتان — %1$s</string>
     <string name="theme_title">زمینه</string>
     <string name="error_snackbar_action">گزارش</string>
+    <string name="checking_updates_toast">بررسی کردن برای به‌روز رسانی…</string>
+    <string name="download">بارگیری</string>
+    <string name="off">خاموش</string>
+    <string name="on">روشن</string>
+    <string name="volume">حجم صدا</string>
+    <string name="always">همیشه</string>
+    <string name="enqueue_stream">صف کردن</string>
+    <string name="updates_setting_title">به‌روز رسانی‌ها</string>
+    <string name="channel_tab_podcasts">پادپخش‌ها</string>
 </resources>

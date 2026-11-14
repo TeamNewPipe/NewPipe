@@ -729,7 +729,7 @@
     <string name="disable_media_tunneling_automatic_info">La tunnelisation multimédia a été désactivée par défaut sur votre appareil car votre modèle d\'appareil est connu pour ne pas la supporter.</string>
     <string name="no_streams">Aucun flux</string>
     <string name="no_live_streams">Aucun direct</string>
-    <string name="image_quality_title">Qualité de l’image</string>
+    <string name="image_quality_title">Qualité d\'image</string>
     <string name="channel_tab_videos">Vidéos</string>
     <string name="show_channel_tabs">Onglets de chaîne</string>
     <string name="loading_metadata_title">Chargement des métadonnées …</string>

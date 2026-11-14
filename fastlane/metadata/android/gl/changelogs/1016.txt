@@ -1,0 +1,9 @@
+Amosa capítulos na barra de busca do reprodutor de vídeo
+[YouTube] Engade compatibilidade coas pestanas "Podcasts" e "Cursos".
+Mellora a aparencia dos títulos do menú de busca
+Amosar os nomes completos dos subtítulos cando fornece o servizo
+Varias correccións de reprodutores, incluídas a eliminación de audio, as pantallas negras e a apertura de ligazóns con marcas de tempo
+[YouTube] Arreglos menores e limpeza
+Moitas melloras internas e correccións de erros
+
+Grazas aos estudantes de enxeñería de software de ANU deste ano que contribuíron a NewPipe como parte da súa tarefa OSS!

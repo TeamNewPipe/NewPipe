@@ -55,7 +55,7 @@
     <string name="app_license">NewPipe — bez autortiesību ierobežojumiem (copyleft) licencēta brīva, pieejama bezmaksas, programmatūra: jūs variet izmantot, pētīt, dalīties un uzlabot to jebkurā brīdī pēc saviem ieskatiem. Tieši jūs variet to izplatīt un/vai modificēt saskaņā ar GNU General Public License noteikumiem, ko publicējusi Free Software Foundation, vai nu zem licences 3. versijas, vai (pēc jūsu izvēles) jebkuras jaunākas versijas noteikumiem.</string>
     <string name="app_license_title">NewPipe licence</string>
     <string name="read_privacy_policy">Lasīt konfidencialitātes politiku</string>
-    <string name="privacy_policy_encouragement">Datu aizsardzība ir ļoti svarīga NewPipe projektam. Tāpēc lietotne neapkopo datus bez jūsu piekrišanas.\nNewPipe konfidencialitātes politika sīki izskaidro, kādi dati tiek nosūtīti un uzglabāti, kad nosūtiet nobrukšanas ziņojumu.</string>
+    <string name="privacy_policy_encouragement">Datu aizsardzība ir ļoti svarīga NewPipe projektam. Tāpēc lietotne bez jūsu piekrišanas nevāc nekādus datus.\nNewPipe konfidencialitātes politikā sīki izskaidrots, kādi dati tiek nosūtīti un uzglabāti, kad nosūtiet nobrukšanas ziņojumu.</string>
     <string name="privacy_policy_title">NewPipe konfidencialitātes politika</string>
     <string name="website_encouragement">Apmeklējiet NewPipe vietni, lai iegūtu vairāk informācijas un jaunumus.</string>
     <string name="website_title">Vietne</string>
@@ -74,7 +74,7 @@
     <string name="charset_letters_and_digits">Burti un cipari</string>
     <string name="settings_file_replacement_character_title">Aizvietošanas rakstzīme</string>
     <string name="settings_file_replacement_character_summary">Nederīgas rakstzīmes tiks aizvietotas ar šo</string>
-    <string name="settings_file_charset_title">Atļautās rakstzīmes failu nosaukumos</string>
+    <string name="settings_file_charset_title">Datņu nosaukumos atļautās rakstzīmes</string>
     <string name="settings_category_downloads_title">Lejupielādēt</string>
     <string name="done">Skaidrs</string>
     <string name="recaptcha_request_toast">reCAPTCHA izaicinājums dots</string>
@@ -205,8 +205,8 @@
     <string name="clear_views_history_summary">Izdzēš atskaņoto video / audio un atskaņošanas pozīciju vēsturi</string>
     <string name="clear_views_history_title">Notīrīt atskaņošanas vēsturi</string>
     <string name="clear_cookie_summary">Izdzēš sīkdatnes, kuras NewPipe uzglabā, kad jūs atrisiniet reCAPTCHA</string>
-    <string name="export_data_summary">Veic skatīšanās/klausīšanās vēstures, abonementu, atskaņošanas sarakstu un iestatījumu rezerves kopijas izveidi</string>
-    <string name="import_data_summary">Aizstās jūsu pašreizējo skatīšanās/klausīšanās vēsturi, abonementus, atskaņošanas sarakstus un (pēc izvēles) iestatījumus</string>
+    <string name="export_data_summary">Veic atskaņošanas vēstures, abonementu, atskaņošanas sarakstu un iestatījumu rezerves kopijas izveidi</string>
+    <string name="import_data_summary">Aizstās jūsu pašreizējo atskaņošanas vēsturi, abonementus, atskaņošanas sarakstus un (pēc izvēles) iestatījumus</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA sīkdatnes dzēstas</string>
     <string name="clear_cookie_title">Notīrīt reCAPTCHA sīkdatnes</string>
     <string name="export_data_title">Izgūt datubāzi</string>
@@ -324,8 +324,8 @@
     <string name="new_seek_duration_toast">ExoPlayer ierobežojumu dēļ tīšanas solis tika iestatīts uz %d sekundēm</string>
     <string name="remove_watched_popup_partially_watched_streams">Jā, un daļēji atskaņotos</string>
     <string name="remove_watched_popup_warning">Tiešraides, kas iepriekš noskatītas un pēc tam pievienotas atskaņošanas sarakstam, tiks noņemtas. \nVai tiešām vēlaties turpināt?</string>
-    <string name="remove_watched_popup_title">Vai tiešām vēlaties noņemt skatītās tiešraides?</string>
-    <string name="remove_watched">Noņemt skatīto</string>
+    <string name="remove_watched_popup_title">Vai tiešām vēlaties noņemt atskaņotās tiešraides?</string>
+    <string name="remove_watched">Noņemt atskaņotos</string>
     <string name="systems_language">Sistēmas iestatīto</string>
     <string name="app_language_title">Lietotnes valoda</string>
     <string name="choose_instance_prompt">Izvēlieties instanci</string>
@@ -350,7 +350,7 @@
     <string name="error_timeout">Savienojums pārtraukts</string>
     <string name="error_progress_lost">Progress zaudēts, jo datne tika dzēsta</string>
     <string name="error_insufficient_storage_left">Ierīcē nav vietas</string>
-    <string name="error_postprocessing_stopped">Strādājot ar failu, NewPipe tika aizvērts</string>
+    <string name="error_postprocessing_stopped">Datnes pēcapstrādes laikā NewPipe lietotne tika aizvērta</string>
     <string name="error_postprocessing_failed">Pēcapstrāde neizdevās</string>
     <string name="error_http_not_found">Nav atrasts</string>
     <string name="error_http_unsupported_range">Serveris nepieņem daudzpavedienu lejupielādes, mēģiniet vēlreiz ar @string/msg_threads = 1</string>
@@ -429,7 +429,7 @@
     <string name="playback_speed_control">Atskaņošanas Ātruma Kontrole</string>
     <string name="subscriptions_export_unsuccessful">Nevarēja izgūt abonementus</string>
     <string name="subscriptions_import_unsuccessful">Nevarēja ievietot abonementus</string>
-    <string name="previous_export">Iepriekšējā izgūšana</string>
+    <string name="previous_export">Iepriekšējās izgūšanas</string>
     <string name="import_file_title">Ievietot datni</string>
     <string name="export_ongoing">Izgūst…</string>
     <string name="import_ongoing">Ievieto…</string>
@@ -487,7 +487,7 @@
     <string name="black_theme_title">Melns</string>
     <string name="dark_theme_title">Tumšs</string>
     <string name="light_theme_title">Gaišs</string>
-    <string name="theme_title">IzskataIestatījumaEkrānu</string>
+    <string name="theme_title">Motīvs</string>
     <string name="default_video_format_title">Noklusējuma video formāts</string>
     <string name="default_audio_format_title">Noklusējuma audio formāts</string>
     <string name="play_audio">Audio</string>
@@ -610,7 +610,7 @@
     <string name="metadata_privacy_unlisted">Sarakstā neiekļauts</string>
     <string name="metadata_host">Izmitināšanas serveris</string>
     <string name="remote_search_suggestions">Servera meklēšanas ieteikumus</string>
-    <string name="mark_as_watched">Atzīmēt kā noskatītu</string>
+    <string name="mark_as_watched">Atzīmēt kā atskaņotu</string>
     <string name="processing_may_take_a_moment">Apstrādā... Var aizņemt kādu laiku</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="zero">Dzēstas %1$s lejupielādes</item>
@@ -701,7 +701,7 @@
     <string name="metadata_thumbnails">Sīkattēli</string>
     <string name="sort">Kārtot</string>
     <string name="auto_update_check_description">NewPipe pati var veikt jaunas versijas pārbaudi laiku pa laikam un informēt jūs, kad tā ir pieejama.\nVai tiešām vēlaties ieslēgt šo funkciju?</string>
-    <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai. \nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
+    <string name="no_appropriate_file_manager_message">Šai darbībai nav atrasts piemērots datņu pārvaldnieks.\nLūdzu, uzstādiet datņu pārvaldnieku vai pamēģiniet lejupielādes iestatījumos atspējot \'%s\'</string>
     <string name="audio_track_type_original">oriģinālais</string>
     <string name="streams_notifications_network_title">Nepieciešams tīkla savienojums</string>
     <string name="reset_settings_summary">Atiestata visus iestatījumus uz to sākotnējām vērtībām</string>
@@ -725,7 +725,7 @@
     <string name="channel_tab_channels">Kanāli</string>
     <string name="channel_tab_playlists">Atskaņošanas saraksti</string>
     <string name="channel_tab_albums">Albumi</string>
-    <string name="no_appropriate_file_manager_message_android_10">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai. \nLūdzu lejuplādējiet ar krātuves pieejas struktūras saderīgu failu pārvaldnieku</string>
+    <string name="no_appropriate_file_manager_message_android_10">Šai darbībai nav atrasts piemērots datņu pārvaldnieks.\nLūdzu, uzstādiet ar Android krātuves piekļuves sistēmu (SAF - Storage Access Framework) saderīgu datņu pārvaldnieku</string>
     <string name="no_live_streams">Nav tiešraides</string>
     <string name="show_error_snackbar">Rādīt kļūdas paziņojumu</string>
     <string name="feed_fetch_channel_tabs">Piegādāt kanālu cilnes</string>
@@ -772,7 +772,7 @@
     <string name="no_video_streams_available_for_external_players">Ārējiem atskaņotājiem nav pieejama neviena video straume</string>
     <string name="use_exoplayer_decoder_fallback_title">Izmantot ExoPlayer dekodētāja atkāpšanās funkciju</string>
     <string name="settings_category_exoplayer_summary">Pārvalda dažus ExoPlayer iestatījumus. Lai izmaiņas stātos spēkā, ir jāaizver un jāatver pa jaunu atskaņotājs</string>
-    <string name="use_exoplayer_decoder_fallback_summary">Iespējojiet, ja ir problēmas ar dekodētāja inicializāciju, kas pāriet uz zemākas prioritātes dekodētājiem, ja primārā dekodētāja inicializācija neizdodas. Tas var izraisīt sliktāku atskaņošanas veiktspēju nekā izmantojot primāros dekodētajus</string>
+    <string name="use_exoplayer_decoder_fallback_summary">Iespējojiet, ja rodas problēmas ar dekodētāja inicializāciju, kas pāriet uz zemākas prioritātes dekodētājiem, ja primārā dekodētāja inicializācija neizdodas. Tas var pasliktināt atskaņošanas veiktspēju salīdzinājumā ar primāro dekodētāju izmantošanu</string>
     <string name="no_audio_streams_available_for_external_players">Ārējiem atskaņotājiem nav pieejama neviena audio straume</string>
     <string name="unknown_audio_track">Nezināms</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_title">Vienmēr izmantot ExoPlayer video izvades virsmas iestatījumu risinājumu</string>
@@ -813,7 +813,6 @@
     <string name="player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja straumēšanas URL derīguma beigu termiņš vai IP aizliegums</string>
     <string name="player_http_invalid_status">Atskaņošanas laikā no servera saņemta HTTP %1$s kļūda</string>
     <string name="youtube_player_http_403">Atskaņošanas laikā no servera saņemta HTTP 403 kļūda, ko, iespējams, izraisīja IP aizliegums vai straumēšanas URL atšifrēšanas (deobfuskācijas) problēmas</string>
-
     <string name="kao_dialog_more_info">Detalizētāka informācija</string>
     <string name="kao_solution">Risinājums</string>
     <string name="migration_info_6_7_message">SoundCloud likvidēja oriģinālos Top 50 topus. Atbilstošā cilne noņemta no jūsu galvenās lapas.</string>
@@ -845,4 +844,5 @@
     <string name="sign_in_confirm_not_bot_error">%1$s atteicās sniegt datus un pieprasa pieteikšanos, lai apstiprinātu, ka pieprasītājs nav robots.\n\nIespējams, ka %1$s ir īslaicīgi bloķējis jūsu IP adresi. Variet kādu laiku pagaidīt vai pārslēgties uz citu IP adresi (piemēram, ieslēdzot/izslēdzot VPN vai pārslēdzoties no Wi-Fi uz mobilajiem datiem).\n\nLūdzu, skatiet <a href="%2$s">šo BUJ sadaļu</a>, lai iegūtu vairāk informācijas.</string>
     <string name="channel_tab_podcasts">Raidieraksti</string>
     <string name="channel_tab_courses">Kursi</string>
+    <string name="kao_dialog_warning">Google ir sākusi pieprasīt, lai Android lietotņu izstrādātāji apliecinātu savu identitāti. Šī prasība jau apgrūtina NewPipe uzstādīšanu Brazīlijā, Indonēzijā, Singapūrā un Taizemē. Plānots, ka 2027. gadā prasību attiecinās uz visu pasauli.\n\nJa Google šo prasību nemainīs, turpmāk NewPipe uzstādīšana sertificētās Android ierīcēs var kļūt vēl sarežģītāka vai pat neiespējama.</string>
 </resources>

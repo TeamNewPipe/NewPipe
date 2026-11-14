@@ -1,0 +1,9 @@
+Fejezetek a videó keresősávján
+[YouTube] Podcastok és tanfolyamok támogatása
+Keresőmenü címeinek javítása
+Teljes feliratnevek megjelenítése
+Lejátszóhibák javítása (hangerőcsökkentés, fekete képernyő, időbélyeges hivatkozások)
+[YouTube] Kisebb javítások
+Belső fejlesztések és hibajavítások
+
+Köszönet az ANU hallgatóinak a NewPipe fejlesztéséhez való hozzájárulásért!
