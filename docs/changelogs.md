@@ -4,6 +4,35 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.42.0 (`1042000`)
+
+### Library and migration
+
+- Add Like locally controls and per-profile Liked videos playlists, with duplicate prevention,
+  library shortcuts and support for full database-and-settings backups.
+- Import and export FreeTube subscriptions and playlists with previews and duplicate handling.
+- Preserve channel notification settings when importing backups.
+
+### Community features and website
+
+- Launch [WizeStream.org](https://wizestream.org) with mobile-friendly documentation, app details,
+  competitor comparisons, downloads, FAQs and privacy information.
+- Add optional, moderated community reviews without an account and a live README rating badge.
+- Link About to the website, FAQ and review page. Offer an optional review prompt after 15 app
+  openings, with a five-day reminder and Don't ask again.
+- Keep review reminders active when opening the review page; opening a browser does not confirm
+  that a review was submitted.
+- Add optional full-video SponsorBlock sponsorship disclosures and separate opt-in segment
+  submissions and voting.
+
+### Playback and reliability fixes
+
+- Preserve protected live DVR playback across missing DASH refreshes and refresh compatible
+  live media URLs while retaining buffered playback.
+- Bound live preparation retries, recheck ended broadcasts and renew the URL recovery budget
+  after 30 seconds of successful playback.
+- Prevent backpressure failures in throttled feed, subscription and library UI streams.
+
 ### Playback settings
 
 - Add separate switches for 360° playback and A–B repeat in Video and audio settings, both off

@@ -19,7 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
-<li><a href="#unreleased">Unreleased</a></li>
+<li><a href="#release-1042000">WizeStream 1.42.0</a></li>
 <li><a href="#release-1041000">WizeStream 1.41.0</a></li>
 <li><a href="#release-1040001">WizeStream 1.40.1</a></li>
 <li><a href="#release-1040000">WizeStream 1.40.0</a></li>
@@ -111,9 +111,29 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
-<section id="unreleased">
-<h2>Unreleased</h2>
+<section id="release-1042000" data-version="1.42.0" data-version-code="1042000">
+<h2>WizeStream 1.42.0</h2>
 <div class="release-notes">
+<h3>Library and migration</h3>
+<ul>
+<li>Add Like locally controls and per-profile Liked videos playlists, with duplicate prevention, library shortcuts and support for full database-and-settings backups.</li>
+<li>Import and export FreeTube subscriptions and playlists with previews and duplicate handling.</li>
+<li>Preserve channel notification settings when importing backups.</li>
+</ul>
+<h3>Community features and website</h3>
+<ul>
+<li>Launch <a href="https://wizestream.org">WizeStream.org</a> with mobile-friendly documentation, app details, competitor comparisons, downloads, FAQs and privacy information.</li>
+<li>Add optional, moderated community reviews without an account and a live README rating badge.</li>
+<li>Link About to the website, FAQ and review page. Offer an optional review prompt after 15 app openings, with a five-day reminder and Don&#x27;t ask again.</li>
+<li>Keep review reminders active when opening the review page; opening a browser does not confirm that a review was submitted.</li>
+<li>Add optional full-video SponsorBlock sponsorship disclosures and separate opt-in segment submissions and voting.</li>
+</ul>
+<h3>Playback and reliability fixes</h3>
+<ul>
+<li>Preserve protected live DVR playback across missing DASH refreshes and refresh compatible live media URLs while retaining buffered playback.</li>
+<li>Bound live preparation retries, recheck ended broadcasts and renew the URL recovery budget after 30 seconds of successful playback.</li>
+<li>Prevent backpressure failures in throttled feed, subscription and library UI streams.</li>
+</ul>
 <h3>Playback settings</h3>
 <ul>
 <li>Add separate switches for 360° playback and A–B repeat in Video and audio settings, both off by default. Hide their controls while disabled; disabling restores flat playback or clears the active repeat range immediately.</li>
