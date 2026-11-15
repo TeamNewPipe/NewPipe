@@ -1,7 +1,9 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -53,6 +55,19 @@ public class SponsorBlockCategoryPreference extends SwitchPreferenceCompat {
     @Override
     public void onBindViewHolder(@NonNull final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
+        holder.itemView.setOnKeyListener((view, keyCode, event) -> {
+            if (!isTelevision() || !isChecked() || category == null
+                    || configureClickListener == null
+                    || keyCode != KeyEvent.KEYCODE_DPAD_RIGHT) {
+                return false;
+            }
+
+            if (event.getAction() == KeyEvent.ACTION_UP) {
+                configureClickListener.onConfigure(category);
+            }
+            // Consume both key events so focus does not leave the category row before ACTION_UP.
+            return true;
+        });
         final ImageButton button = (ImageButton) holder.findViewById(
                 R.id.sponsor_block_category_settings);
         if (button == null) {
@@ -71,5 +86,10 @@ public class SponsorBlockCategoryPreference extends SwitchPreferenceCompat {
                 getContext().getString(category.titleResId)));
         button.setFocusable(true);
         button.setOnClickListener(view -> configureClickListener.onConfigure(category));
+    }
+
+    private boolean isTelevision() {
+        return (getContext().getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_TYPE_MASK) == Configuration.UI_MODE_TYPE_TELEVISION;
     }
 }
