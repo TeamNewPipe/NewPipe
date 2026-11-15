@@ -146,9 +146,9 @@ public class MainPlayerGestureListenerTest {
 
     @Test
     public void twoFingerSpeedIsClampedToPlayerLimits() {
-        assertEquals(3.0f,
+        assertEquals(10.0f,
                 MainPlayerGestureListener.calculatePlaybackSpeed(
-                        2.95f, 240f, 24f, 0.25f),
+                        9.95f, 240f, 24f, 0.25f),
                 FLOAT_TOLERANCE);
         assertEquals(0.10f,
                 MainPlayerGestureListener.calculatePlaybackSpeed(

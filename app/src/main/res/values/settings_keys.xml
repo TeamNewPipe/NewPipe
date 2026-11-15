@@ -261,6 +261,11 @@
         <item>2x</item>
         <item>2.5x</item>
         <item>3x</item>
+        <item>4x</item>
+        <item>5x</item>
+        <item>6x</item>
+        <item>8x</item>
+        <item>10x</item>
     </string-array>
     <string-array name="hold_to_speed_values">
         <item>@string/hold_to_speed_off_value</item>
@@ -270,6 +275,11 @@
         <item>2.0</item>
         <item>2.5</item>
         <item>3.0</item>
+        <item>4.0</item>
+        <item>5.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
     </string-array>
 
     <string name="prefer_original_audio_key">prefer_original_audio</string>

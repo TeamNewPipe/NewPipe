@@ -597,7 +597,7 @@ class MainPlayerGestureListener(
         private const val TWO_FINGER_LOCK_THRESHOLD_DP = 12f
         private const val TWO_FINGER_SPEED_STEP_DP = 24f
         private const val MIN_PLAYBACK_SPEED = 0.10f
-        private const val MAX_PLAYBACK_SPEED = 3.00f
+        internal const val MAX_PLAYBACK_SPEED = 10.00f
         private const val NORMAL_PLAYBACK_SPEED = 1.00f
 
         @JvmStatic
