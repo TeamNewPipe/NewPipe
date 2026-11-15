@@ -37,6 +37,12 @@ enum class DeviceSyncLogStatus {
 }
 
 @Serializable
+enum class DeviceSyncLogDirection {
+    OUTGOING,
+    INCOMING
+}
+
+@Serializable
 data class DeviceSyncLogCategoryResult(
     val category: DeviceSyncLogCategory,
     val status: DeviceSyncLogStatus,
@@ -51,7 +57,12 @@ data class DeviceSyncLogAttempt(
     val deviceName: String,
     val peerId: String,
     val addresses: List<String>,
-    val categories: List<DeviceSyncLogCategoryResult>
+    val categories: List<DeviceSyncLogCategoryResult>,
+    val attemptId: String? = null,
+    val localAppVersion: SyncAppVersion? = null,
+    val remoteAppVersion: SyncAppVersion? = null,
+    val localSyncProtocolVersion: Int? = null,
+    val remoteSyncProtocolVersion: Int? = null
 )
 
 @Serializable
@@ -62,6 +73,7 @@ data class DeviceSyncLogEntry(
     val failedDevices: Int,
     val sentChanges: Int,
     val receivedChanges: Int,
+    val direction: DeviceSyncLogDirection = DeviceSyncLogDirection.OUTGOING,
     val localAddresses: List<String> = emptyList(),
     val attempts: List<DeviceSyncLogAttempt> = emptyList(),
     val fatalError: String? = null
@@ -113,10 +125,38 @@ class DeviceSyncLogRepository(context: Context) {
         )
     }
 
+    fun recordIncoming(peer: TrustedPeer, diagnostics: SyncPeerDiagnostics) {
+        save(
+            DeviceSyncLogEntry(
+                timestampEpochMillis = System.currentTimeMillis(),
+                background = false,
+                succeededDevices = 0,
+                failedDevices = 0,
+                sentChanges = 0,
+                receivedChanges = 0,
+                direction = DeviceSyncLogDirection.INCOMING,
+                attempts = listOf(
+                    DeviceSyncLogAttempt(
+                        deviceName = peer.deviceName,
+                        peerId = peer.peerId,
+                        addresses = peer.addresses,
+                        attemptId = diagnostics.attemptId,
+                        localAppVersion = diagnostics.localAppVersion,
+                        remoteAppVersion = diagnostics.remoteAppVersion,
+                        localSyncProtocolVersion = diagnostics.localSyncProtocolVersion,
+                        remoteSyncProtocolVersion = diagnostics.remoteSyncProtocolVersion,
+                        categories = emptyList()
+                    )
+                )
+            )
+        )
+    }
+
     fun clear() {
         preferences.edit().remove(ENTRIES_KEY).apply()
     }
 
+    @Synchronized
     private fun save(entry: DeviceSyncLogEntry) {
         val updated = buildList {
             add(entry)
@@ -131,6 +171,11 @@ class DeviceSyncLogRepository(context: Context) {
         deviceName = peer.deviceName,
         peerId = peer.peerId,
         addresses = peer.addresses,
+        attemptId = diagnostics?.attemptId,
+        localAppVersion = diagnostics?.localAppVersion,
+        remoteAppVersion = diagnostics?.remoteAppVersion,
+        localSyncProtocolVersion = diagnostics?.localSyncProtocolVersion,
+        remoteSyncProtocolVersion = diagnostics?.remoteSyncProtocolVersion,
         categories = buildList {
             add(
                 categoryResult(

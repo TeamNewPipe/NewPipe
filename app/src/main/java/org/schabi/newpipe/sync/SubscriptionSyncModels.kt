@@ -122,6 +122,7 @@ data class SubscriptionSyncResult(
 
 data class DeviceSyncAttempt(
     val peer: TrustedPeer,
+    val diagnostics: SyncPeerDiagnostics? = null,
     val profileResult: ProfileSyncResult? = null,
     val profileError: String? = null,
     val result: SubscriptionSyncResult? = null,

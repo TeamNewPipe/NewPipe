@@ -40,11 +40,13 @@ import org.schabi.newpipe.sync.DeviceSyncBackgroundScheduler
 import org.schabi.newpipe.sync.DeviceSyncListenerService
 import org.schabi.newpipe.sync.DeviceSyncLogCategory
 import org.schabi.newpipe.sync.DeviceSyncLogCategoryResult
+import org.schabi.newpipe.sync.DeviceSyncLogDirection
 import org.schabi.newpipe.sync.DeviceSyncLogEntry
 import org.schabi.newpipe.sync.DeviceSyncLogStatus
 import org.schabi.newpipe.sync.DeviceSyncManager
 import org.schabi.newpipe.sync.DeviceSyncSummary
 import org.schabi.newpipe.sync.StructuredPreferenceCategory
+import org.schabi.newpipe.sync.SyncAppVersion
 import org.schabi.newpipe.sync.TrustedPeer
 
 class DeviceSyncSettingsFragment : BasePreferenceFragment() {
@@ -530,40 +532,44 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 append(" · ")
                 append(
                     getString(
-                        if (entry.background) {
+                        if (entry.direction == DeviceSyncLogDirection.INCOMING) {
+                            R.string.device_sync_log_incoming
+                        } else if (entry.background) {
                             R.string.device_sync_log_background
                         } else {
                             R.string.device_sync_log_manual
                         }
                     )
                 )
-                append("\n")
-                append(
-                    getString(
-                        R.string.device_sync_report_devices,
-                        entry.succeededDevices,
-                        entry.failedDevices
-                    )
-                )
-                append("\n")
-                append(
-                    getString(
-                        R.string.device_sync_report_changes,
-                        entry.sentChanges,
-                        entry.receivedChanges
-                    )
-                )
-                append("\n")
-                append(
-                    if (entry.localAddresses.isEmpty()) {
-                        getString(R.string.device_sync_log_no_local_addresses)
-                    } else {
+                if (entry.direction == DeviceSyncLogDirection.OUTGOING) {
+                    append("\n")
+                    append(
                         getString(
-                            R.string.device_sync_log_local_addresses,
-                            entry.localAddresses.joinToString()
+                            R.string.device_sync_report_devices,
+                            entry.succeededDevices,
+                            entry.failedDevices
                         )
-                    }
-                )
+                    )
+                    append("\n")
+                    append(
+                        getString(
+                            R.string.device_sync_report_changes,
+                            entry.sentChanges,
+                            entry.receivedChanges
+                        )
+                    )
+                    append("\n")
+                    append(
+                        if (entry.localAddresses.isEmpty()) {
+                            getString(R.string.device_sync_log_no_local_addresses)
+                        } else {
+                            getString(
+                                R.string.device_sync_log_local_addresses,
+                                entry.localAddresses.joinToString()
+                            )
+                        }
+                    )
+                }
                 entry.fatalError?.let { error ->
                     append("\n")
                     append(getString(R.string.device_sync_log_fatal_error, error))
@@ -584,6 +590,36 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                             )
                         }
                     )
+                    attempt.attemptId?.let { attemptId ->
+                        append("\n")
+                        append(getString(R.string.device_sync_log_attempt_id, attemptId))
+                        append("\n")
+                        append(
+                            getString(
+                                R.string.device_sync_log_local_version,
+                                attempt.localAppVersion?.displayValue()
+                                    ?: getString(R.string.device_sync_log_unknown)
+                            )
+                        )
+                        append("\n")
+                        append(
+                            getString(
+                                R.string.device_sync_log_remote_version,
+                                attempt.remoteAppVersion?.displayValue()
+                                    ?: getString(R.string.device_sync_log_unknown)
+                            )
+                        )
+                        append("\n")
+                        append(
+                            getString(
+                                R.string.device_sync_log_protocol_versions,
+                                attempt.localSyncProtocolVersion?.toString()
+                                    ?: getString(R.string.device_sync_log_unknown),
+                                attempt.remoteSyncProtocolVersion?.toString()
+                                    ?: getString(R.string.device_sync_log_unknown)
+                            )
+                        )
+                    }
                     attempt.categories.forEach { category ->
                         append("\n")
                         val display = category.toDisplay()
@@ -596,6 +632,10 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 }
             }
         }
+    }
+
+    private fun SyncAppVersion.displayValue(): String {
+        return getString(R.string.device_sync_log_version_value, name, code)
     }
 
     private fun DeviceSyncLogCategoryResult.toDisplay(): SyncCategoryDisplay {

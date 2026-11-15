@@ -30,7 +30,9 @@ class Libp2pSyncNode(
     private val historySyncEngine: HistorySyncEngine? = null,
     private val structuredPreferenceSyncEngine: StructuredPreferenceSyncEngine? = null,
     private val onTrustedPeerSaved: () -> Unit = {},
-    private val peerAddressResolver: (TrustedPeer) -> List<String> = { emptyList() }
+    private val peerAddressResolver: (TrustedPeer) -> List<String> = { emptyList() },
+    private val localAppVersion: SyncAppVersion = SyncAppVersion("Unknown", 0),
+    private val onDiagnosticsReceived: (TrustedPeer, SyncPeerDiagnostics) -> Unit = { _, _ -> }
 ) {
     private val identity = stateRepository.loadOrCreateIdentity()
     private val requestDispatcher = SyncRequestDispatcher()
@@ -42,6 +44,11 @@ class Libp2pSyncNode(
     private val profileProtocol = ProfileSyncProtocolBinding { peer, request, controller ->
         requestDispatcher.execute({ controller.close() }) {
             handleProfileSyncRequest(peer, request, controller)
+        }
+    }
+    private val diagnosticsProtocol = SyncDiagnosticsProtocolBinding { peer, request, controller ->
+        requestDispatcher.execute({ controller.close() }) {
+            handleDiagnosticsRequest(peer, request, controller)
         }
     }
     private val subscriptionProtocol = SubscriptionSyncProtocolBinding { peer, request, controller ->
@@ -81,6 +88,7 @@ class Libp2pSyncNode(
         }
         protocols {
             +pairingProtocol
+            +diagnosticsProtocol
             +profileProtocol
             +subscriptionProtocol
             +playlistProtocol
@@ -176,6 +184,53 @@ class Libp2pSyncNode(
             peer.addresses
         )
         return peer.copy(addresses = addresses)
+    }
+
+    fun exchangeDiagnostics(
+        peer: TrustedPeer,
+        attemptId: String
+    ): SyncPeerDiagnostics {
+        val currentHost = requireStartedHost()
+        ensureTrusted(peer.peerId)
+        SyncDiagnosticsValidation.validateAttemptId(attemptId)
+        val remotePeerId = parsePeerId(peer.peerId)
+        val remoteAddresses = parseAddresses(remotePeerId, peer.addresses)
+        val request = SyncDiagnosticsRequest(
+            attemptId = attemptId,
+            appVersion = localAppVersion
+        )
+        SyncDiagnosticsValidation.validateRequest(request)
+        val streamPromise = diagnosticsProtocol.dial(
+            currentHost,
+            remotePeerId,
+            *remoteAddresses
+        )
+        val controller = try {
+            streamPromise.controller.get(
+                DIAGNOSTICS_TIMEOUT_SECONDS,
+                TimeUnit.SECONDS
+            )
+        } catch (error: Exception) {
+            throw SyncDiagnosticsException("Could not exchange sync diagnostics", error)
+        }
+        val response = try {
+            controller.sendRequest(request)
+            controller.response.get(
+                DIAGNOSTICS_TIMEOUT_SECONDS,
+                TimeUnit.SECONDS
+            )
+        } catch (error: Exception) {
+            throw SyncDiagnosticsException("The sync diagnostics exchange failed", error)
+        } finally {
+            controller.close()
+        }
+        SyncDiagnosticsValidation.validateResponse(response, attemptId)
+        return SyncPeerDiagnostics(
+            attemptId = attemptId,
+            localAppVersion = localAppVersion,
+            remoteAppVersion = response.appVersion,
+            remoteSyncProtocolVersion = response.syncProtocolVersion
+        )
     }
 
     fun createPairingCode(): String {
@@ -825,6 +880,44 @@ class Libp2pSyncNode(
         )
     }
 
+    private fun handleDiagnosticsRequest(
+        remotePeerId: PeerId,
+        request: SyncDiagnosticsRequest,
+        controller: SyncDiagnosticsProtocolController
+    ) {
+        val peerIdValue = remotePeerId.toBase58()
+        val peer = stateRepository.getTrustedPeers().firstOrNull {
+            it.peerId == peerIdValue
+        }
+        val response = try {
+            if (peer == null) {
+                throw SyncDiagnosticsException("The connected device is not trusted")
+            }
+            SyncDiagnosticsValidation.validateRequest(request)
+            val diagnostics = SyncPeerDiagnostics(
+                attemptId = request.attemptId,
+                localAppVersion = localAppVersion,
+                remoteAppVersion = request.appVersion,
+                remoteSyncProtocolVersion = request.syncProtocolVersion
+            )
+            runCatching { onDiagnosticsReceived(peer, diagnostics) }
+            SyncDiagnosticsResponse(
+                accepted = true,
+                attemptId = request.attemptId,
+                appVersion = localAppVersion,
+                syncProtocolVersion = SYNC_PROTOCOL_VERSION
+            )
+        } catch (error: Exception) {
+            SyncDiagnosticsResponse(
+                accepted = false,
+                error = (
+                    error.message ?: "The sync diagnostics request was rejected"
+                    ).take(MAX_SYNC_ERROR_LENGTH)
+            )
+        }
+        controller.sendResponse(response)
+    }
+
     private fun handleSubscriptionSyncRequest(
         remotePeerId: PeerId,
         request: SubscriptionSyncRequest,
@@ -1031,6 +1124,7 @@ class Libp2pSyncNode(
         private const val START_TIMEOUT_SECONDS = 20L
         private const val STOP_TIMEOUT_SECONDS = 10L
         private const val PAIR_TIMEOUT_SECONDS = 20L
+        private const val DIAGNOSTICS_TIMEOUT_SECONDS = 5L
         private const val SYNC_TIMEOUT_SECONDS = 30L
         private const val MAX_SYNC_ROUNDS = 2048
         private const val MAX_SYNC_ERROR_LENGTH = 512

@@ -8,6 +8,8 @@ package org.schabi.newpipe.sync
 import android.content.Context
 import android.os.Build
 import androidx.preference.PreferenceManager
+import java.util.UUID
+import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 
 class DeviceSyncManager private constructor(context: Context) {
@@ -42,6 +44,10 @@ class DeviceSyncManager private constructor(context: Context) {
         .filter(String::isNotEmpty)
         .distinct()
         .joinToString(" ")
+    private val localAppVersion = SyncAppVersion(
+        name = BuildConfig.VERSION_NAME,
+        code = BuildConfig.VERSION_CODE.toLong()
+    )
     private val node by lazy {
         val listenPort = stateRepository.getListenPort()
             ?: if (stateRepository.getTrustedPeers().isEmpty()) {
@@ -75,7 +81,9 @@ class DeviceSyncManager private constructor(context: Context) {
                     hasTrustedPeers = true
                 )
                 DeviceSyncListenerService.startIfEnabled(applicationContext)
-            }
+            },
+            localAppVersion = localAppVersion,
+            onDiagnosticsReceived = syncLogRepository::recordIncoming
         )
     }
 
@@ -120,6 +128,7 @@ class DeviceSyncManager private constructor(context: Context) {
         val attempts = peers.map { peer ->
             var activePeer = peer
             val retryDiagnostics = linkedMapOf<DeviceSyncLogCategory, String>()
+            val diagnostics = exchangeDiagnostics(activePeer)
             val profileAttempt = runSyncStage(
                 activePeer,
                 DeviceSyncLogCategory.PROFILES,
@@ -144,6 +153,7 @@ class DeviceSyncManager private constructor(context: Context) {
             }
             DeviceSyncAttempt(
                 peer = activePeer,
+                diagnostics = diagnostics,
                 profileResult = profile.getOrNull(),
                 profileError = profile.exceptionOrNull().diagnosticMessage(),
                 result = subscription?.getOrNull(),
@@ -195,6 +205,7 @@ class DeviceSyncManager private constructor(context: Context) {
         val attempts = peers.map { peer ->
             var activePeer = peer
             val retryDiagnostics = linkedMapOf<DeviceSyncLogCategory, String>()
+            val diagnostics = exchangeDiagnostics(activePeer)
 
             val profileAttempt = runSyncStage(
                 activePeer,
@@ -367,6 +378,7 @@ class DeviceSyncManager private constructor(context: Context) {
             }
             DeviceSyncAttempt(
                 peer = activePeer,
+                diagnostics = diagnostics,
                 profileResult = profile.getOrNull(),
                 profileError = profile.exceptionOrNull().diagnosticMessage(),
                 result = subscription?.getOrNull(),
@@ -428,6 +440,18 @@ class DeviceSyncManager private constructor(context: Context) {
             )
         }
         return DeviceSyncSummary(attempts)
+    }
+
+    private fun exchangeDiagnostics(peer: TrustedPeer): SyncPeerDiagnostics {
+        val attemptId = UUID.randomUUID().toString()
+        return runCatching {
+            node.exchangeDiagnostics(peer, attemptId)
+        }.getOrElse {
+            SyncPeerDiagnostics(
+                attemptId = attemptId,
+                localAppVersion = localAppVersion
+            )
+        }
     }
 
     private fun Throwable?.diagnosticMessage(): String? {

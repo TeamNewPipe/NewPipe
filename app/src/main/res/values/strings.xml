@@ -393,6 +393,13 @@
     <string name="device_sync_log_summary">%1$d attempts recorded · latest %2$s</string>
     <string name="device_sync_log_manual">Manual synchronization</string>
     <string name="device_sync_log_background">Automatic background synchronization</string>
+    <string name="device_sync_log_incoming">Incoming synchronization</string>
+    <string name="device_sync_log_attempt_id">Attempt ID: %1$s</string>
+    <string name="device_sync_log_local_version">Local version: %1$s</string>
+    <string name="device_sync_log_remote_version">Remote version: %1$s</string>
+    <string name="device_sync_log_protocol_versions">Sync protocol: local %1$s · remote %2$s</string>
+    <string name="device_sync_log_version_value">%1$s (code %2$d)</string>
+    <string name="device_sync_log_unknown">Unknown</string>
     <string name="device_sync_log_local_addresses">This device addresses: %1$s</string>
     <string name="device_sync_log_no_local_addresses">No current address reported for this device</string>
     <string name="device_sync_log_addresses">Saved addresses: %1$s</string>
