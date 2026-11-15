@@ -4,6 +4,30 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.43.0 (`1043000`)
+
+### Recommendations and appearance
+
+- Improve private local recommendations with explicit local likes, bounded public-like signals,
+  channel affinity, recent activity, per-video explanations and a per-profile Your taste summary.
+- Add a direct action for placing For you on Home and compact, accessible Like locally and Liked
+  videos controls.
+- Add custom Material accent colors while preserving the existing theme modes.
+
+### Playback and live media
+
+- Extend playback speed controls to 10×.
+- Restore chat replay for finished livestreams and show details for upcoming streams.
+- Preserve pending live HTTP 403 recovery while playback preparation is still in progress.
+
+### Performance, TV and diagnostics
+
+- Speed up large history loading, reduce resource use on low-memory Android TV devices and avoid
+  retaining large manual feed-refresh results.
+- Make SponsorBlock category settings TV-accessible and fix subscription button text clipping.
+- Add privacy-respecting direct-download badges, refresh their counts promptly and include version
+  diagnostics in Device Sync logs.
+
 ## WizeStream 1.42.0 (`1042000`)
 
 ### Library and migration
