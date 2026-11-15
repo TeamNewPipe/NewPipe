@@ -6,7 +6,7 @@
 package net.newpipe.app.platform
 
 import kotlinx.coroutines.flow.Flow
-import net.newpipe.app.model.ChannelNotificationCount
+import net.newpipe.app.model.ChannelNotification
 
 /**
  * Hooks into the notification helpers, worker and database that still live in the current Android app
@@ -19,7 +19,9 @@ interface NotificationHost {
 
     fun applyNewStreamsCheckSchedule()
 
-    fun channelNotificationCounts(): Flow<ChannelNotificationCount>
-
     fun recreatePlayerNotification()
+
+    fun channelNotifications(): Flow<List<ChannelNotification>>
+
+    suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean)
 }
