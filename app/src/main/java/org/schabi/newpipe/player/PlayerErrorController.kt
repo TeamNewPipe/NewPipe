@@ -94,8 +94,6 @@ internal class PlayerErrorController(
         liveUrlRecoveryHealth.reset()
         liveReadySince = null
         cancelPendingLiveStallRecovery()
-        cancelPendingLiveSegmentRecovery()
-        liveMedia403Policy.clearFailureWindow()
         if (player.playQueue?.item?.let { it.isRadio || it.isLiveTv } == true) {
             val message = if (player.playQueue?.item?.isLiveTv == true) R.string.tv_playback_failed else R.string.radio_playback_failed
             Toast.makeText(player.context, message, Toast.LENGTH_LONG).show()
@@ -107,6 +105,9 @@ internal class PlayerErrorController(
         if (player.videoAdjustments.recover(error)) return
 
         player.saveStreamProgressState()
+        if (tryRecoverFromPendingLiveSegmentFailure(error)) return
+        cancelPendingLiveSegmentRecovery()
+        liveMedia403Policy.clearFailureWindow()
         if (livePreparationRecovery.recover(error)) return
         if (tryRecoverFromVideoSurfaceFailure(error) ||
             tryRecoverFromAudioDecoderOutputFailure(error) ||
@@ -442,6 +443,25 @@ internal class PlayerErrorController(
             SystemClock.elapsedRealtime(),
             engine.playbackState == Media3Player.STATE_READY
         )
+    }
+
+    internal fun tryRecoverFromPendingLiveSegmentFailure(error: PlaybackException): Boolean {
+        if (pendingLiveSegmentRecovery == null ||
+            PlayerHttpErrorRecovery.findInvalidResponseCode(error) != 403
+        ) {
+            return false
+        }
+        val item = player.playQueue?.item ?: return false
+        if (!isYouTubeManifestLive(item)) return false
+
+        Log.w(
+            Player.TAG,
+            "Fatal live media HTTP 403 arrived during early recovery; reloading fresh URLs"
+        )
+        cancelPendingLiveSegmentRecovery()
+        liveMedia403Policy.clearFailureWindow()
+        reloadRejectedLiveSource(item)
+        return true
     }
 
     private fun isActivePlaybackState(engine: ExoPlayer): Boolean {

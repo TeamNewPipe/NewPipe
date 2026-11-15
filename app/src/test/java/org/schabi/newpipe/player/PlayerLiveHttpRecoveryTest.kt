@@ -80,6 +80,37 @@ class PlayerLiveHttpRecoveryTest {
     }
 
     @Test
+    fun fatal403CannotCancelPendingEarlySegmentRecovery() {
+        val fixture = Fixture()
+        fixture.state(Media3Player.STATE_READY)
+        fixture.controller.onLiveMediaSegmentRejected(
+            fixture.engine,
+            C.TRACK_TYPE_VIDEO,
+            6_216_000
+        )
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(300))
+        fixture.controller.onLiveMediaSegmentRejected(
+            fixture.engine,
+            C.TRACK_TYPE_VIDEO,
+            6_216_000
+        )
+        shadowOf(Looper.getMainLooper()).idleFor(Duration.ofMillis(600))
+        fixture.controller.onLiveMediaSegmentRejected(
+            fixture.engine,
+            C.TRACK_TYPE_VIDEO,
+            6_216_000
+        )
+
+        assertTrue(fixture.controller.tryRecoverFromPendingLiveSegmentFailure(httpError(403)))
+        verify(fixture.player).setRecovery()
+        verify(fixture.player).reloadPlayQueueManager()
+
+        shadowOf(Looper.getMainLooper()).idle()
+        verify(fixture.player, times(1)).reloadPlayQueueManager()
+        fixture.controller.resetRecovery()
+    }
+
+    @Test
     fun earlySegmentRecoveryIgnoresPausedAndReplacedPlayback() {
         val fixture = Fixture()
         fixture.state(Media3Player.STATE_READY)
