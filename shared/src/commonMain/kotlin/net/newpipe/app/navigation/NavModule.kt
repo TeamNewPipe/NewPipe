@@ -82,6 +82,7 @@ fun navModule() = module {
 
     navigation<Destination.BackupRestoreSettings> {
         BackupRestoreSettingsScreen()
+    }
 
     navigation<Destination.PlayerNotificationSettings> {
         PlayerNotificationSettingsScreen()

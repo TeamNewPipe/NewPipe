@@ -167,11 +167,8 @@ fun PlayerNotificationSettingsScreenContent(
             HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
             Text(
                 text = stringResource(actionsSummary),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier = Modifier.padding(16.dp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium
             )
             for (slot in firstEditableSlot until SLOT_COUNT) {

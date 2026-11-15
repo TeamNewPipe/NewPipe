@@ -6,11 +6,8 @@
 package net.newpipe.app.screen.settings
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.hasAnySibling
-import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isToggleable
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -19,6 +16,7 @@ import androidx.compose.ui.test.v2.runComposeUiTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import net.newpipe.app.extensions.onToggleableNodeNextTo
 import net.newpipe.app.extensions.settingsModule
 import net.newpipe.app.extensions.withKoin
 import net.newpipe.app.model.NotificationAction
@@ -40,7 +38,7 @@ class PlayerNotificationSettingsScreenTest {
             modules = listOf(settingsModule()),
             content = { PlayerNotificationSettingsScreenContent(onCompactSlotToggle = { slot -> toggledSlot = slot }) },
             onContent = {
-                compactCheckbox(getString(Res.string.notification_action_3_title)).performScrollTo().performClick()
+                onToggleableNodeNextTo(getString(Res.string.notification_action_3_title)).performScrollTo().performClick()
                 waitForIdle()
                 onNodeWithText(getString(Res.string.notification_actions_at_most_three)).assertIsDisplayed()
                 assertNull(toggledSlot)
@@ -55,7 +53,7 @@ class PlayerNotificationSettingsScreenTest {
             modules = listOf(settingsModule()),
             content = { PlayerNotificationSettingsScreenContent(onCompactSlotToggle = { slot -> toggledSlot = slot }) },
             onContent = {
-                compactCheckbox(getString(Res.string.notification_action_0_title)).performScrollTo().performClick()
+                onToggleableNodeNextTo(getString(Res.string.notification_action_0_title)).performScrollTo().performClick()
                 assertEquals(0, toggledSlot)
             }
         )
@@ -89,6 +87,4 @@ class PlayerNotificationSettingsScreenTest {
             }
         )
     }
-
-    private fun SemanticsNodeInteractionsProvider.compactCheckbox(slotTitle: String) = onNode(isToggleable() and hasAnySibling(hasText(slotTitle)))
 }

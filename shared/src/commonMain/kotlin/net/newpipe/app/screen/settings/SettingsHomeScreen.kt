@@ -50,7 +50,6 @@ fun SettingsHomeScreen(
                 title = type.title,
                 icon = type.icon,
                 onClick = { navigator.navigateTo(type.destination) }
-
             )
         },
         onNavigateUp = { navigator.navigateUp() }

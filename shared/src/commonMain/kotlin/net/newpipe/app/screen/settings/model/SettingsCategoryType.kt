@@ -32,37 +32,48 @@ enum class SettingsCategoryType(
     val destination: Destination
 ) {
     VIDEO_AUDIO(
-        Res.string.settings_category_video_audio_title,
-        Res.drawable.ic_headset,
-        Destination.VideoAudioSettings
+        title = Res.string.settings_category_video_audio_title,
+        icon = Res.drawable.ic_headset,
+        destination = Destination.VideoAudioSettings
     ),
     DOWNLOADS(
-        Res.string.settings_category_downloads_title,
-        Res.drawable.ic_file_download,
-        Destination.DownloadSettings
+        title = Res.string.settings_category_downloads_title,
+        icon = Res.drawable.ic_file_download,
+        destination = Destination.DownloadSettings
     ),
     APPEARANCE(
-        Res.string.settings_category_appearance_title,
-        Res.drawable.ic_palette,
-        Destination.AppearanceSettings
+        title = Res.string.settings_category_appearance_title,
+        icon = Res.drawable.ic_palette,
+        destination = Destination.AppearanceSettings
     ),
     HISTORY(
-        Res.string.settings_category_history_title,
-        Res.drawable.ic_history,
-        Destination.HistorySettings
+        title = Res.string.settings_category_history_title,
+        icon = Res.drawable.ic_history,
+        destination = Destination.HistorySettings
     ),
-    CONTENT(Res.string.content, Res.drawable.ic_language, Destination.ContentSettings),
-    NOTIFICATIONS(Res.string.notifications, Res.drawable.ic_notifications, Destination.NotificationSettings),
+    CONTENT(
+        title = Res.string.content,
+        icon = Res.drawable.ic_language,
+        destination = Destination.ContentSettings
+    ),
+    NOTIFICATIONS(
+        title = Res.string.notifications,
+        icon = Res.drawable.ic_notifications,
+        destination = Destination.NotificationSettings
+    ),
     UPDATES(
-        Res.string.settings_category_updates_title,
-        Res.drawable.ic_cloud_download,
-        Destination.UpdateSettings
+        title = Res.string.settings_category_updates_title,
+        icon = Res.drawable.ic_cloud_download,
+        destination = Destination.UpdateSettings
     ),
-
-//    BACKUP_RESTORE(
-//        Res.string.settings_category_backup_restore_title,
-//        Res.drawable.ic_settings_backup_restore,
-//        Destination.BackupRestoreSettings
-//    ),
-    DEBUG(Res.string.settings_category_debug_title, Res.drawable.ic_bug_report, Destination.DebugSettings)
+    BACKUP_RESTORE(
+        title = Res.string.settings_category_backup_restore_title,
+        icon = Res.drawable.ic_settings_backup_restore,
+        destination = Destination.BackupRestoreSettings
+    ),
+    DEBUG(
+        title = Res.string.settings_category_debug_title,
+        icon = Res.drawable.ic_bug_report,
+        destination = Destination.DebugSettings
+    )
 }

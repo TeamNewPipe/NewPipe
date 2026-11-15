@@ -40,28 +40,7 @@ import net.newpipe.app.model.NotificationAction
 import net.newpipe.app.preview.ThemePreviewProvider
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.cancel
-import newpipe.shared.generated.resources.close
-import newpipe.shared.generated.resources.ic_close
-import newpipe.shared.generated.resources.ic_fast_forward
-import newpipe.shared.generated.resources.ic_fast_rewind
-import newpipe.shared.generated.resources.ic_hourglass_top
-import newpipe.shared.generated.resources.ic_next
-import newpipe.shared.generated.resources.ic_pause
-import newpipe.shared.generated.resources.ic_previous
-import newpipe.shared.generated.resources.ic_repeat
-import newpipe.shared.generated.resources.ic_shuffle
-import newpipe.shared.generated.resources.notification_action_buffering
-import newpipe.shared.generated.resources.notification_action_fast_forward
-import newpipe.shared.generated.resources.notification_action_next
-import newpipe.shared.generated.resources.notification_action_nothing
-import newpipe.shared.generated.resources.notification_action_pause
-import newpipe.shared.generated.resources.notification_action_play
-import newpipe.shared.generated.resources.notification_action_previous
-import newpipe.shared.generated.resources.notification_action_repeat
-import newpipe.shared.generated.resources.notification_action_rewind
-import newpipe.shared.generated.resources.notification_action_shuffle
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
+import newpipe.shared.generated.resources.notification_action_0_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -167,66 +146,12 @@ private fun NotificationAction.title(): String = labels
     .map { label -> stringResource(label) }
     .joinToString(separator = LABEL_SEPARATOR)
 
-private val NotificationAction.labels: List<StringResource>
-    get() = when (this) {
-        NotificationAction.NOTHING -> listOf(Res.string.notification_action_nothing)
-
-        NotificationAction.PREVIOUS -> listOf(Res.string.notification_action_previous)
-
-        NotificationAction.NEXT -> listOf(Res.string.notification_action_next)
-
-        NotificationAction.REWIND -> listOf(Res.string.notification_action_rewind)
-
-        NotificationAction.FORWARD -> listOf(Res.string.notification_action_fast_forward)
-
-        NotificationAction.SMART_REWIND_PREVIOUS -> listOf(
-            Res.string.notification_action_rewind,
-            Res.string.notification_action_previous
-        )
-
-        NotificationAction.SMART_FORWARD_NEXT -> listOf(
-            Res.string.notification_action_fast_forward,
-            Res.string.notification_action_next
-        )
-
-        NotificationAction.PLAY_PAUSE -> listOf(
-            Res.string.notification_action_play,
-            Res.string.notification_action_pause
-        )
-
-        NotificationAction.PLAY_PAUSE_BUFFERING -> listOf(
-            Res.string.notification_action_play,
-            Res.string.notification_action_pause,
-            Res.string.notification_action_buffering
-        )
-
-        NotificationAction.REPEAT -> listOf(Res.string.notification_action_repeat)
-
-        NotificationAction.SHUFFLE -> listOf(Res.string.notification_action_shuffle)
-
-        NotificationAction.CLOSE -> listOf(Res.string.close)
-    }
-
-private val NotificationAction.icon: DrawableResource?
-    get() = when (this) {
-        NotificationAction.NOTHING -> null
-        NotificationAction.PREVIOUS, NotificationAction.SMART_REWIND_PREVIOUS -> Res.drawable.ic_previous
-        NotificationAction.NEXT, NotificationAction.SMART_FORWARD_NEXT -> Res.drawable.ic_next
-        NotificationAction.REWIND -> Res.drawable.ic_fast_rewind
-        NotificationAction.FORWARD -> Res.drawable.ic_fast_forward
-        NotificationAction.PLAY_PAUSE -> Res.drawable.ic_pause
-        NotificationAction.PLAY_PAUSE_BUFFERING -> Res.drawable.ic_hourglass_top
-        NotificationAction.REPEAT -> Res.drawable.ic_repeat
-        NotificationAction.SHUFFLE -> Res.drawable.ic_shuffle
-        NotificationAction.CLOSE -> Res.drawable.ic_close
-    }
-
 @PreviewWrapper(ThemePreviewProvider::class)
 @PreviewLightDark
 @Composable
 private fun NotificationActionSlotPreview() {
     NotificationActionSlot(
-        title = "First action button",
+        title = stringResource(Res.string.notification_action_0_title),
         action = NotificationAction.SMART_REWIND_PREVIOUS,
         onActionChange = {},
         compact = true
