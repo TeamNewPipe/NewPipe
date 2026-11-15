@@ -41,6 +41,7 @@ import net.newpipe.app.preview.ThemePreviewProvider
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.cancel
 import newpipe.shared.generated.resources.notification_action_0_title
+import newpipe.shared.generated.resources.notification_action_3_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -149,11 +150,23 @@ private fun NotificationAction.title(): String = labels
 @PreviewWrapper(ThemePreviewProvider::class)
 @PreviewLightDark
 @Composable
-private fun NotificationActionSlotPreview() {
+private fun NotificationActionSlotPreviewWithMultipleLabels() {
     NotificationActionSlot(
         title = stringResource(Res.string.notification_action_0_title),
         action = NotificationAction.SMART_REWIND_PREVIOUS,
         onActionChange = {},
         compact = true
+    )
+}
+
+@PreviewWrapper(ThemePreviewProvider::class)
+@PreviewLightDark
+@Composable
+private fun NotificationActionSlotPreviewWithSingleLabel() {
+    NotificationActionSlot(
+        title = stringResource(Res.string.notification_action_3_title),
+        action = NotificationAction.REPEAT,
+        onActionChange = {},
+        compact = false
     )
 }
