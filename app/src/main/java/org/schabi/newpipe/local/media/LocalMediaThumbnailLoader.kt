@@ -24,9 +24,11 @@ import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
+import org.schabi.newpipe.util.DevicePerformance
 import org.schabi.newpipe.util.image.ImageStrategy
 
 /** Loads thumbnails plus embedded or fallback artwork from device-local media. */
@@ -34,21 +36,25 @@ object LocalMediaThumbnailLoader {
     private const val THUMBNAIL_WIDTH = 512
     private const val THUMBNAIL_HEIGHT = 288
     private const val ARTWORK_MAX_DIMENSION = 512
-    private const val CACHE_SIZE_BYTES = 16 * 1024 * 1024
     private const val MAXIMUM_PENDING_THUMBNAILS = 64
 
-    private val thumbnailExecutor = ThreadPoolExecutor(
-        2,
-        2,
-        0L,
-        TimeUnit.MILLISECONDS,
-        ArrayBlockingQueue(MAXIMUM_PENDING_THUMBNAILS),
-        ThreadPoolExecutor.DiscardOldestPolicy()
-    )
+    private val thumbnailExecutor by lazy {
+        val threads = DevicePerformance.localThumbnailLoaderThreads(App.instance)
+        ThreadPoolExecutor(
+            threads,
+            threads,
+            0L,
+            TimeUnit.MILLISECONDS,
+            ArrayBlockingQueue(MAXIMUM_PENDING_THUMBNAILS),
+            ThreadPoolExecutor.DiscardOldestPolicy()
+        )
+    }
     private val playerExecutor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
-    private val cache = object : LruCache<String, Bitmap>(CACHE_SIZE_BYTES) {
-        override fun sizeOf(key: String, value: Bitmap): Int = value.allocationByteCount
+    private val cache by lazy {
+        object : LruCache<String, Bitmap>(DevicePerformance.localThumbnailCacheBytes(App.instance)) {
+            override fun sizeOf(key: String, value: Bitmap): Int = value.allocationByteCount
+        }
     }
 
     @Volatile
