@@ -22,6 +22,7 @@ import org.schabi.newpipe.extractor.bulletComments.BulletCommentsExtractor
 import org.schabi.newpipe.extractor.bulletComments.BulletCommentsInfoItem
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.player.helper.PlayerHolder
 
 /** One connection shared by the visible chat tab and fullscreen panel. */
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -34,7 +35,8 @@ object LiveChatRepository {
     private val feeds = linkedMapOf<String, Feed>()
 
     @JvmStatic
-    fun supports(info: StreamInfo): Boolean = info.serviceId == ServiceList.YouTube.serviceId && info.streamType == StreamType.LIVE_STREAM
+    fun supports(info: StreamInfo): Boolean = info.serviceId == ServiceList.YouTube.serviceId &&
+        info.streamType in setOf(StreamType.LIVE_STREAM, StreamType.POST_LIVE_STREAM)
 
     @Synchronized
     fun messages(serviceId: Int, url: String): SharedFlow<Result<List<BulletCommentsInfoItem>>> {
@@ -47,7 +49,9 @@ object LiveChatRepository {
                 scope,
                 retries,
                 retries.flatMapLatest {
-                    observe { NewPipe.getService(serviceId).getBulletCommentsExtractor(url) }
+                    observe({ currentPlaybackPosition(url) }) {
+                        NewPipe.getService(serviceId).getBulletCommentsExtractor(url)
+                    }
                 }.shareIn(scope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 0), replay = 0)
             )
         }.messages
@@ -58,13 +62,17 @@ object LiveChatRepository {
         feeds["$serviceId|$url"]?.retries?.let { it.value += 1 }
     }
 
-    internal fun observe(factory: () -> BulletCommentsExtractor): Flow<Result<List<BulletCommentsInfoItem>>> = flow {
+    internal fun observe(
+        positionProvider: () -> Long? = { null },
+        factory: () -> BulletCommentsExtractor
+    ): Flow<Result<List<BulletCommentsInfoItem>>> = flow {
         val extractor = factory()
         try {
             extractor.fetchPage()
             if (extractor.isDisabled) error("Live chat unavailable")
             extractor.initialPage
             while (currentCoroutineContext().isActive) {
+                positionProvider()?.let(extractor::setCurrentPlayPosition)
                 emit(Result.success(extractor.liveMessages.orEmpty()))
                 delay(1000)
             }
@@ -72,4 +80,11 @@ object LiveChatRepository {
             extractor.disconnect()
         }
     }.catch { emit(Result.failure(it)) }
+
+    private fun currentPlaybackPosition(url: String): Long? {
+        val player = PlayerHolder.getInstance().player.orElse(null) ?: return null
+        val currentUrl = player.currentStreamInfo.map(StreamInfo::getUrl).orElse(null)
+        if (currentUrl != url || player.exoPlayerIsNull()) return null
+        return player.exoPlayer.currentPosition.coerceAtLeast(0L)
+    }
 }
