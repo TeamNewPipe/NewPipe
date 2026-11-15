@@ -112,6 +112,19 @@ class ProgressiveFeedRefreshTest {
     }
 
     @Test
+    fun manualRefreshPersistsChannelsWithoutRetainingCompletedResults() {
+        val source = PublishProcessor.create<Notification<FeedUpdateInfo>>()
+        val result = manager.storeResults(source, retainResults = false).test()
+
+        source.onNext(Notification.createOnNext(update(0, "first", 2)))
+        source.onNext(Notification.createOnNext(update(1, "second", 1)))
+        assertEquals(listOf("second", "first"), titles())
+
+        source.onComplete()
+        result.assertComplete().assertNoErrors().assertValue(emptyList())
+    }
+
+    @Test
     fun unsubscribingDuringFetchDoesNotAbortOtherChannelCommits() {
         val source = PublishProcessor.create<Notification<FeedUpdateInfo>>()
         val result = manager.storeResults(source).test()

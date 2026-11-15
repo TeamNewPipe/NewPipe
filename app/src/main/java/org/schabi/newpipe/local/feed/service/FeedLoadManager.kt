@@ -156,22 +156,38 @@ class FeedLoadManager @JvmOverloads constructor(
                     )
                 )
             }
-            .let(::storeResults)
+            // Manual UI refreshes consume progress events and database updates, not this result
+            // list. Workers requesting specific subscriptions still need the returned streams.
+            .let { storeResults(it, retainResults = onlySubscriptions != null || scope == null) }
     }
 
     /** Serialized persistence shared by manual and scheduled refreshes. */
-    internal fun storeResults(results: Flowable<Notification<FeedUpdateInfo>>): Single<List<Notification<FeedUpdateInfo>>> = results
-        .filter { !cancelSignal.get() }
-        .observeOn(Schedulers.io())
-        // Persist each completed channel before announcing progress. Slow or failed
-        // channels must not hold back content already retrieved from other channels.
-        .doOnNext(DatabaseConsumer())
-        .doOnNext(NotificationConsumer())
-        .subscribeOn(Schedulers.io())
-        .toList()
-        .flatMap { results -> postProcessFeed().toSingleDefault(results) }
-        .doOnError { cancel() }
-        .doOnDispose(::cancel)
+    internal fun storeResults(
+        results: Flowable<Notification<FeedUpdateInfo>>,
+        retainResults: Boolean = true
+    ): Single<List<Notification<FeedUpdateInfo>>> {
+        val persistedResults = results
+            .filter { !cancelSignal.get() }
+            .observeOn(Schedulers.io())
+            // Persist each completed channel before announcing progress. Slow or failed
+            // channels must not hold back content already retrieved from other channels.
+            .doOnNext(DatabaseConsumer())
+            .doOnNext(NotificationConsumer())
+            .subscribeOn(Schedulers.io())
+
+        val completion = if (retainResults) {
+            persistedResults.toList()
+        } else {
+            // A manual refresh only needs completion. Do not retain every channel result and its
+            // stream list for the entire refresh, especially on low-memory Android TV devices.
+            persistedResults.ignoreElements().andThen(Single.just(emptyList()))
+        }
+
+        return completion
+            .flatMap { results -> postProcessFeed().toSingleDefault(results) }
+            .doOnError { cancel() }
+            .doOnDispose(::cancel)
+    }
 
     fun cancel() {
         synchronized(cancelSignal) {
