@@ -8,6 +8,7 @@ if (!defined('WIZE_DOWNLOADS_ENTRY')) {
 }
 
 const WIZE_BADGE_CACHE_SECONDS = 21600;
+const WIZE_DYNAMIC_BADGE_CACHE_SECONDS = 300;
 const WIZE_PACKAGE_NAME = 'org.wisso.newpipematerial';
 const WIZE_IZZY_YEARLY_BASE = 'https://dlstats.izzyondroid.org/iod-stats-collector/stats/basic/yearly/';
 const WIZE_GITHUB_API_BASE = 'https://api.github.com/repos/';
@@ -320,23 +321,31 @@ function wize_json_headers(string $cacheControl = 'public, max-age=300'): void
     header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'; sandbox");
 }
 
-function wize_send_badge(string $label, int $value, string $color): never
-{
-    wize_json_headers();
+function wize_send_badge(
+    string $label,
+    int $value,
+    string $color,
+    int $cacheSeconds = WIZE_BADGE_CACHE_SECONDS
+): never {
+    wize_json_headers('public, max-age=' . $cacheSeconds);
     echo json_encode([
         'schemaVersion' => 1,
         'label' => $label,
         'message' => number_format($value),
         'color' => $color,
-        'cacheSeconds' => WIZE_BADGE_CACHE_SECONDS,
+        'cacheSeconds' => $cacheSeconds,
     ], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
     exit;
 }
 
-function wize_badge(callable $value, string $label, string $color): never
-{
+function wize_badge(
+    callable $value,
+    string $label,
+    string $color,
+    int $cacheSeconds = WIZE_BADGE_CACHE_SECONDS
+): never {
     try {
-        wize_send_badge($label, $value(), $color);
+        wize_send_badge($label, $value(), $color, $cacheSeconds);
     } catch (Throwable) {
         wize_json_headers('no-store');
         echo json_encode([
