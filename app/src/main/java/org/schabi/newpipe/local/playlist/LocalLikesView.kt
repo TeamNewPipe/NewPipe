@@ -8,6 +8,7 @@ package org.schabi.newpipe.local.playlist
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -36,6 +37,9 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
     private val tasks = CompositeDisposable()
     private val like = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
     private val library = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
+    private val buttonSpacing = (8 * resources.displayMetrics.density).toInt()
+    private val buttonHorizontalPadding = (12 * resources.displayMetrics.density).toInt()
+    private val minimumTouchHeight = (48 * resources.displayMetrics.density).toInt()
     private var info: StreamInfo? = null
     private var generation = 0
     private var profileId = ""
@@ -49,14 +53,29 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     init {
         orientation = HORIZONTAL
-        val padding = (12 * resources.displayMetrics.density).toInt()
-        setPadding(padding, 0, padding, 0)
+        gravity = Gravity.START
+        val density = resources.displayMetrics.density
+        val outerPadding = (12 * density).toInt()
+        setPadding(outerPadding, 0, outerPadding, 0)
         like.isCheckable = true
         like.setIconResource(R.drawable.ic_thumb_up)
         library.setIconResource(R.drawable.ic_playlist_play)
         library.setText(R.string.local_liked_videos)
-        addView(like, LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f))
-        addView(library, LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f))
+        listOf(like, library).forEach { button ->
+            button.minimumWidth = 0
+            button.minWidth = 0
+            button.minimumHeight = minimumTouchHeight
+            button.minHeight = minimumTouchHeight
+            button.setPaddingRelative(
+                buttonHorizontalPadding,
+                0,
+                buttonHorizontalPadding,
+                0
+            )
+            button.iconPadding = (6 * density).toInt()
+        }
+        addView(like, compactLayoutParams(vertical = false, isLast = false))
+        addView(library, compactLayoutParams(vertical = false, isLast = true))
         like.setOnClickListener { save() }
         like.setOnLongClickListener {
             message(R.string.local_like_explanation)
@@ -64,6 +83,19 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         }
         library.setOnClickListener { openLibrary() }
         visibility = GONE
+    }
+
+    private fun compactLayoutParams(
+        vertical: Boolean,
+        isLast: Boolean
+    ): LayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+        if (!isLast) {
+            if (vertical) {
+                bottomMargin = buttonSpacing
+            } else {
+                marginEnd = buttonSpacing
+            }
+        }
     }
 
     fun bind(streamInfo: StreamInfo?) {
@@ -87,15 +119,21 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        val direction = if (w / resources.displayMetrics.density < 360 || resources.configuration.fontScale > 1.3f) VERTICAL else HORIZONTAL
+        val direction = if (
+            w / resources.displayMetrics.density < 360 ||
+            resources.configuration.fontScale > 1.3f
+        ) {
+            VERTICAL
+        } else {
+            HORIZONTAL
+        }
         if (orientation != direction) {
             orientation = direction
-            for (button in listOf(like, library)) {
-                button.layoutParams = if (direction == VERTICAL) {
-                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-                } else {
-                    LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
-                }
+            listOf(like, library).forEachIndexed { index, button ->
+                button.layoutParams = compactLayoutParams(
+                    vertical = direction == VERTICAL,
+                    isLast = index == 1
+                )
             }
         }
     }

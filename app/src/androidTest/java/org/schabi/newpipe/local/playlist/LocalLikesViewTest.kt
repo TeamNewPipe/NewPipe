@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -43,6 +44,33 @@ class LocalLikesViewTest {
         if (id != null) database.playlistDAO().deletePlaylistForProfile(profileId, id)
         preferences.edit().remove(LikedVideosStore.preferenceKey(profileId)).commit()
         NewPipeDatabase.close()
+    }
+
+    @Test
+    fun buttonsStayCompactWhileKeepingAccessibleTouchHeight() {
+        ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                val controls = LocalLikesView(activity)
+                val like = controls.getChildAt(0) as MaterialButton
+                val library = controls.getChildAt(1) as MaterialButton
+                val density = activity.resources.displayMetrics.density
+
+                controls.layout(0, 0, (420 * density).toInt(), (64 * density).toInt())
+
+                assertEquals(LinearLayout.HORIZONTAL, controls.orientation)
+                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, like.layoutParams.width)
+                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, library.layoutParams.width)
+                assertTrue(like.minimumHeight >= (48 * density).toInt())
+                assertTrue(library.minimumHeight >= (48 * density).toInt())
+                assertTrue((like.layoutParams as LinearLayout.LayoutParams).marginEnd > 0)
+
+                controls.layout(0, 0, (320 * density).toInt(), (128 * density).toInt())
+
+                assertEquals(LinearLayout.VERTICAL, controls.orientation)
+                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, like.layoutParams.width)
+                assertTrue((like.layoutParams as LinearLayout.LayoutParams).bottomMargin > 0)
+            }
+        }
     }
 
     @Test
