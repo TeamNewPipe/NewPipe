@@ -22,6 +22,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.profiles.KidsMode;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -590,6 +592,17 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
                             LocalRecommendations.exclude(requireContext(), selected);
                             reloadContent();
                         }));
+                if (showRecommendationReason()) {
+                    builder.addEntry(new StreamDialogEntry(
+                            R.string.local_recommendations_why,
+                            (fragment, selected) -> new MaterialAlertDialogBuilder(
+                                    requireContext())
+                                    .setTitle(R.string.local_recommendations_why)
+                                    .setMessage(LocalRecommendations.explanation(
+                                            requireContext(), selected))
+                                    .setPositiveButton(R.string.ok, null)
+                                    .show()));
+                }
             }
             builder.addEntry(new StreamDialogEntry(R.string.stream_select,
                             (fragment, selected) -> streamSelection.start(selected)))
@@ -597,6 +610,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I>
         } catch (final IllegalArgumentException e) {
             InfoItemDialog.Builder.reportErrorDuringInitialization(e, item);
         }
+    }
+
+    protected boolean showRecommendationReason() {
+        return false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

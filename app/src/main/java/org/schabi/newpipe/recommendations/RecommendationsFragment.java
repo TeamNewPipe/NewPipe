@@ -30,6 +30,11 @@ public class RecommendationsFragment extends BaseListFragment<List<StreamInfoIte
     }
 
     @Override
+    protected boolean showRecommendationReason() {
+        return true;
+    }
+
+    @Override
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable final ViewGroup container,
                              @Nullable final Bundle savedInstanceState) {

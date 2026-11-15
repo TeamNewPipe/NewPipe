@@ -182,6 +182,54 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun likesAreBoundedAndChannelAffinityImprovesRelatedRecommendations() {
+        enable()
+        val preferred = item("another astronomy video").apply {
+            uploaderName = "Preferred channel"
+            uploaderUrl = "https://example.org/channel/preferred-channel"
+        }
+        val other = item("another astronomy topic").apply {
+            uploaderName = "Other channel"
+            uploaderUrl = "https://example.org/channel/other"
+        }
+        LocalRecommendations.observe(context, listOf(other, preferred))
+        LocalRecommendations.watched(
+            context,
+            info("watched astronomy", "Preferred channel", 50_000, 1_000_000),
+            45
+        )
+
+        assertEquals(preferred, LocalRecommendations.rank(context, listOf(other, preferred)).first())
+        assertTrue(LocalRecommendations.qualityBoost(50_000, 1_000_000) > 0.0)
+        assertTrue(LocalRecommendations.qualityBoost(Long.MAX_VALUE, 1) <= 0.60)
+        assertEquals(0.0, LocalRecommendations.qualityBoost(-1, 1_000), 0.0)
+        assertTrue(LocalRecommendations.explanation(context, preferred).contains("Preferred channel"))
+        assertTrue(LocalRecommendations.tasteSummary(context).channels.contains("Preferred channel"))
+    }
+
+    @Test
+    fun explicitLocalLikesAreStrongAndReversible() {
+        enable()
+        val other = item("unrelated topic").apply {
+            uploaderName = "Other channel"
+            uploaderUrl = "https://example.org/channel/other"
+        }
+        val liked = item("gardening basics").apply {
+            uploaderName = "Garden channel"
+            uploaderUrl = "https://example.org/channel/garden-channel"
+        }
+        LocalRecommendations.observe(context, listOf(other, liked))
+        val likedInfo = info("gardening basics", "Garden channel")
+
+        LocalRecommendations.liked(context, likedInfo, true)
+        assertEquals(liked, LocalRecommendations.rank(context, listOf(other, liked)).first())
+        assertTrue(LocalRecommendations.tasteSummary(context).interests.contains("gardening"))
+
+        LocalRecommendations.liked(context, likedInfo, false)
+        assertEquals(other, LocalRecommendations.rank(context, listOf(other, liked)).first())
+    }
+
+    @Test
     fun syncingHomeTabsPreservesLocalForYouPosition() {
         val local = listOf(Tab.Type.RECOMMENDATIONS.tab, Tab.Type.FEED.tab)
         val synced = listOf(Tab.Type.SUBSCRIPTIONS.tab, Tab.Type.HISTORY.tab)
@@ -196,11 +244,19 @@ class LocalRecommendationsTest {
         assertEquals(Tab.RecommendationsTab.ID, tab.tabId)
     }
 
-    private fun info(name: String): StreamInfo = mock(StreamInfo::class.java).also {
+    private fun info(
+        name: String,
+        channel: String = "Channel",
+        likes: Long = -1,
+        views: Long = -1
+    ): StreamInfo = mock(StreamInfo::class.java).also {
         `when`(it.serviceId).thenReturn(0)
         `when`(it.url).thenReturn("https://example.org/$name")
         `when`(it.name).thenReturn(name)
-        `when`(it.uploaderName).thenReturn("Channel")
+        `when`(it.uploaderName).thenReturn(channel)
+        `when`(it.uploaderUrl).thenReturn("https://example.org/channel/${channel.lowercase().replace(' ', '-')}")
+        `when`(it.likeCount).thenReturn(likes)
+        `when`(it.viewCount).thenReturn(views)
         `when`(it.streamType).thenReturn(StreamType.VIDEO_STREAM)
     }
 }
