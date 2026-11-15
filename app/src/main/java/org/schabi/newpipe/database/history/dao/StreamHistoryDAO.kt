@@ -154,6 +154,7 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
             SELECT stream_id AS stream_id_alias, progress_time FROM stream_state
         )
         ON uid = stream_id_alias
+        ORDER BY latestAccess DESC
         """
     )
     abstract fun getStatistics(): Flowable<MutableList<StreamStatisticsEntry>>
@@ -175,6 +176,7 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
             WHERE profile_id = :profileId
         )
         ON uid = stream_id_alias
+        ORDER BY latestAccess DESC
         """
     )
     abstract fun getStatisticsForProfile(

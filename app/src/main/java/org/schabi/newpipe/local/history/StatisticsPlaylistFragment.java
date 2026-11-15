@@ -90,7 +90,6 @@ public class StatisticsPlaylistFragment
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
     private List<StreamStatisticsEntry> completeHistory = Collections.emptyList();
     private List<StreamStatisticsEntry> displayedHistory = Collections.emptyList();
-    private List<LocalDate> displayedHistoryDates = Collections.emptyList();
     private String contextualSearchQuery = "";
     private boolean dateFastScrollEnabled;
     @State
@@ -115,6 +114,11 @@ public class StatisticsPlaylistFragment
             @NonNull final String contextualSearchQuery,
             @NonNull final StatisticSortMode sortMode) {
         final String normalizedQuery = contextualSearchQuery.toLowerCase(Locale.ROOT);
+        final boolean hasFilters = !selectedStreamFilters.isEmpty()
+                || !normalizedQuery.isEmpty();
+        if (!hasFilters && sortMode == StatisticSortMode.LAST_PLAYED) {
+            return new HistoryViewData(completeHistory);
+        }
         final List<StreamStatisticsEntry> filteredHistory = new ArrayList<>();
         final StreamFilterSelection selection = StreamFilterSelection.parse(selectedStreamFilters);
         for (final StreamStatisticsEntry item : completeHistory) {
@@ -135,19 +139,13 @@ public class StatisticsPlaylistFragment
             filteredHistory.add(item);
         }
 
-        final Comparator<StreamStatisticsEntry> comparator;
-        if (sortMode == StatisticSortMode.LAST_PLAYED) {
-            comparator = Comparator.comparing(StreamStatisticsEntry::getLatestAccessDate);
-        } else {
-            comparator = Comparator.comparingLong(StreamStatisticsEntry::getWatchCount);
+        if (sortMode == StatisticSortMode.MOST_PLAYED) {
+            filteredHistory.sort(Comparator
+                    .comparingLong(StreamStatisticsEntry::getWatchCount)
+                    .reversed());
         }
-        filteredHistory.sort(comparator.reversed());
 
-        final List<LocalDate> dates = new ArrayList<>(filteredHistory.size());
-        for (final StreamStatisticsEntry entry : filteredHistory) {
-            dates.add(entry.getLatestAccessDate().toLocalDate());
-        }
-        return new HistoryViewData(filteredHistory, dates);
+        return new HistoryViewData(filteredHistory);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -347,7 +345,6 @@ public class StatisticsPlaylistFragment
         headerBinding = null;
         playlistControlBinding = null;
         displayedHistory = Collections.emptyList();
-        displayedHistoryDates = Collections.emptyList();
         dateFastScrollEnabled = false;
 
         if (databaseSubscription != null) {
@@ -403,7 +400,7 @@ public class StatisticsPlaylistFragment
     @Override
     public void handleResult(@NonNull final List<StreamStatisticsEntry> result) {
         super.handleResult(result);
-        completeHistory = new ArrayList<>(result);
+        completeHistory = result;
         showFilteredHistory();
     }
 
@@ -420,8 +417,7 @@ public class StatisticsPlaylistFragment
             historyProcessingDisposable.dispose();
         }
 
-        final List<StreamStatisticsEntry> historySnapshot =
-                new ArrayList<>(completeHistory);
+        final List<StreamStatisticsEntry> historySnapshot = completeHistory;
         final String filterSnapshot = selectedStreamFilters;
         final String querySnapshot = contextualSearchQuery;
         final StatisticSortMode sortModeSnapshot = sortMode;
@@ -442,7 +438,6 @@ public class StatisticsPlaylistFragment
 
         itemListAdapter.clearStreamItemList();
         displayedHistory = historyViewData.entries;
-        displayedHistoryDates = historyViewData.dates;
 
         if (displayedHistory.isEmpty()) {
             updateDateNavigation();
@@ -639,26 +634,26 @@ public class StatisticsPlaylistFragment
     }
 
     private String getFastScrollLabel(final int itemIndex) {
-        if (itemIndex < 0 || itemIndex >= displayedHistoryDates.size()) {
+        if (itemIndex < 0 || itemIndex >= displayedHistory.size()) {
             return "";
         }
         return HistoryDateNavigator.formatLabel(
-                displayedHistoryDates.get(itemIndex),
+                historyDateAt(itemIndex),
                 org.schabi.newpipe.util.Localization.getPreferredLocale(requireContext()));
     }
 
     private void showDatePicker() {
-        if (sortMode != StatisticSortMode.LAST_PLAYED || displayedHistoryDates.isEmpty()
+        if (sortMode != StatisticSortMode.LAST_PLAYED || displayedHistory.isEmpty()
                 || getParentFragmentManager().findFragmentByTag(DATE_PICKER_TAG) != null) {
             return;
         }
 
-        final LocalDate newestDate = displayedHistoryDates.get(0);
-        final LocalDate oldestDate = displayedHistoryDates.get(displayedHistoryDates.size() - 1);
+        final LocalDate newestDate = historyDateAt(0);
+        final LocalDate oldestDate = historyDateAt(displayedHistory.size() - 1);
         final long newestMillis = toUtcMillis(newestDate);
         final long oldestMillis = toUtcMillis(oldestDate);
         final int visibleIndex = getVisibleHistoryIndex();
-        final long selectedMillis = toUtcMillis(displayedHistoryDates.get(visibleIndex));
+        final long selectedMillis = toUtcMillis(historyDateAt(visibleIndex));
 
         final CalendarConstraints constraints = new CalendarConstraints.Builder()
                 .setStart(oldestMillis)
@@ -693,7 +688,7 @@ public class StatisticsPlaylistFragment
 
     private void jumpToDate(@NonNull final LocalDate selectedDate) {
         final int itemIndex = HistoryDateNavigator.findClosestIndex(
-                displayedHistoryDates, selectedDate);
+                displayedHistory.size(), this::historyDateAt, selectedDate);
         if (itemIndex >= 0) {
             scrollToHistoryPosition(itemIndex);
         }
@@ -701,6 +696,11 @@ public class StatisticsPlaylistFragment
 
     private static long toUtcMillis(@NonNull final LocalDate date) {
         return date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+    }
+
+    @NonNull
+    private LocalDate historyDateAt(final int index) {
+        return displayedHistory.get(index).getLatestAccessDate().toLocalDate();
     }
 
     @NonNull
@@ -813,12 +813,9 @@ public class StatisticsPlaylistFragment
 
     private static final class HistoryViewData {
         private final List<StreamStatisticsEntry> entries;
-        private final List<LocalDate> dates;
 
-        private HistoryViewData(@NonNull final List<StreamStatisticsEntry> entries,
-                                @NonNull final List<LocalDate> dates) {
+        private HistoryViewData(@NonNull final List<StreamStatisticsEntry> entries) {
             this.entries = entries;
-            this.dates = dates;
         }
     }
 

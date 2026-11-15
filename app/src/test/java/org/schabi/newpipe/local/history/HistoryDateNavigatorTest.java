@@ -47,4 +47,11 @@ public class HistoryDateNavigatorTest {
         assertEquals(7_654, HistoryDateNavigator.findClosestIndex(
                 largeHistory, newest.minusDays(7_654)));
     }
+
+    @Test
+    public void findsDateThroughLazyAccessor() {
+        final LocalDate newest = LocalDate.of(2026, 11, 15);
+        assertEquals(10, HistoryDateNavigator.findClosestIndex(
+                100, index -> newest.minusDays(index), newest.minusDays(10)));
+    }
 }
