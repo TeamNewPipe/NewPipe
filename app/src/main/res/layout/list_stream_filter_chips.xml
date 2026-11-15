@@ -6,8 +6,13 @@
     android:background="?attr/colorSurface"
     android:orientation="vertical">
     <HorizontalScrollView
+        android:id="@+id/stream_filter_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:fadingEdgeLength="16dp"
+        android:paddingEnd="12dp"
+        android:requiresFadingEdge="horizontal"
         android:scrollbars="none">
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/stream_filter_chip_group"
@@ -54,8 +59,13 @@
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
     <HorizontalScrollView
+        android:id="@+id/watch_filter_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:fadingEdgeLength="16dp"
+        android:paddingEnd="12dp"
+        android:requiresFadingEdge="horizontal"
         android:scrollbars="none">
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/watch_filter_chip_group"
@@ -84,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:text="@string/feed_show_partially_watched" />
+                android:text="@string/filter_in_progress" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_watched"
                 style="@style/Widget.Material3.Chip.Filter"

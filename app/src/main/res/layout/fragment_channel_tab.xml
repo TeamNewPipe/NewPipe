@@ -12,14 +12,16 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorSurface"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingEnd="4dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/channel_video_sort_button"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:minWidth="0dp"
             android:text="@string/channel_video_sort_latest"
             app:icon="@drawable/ic_sort"

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util
 
 import android.view.View
+import android.widget.HorizontalScrollView
 import com.google.android.material.chip.ChipGroup
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.ListStreamFilterChipsBinding
@@ -27,6 +28,10 @@ object StreamFilterControls {
         }
         restore(content, R.id.filter_all, selection.contentFilters)
         restore(watch, R.id.filter_watch_all, selection.watchFilters)
+        if (showContentTypes) {
+            revealCheckedChip(content)
+        }
+        revealCheckedChip(watch)
 
         fun observe(group: ChipGroup, allId: Int) {
             var previous = group.checkedChipIds.toSet()
@@ -43,11 +48,30 @@ object StreamFilterControls {
                 }
                 previous = group.checkedChipIds.toSet()
                 updating = false
+                revealCheckedChip(group)
                 val filters = (if (showContentTypes) content.checkedChipIds else emptyList()) + watch.checkedChipIds
                 listener.onChanged(filters.map { StreamListFilter.fromChipId(it) }.filter { it != StreamListFilter.NONE }.joinToString(",") { it.name })
             }
         }
         observe(content, R.id.filter_all)
         observe(watch, R.id.filter_watch_all)
+    }
+
+    private fun revealCheckedChip(group: ChipGroup) {
+        val scrollView = group.parent as? HorizontalScrollView ?: return
+        val checkedId = group.checkedChipIds.lastOrNull() ?: return
+        val checkedChip = group.findViewById<View>(checkedId) ?: return
+        scrollView.post {
+            val viewportStart = scrollView.scrollX
+            val viewportEnd = viewportStart + scrollView.width
+            val chipStart = checkedChip.left
+            val chipEnd = checkedChip.right + group.paddingEnd
+            when {
+                chipStart < viewportStart -> scrollView.smoothScrollTo(chipStart, 0)
+
+                chipEnd > viewportEnd ->
+                    scrollView.smoothScrollTo((chipEnd - scrollView.width).coerceAtLeast(0), 0)
+            }
+        }
     }
 }

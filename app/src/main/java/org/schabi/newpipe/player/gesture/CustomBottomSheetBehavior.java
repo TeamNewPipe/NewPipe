@@ -419,6 +419,23 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
         if (super.getPeekHeight() != adjustedPeekHeight) {
             super.setPeekHeight(adjustedPeekHeight);
         }
+        // The fragment holder is already laid out inside the safe system-bar and
+        // bottom-navigation bounds. Only the player portion of the peek obscures its content.
+        updateMainContentBottomPadding(
+                bottomSheet, getState() == STATE_HIDDEN ? 0 : playerPeekHeight);
+    }
+
+    private static void updateMainContentBottomPadding(
+            @NonNull final View bottomSheet, final int bottomPadding) {
+        final View content = bottomSheet.getRootView().findViewById(R.id.fragment_holder);
+        if (content == null || content.getPaddingBottom() == bottomPadding) {
+            return;
+        }
+        content.setPadding(
+                content.getPaddingLeft(),
+                content.getPaddingTop(),
+                content.getPaddingRight(),
+                bottomPadding);
     }
 
     private void updateBottomNavigationAppearance(@NonNull final View bottomSheet,

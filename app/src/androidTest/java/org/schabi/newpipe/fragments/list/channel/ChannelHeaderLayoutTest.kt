@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.android.material.appbar.AppBarLayout
@@ -57,8 +58,14 @@ class ChannelHeaderLayoutTest {
 
         val metadataRow = root.findViewById<View>(R.id.channel_metadata_row)
         val avatar = root.findViewById<ImageView>(R.id.channel_avatar_view)
-        val title = root.findViewById<View>(R.id.channel_title_view)
+        val title = root.findViewById<TextView>(R.id.channel_title_view)
+        title.text = "Sabine Hossenfelder and the science of everything"
+        measureAndLayout(root, widthPixels, heightPixels)
+        assertEquals(2, title.maxLines)
+        assertTrue(title.lineCount in 1..2)
         val subscriberCount = root.findViewById<View>(R.id.channel_subscriber_view)
+        val subscriptionActions =
+            root.findViewById<View>(R.id.channel_subscription_actions)
         val subscribeButton = root.findViewById<View>(R.id.channel_subscribe_button)
 
         if (showBanner) {
@@ -78,8 +85,9 @@ class ChannelHeaderLayoutTest {
         assertTrue(appBar.height - appBar.totalScrollRange >= metadataRow.height)
         assertTrue(metadataRow.bottom <= appBar.height)
         assertEquals(ImageView.ScaleType.CENTER_CROP, avatar.scaleType)
+        assertTrue(subscriptionActions.right < metadataRow.width)
 
-        listOf(avatar, title, subscriberCount, subscribeButton).forEach {
+        listOf(avatar, title, subscriberCount, subscriptionActions, subscribeButton).forEach {
             assertVisibleAndMeasured(it)
             assertContainedIn(metadataRow, it)
         }

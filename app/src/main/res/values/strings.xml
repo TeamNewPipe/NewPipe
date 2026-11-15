@@ -1430,6 +1430,7 @@
     <string name="unknown_audio_track">Unknown</string>
     <string name="feed_show_watched">Fully watched</string>
     <string name="feed_show_partially_watched">Partially watched</string>
+    <string name="filter_in_progress">In progress</string>
     <string name="feed_show_upcoming">Upcoming</string>
     <string name="sort">Sort</string>
     <string name="channel_video_sort_latest">Latest</string>
