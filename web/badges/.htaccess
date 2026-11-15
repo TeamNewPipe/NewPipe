@@ -1,0 +1,5 @@
+Options -Indexes
+
+<Files "_common.php">
+    Require all denied
+</Files>

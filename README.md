@@ -22,6 +22,16 @@
   <a href="https://wizestream.org/reviews/"><img src="https://wizestream.org/reviews/badge.php" alt="Community reviews: average rating and review count"></a>
 </p>
 
+<p align="center">
+  <a href="https://dlstats.izzyondroid.org/#app-trends?app=org.wisso.newpipematerial&amp;clients=_total&amp;agg=daily"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwizestream.org%2Fbadges%2Fizzy-downloads.php" alt="IzzyOnDroid downloads"></a>
+  <a href="https://github.com/wizdom13/WizeStream/releases"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwizestream.org%2Fbadges%2Fgithub-downloads.php" alt="GitHub stable and nightly downloads"></a>
+  <a href="https://wizestream.org/downloads.html"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwizestream.org%2Fbadges%2Fwebsite-downloads.php" alt="Direct website downloads"></a>
+</p>
+
+<p align="center">
+  <a href="https://wizestream.org/downloads.html"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwizestream.org%2Fbadges%2Ftotal-downloads.php&amp;style=for-the-badge" alt="Total WizeStream downloads"></a>
+</p>
+
 <hr>
 
 <p align="center">

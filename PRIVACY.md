@@ -86,6 +86,19 @@ background playback, overlay playback, network and local-receiver discovery, cam
 scanning a device-pairing QR code, and legacy file access on supported older Android versions.
 Android settings can be used to revoke optional permissions.
 
+## Website download counters
+
+The WizeStream website offers optional direct ARM and x86_64 APK downloads. An initial, non-range
+GET request increments only the corresponding aggregate counter before the browser is redirected
+to the locally hosted APK. HEAD requests, prefetch requests and resumed range requests are not
+counted. The counter does not store IP addresses, user agents, referrers, cookies or device
+identifiers.
+
+Public badges combine this aggregate website count with public GitHub release-asset counts and
+public IzzyOnDroid aggregate statistics. Provider and combined totals are cached in a private file
+outside the public document root. Ordinary hosting access logs remain governed by the hosting
+configuration and are not disabled or erased by the counter.
+
 ## Optional community reviews
 
 The optional community review page is a separate PHP/MySQL website hosted with the project site,

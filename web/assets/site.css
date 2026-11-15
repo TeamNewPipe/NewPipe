@@ -538,3 +538,24 @@ main > .narrow-page > .prose { padding-bottom: 75px; }
   #comparison-table th, #comparison-table td { padding: 5px; }
   .phone { box-shadow: none; }
 }
+
+
+/* Privacy-respecting aggregate download counters */
+.download-statistics { margin-block: 42px 18px; padding: 34px; border: 1px solid var(--line); border-radius: 22px; background: var(--soft); }
+.download-statistics .section-heading { margin-bottom: 24px; }
+.download-stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.download-stat-card { display: grid; gap: 5px; min-width: 0; padding: 22px; color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); transition: border-color .2s, transform .2s; }
+.download-stat-card:hover { color: var(--ink); border-color: var(--red); transform: translateY(-2px); }
+.download-stat-card span { color: var(--muted); font-size: .72rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.download-stat-card strong { overflow-wrap: anywhere; font-size: clamp(1.7rem, 4vw, 2.6rem); line-height: 1.05; letter-spacing: -.04em; }
+.download-stat-card small { color: var(--muted); font-size: .72rem; }
+.download-stat-total { grid-column: 1 / -1; grid-template-columns: 1fr auto; align-items: center; padding: 26px 28px; border-color: color-mix(in srgb, var(--red) 45%, var(--line)); background: linear-gradient(120deg, var(--red-soft), var(--surface)); }
+.download-stat-total strong { grid-column: 2; grid-row: 1 / span 2; color: var(--red); font-size: clamp(2.3rem, 7vw, 4.4rem); }
+.download-stat-total small { grid-column: 1; }
+.download-stat-status { margin: 16px 0 0; color: var(--muted); }
+@media (max-width: 760px) {
+  .download-statistics { padding: 24px; }
+  .download-stat-grid { grid-template-columns: 1fr; }
+  .download-stat-total { grid-column: auto; grid-template-columns: 1fr; }
+  .download-stat-total strong { grid-column: 1; grid-row: auto; }
+}

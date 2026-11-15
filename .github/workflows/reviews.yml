@@ -50,7 +50,7 @@ jobs:
           coverage: none
       - name: Lint PHP and JavaScript
         run: |
-          find web/reviews -name '*.php' -print0 | xargs -0 -n1 php -l
+          find web -name '*.php' -print0 | xargs -0 -n1 php -l
           node --check web/reviews/reviews.js
       - name: Test PHP and MySQL across independent workers
         run: php web/reviews/_private/tests/reviews.php

@@ -1,0 +1,2 @@
+Options -Indexes
+AddType application/vnd.android.package-archive .apk

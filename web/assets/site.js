@@ -203,4 +203,34 @@
     controls.addEventListener('reset', () => requestAnimationFrame(filterComparison));
     filterComparison();
   }
+  const downloadStats = $('[data-download-stats]');
+  if (downloadStats) {
+    const status = $('[data-download-stats-status]', downloadStats);
+    const formatter = new Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 });
+    fetch(downloadStats.dataset.endpoint, {
+      credentials: 'omit',
+      headers: { Accept: 'application/json' },
+      referrerPolicy: 'no-referrer'
+    })
+      .then(response => {
+        if (!response.ok) throw new Error('Download statistics unavailable');
+        return response.json();
+      })
+      .then(summary => {
+        ['izzy', 'github', 'website', 'total'].forEach(key => {
+          const target = `[data-download-stat="${key}"]`;
+          const element = $(target, downloadStats);
+          const value = Number(summary[key]);
+          if (!element || !Number.isSafeInteger(value) || value < 0) return;
+          element.textContent = formatter.format(value);
+          element.title = value.toLocaleString();
+          element.setAttribute('aria-label', value.toLocaleString() + ' downloads');
+        });
+        status.textContent = 'Aggregate totals update periodically. No visitor identifier is stored by this counter.';
+      })
+      .catch(() => {
+        status.textContent = 'Live totals are temporarily unavailable. Download links still work.';
+      });
+  }
+
 })();

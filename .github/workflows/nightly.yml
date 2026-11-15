@@ -258,6 +258,8 @@ jobs:
           releases_file="$RUNNER_TEMP/nightly-releases.json"
           gh api "repos/${NIGHTLY_REPOSITORY}/releases" --paginate > "$releases_file"
 
+          scripts/archive-nightly-downloads.sh "$releases_file"
+
           while IFS=$'\t' read -r release_id tag_name; do
             [[ -n "$release_id" && -n "$tag_name" ]] || continue
             echo "Deleting old nightly ${tag_name}"
