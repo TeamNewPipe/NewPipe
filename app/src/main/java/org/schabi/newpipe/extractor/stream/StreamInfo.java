@@ -162,8 +162,10 @@ public class StreamInfo extends Info {
                     "streamType: %s, url: %s, id: %s, name: %s, ageLimit: %d", streamType, url, id, name, ageLimit));
         }
 
-        return new StreamInfo(extractor.getServiceId(), url, extractor.getOriginalUrl(),
-                streamType, id, name, ageLimit);
+        final StreamInfo info = new StreamInfo(extractor.getServiceId(), url,
+                extractor.getOriginalUrl(), streamType, id, name, ageLimit);
+        info.setUpcoming(extractor.isUpcoming());
+        return info;
     }
 
 
@@ -225,7 +227,8 @@ public class StreamInfo extends Info {
         // Allow DASH and HLS manifests to be only available, as they can be the only source
         // available for livestreams.
         if (streamInfo.videoStreams.isEmpty() && streamInfo.audioStreams.isEmpty()
-                && isNullOrEmpty(streamInfo.dashMpdUrl) && isNullOrEmpty(streamInfo.hlsUrl)) {
+                && isNullOrEmpty(streamInfo.dashMpdUrl) && isNullOrEmpty(streamInfo.hlsUrl)
+                && !streamInfo.isUpcoming()) {
             final StreamExtractException failure = new StreamExtractException(
                     "Could not get any playable stream or manifest.");
             // The StreamInfo object cannot reach the caller after extraction fails. Carry its
@@ -525,11 +528,20 @@ public class StreamInfo extends Info {
     private List<SponsorBlockSegment> sponsorBlockSegments = new ArrayList<>();
     private boolean fetchSponsorBlockFinished = false;
     private boolean membersOnly = false;
+    private boolean upcoming = false;
 
     /**
      * Preview frames, e.g. for the storyboard / seekbar thumbnail preview
      */
     private List<Frameset> previewFrames = Collections.emptyList();
+
+    public boolean isUpcoming() {
+        return upcoming;
+    }
+
+    public void setUpcoming(final boolean upcoming) {
+        this.upcoming = upcoming;
+    }
 
     /**
      * Get the stream type

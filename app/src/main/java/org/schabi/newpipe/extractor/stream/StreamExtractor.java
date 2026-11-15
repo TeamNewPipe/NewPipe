@@ -667,6 +667,13 @@ public abstract class StreamExtractor extends Extractor {
         return false;
     }
 
+    /**
+     * Whether metadata is available but playback has not started yet.
+     */
+    public boolean isUpcoming() {
+        return false;
+    }
+
     /*Live start time in millisecond. Just use if current status can't be fetched from the segment*/
     public long getStartAt() throws ParsingException {
         return -1;

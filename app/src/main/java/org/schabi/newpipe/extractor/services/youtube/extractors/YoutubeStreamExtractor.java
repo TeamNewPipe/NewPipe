@@ -118,6 +118,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public WatchDataCache watchDataCache;
 
     public final List<Throwable> errors = new CopyOnWriteArrayList<>();
+    private boolean upcoming;
 
     public YoutubeStreamExtractor(final StreamingService service, final LinkHandler linkHandler, WatchDataCache watchDataCache) {
         super(service, linkHandler);
@@ -1492,7 +1493,11 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                     + "Try logging in to get HLS fallback streams.");
         }
 
-        checkPlayabilityStatus(playerResponse.getObject("playabilityStatus"), videoId);
+        final JsonObject playabilityStatus = playerResponse.getObject("playabilityStatus");
+        upcoming = isUpcomingPlayabilityStatus(playabilityStatus);
+        if (!upcoming) {
+            checkPlayabilityStatus(playabilityStatus, videoId);
+        }
         setStreamType();
         try {
             watchDataCache.startAt = getStartAt();
@@ -1717,6 +1722,17 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         }
 
         throw new ContentNotAvailableException("Got error: \"" + reason + "\"");
+    }
+
+    static boolean isUpcomingPlayabilityStatus(@Nonnull final JsonObject playabilityStatus) {
+        final String reason = playabilityStatus.getString("reason");
+        return reason != null && (reason.contains("This live event will begin in")
+                || reason.contains("Premieres in"));
+    }
+
+    @Override
+    public boolean isUpcoming() {
+        return upcoming;
     }
 
     /**
