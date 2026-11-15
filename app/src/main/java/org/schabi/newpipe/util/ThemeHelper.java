@@ -19,12 +19,14 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.DynamicColorsOptions;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.info_list.ItemViewMode;
+import org.schabi.newpipe.settings.appearance.CustomThemeColor;
 import org.schabi.newpipe.themes.ThemePacks;
 
 import java.util.Locale;
@@ -46,7 +48,14 @@ public final class ThemeHelper {
             context.getTheme().applyStyle(R.style.EyeComfortTheme, true);
             return;
         }
-        if (shouldApplyDynamicColors(context)) {
+        final Integer customColor = getCustomThemeColor(context);
+        if (customColor != null && context instanceof Activity) {
+            final DynamicColorsOptions options = new DynamicColorsOptions.Builder()
+                    .setContentBasedSource(customColor)
+                    .build();
+            DynamicColors.applyToActivityIfAvailable((Activity) context, options);
+            applyBlackSurfaceOverlay(context);
+        } else if (shouldApplyDynamicColors(context)) {
             DynamicColors.applyToActivityIfAvailable((Activity) context);
             applyBlackSurfaceOverlay(context);
         } else {
@@ -71,7 +80,19 @@ public final class ThemeHelper {
 
     public static boolean shouldApplyDynamicColors(final Context context) {
         return !isEyeComfortSelected(context) && context instanceof Activity
-                && isFollowSystemThemeColor(context);
+                && (isFollowSystemThemeColor(context) || getCustomThemeColor(context) != null);
+    }
+
+    @Nullable
+    public static Integer getCustomThemeColor(final Context context) {
+        if (!"custom".equals(normalizeThemeColorValue(getThemeColorPreference(context)))) {
+            return null;
+        }
+        final String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                context.getString(R.string.custom_theme_color_key),
+                context.getString(R.string.custom_theme_color_default));
+        final String normalized = CustomThemeColor.normalize(value);
+        return normalized == null ? null : CustomThemeColor.parse(normalized);
     }
 
     private static void applyBlackSurfaceOverlay(final Context context) {

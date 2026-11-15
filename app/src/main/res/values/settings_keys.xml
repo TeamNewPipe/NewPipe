@@ -321,6 +321,9 @@
     <string name="theme_color_orange_value">orange</string>
     <string name="theme_color_pink_value">pink</string>
     <string name="theme_color_red_value">red</string>
+    <string name="theme_color_custom_value">custom</string>
+    <string name="custom_theme_color_key">custom_theme_color</string>
+    <string name="custom_theme_color_default">#C62026</string>
     <string name="default_theme_color_value">@string/theme_color_follow_system_value</string>
     <string-array name="theme_color_values_list">
         <item>@string/theme_color_follow_system_value</item>
@@ -334,6 +337,7 @@
         <item>@string/theme_color_orange_value</item>
         <item>@string/theme_color_pink_value</item>
         <item>@string/theme_color_red_value</item>
+        <item>@string/theme_color_custom_value</item>
     </string-array>
     <string-array name="theme_color_description_list">
         <item>@string/theme_color_follow_system_title</item>
@@ -347,6 +351,7 @@
         <item>@string/theme_color_orange_title</item>
         <item>@string/theme_color_pink_title</item>
         <item>@string/theme_color_red_title</item>
+        <item>@string/theme_color_custom_title</item>
     </string-array>
     <string-array name="theme_values_list">
         <item>@string/light_theme_key</item>

@@ -22,10 +22,13 @@ public class ThemeColorIntegrationTest {
         final String blackOverlay = styleBody(styles,
                 "ThemeOverlay_wizestream_BlackSurfaces");
 
-        assertTrue(helper.contains("&& isFollowSystemThemeColor(context);"));
+        assertTrue(helper.contains("&& (isFollowSystemThemeColor(context)"
+                + " || getCustomThemeColor(context) != null);"));
         assertFalse(helper.contains("&& !isBlackThemeSelected(context)"));
-        assertTrue(helper.indexOf("DynamicColors.applyToActivityIfAvailable((Activity) context);")
-                < helper.indexOf("applyBlackSurfaceOverlay(context);"));
+        assertTrue(helper.contains("DynamicColors.applyToActivityIfAvailable("
+                + "(Activity) context, options);\n            applyBlackSurfaceOverlay(context);"));
+        assertTrue(helper.contains("DynamicColors.applyToActivityIfAvailable("
+                + "(Activity) context);\n            applyBlackSurfaceOverlay(context);"));
         assertTrue(blackOverlay.contains(
                 "<item name=\"colorSurface\">@color/black_background_color</item>"));
         assertTrue(blackOverlay.contains(

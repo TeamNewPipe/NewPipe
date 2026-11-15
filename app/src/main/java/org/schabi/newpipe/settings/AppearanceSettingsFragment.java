@@ -8,12 +8,14 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.settings.appearance.CustomThemeColor;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -78,13 +80,49 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         }
         final String startThemeColorKey = defaultPreferences
                 .getString(themeColorKey, getString(R.string.default_theme_color_value));
+        final EditTextPreference customThemeColor = findPreference(
+                getString(R.string.custom_theme_color_key));
+        customThemeColor.setOnBindEditTextListener(editText -> {
+            editText.setSingleLine(true);
+            editText.setSelectAllOnFocus(true);
+        });
+        customThemeColor.setSummaryProvider(preference -> {
+            final String normalized = CustomThemeColor.normalize(
+                    ((EditTextPreference) preference).getText());
+            return normalized == null ? getString(R.string.custom_theme_color_summary) : normalized;
+        });
+        customThemeColor.setVisible("custom".equals(startThemeColorKey));
+        customThemeColor.setOnPreferenceChangeListener((preference, newValue) -> {
+            final String normalized = CustomThemeColor.normalize(newValue.toString());
+            if (normalized == null) {
+                Toast.makeText(requireContext(), R.string.custom_theme_color_invalid,
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+            final String previous = CustomThemeColor.normalize(customThemeColor.getText());
+            if (normalized.equals(previous)) {
+                return false;
+            }
+            defaultPreferences.edit().putString(
+                    getString(R.string.custom_theme_color_key), normalized).apply();
+            customThemeColor.setText(normalized);
+            showThemeColorRestartDialog(previous == null ? "" : previous, normalized);
+            return false;
+        });
         findPreference(themeColorKey).setOnPreferenceChangeListener((preference, newValue) -> {
+            customThemeColor.setVisible("custom".equals(newValue.toString()));
             applyThemeColorChange(startThemeColorKey, themeColorKey, preference, newValue);
             return false;
         });
+        if (ThemeHelper.isEyeComfortSelected(requireContext())) {
+            customThemeColor.setEnabled(false);
+            customThemeColor.setSummaryProvider(null);
+            customThemeColor.setSummary(R.string.eye_comfort_theme_summary);
+        }
 
         if (org.schabi.newpipe.themes.ThemePacks.active(requireContext()) != null) {
-            for (final String key : new String[] {themeKey, nightThemeKey, themeColorKey}) {
+            for (final String key : new String[] {themeKey, nightThemeKey, themeColorKey,
+                    getString(R.string.custom_theme_color_key)}) {
                 final Preference preference = findPreference(key);
                 preference.setEnabled(false);
                 preference.setSummaryProvider(null);
@@ -103,7 +141,6 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         setPreferenceVisible(R.string.tablet_navigation_landscape_position_key,
                 showLargeScreenPreferences);
     }
-
     private void setPreferenceVisible(final int key, final boolean visible) {
         final Preference preference = findPreference(getString(key));
         if (preference != null) {
@@ -134,8 +171,13 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             ((ListPreference) preference).setValue(newThemeColor);
         }
 
+        showThemeColorRestartDialog(beginningThemeColorKey, newThemeColor);
+    }
+
+    private void showThemeColorRestartDialog(final String beginningThemeColorKey,
+                                             final String newThemeColor) {
         final Activity activity = getActivity();
-        if (!newValue.equals(beginningThemeColorKey) && activity != null) {
+        if (!newThemeColor.equals(beginningThemeColorKey) && activity != null) {
             new MaterialAlertDialogBuilder(activity)
                     .setTitle(R.string.theme_color_restart_dialog_title)
                     .setMessage(R.string.theme_color_restart_dialog_message)

@@ -50,6 +50,14 @@
         app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
 
+    <EditTextPreference
+        android:defaultValue="@string/custom_theme_color_default"
+        android:key="@string/custom_theme_color_key"
+        android:summary="@string/custom_theme_color_summary"
+        android:title="@string/custom_theme_color_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
     <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
