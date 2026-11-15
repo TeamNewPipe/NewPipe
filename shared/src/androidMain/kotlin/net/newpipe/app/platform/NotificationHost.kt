@@ -20,4 +20,6 @@ interface NotificationHost {
     fun applyNewStreamsCheckSchedule()
 
     fun channelNotificationCounts(): Flow<ChannelNotificationCount>
+
+    fun recreatePlayerNotification()
 }

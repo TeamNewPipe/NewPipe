@@ -25,6 +25,13 @@ class AndroidNotificationActions(private val context: Context) : NotificationAct
     override val isPlayerNotificationExempt: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 
+    override val hasSystemMediaControls: Boolean
+        get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+
+    override fun recreatePlayerNotification() {
+        host?.recreatePlayerNotification()
+    }
+
     override fun areNotificationsEnabledOnDevice(): Boolean = host?.areNotificationsEnabledOnDevice() ?: true
 
     override fun openSystemNotificationSettings() {

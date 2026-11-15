@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.newpipe.app.composable.PreferenceRow
 import net.newpipe.app.composable.TopAppBar
-import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.screen.settings.model.SettingsCategory
@@ -50,47 +49,7 @@ fun SettingsHomeScreen(
             SettingsCategory(
                 title = type.title,
                 icon = type.icon,
-                onClick = {
-                    when (type) {
-                        SettingsCategoryType.APPEARANCE -> navigator.navigateTo(
-                            Destination.AppearanceSettings
-                        )
-
-                        SettingsCategoryType.VIDEO_AUDIO -> navigator.navigateTo(
-                            Destination.VideoAudioSettings
-                        )
-
-                        SettingsCategoryType.DEBUG -> navigator.navigateTo(
-                            Destination.DebugSettings
-                        )
-
-                        SettingsCategoryType.DOWNLOADS -> navigator.navigateTo(
-                            Destination.DownloadSettings
-                        )
-
-                        SettingsCategoryType.HISTORY -> navigator.navigateTo(
-                            Destination.HistorySettings
-                        )
-
-                        SettingsCategoryType.CONTENT -> navigator.navigateTo(
-                            Destination.ContentSettings
-                        )
-
-                        SettingsCategoryType.NOTIFICATIONS -> navigator.navigateTo(
-                            Destination.NotificationSettings
-                        )
-
-                        SettingsCategoryType.UPDATES -> navigator.navigateTo(
-                            Destination.UpdateSettings
-                        )
-
-                        SettingsCategoryType.BACKUP_RESTORE -> navigator.navigateTo(
-                            Destination.BackupRestoreSettings
-                        )
-
-                        else -> Unit
-                    }
-                }
+                onClick = { navigator.navigateTo(type.destination) }
             )
         },
         onNavigateUp = { navigator.navigateUp() }
