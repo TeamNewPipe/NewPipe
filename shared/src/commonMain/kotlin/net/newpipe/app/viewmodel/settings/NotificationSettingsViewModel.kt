@@ -93,6 +93,7 @@ class NotificationSettingsViewModel(
     }
 
     private fun MutableStateFlow<String>.persistAndReschedule(key: String, newValue: String) {
+        if (newValue == value) return
         settings.putString(key, newValue)
         value = newValue
         notificationActions.applyNewStreamsCheckSchedule()
