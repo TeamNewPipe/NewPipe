@@ -9,4 +9,6 @@
     <string name="local_like_saved">Saved to Liked videos on this device</string>
     <string name="local_like_removed">Removed from Liked videos</string>
     <string name="local_like_failed">Could not update Liked videos. Please try again.</string>
+    <string name="show_local_like_controls_title">Show local like controls</string>
+    <string name="show_local_like_controls_summary">Show the Like locally and Liked videos buttons on video details</string>
 </resources>

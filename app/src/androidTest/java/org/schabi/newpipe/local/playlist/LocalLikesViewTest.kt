@@ -42,7 +42,10 @@ class LocalLikesViewTest {
     fun removeTestPlaylist() {
         val id = (preferences.all[LikedVideosStore.preferenceKey(profileId)] as? Number)?.toLong()
         if (id != null) database.playlistDAO().deletePlaylistForProfile(profileId, id)
-        preferences.edit().remove(LikedVideosStore.preferenceKey(profileId)).commit()
+        preferences.edit()
+            .remove(LikedVideosStore.preferenceKey(profileId))
+            .remove(context.getString(R.string.show_local_like_controls_key))
+            .commit()
         NewPipeDatabase.close()
     }
 
@@ -135,6 +138,36 @@ class LocalLikesViewTest {
             controls = LocalLikesView(requireContext())
             controls.bind(StreamInfo(0, "test", "https://example.com/liked-library-ui", "Video").apply { streamType = StreamType.VIDEO_STREAM })
             return controls
+        }
+    }
+
+    @Test
+    fun appearancePreferenceHidesAndRestoresControls() {
+        lateinit var controls: LocalLikesView
+        val settingKey = context.getString(R.string.show_local_like_controls_key)
+        ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                preferences.edit().putBoolean(settingKey, false).commit()
+                controls = LocalLikesView(activity)
+                activity.setContentView(controls)
+                controls.bind(
+                    StreamInfo(
+                        0,
+                        "test",
+                        "https://example.com/local-like-visibility",
+                        "Video"
+                    ).apply {
+                        streamType = StreamType.VIDEO_STREAM
+                    }
+                )
+                assertEquals(View.GONE, controls.visibility)
+
+                preferences.edit().putBoolean(settingKey, true).commit()
+                assertEquals(View.VISIBLE, controls.visibility)
+
+                preferences.edit().putBoolean(settingKey, false).commit()
+                assertEquals(View.GONE, controls.visibility)
+            }
         }
     }
 

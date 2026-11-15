@@ -227,6 +227,14 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
+        android:key="@string/show_local_like_controls_key"
+        android:summary="@string/show_local_like_controls_summary"
+        android:title="@string/show_local_like_controls_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
         android:key="@string/show_dislike_key"
         android:summary="@string/show_dislikes_summary"
         android:title="@string/show_dislikes_title"

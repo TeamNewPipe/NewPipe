@@ -34,6 +34,7 @@ import org.schabi.newpipe.util.NavigationHelper
 /** Explicit local feedback controls, separate from the service's public like count. */
 class LocalLikesView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val controlsPreferenceKey = context.getString(R.string.show_local_like_controls_key)
     private val tasks = CompositeDisposable()
     private val like = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
     private val library = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
@@ -47,8 +48,13 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
     private var loaded = false
     private var busy = false
     private var snackbar: Snackbar? = null
-    private val profileListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-        if (key == ProfileManager.ACTIVE_PROFILE_ID_PREFERENCE_KEY) refresh()
+    private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (
+            key == ProfileManager.ACTIVE_PROFILE_ID_PREFERENCE_KEY ||
+            key == controlsPreferenceKey
+        ) {
+            refresh()
+        }
     }
 
     init {
@@ -105,14 +111,14 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        preferences.registerOnSharedPreferenceChangeListener(profileListener)
+        preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
         refresh()
     }
 
     override fun onDetachedFromWindow() {
         generation++
         tasks.clear()
-        preferences.unregisterOnSharedPreferenceChangeListener(profileListener)
+        preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
         snackbar?.dismiss()
         super.onDetachedFromWindow()
     }
@@ -146,7 +152,12 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         loaded = false
         busy = false
         val stream = info
-        val eligible = stream?.streamType in setOf(StreamType.VIDEO_STREAM, StreamType.LIVE_STREAM, StreamType.POST_LIVE_STREAM)
+        val eligible = preferences.getBoolean(controlsPreferenceKey, true) &&
+            stream?.streamType in setOf(
+                StreamType.VIDEO_STREAM,
+                StreamType.LIVE_STREAM,
+                StreamType.POST_LIVE_STREAM
+            )
         visibility = if (eligible) VISIBLE else GONE
         render()
         if (!eligible || stream == null || !isAttachedToWindow) return

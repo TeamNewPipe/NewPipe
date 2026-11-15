@@ -378,6 +378,9 @@
     <string name="caption_settings_key">caption_settings_key</string>
     <string name="caption_user_set_key">caption_user_set_key</string>
 
+    <!-- Local like controls -->
+    <string name="show_local_like_controls_key">show_local_like_controls</string>
+
     <!-- Show dislikes -->
     <string name="show_dislike_key">show_dislike</string>
 

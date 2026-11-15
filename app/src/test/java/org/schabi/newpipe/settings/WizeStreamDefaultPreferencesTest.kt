@@ -115,6 +115,7 @@ class WizeStreamDefaultPreferencesTest {
         verify(editor).putString("list_view_mode", "card")
         verify(editor).putString("default_resolution", "auto_resolution")
         verify(editor).putBoolean("hide_members_only_videos", false)
+        verify(editor).putBoolean("show_local_like_controls", true)
         verify(editor).putFloat("playback_speed_key", 1.0f)
         verify(editor).putString(
             "saved_tabs_key",

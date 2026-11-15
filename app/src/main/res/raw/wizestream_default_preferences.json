@@ -52,6 +52,7 @@
     "fetch_channel_tabs_likes"
   ],
   "show_thumbnail_key": true,
+  "show_local_like_controls": true,
   "saved_tabs_key": "{\"tabs\":[{\"tab_id\":2},{\"tab_id\":1},{\"tab_id\":7},{\"tab_id\":3},{\"tab_id\":4}]}",
   "storage_use_saf": true,
   "feed_show_played_items": true,
