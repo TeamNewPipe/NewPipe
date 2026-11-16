@@ -32,6 +32,7 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     private var interestScroll: HorizontalScrollView? = null
     private var filterEmpty: TextView? = null
     private var headerEnabled = true
+    private var displayUpdatePosted = false
 
     override fun getContentBlockingTarget(): ContentBlockingHelper.Target = ContentBlockingHelper.Target.KIOSKS
 
@@ -138,7 +139,7 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
             }
         }
         updateInterests()
-        displayItems()
+        updateFilterEmptyState(filteredItems())
     }
 
     private fun setHeaderEnabled(enabled: Boolean) {
@@ -183,15 +184,32 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
 
     private fun displayItems() {
         if (infoListAdapter == null) return
-        val shown = sourceItems.filter { item ->
-            (
-                selectedInterest == null ||
-                    LocalRecommendations.matchesInterest(item, requireNotNull(selectedInterest))
-                ) &&
-                contentFilter.matches(item)
+        if (itemsList.isComputingLayout) {
+            if (!displayUpdatePosted) {
+                displayUpdatePosted = true
+                itemsList.post {
+                    displayUpdatePosted = false
+                    if (view != null) displayItems()
+                }
+            }
+            return
         }
+
+        val shown = filteredItems()
         infoListAdapter.clearStreamItemList()
         infoListAdapter.addInfoItemList(shown)
+        updateFilterEmptyState(shown)
+    }
+
+    private fun filteredItems(): List<StreamInfoItem> = sourceItems.filter { item ->
+        (
+            selectedInterest == null ||
+                LocalRecommendations.matchesInterest(item, requireNotNull(selectedInterest))
+            ) &&
+            contentFilter.matches(item)
+    }
+
+    private fun updateFilterEmptyState(shown: List<StreamInfoItem>) {
         filterEmpty?.isVisible = sourceItems.isNotEmpty() && shown.isEmpty()
     }
 
