@@ -1943,5 +1943,7 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="player_projection_reset">Recenter</string>
     <string name="player_projection_motion_on">Enable motion</string>
     <string name="player_projection_motion_off">Disable motion</string>
+    <string name="customize_tab_icon">Customize icon</string>
+    <string name="use_default_icon">Use default icon</string>
 </resources>
 

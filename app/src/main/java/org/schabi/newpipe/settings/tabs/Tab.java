@@ -32,6 +32,7 @@ import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.media.LocalMediaFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.local.subscription.FeedGroupIcon;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -40,15 +41,20 @@ import java.util.Objects;
 
 public abstract class Tab {
     private static final String JSON_TAB_ID_KEY = "tab_id";
+    private static final String JSON_CUSTOM_ICON_ID_KEY = "custom_icon_id";
+    public static final int DEFAULT_ICON_ID = -1;
 
     private static final String NO_NAME = "<no-name>";
     private static final String NO_ID = "<no-id>";
     private static final String NO_URL = "<no-url>";
 
+    private int customIconId = DEFAULT_ICON_ID;
+
     Tab() {
     }
 
     Tab(@NonNull final JsonObject jsonObject) {
+        customIconId = jsonObject.getInt(JSON_CUSTOM_ICON_ID_KEY, DEFAULT_ICON_ID);
         readDataFromJson(jsonObject);
     }
 
@@ -100,6 +106,10 @@ public abstract class Tab {
                     return new PlaylistTab(jsonObject);
                 case FEEDGROUP:
                     return new FeedGroupTab(jsonObject);
+                default:
+                    type.getTab().customIconId = jsonObject.getInt(
+                            JSON_CUSTOM_ICON_ID_KEY, DEFAULT_ICON_ID);
+                    break;
             }
         }
 
@@ -111,7 +121,22 @@ public abstract class Tab {
     public abstract String getTabName(Context context);
 
     @DrawableRes
-    public abstract int getTabIconRes(Context context);
+    public final int getTabIconRes(final Context context) {
+        final FeedGroupIcon customIcon = FeedGroupIcon.fromId(customIconId);
+        return customIcon == null ? getDefaultTabIconRes(context)
+                : customIcon.getDrawableResource();
+    }
+
+    @DrawableRes
+    protected abstract int getDefaultTabIconRes(Context context);
+
+    public int getCustomIconId() {
+        return customIconId;
+    }
+
+    public void setCustomIconId(final int iconId) {
+        customIconId = FeedGroupIcon.fromId(iconId) == null ? DEFAULT_ICON_ID : iconId;
+    }
 
     /**
      * Return a instance of the fragment that this tab represent.
@@ -143,6 +168,7 @@ public abstract class Tab {
         jsonSink.object();
 
         jsonSink.value(JSON_TAB_ID_KEY, getTabId());
+        jsonSink.value(JSON_CUSTOM_ICON_ID_KEY, customIconId);
         writeDataToJson(jsonSink);
 
         jsonSink.end();
@@ -205,7 +231,7 @@ public abstract class Tab {
         }
 
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_whatshot;
         }
 
@@ -230,7 +256,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_school;
         }
 
@@ -255,7 +281,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_crop_portrait;
         }
 
@@ -280,7 +306,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_tv;
         }
 
@@ -306,7 +332,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_subscriptions;
         }
 
@@ -331,7 +357,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_bookmark;
         }
 
@@ -356,7 +382,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_history;
         }
 
@@ -381,7 +407,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_file_download;
         }
 
@@ -406,7 +432,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_music_note;
         }
 
@@ -448,7 +474,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             final int kioskIcon = KioskTranslator.getKioskIcon(kioskId);
 
             if (kioskIcon <= 0) {
@@ -536,7 +562,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_tv;
         }
 
@@ -604,7 +630,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return KioskTranslator.getKioskIcon(getDefaultKioskId(context));
         }
 
@@ -678,7 +704,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return R.drawable.ic_bookmark;
         }
 
@@ -766,6 +792,7 @@ public abstract class Tab {
         private static final String JSON_FEED_GROUP_ID_KEY = "feed_group_id";
         private static final String JSON_FEED_GROUP_NAME_KEY = "feed_group_name";
         private static final String JSON_FEED_GROUP_ICON_KEY = "feed_group_icon";
+        private static final String JSON_FEED_GROUP_ICON_ID_KEY = "feed_group_icon_id";
         private Long feedGroupId;
         private String feedGroupName;
         private int iconId;
@@ -775,7 +802,7 @@ public abstract class Tab {
         }
 
         public FeedGroupTab(final Long feedGroupId, final String feedGroupName,
-                               final int iconId) {
+                            final int iconId) {
             this.feedGroupId = feedGroupId;
             this.feedGroupName = feedGroupName;
             this.iconId = iconId;
@@ -798,7 +825,7 @@ public abstract class Tab {
 
         @DrawableRes
         @Override
-        public int getTabIconRes(final Context context) {
+        protected int getDefaultTabIconRes(final Context context) {
             return iconId > 0 ? iconId : R.drawable.ic_asterisk;
         }
 
@@ -809,18 +836,36 @@ public abstract class Tab {
 
         @Override
         protected void writeDataToJson(final JsonStringWriter writerSink) {
+            final FeedGroupIcon stableIcon = FeedGroupIcon.fromDrawableResource(iconId);
             writerSink.value(JSON_FEED_GROUP_ID_KEY, feedGroupId)
-                    .value(JSON_FEED_GROUP_NAME_KEY, feedGroupName)
-                    .value(JSON_FEED_GROUP_ICON_KEY, iconId);
+                    .value(JSON_FEED_GROUP_NAME_KEY, feedGroupName);
+            if (stableIcon == null) {
+                writerSink.value(JSON_FEED_GROUP_ICON_KEY, iconId);
+            } else {
+                writerSink.value(JSON_FEED_GROUP_ICON_ID_KEY, stableIcon.getId());
+            }
         }
 
         @Override
         protected void readDataFromJson(final JsonObject jsonObject) {
             feedGroupId = jsonObject.getLong(JSON_FEED_GROUP_ID_KEY, -1);
             feedGroupName = jsonObject.getString(JSON_FEED_GROUP_NAME_KEY, NO_NAME);
+            final int stableIconId = jsonObject.getInt(
+                    JSON_FEED_GROUP_ICON_ID_KEY, DEFAULT_ICON_ID);
+            final FeedGroupIcon stableIcon = FeedGroupIcon.fromId(stableIconId);
+            if (stableIcon != null) {
+                iconId = stableIcon.getDrawableResource();
+                return;
+            }
+
             final int storedIconId = jsonObject.getInt(
                     JSON_FEED_GROUP_ICON_KEY, R.drawable.ic_asterisk);
-            iconId = storedIconId > 0 ? storedIconId : R.drawable.ic_asterisk;
+            final FeedGroupIcon legacyIcon = FeedGroupIcon.fromDrawableResource(storedIconId);
+            if (legacyIcon == null) {
+                iconId = storedIconId > 0 ? storedIconId : R.drawable.ic_asterisk;
+            } else {
+                iconId = legacyIcon.getDrawableResource();
+            }
         }
 
         @Override
@@ -853,3 +898,4 @@ public abstract class Tab {
         }
     }
 }
+

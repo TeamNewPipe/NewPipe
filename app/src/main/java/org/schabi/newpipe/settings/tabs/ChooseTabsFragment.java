@@ -137,6 +137,9 @@ public class ChooseTabsFragment extends Fragment {
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    for (final Tab.Type type : Tab.Type.values()) {
+                        type.getTab().setCustomIconId(Tab.DEFAULT_ICON_ID);
+                    }
                     tabsManager.resetTabs();
                     updateTabList();
                     selectedTabsAdapter.notifyDataSetChanged();
@@ -225,7 +228,9 @@ public class ChooseTabsFragment extends Fragment {
                 selectFeedGroupFragment.show(getParentFragmentManager(), "select_feed_group");
                 return;
             default:
-                addTab(type.getTab());
+                final Tab tab = type.getTab();
+                tab.setCustomIconId(Tab.DEFAULT_ICON_ID);
+                addTab(tab);
                 break;
         }
     }
@@ -470,6 +475,15 @@ public class ChooseTabsFragment extends Fragment {
 
                 tabNameView.setText(getTabName(type, tab));
                 tabIconView.setImageResource(tab.getTabIconRes(requireContext()));
+                tabIconView.setContentDescription(getString(R.string.customize_tab_icon));
+                tabIconView.setOnClickListener(v -> HomeTabIconPicker.show(
+                        requireContext(), tab, () -> {
+                            final int adapterPosition = getBindingAdapterPosition();
+                            if (adapterPosition != RecyclerView.NO_POSITION) {
+                                notifyItemChanged(adapterPosition);
+                            }
+                            saveChanges();
+                        }));
             }
 
             private void showMoveDialog() {
@@ -544,3 +558,4 @@ public class ChooseTabsFragment extends Fragment {
         }
     }
 }
+

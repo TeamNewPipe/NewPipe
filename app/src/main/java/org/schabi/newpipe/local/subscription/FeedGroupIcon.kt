@@ -58,4 +58,13 @@ enum class FeedGroupIcon(
     fun getDrawableRes(): Int {
         return drawableResource
     }
+
+    companion object {
+        @JvmStatic
+        fun fromId(id: Int): FeedGroupIcon? = entries.firstOrNull { it.id == id }
+
+        @JvmStatic
+        fun fromDrawableResource(@DrawableRes drawableResource: Int): FeedGroupIcon? = entries
+            .firstOrNull { it.drawableResource == drawableResource }
+    }
 }
