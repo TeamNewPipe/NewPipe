@@ -1,9 +1,8 @@
 package org.schabi.newpipe.database
 
 import android.content.Context
-import androidx.room.Room
+import androidx.room3.Room
 import androidx.test.core.app.ApplicationProvider
-import io.reactivex.rxjava3.core.Single
 import java.io.IOException
 import java.time.OffsetDateTime
 import kotlinx.coroutines.Dispatchers
@@ -115,7 +114,7 @@ class FeedDAOTest {
         streamDAO.deleteOrphans().await()
     }
 
-    private fun clearAndFillTables() {
+    private suspend fun clearAndFillTables() {
         db.clearAllTables()
         streamDAO.insertAll(allStreams)
         subscriptionDAO.insertAll(

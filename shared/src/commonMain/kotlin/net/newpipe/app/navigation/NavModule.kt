@@ -9,11 +9,16 @@ import androidx.compose.runtime.mutableStateListOf
 import co.touchlab.kermit.Logger
 import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
+import net.newpipe.app.screen.settings.BackupRestoreSettingsScreen
+import net.newpipe.app.screen.settings.ContentSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
 import net.newpipe.app.screen.settings.DownloadSettingsScreen
 import net.newpipe.app.screen.settings.HistorySettingsScreen
+import net.newpipe.app.screen.settings.NotificationSettingsScreen
+import net.newpipe.app.screen.settings.PlayerNotificationSettingsScreen
 import net.newpipe.app.screen.settings.PlayerSettingsScreen
 import net.newpipe.app.screen.settings.SettingsHomeScreen
+import net.newpipe.app.screen.settings.UpdateSettingsScreen
 import net.newpipe.app.screen.settings.VideoAudioSettingsScreen
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.annotation.Provided
@@ -61,6 +66,26 @@ fun navModule() = module {
 
     navigation<Destination.HistorySettings> {
         HistorySettingsScreen()
+    }
+
+    navigation<Destination.ContentSettings> {
+        ContentSettingsScreen()
+    }
+
+    navigation<Destination.NotificationSettings> {
+        NotificationSettingsScreen()
+    }
+
+    navigation<Destination.UpdateSettings> {
+        UpdateSettingsScreen()
+    }
+
+    navigation<Destination.BackupRestoreSettings> {
+        BackupRestoreSettingsScreen()
+    }
+
+    navigation<Destination.PlayerNotificationSettings> {
+        PlayerNotificationSettingsScreen()
     }
 }
 

@@ -1,4 +1,4 @@
-<p align="center"><a href="https://newpipe.net"><img src="../assets/new_pipe_icon_5.png" width="150"></a></p> 
+<p align="center"><a href="https://newpipe.net"><img src="/assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
 <h4 align="center"> .Android واجهة أمامية متدفقة خفيفة الوزن لنظام</h4>
 
@@ -22,7 +22,7 @@
 <p align="center"><a href="https://newpipe.net">موقع</a> &bull; <a href="https://newpipe.net/blog/">مدونة</a> &bull; <a href="https://newpipe.net/FAQ/">الأسئلة الشائعة</a> &bull; <a href="https://newpipe.net/press/">إضغط</a></p>
 <hr>
 
-*Read this document in other languages: [Deutsch](README.de.md), [English](../README.md), [Español](README.es.md), [Français](README.fr.md), [हिन्दी](README.hi.md), [Italiano](README.it.md), [한국어](README.ko.md), [Português Brasil](README.pt_BR.md), [Polski](README.pl.md), [ਪੰਜਾਬੀ ](README.pa.md), [日本語](README.ja.md), [Română](README.ro.md), [Soomaali](README.so.md), [Türkçe](README.tr.md), [正體中文](README.zh_TW.md), [অসমীয়া](README.asm.md), [うちなーぐち](README.ryu.md), [Српски](README.sr.md) , [العربية](README.ar.md)*
+*Read this document in other languages: [Deutsch](/doc/README.de.md), [English](/doc/README.md), [Español](/doc/README.es.md), [Français](/doc/README.fr.md), [हिन्दी](/doc/README.hi.md), [Italiano](/doc/README.it.md), [한국어](/doc/README.ko.md), [Português Brasil](/doc/README.pt_BR.md), [Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md), [日本語](/doc/README.ja.md), [Română](/doc/README.ro.md), [Soomaali](/doc/README.so.md), [Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md), [অসমীয়া](/doc/README.asm.md), [うちなーぐち](/doc/README.ryu.md), [Српски](/doc/README.sr.md) , [العربية](/doc/README.ar.md)*
 
 > [!warning] > <b> .عن طريق ملء نموذج المشكلةGITHUB هذا التطبيق في مرحلة البيتا، لذا قد تواجه بعض الأخطاء. إذا واجهت أي أخطاء، يرجى فتح مشكلة في مستودعنا على </b>
 >
@@ -30,18 +30,18 @@
 
 ## لقطات الشاشة
 
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
-[<img src="../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](../fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/00.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/00.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/01.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/02.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/03.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/04.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/05.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/06.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/07.png)
+[<img src="/fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=160>](/fastlane/metadata/android/en-US/images/phoneScreenshots/08.png)
 <br/><br/>
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
-[<img src="../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](../fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
+[<img src="/fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png" width=405>](/fastlane/metadata/android/en-US/images/tenInchScreenshots/09.png)
+[<img src="/fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png" width=405>](/fastlane/metadata/android/en-US/images/tenInchScreenshots/10.png)
 
 ### الخدمات المدعومة
 
@@ -49,11 +49,11 @@
 
 <!-- We link to the service websites separately to avoid people accidentally opening a website they didn't want to. -->
 
-- YouTube ([موقع إلكتروني](https://www.youtube.com/)) و YouTube Music ([موقع إلكتروني](https://music.youtube.com/)) ([ويكي](https://fr.wikipedia.org/wiki/YouTube))
-- PeerTube ([موقع إلكتروني](https://joinpeertube.org/)) و جميع حالاته (قم بزيارة الموقع لتعرف ماذا يعني ذلك!) ([ويكي](https://fr.wikipedia.org/wiki/PeerTube))
-- Bandcamp ([موقع إلكتروني](https://bandcamp.com/)) ([ويكي](https://fr.wikipedia.org/wiki/Bandcamp))
-- SoundCloud ([موقع إلكتروني](https://soundcloud.com/)) ([ويكي](https://fr.wikipedia.org/wiki/SoundCloud))
-- media.ccc.de ([موقع إلكتروني](https://media.ccc.de/)) ([ويكي](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
+* YouTube ([موقع إلكتروني](https://www.youtube.com/)) و YouTube Music ([موقع إلكتروني](https://music.youtube.com/)) ([ويكي](https://fr.wikipedia.org/wiki/YouTube))
+* PeerTube ([موقع إلكتروني](https://joinpeertube.org/)) و جميع حالاته (قم بزيارة الموقع لتعرف ماذا يعني ذلك!) ([ويكي](https://fr.wikipedia.org/wiki/PeerTube))
+* Bandcamp ([موقع إلكتروني](https://bandcamp.com/)) ([ويكي](https://fr.wikipedia.org/wiki/Bandcamp))
+* SoundCloud ([موقع إلكتروني](https://soundcloud.com/)) ([ويكي](https://fr.wikipedia.org/wiki/SoundCloud))
+* media.ccc.de ([موقع إلكتروني](https://media.ccc.de/)) ([ويكي](https://fr.wikipedia.org/wiki/Chaos_Computer_Club))
 
 كما يمكنكم ملاحظة، يدعم نيوبايب العديد من خدمات الفيديو والصوت. على الرغم من أن البداية كانت مع يوتيوب، إلا أن أشخاصًا آخرين قاموا بإضافة خدمات جديدة على مر السنين، مما جعل نيوبايب أكثر تنوعًا ومرونة!
 
@@ -69,28 +69,28 @@
 
 ### سمات
 
-- 4K شاهد مقاطع الفيديو بدقة تصل إلى 
-- الاستماع إلى الصوت في الخلفية، وتحميل دفق الصوت فقط لحفظ البيانات
-- الوضع المنبثق (المشغل العائم، المعروف أيضًا باسم Picture-in-Picture)
-- مشاهدة البث المباشر
-- إظهار/إخفاء الترجمة
-- ابحث عن مقاطع فيديو وصوت (على اليوتيوب، يمكنك أيضًا تحديد لغة المحتوى)
-- وضع مقاطع الفيديو في قائمة الانتظار (وحفظها اختياريًا كقوائم تشغيل محلية)
-- إظهار/إخفاء المعلومات العامة حول مقاطع الفيديو (مثل الوصف والعلامات)
-- إظهار/إخفاء مقاطع الفيديو التالية أو ذات الصلة
-- إظهار/إخفاء التعليقات
-- ابحث عن مقاطع الفيديو والصوت والقنوات وقوائم التشغيل والألبومات
-- تصفح مقاطع الفيديو والتسجيلات الصوتية للقناة
-- الاشتراك في القنوات (نعم، دون الحاجة إلى تسجيل الدخول إلى حساب!)
-- تلقي إشعارات حول مقاطع الفيديو الجديدة من القنوات التي اشتركت فيها.
-- إنشاء مجموعات القنوات وتحريرها (لتسهيل الإدارة والتنقل)
-- تصفح خلاصات الفيديو التي تم إنشاؤها من مجموعات القنوات الخاصة بك
-- عرض وبحث تاريخ العرض الخاص بك
-- عرض قوائم التشغيل والبحث فيها (هذه قوائم تشغيل عن بعد، أي أنه يتم سحبها من الخدمة التي تتصفحها)
-- إنشاء وتحرير قوائم التشغيل المحلية (يتم إنشاؤها وحفظها داخل التطبيق، وليس لها أي علاقة بأي من الخدمات)
-- تنزيل مقاطع الفيديو/الصوت/الترجمات
-- العب في كودي
-- مشاهدة/حظر المحتوى المقيد بالفئة العمرية
+* 4K شاهد مقاطع الفيديو بدقة تصل إلى 
+* الاستماع إلى الصوت في الخلفية، وتحميل دفق الصوت فقط لحفظ البيانات
+* الوضع المنبثق (المشغل العائم، المعروف أيضًا باسم Picture-in-Picture)
+* مشاهدة البث المباشر
+* إظهار/إخفاء الترجمة
+* ابحث عن مقاطع فيديو وصوت (على اليوتيوب، يمكنك أيضًا تحديد لغة المحتوى)
+* وضع مقاطع الفيديو في قائمة الانتظار (وحفظها اختياريًا كقوائم تشغيل محلية)
+* إظهار/إخفاء المعلومات العامة حول مقاطع الفيديو (مثل الوصف والعلامات)
+* إظهار/إخفاء مقاطع الفيديو التالية أو ذات الصلة
+* إظهار/إخفاء التعليقات
+* ابحث عن مقاطع الفيديو والصوت والقنوات وقوائم التشغيل والألبومات
+* تصفح مقاطع الفيديو والتسجيلات الصوتية للقناة
+* الاشتراك في القنوات (نعم، دون الحاجة إلى تسجيل الدخول إلى حساب!)
+* تلقي إشعارات حول مقاطع الفيديو الجديدة من القنوات التي اشتركت فيها.
+* إنشاء مجموعات القنوات وتحريرها (لتسهيل الإدارة والتنقل)
+* تصفح خلاصات الفيديو التي تم إنشاؤها من مجموعات القنوات الخاصة بك
+* عرض وبحث تاريخ العرض الخاص بك
+* عرض قوائم التشغيل والبحث فيها (هذه قوائم تشغيل عن بعد، أي أنه يتم سحبها من الخدمة التي تتصفحها)
+* إنشاء وتحرير قوائم التشغيل المحلية (يتم إنشاؤها وحفظها داخل التطبيق، وليس لها أي علاقة بأي من الخدمات)
+* تنزيل مقاطع الفيديو/الصوت/الترجمات
+* العب في كودي
+* مشاهدة/حظر المحتوى المقيد بالفئة العمرية
 
 <!-- Hidden span to keep old links compatible. You should remove this span if you're translating the README into another language.-->
 
@@ -120,7 +120,7 @@
 
 ## مساهمة
 
-سواء كانت لديك أفكار، أو ترجمات، أو تغييرات في التصميم، أو تنظيف التعليمات البرمجية، أو حتى تغيير كبير في التعليمات البرمجية، فنحن نرحب بأي مساعدة. التطبيق يصبح أفضل قليلا مع كل مساهمة، مهما كانت كبيرة أو صغيرة! إذا كنت ترغب في المشاركة، قم بإلقاء نظرة على [ملاحظات المساهمة](.github/CONTRIBUTING.md).
+سواء كانت لديك أفكار، أو ترجمات، أو تغييرات في التصميم، أو تنظيف التعليمات البرمجية، أو حتى تغيير كبير في التعليمات البرمجية، فنحن نرحب بأي مساعدة. التطبيق يصبح أفضل قليلا مع كل مساهمة، مهما كانت كبيرة أو صغيرة! إذا كنت ترغب في المشاركة، قم بإلقاء نظرة على [ملاحظات المساهمة](/.github/CONTRIBUTING.md).
 
 <a href="https://hosted.weblate.org/engage/newpipe/">
 <img src="https://hosted.weblate.org/widgets/newpipe/-/287x66-grey.png" alt="Translation status" />
@@ -133,8 +133,8 @@
 <table>
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" ></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visitez NewPipe sur liberapay.com" width="100px"></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donnez via Liberapay" height="35px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/"><img src="/assets/liberapay_qr_code.png" alt="Visitez NewPipe sur liberapay.com" width="100px"></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="/assets/liberapay_donate_button.svg" alt="Donnez via Liberapay" height="35px"></a></td>
   </tr>
 </table>
 

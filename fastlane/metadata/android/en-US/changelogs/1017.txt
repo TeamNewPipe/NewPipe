@@ -1,0 +1,5 @@
+This is a hotfix update which resolves recent problems with Bandcamp and SoundCloud.
+
+[SoundCloud] Fixed not being able to extract streams by adding support for aac_96k audio streams
+[Bandcamp] Bypass client verification
+[Bandcamp] Fixed search when using a non-English content language

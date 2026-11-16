@@ -1,0 +1,9 @@
+Wyświetlanie rozdziałów na pasku przewijania odtwarzacza wideo
+[YouTube] Dodano obsługę kart „Podcasty” i „Kursy”
+Ulepszono wygląd tytułów w menu wyszukiwania
+Wyświetlanie pełnych nazw napisów, gdy zostały udostępnione przez serwis
+Różne poprawki odtwarzacza, w tym tłumienie dźwięku, czarne ekrany i otwieranie linków ze znacznikami czasowymi
+[YouTube] Drobne poprawki i porządki
+Wiele wewnętrznych ulepszeń i poprawek błędów
+
+Dziękujemy tegorocznym studentom ANU, którzy pomogli w rozwoju NewPipe!

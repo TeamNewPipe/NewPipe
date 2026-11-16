@@ -112,6 +112,7 @@
                 android:textSize="12sp"
                 android:singleLine="true"
                 android:visibility="gone"
+                android:gravity="end"
                 tools:text="16:20 / 48:30"
                 tools:visibility="visible" />
 
