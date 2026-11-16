@@ -27,6 +27,17 @@ val normalizedWorkingBranch = workingBranch
     .replaceFirst("^[^A-Za-z]+".toRegex(), "")
     .replace("[^0-9A-Za-z]+".toRegex(), "")
 
+// see https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+val mockitoAgent = configurations.create("mockitoAgent")
+abstract class MockitoAgentProvider : CommandLineArgumentProvider {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val agentJar: ConfigurableFileCollection
+
+    override fun asArguments(): Iterable<String> =
+        listOf("-javaagent:${agentJar.asPath}")
+}
+
 kotlin {
     jvmToolchain(21)
 }
@@ -198,6 +209,12 @@ tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
     tomlFile = layout.projectDirectory.file("../gradle/libs.versions.toml")
 }
 
+tasks.withType<Test>().configureEach {
+    jvmArgumentProviders.add(objects.newInstance<MockitoAgentProvider>().apply {
+        agentJar.from(mockitoAgent)
+    })
+}
+
 afterEvaluate {
     tasks.named("preDebugBuild").configure {
         if (!System.getProperties().containsKey("skipFormatKtlint")) {
@@ -322,6 +339,7 @@ dependencies {
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
+    mockitoAgent(libs.mockito.core) { isTransitive = false }
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.runner)
