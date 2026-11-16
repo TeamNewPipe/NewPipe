@@ -12,11 +12,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.core.net.toUri
 import com.grack.nanojson.JsonWriter
+import com.jakewharton.processphoenix.ProcessPhoenix
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import org.schabi.newpipe.BuildConfig
@@ -102,6 +104,10 @@ class ErrorActivity : AppCompatActivity() {
             openPrivacyPolicyDialog(this, "GITHUB")
         }
 
+        binding.errorReportSafeModeButton.setOnClickListener {
+            openSafeModeDialog()
+        }
+
         // normal bugreport
         buildInfo(errorInfo)
         binding.errorMessageView.setTextWithLinks(errorInfo.getMessage(this))
@@ -134,6 +140,28 @@ class ErrorActivity : AppCompatActivity() {
 
             else -> false
         }
+    }
+
+    private fun openSafeModeDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.crash_recovery_enter_title)
+            .setMessage(R.string.crash_recovery_enter_message)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.crash_recovery_enter_action) { _, _ ->
+                if (!CrashRecoveryManager.requestSafeMode(this)) {
+                    Toast.makeText(
+                        this,
+                        R.string.crash_recovery_start_failed,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setPositiveButton
+                }
+
+                val recoveryIntent = Intent(this, RecoveryActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                ProcessPhoenix.triggerRebirth(this, recoveryIntent)
+            }
+            .show()
     }
 
     private fun openPrivacyPolicyDialog(context: Context, action: String) {

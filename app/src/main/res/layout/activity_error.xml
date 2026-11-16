@@ -231,6 +231,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="@string/error_report_open_issue_button_text" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/errorReportSafeModeButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/crash_recovery_enter_action" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

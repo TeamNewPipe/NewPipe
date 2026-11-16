@@ -237,6 +237,11 @@
             android:name=".error.ErrorActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".error.RecoveryActivity"
+            android:exported="false"
+            android:theme="@style/LightSettingsTheme" />
+
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"

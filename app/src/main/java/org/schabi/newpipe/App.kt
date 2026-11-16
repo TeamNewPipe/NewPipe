@@ -31,6 +31,7 @@ import okhttp3.OkHttpClient
 import org.acra.ACRA.init
 import org.acra.ACRA.isACRASenderServiceProcess
 import org.acra.config.CoreConfigurationBuilder
+import org.schabi.newpipe.error.CrashRecoveryManager
 import org.schabi.newpipe.error.ReCaptchaActivity
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.downloader.Downloader
@@ -97,6 +98,8 @@ open class App :
             return
         }
 
+        val safeModeActive = CrashRecoveryManager.prepareStartup(this)
+
         // check if the last used preference version is set
         // to determine whether this is the first app run
         val lastUsedPrefVersion =
@@ -108,8 +111,10 @@ open class App :
         // Initialize settings first because other initializations can use its values
         org.schabi.newpipe.learning.LearningDifficulty.migrate(this)
         NewPipeSettings.initSettings(this)
-        org.schabi.newpipe.support.CommunityReviews.initialize(this)
-        org.schabi.newpipe.player.recovery.QueueRecovery.initialize(this)
+        if (!safeModeActive) {
+            org.schabi.newpipe.support.CommunityReviews.initialize(this)
+            org.schabi.newpipe.player.recovery.QueueRecovery.initialize(this)
+        }
         // Apply the saved mode before AppCompat attaches the first activity's base context.
         // Waiting until MainActivity.onCreate can initially resolve light resources for a
         // forced dark/black theme, especially on pre-Android 12 cold starts.
@@ -134,10 +139,12 @@ open class App :
         BridgeStateSaverInitializer.init(this)
         StateSaver.init(this)
         initNotificationChannels()
-        org.schabi.newpipe.download.AutomaticDownloads.initialize(this)
-        org.schabi.newpipe.download.schedule.DownloadWindow.schedule(this)
-        AiSListSyncWorker.initialize(this)
-        org.schabi.newpipe.learning.LearningReminders.initialize(this)
+        if (!safeModeActive) {
+            org.schabi.newpipe.download.AutomaticDownloads.initialize(this)
+            org.schabi.newpipe.download.schedule.DownloadWindow.schedule(this)
+            AiSListSyncWorker.initialize(this)
+            org.schabi.newpipe.learning.LearningReminders.initialize(this)
+        }
 
         ServiceHelper.initServices(this)
 
@@ -153,14 +160,20 @@ open class App :
             )
         )
 
-        org.schabi.newpipe.local.cleanup.ExitCleanup.initialize(this)
+        if (!safeModeActive) {
+            org.schabi.newpipe.local.cleanup.ExitCleanup.initialize(this)
+        }
         configureRxJavaErrorHandler()
-        initializeDeviceSyncScheduling()
-        org.schabi.newpipe.local.feed.service.BackgroundFeedRefreshWorker.initialize(this)
-        runCatching {
-            org.schabi.newpipe.settings.export.ScheduledBackupWorker.schedule(this)
-        }.onFailure { error ->
-            Log.e(TAG, "Could not initialize automatic backups", error)
+        if (!safeModeActive) {
+            initializeDeviceSyncScheduling()
+            org.schabi.newpipe.local.feed.service.BackgroundFeedRefreshWorker.initialize(this)
+            runCatching {
+                org.schabi.newpipe.settings.export.ScheduledBackupWorker.schedule(this)
+            }.onFailure { error ->
+                Log.e(TAG, "Could not initialize automatic backups", error)
+            }
+        } else {
+            Log.i(TAG, "Crash recovery mode is active; background startup work is disabled")
         }
     }
 
