@@ -242,6 +242,10 @@ object LocalRecommendations {
         return TasteSummary(interests, channels)
     }
 
+    @JvmStatic
+    fun matchesInterest(item: StreamInfoItem, interest: String): Boolean = interest
+        .lowercase(Locale.ROOT) in tokens("${item.name} ${item.uploaderName}")
+
     private fun eligibility(context: Context): (StreamInfoItem) -> Boolean {
         val excluded = prefs(context).getStringSet(key(context, "excluded"), emptySet()).orEmpty()
         val hidden = topics(context).split(',', '\n').map { it.trim().lowercase(Locale.ROOT) }.filter { it.isNotEmpty() }

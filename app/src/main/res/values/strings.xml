@@ -1880,6 +1880,12 @@
     <string name="local_recommendations_your_taste">Your taste</string>
     <string name="local_recommendations_taste_summary">Top interests\n%1$s\n\nFrequently watched channels\n%2$s\n\nYour local likes are a strong, reversible signal. Public likes are used only as a small quality signal and never override your viewing choices. Everything remains on this device.</string>
     <string name="local_recommendations_taste_empty">Not enough activity yet</string>
+    <string name="local_recommendations_top_interests">Top interests</string>
+    <string name="local_recommendations_content_filter">Content</string>
+    <string name="local_recommendations_filter_empty">No recommendations match these filters.</string>
+    <string name="local_recommendations_filter_all">All</string>
+    <string name="local_recommendations_filter_videos">Videos</string>
+    <string name="local_recommendations_filter_shorts">Shorts</string>
     <string name="local_recommendations_add_home">Add For you to Home</string>
     <string name="local_recommendations_home_added">For you is already on Home</string>
     <string name="local_recommendations_summary">Optional recommendations learned on this device, separately for each profile</string>
@@ -1938,3 +1944,4 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="player_projection_motion_on">Enable motion</string>
     <string name="player_projection_motion_off">Disable motion</string>
 </resources>
+
