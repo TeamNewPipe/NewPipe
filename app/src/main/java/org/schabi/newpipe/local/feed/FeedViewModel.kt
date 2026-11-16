@@ -73,17 +73,24 @@ class FeedViewModel(
     }
     val stateLiveData: LiveData<FeedState> = mutableStateLiveData
 
-    private val sortByDiscovery = BehaviorProcessor.createDefault(getSortByDiscovery())
+    private val sortMode = BehaviorProcessor.createDefault(getSortMode())
 
     private fun observeFeed(): Disposable = Flowable.combineLatest(
         FeedScope.feedChanges(application),
-        sortByDiscovery.distinctUntilChanged(),
+        sortMode.distinctUntilChanged(),
         showPlayedItemsFlowable,
         showPartiallyPlayedItemsFlowable,
         showFutureItemsFlowable,
         selectedGroup.distinctUntilChanged(),
-        Function6 { scope: FeedScope, discovery: Boolean, played: Boolean, partial: Boolean, future: Boolean, group: Long ->
-            FeedQuery(scope, discovery, played, partial, future, group)
+        Function6 {
+                scope: FeedScope,
+                sort: FeedSortMode,
+                played: Boolean,
+                partial: Boolean,
+                future: Boolean,
+                group: Long
+            ->
+            FeedQuery(scope, sort, played, partial, future, group)
         }
     )
         .switchMap { query ->
@@ -95,7 +102,7 @@ class FeedViewModel(
                 query.partial,
                 query.future,
                 query.scope,
-                query.discovery
+                query.sortMode == FeedSortMode.DISCOVERY
             )
                 .throttleLatestDropOverflow(FEED_SNAPSHOT_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -161,7 +168,7 @@ class FeedViewModel(
 
     private data class FeedQuery(
         val scope: FeedScope,
-        val discovery: Boolean,
+        val sortMode: FeedSortMode,
         val played: Boolean,
         val partial: Boolean,
         val future: Boolean,
@@ -175,14 +182,44 @@ class FeedViewModel(
         val groupId: Long
     )
 
-    fun getSortByDiscovery(): Boolean = PreferenceManager.getDefaultSharedPreferences(application)
-        .getBoolean(application.getString(R.string.feed_sort_by_discovery_key), false)
+    fun getSortMode(): FeedSortMode {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(application)
+        val stored = preferences.getString(application.getString(R.string.feed_sort_mode_key), null)
+        val selected = stored?.let { runCatching { FeedSortMode.valueOf(it) }.getOrNull() }
+            ?: if (
+                preferences.getBoolean(
+                    application.getString(R.string.feed_sort_by_discovery_key),
+                    false
+                )
+            ) {
+                FeedSortMode.DISCOVERY
+            } else {
+                FeedSortMode.PUBLICATION
+            }
+        return if (selected == FeedSortMode.RELEVANCE &&
+            !org.schabi.newpipe.recommendations.LocalRecommendations.enabled(application)
+        ) {
+            FeedSortMode.PUBLICATION
+        } else {
+            selected
+        }
+    }
+
+    fun setSortMode(mode: FeedSortMode) {
+        PreferenceManager.getDefaultSharedPreferences(application).edit {
+            putString(application.getString(R.string.feed_sort_mode_key), mode.name)
+            putBoolean(
+                application.getString(R.string.feed_sort_by_discovery_key),
+                mode == FeedSortMode.DISCOVERY
+            )
+        }
+        sortMode.onNext(mode)
+    }
+
+    fun getSortByDiscovery(): Boolean = getSortMode() == FeedSortMode.DISCOVERY
 
     fun setSortByDiscovery(enabled: Boolean) {
-        PreferenceManager.getDefaultSharedPreferences(application).edit {
-            putBoolean(application.getString(R.string.feed_sort_by_discovery_key), enabled)
-        }
-        sortByDiscovery.onNext(enabled)
+        setSortMode(if (enabled) FeedSortMode.DISCOVERY else FeedSortMode.PUBLICATION)
     }
 
     fun setSaveShowPlayedItems(showPlayedItems: Boolean) {

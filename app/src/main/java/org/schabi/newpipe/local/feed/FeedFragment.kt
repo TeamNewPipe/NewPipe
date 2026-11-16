@@ -93,6 +93,7 @@ import org.schabi.newpipe.local.search.ContextualSearchHelper
 import org.schabi.newpipe.local.search.ContextualSearchable
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
+import org.schabi.newpipe.recommendations.LocalRecommendations
 import org.schabi.newpipe.themes.GlassFeedLayout
 import org.schabi.newpipe.util.ContentBlockingHelper
 import org.schabi.newpipe.util.DeviceUtils
@@ -425,13 +426,29 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             }
             return true
         } else if (item.itemId == R.id.menu_item_feed_sort) {
-            AlertDialog.Builder(requireContext())
+            val modes = buildList {
+                add(FeedSortMode.PUBLICATION)
+                add(FeedSortMode.DISCOVERY)
+                if (LocalRecommendations.enabled(requireContext())) {
+                    add(FeedSortMode.RELEVANCE)
+                }
+            }
+            val labels = modes.map { mode ->
+                getString(
+                    when (mode) {
+                        FeedSortMode.PUBLICATION -> R.string.feed_sort_publication
+                        FeedSortMode.DISCOVERY -> R.string.feed_sort_discovery
+                        FeedSortMode.RELEVANCE -> R.string.feed_sort_relevance
+                    }
+                )
+            }.toTypedArray()
+            MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.feed_sort_title)
                 .setSingleChoiceItems(
-                    arrayOf(getString(R.string.feed_sort_publication), getString(R.string.feed_sort_discovery)),
-                    if (viewModel.getSortByDiscovery()) 1 else 0
+                    labels,
+                    modes.indexOf(viewModel.getSortMode()).coerceAtLeast(0)
                 ) { dialog, which ->
-                    viewModel.setSortByDiscovery(which == 1)
+                    viewModel.setSortMode(modes[which])
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.cancel, null)
@@ -1015,14 +1032,33 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 showPartiallyWatched
             )
         }
-        val displayedItems = ContextualSearchHelper.filter(
+        val searchedItems = ContextualSearchHelper.filter(
             streamFilteredItems,
             contextualSearchQuery
         ) { item ->
             val stream = item.streamWithState.stream
             arrayOf(stream.title, stream.uploader)
-        }.map { item ->
-            val highlighted = loadedState.highlightAfter?.let { shouldHighlightFeedStream(item.streamWithState.stream, it) } == true
+        }
+        val relevanceOrder = if (viewModel.getSortMode() == FeedSortMode.RELEVANCE) {
+            LocalRecommendations.relevanceOrder(
+                requireContext(),
+                searchedItems.map { it.streamWithState.stream.toStreamInfoItem() }
+            )
+        } else {
+            emptyMap()
+        }
+        val orderedItems = if (relevanceOrder.isEmpty()) {
+            searchedItems
+        } else {
+            searchedItems.sortedBy { item ->
+                val stream = item.streamWithState.stream
+                relevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
+            }
+        }
+        val displayedItems = orderedItems.map { item ->
+            val highlighted = loadedState.highlightAfter?.let {
+                shouldHighlightFeedStream(item.streamWithState.stream, it)
+            } == true
             item.copy(itemVersion = itemVersion, isHighlighted = highlighted).also { displayItem ->
                 displayItem.noteBadges = noteBadges
                 displayItem.previewController = feedPreview?.let { WeakReference(it) }

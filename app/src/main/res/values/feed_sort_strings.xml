@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feed_sort_by_discovery_key" translatable="false">feed_sort_by_discovery</string>
+    <string name="feed_sort_mode_key" translatable="false">feed_sort_mode</string>
     <string name="feed_sort_title">Sort feed</string>
     <string name="feed_sort_publication">Publication date (newest first)</string>
     <string name="feed_sort_discovery">First discovered (newest first)</string>
+    <string name="feed_sort_relevance">Relevance (Your Taste)</string>
 </resources>
+

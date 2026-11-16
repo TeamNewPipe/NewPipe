@@ -161,6 +161,26 @@ object LocalRecommendations {
             .distinctBy(::id).sortedByDescending { recommendationScore(model, it) }
     }
 
+    /**
+     * Returns stable positions for all supplied items without applying recommendation eligibility
+     * or watched-state filtering. This lets callers reorder an already-filtered list without
+     * changing which items are visible.
+     */
+    @JvmStatic
+    @Synchronized
+    fun relevanceOrder(context: Context, items: List<StreamInfoItem>): Map<String, Int> {
+        if (!enabled(context)) return emptyMap()
+        val model = read(context)
+        return items.withIndex()
+            .sortedWith(
+                compareByDescending<IndexedValue<StreamInfoItem>> {
+                    recommendationScore(model, it.value)
+                }.thenBy { it.index }
+            )
+            .mapIndexed { position, item -> id(item.value) to position }
+            .toMap()
+    }
+
     @JvmStatic
     @Synchronized
     fun feed(context: Context, serviceId: Int): List<StreamInfoItem> {
