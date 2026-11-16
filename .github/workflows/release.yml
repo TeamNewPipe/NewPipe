@@ -197,3 +197,24 @@ jobs:
           fail_on_unmatched_files: true
           prerelease: ${{ github.ref_type == 'branch' }}
           make_latest: ${{ github.ref_type == 'tag' }}
+
+      - name: Prepare APKs for FTP deployment
+        if: ${{ success() && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.release_target == 'release' || inputs.release_target == 'all'))) }}
+        run: |
+          set -euo pipefail
+          mkdir -p ftp-release
+          cp "${{ steps.release_info.outputs.apk_path }}" ftp-release/wizestream-arm.apk
+          cp "${{ steps.x86_release_info.outputs.apk_path }}" ftp-release/wizestream-x86_64.apk
+          test -s ftp-release/wizestream-arm.apk
+          test -s ftp-release/wizestream-x86_64.apk
+
+      - name: FTP Deploy to Web Server
+        if: ${{ success() && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.release_target == 'release' || inputs.release_target == 'all'))) }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./ftp-release/
+          server-dir: /WizeStream/downloads/
+          state-name: .ftp-deploy-sync-state-wizestream-apks.json
