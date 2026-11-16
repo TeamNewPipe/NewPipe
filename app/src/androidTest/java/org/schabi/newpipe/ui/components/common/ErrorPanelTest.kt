@@ -1,9 +1,14 @@
+/*
+ * SPDX-FileCopyrightText: 2025 NewPipe contributors <https://newpipe.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 package org.schabi.newpipe.ui.components.common
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -71,7 +76,7 @@ class ErrorPanelTest {
     }
 
     /**
-     * Test Recaptcha Error shows all buttons: solve, retry, open in browser, report
+     * Test ReCaptcha Error shows all buttons: solve, retry, open in browser, report
      */
     @Test
     fun recaptchaErrorShowsAllButtons() {
