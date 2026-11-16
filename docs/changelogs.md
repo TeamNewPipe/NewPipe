@@ -4,6 +4,15 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.44.1 (`1044001`)
+
+### Reliability and recovery
+
+- Fix a crash when opening or returning to For You with local recommendations enabled.
+- Add crash recovery from the error-report screen, allowing WizeStream to start temporarily with
+  safe defaults, access backup and restore, restore the original settings or keep the safe settings
+  without removing subscriptions, playlists, history, downloads or other saved data.
+
 ## WizeStream 1.44.0 (`1044000`)
 
 ### Discovery and personalization

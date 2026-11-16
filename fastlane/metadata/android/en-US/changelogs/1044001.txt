@@ -1,0 +1,1 @@
+Fix a crash when opening or returning to For You with local recommendations enabled. Add crash recovery that can start WizeStream temporarily with safe defaults, access backup and restore, restore the original settings or keep the safe settings without deleting subscriptions, playlists, history, downloads or other saved data.
