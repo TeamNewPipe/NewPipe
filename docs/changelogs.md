@@ -4,6 +4,28 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.44.0 (`1044000`)
+
+### Discovery and personalization
+
+- Add a Material 3 Sort feed dialog to What's New, including device-local Relevance sorting when
+  local recommendations are enabled.
+- Add device-local interest chips and All, Videos, Shorts and Audio filters to For You.
+- Allow every Home tab to use any feed-group icon, with stable persistence and one-tap reset.
+
+### Interface
+
+- Add an enabled-by-default Appearance switch for hiding or restoring local-like controls without
+  removing saved likes or playlists.
+- Improve channel layouts for long names, subscription controls, compact filter scrolling and
+  spacing across screen sizes.
+- Keep channel content above the collapsed mini-player.
+
+### Distribution
+
+- Upload architecture-specific release APKs to the official website automatically after each
+  successful GitHub release.
+
 ## WizeStream 1.43.0 (`1043000`)
 
 ### Recommendations and appearance

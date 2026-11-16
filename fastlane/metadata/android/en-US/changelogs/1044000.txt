@@ -1,0 +1,1 @@
+Add controls to hide local-like actions, improve responsive channel layouts and keep content clear of the mini-player. Add Material 3 What's New sorting with local relevance, For You interest and content filters, and customizable Home tab icons. Release APKs are now also uploaded automatically to the official website.
