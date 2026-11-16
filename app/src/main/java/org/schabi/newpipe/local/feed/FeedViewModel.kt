@@ -79,7 +79,7 @@ class FeedViewModel(
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .map { (event, showPlayedItems, showPartiallyPlayedItems, showFutureItems, notLoadedCount, oldestUpdate) ->
-            val streamItems = if (event is SuccessResultEvent || event is IdleEvent) {
+            val streamItems = if (event is SuccessResultEvent || event is IdleEvent || event is ProgressEvent) {
                 feedDatabaseManager
                     .getStreams(groupId, showPlayedItems, showPartiallyPlayedItems, showFutureItems)
                     .blockingGet(arrayListOf())
@@ -94,8 +94,19 @@ class FeedViewModel(
             mutableStateLiveData.postValue(
                 when (event) {
                     is IdleEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount, listOf())
-                    is ProgressEvent -> FeedState.ProgressState(event.currentProgress, event.maxProgress, event.progressMessage)
+
+                    is ProgressEvent -> FeedState.ProgressState(
+                        event.currentProgress,
+                        event.maxProgress,
+                        event.progressMessage,
+                        event.isCancelling,
+                        listFromDB.map { e -> StreamItem(e) },
+                        oldestUpdate,
+                        notLoadedCount
+                    )
+
                     is SuccessResultEvent -> FeedState.LoadedState(listFromDB.map { e -> StreamItem(e) }, oldestUpdate, notLoadedCount, event.itemsErrors)
+
                     is ErrorResultEvent -> FeedState.ErrorState(event.error)
                 }
             )

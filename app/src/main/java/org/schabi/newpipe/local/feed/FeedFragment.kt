@@ -105,6 +105,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
     private var onSettingsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
     private var updateListViewModeOnResume = false
     private var isRefreshing = false
+    private var lastDisplayedItems: List<StreamItem>? = null
 
     private var lastNewItemsCount = 0
 
@@ -206,7 +207,8 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     override fun initListeners() {
         super.initListeners()
-        feedBinding.refreshRootView.setOnClickListener { reloadContent() }
+        feedBinding.refreshRootView.setOnClickListener { if (!isRefreshing) reloadContent() }
+        feedBinding.cancelRefreshButton.setOnClickListener { cancelRefresh() }
         feedBinding.swipeRefreshLayout.setOnRefreshListener { reloadContent() }
         feedBinding.newItemsLoadedButton.setOnClickListener {
             hideNewItemsLoaded(true)
@@ -309,6 +311,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         tryGetNewItemsLoadedButton()?.clearAnimation()
 
         feedBinding.itemsList.adapter = null
+        lastDisplayedItems = null
         _feedBinding = null
         super.onDestroyView()
     }
@@ -319,10 +322,13 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     override fun showLoading() {
         super.showLoading()
-        feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
-        feedBinding.refreshRootView.animate(false, 0)
+        feedBinding.refreshRootView.animate(true, 0)
+        feedBinding.refreshRootView.isClickable = false
+        feedBinding.refreshIcon.isVisible = false
+        feedBinding.cancelRefreshButton.isVisible = true
         feedBinding.loadingProgressText.animate(true, 200)
-        feedBinding.swipeRefreshLayout.isRefreshing = true
+        feedBinding.swipeRefreshLayout.isRefreshing = false
+        feedBinding.swipeRefreshLayout.isEnabled = false
         isRefreshing = true
     }
 
@@ -330,17 +336,14 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.hideLoading()
         feedBinding.itemsList.animate(true, 0)
         feedBinding.refreshRootView.animate(true, 200)
-        feedBinding.loadingProgressText.animate(false, 0)
-        feedBinding.swipeRefreshLayout.isRefreshing = false
-        isRefreshing = false
+        resetRefreshControls()
     }
 
     override fun showEmptyState() {
         super.showEmptyState()
         feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(true, 200)
-        feedBinding.loadingProgressText.animate(false, 0)
-        feedBinding.swipeRefreshLayout.isRefreshing = false
+        resetRefreshControls()
     }
 
     override fun handleResult(result: FeedState) {
@@ -357,23 +360,70 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         super.handleError()
         feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
         feedBinding.refreshRootView.animate(false, 0)
+        resetRefreshControls()
+    }
+
+    private fun resetRefreshControls() {
+        feedBinding.refreshRootView.isClickable = true
+        feedBinding.refreshIcon.isVisible = true
+        feedBinding.cancelRefreshButton.isVisible = false
         feedBinding.loadingProgressText.animate(false, 0)
         feedBinding.swipeRefreshLayout.isRefreshing = false
+        feedBinding.swipeRefreshLayout.isEnabled = true
         isRefreshing = false
+    }
+
+    private fun applyItemVersion(items: List<StreamItem>) {
+        val itemVersion = when (getItemViewMode(requireContext())) {
+            ItemViewMode.GRID -> StreamItem.ItemVersion.GRID
+            ItemViewMode.CARD -> StreamItem.ItemVersion.CARD
+            else -> StreamItem.ItemVersion.NORMAL
+        }
+        items.forEach { it.itemVersion = itemVersion }
     }
 
     private fun handleProgressState(progressState: FeedState.ProgressState) {
         showLoading()
 
-        val isIndeterminate = progressState.currentProgress == -1 &&
-            progressState.maxProgress == -1
+        if (progressState.items.isNotEmpty()) {
+            applyItemVersion(progressState.items)
 
-        feedBinding.loadingProgressText.text = if (!isIndeterminate) {
-            "${progressState.currentProgress}/${progressState.maxProgress}"
-        } else if (progressState.progressMessage > 0) {
-            getString(progressState.progressMessage)
+            if (groupAdapter.itemCount == 0 || lastDisplayedItems != progressState.items) {
+                lastDisplayedItems = progressState.items
+                groupAdapter.updateAsync(progressState.items, false, null)
+            }
+
+            listState?.run {
+                feedBinding.itemsList.layoutManager?.onRestoreInstanceState(listState)
+                listState = null
+            }
+
+            feedBinding.itemsList.animate(true, 0)
         } else {
-            "∞/∞"
+            lastDisplayedItems = emptyList()
+            feedBinding.itemsList.animateHideRecyclerViewAllowingScrolling()
+        }
+
+        val feedsNotLoaded = progressState.notLoadedCount > 0
+        feedBinding.refreshSubtitleText.isVisible = feedsNotLoaded
+        if (feedsNotLoaded) {
+            feedBinding.refreshSubtitleText.text = getString(
+                R.string.feed_subscription_not_loaded_count,
+                progressState.notLoadedCount
+            )
+        }
+
+        feedBinding.cancelRefreshButton.isEnabled = !progressState.isCancelling
+        feedBinding.cancelRefreshButton.alpha = if (progressState.isCancelling) 0.5f else 1f
+
+        val isIndeterminate = progressState.isCancelling ||
+            (progressState.currentProgress == -1 && progressState.maxProgress == -1)
+
+        feedBinding.loadingProgressText.text = when {
+            progressState.isCancelling -> getString(R.string.feed_cancelling_loading)
+            !isIndeterminate -> "${progressState.currentProgress}/${progressState.maxProgress}"
+            progressState.progressMessage > 0 -> getString(progressState.progressMessage)
+            else -> "∞/∞"
         }
 
         feedBinding.loadingProgressBar.isIndeterminate = isIndeterminate ||
@@ -393,7 +443,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
         override fun onItemClick(item: Item<*>, view: View) {
-            if (item is StreamItem && !isRefreshing) {
+            if (item is StreamItem) {
                 val stream = item.streamWithState.stream
                 NavigationHelper.openVideoDetailFragment(
                     requireContext(),
@@ -408,7 +458,7 @@ class FeedFragment : BaseStateFragment<FeedState>() {
         }
 
         override fun onItemLongClick(item: Item<*>, view: View): Boolean {
-            if (item is StreamItem && !isRefreshing) {
+            if (item is StreamItem) {
                 showInfoItemDialog(item.streamWithState.stream.toStreamInfoItem())
                 return true
             }
@@ -418,15 +468,11 @@ class FeedFragment : BaseStateFragment<FeedState>() {
 
     @SuppressLint("StringFormatMatches")
     private fun handleLoadedState(loadedState: FeedState.LoadedState) {
-        val itemVersion = when (getItemViewMode(requireContext())) {
-            ItemViewMode.GRID -> StreamItem.ItemVersion.GRID
-            ItemViewMode.CARD -> StreamItem.ItemVersion.CARD
-            else -> StreamItem.ItemVersion.NORMAL
-        }
-        loadedState.items.forEach { it.itemVersion = itemVersion }
+        applyItemVersion(loadedState.items)
 
         // This need to be saved in a variable as the update occurs async
         val oldOldestSubscriptionUpdate = oldestSubscriptionUpdate
+        lastDisplayedItems = loadedState.items
 
         groupAdapter.updateAsync(loadedState.items, false) {
             oldOldestSubscriptionUpdate?.run {
@@ -688,6 +734,10 @@ class FeedFragment : BaseStateFragment<FeedState>() {
             }
         )
         listState = null
+    }
+
+    private fun cancelRefresh() {
+        FeedLoadService.cancel(requireContext())
     }
 
     companion object {
