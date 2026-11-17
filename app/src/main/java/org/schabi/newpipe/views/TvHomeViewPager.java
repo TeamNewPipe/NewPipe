@@ -26,6 +26,23 @@ public final class TvHomeViewPager extends ViewPager {
     }
 
     @Override
+    public void setCurrentItem(final int item) {
+        if (HomeTabTransition.shouldJump(
+                getCurrentItem(), item, getOffscreenPageLimit())) {
+            super.setCurrentItem(item, false);
+        } else {
+            super.setCurrentItem(item);
+        }
+    }
+
+    @Override
+    public void setCurrentItem(final int item, final boolean smoothScroll) {
+        super.setCurrentItem(item, smoothScroll
+                && !HomeTabTransition.shouldJump(
+                        getCurrentItem(), item, getOffscreenPageLimit()));
+    }
+
+    @Override
     public boolean arrowScroll(final int direction) {
         final View navigation = getRootView().findViewById(R.id.main_navigation_rail);
         if (!DeviceUtils.isTv(getContext())
