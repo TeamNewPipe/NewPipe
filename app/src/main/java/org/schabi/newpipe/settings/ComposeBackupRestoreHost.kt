@@ -74,7 +74,7 @@ class ComposeBackupRestoreHost(private val context: Context) : BackupRestoreHost
 
     override suspend fun exportData(file: String): DataExportResult = withContext(Dispatchers.IO) {
         try {
-            NewPipeDatabase.checkpoint()
+            NewPipeDatabase.checkpoint(context)
             manager.exportDatabase(preferences, zipFile(file))
             // Remembered only on success, so the next picker opens where it worked
             saveLastBackupFile(file)
