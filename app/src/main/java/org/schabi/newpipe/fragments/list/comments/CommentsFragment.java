@@ -24,6 +24,7 @@ import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentSortOrder;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
@@ -68,6 +69,9 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
             commentSearch.setExpanded(savedInstanceState.getBoolean("comment_search_expanded"));
         }
         commentSearch.bind(rootView, this::applyCommentSearch, this::loadMoreItems);
+        if (getParentFragment() instanceof VideoDetailFragment detail) {
+            detail.getCommentsMiniPlayerAction().bind(rootView, getViewLifecycleOwner());
+        }
         final boolean supportsSorting = serviceId == ServiceList.YouTube.getServiceId();
         final boolean newest = savedInstanceState != null
                 ? savedInstanceState.getBoolean("comments_newest", false)

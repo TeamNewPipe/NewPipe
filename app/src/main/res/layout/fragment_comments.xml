@@ -45,6 +45,15 @@
                 android:contentDescription="@string/comments_search"
                 app:srcCompat="@drawable/ic_search"
                 app:tint="?attr/colorOnSurface" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/comments_minimize_player"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/comments_minimize_player"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_expand_more"
+                app:tint="?attr/colorOnSurface" />
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/comments_search_field"

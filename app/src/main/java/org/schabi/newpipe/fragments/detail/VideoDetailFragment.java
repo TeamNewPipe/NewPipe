@@ -102,6 +102,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentsMiniPlayerAction;
 import org.schabi.newpipe.fragments.list.chat.LiveChatFragment;
 import org.schabi.newpipe.player.LiveChatRepository;
 import org.schabi.newpipe.fragments.list.videos.RelatedItemsFragment;
@@ -274,6 +275,8 @@ public final class VideoDetailFragment
 
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+    @Nullable
+    private CommentsMiniPlayerAction commentsMiniPlayerAction;
     @State
     int lastStableBottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
     @Nullable
@@ -345,6 +348,7 @@ public final class VideoDetailFragment
             return;
         }
         player = connectedPlayer;
+        updateCommentsMiniPlayerAction();
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded();
@@ -1777,6 +1781,7 @@ public final class VideoDetailFragment
     }
 
     public void updateDetailNavigationVisibility() {
+        updateCommentsMiniPlayerAction();
 
         if (binding == null || detailNavigation == null) {
             //If binding is null we do not need to and should not do anything with its object(s)
@@ -3915,7 +3920,33 @@ public final class VideoDetailFragment
         });
     }
 
+    public CommentsMiniPlayerAction getCommentsMiniPlayerAction() {
+        if (commentsMiniPlayerAction == null) {
+            commentsMiniPlayerAction = new CommentsMiniPlayerAction(
+                    this::canMinimizeFromComments, this::minimizeFromComments);
+        }
+        return commentsMiniPlayerAction;
+    }
+
+    private void updateCommentsMiniPlayerAction() {
+        if (commentsMiniPlayerAction != null) {
+            commentsMiniPlayerAction.update();
+        }
+    }
+
+    private boolean canMinimizeFromComments() {
+        return binding != null && bottomSheetBehavior != null
+                && bottomSheetState == BottomSheetBehavior.STATE_EXPANDED
+                && isPlayerAvailable() && !playerDismissed && !player.isStopped()
+                && player.videoPlayerSelected() && !nativePipPrepared && !isFullscreen();
+    }
+
+    private void minimizeFromComments() {
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
     private void updateMinimizedVideo() {
+        updateCommentsMiniPlayerAction();
         if (binding == null) {
             return;
         }
