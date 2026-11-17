@@ -55,4 +55,6 @@
     <dimen name="search_suggestion_text_size">14sp</dimen>
 
     <dimen name="comment_item_avatar_right_margin">13dp</dimen>
+
+    <dimen name="player_audio_track_max_width">160dp</dimen>
 </resources>

@@ -51,7 +51,7 @@ class PlayerSecondaryControlsLayoutTest {
     }
 
     @Test
-    fun captionControlStaysVisibleAtNarrowPhoneWidth() {
+    fun captionAndAbControlsStayVisibleAtNarrowPhoneWidth() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.runOnMainSync {
             val context = ContextThemeWrapper(instrumentation.targetContext, R.style.LightTheme)
@@ -62,10 +62,12 @@ class PlayerSecondaryControlsLayoutTest {
             val secondaryControls =
                 root.findViewById<HorizontalScrollView>(R.id.secondaryControls)
             val caption = root.findViewById<View>(R.id.captionTextView)
+            val abRepeat = root.findViewById<View>(R.id.abRepeatButton)
 
             playbackControlRoot.visibility = View.VISIBLE
             secondaryControls.visibility = View.VISIBLE
             caption.visibility = View.VISIBLE
+            abRepeat.visibility = View.VISIBLE
 
             // Stress the row with every optional secondary action visible. Captions must remain in
             // the initial viewport while later actions are still reachable by horizontal scrolling.
@@ -91,7 +93,36 @@ class PlayerSecondaryControlsLayoutTest {
             assertTrue(caption.width >= dp(context, 48))
             assertTrue(caption.height >= dp(context, 48))
             assertTrue(captionRightInContent <= secondaryControls.width)
+            assertTrue(abRepeat.right <= secondaryControls.width)
             assertTrue(content.width > secondaryControls.width)
+        }
+    }
+
+    @Test
+    fun longAudioTrackLabelFitsInNarrowPortraitControls() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.runOnMainSync {
+            val context = ContextThemeWrapper(instrumentation.targetContext, R.style.LightTheme)
+            val root = LayoutInflater.from(context)
+                .inflate(R.layout.player, FrameLayout(context), false)
+
+            val playbackControlRoot = root.findViewById<View>(R.id.playbackControlRoot)
+            val primaryControls = root.findViewById<View>(R.id.primaryControls)
+            val metadataControls = root.findViewById<View>(R.id.metadataControls)
+            val audioContainer = root.findViewById<View>(R.id.audioTrackContainer)
+            val audioTrack = root.findViewById<TextView>(R.id.audioTrackTextView)
+
+            playbackControlRoot.visibility = View.VISIBLE
+            audioTrack.visibility = View.VISIBLE
+            audioTrack.text = "English (United States) original"
+
+            measureAndLayout(root, dp(context, 320), dp(context, 640))
+
+            val audioRightInPrimary =
+                metadataControls.left + audioContainer.left + audioTrack.right
+            assertTrue(audioTrack.width >= dp(context, 48))
+            assertTrue(audioTrack.width <= dp(context, 112))
+            assertTrue(audioRightInPrimary <= primaryControls.width)
         }
     }
 

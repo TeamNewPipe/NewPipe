@@ -72,7 +72,7 @@
     <dimen name="player_main_buttons_padding">6dp</dimen>
     <dimen name="player_main_icon_buttons_padding">12dp</dimen>
     <dimen name="player_main_controls_text_size">14sp</dimen>
-    <dimen name="player_audio_track_max_width">160dp</dimen>
+    <dimen name="player_audio_track_max_width">112dp</dimen>
     <dimen name="player_seek_gesture_horizontal_padding">14dp</dimen>
     <dimen name="player_seek_gesture_vertical_padding">8dp</dimen>
     <dimen name="player_seek_gesture_text_size">16sp</dimen>
