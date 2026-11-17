@@ -10,6 +10,7 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -104,6 +105,16 @@ public abstract class ChannelExtractor extends ListExtractor<StreamInfoItem> {
     public abstract long getSubscriberCount() throws ParsingException;
 
     public abstract String getDescription() throws ParsingException;
+
+    @Nullable
+    public String getJoinedDateText() throws ParsingException {
+        return null;
+    }
+
+    @Nonnull
+    public List<ChannelExternalLink> getExternalLinks() throws ParsingException {
+        return Collections.emptyList();
+    }
 
     public String getParentChannelName() throws ParsingException {
         return null;

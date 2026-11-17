@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.channel.ChannelExternalLink;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Response;
@@ -61,6 +62,8 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 public class YoutubeChannelExtractor extends ChannelExtractor {
     private JsonObject jsonResponse;
+    private JsonObject aboutJsonResponse;
+    private YoutubeChannelAboutInfo aboutChannelInfo;
     private JsonObject videoTab;
     private List<ListLinkHandler> tabs;
 
@@ -127,6 +130,20 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
         jsonResponse = getJsonPostResponse("browse", body, getExtractorLocalization());
         YoutubeParsingHelper.defaultAlertsCheck(jsonResponse);
+
+        aboutChannelInfo = null;
+        try {
+            final byte[] aboutBody = JsonWriter.string(prepareDesktopJsonBuilder(
+                            getExtractorLocalization(), getExtractorContentCountry())
+                            .value("browseId", id)
+                            .value("params", "EgVhYm91dA==")
+                            .done())
+                    .getBytes(UTF_8);
+            aboutJsonResponse = getJsonPostResponse(
+                    "browse", aboutBody, getExtractorLocalization());
+        } catch (final IOException | ExtractionException ignored) {
+            aboutJsonResponse = new JsonObject();
+        }
 
         redirectedChannelId = id;
 
@@ -398,6 +415,26 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
         } catch (final Exception e) {
             return null;
         }
+    }
+
+    private YoutubeChannelAboutInfo getAboutChannelInfo() throws ParsingException {
+        assertPageFetched();
+        if (aboutChannelInfo == null) {
+            aboutChannelInfo = YoutubeChannelAboutInfo.from(aboutJsonResponse);
+        }
+        return aboutChannelInfo;
+    }
+
+    @Nullable
+    @Override
+    public String getJoinedDateText() throws ParsingException {
+        return getAboutChannelInfo().getJoinedDateText();
+    }
+
+    @Nonnull
+    @Override
+    public List<ChannelExternalLink> getExternalLinks() throws ParsingException {
+        return getAboutChannelInfo().getExternalLinks();
     }
 
 

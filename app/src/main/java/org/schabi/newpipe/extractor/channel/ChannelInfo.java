@@ -145,6 +145,16 @@ public class ChannelInfo extends ListInfo<StreamInfoItem> {
         } catch (final Exception e) {
             info.addError(e);
         }
+        try {
+            info.setJoinedDateText(extractor.getJoinedDateText());
+        } catch (final Exception e) {
+            info.addError(e);
+        }
+        try {
+            info.setExternalLinks(extractor.getExternalLinks());
+        } catch (final Exception e) {
+            info.addError(e);
+        }
 
         try {
             info.setParentChannelName(extractor.getParentChannelName());
@@ -198,6 +208,8 @@ public class ChannelInfo extends ListInfo<StreamInfoItem> {
     private String feedUrl;
     private long subscriberCount = -1;
     private String description;
+    private String joinedDateText;
+    private List<ChannelExternalLink> externalLinks = Collections.emptyList();
     private String[] donationLinks;
     private boolean verified;
 
@@ -286,6 +298,23 @@ public class ChannelInfo extends ListInfo<StreamInfoItem> {
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    public String getJoinedDateText() {
+        return joinedDateText;
+    }
+
+    public void setJoinedDateText(final String joinedDateText) {
+        this.joinedDateText = joinedDateText;
+    }
+
+    @Nonnull
+    public List<ChannelExternalLink> getExternalLinks() {
+        return externalLinks;
+    }
+
+    public void setExternalLinks(@Nonnull final List<ChannelExternalLink> externalLinks) {
+        this.externalLinks = externalLinks;
     }
 
     public String[] getDonationLinks() {

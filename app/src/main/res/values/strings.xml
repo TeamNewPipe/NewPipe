@@ -1963,5 +1963,7 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="player_projection_motion_off">Disable motion</string>
     <string name="customize_tab_icon">Customize icon</string>
     <string name="use_default_icon">Use default icon</string>
+    <string name="metadata_channel_joined">Channel joined</string>
+    <string name="metadata_channel_links">Links</string>
 </resources>
 

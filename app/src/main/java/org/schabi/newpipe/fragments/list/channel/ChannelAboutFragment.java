@@ -14,6 +14,7 @@ import com.evernote.android.state.State;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.channel.ChannelExternalLink;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.fragments.detail.BaseDescriptionFragment;
@@ -22,6 +23,7 @@ import org.schabi.newpipe.util.ExtractorApiCompat;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChannelAboutFragment extends BaseDescriptionFragment {
     @State
@@ -83,6 +85,20 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
         if (channelInfo.getSubscriberCount() != UNKNOWN_SUBSCRIBER_COUNT) {
             addMetadataItem(inflater, layout, false, R.string.metadata_subscribers,
                     Localization.localizeNumber(channelInfo.getSubscriberCount()));
+        }
+
+        if (channelInfo.getJoinedDateText() != null
+                && !channelInfo.getJoinedDateText().isBlank()) {
+            addMetadataItem(inflater, layout, false, R.string.metadata_channel_joined,
+                    channelInfo.getJoinedDateText());
+        }
+
+        final String externalLinks = channelInfo.getExternalLinks().stream()
+                .map(ChannelExternalLink::getDisplayText)
+                .collect(Collectors.joining("\n"));
+        if (!externalLinks.isBlank()) {
+            addMetadataItem(inflater, layout, true, R.string.metadata_channel_links,
+                    externalLinks);
         }
 
         addImagesMetadataItem(inflater, layout, R.string.metadata_avatars,
