@@ -17,6 +17,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.model.ChannelNotification
@@ -33,6 +35,7 @@ import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.ChannelNotificationSettingsViewModel
 import newpipe.shared.generated.resources.Res
+import newpipe.shared.generated.resources.channel_notifications_description
 import newpipe.shared.generated.resources.channels
 import newpipe.shared.generated.resources.ic_checklist
 import newpipe.shared.generated.resources.toggle_all
@@ -42,6 +45,7 @@ import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 private const val CHANNEL_NAME_MAX_LINES = 2
+private const val DESCRIPTION_KEY = "description"
 
 @Composable
 fun ChannelNotificationSettingsScreen(
@@ -87,6 +91,15 @@ fun ChannelNotificationSettingsScreenContent(
                 .padding(top = paddingValues.calculateTopPadding()),
             contentPadding = WindowInsets.navigationBars.asPaddingValues()
         ) {
+            item(key = DESCRIPTION_KEY) {
+                Text(
+                    text = stringResource(Res.string.channel_notifications_description),
+                    modifier = Modifier.padding(16.dp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+
             items(items = channels, key = { channel -> channel.id }) { channel ->
                 ListItem(
                     modifier = Modifier.toggleable(
