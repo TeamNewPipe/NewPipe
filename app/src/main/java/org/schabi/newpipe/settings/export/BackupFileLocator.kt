@@ -17,6 +17,7 @@ class BackupFileLocator(context: Context) {
         )
         const val FILE_NAME_SERIALIZED_PREFS = "newpipe.settings"
         const val FILE_NAME_JSON_PREFS = "preferences.json"
+        const val FILE_NAME_LOCAL_RECOMMENDATIONS = "local_recommendations.json"
         const val FILE_NAME_MANIFEST = "backup_manifest.json"
     }
 

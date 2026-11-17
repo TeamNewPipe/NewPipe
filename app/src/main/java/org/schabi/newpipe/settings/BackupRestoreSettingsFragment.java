@@ -29,6 +29,8 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportExportHelper;
 import org.schabi.newpipe.profiles.ProfileManager;
+import org.schabi.newpipe.recommendations.LocalRecommendations;
+import org.schabi.newpipe.recommendations.RecommendationTasteTransfer;
 import org.schabi.newpipe.settings.export.BackupFileLocator;
 import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.settings.export.NewPipeCompatibleExportManager;
@@ -54,6 +56,7 @@ import java.util.concurrent.Executors;
 public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
     private static final String ZIP_MIME_TYPE = "application/zip";
+    private static final String JSON_MIME_TYPE = RecommendationTasteTransfer.MIME_TYPE;
 
     private enum MigrationOption {
         SUBSCRIPTIONS,
@@ -91,6 +94,12 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private final ActivityResultLauncher<Intent> requestCompatibleExportPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestCompatibleExportPathResult);
+    private final ActivityResultLauncher<Intent> requestTasteExportPathLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    this::requestTasteExportPathResult);
+    private final ActivityResultLauncher<Intent> requestTasteImportPathLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    this::requestTasteImportPathResult);
     private final ActivityResultLauncher<Intent> requestMigrationPathLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     this::requestMigrationPathResult);
@@ -237,6 +246,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
+        configureRecommendationTasteTransfer();
+
         final Preference resetSettings = requirePreference(R.string.reset_settings);
         // Resets all settings by deleting shared preference and restarting the app
         // A dialogue will pop up to confirm if user intends to reset all settings
@@ -275,6 +286,34 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
+    }
+
+    private void configureRecommendationTasteTransfer() {
+        requirePreference(R.string.export_recommendation_taste_key)
+                .setOnPreferenceClickListener(preference -> {
+                    NoFileManagerSafeGuard.launchSafe(
+                            requestTasteExportPathLauncher,
+                            StoredFileHelper.getNewSystemPicker(requireContext(),
+                                    "WizeStreamTaste-"
+                                            + exportDateFormat.format(new Date()) + ".json",
+                                    JSON_MIME_TYPE, getImportExportDataUri()),
+                            TAG,
+                            getContext()
+                    );
+                    return true;
+                });
+
+        requirePreference(R.string.import_recommendation_taste_key)
+                .setOnPreferenceClickListener(preference -> {
+                    NoFileManagerSafeGuard.launchSafe(
+                            requestTasteImportPathLauncher,
+                            StoredFileHelper.getSystemPicker(requireContext(),
+                                    JSON_MIME_TYPE, getImportExportDataUri()),
+                            TAG,
+                            getContext()
+                    );
+                    return true;
+                });
     }
 
     @Override
@@ -327,6 +366,109 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     requireContext(), exportDataUri, ZIP_MIME_TYPE);
             exportNewPipeCompatibleData(file, exportDataUri);
         }
+    }
+
+    private void requestTasteExportPathResult(final ActivityResult result) {
+        if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null) {
+            return;
+        }
+        final Uri exportDataUri = result.getData().getData();
+        final StoredFileHelper file = new StoredFileHelper(
+                requireContext(), exportDataUri, JSON_MIME_TYPE);
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                final RecommendationTasteTransfer.Summary summary =
+                        RecommendationTasteTransfer.exportTo(requireContext(), file);
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() -> {
+                        saveLastImportExportDataUri(exportDataUri);
+                        Toast.makeText(requireContext(), getString(
+                                R.string.recommendation_taste_export_complete,
+                                summary.getInterests(), summary.getChannels()),
+                                Toast.LENGTH_LONG).show();
+                    });
+                }
+            } catch (final Exception error) {
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() ->
+                            showErrorSnackbar(error, "Exporting recommendation taste"));
+                }
+            } finally {
+                executor.shutdown();
+            }
+        });
+    }
+
+    private void requestTasteImportPathResult(final ActivityResult result) {
+        if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null) {
+            return;
+        }
+        final Uri importDataUri = result.getData().getData();
+        final StoredFileHelper file = new StoredFileHelper(
+                requireContext(), importDataUri, JSON_MIME_TYPE);
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                final RecommendationTasteTransfer.Preview preview =
+                        RecommendationTasteTransfer.inspect(file);
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() ->
+                            showTasteImportConfirmation(preview, importDataUri));
+                }
+            } catch (final Exception error) {
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() ->
+                            showErrorSnackbar(error, "Reading recommendation taste"));
+                }
+            } finally {
+                executor.shutdown();
+            }
+        });
+    }
+
+    private void showTasteImportConfirmation(
+            final RecommendationTasteTransfer.Preview preview,
+            final Uri importDataUri) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.import_recommendation_taste_title)
+                .setMessage(getString(R.string.import_recommendation_taste_confirmation,
+                        preview.getInterests(), preview.getChannels()))
+                .setPositiveButton(R.string.recommendation_taste_merge, (dialog, which) ->
+                        applyRecommendationTaste(preview, importDataUri, false))
+                .setNeutralButton(R.string.recommendation_taste_replace, (dialog, which) ->
+                        applyRecommendationTaste(preview, importDataUri, true))
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private void applyRecommendationTaste(
+            final RecommendationTasteTransfer.Preview preview,
+            final Uri importDataUri,
+            final boolean replace) {
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                final RecommendationTasteTransfer.Summary summary =
+                        RecommendationTasteTransfer.apply(requireContext(), preview, replace);
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() -> {
+                        saveLastImportExportDataUri(importDataUri);
+                        Toast.makeText(requireContext(), getString(
+                                R.string.recommendation_taste_import_complete,
+                                summary.getInterests(), summary.getChannels()),
+                                Toast.LENGTH_LONG).show();
+                    });
+                }
+            } catch (final Exception error) {
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(() ->
+                            showErrorSnackbar(error, "Importing recommendation taste"));
+                }
+            } finally {
+                executor.shutdown();
+            }
+        });
     }
 
     private void requestImportPathResult(final ActivityResult result) {
@@ -564,7 +706,10 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
 
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
-            manager.exportDatabase(preferences, file);
+            final SharedPreferences localRecommendations = requireContext().getSharedPreferences(
+                    LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
+            manager.exportDatabase(preferences, file,
+                    new BackupFileLocator(requireContext()).getDb(), localRecommendations);
 
             saveLastImportExportDataUri(exportDataUri); // save export path only on success
             Snackbar.make(getListView(), getString(R.string.backup_exported_with_file,
@@ -655,6 +800,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                 R.string.backup_contents_json_preferences);
         appendBackupContent(builder, contents.getHasSerializedPreferences(),
                 R.string.backup_contents_legacy_preferences);
+        appendBackupContent(builder, contents.getHasLocalRecommendations(),
+                R.string.backup_contents_recommendation_taste);
         appendBackupContent(builder, contents.getHasManifest(), R.string.backup_contents_manifest);
         return builder.length() == 0
                 ? getString(R.string.backup_contents_none) : builder.toString();
@@ -674,7 +821,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private void chooseSettingsImport(final StoredFileHelper file, final Uri importDataUri,
                                       final ImportExportManager.BackupContents contents) {
         final boolean hasJsonPrefs = contents.getHasJsonPreferences();
-        if (!hasJsonPrefs && !contents.getHasSerializedPreferences()) {
+        if (!hasJsonPrefs && !contents.getHasSerializedPreferences()
+                && !contents.getHasLocalRecommendations()) {
             importDatabase(file, importDataUri, contents, false);
             return;
         }
@@ -703,7 +851,11 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         executor.execute(() -> {
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(context);
+            final SharedPreferences localRecommendations = context.getSharedPreferences(
+                    LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
             final Map<String, ?> previousPreferences = new HashMap<>(preferences.getAll());
+            final Map<String, ?> previousLocalRecommendations =
+                    new HashMap<>(localRecommendations.getAll());
             ImportExportManager.DatabaseRollback databaseRollback = null;
             Path stagedDatabase = null;
 
@@ -715,9 +867,14 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     importedPreferences = null;
                 } else if (contents.getHasJsonPreferences()) {
                     importedPreferences = manager.readJsonPrefs(file);
-                } else {
+                } else if (contents.getHasSerializedPreferences()) {
                     importedPreferences = manager.readSerializedPrefs(file);
+                } else {
+                    importedPreferences = null;
                 }
+                final Map<String, ?> importedLocalRecommendations =
+                        importSettings && contents.getHasLocalRecommendations()
+                                ? manager.readLocalRecommendations(file) : null;
 
                 if (contents.getHasDatabase()) {
                     stagedDatabase = manager.stageDb(file);
@@ -736,6 +893,10 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     manager.replacePreferences(preferences, importedPreferences);
                     cleanImport(context, preferences);
                 }
+                if (importedLocalRecommendations != null) {
+                    manager.replacePreferences(localRecommendations,
+                            importedLocalRecommendations);
+                }
 
                 if (databaseRollback != null) {
                     manager.finishDbReplacement(databaseRollback);
@@ -748,6 +909,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
             } catch (final Exception e) {
                 try {
                     manager.replacePreferences(preferences, previousPreferences);
+                    manager.replacePreferences(localRecommendations,
+                            previousLocalRecommendations);
                     if (databaseRollback != null) {
                         manager.rollbackDb(databaseRollback);
                     }

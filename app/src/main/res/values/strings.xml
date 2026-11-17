@@ -626,17 +626,18 @@
     <string name="export_compatible_data_complete_message">Exported %1$d subscriptions, %8$d channel groups with %9$d memberships, %5$d local playlists with %7$d videos, %6$d bookmarked playlists, %2$d watched items, %10$d searches, and %3$d playback positions. Skipped %4$d records that NewPipe cannot use. Import this ZIP using NewPipe’s backup restore screen.</string>
     <string name="clear_cookie_title">Clear reCAPTCHA cookies</string>
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
-    <string name="import_data_summary">Restore subscriptions, playlists, app settings, SponsorBlock settings, and local data from a ZIP backup.</string>
-    <string name="export_data_summary">Create a ZIP backup with subscriptions, playlists, app settings, SponsorBlock settings, and local data.</string>
+    <string name="import_data_summary">Restore subscriptions, playlists, app settings, SponsorBlock settings, Your Taste, and local data from a ZIP backup.</string>
+    <string name="export_data_summary">Create a ZIP backup with subscriptions, playlists, app settings, SponsorBlock settings, Your Taste, and local data.</string>
     <string name="clear_cookie_summary">Clear cookies that WizeStream stores when you solve a reCAPTCHA</string>
     <string name="full_backup_includes_title">What full backup includes</string>
-    <string name="full_backup_includes_summary">Full backup preserves all local profiles and their subscriptions, playlists, history, app settings, SponsorBlock settings, and other local data.</string>
+    <string name="full_backup_includes_summary">Full backup preserves all local profiles and their subscriptions, playlists, history, app settings, SponsorBlock settings, complete private recommendation models, and other local data.</string>
     <string name="import_full_backup_title">Import full backup?</string>
     <string name="import_full_backup_button">Import</string>
     <string name="import_full_backup_detected_contents">Detected contents: %s</string>
     <string name="backup_contents_database">database/local data</string>
     <string name="backup_contents_json_preferences">app settings</string>
     <string name="backup_contents_legacy_preferences">legacy settings</string>
+    <string name="backup_contents_recommendation_taste">complete recommendation models</string>
     <string name="backup_contents_manifest">backup manifest</string>
     <string name="backup_contents_none">no recognizable backup contents</string>
     <string name="backup_invalid_or_empty">This ZIP does not contain recognizable WizeStream backup data.</string>
@@ -655,6 +656,18 @@
     <string name="migration_complete_message">Merged %1$d history entries, %2$d playback positions, %3$d playlists, %4$d playlist items, %5$d subscriptions, %6$d compatible settings, and %7$d SponsorBlock settings. Skipped %8$d incompatible or existing items.</string>
     <string name="backup_exported_with_file">Backup exported: %s</string>
     <string name="backup_import_succeeded_restart">Import succeeded. WizeStream will restart to finish loading the backup.</string>
+    <string name="recommendation_taste_transfer_title">Your Taste transfer</string>
+    <string name="export_recommendation_taste_key" translatable="false">export_recommendation_taste</string>
+    <string name="export_recommendation_taste_title">Export Your Taste</string>
+    <string name="export_recommendation_taste_summary">Create a privacy-safe JSON file with only aggregated interests and channel weights for the active profile. Watched videos, local likes, candidate URLs, exclusions, and settings are not included.</string>
+    <string name="import_recommendation_taste_key" translatable="false">import_recommendation_taste</string>
+    <string name="import_recommendation_taste_title">Import Your Taste</string>
+    <string name="import_recommendation_taste_summary">Merge or replace the active profile’s learned interests and channel weights from a WizeStream taste file.</string>
+    <string name="import_recommendation_taste_confirmation">This file contains %1$d interests and %2$d channel weights. Merge adds them to the active profile. Replace discards its existing learned interests and channel weights. Private activity and settings are not imported.</string>
+    <string name="recommendation_taste_merge">Merge</string>
+    <string name="recommendation_taste_replace">Replace</string>
+    <string name="recommendation_taste_export_complete">Exported %1$d interests and %2$d channel weights.</string>
+    <string name="recommendation_taste_import_complete">Imported %1$d interests and %2$d channel weights.</string>
     <string name="restart">Restart</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
@@ -1885,7 +1898,7 @@
     <string name="local_recommendations_title">Local recommendations</string>
     <string name="local_recommendations_feed">For you</string>
     <string name="local_recommendations_enable">Enable for this profile</string>
-    <string name="local_recommendations_pause">Pause learning</string>
+    <string name="local_recommendations_pause">Pause recommendation learning</string>
     <string name="local_recommendations_shorts">Personalize Shorts</string>
     <string name="local_recommendations_autoplay">Personalize autoplay</string>
     <string name="local_recommendations_topics">Excluded topics or channel names (comma separated)</string>

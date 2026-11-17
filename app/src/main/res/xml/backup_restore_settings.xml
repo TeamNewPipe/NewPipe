@@ -37,6 +37,23 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <PreferenceCategory
+        android:title="@string/recommendation_taste_transfer_title"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/export_recommendation_taste_key"
+            android:title="@string/export_recommendation_taste_title"
+            android:summary="@string/export_recommendation_taste_summary"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/import_recommendation_taste_key"
+            android:title="@string/import_recommendation_taste_title"
+            android:summary="@string/import_recommendation_taste_summary"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
     <Preference
         android:key="@string/libretube_import_key"
         android:title="@string/libretube_import_title"

@@ -15,6 +15,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import org.schabi.newpipe.NewPipeDatabase;
+import org.schabi.newpipe.recommendations.LocalRecommendations;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 
 import java.io.File;
@@ -96,9 +97,11 @@ public final class ScheduledBackupWorker extends Worker {
             if (output == null) {
                 throw new IOException("Could not create the backup file");
             }
+            final SharedPreferences localRecommendations = context.getSharedPreferences(
+                    LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
             new ImportExportManager(new BackupFileLocator(context)).exportDatabase(preferences,
                     new StoredFileHelper(context, output.getUri(), "application/zip"),
-                    snapshot.toPath());
+                    snapshot.toPath(), localRecommendations);
             // Keep the new backup even if an unavailable provider prevents retention cleanup.
             output = null;
             preferences.edit().putLong(LAST_SUCCESS_KEY, System.currentTimeMillis())

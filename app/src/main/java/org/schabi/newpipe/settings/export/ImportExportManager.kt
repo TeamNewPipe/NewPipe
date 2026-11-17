@@ -44,13 +44,15 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
         val hasDatabase: Boolean,
         val hasJsonPreferences: Boolean,
         val hasSerializedPreferences: Boolean,
+        val hasLocalRecommendations: Boolean,
         val hasManifest: Boolean,
         val manifest: String?,
         val source: BackupSource,
         val backupFormatVersion: Int?
     ) {
         val hasRecognizableBackupData: Boolean
-            get() = hasDatabase || hasJsonPreferences || hasSerializedPreferences
+            get() = hasDatabase || hasJsonPreferences || hasSerializedPreferences ||
+                hasLocalRecommendations
     }
 
     enum class BackupSource {
@@ -75,7 +77,8 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     fun exportDatabase(
         preferences: SharedPreferences,
         file: StoredFileHelper,
-        database: Path = fileLocator.db
+        database: Path = fileLocator.db,
+        localRecommendations: SharedPreferences? = null
     ) {
         // truncate the file before writing to it, otherwise if the new content is smaller than the
         // previous file size, the file will retain part of the previous content and be corrupted
@@ -97,6 +100,19 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                     .done()
             }
 
+            if (localRecommendations != null) {
+                ZipHelper.addFileToZip(
+                    outZip,
+                    BackupFileLocator.FILE_NAME_LOCAL_RECOMMENDATIONS
+                ) { byteOutput ->
+                    JsonWriter
+                        .indent("")
+                        .on(byteOutput)
+                        .`object`(localRecommendations.all)
+                        .done()
+                }
+            }
+
             ZipHelper.addFileToZip(
                 outZip,
                 BackupFileLocator.FILE_NAME_MANIFEST
@@ -110,6 +126,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                     .value("createdTimestamp", System.currentTimeMillis())
                     .value("includesDatabase", true)
                     .value("includesPreferences", true)
+                    .value("includesLocalRecommendations", localRecommendations != null)
                     .value(
                         "includesSponsorBlockSettings",
                         preferences.all.keys.any {
@@ -302,6 +319,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
         var hasDatabase = false
         var hasJsonPreferences = false
         var hasSerializedPreferences = false
+        var hasLocalRecommendations = false
         var hasManifest = false
         var manifest: String? = null
 
@@ -314,6 +332,9 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                     BackupFileLocator.FILE_NAME_JSON_PREFS -> hasJsonPreferences = true
 
                     BackupFileLocator.FILE_NAME_SERIALIZED_PREFS -> hasSerializedPreferences = true
+
+                    BackupFileLocator.FILE_NAME_LOCAL_RECOMMENDATIONS ->
+                        hasLocalRecommendations = true
 
                     BackupFileLocator.FILE_NAME_MANIFEST -> {
                         hasManifest = true
@@ -329,6 +350,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
             hasDatabase,
             hasJsonPreferences,
             hasSerializedPreferences,
+            hasLocalRecommendations,
             hasManifest,
             manifest,
             manifestInfo.first,
@@ -398,8 +420,23 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
 
     @Throws(IOException::class, JsonParserException::class)
     fun readJsonPrefs(zipFile: StoredFileHelper): Map<String, Any?> {
+        return readJsonPreferences(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS)
+    }
+
+    @Throws(IOException::class, JsonParserException::class)
+    fun readLocalRecommendations(zipFile: StoredFileHelper): Map<String, Any?> {
+        return readJsonPreferences(
+            zipFile,
+            BackupFileLocator.FILE_NAME_LOCAL_RECOMMENDATIONS
+        )
+    }
+
+    private fun readJsonPreferences(
+        zipFile: StoredFileHelper,
+        entryName: String
+    ): Map<String, Any?> {
         var entries: Map<String, Any?>? = null
-        ZipHelper.extractFileFromZip(zipFile, BackupFileLocator.FILE_NAME_JSON_PREFS) {
+        ZipHelper.extractFileFromZip(zipFile, entryName) {
             val jsonObject = JsonParser.`object`().from(it)
             val parsedEntries = mutableMapOf<String, Any?>()
 
@@ -415,7 +452,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
             entries = parsedEntries
         }.let { fileExists ->
             if (!fileExists) {
-                throw FileNotFoundException(BackupFileLocator.FILE_NAME_JSON_PREFS)
+                throw FileNotFoundException(entryName)
             }
         }
         return checkNotNull(entries)

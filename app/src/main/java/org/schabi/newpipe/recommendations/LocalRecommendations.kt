@@ -19,7 +19,7 @@ import org.schabi.newpipe.local.history.IncognitoMode
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.ContentBlockingHelper
 
-/** Bounded, device-local model. No history import, network requests, or sync serialization. */
+/** Bounded, device-local model. No history import, network requests, or Device Sync serialization. */
 object LocalRecommendations {
     const val PREFERENCES = "local_recommendations"
     private const val MAX_CANDIDATES = 200

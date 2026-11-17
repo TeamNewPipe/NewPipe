@@ -113,8 +113,45 @@ class ImportExportManagerTest {
                 assertTrue(manifest.containsKey("createdTimestamp"))
                 assertTrue(manifest.getBoolean("includesDatabase"))
                 assertTrue(manifest.getBoolean("includesPreferences"))
+                assertFalse(manifest.getBoolean("includesLocalRecommendations"))
                 assertFalse(manifest.getBoolean("includesSponsorBlockSettings"))
             }
+        }
+    }
+
+    @Test
+    fun `Complete recommendation models are included when requested`() {
+        val db = Paths.get(classloader.getResource("settings/newpipe.db")!!.toURI())
+
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        `when`(preferences.all).thenReturn(mapOf("theme" to "dark"))
+        val localRecommendations =
+            Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val recommendationModel = mapOf(
+            "profile:model" to """{"watched":["private-video"],"weights":{"0:music":2.0}}""",
+            "profile:paused" to true
+        )
+        `when`(localRecommendations.all).thenReturn(recommendationModel)
+
+        val output = File.createTempFile("wizestream_taste_", ".zip")
+        `when`(storedFileHelper.openAndTruncateStream()).thenReturn(FileStream(output))
+        ImportExportManager(fileLocator).exportDatabase(
+            preferences,
+            storedFileHelper,
+            db,
+            localRecommendations
+        )
+
+        ZipFile(output).use { zipFile ->
+            val taste = zipFile.getInputStream(
+                zipFile.getEntry(BackupFileLocator.FILE_NAME_LOCAL_RECOMMENDATIONS)
+            ).use { JsonParser.`object`().from(it) }
+            assertEquals(recommendationModel, taste)
+
+            val manifest = zipFile.getInputStream(
+                zipFile.getEntry(BackupFileLocator.FILE_NAME_MANIFEST)
+            ).use { JsonParser.`object`().from(it) }
+            assertTrue(manifest.getBoolean("includesLocalRecommendations"))
         }
     }
 
