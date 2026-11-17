@@ -54,6 +54,7 @@ import com.xwray.groupie.OnItemLongClickListener
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.lang.ref.WeakReference
 import java.time.LocalDate
@@ -148,6 +149,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     private var feedHasContent: Boolean? = null
     private var idleAnimator: RecyclerView.ItemAnimator? = null
     private var pendingListUpdate: OnAsyncUpdateListener? = null
+    private var relevanceSortDisposable: Disposable? = null
+    private var relevanceSortRequest = 0L
 
     private var glassLayout: GlassFeedLayout? = null
     private var glassBottomInset = 0
@@ -624,6 +627,9 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         noteBadges?.unwatch(feedBinding.itemsList)
         noteBadges = null
         pendingListUpdate = null
+        relevanceSortRequest++
+        relevanceSortDisposable?.dispose()
+        relevanceSortDisposable = null
         feedHasContent = null
         idleAnimator = null
         feedBinding.itemsList.adapter = null
@@ -965,7 +971,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     private fun showFilteredFeedItems(
         loadedState: FeedState.LoadedState,
-        restoreListState: Boolean
+        restoreListState: Boolean,
+        relevanceOrder: Map<String, Int>? = null
     ) {
         if (_feedBinding == null) {
             return
@@ -1039,20 +1046,54 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             val stream = item.streamWithState.stream
             arrayOf(stream.title, stream.uploader)
         }
-        val relevanceOrder = if (viewModel.getSortMode() == FeedSortMode.RELEVANCE) {
-            LocalRecommendations.relevanceOrder(
-                requireContext(),
-                searchedItems.map { it.streamWithState.stream.toStreamInfoItem() }
-            )
+        val relevanceEnabled = viewModel.getSortMode() == FeedSortMode.RELEVANCE
+        if (relevanceOrder == null) {
+            val request = ++relevanceSortRequest
+            relevanceSortDisposable?.dispose()
+            relevanceSortDisposable = null
+            if (relevanceEnabled) {
+                val applicationContext = requireContext().applicationContext
+                val rankingItems = searchedItems.map {
+                    it.streamWithState.stream.toStreamInfoItem()
+                }
+                relevanceSortDisposable = Single.fromCallable {
+                    LocalRecommendations.relevanceOrder(applicationContext, rankingItems)
+                }
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { order ->
+                            relevanceSortDisposable = null
+                            if (request == relevanceSortRequest && _feedBinding != null) {
+                                showFilteredFeedItems(loadedState, restoreListState, order)
+                            }
+                        },
+                        { error ->
+                            Log.e(TAG, "Unable to rank the feed by relevance", error)
+                            relevanceSortDisposable = null
+                            if (request == relevanceSortRequest && _feedBinding != null) {
+                                showFilteredFeedItems(
+                                    loadedState,
+                                    restoreListState,
+                                    emptyMap()
+                                )
+                            }
+                        }
+                    )
+                return
+            }
+        }
+        val effectiveRelevanceOrder = if (relevanceEnabled) {
+            relevanceOrder.orEmpty()
         } else {
             emptyMap()
         }
-        val orderedItems = if (relevanceOrder.isEmpty()) {
+        val orderedItems = if (effectiveRelevanceOrder.isEmpty()) {
             searchedItems
         } else {
             searchedItems.sortedBy { item ->
                 val stream = item.streamWithState.stream
-                relevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
+                effectiveRelevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
             }
         }
         val displayedItems = orderedItems.map { item ->
