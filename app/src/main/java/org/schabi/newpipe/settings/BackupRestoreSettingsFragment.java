@@ -175,7 +175,8 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
         try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
             //checkpoint before export
-            executor.submit(NewPipeDatabase::checkpoint).get();
+            final Context appContext = requireContext().getApplicationContext();
+            executor.submit(() -> NewPipeDatabase.checkpoint(appContext)).get();
 
             final SharedPreferences preferences = PreferenceManager
                     .getDefaultSharedPreferences(requireContext());
