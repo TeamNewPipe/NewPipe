@@ -149,7 +149,7 @@
         app:iconSpaceReserved="false" />
 
     <ListPreference
-        android:defaultValue="@string/search_button_behavior_current_tab_value"
+        android:defaultValue="@string/search_button_behavior_current_service_value"
         android:entries="@array/search_button_behavior_entries"
         android:entryValues="@array/search_button_behavior_values"
         android:key="@string/search_button_behavior_key"

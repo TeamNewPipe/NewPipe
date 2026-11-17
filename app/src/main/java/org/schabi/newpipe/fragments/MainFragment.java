@@ -377,7 +377,8 @@ public class MainFragment extends BaseFragment
     }
 
     private boolean prefersGlobalSearch() {
-        final String defaultValue = getString(R.string.search_button_behavior_current_tab_value);
+        final String defaultValue =
+                getString(R.string.search_button_behavior_current_service_value);
         final String configuredValue = prefs.getString(
                 getString(R.string.search_button_behavior_key), defaultValue);
         return getString(R.string.search_button_behavior_current_service_value)

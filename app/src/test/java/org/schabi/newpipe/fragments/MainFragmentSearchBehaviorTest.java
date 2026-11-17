@@ -13,7 +13,7 @@ public class MainFragmentSearchBehaviorTest {
             ? Path.of("src/main/res") : Path.of("app/src/main/res");
 
     @Test
-    public void currentTabRemainsDefaultWhenContextualSearchIsAvailable() {
+    public void currentTabPreferenceUsesContextualSearchWhenAvailable() {
         assertTrue(MainFragment.shouldUseContextualSearch(false, true));
         assertFalse(MainFragment.shouldUseContextualSearch(false, false));
     }
@@ -31,5 +31,7 @@ public class MainFragmentSearchBehaviorTest {
         assertTrue(settings.contains("@string/search_button_behavior_key"));
         assertTrue(settings.contains("@array/search_button_behavior_entries"));
         assertTrue(settings.contains("@array/search_button_behavior_values"));
+        assertTrue(settings.contains(
+                "android:defaultValue=\"@string/search_button_behavior_current_service_value\""));
     }
 }

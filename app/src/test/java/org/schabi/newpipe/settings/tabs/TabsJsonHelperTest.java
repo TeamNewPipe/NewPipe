@@ -22,6 +22,14 @@ public class TabsJsonHelperTest {
     private static final String JSON_TAB_ID_KEY = "tab_id";
 
     @Test
+    public void defaultTabsStartWithNeutralSearchPage() {
+        final List<Tab> defaultTabs = TabsJsonHelper.getDefaultTabs();
+
+        assertEquals(Tab.Type.BLANK.getTab(), defaultTabs.get(0));
+        assertEquals(Tab.Type.DEFAULT_KIOSK.getTab(), defaultTabs.get(1));
+    }
+
+    @Test
     public void testEmptyAndNullRead() throws TabsJsonHelper.InvalidJsonException {
         final List<Tab> defaultTabs = TabsJsonHelper.getDefaultTabs();
 
