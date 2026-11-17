@@ -10,6 +10,7 @@ import co.touchlab.kermit.Logger
 import net.newpipe.app.screen.about.AboutScreen
 import net.newpipe.app.screen.settings.AppearanceSettingsScreen
 import net.newpipe.app.screen.settings.BackupRestoreSettingsScreen
+import net.newpipe.app.screen.settings.BlockedChannelsSettingsScreen
 import net.newpipe.app.screen.settings.ChannelNotificationSettingsScreen
 import net.newpipe.app.screen.settings.ContentSettingsScreen
 import net.newpipe.app.screen.settings.DebugSettingsScreen
@@ -71,6 +72,10 @@ fun navModule() = module {
 
     navigation<Destination.ContentSettings> {
         ContentSettingsScreen()
+    }
+
+    navigation<Destination.BlockedChannelsSettings> {
+        BlockedChannelsSettingsScreen()
     }
 
     navigation<Destination.NotificationSettings> {

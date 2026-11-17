@@ -7,6 +7,7 @@ package org.schabi.newpipe.local.channel
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -16,7 +17,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.util.SparseItemUtil
-import org.schabi.newpipe.util.ThemeHelper
 
 object BlockedChannelUiHelper {
     @JvmStatic
@@ -77,7 +77,7 @@ object BlockedChannelUiHelper {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({}, { })
-        }.setActionTextColor(ThemeHelper.resolveColorFromAttr(context, android.R.attr.colorAccent))
+        }.setActionTextColor(Color.YELLOW)
             .show()
     }
 }

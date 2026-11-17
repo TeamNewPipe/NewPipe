@@ -34,6 +34,7 @@ import net.newpipe.app.composable.PreferenceCategoryTitle
 import net.newpipe.app.composable.PreferenceRow
 import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
+import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.ContentActions
 import net.newpipe.app.preferences.ContentPreferences.DEFAULT_FEED_UPDATE_THRESHOLD
@@ -61,6 +62,8 @@ import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.app_language_code
 import newpipe.shared.generated.resources.app_language_name
 import newpipe.shared.generated.resources.app_language_title
+import newpipe.shared.generated.resources.blocked_channels
+import newpipe.shared.generated.resources.blocked_channels_summary
 import newpipe.shared.generated.resources.content
 import newpipe.shared.generated.resources.content_language_title
 import newpipe.shared.generated.resources.country_codes
@@ -183,6 +186,7 @@ fun ContentSettingsScreen(
         onFeedUseDedicatedFetchMethodChange = viewModel::setFeedUseDedicatedFetchMethod,
         onFeedFetchChannelTabsChange = viewModel::setFeedFetchChannelTabs,
         onImageCacheWipedShown = viewModel::onImageCacheWipedShown,
+        onOpenBlockedChannelsSettings = { navigator.navigateTo(Destination.BlockedChannelsSettings) },
         onNavigateUp = { navigator.navigateUp() }
     )
 }
@@ -224,6 +228,7 @@ fun ContentSettingsScreenContent(
     onFeedUseDedicatedFetchMethodChange: (Boolean) -> Unit = {},
     onFeedFetchChannelTabsChange: (Set<String>) -> Unit = {},
     onImageCacheWipedShown: () -> Unit = {},
+    onOpenBlockedChannelsSettings: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
@@ -342,6 +347,11 @@ fun ContentSettingsScreenContent(
             PreferenceRow(
                 title = stringResource(Res.string.peertube_instance_url_title),
                 summary = stringResource(Res.string.peertube_instance_url_summary)
+            )
+            PreferenceRow(
+                title = stringResource(Res.string.blocked_channels),
+                summary = stringResource(Res.string.blocked_channels_summary),
+                onClick = onOpenBlockedChannelsSettings
             )
             SwitchPreference(
                 title = stringResource(Res.string.show_age_restricted_content_title),

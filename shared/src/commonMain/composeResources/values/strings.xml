@@ -316,6 +316,13 @@
         <item quantity="other">%1$d days</item>
     </plurals>
 
+    <!-- Content Settings: blocked channels & Blocked Channels Settings -->
+    <string name="blocked_channels">Blocked channels</string>
+    <string name="blocked_channels_summary">Hide content from selected creators</string>
+    <string name="no_blocked_channels">No blocked channels yet</string>
+    <string name="unblock">Unblock</string>
+    <string name="block_channel">Block channel</string>
+
     <!-- Notification Settings -->
     <string name="settings_category_player_notification_title">Player notification</string>
     <string name="settings_category_player_notification_summary">Configure current playing stream notification</string>

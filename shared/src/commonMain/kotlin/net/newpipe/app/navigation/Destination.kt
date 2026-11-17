@@ -30,6 +30,9 @@ sealed interface Destination : NavKey {
     data object ContentSettings : Destination
 
     @Serializable
+    data object BlockedChannelsSettings : Destination
+
+    @Serializable
     data object HistorySettings : Destination
 
     @Serializable

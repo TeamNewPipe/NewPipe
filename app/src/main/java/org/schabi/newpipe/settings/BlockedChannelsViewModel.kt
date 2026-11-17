@@ -13,6 +13,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.schabi.newpipe.database.block.BlockedChannelEntity
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.channel.BlockedChannelManager
 
 class BlockedChannelsViewModel(application: Application) : AndroidViewModel(application) {
@@ -26,16 +29,26 @@ class BlockedChannelsViewModel(application: Application) : AndroidViewModel(appl
             blockedChannelManager.blockedChannels()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { mutableBlockedChannels.value = it }
+                .subscribe(
+                    { mutableBlockedChannels.value = it },
+                    { error ->
+                        ErrorUtil.showSnackbar(application, ErrorInfo(error, UserAction.UI_ERROR, "Get blocked channels"))
+                    }
+                )
         )
     }
 
-    fun unblockChannel(channel: BlockedChannelEntity) {
+    fun unblockChannel(url: String) {
         disposables.add(
-            blockedChannelManager.unblockChannel(channel.url)
+            blockedChannelManager.unblockChannel(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({}, { })
+                .subscribe(
+                    {},
+                    { error ->
+                        ErrorUtil.showSnackbar(getApplication(), ErrorInfo(error, UserAction.UI_ERROR, "Unblock channel"))
+                    }
+                )
         )
     }
 

@@ -27,6 +27,7 @@ import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
@@ -219,6 +220,7 @@ public final class ThemeHelper {
      * @param attrColor attribute reference of the resource
      * @return the color
      */
+    @ColorInt
     public static int resolveColorFromAttr(final Context context, @AttrRes final int attrColor) {
         final TypedValue value = new TypedValue();
         context.getTheme().resolveAttribute(attrColor, value, true);

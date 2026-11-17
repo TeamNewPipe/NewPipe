@@ -15,8 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.fragment.compose.content
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import net.newpipe.app.model.BlockedChannel
+import net.newpipe.app.screen.settings.BlockedChannelsSettingsScreenContent
 import org.schabi.newpipe.R
-import org.schabi.newpipe.ui.screens.settings.content.BlockedChannelsSettingsScreen
 import org.schabi.newpipe.ui.theme.AppTheme
 import org.schabi.newpipe.util.ThemeHelper
 
@@ -31,7 +32,10 @@ class BlockedChannelsFragment : Fragment() {
         val blockedChannels by viewModel.blockedChannels.collectAsStateWithLifecycle()
         AppTheme {
             Surface {
-                BlockedChannelsSettingsScreen(blockedChannels, viewModel::unblockChannel)
+                BlockedChannelsSettingsScreenContent(
+                    channels = blockedChannels.map { BlockedChannel(it.url, it.name) },
+                    onUnblock = { viewModel.unblockChannel(it.url) }
+                )
             }
         }
     }

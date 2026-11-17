@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-package org.schabi.newpipe.ui.screens.settings.content
+package net.newpipe.app.screen.settings
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,31 +19,63 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import net.newpipe.app.composable.TopAppBar
+import net.newpipe.app.model.BlockedChannel
+import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.preview.ThemePreviewProvider
-import org.schabi.newpipe.R
-import org.schabi.newpipe.database.block.BlockedChannelEntity
-import org.schabi.newpipe.ui.theme.AppTheme
+import net.newpipe.app.theme.AppTheme
+import net.newpipe.app.viewmodel.settings.BlockedChannelsViewModel
+import newpipe.shared.generated.resources.Res
+import newpipe.shared.generated.resources.blocked_channels
+import newpipe.shared.generated.resources.blocked_channels_summary
+import newpipe.shared.generated.resources.no_blocked_channels
+import newpipe.shared.generated.resources.unblock
+import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun BlockedChannelsSettingsScreen(
-    channels: List<BlockedChannelEntity>,
-    onUnblock: (BlockedChannelEntity) -> Unit
+    navigator: Navigator = koinInject(),
+    viewModel: BlockedChannelsViewModel = koinViewModel()
+) {
+    val channels by viewModel.blockedChannels.collectAsStateWithLifecycle()
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = stringResource(Res.string.blocked_channels),
+                onNavigateUp = { navigator.navigateUp() }
+            )
+        }
+    ) { padding ->
+        Box(Modifier.padding(padding)) {
+            BlockedChannelsSettingsScreenContent(channels, viewModel::unblockChannel)
+        }
+    }
+}
+
+@Composable
+fun BlockedChannelsSettingsScreenContent(
+    channels: List<BlockedChannel>,
+    onUnblock: (BlockedChannel) -> Unit
 ) {
     Column(Modifier.fillMaxSize().padding(16.dp)) {
         Text(
-            text = stringResource(R.string.blocked_channels_summary),
+            text = stringResource(Res.string.blocked_channels_summary),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -51,7 +83,7 @@ fun BlockedChannelsSettingsScreen(
         if (channels.isEmpty()) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
-                    text = stringResource(R.string.no_blocked_channels),
+                    text = stringResource(Res.string.no_blocked_channels),
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
@@ -72,8 +104,8 @@ fun BlockedChannelsSettingsScreen(
 
 @Composable
 private fun BlockedChannelItem(
-    channel: BlockedChannelEntity,
-    onUnblock: (BlockedChannelEntity) -> Unit
+    channel: BlockedChannel,
+    onUnblock: (BlockedChannel) -> Unit
 ) {
     Card(Modifier.fillMaxWidth()) {
         Row(
@@ -90,7 +122,7 @@ private fun BlockedChannelItem(
                 overflow = TextOverflow.Ellipsis
             )
             TextButton(onClick = { onUnblock(channel) }) {
-                Text(stringResource(R.string.unblock))
+                Text(stringResource(Res.string.unblock))
             }
         }
     }
@@ -102,11 +134,11 @@ private fun BlockedChannelItem(
 private fun BlockedChannelsSettingsScreenPreview() {
     AppTheme {
         Surface {
-            BlockedChannelsSettingsScreen(
+            BlockedChannelsSettingsScreenContent(
                 listOf(
-                    BlockedChannelEntity(url = "https://youtube.com/c/abc", name = "Propaganda channel"),
-                    BlockedChannelEntity(url = "https://example.com/c/def", name = "Clickbait channel"),
-                    BlockedChannelEntity(url = "https://example.com/c/ghi", name = "This is a channel with a very long name that does not seem to end")
+                    BlockedChannel(url = "https://youtube.com/c/abc", name = "Clickbait channel"),
+                    BlockedChannel(url = "https://example.com/c/def", name = "Another channel"),
+                    BlockedChannel(url = "https://example.com/c/ghi", name = "This is a channel with a very long name that does not seem to end here")
                 ),
                 onUnblock = {}
             )
