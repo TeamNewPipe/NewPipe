@@ -266,6 +266,7 @@
         <item>6x</item>
         <item>8x</item>
         <item>10x</item>
+        <item>@string/playback_hold_custom_option</item>
     </string-array>
     <string-array name="hold_to_speed_values">
         <item>@string/hold_to_speed_off_value</item>
@@ -280,6 +281,7 @@
         <item>6.0</item>
         <item>8.0</item>
         <item>10.0</item>
+        <item>@string/playback_hold_custom_value</item>
     </string-array>
 
     <string name="prefer_original_audio_key">prefer_original_audio</string>

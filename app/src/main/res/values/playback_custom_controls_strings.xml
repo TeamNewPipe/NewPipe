@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playback_rewind_custom_key" translatable="false">custom_rewind_seconds</string>
+    <string name="playback_forward_custom_key" translatable="false">custom_forward_seconds</string>
+    <string name="playback_hold_custom_key" translatable="false">custom_hold_to_speed</string>
+    <string name="playback_hold_custom_value" translatable="false">custom</string>
+    <string name="playback_rewind_custom_title">Custom rewind duration</string>
+    <string name="playback_forward_custom_title">Custom fast-forward duration</string>
+    <string name="playback_custom_seek_message">Enter 1–300 seconds or leave blank to use the seek preset. With inexact seeking, values ending in 5 round up to the next ten seconds.</string>
+    <string name="playback_custom_seek_invalid">Enter a whole number from 1 to 300.</string>
+    <string name="playback_use_seek_preset">Uses the seek preset</string>
+    <string name="playback_hold_custom_option">Custom</string>
+    <string name="playback_hold_custom_title">Custom hold speed</string>
+    <string name="playback_hold_custom_summary">Enter a speed from 0.10× to 10×, then choose Custom in Hold to speed up.</string>
+    <string name="playback_hold_custom_invalid">Enter a speed from 0.10× to 10×.</string>
+</resources>

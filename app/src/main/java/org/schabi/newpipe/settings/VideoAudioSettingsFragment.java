@@ -40,6 +40,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         org.schabi.newpipe.player.helper.PlayerRotationMode.initializePreference(requireContext());
         addPreferencesFromResourceRegistry();
 
+        org.schabi.newpipe.player.helper.CustomPlaybackControls.bind(this);
         updateSeekOptions();
         updateResolutionOptions();
         setupEqualizerPreference();

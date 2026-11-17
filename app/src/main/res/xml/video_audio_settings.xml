@@ -490,6 +490,13 @@
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
 
+        <EditTextPreference
+            android:defaultValue="@string/hold_to_speed_default_value"
+            android:dialogMessage="@string/playback_hold_custom_summary"
+            android:key="@string/playback_hold_custom_key"
+            android:title="@string/playback_hold_custom_title"
+            app:iconSpaceReserved="false" />
+
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/popup_remember_size_pos_key"
@@ -515,6 +522,17 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:dialogMessage="@string/playback_custom_seek_message"
+            android:key="@string/playback_rewind_custom_key"
+            android:title="@string/playback_rewind_custom_title"
+            app:iconSpaceReserved="false" />
+        <EditTextPreference
+            android:dialogMessage="@string/playback_custom_seek_message"
+            android:key="@string/playback_forward_custom_key"
+            android:title="@string/playback_forward_custom_title"
+            app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
             android:defaultValue="false"

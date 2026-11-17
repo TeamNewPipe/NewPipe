@@ -41,9 +41,9 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
         performListener = listener
     }
 
-    private var seekSecondsSupplier: () -> Int = { 0 }
+    private var seekSecondsSupplier: (Boolean) -> Int = { 0 }
 
-    fun seekSecondsSupplier(supplier: (() -> Int)?) = apply {
+    fun seekSecondsSupplier(supplier: ((Boolean) -> Int)?) = apply {
         seekSecondsSupplier = supplier ?: { 0 }
     }
 
@@ -94,7 +94,7 @@ class PlayerFastSeekOverlay(context: Context, attrs: AttributeSet?) :
 
         performListener?.onDoubleTap()
 
-        secondsView.seconds += seekSecondsSupplier.invoke()
+        secondsView.seconds += seekSecondsSupplier.invoke(shouldForward)
         performListener?.seek(forward = shouldForward)
     }
 

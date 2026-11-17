@@ -8,7 +8,7 @@ package org.schabi.newpipe.player
 import android.util.Log
 import androidx.media3.common.C
 import androidx.media3.common.Timeline
-import org.schabi.newpipe.player.helper.PlayerHelper
+import org.schabi.newpipe.player.helper.CustomPlaybackControls
 
 /** Owns playback-position queries and user-initiated seek operations. */
 internal class PlayerSeekController(private val player: Player) {
@@ -64,7 +64,7 @@ internal class PlayerSeekController(private val player: Player) {
         if (Player.DEBUG) {
             Log.d(Player.TAG, "fastForward() called")
         }
-        seekBy(PlayerHelper.retrieveSeekDurationFromPreferences(player).toLong())
+        seekBy(CustomPlaybackControls.seekMillis(player.context, forward = true).toLong())
         player.triggerProgressUpdate()
     }
 
@@ -72,7 +72,7 @@ internal class PlayerSeekController(private val player: Player) {
         if (Player.DEBUG) {
             Log.d(Player.TAG, "fastRewind() called")
         }
-        seekBy(-PlayerHelper.retrieveSeekDurationFromPreferences(player).toLong())
+        seekBy(-CustomPlaybackControls.seekMillis(player.context, forward = false).toLong())
         player.triggerProgressUpdate()
     }
 

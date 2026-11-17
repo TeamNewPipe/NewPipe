@@ -268,6 +268,9 @@ public final class PlayerHelper {
         if (context.getString(R.string.hold_to_speed_off_value).equals(value)) {
             return 1.0f;
         }
+        if (context.getString(R.string.playback_hold_custom_value).equals(value)) {
+            return CustomPlaybackControls.holdSpeed(context);
+        }
         try {
             return Float.parseFloat(value);
         } catch (final NullPointerException | NumberFormatException e) {

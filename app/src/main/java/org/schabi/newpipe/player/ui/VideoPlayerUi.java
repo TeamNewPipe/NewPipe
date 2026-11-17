@@ -10,10 +10,11 @@ import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED_SEEK;
 import static org.schabi.newpipe.player.Player.STATE_PLAYING;
+import static org.schabi.newpipe.player.helper.CustomPlaybackControls.seekMillis;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
-import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -359,7 +360,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
      */
     private void setupPlayerSeekOverlay() {
         binding.fastSeekOverlay
-                .seekSecondsSupplier(() -> retrieveSeekDurationFromPreferences(player) / 1000)
+                .seekSecondsSupplier(forward -> seekMillis(player.getContext(), forward) / 1000)
                 .performListener(new PlayerFastSeekOverlay.PerformListener() {
 
                     @Override
