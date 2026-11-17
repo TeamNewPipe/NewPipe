@@ -45,7 +45,7 @@ object RecommendationControls {
         content.addView(
             MaterialButton(context).apply {
                 setText(R.string.local_recommendations_your_taste)
-                setOnClickListener { showTaste(context) }
+                setOnClickListener { showTaste(context, profile, changed) }
             }
         )
         content.addView(
@@ -92,7 +92,7 @@ object RecommendationControls {
             }.show()
     }
 
-    private fun showTaste(context: Context) {
+    private fun showTaste(context: Context, profile: String, changed: Runnable) {
         val summary = LocalRecommendations.tasteSummary(context)
         val interests = summary.interests.ifEmpty { listOf(context.getString(R.string.local_recommendations_taste_empty)) }
         val channels = summary.channels.ifEmpty { listOf(context.getString(R.string.local_recommendations_taste_empty)) }
@@ -101,10 +101,38 @@ object RecommendationControls {
             interests.joinToString(" • "),
             channels.joinToString(" • ")
         )
-        MaterialAlertDialogBuilder(context)
+        val dialog = MaterialAlertDialogBuilder(context)
             .setTitle(R.string.local_recommendations_your_taste)
             .setMessage(message)
             .setPositiveButton(R.string.ok, null)
+        if (summary.interests.isNotEmpty()) {
+            dialog.setNeutralButton(R.string.recommendation_remove_interests) { _, _ ->
+                showRemoveInterests(context, profile, changed, summary.interests)
+            }
+        }
+        dialog.show()
+    }
+
+    private fun showRemoveInterests(
+        context: Context,
+        profile: String,
+        changed: Runnable,
+        interests: List<String>
+    ) {
+        val selected = mutableSetOf<String>()
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.recommendation_remove_interests)
+            .setMultiChoiceItems(interests.toTypedArray(), null) { _, index, checked ->
+                if (checked) selected.add(interests[index]) else selected.remove(interests[index])
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.ok) { _, _ ->
+                if (selected.isNotEmpty() && profile == ProfileManager.getActiveProfileId(context)) {
+                    LocalRecommendations.removeInterests(context, profile, selected)
+                    changed.run()
+                }
+                showTaste(context, profile, changed)
+            }
             .show()
     }
 }

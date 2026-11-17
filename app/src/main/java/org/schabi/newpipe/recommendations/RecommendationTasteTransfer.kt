@@ -93,12 +93,15 @@ object RecommendationTasteTransfer {
             JSONObject()
         }
 
+        val ignored = LocalRecommendations.ignoredInterests(context, profileId)
+        val importedInterests = imported.interests.filterKeys { it.substringAfter(':') !in ignored }
         val interests = if (replace) {
-            imported.interests
+            importedInterests
         } else {
             mergeWeights(
-                readWeights(model.optJSONObject("weights"), MAX_INTERESTS),
-                imported.interests,
+                readWeights(model.optJSONObject("weights"), MAX_INTERESTS)
+                    .filterKeys { it.substringAfter(':') !in ignored },
+                importedInterests,
                 MAX_INTERESTS
             )
         }
@@ -142,7 +145,7 @@ object RecommendationTasteTransfer {
         if (!committed) {
             throw IOException("Unable to save imported recommendation taste")
         }
-        return Summary(imported.interests.size, imported.channels.size)
+        return Summary(importedInterests.size, imported.channels.size)
     }
 
     private fun portableTaste(context: Context): Taste {
@@ -157,9 +160,12 @@ object RecommendationTasteTransfer {
             JSONObject()
         }
 
+        val ignored = LocalRecommendations.ignoredInterests(context, profileId)
         val interests = mergeWeights(
-            readWeights(model.optJSONObject("weights"), MAX_INTERESTS),
-            readWeights(model.optJSONObject("likeWeights"), MAX_INTERESTS),
+            readWeights(model.optJSONObject("weights"), MAX_INTERESTS)
+                .filterKeys { it.substringAfter(':') !in ignored },
+            readWeights(model.optJSONObject("likeWeights"), MAX_INTERESTS)
+                .filterKeys { it.substringAfter(':') !in ignored },
             MAX_INTERESTS
         )
         val channels = mergeWeights(

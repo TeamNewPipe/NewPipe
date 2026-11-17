@@ -11,6 +11,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
+import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeContentDisclosure
 import org.schabi.newpipe.extractor.stream.StreamInfo
@@ -31,6 +32,11 @@ object LocalRecommendations {
     private const val SHORTS_RANKING_PENALTY = 2.0
     private const val SHORT_VIDEO_RANKING_PENALTY = 1.0
     private const val DISCLOSED_AI_LEARNING_MULTIPLIER = 0.10
+
+    private val englishFillerWords = setOf(
+        "and", "are", "for", "from", "had", "has", "have", "its", "that", "the", "their",
+        "them", "these", "they", "this", "those", "was", "were", "with", "you", "your"
+    )
 
     data class TasteSummary(val interests: List<String>, val channels: List<String>)
 
@@ -67,7 +73,27 @@ object LocalRecommendations {
     @Synchronized
     fun reset(context: Context) {
         prefs(context).edit().remove(key(context, "model")).remove(key(context, "excluded"))
-            .remove(key(context, "topics")).putLong(key(context, "generation"), System.nanoTime()).apply()
+            .remove(key(context, "topics")).remove(key(context, "ignored_interests"))
+            .putLong(key(context, "generation"), System.nanoTime()).apply()
+    }
+
+    internal fun ignoredInterests(context: Context, profileId: String): Set<String> {
+        val ignored = prefs(context).getStringSet("$profileId:ignored_interests", emptySet()).orEmpty()
+        return if (NewPipe.getPreferredLocalization().languageCode == "en") {
+            ignored + englishFillerWords
+        } else {
+            ignored
+        }
+    }
+
+    @Synchronized
+    internal fun removeInterests(context: Context, profileId: String, interests: Set<String>) {
+        if (interests.isEmpty() || profileId != profile(context)) return
+        val preferenceKey = "$profileId:ignored_interests"
+        val saved = prefs(context).getStringSet(preferenceKey, emptySet()).orEmpty()
+        prefs(context).edit().putStringSet(preferenceKey, saved + interests).apply()
+        // Persist the pruned weights so removing an interest discards its accumulated score.
+        write(context, read(context, profileId), profileId)
     }
 
     @JvmStatic
@@ -339,7 +365,7 @@ object LocalRecommendations {
 
     private fun addTerms(model: Model, service: Int, text: String, amount: Double) {
         model.weights.replaceAll { _, value -> value * 0.995 }
-        tokens(text).forEach { token ->
+        tokens(text).filterNot { it in model.ignoredInterests }.forEach { token ->
             val key = "$service:$token"
             model.weights[key] = ((model.weights[key] ?: 0.0) + amount).coerceAtMost(100.0)
         }
@@ -353,7 +379,7 @@ object LocalRecommendations {
     }
 
     private fun addLikeTerms(model: Model, service: Int, text: String, amount: Double) {
-        tokens(text).forEach { token ->
+        tokens(text).filterNot { it in model.ignoredInterests }.forEach { token ->
             val key = "$service:$token"
             val value = ((model.likeWeights[key] ?: 0.0) + amount).coerceAtLeast(0.0)
             if (value == 0.0) model.likeWeights.remove(key) else model.likeWeights[key] = value
@@ -381,7 +407,8 @@ object LocalRecommendations {
         val likeChannels: MutableMap<String, Double> = linkedMapOf(),
         val channelLabels: MutableMap<String, String> = linkedMapOf(),
         val liked: MutableSet<String> = linkedSetOf(),
-        val watched: MutableSet<String> = linkedSetOf()
+        val watched: MutableSet<String> = linkedSetOf(),
+        val ignoredInterests: Set<String> = emptySet()
     )
 
     private data class Candidate(val service: Int, val url: String, val name: String, val uploader: String, val channel: String, val thumbnail: String, val duration: Long, val short: Boolean, val audio: Boolean, val views: Long, val uploaded: Long) {
@@ -408,7 +435,7 @@ object LocalRecommendations {
 
     private fun read(context: Context, profileId: String = profile(context)): Model = try {
         val json = JSONObject(prefs(context).getString("$profileId:model", "{}").orEmpty())
-        val model = Model()
+        val model = Model(ignoredInterests = ignoredInterests(context, profileId))
         json.optJSONArray("candidates")?.let { array ->
             for (i in 0 until minOf(array.length(), MAX_CANDIDATES)) {
                 val candidate = Candidate.parse(array.getJSONObject(i))
@@ -436,9 +463,11 @@ object LocalRecommendations {
         json.optJSONArray("liked")?.let { array ->
             for (i in 0 until minOf(array.length(), MAX_CANDIDATES)) model.liked.add(array.getString(i))
         }
+        model.weights.keys.removeAll { it.substringAfter(':') in model.ignoredInterests }
+        model.likeWeights.keys.removeAll { it.substringAfter(':') in model.ignoredInterests }
         model
     } catch (_: Exception) {
-        Model()
+        Model(ignoredInterests = ignoredInterests(context, profileId))
     }
 
     private fun write(context: Context, model: Model, profileId: String = profile(context)) {
@@ -450,7 +479,7 @@ object LocalRecommendations {
         val labels = (channels.keys + likeChannels.keys)
             .mapNotNull { key -> model.channelLabels[key]?.let { key to it } }.toMap()
         prefs(context).edit().putString(
-            key(context, "model"),
+            "$profileId:model",
             JSONObject().put("candidates", candidates)
                 .put("weights", JSONObject(weights)).put("channels", JSONObject(channels))
                 .put("likeWeights", JSONObject(likeWeights)).put("likeChannels", JSONObject(likeChannels))

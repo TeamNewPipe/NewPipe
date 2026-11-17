@@ -180,6 +180,20 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun removedInterestCannotBeLearnedAgainFromSearch() {
+        enable()
+        search("astronomy")
+        assertTrue("astronomy" in LocalRecommendations.tasteSummary(context).interests)
+
+        LocalRecommendations.removeInterests(context, profile, setOf("astronomy"))
+        search("astronomy geology")
+
+        val interests = LocalRecommendations.tasteSummary(context).interests
+        assertFalse("astronomy" in interests)
+        assertTrue("geology" in interests)
+    }
+
+    @Test
     fun storageIsBoundedAndCorruptModelRecovers() {
         enable()
         repeat(4) { batch -> LocalRecommendations.observe(context, (0 until 100).map { item("video${batch * 100 + it}") }) }
