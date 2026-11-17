@@ -7,13 +7,13 @@ package org.schabi.newpipe.settings
 
 import android.content.Context
 import android.content.Intent
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactive.asFlow
-import kotlinx.coroutines.rx3.await
+import kotlinx.coroutines.withContext
 import net.newpipe.app.model.ChannelNotification
 import net.newpipe.app.platform.NotificationHost
 import org.schabi.newpipe.App
@@ -75,9 +75,12 @@ class ComposeNotificationHost(private val context: Context) : NotificationHost {
     override suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean) {
         val mode = if (enabled) NotificationMode.ENABLED else NotificationMode.DISABLED
         try {
-            subscriptionManager.updateNotificationMode(channel.serviceId, channel.url, mode)
-                .subscribeOn(Schedulers.io())
-                .await()
+            withContext(Dispatchers.IO) {
+                val subscriptionTable = subscriptionManager.subscriptionTable()
+                val subscription = subscriptionTable.getSubscription(channel.id)
+                subscription.notificationMode = mode
+                subscriptionTable.update(subscription)
+            }
         } catch (cancellation: CancellationException) {
             throw cancellation
         } catch (error: Exception) {
