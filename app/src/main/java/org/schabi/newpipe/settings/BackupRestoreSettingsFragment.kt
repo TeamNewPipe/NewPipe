@@ -116,7 +116,8 @@ class BackupRestoreSettingsFragment : BasePreferenceFragment() {
         ) {
             // checkpoint before export
             withContext(Dispatchers.IO) {
-                NewPipeDatabase.checkpoint()
+                val appContext = requireContext().applicationContext
+                NewPipeDatabase.checkpoint(appContext)
             }
 
             manager.exportDatabase(defaultPreferences, file)
