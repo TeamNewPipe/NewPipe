@@ -43,6 +43,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.evernote.android.state.State;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -1013,7 +1014,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             return;
         }
         final String query = item.query;
-        new AlertDialog.Builder(activity)
+        new MaterialAlertDialogBuilder(activity)
                 .setTitle(query)
                 .setMessage(R.string.delete_item_search_history)
                 .setCancelable(true)
