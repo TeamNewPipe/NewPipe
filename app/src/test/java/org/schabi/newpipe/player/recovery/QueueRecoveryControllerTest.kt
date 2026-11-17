@@ -7,6 +7,8 @@ package org.schabi.newpipe.player.recovery
 
 import android.app.Application
 import android.content.Context
+import androidx.media3.common.Timeline
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.preference.PreferenceManager
 import java.util.concurrent.atomic.AtomicBoolean
 import org.junit.Assert.assertEquals
@@ -115,14 +117,36 @@ class QueueRecoveryControllerTest {
         controller.close()
     }
 
-    @Test fun checkpointUpdatesKeepTheirSessionButReplacementStartsAnother() {
+    @Test fun temporaryTimelineLossCannotReplaceTheLastKnownPosition() {
+        beginQueue()
+        val engine = mock(ExoPlayer::class.java)
+        val currentTimeline = mock(Timeline::class.java)
+        `when`(player.exoPlayerIsNull()).thenReturn(false)
+        `when`(player.exoPlayer).thenReturn(engine)
+        val item = player.playQueue!!.item
+        `when`(player.currentItem).thenReturn(item)
+        `when`(engine.currentTimeline).thenReturn(currentTimeline)
+        `when`(engine.currentMediaItemIndex).thenReturn(0)
+        `when`(engine.contentPosition).thenReturn(75_000)
+        controller.checkpoint(true)
+
+        `when`(engine.currentTimeline).thenReturn(Timeline.EMPTY)
+        controller.checkpoint(true)
+        assertEquals(listOf(75_000L), saves.map { it.position })
+
+        `when`(engine.currentTimeline).thenReturn(currentTimeline)
+        `when`(engine.contentPosition).thenReturn(45_000)
+        controller.checkpoint(true)
+        assertEquals(listOf(75_000L, 45_000L), saves.map { it.position })
+        controller.close()
+    }
+
+    @Test fun replacementStartsAnotherSession() {
         beginQueue()
         controller.checkpoint(true)
-        controller.checkpoint(true)
         beginQueue()
         controller.checkpoint(true)
-        assertEquals(saves[0].session, saves[1].session)
-        assertNotEquals(saves[1].session, saves[2].session)
+        assertNotEquals(saves[0].session, saves[1].session)
         controller.close()
     }
 }

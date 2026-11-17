@@ -560,6 +560,11 @@ class Player(
     override fun onEvents(player: Media3Player, events: Media3Player.Events) {
         media3ListenerController.onEvents(player)
         historyController.onPlaybackEvents()
+        if (events.contains(Media3Player.EVENT_POSITION_DISCONTINUITY) ||
+            (events.contains(Media3Player.EVENT_PLAY_WHEN_READY_CHANGED) && !player.playWhenReady)
+        ) {
+            queueRecovery.checkpoint(true)
+        }
     }
 
     override fun onTimelineChanged(timeline: Timeline, reason: Int) = media3ListenerController.onTimelineChanged(timeline, reason)
