@@ -4,6 +4,17 @@
     <string name="invidious_instance_key" translatable="false">invidious_instance</string>
     <string name="invidious_instances_key" translatable="false">invidious_instances</string>
     <string name="invidious_switch_instance_key" translatable="false">invidious_switch_instance</string>
+    <string name="invidious_directory_key" translatable="false">invidious_directory</string>
+    <string name="invidious_directory_title">Find a public Invidious instance</string>
+    <string name="invidious_directory_summary">Fetch eligible instances from the official Invidious directory only when tapped. Nothing is selected or enabled automatically.</string>
+    <string name="invidious_directory_loading">Loading the official Invidious directory…</string>
+    <string name="invidious_directory_picker_title">Choose an eligible public instance</string>
+    <string name="invidious_directory_entry">%1$s %2$s · %3$s · %4$.1f%% uptime</string>
+    <string name="invidious_directory_warning_title">Trust this instance?</string>
+    <string name="invidious_directory_warning">%1$s is operated by a third party and can see your requests. Availability can change. Selecting it saves it as the active instance but does not enable Invidious or trust separate media servers automatically. If Invidious is already enabled, the app will restart.</string>
+    <string name="invidious_directory_select">Save and select</string>
+    <string name="invidious_directory_empty">No currently healthy HTTPS instances in the official directory advertise API access. You can still enter a trusted instance manually.</string>
+    <string name="invidious_directory_load_failed">Could not load the official Invidious directory. Check your connection and try again.</string>
     <string name="invidious_instances_title">Saved Invidious instances</string>
     <string name="invidious_instances_summary">Add or remove trusted HTTPS instance URLs, one per line.</string>
     <string name="invidious_switch_instance_title">Switch Invidious instance</string>

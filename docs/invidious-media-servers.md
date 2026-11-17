@@ -1,4 +1,19 @@
-# Invidious Companion media servers
+# Invidious instance and media-server trust
+
+## Choosing a public instance
+
+In **Settings → Content**, select **Find a public Invidious instance** to fetch the
+official Invidious directory. WizeStream includes only entries that currently advertise
+HTTPS API access, are published and enabled in the directory monitor, are up with a
+successful status, have at least 90% recorded uptime, and report a valid TLS certificate.
+
+Discovery is explicit and one-shot. WizeStream does not contact the directory in the
+background, automatically select an instance, enable Invidious, or trust companion media
+servers. Review the selected origin before confirming it. Public instances are operated
+by third parties and can see requests; availability and operator policies can change.
+Self-hosted and manually verified instances can still be entered directly.
+
+## Invidious Companion media servers
 
 Some instances serve API requests on one host and redirect playback to an Invidious
 Companion on another HTTPS host. WizeStream blocks those redirects by default. A
