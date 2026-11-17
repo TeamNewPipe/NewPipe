@@ -34,7 +34,7 @@ class SubscriptionLayout(context: Context, profileId: String) {
     companion object {
         fun key(subscription: SubscriptionEntity): String = "channel:${subscription.serviceId}:${subscription.url}"
 
-        /** Keeps surviving positions, drops removed channels, and appends new channels. */
+        /** Keeps surviving positions, drops removed channels, and leaves new channels ungrouped. */
         fun reconcile(saved: List<Entry>, channelKeys: List<String>): List<Entry> {
             val remaining = channelKeys.toMutableSet()
             val seen = mutableSetOf<String>()
@@ -45,7 +45,13 @@ class SubscriptionLayout(context: Context, profileId: String) {
                     remaining.remove(entry.key)
                 }
             }
-            return result + channelKeys.filter { remaining.remove(it) }.map { Entry(it) }
+            val newEntries = channelKeys.filter { remaining.remove(it) }.map { Entry(it) }
+            val firstSeparatorIndex = result.indexOfFirst { it.separator != null }
+            return if (firstSeparatorIndex == -1) {
+                result + newEntries
+            } else {
+                result.toMutableList().apply { addAll(firstSeparatorIndex, newEntries) }
+            }
         }
 
         fun encode(entries: List<Entry>): String = JSONArray().apply {

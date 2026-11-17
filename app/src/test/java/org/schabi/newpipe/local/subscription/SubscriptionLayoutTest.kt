@@ -10,10 +10,10 @@ import org.schabi.newpipe.local.subscription.SubscriptionLayout.Entry
 @RunWith(RobolectricTestRunner::class)
 class SubscriptionLayoutTest {
     @Test
-    fun retainsOrderAndSeparatorsWhileRemovingDeletedAndAppendingNewChannels() {
+    fun retainsOrderAndKeepsNewChannelsBeforeFirstSeparator() {
         val saved = listOf(Entry("b"), Entry("separator:cars", "Cars"), Entry("deleted"), Entry("a"))
         assertEquals(
-            listOf(Entry("b"), Entry("separator:cars", "Cars"), Entry("a"), Entry("new")),
+            listOf(Entry("b"), Entry("new"), Entry("separator:cars", "Cars"), Entry("a")),
             SubscriptionLayout.reconcile(saved, listOf("a", "b", "new"))
         )
     }
