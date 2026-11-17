@@ -60,9 +60,25 @@ object NewPipeDatabase {
         return result!!
     }
 
+    /**
+     * Runs `PRAGMA wal_checkpoint(full)`, folding the write-ahead log into the main database file
+     * so that copying only `newpipe.db` yields a complete backup.
+     *
+     * Opens the database if this process has not done so yet. That is required for correctness,
+     * not just convenience: committed but not yet checkpointed data lives in the `-wal` file, and
+     * only opening the database recovers it. This is reachable from a cold process where nothing
+     * has opened the database yet — e.g. the main page only has a Blank tab, or the process was
+     * reclaimed while the system file picker was in the foreground. Callers must not assume that
+     * some other component has already opened it.
+     *
+     * Blocks the calling thread, so call it off the main thread.
+     *
+     * @throws RuntimeException if the checkpoint was blocked from completing, i.e. another
+     * connection kept part of the log from being folded into `newpipe.db`.
+     */
     @JvmStatic
-    fun checkpoint() {
-        val database = checkNotNull(databaseInstance) { "database is not initialized" }
+    fun checkpoint(context: Context) {
+        val database = getInstance(context)
         runBlocking {
             database.useWriterConnection { transactor ->
                 transactor.usePrepared("pragma wal_checkpoint(full)") { statement ->
