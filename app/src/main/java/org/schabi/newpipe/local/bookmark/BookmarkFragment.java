@@ -46,10 +46,14 @@ import org.schabi.newpipe.learning.LearningPlaylistMarker;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.local.search.ContextualSearchHelper;
 import org.schabi.newpipe.local.search.ContextualSearchable;
 import org.schabi.newpipe.local.search.NoteSearch;
 import org.schabi.newpipe.profiles.ProfileManager;
+import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.debounce.DebounceSavable;
@@ -59,6 +63,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -70,6 +76,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         implements DebounceSavable, ContextualSearchable {
 
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
+    private static final int PLAYLIST_ACTION_PLAY = 0;
+    private static final int PLAYLIST_ACTION_ENQUEUE_NEXT = 1;
+    private static final int PLAYLIST_ACTION_ENQUEUE = 2;
     @State
     Parcelable itemsListState;
 
@@ -766,24 +775,35 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     }
 
     private void showRemoteDeleteDialog(final PlaylistRemoteEntity item) {
-        final List<String> actions = new ArrayList<>();
-        actions.add(getString(R.string.playlist_move_to_category));
-        actions.add(getString(R.string.delete));
+        final String moveToCategory = getString(R.string.playlist_move_to_category);
+        final String delete = getString(R.string.delete);
+        final String learning = learningActionLabel(item);
+        final String separator = getString(R.string.list_separator_add);
+        final List<String> actions = playlistActions();
+        actions.add(moveToCategory);
+        actions.add(delete);
         if (LearningMode.isEnabled(requireContext())) {
-            actions.add(learningActionLabel(item));
+            actions.add(learning);
         }
         if (!isPlaylistListFiltered()) {
-            actions.add(getString(R.string.list_separator_add));
+            actions.add(separator);
         }
         new MaterialAlertDialogBuilder(requireContext())
                 .setItems(actions.toArray(new String[0]), (dialog, which) -> {
-                    if (actions.get(which).equals(getString(R.string.list_separator_add))) {
+                    final String selected = actions.get(which);
+                    if (handlePlaylistAction(selected, action ->
+                            loadRemotePlaylistQueue(item, action))) {
+                        return;
+                    }
+                    if (selected.equals(getString(R.string.playlist_edit_mode))) {
+                        enterPlaylistEditMode();
+                    } else if (selected.equals(separator)) {
                         editSeparatorAt(itemListAdapter.getItemsList().indexOf(item));
-                    } else if (which == 0) {
+                    } else if (selected.equals(moveToCategory)) {
                         chooseCategory(item);
-                    } else if (which == 1) {
+                    } else if (selected.equals(delete)) {
                         showDeleteDialog(item.getOrderingName(), item);
-                    } else {
+                    } else if (selected.equals(learning)) {
                         toggleLearningPlaylist(item);
                     }
                 }).show();
@@ -794,38 +814,44 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         final String delete = getString(R.string.delete);
         final String unsetThumbnail = getString(R.string.unset_playlist_thumbnail);
         final String moveToCategory = getString(R.string.playlist_move_to_category);
+        final String learning = learningActionLabel(selectedItem);
+        final String separator = getString(R.string.list_separator_add);
         final boolean isThumbnailPermanent = localPlaylistManager
                 .getIsPlaylistThumbnailPermanent(selectedItem.getUid());
 
-        final ArrayList<String> items = new ArrayList<>();
+        final ArrayList<String> items = new ArrayList<>(playlistActions());
         items.add(rename);
         items.add(delete);
         items.add(moveToCategory);
         if (isThumbnailPermanent) {
             items.add(unsetThumbnail);
         }
-
-        final String learning = learningActionLabel(selectedItem);
         if (LearningMode.isEnabled(requireContext())) {
             items.add(learning);
         }
-
-        final String separatorLabel = getString(R.string.list_separator_add);
         if (!isPlaylistListFiltered()) {
-            items.add(separatorLabel);
+            items.add(separator);
         }
-        final DialogInterface.OnClickListener action = (d, index) -> {
-            if (items.get(index).equals(separatorLabel)) {
+
+        final DialogInterface.OnClickListener action = (dialog, index) -> {
+            final String selected = items.get(index);
+            if (handlePlaylistAction(selected, playbackAction ->
+                    loadLocalPlaylistQueue(selectedItem, playbackAction))) {
+                return;
+            }
+            if (selected.equals(getString(R.string.playlist_edit_mode))) {
+                enterPlaylistEditMode();
+            } else if (selected.equals(separator)) {
                 editSeparatorAt(itemListAdapter.getItemsList().indexOf(selectedItem));
-            } else if (items.get(index).equals(rename)) {
+            } else if (selected.equals(rename)) {
                 showRenameDialog(selectedItem);
-            } else if (items.get(index).equals(delete)) {
+            } else if (selected.equals(delete)) {
                 showDeleteDialog(selectedItem.getOrderingName(), selectedItem);
-            } else if (items.get(index).equals(moveToCategory)) {
+            } else if (selected.equals(moveToCategory)) {
                 chooseCategory(selectedItem);
-            } else if (items.get(index).equals(learning)) {
+            } else if (selected.equals(learning)) {
                 toggleLearningPlaylist(selectedItem);
-            } else if (isThumbnailPermanent && items.get(index).equals(unsetThumbnail)) {
+            } else if (isThumbnailPermanent && selected.equals(unsetThumbnail)) {
                 final long thumbnailStreamId = localPlaylistManager
                         .getAutomaticPlaylistThumbnailStreamId(selectedItem.getUid());
                 localPlaylistManager
@@ -838,6 +864,88 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         new MaterialAlertDialogBuilder(requireContext())
                 .setItems(items.toArray(new String[0]), action)
                 .show();
+    }
+
+    private ArrayList<String> playlistActions() {
+        final ArrayList<String> actions = new ArrayList<>();
+        actions.add(getString(R.string.play_all));
+        actions.add(getString(R.string.enqueue_next_stream));
+        actions.add(getString(R.string.enqueue_stream));
+        if (!isPlaylistListFiltered()) {
+            actions.add(getString(R.string.playlist_edit_mode));
+        }
+        return actions;
+    }
+
+    private boolean handlePlaylistAction(
+            final String selected,
+            final Consumer<Integer> queueLoader
+    ) {
+        if (selected.equals(getString(R.string.play_all))) {
+            queueLoader.accept(PLAYLIST_ACTION_PLAY);
+        } else if (selected.equals(getString(R.string.enqueue_next_stream))) {
+            queueLoader.accept(PLAYLIST_ACTION_ENQUEUE_NEXT);
+        } else if (selected.equals(getString(R.string.enqueue_stream))) {
+            queueLoader.accept(PLAYLIST_ACTION_ENQUEUE);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private void loadLocalPlaylistQueue(
+            final PlaylistMetadataEntry playlist,
+            final int action
+    ) {
+        disposables.add(localPlaylistManager.getPlaylistStreams(playlist.getUid())
+                .firstOrError()
+                .map(entries -> entries.stream()
+                        .map(PlaylistStreamEntry::toStreamInfoItem)
+                        .collect(Collectors.toList()))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(items -> {
+                    if (items.isEmpty()) {
+                        Toast.makeText(requireContext(), R.string.no_streams, Toast.LENGTH_SHORT)
+                                .show();
+                        return;
+                    }
+                    runPlaylistAction(new SinglePlayQueue(items, 0), action);
+                }, throwable -> showError(new ErrorInfo(
+                        throwable,
+                        UserAction.REQUESTED_BOOKMARK,
+                        playlist.getOrderingName()
+                ))));
+    }
+
+    private void loadRemotePlaylistQueue(
+            final PlaylistRemoteEntity playlist,
+            final int action
+    ) {
+        disposables.add(ExtractorHelper
+                .getPlaylistInfo(playlist.getServiceId(), playlist.getUrl(), false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(info -> runPlaylistAction(new PlaylistPlayQueue(info), action),
+                        throwable -> showError(new ErrorInfo(
+                                throwable,
+                                UserAction.REQUESTED_BOOKMARK,
+                                playlist.getUrl()
+                        ))));
+    }
+
+    private void runPlaylistAction(final PlayQueue queue, final int action) {
+        if (action == PLAYLIST_ACTION_PLAY) {
+            NavigationHelper.playOnMainPlayer(requireContext(), queue, false);
+        } else if (action == PLAYLIST_ACTION_ENQUEUE_NEXT) {
+            NavigationHelper.enqueueNextOnPlayer(requireContext(), queue);
+        } else {
+            NavigationHelper.enqueueOnPlayer(requireContext(), queue);
+        }
+    }
+
+    private void enterPlaylistEditMode() {
+        editMode = true;
+        updateEditMode();
     }
 
     private boolean isLearningPlaylist(final PlaylistLocalItem item) {
