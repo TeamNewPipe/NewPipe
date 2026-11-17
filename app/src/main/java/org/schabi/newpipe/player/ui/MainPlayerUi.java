@@ -60,6 +60,7 @@ import org.schabi.newpipe.learning.LearningNoteManager;
 import org.schabi.newpipe.local.dialog.PlaylistDialog;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.PlaybackPresentationMode;
+import org.schabi.newpipe.player.boost.VolumeBoostDialog;
 import org.schabi.newpipe.player.equalizer.EqualizerDialog;
 import org.schabi.newpipe.player.equalizer.EqualizerState;
 import org.schabi.newpipe.player.video.VideoAdjustmentDialog;
@@ -206,6 +207,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.equalizerButton.setOnClickListener(v ->
                 getParentActivity().ifPresent(activity -> EqualizerDialog.show(
                         activity, EqualizerDialog.forPlayer(player))));
+        binding.volumeBoostButton.setOnClickListener(v ->
+                getParentActivity().ifPresent(activity ->
+                        VolumeBoostDialog.show(activity, player)));
         binding.videoAdjustmentsButton.setOnClickListener(v ->
                 getParentActivity().ifPresent(activity -> {
                     if (videoAdjustmentDialog == null || !videoAdjustmentDialog.isShowing()) {
@@ -261,6 +265,16 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     @Override
+    public void onVolumeBoostChanged(final int gainMb, final boolean operational) {
+        final boolean enabled = gainMb > 0;
+        binding.volumeBoostButton.setActivated(enabled);
+        binding.volumeBoostButton.setAlpha(enabled && operational ? 1.0f : 0.7f);
+        binding.volumeBoostButton.setContentDescription(enabled
+                ? context.getString(R.string.volume_boost_active, gainMb / 100)
+                : context.getString(R.string.volume_boost));
+    }
+
+    @Override
     public void showSponsorBlockSkipButton(@NonNull final String label,
                                            @NonNull final Runnable onClick) {
         binding.sponsorBlockSkipButton.setText(label);
@@ -301,6 +315,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.segmentsButton.setOnClickListener(null);
         binding.sleepTimerButton.setOnClickListener(null);
         binding.equalizerButton.setOnClickListener(null);
+        binding.volumeBoostButton.setOnClickListener(null);
         binding.videoAdjustmentsButton.setOnClickListener(null);
         binding.listenModeButton.setOnClickListener(null);
         binding.addToPlaylistButton.setOnClickListener(null);
@@ -414,8 +429,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.openInBrowser.setVisibility(View.VISIBLE);
         binding.sleepTimerButton.setVisibility(View.VISIBLE);
         binding.equalizerButton.setVisibility(View.VISIBLE);
+        binding.volumeBoostButton.setVisibility(View.VISIBLE);
         binding.videoAdjustmentsButton.setVisibility(View.VISIBLE);
         binding.equalizerButton.setActivated(player.getEqualizerState().isEnabled());
+        onVolumeBoostChanged(player.getVolumeBoostGainMb(),
+                player.isVolumeBoostOperational());
         binding.listenModeButton.setVisibility(View.VISIBLE);
         binding.audioVisualizer.setAudioProcessor(player.getVisualizerAudioProcessor());
         updateListenModeUi(player.getPlaybackPresentationMode());

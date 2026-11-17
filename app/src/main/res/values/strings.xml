@@ -1644,8 +1644,11 @@
     <string name="sponsor_block_skip_sponsor">Skip sponsor</string>
     <string name="sponsor_block_skip_segment">Skip segment</string>
     <string name="sponsor_block_skip_button_content_description">Skip SponsorBlock segment</string>
-    <!-- Equalizer -->
+    <!-- Audio effects -->
     <string name="equalizer">Equalizer</string>
+    <string name="volume_boost">Volume boost</string>
+    <string name="volume_boost_level">+%1$d dB</string>
+    <string name="volume_boost_active">Volume boost: +%1$d dB</string>
     <string name="audio_visualizer">Audio visualizer</string>
     <string name="show_visualizer">Show visualizer</string>
     <string name="show_play_queue">Show play queue</string>

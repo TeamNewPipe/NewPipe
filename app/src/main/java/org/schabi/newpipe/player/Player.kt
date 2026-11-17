@@ -477,6 +477,16 @@ class Player(
 
     fun updateEqualizerState(state: EqualizerState) = audioController.updateEqualizerState(state)
 
+    var volumeBoostGainMb: Int
+        get() = audioController.volumeBoostGainMb
+        set(value) = audioController.updateVolumeBoostGainMb(value)
+
+    val isVolumeBoostAvailable: Boolean
+        get() = audioController.isVolumeBoostAvailable
+
+    val isVolumeBoostOperational: Boolean
+        get() = audioController.isVolumeBoostOperational
+
     private fun restartForVideoAdjustments() = lifecycleController.restartForVideoAdjustments()
 
     internal fun enableAudioDecoderFallback(item: PlayQueueItem) = streamController.enableAudioDecoderFallback(item)
@@ -496,6 +506,7 @@ class Player(
             appContext.getString(R.string.disable_media_tunneling_key),
             false
         ) && !audioController.volume.isEnabled && !audioController.equalizerState.isEnabled &&
+            !audioController.isVolumeBoostEnabled &&
             !playbackPresentationMode.allowsVisualizer() &&
             !videoAdjustments.effectsPipelinePrepared
         trackSelector.parameters = trackSelector.buildUponParameters()

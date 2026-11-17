@@ -207,6 +207,9 @@ public abstract class PlayerUi {
                                         final boolean operational) {
     }
 
+    public void onVolumeBoostChanged(final int gainMb, final boolean operational) {
+    }
+
     /**
      * Called when sleep timer state or its displayed countdown changes.
      *

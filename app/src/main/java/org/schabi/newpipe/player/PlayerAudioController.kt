@@ -5,12 +5,14 @@
 
 package org.schabi.newpipe.player
 
+import org.schabi.newpipe.player.boost.VolumeBoostController
 import org.schabi.newpipe.player.equalizer.EqualizerController
 import org.schabi.newpipe.player.equalizer.EqualizerState
 
-/** Owns mute, equalizer, audio-focus, and effective-volume coordination. */
+/** Owns mute, real-time audio effects, audio focus, and effective-volume coordination. */
 internal class PlayerAudioController(private val player: Player) {
     private val equalizer = EqualizerController(player.context)
+    private val volumeBoost = VolumeBoostController(player.context)
     val volume = PlaybackVolumeController(
         player.context,
         player::applyPlayerVolume,
@@ -32,14 +34,28 @@ internal class PlayerAudioController(private val player: Player) {
     val equalizerHeadroomMultiplier: Float
         get() = equalizer.headroomMultiplier
 
+    val volumeBoostGainMb: Int
+        get() = volumeBoost.gainMb
+
+    val isVolumeBoostEnabled: Boolean
+        get() = volumeBoost.isEnabled
+
+    val isVolumeBoostAvailable: Boolean
+        get() = volumeBoost.isAvailable
+
+    val isVolumeBoostOperational: Boolean
+        get() = volumeBoost.isOperational
+
     fun attachAudioSession(audioSessionId: Int) {
         volume.attach()
         equalizer.attachAudioSession(audioSessionId)
+        volumeBoost.attachAudioSession(audioSessionId)
     }
 
     fun releaseAudioSession() {
         volume.detach()
         equalizer.releaseAudioSession()
+        volumeBoost.releaseAudioSession()
     }
 
     fun onAudioSessionChanged(audioSessionId: Int) {
@@ -47,6 +63,7 @@ internal class PlayerAudioController(private val player: Player) {
         player.applyPlayerVolume()
         player.UIs().call { ui ->
             ui.onEqualizerStateChanged(equalizer.state, equalizer.isOperational)
+            ui.onVolumeBoostChanged(volumeBoost.gainMb, volumeBoost.isOperational)
         }
     }
 
@@ -72,6 +89,17 @@ internal class PlayerAudioController(private val player: Player) {
 
     fun updateEqualizerState(state: EqualizerState) {
         applyEqualizerState(state, true)
+    }
+
+    fun updateVolumeBoostGainMb(gainMb: Int) {
+        val wasEnabled = volumeBoost.isEnabled
+        volumeBoost.updateGainMb(gainMb)
+        if (wasEnabled != volumeBoost.isEnabled) {
+            player.updateAudioTunneling()
+        }
+        player.UIs().call { ui ->
+            ui.onVolumeBoostChanged(volumeBoost.gainMb, volumeBoost.isOperational)
+        }
     }
 
     private fun applyEqualizerState(state: EqualizerState, persist: Boolean) {
