@@ -11,8 +11,20 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
     val isActive: Boolean get() = filters.isNotEmpty()
     val needsStreamStates: Boolean get() = watchFilters.isNotEmpty()
 
-    fun matches(stream: StreamInfoItem, state: StreamStateEntity?): Boolean = (contentFilters.isEmpty() || StreamListFilter.categoryOf(stream) in contentFilters) &&
-        (watchFilters.isEmpty() || watchFilters.any { StreamListFilter.matches(it, stream, state) })
+    fun matches(stream: StreamInfoItem, state: StreamStateEntity?): Boolean {
+        return matches(stream, state, includeAudio = StreamListFilter.AUDIO in contentFilters)
+    }
+
+    private fun matches(
+        stream: StreamInfoItem,
+        state: StreamStateEntity?,
+        includeAudio: Boolean
+    ): Boolean {
+        val matchesContent = contentFilters.isEmpty() ||
+            StreamListFilter.categoryOf(stream, includeAudio = includeAudio) in contentFilters
+        val matchesWatch = watchFilters.isEmpty() || watchFilters.any { StreamListFilter.matches(it, stream, state) }
+        return matchesContent && matchesWatch
+    }
 
     fun matchesVisible(
         stream: StreamInfoItem,
@@ -32,13 +44,20 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
 
     fun matches(entry: StreamStatisticsEntry): Boolean = matches(
         entry.toStreamInfoItem(),
-        StreamStateEntity(entry.streamId, entry.progressMillis)
+        StreamStateEntity(entry.streamId, entry.progressMillis),
+        includeAudio = true
     )
 
     fun encode(): String = StreamListFilter.entries.filter { it in filters }.joinToString(",") { it.name }
 
     companion object {
-        val CONTENT_FILTERS = setOf(StreamListFilter.LIVE, StreamListFilter.VIDEOS, StreamListFilter.SHORTS, StreamListFilter.UPCOMING)
+        val CONTENT_FILTERS = setOf(
+            StreamListFilter.LIVE,
+            StreamListFilter.VIDEOS,
+            StreamListFilter.AUDIO,
+            StreamListFilter.SHORTS,
+            StreamListFilter.UPCOMING
+        )
 
         @JvmStatic
         fun parse(value: String?): StreamFilterSelection = StreamFilterSelection(

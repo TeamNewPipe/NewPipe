@@ -43,6 +43,14 @@
                 android:checkable="true"
                 android:text="@string/videos_string" />
             <com.google.android.material.chip.Chip
+                android:id="@+id/filter_audio"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/audio"
+                android:visibility="gone" />
+            <com.google.android.material.chip.Chip
                 android:id="@+id/filter_shorts"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"

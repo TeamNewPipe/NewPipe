@@ -6,12 +6,14 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
+import org.schabi.newpipe.extractor.stream.StreamType
 
 enum class StreamListFilter(@IdRes val chipId: Int) {
     NONE(0),
     UNWATCHED(R.id.filter_unwatched),
     LIVE(R.id.filter_live),
     VIDEOS(R.id.filter_videos),
+    AUDIO(R.id.filter_audio),
     SHORTS(R.id.filter_shorts),
     UPCOMING(R.id.filter_upcoming),
     PARTIALLY_WATCHED(R.id.filter_partially_watched),
@@ -38,6 +40,8 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
 
             VIDEOS -> categoryOf(stream) == VIDEOS
 
+            AUDIO -> categoryOf(stream, includeAudio = true) == AUDIO
+
             SHORTS -> categoryOf(stream) == SHORTS
 
             UPCOMING -> categoryOf(stream) == UPCOMING
@@ -57,13 +61,16 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
         )
 
         @JvmStatic
+        @JvmOverloads
         fun categoryOf(
             stream: StreamInfoItem,
-            now: OffsetDateTime = OffsetDateTime.now()
+            now: OffsetDateTime = OffsetDateTime.now(),
+            includeAudio: Boolean = false
         ): StreamListFilter = when {
             stream.uploadDate?.offsetDateTime()?.isAfter(now) == true -> UPCOMING
             StreamTypeUtil.isLiveStream(stream.streamType) -> LIVE
             isShort(stream) -> SHORTS
+            includeAudio && stream.streamType == StreamType.AUDIO_STREAM -> AUDIO
             else -> VIDEOS
         }
 

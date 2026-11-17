@@ -12,10 +12,18 @@ object StreamFilterControls {
     }
 
     @JvmStatic
-    fun bind(binding: ListStreamFilterChipsBinding, saved: String, showContentTypes: Boolean, listener: Listener) {
+    @JvmOverloads
+    fun bind(
+        binding: ListStreamFilterChipsBinding,
+        saved: String,
+        showContentTypes: Boolean,
+        showAudio: Boolean = false,
+        listener: Listener
+    ) {
         val selection = StreamFilterSelection.parse(saved)
         val content = binding.streamFilterChipGroup
         val watch = binding.watchFilterChipGroup
+        binding.filterAudio.visibility = if (showAudio) View.VISIBLE else View.GONE
         (content.parent as View).visibility = if (showContentTypes) View.VISIBLE else View.GONE
         content.setOnCheckedStateChangeListener(null)
         watch.setOnCheckedStateChangeListener(null)
