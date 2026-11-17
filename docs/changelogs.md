@@ -4,6 +4,39 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.45.0 (`1045000`)
+
+### Playback and downloads
+
+- Set custom rewind and fast-forward durations independently and choose a custom hold-to-speed multiplier.
+- Minimize the player from the comments header while keeping the video playing in the mini-player.
+- Add real-time volume boost up to +12 dB and improve the visibility of controls in portrait playback.
+- Preserve the last confirmed position when recovering playback after an interruption.
+- Cache media details for completed downloads and show them in Downloads.
+
+### Discovery and recommendations
+
+- Export or import Your Taste for the active profile and include the full local model in app backups.
+- Remove learned interests from Your Taste and keep them out of future recommendations and learning.
+- Add opt-in controls that rank Shorts and short regular videos lower in For You. Reduce passive
+  learning from videos with YouTube's structured AI or synthetic-content disclosure.
+- Keep What's New responsive when sorting by relevance.
+- Show YouTube channel join dates and external links in the channel About tab.
+- Discover monitored HTTPS Invidious instances from the official directory in settings.
+
+### Home, history and playlists
+
+- Reduce memory pressure when switching between distant Home tabs.
+- Start new installations and reset Home layouts on the search-first tab, with current-service
+  search selected by default for new installations.
+- Add an Audio filter in Watch history and use a Material 3 confirmation for clearing search history.
+- Add Play All, Enqueue next, Enqueue and Edit playlists actions to bookmarked playlist menus.
+- Keep new subscriptions outside separator groups.
+
+### Website
+
+- Add Reviews to the main website navigation.
+
 ## WizeStream 1.44.1 (`1044001`)
 
 ### Reliability and recovery
