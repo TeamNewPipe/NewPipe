@@ -18,6 +18,8 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.MetaInfo
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeContentDisclosure
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -137,6 +139,47 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun shortFormRankingPenaltiesAreExplicitAndExplained() {
+        enable()
+        val short = item("short", short = true)
+        val brief = item("brief").apply { duration = 299 }
+        val long = item("long").apply { duration = 300 }
+
+        assertEquals(0.0, LocalRecommendations.rankingPenalty(context, short), 0.0)
+        assertEquals(0.0, LocalRecommendations.rankingPenalty(context, brief), 0.0)
+
+        enable("reduce_shorts" to true, "reduce_short_videos" to true)
+        assertEquals(2.0, LocalRecommendations.rankingPenalty(context, short), 0.0)
+        assertEquals(1.0, LocalRecommendations.rankingPenalty(context, brief), 0.0)
+        assertEquals(0.0, LocalRecommendations.rankingPenalty(context, long), 0.0)
+        assertEquals(long, LocalRecommendations.rank(context, listOf(short, brief, long)).first())
+        assertTrue(LocalRecommendations.explanation(context, short).contains("Shorts"))
+        assertTrue(LocalRecommendations.explanation(context, brief).contains("under 5 minutes"))
+    }
+
+    @Test
+    fun providerDisclosedAiVideoHasLessPassiveLearningInfluence() {
+        enable("reduce_disclosed_ai" to true)
+        val disclosure = YoutubeContentDisclosure(
+            "Made with AI",
+            "Sounds or visuals were altered or generated."
+        )
+        LocalRecommendations.watched(
+            context,
+            info("astronomy", metaInfo = listOf(disclosure)),
+            30
+        )
+        val reduced = model().getJSONObject("weights").getDouble("0:astronomy")
+
+        LocalRecommendations.reset(context)
+        enable("reduce_disclosed_ai" to false)
+        LocalRecommendations.watched(context, info("astronomy"), 30)
+        val normal = model().getJSONObject("weights").getDouble("0:astronomy")
+
+        assertEquals(normal * 0.10, reduced, 0.0001)
+    }
+
+    @Test
     fun storageIsBoundedAndCorruptModelRecovers() {
         enable()
         repeat(4) { batch -> LocalRecommendations.observe(context, (0 until 100).map { item("video${batch * 100 + it}") }) }
@@ -248,7 +291,8 @@ class LocalRecommendationsTest {
         name: String,
         channel: String = "Channel",
         likes: Long = -1,
-        views: Long = -1
+        views: Long = -1,
+        metaInfo: List<MetaInfo> = emptyList()
     ): StreamInfo = mock(StreamInfo::class.java).also {
         `when`(it.serviceId).thenReturn(0)
         `when`(it.url).thenReturn("https://example.org/$name")
@@ -258,5 +302,6 @@ class LocalRecommendationsTest {
         `when`(it.likeCount).thenReturn(likes)
         `when`(it.viewCount).thenReturn(views)
         `when`(it.streamType).thenReturn(StreamType.VIDEO_STREAM)
+        `when`(it.metaInfo).thenReturn(metaInfo)
     }
 }

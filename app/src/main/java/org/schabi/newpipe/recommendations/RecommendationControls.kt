@@ -26,7 +26,16 @@ object RecommendationControls {
             addView(TextView(context).apply { setText(R.string.local_recommendations_help) })
         }
         val fields = linkedMapOf<String, CheckBox>()
-        for ((key, title) in listOf("enabled" to R.string.local_recommendations_enable, "paused" to R.string.local_recommendations_pause, "shorts" to R.string.local_recommendations_shorts, "autoplay" to R.string.local_recommendations_autoplay)) {
+        val options = listOf(
+            "enabled" to R.string.local_recommendations_enable,
+            "paused" to R.string.local_recommendations_pause,
+            "shorts" to R.string.local_recommendations_shorts,
+            "autoplay" to R.string.local_recommendations_autoplay,
+            "reduce_shorts" to R.string.local_recommendations_reduce_shorts,
+            "reduce_short_videos" to R.string.local_recommendations_reduce_short_videos,
+            "reduce_disclosed_ai" to R.string.local_recommendations_reduce_disclosed_ai
+        )
+        for ((key, title) in options) {
             fields[key] = CheckBox(context).apply {
                 setText(title)
                 isChecked = LocalRecommendations.setting(context, key)

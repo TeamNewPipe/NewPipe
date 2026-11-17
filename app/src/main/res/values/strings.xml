@@ -1901,6 +1901,9 @@
     <string name="local_recommendations_pause">Pause recommendation learning</string>
     <string name="local_recommendations_shorts">Personalize Shorts</string>
     <string name="local_recommendations_autoplay">Personalize autoplay</string>
+    <string name="local_recommendations_reduce_shorts">Reduce Shorts in For You</string>
+    <string name="local_recommendations_reduce_short_videos">Reduce regular videos under 5 minutes</string>
+    <string name="local_recommendations_reduce_disclosed_ai">Reduce disclosed AI/synthetic video influence</string>
     <string name="local_recommendations_topics">Excluded topics or channel names (comma separated)</string>
     <string name="local_recommendations_exclude">Exclude from local recommendations</string>
     <string name="local_recommendations_why">Why this recommendation</string>
@@ -1908,6 +1911,8 @@
     <string name="local_recommendations_reason_interest">Because it matches your interest in “%1$s”.</string>
     <string name="local_recommendations_reason_recent">Recent content from %1$s, a channel you watch.</string>
     <string name="local_recommendations_reason_local">Selected from videos you browsed using interests learned only on this device.</string>
+    <string name="local_recommendations_reason_reduce_shorts">Ranked lower because you chose to reduce Shorts in For You.</string>
+    <string name="local_recommendations_reason_reduce_short_video">Ranked lower because you chose to reduce regular videos under 5 minutes.</string>
     <string name="local_recommendations_your_taste">Your taste</string>
     <string name="local_recommendations_taste_summary">Top interests\n%1$s\n\nFrequently watched channels\n%2$s\n\nYour local likes are a strong, reversible signal. Public likes are used only as a small quality signal and never override your viewing choices. Everything remains on this device.</string>
     <string name="local_recommendations_taste_empty">Not enough activity yet</string>
@@ -1920,7 +1925,7 @@
     <string name="local_recommendations_add_home">Add For you to Home</string>
     <string name="local_recommendations_home_added">For you is already on Home</string>
     <string name="local_recommendations_summary">Optional recommendations learned on this device, separately for each profile</string>
-    <string name="local_recommendations_help">Learn from new searches, watched videos, time spent playing, explicit local likes, channel affinity, and a bounded public video-like quality signal. History switches are respected and Incognito never learns or personalizes. Pause keeps existing recommendations without learning more. Videos come from results you have already browsed and related videos; your interests are not sent to a recommendation server.
+    <string name="local_recommendations_help">Learn from new searches, watched videos, time spent playing, explicit local likes, channel affinity, and a bounded public video-like quality signal. History switches are respected and Incognito never learns or personalizes. Pause keeps existing recommendations without learning more. Reduction controls are soft adjustments, not filters. The AI/synthetic control reduces passive learning only after YouTube supplies a provider-authored disclosure on the video details; it never guesses from titles, descriptions, comments, or channels. Videos come from results you have already browsed and related videos; your interests are not sent to a recommendation server.
 
 Use the button below to add For you to Home. Long-press a recommendation to exclude it or see why it appeared.</string>
     <string name="local_recommendations_empty">Enable Local recommendations in the menu, then browse and watch videos to build your feed. It is hidden during Incognito.</string>

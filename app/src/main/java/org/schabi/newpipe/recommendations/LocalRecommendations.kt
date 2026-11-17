@@ -12,6 +12,7 @@ import org.json.JSONObject
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.InfoItem
 import org.schabi.newpipe.extractor.localization.DateWrapper
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeContentDisclosure
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -26,6 +27,10 @@ object LocalRecommendations {
     private const val MAX_TERMS = 200
     private const val MAX_CHANNELS = 100
     private const val ACTIVE_CHANNEL_DAYS = 30L
+    private const val SHORT_VIDEO_SECONDS = 5 * 60L
+    private const val SHORTS_RANKING_PENALTY = 2.0
+    private const val SHORT_VIDEO_RANKING_PENALTY = 1.0
+    private const val DISCLOSED_AI_LEARNING_MULTIPLIER = 0.10
 
     data class TasteSummary(val interests: List<String>, val channels: List<String>)
 
@@ -124,7 +129,8 @@ object LocalRecommendations {
         model.watched.add(streamId)
         model.candidates.remove(streamId)
         val engagement = if (seconds == 0L) 1.0 else seconds.coerceIn(0, 60) / 30.0
-        val amount = engagement * (1.0 + qualityBoost(info.likeCount, info.viewCount))
+        val amount = engagement * (1.0 + qualityBoost(info.likeCount, info.viewCount)) *
+            passiveLearningMultiplier(context, info)
         addTerms(model, info.serviceId, "${info.name} ${info.uploaderName}", amount)
         addChannel(model, info.serviceId, info.uploaderUrl, info.uploaderName, amount * 0.75)
         write(context, model)
@@ -158,7 +164,9 @@ object LocalRecommendations {
         val model = read(context)
         val isEligible = eligibility(context)
         return items.filter { isEligible(it) && id(it) !in model.watched }
-            .distinctBy(::id).sortedByDescending { recommendationScore(model, it) }
+            .distinctBy(::id).sortedByDescending {
+                recommendationScore(context, model, it)
+            }
     }
 
     /**
@@ -174,7 +182,7 @@ object LocalRecommendations {
         return items.withIndex()
             .sortedWith(
                 compareByDescending<IndexedValue<StreamInfoItem>> {
-                    recommendationScore(model, it.value)
+                    recommendationScore(context, model, it.value)
                 }.thenBy { it.index }
             )
             .mapIndexed { position, item -> id(item.value) to position }
@@ -202,6 +210,12 @@ object LocalRecommendations {
     @JvmStatic
     @Synchronized
     fun explanation(context: Context, item: StreamInfoItem): String {
+        if (setting(context, "reduce_shorts") && item.isShortFormContent) {
+            return context.getString(R.string.local_recommendations_reason_reduce_shorts)
+        }
+        if (setting(context, "reduce_short_videos") && isRegularShortVideo(item)) {
+            return context.getString(R.string.local_recommendations_reason_reduce_short_video)
+        }
         val model = read(context)
         val channelKey = channelId(item.serviceId, item.uploaderUrl, item.uploaderName)
         val channelWeight = channelKey?.let {
@@ -270,14 +284,49 @@ object LocalRecommendations {
         return (volume * 0.30 + approval * 0.30).coerceAtMost(0.60)
     }
 
-    private fun recommendationScore(model: Model, item: StreamInfoItem): Double {
+    internal fun rankingPenalty(context: Context, item: StreamInfoItem): Double = when {
+        setting(context, "reduce_shorts") && item.isShortFormContent ->
+            SHORTS_RANKING_PENALTY
+
+        setting(context, "reduce_short_videos") && isRegularShortVideo(item) ->
+            SHORT_VIDEO_RANKING_PENALTY
+
+        else -> 0.0
+    }
+
+    private fun isRegularShortVideo(item: StreamInfoItem): Boolean = !item.isShortFormContent &&
+        item.duration in 1 until SHORT_VIDEO_SECONDS
+
+    private fun passiveLearningMultiplier(context: Context, info: StreamInfo): Double {
+        val hasProviderDisclosure = info.metaInfo.orEmpty().any {
+            it is YoutubeContentDisclosure
+        }
+        return if (setting(context, "reduce_disclosed_ai") && hasProviderDisclosure) {
+            DISCLOSED_AI_LEARNING_MULTIPLIER
+        } else {
+            1.0
+        }
+    }
+
+    private fun recommendationScore(
+        context: Context,
+        model: Model,
+        item: StreamInfoItem
+    ): Double {
         val text = "${item.name} ${item.uploaderName}"
         val terms = score(model.weights, item.serviceId, text) +
             score(model.likeWeights, item.serviceId, text)
         val channel = channelId(item.serviceId, item.uploaderUrl, item.uploaderName)
-            ?.let { (model.channels[it] ?: 0.0) + (model.likeChannels[it] ?: 0.0) } ?: 0.0
-        val popularity = if (item.viewCount > 0) (ln(item.viewCount + 1.0) / 100.0).coerceAtMost(0.20) else 0.0
-        return terms + channel + frequencyScore(model, item) + popularity
+            ?.let {
+                (model.channels[it] ?: 0.0) + (model.likeChannels[it] ?: 0.0)
+            } ?: 0.0
+        val popularity = if (item.viewCount > 0) {
+            (ln(item.viewCount + 1.0) / 100.0).coerceAtMost(0.20)
+        } else {
+            0.0
+        }
+        return terms + channel + frequencyScore(model, item) + popularity -
+            rankingPenalty(context, item)
     }
 
     private fun frequencyScore(model: Model, item: StreamInfoItem): Double {
