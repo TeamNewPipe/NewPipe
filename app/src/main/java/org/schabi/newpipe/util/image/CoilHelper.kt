@@ -162,6 +162,11 @@ object CoilHelper {
         loadImageDefault(target, url, R.drawable.placeholder_thumbnail_video)
     }
 
+    fun clearImage(target: ImageView) {
+        CoilUtils.dispose(target)
+        target.setImageDrawable(null)
+    }
+
     fun loadRadioLogo(target: ImageView, url: String?) {
         val context = target.context
         val request = getImageRequest(context, url, R.drawable.ic_radio)

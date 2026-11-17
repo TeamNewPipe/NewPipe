@@ -39,6 +39,14 @@ public class DownloadMission extends Mission {
 
     public org.schabi.newpipe.extractor.sponsorblock.SponsorBlockSegment[] sponsorBlockSegments;
 
+    public String title;
+    public String uploader;
+    public String description;
+    public String uploadDate;
+    public long duration = -1L;
+    public String tags;
+    public String thumbnailUrl;
+
     static final int BUFFER_SIZE = 64 * 1024;
     static final int BLOCK_SIZE = 512 * 1024;
 

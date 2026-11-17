@@ -24,6 +24,7 @@ import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,8 @@ import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.image.ExtractorImageCompat;
+import org.schabi.newpipe.util.image.ImageStrategy;
 
 import java.io.File;
 import java.io.IOException;
@@ -446,6 +449,21 @@ public class DownloadManagerService extends Service {
         mission.requiresUnmeteredNetwork = intent.getBooleanExtra("automatic_wifi_only", false);
         mission.threadCount = threads;
         mission.source = streamInfo.getUrl();
+        mission.title = Objects.toString(streamInfo.getName(), "");
+        mission.uploader = Objects.toString(streamInfo.getUploaderName(), "");
+        mission.description = streamInfo.getDescription() == null
+                ? "" : Objects.toString(streamInfo.getDescription().getContent(), "");
+        mission.uploadDate = streamInfo.getUploadDate() == null
+                ? Objects.toString(streamInfo.getTextualUploadDate(), "")
+                : streamInfo.getUploadDate().toString();
+        mission.duration = streamInfo.getDuration();
+        mission.tags = TextUtils.join("\n", streamInfo.getTags());
+        mission.thumbnailUrl = Objects.toString(
+                ImageStrategy.choosePreferredImage(
+                        ExtractorImageCompat.thumbnailImages(streamInfo)
+                ),
+                ""
+        );
         org.schabi.newpipe.download.OfflineSponsorBlockStore.remove(this, storage.getUri().toString());
         if ((kind == 'v' || kind == 'a') && !Postprocessing.ALGORITHM_SEGMENTS.equals(psName)) {
             mission.sponsorBlockSegments = streamInfo.getSponsorBlockSegments();

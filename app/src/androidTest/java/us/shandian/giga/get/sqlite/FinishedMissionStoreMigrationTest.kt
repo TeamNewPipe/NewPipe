@@ -36,7 +36,7 @@ class FinishedMissionStoreMigrationTest {
     }
 
     @Test
-    fun migrationFromVersion4AddsPathFreeDescriptiveMetadata() {
+    fun migrationFromVersion4AddsDownloadMetadata() {
         context.openOrCreateDatabase(
             DATABASE_NAME,
             Context.MODE_PRIVATE,
@@ -71,10 +71,21 @@ class FinishedMissionStoreMigrationTest {
         val store = FinishedMissionStore(context)
         try {
             val database = store.writableDatabase
-            assertEquals(5, database.version)
+            assertEquals(6, database.version)
             database.query(
                 "finished_missions",
-                arrayOf("sync_id", "display_name", "mime_type"),
+                arrayOf(
+                    "sync_id",
+                    "display_name",
+                    "mime_type",
+                    "title",
+                    "uploader",
+                    "description",
+                    "upload_date",
+                    "duration",
+                    "tags",
+                    "thumbnail_url"
+                ),
                 null,
                 null,
                 null,
@@ -85,6 +96,13 @@ class FinishedMissionStoreMigrationTest {
                 assertEquals("", cursor.getString(0))
                 assertEquals("", cursor.getString(1))
                 assertEquals(StoredFileHelper.DEFAULT_MIME, cursor.getString(2))
+                assertEquals("", cursor.getString(3))
+                assertEquals("", cursor.getString(4))
+                assertEquals("", cursor.getString(5))
+                assertEquals("", cursor.getString(6))
+                assertEquals(-1L, cursor.getLong(7))
+                assertEquals("", cursor.getString(8))
+                assertEquals("", cursor.getString(9))
             }
 
             val metadata = store.loadCompletedDownloadMetadata().single()
@@ -104,7 +122,7 @@ class FinishedMissionStoreMigrationTest {
     }
 
     @Test
-    fun migrationFromVersion3CreatesVersion5ColumnsOnlyOnce() {
+    fun migrationFromVersion3CreatesCurrentColumnsOnlyOnce() {
         context.openOrCreateDatabase(
             DATABASE_NAME,
             Context.MODE_PRIVATE,
@@ -139,7 +157,7 @@ class FinishedMissionStoreMigrationTest {
 
         val store = FinishedMissionStore(context)
         try {
-            assertEquals(5, store.writableDatabase.version)
+            assertEquals(6, store.writableDatabase.version)
 
             val metadata = store.loadCompletedDownloadMetadata().single()
             assertEquals(SOURCE_URL, metadata.source)

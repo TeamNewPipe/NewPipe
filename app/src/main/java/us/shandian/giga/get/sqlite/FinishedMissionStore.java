@@ -27,7 +27,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     // TODO: use NewPipeSQLiteHelper ('s constants) when playlist branch is merged (?)
     private static final String DATABASE_NAME = "downloads.db";
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     /**
      * The table name of download missions (old)
@@ -62,6 +62,20 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
     private static final String KEY_MIME_TYPE = "mime_type";
 
+    private static final String KEY_TITLE = "title";
+
+    private static final String KEY_UPLOADER = "uploader";
+
+    private static final String KEY_DESCRIPTION = "description";
+
+    private static final String KEY_UPLOAD_DATE = "upload_date";
+
+    private static final String KEY_DURATION = "duration";
+
+    private static final String KEY_TAGS = "tags";
+
+    private static final String KEY_THUMBNAIL_URL = "thumbnail_url";
+
     /**
      * The statement to create the table
      */
@@ -76,6 +90,13 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                     KEY_DISPLAY_NAME + " TEXT NOT NULL DEFAULT '', " +
                     KEY_MIME_TYPE + " TEXT NOT NULL DEFAULT '" +
                     StoredFileHelper.DEFAULT_MIME + "', " +
+                    KEY_TITLE + " TEXT NOT NULL DEFAULT '', " +
+                    KEY_UPLOADER + " TEXT NOT NULL DEFAULT '', " +
+                    KEY_DESCRIPTION + " TEXT NOT NULL DEFAULT '', " +
+                    KEY_UPLOAD_DATE + " TEXT NOT NULL DEFAULT '', " +
+                    KEY_DURATION + " INTEGER NOT NULL DEFAULT -1, " +
+                    KEY_TAGS + " TEXT NOT NULL DEFAULT '', " +
+                    KEY_THUMBNAIL_URL + " TEXT NOT NULL DEFAULT '', " +
                     " UNIQUE(" + KEY_TIMESTAMP + ", " + KEY_PATH + "));";
 
 
@@ -151,6 +172,24 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
                     KEY_MIME_TYPE + " TEXT NOT NULL DEFAULT '" +
                     StoredFileHelper.DEFAULT_MIME + "';");
+            oldVersion++;
+        }
+
+        if (oldVersion == 5) {
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_TITLE + " TEXT NOT NULL DEFAULT '';");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_UPLOADER + " TEXT NOT NULL DEFAULT '';");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_DESCRIPTION + " TEXT NOT NULL DEFAULT '';");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_UPLOAD_DATE + " TEXT NOT NULL DEFAULT '';");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_DURATION + " INTEGER NOT NULL DEFAULT -1;");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_TAGS + " TEXT NOT NULL DEFAULT '';");
+            db.execSQL("ALTER TABLE " + FINISHED_TABLE_NAME + " ADD COLUMN " +
+                    KEY_THUMBNAIL_URL + " TEXT NOT NULL DEFAULT '';");
         }
     }
 
@@ -172,6 +211,13 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
             values.put(KEY_SYNC_ID, mission.syncId);
             values.put(KEY_DISPLAY_NAME, mission.displayName);
             values.put(KEY_MIME_TYPE, mission.mimeType);
+            values.put(KEY_TITLE, mission.title == null ? "" : mission.title);
+            values.put(KEY_UPLOADER, mission.uploader == null ? "" : mission.uploader);
+            values.put(KEY_DESCRIPTION, mission.description == null ? "" : mission.description);
+            values.put(KEY_UPLOAD_DATE, mission.uploadDate == null ? "" : mission.uploadDate);
+            values.put(KEY_DURATION, mission.duration);
+            values.put(KEY_TAGS, mission.tags == null ? "" : mission.tags);
+            values.put(KEY_THUMBNAIL_URL, mission.thumbnailUrl == null ? "" : mission.thumbnailUrl);
         }
         return values;
     }
@@ -192,6 +238,15 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         mission.syncId = cursor.getString(cursor.getColumnIndexOrThrow(KEY_SYNC_ID));
         mission.displayName = cursor.getString(cursor.getColumnIndexOrThrow(KEY_DISPLAY_NAME));
         mission.mimeType = cursor.getString(cursor.getColumnIndexOrThrow(KEY_MIME_TYPE));
+        mission.title = cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE));
+        mission.uploader = cursor.getString(cursor.getColumnIndexOrThrow(KEY_UPLOADER));
+        mission.description = cursor.getString(cursor.getColumnIndexOrThrow(KEY_DESCRIPTION));
+        mission.uploadDate = cursor.getString(cursor.getColumnIndexOrThrow(KEY_UPLOAD_DATE));
+        mission.duration = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_DURATION));
+        mission.tags = cursor.getString(cursor.getColumnIndexOrThrow(KEY_TAGS));
+        mission.thumbnailUrl = cursor.getString(
+                cursor.getColumnIndexOrThrow(KEY_THUMBNAIL_URL)
+        );
 
         try {
             mission.storage = new StoredFileHelper(context,null, Uri.parse(path), "");

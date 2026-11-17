@@ -24,6 +24,7 @@ import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -49,6 +50,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.os.HandlerCompat;
+import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
@@ -66,6 +68,7 @@ import org.schabi.newpipe.sync.SyncedDownloadMetadataRepository;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.image.CoilHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
 import java.io.File;
@@ -204,9 +207,32 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         h.item = item;
 
         Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.storage.getName());
+        String title = null;
+        String thumbnailUrl = null;
+        if (item.mission instanceof DownloadMission) {
+            DownloadMission mission = (DownloadMission) item.mission;
+            title = mission.title;
+            thumbnailUrl = mission.thumbnailUrl;
+        } else if (item.mission instanceof FinishedMission) {
+            FinishedMission mission = (FinishedMission) item.mission;
+            title = mission.title;
+            thumbnailUrl = mission.thumbnailUrl;
+        }
 
-        h.icon.setImageResource(Utility.getIconForFileType(type));
-        h.name.setText(item.mission.storage.getName());
+        if (thumbnailUrl == null || thumbnailUrl.isEmpty()) {
+            CoilHelper.INSTANCE.clearImage(h.icon);
+            ImageViewCompat.setImageTintList(h.icon, h.iconTint);
+            h.icon.setPadding(h.iconPadding, h.iconPadding, h.iconPadding, h.iconPadding);
+            h.icon.setScaleType(h.iconScaleType);
+            h.icon.setImageResource(Utility.getIconForFileType(type));
+        } else {
+            ImageViewCompat.setImageTintList(h.icon, null);
+            h.icon.setPadding(0, 0, 0, 0);
+            h.icon.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            CoilHelper.INSTANCE.loadThumbnail(h.icon, thumbnailUrl);
+        }
+        h.name.setText(title == null || title.isEmpty()
+                ? item.mission.storage.getName() : title);
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
@@ -215,7 +241,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             String length = Utility.formatBytes(mission.getLength());
             if (mission.running && !mission.isPsRunning()) length += " --.- kB/s";
 
-            h.size.setText(length);
+            h.size.setText(formatMetadataSummary(mission, length));
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
             updateProgress(h);
             mPendingDownloadsItems.add(h);
@@ -225,7 +251,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.progress.setMarquee(false);
             h.status.setText(R.string.download_remote_status);
             h.progress.setProgress(0.0f);
-            h.size.setText(Utility.formatBytes(item.mission.length));
+            h.size.setText(formatMetadataSummary(item.mission, Utility.formatBytes(item.mission.length)));
 
             DateFormat dateFormat = DateFormat.getDateInstance(
                     DateFormat.MEDIUM,
@@ -237,12 +263,25 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.progress.setMarquee(false);
             h.status.setText("100%");
             h.progress.setProgress(1.0f);
-            h.size.setText(Utility.formatBytes(item.mission.length));
+            h.size.setText(formatMetadataSummary(
+                    item.mission,
+                    Utility.formatBytes(item.mission.length)
+            ));
 
             DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
             Date date = new Date(item.mission.timestamp);
             h.date.setText(dateFormat.format(date));
         }
+    }
+
+    private String formatMetadataSummary(@NonNull Mission mission, @NonNull String size) {
+        String uploader = null;
+        if (mission instanceof DownloadMission) {
+            uploader = ((DownloadMission) mission).uploader;
+        } else if (mission instanceof FinishedMission) {
+            uploader = ((FinishedMission) mission).uploader;
+        }
+        return uploader == null || uploader.isEmpty() ? size : uploader + " • " + size;
     }
 
     @Override
@@ -917,6 +956,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         TextView status;
         ImageView icon;
+        ColorStateList iconTint;
+        int iconPadding;
+        ImageView.ScaleType iconScaleType;
         TextView name;
         TextView size;
         TextView date;
@@ -951,6 +993,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             status = itemView.findViewById(R.id.item_status);
             name = itemView.findViewById(R.id.item_name);
             icon = itemView.findViewById(R.id.item_icon);
+            iconTint = ImageViewCompat.getImageTintList(icon);
+            iconPadding = icon.getPaddingLeft();
+            iconScaleType = icon.getScaleType();
             size = itemView.findViewById(R.id.item_size);
             date = itemView.findViewById(R.id.item_date);
 
