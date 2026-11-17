@@ -174,7 +174,7 @@ def photo(path, name, alt, cls='', eager=False):
 
 def emit(path, title, description, body, section='', doc=False, search_body=None, php=False, scripts=()):
     active = section or path
-    navigation = [('features.html', 'Features'), ('docs/index.html', 'Documentation'), ('compare.html', 'Compare'), ('downloads.html', 'Download')]
+    navigation = [('features.html', 'Features'), ('docs/index.html', 'Documentation'), ('compare.html', 'Compare'), ('reviews/', 'Reviews'), ('downloads.html', 'Download')]
     nav = ''.join(link(path, target, label, 'nav-link' + (' is-active' if target == active else '')) for target, label in navigation)
     foot_columns = [
         ('Explore', [('features.html','Features'),('compare.html','Comparison'),('screenshots.html','Screenshots'),('downloads.html','Downloads'),('reviews/','Community reviews')]),
