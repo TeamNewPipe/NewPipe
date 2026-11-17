@@ -33,7 +33,7 @@ If you already use NewPipe, keep an exported backup from that app. Import compat
 
 ## Stable, development and nightly
 
-The stable release listed on this website is **1.41.0**. These guides also describe the current development branch. New SponsorBlock contribution tools, full-video sponsorship disclosures and FreeTube transfer were merged after that release. The separate off-by-default switches for A–B repeat and 360° playback also postdate 1.41.0.
+See the [latest stable release](https://github.com/wizdom13/WizeStream/releases/latest) for the current APKs and release notes. The handbook may cover changes newer than your installed build.
 
 Stable, debug and nightly builds use separate application identities. Normal WizeStream uses `org.wisso.newpipematerial`; keeping that historical package name preserves updates and existing data after the rename from NewPipe Material.
 

@@ -56,7 +56,7 @@ The guide Markdown subset supports paragraphs, `##`–`####` headings, flat list
 
 The initial content snapshot is reviewed on 13 November 2026, with stable 1.41.0 listed separately from the reviewed development branch. In particular, FreeTube transfer, SponsorBlock contributions/disclosures and independent off-by-default 360°/A–B switches are marked as newer development work. Do not remove those labels merely because a change is merged.
 
-When a release ships, update `content/site.json` and release-specific text/links in `build.py` and the affected guides. The primary download button uses GitHub's latest-release route; explicit architecture-specific APK links intentionally name their release. Review both. Update the displayed review date, pinned source commit, competitor versions, feature evidence and availability labels together when doing a new factual review.
+The links for the current stable release point to GitHub’s latest-release page, which lists both architecture-specific APKs. Direct website downloads use the architecture-specific `download.php` routes. Historical milestone cards link to their specific tags. Update the review date, pinned source commit, competitor versions and feature evidence together when doing a new factual review.
 
 The comparison describes selected capabilities rather than declaring an overall winner. Preserve competitors' verified strengths. `unknown` means not established by the reviewed official sources, not a proven absence. The “Differences only” filter compares capability status among visible projects; feature notes can still differ when statuses match. Archived Tubular is explicitly historical. Refer to the linked tagged docs/source files before changing a cell.
 
