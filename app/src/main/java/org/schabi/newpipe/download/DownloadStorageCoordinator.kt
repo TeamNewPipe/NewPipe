@@ -21,7 +21,7 @@ import us.shandian.giga.service.DownloadManager
 import us.shandian.giga.service.MissionState
 
 internal fun interface DownloadReadyListener {
-    fun onDownloadReady(storage: StoredFileHelper)
+    fun onDownloadReady(storage: StoredFileHelper, directory: StoredDirectoryHelper?)
 }
 
 internal fun interface DownloadFailureListener {
@@ -122,7 +122,7 @@ internal class DownloadStorageCoordinator(
                     failureListener.onDownloadFailure(R.string.error_file_creation)
                     return
                 }
-                readyListener.onDownloadReady(storage)
+                readyListener.onDownloadReady(storage, null)
                 return
             }
 
@@ -156,7 +156,7 @@ internal class DownloadStorageCoordinator(
             failureListener.onDownloadFailure(R.string.error_file_creation)
             return
         }
-        readyListener.onDownloadReady(storage)
+        readyListener.onDownloadReady(storage, mainStorage)
     }
 
     private fun showConflict(
@@ -177,7 +177,7 @@ internal class DownloadStorageCoordinator(
                 dialog.setPositiveButton(prompt.positiveButton) { alert, _ ->
                     alert.dismiss()
                     downloadManager.forgetMission(storage)
-                    readyListener.onDownloadReady(storage)
+                    readyListener.onDownloadReady(storage, null)
                 }
             }
             dialog.show()
@@ -200,7 +200,7 @@ internal class DownloadStorageCoordinator(
                     if (uniqueStorage == null) {
                         failureListener.onDownloadFailure(R.string.error_file_creation)
                     } else {
-                        readyListener.onDownloadReady(uniqueStorage)
+                        readyListener.onDownloadReady(uniqueStorage, mainStorage)
                     }
                 }
             }
@@ -231,7 +231,7 @@ internal class DownloadStorageCoordinator(
         }
 
         if (replacement != null && replacement.canWrite()) {
-            readyListener.onDownloadReady(replacement)
+            readyListener.onDownloadReady(replacement, mainStorage)
         } else {
             failureListener.onDownloadFailure(R.string.error_file_creation)
         }

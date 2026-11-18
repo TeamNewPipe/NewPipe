@@ -97,11 +97,10 @@ public class StoredDirectoryHelper {
                     docTree.getUri(), DocumentsContract.getDocumentId(docTree.getUri()));
 
             final String[] projection = new String[]{COLUMN_DISPLAY_NAME};
-            final String selection = "(LOWER(" + COLUMN_DISPLAY_NAME + ") LIKE ?%";
             final ContentResolver cr = context.getContentResolver();
 
-            try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
-                    new String[]{lcFileName}, null)) {
+            // Documents providers can reject arbitrary SQL selections. Filter locally below.
+            try (Cursor cursor = cr.query(docTreeChildren, projection, null, null, null)) {
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
                         addIfStartWith(matches, lcFileName, cursor.getString(0));

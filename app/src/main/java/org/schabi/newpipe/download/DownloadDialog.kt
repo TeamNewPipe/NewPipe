@@ -738,7 +738,7 @@ class DownloadDialog() :
         ).check(mainStorage, targetFile, filename, mime)
     }
 
-    private fun continueSelectedDownload(storage: StoredFileHelper) {
+    private fun continueSelectedDownload(storage: StoredFileHelper, directory: StoredDirectoryHelper?) {
         if (!storage.canWrite()) {
             showFailedDialog(R.string.permission_denied)
             return
@@ -777,7 +777,12 @@ class DownloadDialog() :
 
         val companion = if (request.kind == 'v' && selectedSegments.isEmpty() && companionCaptionIndex >= 0) {
             try {
-                CompanionCaption.prepare(dialogContext, storage, subtitleStreamsAdapter.getItem(companionCaptionIndex))
+                CompanionCaption.prepare(
+                    dialogContext,
+                    requireNotNull(directory),
+                    storage,
+                    subtitleStreamsAdapter.getItem(companionCaptionIndex)
+                )
             } catch (exception: Exception) {
                 Log.e(TAG, "Unable to prepare companion caption", exception)
                 showFailedDialog(R.string.companion_caption_failed)
