@@ -1446,11 +1446,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             return;
         }
 
-        // Only set preferred language if it does not match the user preference,
-        // otherwise there might be an infinite cycle at onTextTracksChanged.
+        // Avoid repeat track-selector updates on track notifications.
         final List<String> selectedPreferredLanguages =
                 player.getTrackSelector().getParameters().preferredTextLanguages;
-        if (!selectedPreferredLanguages.contains(userPreferredLanguage)) {
+        if (player.getTrackSelector().getParameters().getRendererDisabled(textRendererIndex)
+                || !selectedPreferredLanguages.contains(userPreferredLanguage)) {
             player.getTrackSelector().setParameters(player.getTrackSelector().buildUponParameters()
                     .setPreferredTextLanguages(userPreferredLanguage,
                             PlayerHelper.captionLanguageStemOf(userPreferredLanguage))

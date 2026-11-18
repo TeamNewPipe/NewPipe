@@ -29,13 +29,18 @@ internal class PlayerCaptionController(
 
     fun preference(): String? {
         val currentInfo = player.currentStreamInfo.orElse(null)
-        return if (currentInfo != null &&
+        val hasChannelOverride = currentInfo != null &&
             ChannelPlaybackProfileManager.hasCaptionPreference(context, currentInfo)
-        ) {
-            ChannelPlaybackProfileManager.getCaptionPreference(context, currentInfo)
-        } else {
-            prefs.getString(context.getString(R.string.caption_user_set_key), null)
-        }
+        return CaptionPreferenceStore.resolve(
+            context,
+            prefs,
+            hasChannelOverride,
+            if (hasChannelOverride) {
+                ChannelPlaybackProfileManager.getCaptionPreference(context, currentInfo!!)
+            } else {
+                null
+            }
+        )
     }
 
     fun setPreference(language: String?) {
@@ -57,21 +62,15 @@ internal class PlayerCaptionController(
             trackSelector.setParameters(parameters)
         }
 
+        // An explicit caption selection is also the fallback for future channels.
+        // Existing channel-specific overrides still take precedence when they exist.
+        CaptionPreferenceStore.saveGlobalFallback(context, prefs, language)
         val currentInfo = player.currentStreamInfo.orElse(null)
-        if (!ChannelPlaybackProfileManager.saveCaptionPreference(
-                context,
-                currentInfo,
-                player.currentItem,
-                language
-            )
-        ) {
-            prefs.edit().apply {
-                if (language == null) {
-                    remove(context.getString(R.string.caption_user_set_key))
-                } else {
-                    putString(context.getString(R.string.caption_user_set_key), language)
-                }
-            }.apply()
-        }
+        ChannelPlaybackProfileManager.saveCaptionPreference(
+            context,
+            currentInfo,
+            player.currentItem,
+            language
+        )
     }
 }
