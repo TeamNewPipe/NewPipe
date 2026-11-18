@@ -522,8 +522,11 @@ public class YoutubePlaylistExtractor extends PlaylistExtractor {
         String playlistUploaderName = null;
         String playlistUploaderUrl = null;
         try {
-            playlistUploaderName = getUploaderName();
-            playlistUploaderUrl = getUploaderUrl();
+            // A user-created playlist can include videos from any channel.
+            if (getId().startsWith("OLAK5uy_")) {
+                playlistUploaderName = getUploaderName();
+                playlistUploaderUrl = getUploaderUrl();
+            }
         } catch (final Exception ignored) {
         }
         final String fallbackName = playlistUploaderName;
@@ -595,17 +598,8 @@ public class YoutubePlaylistExtractor extends PlaylistExtractor {
             return;
         }
 
-        collector.commit(new YoutubeLockupStreamInfoItemExtractor(lockupViewModel, timeAgoParser) {
-            @Override
-            public String getUploaderName() throws ParsingException {
-                return fallbackName == null ? super.getUploaderName() : fallbackName;
-            }
-
-            @Override
-            public String getUploaderUrl() throws ParsingException {
-                return fallbackUrl == null ? super.getUploaderUrl() : fallbackUrl;
-            }
-        });
+        collector.commit(new YoutubePlaylistLockupExtractor(
+                lockupViewModel, timeAgoParser, fallbackName, fallbackUrl));
     }
 
     @Nonnull
