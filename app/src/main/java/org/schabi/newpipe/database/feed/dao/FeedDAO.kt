@@ -130,7 +130,7 @@ abstract class FeedDAO {
                 AND TRIM(COALESCE(s.textual_upload_date, ''), CHAR(9, 10, 11, 12, 13, 32)) = ''
                 THEN 1 ELSE 0 END ASC,
             s.upload_date IS NULL DESC, s.upload_date DESC, s.uploader ASC, s.uid DESC
-        LIMIT 500
+        LIMIT :limit OFFSET :offset
         """
     )
     abstract fun observeStreams(
@@ -142,7 +142,9 @@ abstract class FeedDAO {
         serviceId: Int,
         youtubeModeMask: Int,
         sortByDiscovery: Boolean = false,
-        useCurrentTime: Boolean = false
+        useCurrentTime: Boolean = false,
+        limit: Int = 500,
+        offset: Int = 0
     ): Flowable<List<StreamWithState>>
 
     fun getStreams(
@@ -153,7 +155,9 @@ abstract class FeedDAO {
         uploadDateBefore: OffsetDateTime?,
         serviceId: Int,
         youtubeModeMask: Int,
-        sortByDiscovery: Boolean = false
+        sortByDiscovery: Boolean = false,
+        limit: Int = 500,
+        offset: Int = 0
     ): Maybe<List<StreamWithState>> = observeStreams(
         profileId,
         groupId,
@@ -162,7 +166,9 @@ abstract class FeedDAO {
         uploadDateBefore,
         serviceId,
         youtubeModeMask,
-        sortByDiscovery
+        sortByDiscovery,
+        limit = limit,
+        offset = offset
     ).firstElement()
 
     /**

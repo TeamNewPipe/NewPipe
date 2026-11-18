@@ -467,6 +467,9 @@ class FeedDAOTest {
         val discovered = feedIds(sortByDiscovery = true)
         assertEquals(500, discovered.size)
         assertEquals(600L, discovered.first())
+        val nextPage = feedIds(limit = 100, offset = 500)
+        assertEquals(listOf(510L, 600L), nextPage)
+        assertTrue(ids.toSet().intersect(nextPage.toSet()).isEmpty())
     }
 
     @Test
@@ -502,7 +505,11 @@ class FeedDAOTest {
         assertEquals((599L downTo 100L).toList(), feedIds(sortByDiscovery = true))
     }
 
-    private fun feedIds(sortByDiscovery: Boolean = false) = feedDAO.getStreams(
+    private fun feedIds(
+        sortByDiscovery: Boolean = false,
+        limit: Int = 500,
+        offset: Int = 0
+    ) = feedDAO.getStreams(
         SubscriptionEntity.DEFAULT_PROFILE_ID,
         FeedGroupEntity.GROUP_ALL_ID,
         includePlayed = true,
@@ -510,7 +517,9 @@ class FeedDAOTest {
         uploadDateBefore = null,
         serviceId = serviceId,
         youtubeModeMask = SubscriptionEntity.YOUTUBE_MODE_REGULAR,
-        sortByDiscovery = sortByDiscovery
+        sortByDiscovery = sortByDiscovery,
+        limit = limit,
+        offset = offset
     ).blockingGet()!!.map { it.stream.uid }
 
     private fun assertEqual(streams: List<StreamWithState>?, allowedStreams: List<StreamEntity>) {
