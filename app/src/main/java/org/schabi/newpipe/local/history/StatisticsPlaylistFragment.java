@@ -344,6 +344,7 @@ public class StatisticsPlaylistFragment
         contentBinding = null;
         headerBinding = null;
         playlistControlBinding = null;
+        completeHistory = Collections.emptyList();
         displayedHistory = Collections.emptyList();
         dateFastScrollEnabled = false;
 

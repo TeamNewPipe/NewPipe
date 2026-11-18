@@ -190,9 +190,10 @@ object LocalRecommendations {
         val model = read(context)
         val isEligible = eligibility(context)
         return items.filter { isEligible(it) && id(it) !in model.watched }
-            .distinctBy(::id).sortedByDescending {
-                recommendationScore(context, model, it)
-            }
+            .distinctBy(::id)
+            .map { it to recommendationScore(context, model, it) }
+            .sortedByDescending { it.second }
+            .map { it.first }
     }
 
     /**
@@ -205,13 +206,10 @@ object LocalRecommendations {
     fun relevanceOrder(context: Context, items: List<StreamInfoItem>): Map<String, Int> {
         if (!enabled(context)) return emptyMap()
         val model = read(context)
-        return items.withIndex()
-            .sortedWith(
-                compareByDescending<IndexedValue<StreamInfoItem>> {
-                    recommendationScore(context, model, it.value)
-                }.thenBy { it.index }
-            )
-            .mapIndexed { position, item -> id(item.value) to position }
+        return items
+            .map { id(it) to recommendationScore(context, model, it) }
+            .sortedByDescending { it.second }
+            .mapIndexed { position, item -> item.first to position }
             .toMap()
     }
 

@@ -137,6 +137,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         separators = separatorProvider == null ? Collections.emptyMap()
                 : separatorProvider.apply(localItems);
         rows.clear();
+        if (separatorProvider == null) {
+            return;
+        }
         int item = 0;
         for (int row = 0; row < localItems.size() + separators.size(); row++) {
             rows.add(separators.containsKey(row) ? -row - 1 : item++);
@@ -245,7 +248,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
      */
     public int getItemIndex(final int adapterPosition) {
         final int row = adapterPosition - (hasHeader() ? 1 : 0);
-        return row >= 0 && row < rows.size() && rows.get(row) >= 0 ? rows.get(row) : -1;
+        return row >= 0 && row < rowCount() ? Math.max(-1, itemIndexAtRow(row)) : -1;
     }
 
     /**
@@ -258,7 +261,8 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (itemIndex < 0 || itemIndex >= localItems.size()) {
             return RecyclerView.NO_POSITION;
         }
-        return rows.indexOf(itemIndex) + (hasHeader() ? 1 : 0);
+        final int row = separatorProvider == null ? itemIndex : rows.indexOf(itemIndex);
+        return row + (hasHeader() ? 1 : 0);
     }
 
     /**
@@ -294,9 +298,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param item item to insert
      */
     public void insertItemAt(final int itemIndex, @NonNull final LocalItem item) {
-        final int row = itemIndex < localItems.size() && itemIndex >= 0
-                ? rows.indexOf(itemIndex) : rows.size();
-        insertItemAt(itemIndex, item, row + (hasHeader() ? 1 : 0));
+        final int position = getAdapterPositionForItemIndex(itemIndex);
+        insertItemAt(itemIndex, item,
+                position == RecyclerView.NO_POSITION ? sizeConsideringHeader() : position);
     }
 
     /**
@@ -326,8 +330,13 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public boolean swapItems(final int fromAdapterPosition, final int toAdapterPosition) {
         final int from = fromAdapterPosition - (hasHeader() ? 1 : 0);
         final int to = toAdapterPosition - (hasHeader() ? 1 : 0);
-        if (from < 0 || to < 0 || from >= rows.size() || to >= rows.size() || from == to) {
+        if (from < 0 || to < 0 || from >= rowCount() || to >= rowCount() || from == to) {
             return false;
+        }
+        if (separatorProvider == null) {
+            localItems.add(to, localItems.remove(from));
+            notifyItemMoved(fromAdapterPosition, toAdapterPosition);
+            return true;
         }
         final ArrayList<LocalItem> original = new ArrayList<>(localItems);
         rows.add(to, rows.remove(from));
@@ -407,8 +416,16 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    private int rowCount() {
+        return separatorProvider == null ? localItems.size() : rows.size();
+    }
+
+    private int itemIndexAtRow(final int row) {
+        return separatorProvider == null ? row : rows.get(row);
+    }
+
     private int sizeConsideringHeader() {
-        return rows.size() + (hasHeader() ? 1 : 0);
+        return rowCount() + (hasHeader() ? 1 : 0);
     }
 
     public ArrayList<LocalItem> getItemsList() {
@@ -417,7 +434,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        int count = rows.size();
+        int count = rowCount();
         if (hasHeader()) {
             count++;
         }
@@ -446,13 +463,14 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         } else if (hasHeader()) {
             position--;
         }
-        if (footer != null && position == rows.size() && showFooter) {
+        if (footer != null && position == rowCount() && showFooter) {
             return FOOTER_TYPE;
         }
-        if (rows.get(position) < 0) {
+        final int itemIndex = itemIndexAtRow(position);
+        if (itemIndex < 0) {
             return SEPARATOR_TYPE;
         }
-        final LocalItem item = localItems.get(rows.get(position));
+        final LocalItem item = localItems.get(itemIndex);
         switch (item.getLocalItemType()) {
             case PLAYLIST_LOCAL_ITEM:
                 if (useItemHandle) {

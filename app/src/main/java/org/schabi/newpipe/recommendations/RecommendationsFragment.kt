@@ -33,6 +33,7 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     private var filterEmpty: TextView? = null
     private var headerEnabled = true
     private var displayUpdatePosted = false
+    private var loadedRevision: Triple<Int, String, String?>? = null
 
     override fun getContentBlockingTarget(): ContentBlockingHelper.Target = ContentBlockingHelper.Target.KIOSKS
 
@@ -86,13 +87,35 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     }
 
     override fun startLoading(forceLoad: Boolean) {
-        super.startLoading(forceLoad)
-        handleResult(
-            LocalRecommendations.feed(
-                requireContext(),
-                ServiceHelper.getSelectedServiceId(requireContext())
-            )
+        val context = requireContext()
+        val serviceId = ServiceHelper.getSelectedServiceId(context)
+        val profile = ProfileManager.getActiveProfileId(context)
+        val preferences = context.getSharedPreferences(
+            LocalRecommendations.PREFERENCES,
+            android.content.Context.MODE_PRIVATE
         )
+        val revision = Triple(
+            serviceId,
+            LocalRecommendations.configurationToken(context),
+            preferences.getString("$profile:model", null)
+        )
+        if (!forceLoad && loadedRevision == revision) return
+
+        super.startLoading(forceLoad)
+        handleResult(LocalRecommendations.feed(context, serviceId))
+        loadedRevision = revision
+    }
+
+    override fun onDestroyView() {
+        loadedRevision = null
+        sourceItems = emptyList()
+        interestGroup = null
+        interestLabel = null
+        interestScroll = null
+        filterEmpty = null
+        headerEnabled = true
+        displayUpdatePosted = false
+        super.onDestroyView()
     }
 
     override fun handleResult(result: List<StreamInfoItem>) {

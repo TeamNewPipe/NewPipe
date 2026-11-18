@@ -971,8 +971,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     private fun showFilteredFeedItems(
         loadedState: FeedState.LoadedState,
-        restoreListState: Boolean,
-        relevanceOrder: Map<String, Int>? = null
+        restoreListState: Boolean
     ) {
         if (_feedBinding == null) {
             return
@@ -1046,56 +1045,52 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             val stream = item.streamWithState.stream
             arrayOf(stream.title, stream.uploader)
         }
-        val relevanceEnabled = viewModel.getSortMode() == FeedSortMode.RELEVANCE
-        if (relevanceOrder == null) {
-            val request = ++relevanceSortRequest
-            relevanceSortDisposable?.dispose()
-            relevanceSortDisposable = null
-            if (relevanceEnabled) {
-                val applicationContext = requireContext().applicationContext
-                val rankingItems = searchedItems.map {
-                    it.streamWithState.stream.toStreamInfoItem()
+        val request = ++relevanceSortRequest
+        relevanceSortDisposable?.dispose()
+        relevanceSortDisposable = null
+        if (viewModel.getSortMode() != FeedSortMode.RELEVANCE) {
+            applyFilteredFeedItems(loadedState, restoreListState, itemVersion, searchedItems)
+            return
+        }
+
+        val applicationContext = requireContext().applicationContext
+        relevanceSortDisposable = Single.fromCallable {
+            val rankingItems = searchedItems.map { it.streamWithState.stream.toStreamInfoItem() }
+            val relevanceOrder = LocalRecommendations.relevanceOrder(applicationContext, rankingItems)
+            if (relevanceOrder.isEmpty()) {
+                searchedItems
+            } else {
+                searchedItems.sortedBy { item ->
+                    val stream = item.streamWithState.stream
+                    relevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
                 }
-                relevanceSortDisposable = Single.fromCallable {
-                    LocalRecommendations.relevanceOrder(applicationContext, rankingItems)
-                }
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { order ->
-                            relevanceSortDisposable = null
-                            if (request == relevanceSortRequest && _feedBinding != null) {
-                                showFilteredFeedItems(loadedState, restoreListState, order)
-                            }
-                        },
-                        { error ->
-                            Log.e(TAG, "Unable to rank the feed by relevance", error)
-                            relevanceSortDisposable = null
-                            if (request == relevanceSortRequest && _feedBinding != null) {
-                                showFilteredFeedItems(
-                                    loadedState,
-                                    restoreListState,
-                                    emptyMap()
-                                )
-                            }
-                        }
-                    )
-                return
             }
         }
-        val effectiveRelevanceOrder = if (relevanceEnabled) {
-            relevanceOrder.orEmpty()
-        } else {
-            emptyMap()
-        }
-        val orderedItems = if (effectiveRelevanceOrder.isEmpty()) {
-            searchedItems
-        } else {
-            searchedItems.sortedBy { item ->
-                val stream = item.streamWithState.stream
-                effectiveRelevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
-            }
-        }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { orderedItems ->
+                    if (request == relevanceSortRequest && _feedBinding != null) {
+                        relevanceSortDisposable = null
+                        applyFilteredFeedItems(loadedState, restoreListState, itemVersion, orderedItems)
+                    }
+                },
+                { error ->
+                    Log.e(TAG, "Unable to rank the feed by relevance", error)
+                    if (request == relevanceSortRequest && _feedBinding != null) {
+                        relevanceSortDisposable = null
+                        applyFilteredFeedItems(loadedState, restoreListState, itemVersion, searchedItems)
+                    }
+                }
+            )
+    }
+
+    private fun applyFilteredFeedItems(
+        loadedState: FeedState.LoadedState,
+        restoreListState: Boolean,
+        itemVersion: StreamItem.ItemVersion,
+        orderedItems: List<StreamItem>
+    ) {
         val displayedItems = orderedItems.map { item ->
             val highlighted = loadedState.highlightAfter?.let {
                 shouldHighlightFeedStream(item.streamWithState.stream, it)
