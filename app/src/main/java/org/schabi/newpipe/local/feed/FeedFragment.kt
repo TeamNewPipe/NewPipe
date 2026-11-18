@@ -229,6 +229,16 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         }
 
         feedBinding.itemsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy <= 0 || groupAdapter.itemCount == 0) return
+                val layout = recyclerView.layoutManager as? androidx.recyclerview.widget.LinearLayoutManager
+                    ?: return
+                if (layout.findLastVisibleItemPosition() >= groupAdapter.itemCount - 12) {
+                    viewModel.loadMoreCachedItems()
+                }
+            }
+
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 // Check if we scrolled to the top
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&

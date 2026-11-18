@@ -14,6 +14,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.functions.Function4
 import io.reactivex.rxjava3.functions.Function6
+import io.reactivex.rxjava3.functions.Function7
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.time.OffsetDateTime
@@ -38,9 +39,21 @@ class FeedViewModel(
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
     private val selectedGroup = BehaviorProcessor.createDefault(groupId)
+    private val cachedFeedLimit = BehaviorProcessor.createDefault(FeedPagination.INITIAL_LIMIT)
+    private var loadedFeedCount = 0
 
     fun selectGroup(groupId: Long) {
+        if (groupId != selectedGroup.value) {
+            loadedFeedCount = 0
+            cachedFeedLimit.onNext(FeedPagination.INITIAL_LIMIT)
+        }
         selectedGroup.onNext(groupId)
+    }
+
+    fun loadMoreCachedItems() {
+        val limit = cachedFeedLimit.value ?: FeedPagination.INITIAL_LIMIT
+        val next = FeedPagination.nextLimit(limit, loadedFeedCount)
+        if (next > limit) cachedFeedLimit.onNext(next)
     }
 
     private val showPlayedItems = BehaviorProcessor.create<Boolean>()
@@ -82,15 +95,17 @@ class FeedViewModel(
         showPartiallyPlayedItemsFlowable,
         showFutureItemsFlowable,
         selectedGroup.distinctUntilChanged(),
-        Function6 {
+        cachedFeedLimit.distinctUntilChanged(),
+        Function7 {
                 scope: FeedScope,
                 sort: FeedSortMode,
                 played: Boolean,
                 partial: Boolean,
                 future: Boolean,
-                group: Long
+                group: Long,
+                limit: Int
             ->
-            FeedQuery(scope, sort, played, partial, future, group)
+            FeedQuery(scope, sort, played, partial, future, group, limit)
         }
     )
         .switchMap { query ->
@@ -102,7 +117,8 @@ class FeedViewModel(
                 query.partial,
                 query.future,
                 query.scope,
-                query.sortMode == FeedSortMode.DISCOVERY
+                query.sortMode == FeedSortMode.DISCOVERY,
+                limit = query.limit
             )
                 .throttleLatestDropOverflow(FEED_SNAPSHOT_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -146,6 +162,7 @@ class FeedViewModel(
         .subscribe(
             { (scope, event, state, group) ->
                 if (group != selectedGroup.value) return@subscribe
+                if (state is FeedState.LoadedState) loadedFeedCount = state.items.size
                 val completion = refreshCompletions.getOrPut(scope to group, ::FeedRefreshCompletions)
                     .update(event, (state as? FeedState.LoadedState)?.items)
                 mutableStateLiveData.value = if (state is FeedState.LoadedState) {
@@ -172,7 +189,8 @@ class FeedViewModel(
         val played: Boolean,
         val partial: Boolean,
         val future: Boolean,
-        val groupId: Long
+        val groupId: Long,
+        val limit: Int
     )
 
     private data class FeedResult(
