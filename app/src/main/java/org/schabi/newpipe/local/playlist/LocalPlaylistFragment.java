@@ -115,6 +115,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private java.util.Map<Long, String> noteSearchText = Collections.emptyMap();
     @State
     protected boolean standaloneSearchExpanded;
+    @State
+    protected String playlistSortName = "PLAYLIST_ORDER";
 
     private LocalPlaylistHeaderBinding headerBinding;
     private android.widget.TextView editToggle;
@@ -246,7 +248,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         });
         editToggle.setOnClickListener(view -> {
             editMode = !editMode;
+            if (editMode) {
+                // Editing always uses the saved order, not the temporary sorted view.
+                playlistSortName = "PLAYLIST_ORDER";
+                applyPlaylistSearch();
+            }
             updateEditMode();
+            requireActivity().invalidateOptionsMenu();
         });
         updateEditMode();
 
@@ -364,6 +372,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         inflater.inflate(R.menu.menu_local_playlist, menu);
 
         menu.findItem(R.id.menu_item_delete_playlist).setVisible(!useAsFrontPage);
+        menu.findItem(R.id.menu_item_sort_playlist).setVisible(!editMode);
 
         final MenuItem searchItem = menu.findItem(R.id.menu_item_search_content);
         searchItem.setVisible(!useAsFrontPage);
@@ -381,6 +390,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onPrepareOptionsMenu(@NonNull final Menu menu) {
         super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.menu_item_sort_playlist).setVisible(!editMode);
         menu.findItem(R.id.menu_item_learning_review).setVisible(
                 LearningDifficulty.isEnabled(requireContext())
                         && learningContentManager.isLocalPlaylistMarked(playlistId));
@@ -511,6 +521,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             createShareConfirmationDialog();
         } else if (item.getItemId() == R.id.menu_item_download_playlist) {
             showBulkDownloadDialog();
+        } else if (item.getItemId() == R.id.menu_item_sort_playlist) {
+            showPlaylistSortDialog();
         } else if (item.getItemId() == R.id.menu_item_shuffle_playlist) {
             final PlayQueue playQueue = getCompletePlaylistPlayQueue();
             playQueue.shuffleFromStart();
@@ -537,6 +549,26 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private void showPlaylistSortDialog() {
+        final LocalPlaylistSortMode[] modes = LocalPlaylistSortMode.values();
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.local_playlist_sort_title)
+                .setSingleChoiceItems(R.array.local_playlist_sort_entries,
+                        LocalPlaylistSortMode.fromName(playlistSortName).ordinal(),
+                        (dialog, which) -> {
+                            playlistSortName = modes[which].name();
+                            applyPlaylistSearch();
+                            dialog.dismiss();
+                        })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private boolean isPlaylistSortActive() {
+        return LocalPlaylistSortMode.fromName(playlistSortName)
+                != LocalPlaylistSortMode.PLAYLIST_ORDER;
     }
 
     private void showBulkDownloadDialog() {
@@ -724,7 +756,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void captureUnfilteredItemsFromAdapter() {
-        if (itemListAdapter == null) {
+        // A temporary sorted view must never replace the saved playlist order.
+        if (itemListAdapter == null || isPlaylistSortActive()) {
             return;
         }
         unfilteredItems.clear();
@@ -763,7 +796,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
                 });
         itemListAdapter.setSeparators(ContextualSearchHelper.isActive(contextualSearchQuery)
-                ? null : separators::labels, this::editSeparatorRow);
+                || isPlaylistSortActive() ? null : separators::labels, this::editSeparatorRow);
         final List<PlaylistStreamEntry> displayedItems = ContextualSearchHelper.filter(
                 unfilteredItems, contextualSearchQuery,
                 item -> new String[]{item.getStreamEntity().getTitle(),
@@ -774,7 +807,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemListAdapter.clearStreamItemList();
         itemListAdapter.setItemHandleEnabled(editMode
                 && !ContextualSearchHelper.isActive(contextualSearchQuery));
-        itemListAdapter.addItems(displayedItems);
+        itemListAdapter.addItems(LocalPlaylistSorting.sort(
+                displayedItems, LocalPlaylistSortMode.fromName(playlistSortName)));
 
         final boolean searchActive = ContextualSearchHelper.isActive(contextualSearchQuery);
         if (selectMove != null) {
@@ -978,19 +1012,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final boolean searchActive = ContextualSearchHelper.isActive(contextualSearchQuery);
-        if (searchActive) {
+        final boolean sorted = isPlaylistSortActive();
+        if (searchActive || sorted) {
             unfilteredItems.remove(item);
         }
         itemListAdapter.removeItem(item);
         if (playlistManager.getPlaylistThumbnailStreamId(playlistId) == item.getStreamId()) {
             updateThumbnailUrl();
         }
-        if (searchActive) {
+        if (searchActive || sorted) {
             applyPlaylistSearch();
         }
 
         setStreamCountAndOverallDuration(
-                searchActive ? unfilteredItems : itemListAdapter.getItemsList());
+                searchActive || sorted ? unfilteredItems : itemListAdapter.getItemsList());
         debounceSaver.setHasChangesToSave();
         saveImmediate();
     }
@@ -1013,7 +1048,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         final List<? extends LocalItem> items = ContextualSearchHelper.isActive(
-                contextualSearchQuery) ? unfilteredItems : itemListAdapter.getItemsList();
+                contextualSearchQuery) || isPlaylistSortActive()
+                ? unfilteredItems : itemListAdapter.getItemsList();
         final List<Long> streamIds = new ArrayList<>(items.size());
         for (final LocalItem item : items) {
             if (item instanceof PlaylistStreamEntry entry) {
@@ -1060,6 +1096,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private boolean isSwipeRemovalEnabled() {
+        if (isPlaylistSortActive()) {
+            return false;
+        }
         final boolean enabled = androidx.preference.PreferenceManager
                 .getDefaultSharedPreferences(requireContext())
                 .getBoolean(getString(R.string.playlist_swipe_remove_key), false);

@@ -24,6 +24,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_item_sort_playlist"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/local_playlist_sort_title"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_item_shuffle_playlist"
         android:icon="@drawable/ic_shuffle"
         android:title="@string/shuffle_playlist"
