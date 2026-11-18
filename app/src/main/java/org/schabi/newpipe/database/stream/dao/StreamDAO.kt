@@ -36,6 +36,19 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     @Query("SELECT * FROM streams WHERE service_id = :serviceId AND url = :url")
     abstract fun getStreamDirect(serviceId: Int, url: String): StreamEntity?
 
+    @Query(
+        """
+        UPDATE streams SET duration = :duration
+        WHERE service_id = :serviceId AND url = :url AND duration <= 0
+          AND EXISTS (
+            SELECT 1 FROM feed
+            INNER JOIN subscriptions ON subscriptions.uid = feed.subscription_id
+            WHERE feed.stream_id = streams.uid AND subscriptions.profile_id = :profileId
+          )
+        """
+    )
+    abstract fun fillMissingFeedDuration(serviceId: Int, url: String, duration: Long, profileId: String): Int
+
     @Query("UPDATE streams SET uploader_url = :uploaderUrl WHERE url = :url AND service_id = :serviceId")
     abstract fun setUploaderUrl(serviceId: Long, url: String, uploaderUrl: String): Completable
 

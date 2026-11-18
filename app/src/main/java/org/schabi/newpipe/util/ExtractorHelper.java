@@ -251,7 +251,8 @@ public final class ExtractorHelper {
                                                    final boolean forceLoad) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, InfoCache.Type.STREAM,
-                Single.fromCallable(() -> getStreamInfoFromNetwork(serviceId, url)));
+                Single.fromCallable(() -> getStreamInfoFromNetwork(serviceId, url)))
+                .doOnSuccess(org.schabi.newpipe.local.feed.FeedDurationCache::remember);
     }
 
     @NonNull
