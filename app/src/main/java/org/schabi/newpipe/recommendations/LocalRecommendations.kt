@@ -184,7 +184,6 @@ object LocalRecommendations {
 
     /** Returns a fresh list; extractor/cache results are never reordered in place. */
     @JvmStatic
-    @Synchronized
     fun rank(context: Context, items: List<StreamInfoItem>): List<StreamInfoItem> {
         if (!enabled(context)) return items.toList()
         val model = read(context)
@@ -202,7 +201,6 @@ object LocalRecommendations {
      * changing which items are visible.
      */
     @JvmStatic
-    @Synchronized
     fun relevanceOrder(context: Context, items: List<StreamInfoItem>): Map<String, Int> {
         if (!enabled(context)) return emptyMap()
         val model = read(context)
@@ -214,7 +212,6 @@ object LocalRecommendations {
     }
 
     @JvmStatic
-    @Synchronized
     fun feed(context: Context, serviceId: Int): List<StreamInfoItem> {
         if (!enabled(context)) return emptyList()
         return rank(context, read(context).candidates.values.filter { it.service == serviceId }.map { it.item() })
@@ -232,7 +229,6 @@ object LocalRecommendations {
     }
 
     @JvmStatic
-    @Synchronized
     fun explanation(context: Context, item: StreamInfoItem): String {
         if (setting(context, "reduce_shorts") && item.isShortFormContent) {
             return context.getString(R.string.local_recommendations_reason_reduce_shorts)
