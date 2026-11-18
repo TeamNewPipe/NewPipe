@@ -30,17 +30,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.Locale
+import java.util.Optional
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.download.DownloadActivity
+import org.schabi.newpipe.download.DownloadPlayback
 import org.schabi.newpipe.info_list.ItemViewMode
+import org.schabi.newpipe.learning.LearningContentManager
 import org.schabi.newpipe.local.dialog.PlaylistDialog
+import org.schabi.newpipe.local.history.HistoryRecordManager
+import org.schabi.newpipe.local.history.IncognitoMode
 import org.schabi.newpipe.player.playqueue.LocalMediaPlayQueue
 import org.schabi.newpipe.util.GridLayoutManagerHelper
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ThemeHelper
+import org.schabi.newpipe.util.external_communication.ShareUtils
+import us.shandian.giga.get.FinishedMission
 
 @LayoutRes
 internal fun localMediaItemLayout(itemViewMode: ItemViewMode): Int = when (itemViewMode) {
@@ -820,23 +832,78 @@ class LocalMediaFragment : Fragment() {
     }
 
     private fun showActions(item: LocalMediaItem) {
+        val context = requireContext().applicationContext
+        disposables.add(
+            Single.fromCallable { Optional.ofNullable(DownloadPlayback.find(context, item.contentUri)) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { download -> if (view != null && isAdded) showActions(item, download.orElse(null)) },
+                    { if (view != null && isAdded) showActions(item, null) }
+                )
+        )
+    }
+
+    private fun showActions(item: LocalMediaItem, download: FinishedMission?) {
+        val context = requireContext()
+        val queueItem = item.toPlayQueueItem()
+        val learning = LearningContentManager.getInstance(context)
+        val markedAsLearning = learning.isStreamSourceMarked(queueItem.serviceId, queueItem.url)
         val actions = mutableListOf(
             R.string.play,
             R.string.local_media_play_background,
             R.string.enqueue,
             R.string.local_media_enqueue_next,
             R.string.add_to_playlist,
+            R.string.copy_video_title,
             R.string.local_media_ignore_item
         )
+        if (item.isVideo) {
+            actions.add(2, R.string.open_in_popup_mode)
+        }
+        if (!IncognitoMode.isEnabled(context)) {
+            actions += R.string.mark_as_watched
+            actions += R.string.mark_as_unwatched
+            actions += if (markedAsLearning) R.string.learning_remove_content else R.string.learning_mark_content
+        }
+        if (download != null) {
+            actions += R.string.local_media_open_in_downloads
+        }
         if (item.mediaStoreId >= 0 && item.relativePath.isNotBlank()) {
             actions += R.string.local_media_ignore_folder
         }
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(item.title)
             .setItems(actions.map(::getString).toTypedArray()) { _, which ->
-                val queue = LocalMediaPlayQueue(listOf(item.toPlayQueueItem()), 0)
+                val queue = LocalMediaPlayQueue(listOf(queueItem), 0)
                 when (actions[which]) {
                     R.string.play -> play(item)
+
+                    R.string.open_in_popup_mode -> NavigationHelper.playOnPopupPlayer(context, queue, true)
+
+                    R.string.copy_video_title -> ShareUtils.copyToClipboard(context, item.title)
+
+                    R.string.mark_as_watched -> updateLocalMediaState(
+                        HistoryRecordManager(context).markAsWatched(queueItem).ignoreElement()
+                    )
+
+                    R.string.mark_as_unwatched -> updateLocalMediaState(
+                        HistoryRecordManager(context).markLocalMediaAsUnwatched(queueItem)
+                    )
+
+                    R.string.learning_mark_content, R.string.learning_remove_content -> updateLocalMediaState(
+                        learning.setStreamMarked(StreamEntity(queueItem), !markedAsLearning)
+                    )
+
+                    R.string.local_media_open_in_downloads -> {
+                        val name = download?.displayName?.takeIf { it.isNotBlank() }
+                            ?: download?.title?.takeIf { it.isNotBlank() }
+                            ?: item.title
+                        startActivity(
+                            Intent(context, DownloadActivity::class.java)
+                                .putExtra(DownloadActivity.EXTRA_DOWNLOAD_SEARCH, name)
+                        )
+                    }
 
                     R.string.local_media_play_background -> {
                         NavigationHelper.playOnBackgroundPlayer(requireContext(), queue, true)
@@ -872,6 +939,14 @@ class LocalMediaFragment : Fragment() {
                     }
                 }
             }.show()
+    }
+
+    private fun updateLocalMediaState(action: Completable) {
+        val context = requireContext()
+        disposables.add(
+            action.observeOn(AndroidSchedulers.mainThread())
+                .subscribe({}, { Toast.makeText(context, R.string.general_error, Toast.LENGTH_SHORT).show() })
+        )
     }
 
     private fun showIgnoredConfirmation() {

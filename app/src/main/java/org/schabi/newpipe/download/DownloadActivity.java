@@ -22,6 +22,7 @@ import us.shandian.giga.ui.fragment.MissionsFragment;
 
 public class DownloadActivity extends AppCompatActivity {
 
+    public static final String EXTRA_DOWNLOAD_SEARCH = "download_search";
     private static final String MISSIONS_FRAGMENT_TAG = "fragment_tag";
 
     @Override
@@ -72,6 +73,10 @@ public class DownloadActivity extends AppCompatActivity {
         }
 
         final MissionsFragment fragment = new MissionsFragment();
+        final String search = getIntent().getStringExtra(EXTRA_DOWNLOAD_SEARCH);
+        if (search != null) {
+            fragment.setSearchQuery(search);
+        }
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)

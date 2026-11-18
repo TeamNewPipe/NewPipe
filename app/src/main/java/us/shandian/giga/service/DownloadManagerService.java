@@ -455,7 +455,7 @@ public class DownloadManagerService extends Service {
                 ? "" : Objects.toString(streamInfo.getDescription().getContent(), "");
         mission.uploadDate = streamInfo.getUploadDate() == null
                 ? Objects.toString(streamInfo.getTextualUploadDate(), "")
-                : streamInfo.getUploadDate().toString();
+                : streamInfo.getUploadDate().offsetDateTime().toString();
         mission.duration = streamInfo.getDuration();
         mission.tags = TextUtils.join("\n", streamInfo.getTags());
         mission.thumbnailUrl = Objects.toString(

@@ -8,8 +8,10 @@ import java.net.URI
 import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
 import org.schabi.newpipe.R
+import org.schabi.newpipe.extractor.Image
 import org.schabi.newpipe.extractor.MediaFormat
 import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeStreamLinkHandlerFactory
 import org.schabi.newpipe.extractor.stream.AudioStream
 import org.schabi.newpipe.extractor.stream.Description
@@ -64,14 +66,27 @@ object DownloadedCopyRepository {
         val uri = storage.uri.toString()
         if (uri in rejectedCopies || mission.length <= 0 || !storage.existsAsFile() || storage.length() < mission.length) return@runCatching null
         storage.stream.use { if (it.read() < 0) return@runCatching null }
-        val info = DownloadedStreamInfo(uri, service, url, title?.takeIf { it.isNotBlank() } ?: mission.displayName.orEmpty())
+        val displayTitle = mission.title?.takeIf { it.isNotBlank() }
+            ?: title?.takeIf { it.isNotBlank() }
+            ?: mission.displayName.orEmpty()
+        val info = DownloadedStreamInfo(uri, service, url, displayTitle)
         info.streamType = if (mission.kind == 'v') StreamType.VIDEO_STREAM else StreamType.AUDIO_STREAM
-        info.uploaderName = item?.uploader.orEmpty()
+        info.uploaderName = mission.uploader?.takeIf { it.isNotBlank() } ?: item?.uploader.orEmpty()
         info.uploaderUrl = item?.uploaderUrl.orEmpty()
-        info.thumbnails = item?.thumbnails.orEmpty()
-        info.duration = item?.duration?.takeIf { it > 0 } ?: readDuration(context, storage.uri)
+        info.thumbnails = mission.thumbnailUrl?.takeIf { it.isNotBlank() }
+            ?.let { listOf(Image(it, Image.HEIGHT_UNKNOWN, Image.WIDTH_UNKNOWN, Image.ResolutionLevel.UNKNOWN)) }
+            ?: item?.thumbnails.orEmpty()
+        info.duration = mission.duration.takeIf { it > 0 }
+            ?: item?.duration?.takeIf { it > 0 }
+            ?: readDuration(context, storage.uri)
+        info.textualUploadDate = DownloadPlayback.uploadDate(mission)
+        info.uploadDate = DownloadPlayback.parsedUploadDate(mission)?.let { DateWrapper(it) }
+        info.tags = mission.tags.orEmpty().lineSequence().filter { it.isNotBlank() }.toList()
         info.sponsorBlockSegments = OfflineSponsorBlockStore.load(context, uri).toTypedArray()
-        info.description = Description(context.getString(R.string.playing_downloaded_copy), Description.PLAIN_TEXT)
+        val description = DownloadPlayback.description(mission).ifBlank {
+            context.getString(R.string.playing_downloaded_copy)
+        }
+        info.description = Description(description, Description.PLAIN_TEXT)
         val format = MediaFormat.getFromMimeType(mission.mimeType.orEmpty()) ?: MediaFormat.getFromSuffix(mission.displayName.orEmpty().substringAfterLast('.'))
         if (mission.kind == 'v') {
             info.videoStreams = listOf(VideoStream.Builder().setId("downloaded").setContent(uri, true).setIsVideoOnly(false).setResolution("").setMediaFormat(format).build())

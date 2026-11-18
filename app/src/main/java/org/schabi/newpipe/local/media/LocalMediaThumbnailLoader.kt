@@ -29,6 +29,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.DevicePerformance
+import org.schabi.newpipe.util.image.CoilHelper
 import org.schabi.newpipe.util.image.ImageStrategy
 
 /** Loads thumbnails plus embedded or fallback artwork from device-local media. */
@@ -108,7 +109,7 @@ object LocalMediaThumbnailLoader {
     ): Future<*> = playerExecutor.submit {
         val bitmap = if (ImageStrategy.shouldLoadImages()) {
             loadBitmap(
-                context.applicationContext.contentResolver,
+                context.applicationContext,
                 item.url,
                 item.localMediaId,
                 item.streamType == StreamType.VIDEO_STREAM,
@@ -167,10 +168,10 @@ object LocalMediaThumbnailLoader {
             return
         }
 
-        val resolver = target.context.applicationContext.contentResolver
+        val context = target.context.applicationContext
         thumbnailExecutor.execute {
             val bitmap = loadBitmap(
-                resolver,
+                context,
                 contentUri,
                 mediaStoreId,
                 isVideo,
@@ -192,7 +193,7 @@ object LocalMediaThumbnailLoader {
 
     @WorkerThread
     private fun loadBitmap(
-        resolver: ContentResolver,
+        context: Context,
         contentUri: String,
         mediaStoreId: Long,
         isVideo: Boolean,
@@ -201,7 +202,11 @@ object LocalMediaThumbnailLoader {
     ): Bitmap? {
         val requestKey = "$isVideo:$contentUri"
         cache[requestKey]?.let { return it }
-        val bitmap = if (isVideo) {
+        val artwork = thumbnailUri
+            ?.takeIf { it.startsWith("https://") || it.startsWith("http://") }
+            ?.let { CoilHelper.loadCachedThumbnailBlocking(context, it, ARTWORK_MAX_DIMENSION) }
+        val resolver = context.contentResolver
+        val bitmap = artwork ?: if (isVideo) {
             loadVideoThumbnail(resolver, contentUri, mediaStoreId)
         } else {
             loadEmbeddedArtwork(resolver, contentUri, mimeType)

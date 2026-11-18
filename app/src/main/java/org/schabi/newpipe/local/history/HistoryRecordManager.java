@@ -186,7 +186,8 @@ public class HistoryRecordManager {
                 }
             final long streamId = streamTable.upsert(new StreamEntity(item));
             streamStateTable.upsert(
-                    new StreamStateEntity(streamId, item.getDuration() * 1000, profileId));
+                    new StreamStateEntity(streamId,
+                            Math.max(0L, item.getDuration()) * 1000, profileId));
             if (streamHistoryTable.getLatestEntryForProfile(profileId, streamId) == null) {
                 return streamHistoryTable.insert(
                         new StreamHistoryEntity(streamId, currentTime, 0, profileId));
@@ -268,6 +269,20 @@ public class HistoryRecordManager {
             recordWatchStreamDelete(streamId);
             streamStateTable.deleteStateForProfile(profileId, streamId);
             streamHistoryTable.deleteStreamHistoryForProfile(profileId, streamId);
+        })).subscribeOn(Schedulers.io());
+    }
+
+    public Completable markLocalMediaAsUnwatched(@NonNull final PlayQueueItem item) {
+        return Completable.fromAction(() -> database.runInTransaction(() -> {
+            if (!item.isLocalMedia() || IncognitoMode.isEnabled(sharedPreferences)) {
+                return;
+            }
+            final StreamEntity stream = streamTable.getStreamDirect(
+                    item.getServiceId(), item.getUrl());
+            if (stream != null) {
+                streamStateTable.deleteStateForProfile(profileId, stream.getUid());
+                streamHistoryTable.deleteStreamHistoryForProfile(profileId, stream.getUid());
+            }
         })).subscribeOn(Schedulers.io());
     }
 

@@ -47,6 +47,15 @@ object CoilHelper {
         .image
         ?.toBitmap()
 
+    internal fun loadCachedThumbnailBlocking(context: Context, url: String, size: Int): Bitmap? = context.imageLoader
+        .executeBlocking(
+            getImageRequest(context, url, 0, false)
+                .networkCachePolicy(CachePolicy.DISABLED)
+                .allowHardware(false)
+                .size(size)
+                .build()
+        ).image?.toBitmap()
+
     /** Cancellable storyboard request; its target receives results on the main thread. */
     fun loadSeekbarPreview(
         context: Context,

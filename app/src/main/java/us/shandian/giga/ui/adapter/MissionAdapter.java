@@ -401,6 +401,16 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         }
     }
 
+    private void openFinishedMission(@NonNull final FinishedMission mission) {
+        if (org.schabi.newpipe.download.DownloadPlayback.canPlay(mission)) {
+            if (!checkInvalidFile(mission)) {
+                org.schabi.newpipe.download.DownloadPlayback.play(mContext, mission);
+            }
+        } else {
+            viewWithFileProvider(mission);
+        }
+    }
+
     private void viewWithFileProvider(Mission mission) {
         if (checkInvalidFile(mission)) return;
 
@@ -726,6 +736,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (id == R.id.download_on_device && metadataMission != null) {
             downloadOnThisDevice(metadataMission);
             return true;
+        } else if (id == R.id.open_download_externally) {
+            viewWithFileProvider(h.item.mission);
+            return true;
         } else if (id == R.id.menu_item_share) {
             shareFile(h.item.mission);
             return true;
@@ -970,6 +983,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         MenuItem start;
         MenuItem pause;
         MenuItem open;
+        MenuItem openExternally;
         MenuItem queue;
         MenuItem showError;
         MenuItem delete;
@@ -1011,6 +1025,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             start = menu.findItem(R.id.start);
             pause = menu.findItem(R.id.pause);
             open = menu.findItem(R.id.menu_item_share);
+            openExternally = menu.findItem(R.id.open_download_externally);
             queue = menu.findItem(R.id.queue);
             showError = menu.findItem(R.id.error_message_view);
             delete = menu.findItem(R.id.delete);
@@ -1025,7 +1040,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 if (item.mission instanceof MetadataOnlyFinishedMission) {
                     downloadOnThisDevice((MetadataOnlyFinishedMission) item.mission);
                 } else if (item.mission instanceof FinishedMission) {
-                    viewWithFileProvider(item.mission);
+                    openFinishedMission((FinishedMission) item.mission);
                 }
             });
 
@@ -1042,6 +1057,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             start.setVisible(false);
             pause.setVisible(false);
             open.setVisible(false);
+            openExternally.setVisible(false);
             queue.setVisible(false);
             showError.setVisible(false);
             delete.setVisible(false);
@@ -1088,6 +1104,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 downloadOnDevice.setVisible(true);
             } else {
                 open.setVisible(true);
+                openExternally.setVisible(true);
                 delete.setVisible(true);
                 deleteEntry.setVisible(true);
                 checksum.setVisible(true);

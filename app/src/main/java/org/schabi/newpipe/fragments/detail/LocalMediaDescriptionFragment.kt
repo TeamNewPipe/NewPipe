@@ -16,10 +16,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
+import org.schabi.newpipe.download.DownloadPlayback
 import org.schabi.newpipe.extractor.StreamingService
 import org.schabi.newpipe.extractor.stream.Description
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 import org.schabi.newpipe.util.Localization
+import us.shandian.giga.get.FinishedMission
 
 class LocalMediaDescriptionFragment : BaseDescriptionFragment() {
     private lateinit var item: PlayQueueItem
@@ -40,11 +42,35 @@ class LocalMediaDescriptionFragment : BaseDescriptionFragment() {
         val inflater = LayoutInflater.from(requireContext())
         val appContext = requireContext().applicationContext
         viewLifecycleOwner.lifecycleScope.launch {
-            val metadata = withContext(Dispatchers.IO) {
-                LocalMediaMetadataReader.read(appContext, item)
+            val (metadata, download) = withContext(Dispatchers.IO) {
+                LocalMediaMetadataReader.read(appContext, item) to DownloadPlayback.find(appContext, item.url)
             }
             populateMetadata(inflater, metadata)
+            download?.let(::showDownloadMetadata)
         }
+    }
+
+    private fun showDownloadMetadata(download: FinishedMission) {
+        val description = DownloadPlayback.description(download)
+        if (description.isNotBlank()) {
+            binding.detailDescriptionView.text = description
+            binding.detailDescriptionView.setTextIsSelectable(true)
+            binding.detailDescriptionView.visibility = View.VISIBLE
+        }
+        val uploadDate = DownloadPlayback.parsedUploadDate(download)
+            ?.let(Localization::formatDate)
+            ?: DownloadPlayback.uploadDate(download)
+        if (uploadDate != null) {
+            binding.detailUploadDateView.text = getString(R.string.upload_date_text, uploadDate)
+            binding.detailUploadDateView.visibility = View.VISIBLE
+        }
+        addMetadataItem(
+            layoutInflater,
+            binding.detailMetadataLayout,
+            false,
+            R.string.metadata_tags,
+            download.tags.orEmpty().lineSequence().filter { it.isNotBlank() }.joinToString(", ")
+        )
     }
 
     override fun displayDescription(): Description = Description.EMPTY_DESCRIPTION

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.provider.DocumentsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -262,6 +263,25 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     //////////////////////////////////
     // Data source methods
     ///////////////////////////////////
+
+    public FinishedMission findByStorageUri(final String storageUri) {
+        final SQLiteDatabase database = getWritableDatabase();
+        ensureDescriptiveMetadata(database);
+        final Uri uri = Uri.parse(storageUri);
+        String selection = KEY_PATH + " = ?";
+        String[] arguments = new String[]{storageUri};
+        if (DocumentsContract.isDocumentUri(context, uri)) {
+            final String prefix = "content://" + uri.getAuthority() + "/tree/";
+            final String suffix = "/document/" + Uri.encode(DocumentsContract.getDocumentId(uri));
+            selection += " OR (instr(" + KEY_PATH + ", ?) = 1 AND substr("
+                    + KEY_PATH + ", -length(?)) = ?)";
+            arguments = new String[]{storageUri, prefix, suffix, suffix};
+        }
+        try (Cursor cursor = database.query(FINISHED_TABLE_NAME, null, selection,
+                arguments, null, null, KEY_TIMESTAMP + " DESC", "1")) {
+            return cursor.moveToFirst() ? getMissionFromCursor(cursor) : null;
+        }
+    }
 
     public ArrayList<FinishedMission> loadFinishedMissions() {
         SQLiteDatabase database = getWritableDatabase();

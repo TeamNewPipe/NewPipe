@@ -20,6 +20,7 @@ import java.util.LinkedHashMap
 import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
+import org.schabi.newpipe.download.DownloadPlayback
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 
 data class LocalMediaEmbeddedMetadata(
@@ -61,8 +62,18 @@ object LocalMediaMetadataLoader {
             item.url,
             item.mimeType
         )
+        val download = DownloadPlayback.find(context.applicationContext, item.url)
+        val resolved = if (download == null) {
+            metadata
+        } else {
+            metadata.copy(
+                title = download.title?.takeIf { it.isNotBlank() } ?: metadata.title,
+                artist = download.uploader?.takeIf { it.isNotBlank() } ?: metadata.artist,
+                durationSeconds = download.duration.takeIf { it > 0 } ?: metadata.durationSeconds
+            )
+        }
         if (!Thread.currentThread().isInterrupted) {
-            mainHandler.post { callback.onLoaded(metadata) }
+            mainHandler.post { callback.onLoaded(resolved) }
         }
     }
 
