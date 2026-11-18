@@ -11,10 +11,11 @@ internal object FeedPagination {
     private const val INCREMENT = 250
     private const val MAX_VISIBLE_ITEMS = 3_000
 
-    fun nextLimit(currentLimit: Int, loadedCount: Int): Int =
-        if (loadedCount < currentLimit || currentLimit >= MAX_VISIBLE_ITEMS) {
+    fun nextLimit(currentLimit: Int, loadedCount: Int): Int {
+        return if (loadedCount < currentLimit || currentLimit >= MAX_VISIBLE_ITEMS) {
             currentLimit
         } else {
             (currentLimit + INCREMENT).coerceAtMost(MAX_VISIBLE_ITEMS)
         }
+    }
 }
