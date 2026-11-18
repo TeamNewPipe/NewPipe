@@ -17,6 +17,7 @@
     <string name="download">Download</string>
     <string name="controls_download_desc">Download stream file</string>
     <string name="search">Search</string>
+    <string name="search_history">Search history</string>
     <string name="search_with_service_name">Search %1$s</string>
     <string name="search_with_service_name_and_filter">Search %1$s (%2$s)</string>
     <string name="settings">Settings</string>
@@ -397,6 +398,8 @@
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
+    <string name="history_search_filter_watched">Hide fully watched</string>
+    <string name="history_search_show_watched">Show fully watched</string>
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
@@ -905,4 +908,5 @@
     <string name="api23_requirement_dialog_title">NewPipe is dropping support for Android 5</string>
     <string name="api23_requirement_dialog_message">Unfortunately NewPipe depends on a few libraries that dropped support for Android 5.0 and 5.1. The next NewPipe release will therefore only work on devices with Android 6 or higher, sadly. Read more in the blogpost.</string>
     <string name="api23_requirement_dialog_blogpost">Blogpost</string>
+    <string name="title_hide_watched">Hide Watched</string>
 </resources>
