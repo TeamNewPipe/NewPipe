@@ -1,6 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_item_startup_tab"
+        android:title="@string/home_startup_tab_title"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/menu_item_restore_default"
         android:title="@string/restore_defaults"
         android:icon="@drawable/ic_settings_backup_restore"

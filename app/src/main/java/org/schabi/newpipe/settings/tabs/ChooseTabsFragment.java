@@ -116,11 +116,33 @@ public class ChooseTabsFragment extends Fragment {
             restoreDefaults();
             return true;
         });
+        menu.findItem(R.id.menu_item_startup_tab).setOnMenuItemClickListener(item -> {
+            chooseStartupTab();
+            return true;
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void chooseStartupTab() {
+        final String[] names = new String[tabList.size() + 1];
+        names[0] = getString(R.string.home_startup_tab_first);
+        for (int i = 0; i < tabList.size(); i++) {
+            names[i + 1] = tabList.get(i).getTabName(requireContext());
+        }
+        final int selected = HomeStartupTab.preferredIndex(requireContext(), tabList) + 1;
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.home_startup_tab_title)
+                .setSingleChoiceItems(names, selected, (dialog, which) -> {
+                    HomeStartupTab.save(requireContext(),
+                            which == 0 ? null : tabList.get(which - 1));
+                    dialog.dismiss();
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
 
     private void updateTabList() {
         tabList.clear();

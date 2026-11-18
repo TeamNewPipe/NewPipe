@@ -63,6 +63,7 @@ import org.schabi.newpipe.local.search.ContextualSearchable;
 import org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior;
 import org.schabi.newpipe.settings.tabs.HomeNavigationMode;
 import org.schabi.newpipe.settings.tabs.HomeNavigationModeResolver;
+import org.schabi.newpipe.settings.tabs.HomeStartupTab;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabletNavigationPositionResolver;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -196,6 +197,11 @@ public class MainFragment extends BaseFragment
             }
         });
         setupTabs();
+        if (savedInstanceState == null && !tabsList.isEmpty()) {
+            binding.pager.setCurrentItem(
+                    HomeStartupTab.startupIndex(requireContext(), tabsList), false);
+        }
+        // Explicit navigation to a Home tab always overrides the startup default.
         restorePendingMainTabSelection();
         rememberMainTabPosition(binding.pager.getCurrentItem());
         initContextualSearchToolbar();
