@@ -4,6 +4,26 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.46.0 (`1046000`)
+
+### Playback and downloads
+
+- Choose when player controls hide after touch or D-pad input. Use the default, 5, 10, or 15 seconds, or keep them visible.
+- Play downloaded audio and video inside WizeStream with cached media details and artwork when available. Use Open with for external playback.
+- Start popup playback from Local Media, change watch status, copy titles, manage Learning, and open the actions for completed downloads.
+- Save companion captions in the same folder as the video when choosing a custom download location.
+- Play SoundCloud tracks that use unencrypted 96 kbps AAC streams.
+
+### Home, feed and playlists
+
+- Reduce memory use when switching Home tabs and reuse unchanged For You results. Score each What's New item once per relevance sort.
+- Fill in missing YouTube video durations in What's New when details are already available for the active profile.
+- Show each video's uploader in YouTube playlists, with a playlist-level fallback for auto-generated albums.
+
+### Website
+
+- Link the current release and GitHub APK downloads to the latest GitHub release page.
+
 ## WizeStream 1.45.0 (`1045000`)
 
 ### Playback and downloads
