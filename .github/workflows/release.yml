@@ -210,11 +210,13 @@ jobs:
 
       - name: FTP Deploy to Web Server
         if: ${{ success() && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.release_target == 'release' || inputs.release_target == 'all'))) }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Large APKs and shared hosting can exceed the old 30-second socket timeout.
+          timeout: 180000
           local-dir: ./ftp-release/
           server-dir: /WizeStream/downloads/
           state-name: .ftp-deploy-sync-state-wizestream-apks.json
