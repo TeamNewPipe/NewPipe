@@ -8,7 +8,7 @@ package net.newpipe.app.platform
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
-import net.newpipe.app.model.ChannelNotificationCount
+import net.newpipe.app.model.ChannelNotification
 
 /**
  * Platform-specific actions triggered from the Notifications settings screen
@@ -27,9 +27,11 @@ interface NotificationActions {
 
     fun applyNewStreamsCheckSchedule()
 
-    fun channelNotificationCounts(): Flow<ChannelNotificationCount>
-
     fun recreatePlayerNotification()
+
+    fun channelNotifications(): Flow<List<ChannelNotification>>
+
+    suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean)
 }
 
 internal object NoOpNotificationActions : NotificationActions {
@@ -46,7 +48,9 @@ internal object NoOpNotificationActions : NotificationActions {
 
     override fun applyNewStreamsCheckSchedule() = logUnsupported("applyNewStreamsCheckSchedule")
 
-    override fun channelNotificationCounts(): Flow<ChannelNotificationCount> = emptyFlow()
+    override fun channelNotifications(): Flow<List<ChannelNotification>> = emptyFlow()
+
+    override suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean) = logUnsupported("setChannelNotificationsEnabled")
 
     override fun recreatePlayerNotification() = logUnsupported("recreatePlayerNotification")
 

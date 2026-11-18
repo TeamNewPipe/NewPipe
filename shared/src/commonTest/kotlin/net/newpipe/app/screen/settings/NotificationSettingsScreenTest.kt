@@ -13,16 +13,20 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.v2.runComposeUiTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.newpipe.app.extensions.settingsModule
 import net.newpipe.app.extensions.withKoin
 import net.newpipe.app.model.ChannelNotificationCount
+import net.newpipe.app.preferences.NotificationPreferences.NETWORK_ANY
 import newpipe.shared.generated.resources.Res
+import newpipe.shared.generated.resources.any_network
 import newpipe.shared.generated.resources.enable_streams_notifications_title
 import newpipe.shared.generated.resources.hours
 import newpipe.shared.generated.resources.settings
 import newpipe.shared.generated.resources.settings_category_player_notification_title
 import newpipe.shared.generated.resources.streams_notifications_interval_title
+import newpipe.shared.generated.resources.streams_notifications_network_title
 import newpipe.shared.generated.resources.wifi_only
 import org.jetbrains.compose.resources.getPluralString
 import org.jetbrains.compose.resources.getString
@@ -104,6 +108,44 @@ class NotificationSettingsScreenTest {
             onContent = {
                 onNodeWithText(getPluralString(Res.plurals.hours, 4, 4)).assertIsDisplayed()
                 onNodeWithText(getString(Res.string.wifi_only)).assertIsDisplayed()
+            }
+        )
+    }
+
+    @Test
+    fun choosingACheckFrequencyReportsItsValue() = runComposeUiTest {
+        var selected: String? = null
+        withKoin(
+            modules = listOf(settingsModule()),
+            content = {
+                NotificationSettingsScreenContent(
+                    newStreamsNotificationsEnabled = true,
+                    onCheckIntervalChange = { value -> selected = value }
+                )
+            },
+            onContent = {
+                onNodeWithText(getString(Res.string.streams_notifications_interval_title)).performClick()
+                onNodeWithText(getPluralString(Res.plurals.hours, 1, 1)).performClick()
+                assertEquals("3600", selected)
+            }
+        )
+    }
+
+    @Test
+    fun choosingARequiredNetworkReportsItsValue() = runComposeUiTest {
+        var selected: String? = null
+        withKoin(
+            modules = listOf(settingsModule()),
+            content = {
+                NotificationSettingsScreenContent(
+                    newStreamsNotificationsEnabled = true,
+                    onRequiredNetworkChange = { value -> selected = value }
+                )
+            },
+            onContent = {
+                onNodeWithText(getString(Res.string.streams_notifications_network_title)).performClick()
+                onNodeWithText(getString(Res.string.any_network)).performClick()
+                assertEquals(NETWORK_ANY, selected)
             }
         )
     }

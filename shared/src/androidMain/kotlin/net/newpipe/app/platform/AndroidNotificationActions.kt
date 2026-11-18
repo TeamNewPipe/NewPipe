@@ -14,7 +14,7 @@ import android.provider.Settings as AndroidSettings
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
-import net.newpipe.app.model.ChannelNotificationCount
+import net.newpipe.app.model.ChannelNotification
 import org.koin.core.annotation.Singleton
 
 @Singleton(binds = [NotificationActions::class])
@@ -59,14 +59,22 @@ class AndroidNotificationActions(private val context: Context) : NotificationAct
         host?.applyNewStreamsCheckSchedule()
     }
 
-    override fun channelNotificationCounts(): Flow<ChannelNotificationCount> = host?.channelNotificationCounts() ?: emptyFlow()
+    override fun channelNotifications(): Flow<List<ChannelNotification>> = host?.channelNotifications()
+        ?: emptyFlow()
+
+    override suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean) {
+        host?.setChannelNotificationsEnabled(channel, enabled)
+    }
 
     private fun loadHost(context: Context): NotificationHost? = runCatching {
         Class.forName(HOST_CLASS)
             .getDeclaredConstructor(Context::class.java)
             .newInstance(context) as NotificationHost
     }.onFailure { error ->
-        Logger.w(messageString = "No host notification actions found, skipping host-side changes", throwable = error)
+        Logger.w(
+            messageString = "No host notification actions found, skipping host-side changes",
+            throwable = error
+        )
     }.getOrNull()
 
     private companion object {
