@@ -83,7 +83,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 DeviceSyncListenerService.startIfEnabled(applicationContext)
             },
             localAppVersion = localAppVersion,
-            onDiagnosticsReceived = syncLogRepository::recordIncoming
+            onDiagnosticsReceived = syncLogRepository::recordIncoming,
+            onIncomingHistoryBatch = syncLogRepository::recordIncomingHistoryBatch
         )
     }
 

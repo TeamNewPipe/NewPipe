@@ -526,7 +526,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
         return SpannableStringBuilder().apply {
             entries.forEachIndexed { index, entry ->
                 if (index > 0) {
-                    append("\n\n")
+                    append("\n\n--------------------------------\n\n")
                 }
                 appendBold(dateFormat.format(entry.timestampEpochMillis))
                 append(" · ")

@@ -152,6 +152,27 @@ class DeviceSyncLogRepository(context: Context) {
         )
     }
 
+    /**
+     * Append remote-side history batch outcomes to the latest matching inbound attempt.
+     * This reports actual work rather than leaving the remote log at the handshake header.
+     * Individual history requests carry no attempt ID, so only a recent peer match is used.
+     */
+    @Synchronized
+    fun recordIncomingHistoryBatch(batch: IncomingHistoryBatch) {
+        val now = System.currentTimeMillis()
+        val current = entries()
+        val index = current.indexOfFirst { entry ->
+            entry.direction == DeviceSyncLogDirection.INCOMING &&
+                now >= entry.timestampEpochMillis &&
+                now - entry.timestampEpochMillis <= INCOMING_MATCH_WINDOW_MILLIS &&
+                entry.attempts.any { it.peerId == batch.peerId }
+        }
+        if (index < 0) return
+        val updated = current.toMutableList()
+        updated[index] = DeviceSyncIncomingLog.merge(updated[index], batch)
+        preferences.edit().putString(ENTRIES_KEY, JSON.encodeToString(updated)).apply()
+    }
+
     fun clear() {
         preferences.edit().remove(ENTRIES_KEY).apply()
     }
@@ -324,6 +345,7 @@ class DeviceSyncLogRepository(context: Context) {
         private const val PREFERENCES_NAME = "device_sync_log"
         private const val ENTRIES_KEY = "entries"
         private const val MAX_ENTRIES = 20
+        private const val INCOMING_MATCH_WINDOW_MILLIS = 10 * 60 * 1_000L
         private const val MAX_CAUSE_DEPTH = 4
         private const val MAX_ERROR_LENGTH = 2_048
         private const val CAUSE_SEPARATOR = " → "

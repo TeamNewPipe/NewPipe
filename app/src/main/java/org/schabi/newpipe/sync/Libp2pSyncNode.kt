@@ -32,7 +32,8 @@ class Libp2pSyncNode(
     private val onTrustedPeerSaved: () -> Unit = {},
     private val peerAddressResolver: (TrustedPeer) -> List<String> = { emptyList() },
     private val localAppVersion: SyncAppVersion = SyncAppVersion("Unknown", 0),
-    private val onDiagnosticsReceived: (TrustedPeer, SyncPeerDiagnostics) -> Unit = { _, _ -> }
+    private val onDiagnosticsReceived: (TrustedPeer, SyncPeerDiagnostics) -> Unit = { _, _ -> },
+    private val onIncomingHistoryBatch: (IncomingHistoryBatch) -> Unit = {}
 ) {
     private val identity = stateRepository.loadOrCreateIdentity()
     private val requestDispatcher = SyncRequestDispatcher()
@@ -998,7 +999,19 @@ class Libp2pSyncNode(
                     ).take(MAX_SYNC_ERROR_LENGTH)
             )
         }
-        controller.sendResponse(response)
+        val sendError = runCatching { controller.sendResponse(response) }.exceptionOrNull()
+        runCatching {
+            onIncomingHistoryBatch(
+                IncomingHistoryBatch(
+                    peerId = peerIdValue,
+                    category = request.category,
+                    sentChanges = response.changes.size,
+                    receivedChanges = request.changes.size,
+                    error = sendError?.message ?: response.error
+                )
+            )
+        }
+        if (sendError != null) throw sendError
         stateRepository.updateTrustedPeerSyncStatus(
             peerIdValue,
             if (response.accepted) System.currentTimeMillis() else null,
