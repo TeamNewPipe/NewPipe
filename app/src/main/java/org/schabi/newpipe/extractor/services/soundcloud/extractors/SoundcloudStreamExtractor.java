@@ -228,7 +228,8 @@ public class SoundcloudStreamExtractor extends StreamExtractor {
                 && !protocol.contains("encrypted")
                 && (preset.contains("mp3")
                 || preset.contains("opus")
-                || preset.contains("aac_160k"));
+                || preset.contains("aac_160k")
+                || preset.contains("aac_96k"));
     }
 
     @Nullable
@@ -290,6 +291,9 @@ public class SoundcloudStreamExtractor extends StreamExtractor {
                         } else if (preset.contains("aac_160k")) {
                             builder.setMediaFormat(MediaFormat.M4A);
                             builder.setAverageBitrate(160);
+                        } else if (preset.contains("aac_96k")) {
+                            builder.setMediaFormat(MediaFormat.M4A);
+                            builder.setAverageBitrate(96);
                         } else {
                             // Unknown format, skip to the next audio stream
                             return;

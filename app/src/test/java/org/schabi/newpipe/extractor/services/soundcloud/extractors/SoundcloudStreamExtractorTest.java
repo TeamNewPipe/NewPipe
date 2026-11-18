@@ -34,6 +34,8 @@ class SoundcloudStreamExtractorTest {
         assertTrue(SoundcloudStreamExtractor.isSupportedTranscoding(
                 "aac_160k_0_1", "hls"));
         assertTrue(SoundcloudStreamExtractor.isSupportedTranscoding(
+                "aac_96k_0_1", "hls"));
+        assertTrue(SoundcloudStreamExtractor.isSupportedTranscoding(
                 "mp3_0_1", "progressive"));
         assertTrue(SoundcloudStreamExtractor.isSupportedTranscoding(
                 "mp3_0_1", "hls"));
