@@ -10,6 +10,7 @@ import java.time.ZoneOffset
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
@@ -36,10 +37,11 @@ class NewPipeDataMigrationManager(private val context: Context) {
         val compatibleSettings: Int,
         val sponsorBlockSettings: Int,
         val sourceApp: SourceApp,
-        val channelGroups: Int = 0
+        val channelGroups: Int = 0,
+        val searchHistoryItems: Int = 0
     ) {
         val hasHistory: Boolean
-            get() = historyItems > 0 || progressItems > 0
+            get() = historyItems > 0 || progressItems > 0 || searchHistoryItems > 0
         val hasPlaylists: Boolean
             get() = playlists > 0
         val hasSubscriptions: Boolean
@@ -70,7 +72,8 @@ class NewPipeDataMigrationManager(private val context: Context) {
         val compatibleSettings: Int,
         val sponsorBlockSettings: Int,
         val skippedItems: Int,
-        val channelGroups: Int = 0
+        val channelGroups: Int = 0,
+        val searchHistoryItems: Int = 0
     )
 
     class UnsupportedSourceException(message: String) : Exception(message)
@@ -100,7 +103,8 @@ class NewPipeDataMigrationManager(private val context: Context) {
             compatibleSettings = compatibleSettings.size,
             sponsorBlockSettings = sponsorBlockSettings.size,
             sourceApp = if (schema.isPipePipe) SourceApp.PIPEPIPE else SourceApp.NEWPIPE,
-            channelGroups = if (schema.hasGroups) source.countRows(GROUP_TABLE) else 0
+            channelGroups = if (schema.hasGroups) source.countRows(GROUP_TABLE) else 0,
+            searchHistoryItems = if (schema.hasSearchHistory) source.countRows(SEARCH_HISTORY_TABLE) else 0
         )
     }
 
@@ -112,7 +116,9 @@ class NewPipeDataMigrationManager(private val context: Context) {
         targetProfileId: String = ProfileManager.DEFAULT_PROFILE_ID
     ): Result = openSource(databasePath).use { source ->
         val schema = inspectSchema(source)
-        val streams = if (selection.importHistory || selection.importPlaylists) {
+        val streams = if (selection.importPlaylists ||
+            (selection.importHistory && (schema.hasHistory || schema.hasProgress))
+        ) {
             readStreams(source)
         } else {
             emptyMap()
@@ -149,6 +155,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
                 }
 
                 var historyItems = 0
+                var searchHistoryItems = 0
                 var progressItems = 0
                 var playlists = 0
                 var playlistItems = 0
@@ -299,6 +306,51 @@ class NewPipeDataMigrationManager(private val context: Context) {
                     }
                 }
 
+                if (selection.importHistory && schema.hasSearchHistory) {
+                    val searchDao = target.searchHistoryDAO()
+                    val validServices = ServiceList.all().mapTo(mutableSetOf()) { it.serviceId }
+                    source.rawQuery(
+                        "SELECT creation_date, service_id, search FROM $SEARCH_HISTORY_TABLE",
+                        null
+                    ).use { cursor ->
+                        while (cursor.moveToNext()) {
+                            if (cursor.isNull(0) || cursor.isNull(1) || cursor.isNull(2)) {
+                                skippedItems++
+                                continue
+                            }
+                            val createdAt = cursor.getLong(0)
+                            val serviceId = cursor.getInt(1)
+                            val search = cursor.getString(2)
+                            val timestamp = runCatching { createdAt.toOffsetDateTime() }.getOrNull()
+                            if (createdAt <= 0 || serviceId !in validServices ||
+                                search.isNullOrBlank() || timestamp == null
+                            ) {
+                                skippedItems++
+                                continue
+                            }
+                            if (searchDao.hasTakeoutEventForProfile(
+                                    targetProfileId,
+                                    serviceId,
+                                    search,
+                                    timestamp
+                                )
+                            ) {
+                                skippedItems++
+                                continue
+                            }
+                            searchDao.insert(
+                                SearchHistoryEntry(
+                                    creationDate = timestamp,
+                                    serviceId = serviceId,
+                                    search = search,
+                                    profileId = targetProfileId
+                                )
+                            )
+                            searchHistoryItems++
+                        }
+                    }
+                }
+
                 if (selection.importHistory && schema.hasProgress) {
                     val existingStates = target.streamStateDAO()
                         .getAllDirectForProfile(targetProfileId)
@@ -404,7 +456,8 @@ class NewPipeDataMigrationManager(private val context: Context) {
                     if (selection.importSettings) compatibleSettings.size else 0,
                     if (selection.importSponsorBlock) sponsorBlockSettings.size else 0,
                     skippedItems,
-                    channelGroups
+                    channelGroups,
+                    searchHistoryItems
                 )
             }
         } catch (error: Throwable) {
@@ -443,6 +496,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
         val subscriptionColumns = source.columnsOf(SUBSCRIPTION_TABLE)
         val schema = SourceSchema(
             hasHistory = hasStreams && historyColumns.containsAll(REQUIRED_HISTORY_COLUMNS),
+            hasSearchHistory = source.columnsOf(SEARCH_HISTORY_TABLE).containsAll(REQUIRED_SEARCH_HISTORY_COLUMNS),
             hasProgress = hasStreams && stateColumns.containsAll(REQUIRED_STATE_COLUMNS),
             hasPlaylists = hasStreams &&
                 playlistColumns.containsAll(REQUIRED_PLAYLIST_COLUMNS) &&
@@ -456,7 +510,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
             isPipePipe = source.tableExists(PIPEPIPE_SPONSORBLOCK_WHITELIST_TABLE) ||
                 source.userVersion() >= PIPEPIPE_DATABASE_VERSION_FLOOR
         )
-        if (!schema.hasHistory && !schema.hasProgress && !schema.hasPlaylists &&
+        if (!schema.hasHistory && !schema.hasSearchHistory && !schema.hasProgress && !schema.hasPlaylists &&
             !schema.hasSubscriptions && !schema.hasGroups
         ) {
             throw UnsupportedSourceException(
@@ -582,6 +636,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
 
     private data class SourceSchema(
         val hasHistory: Boolean,
+        val hasSearchHistory: Boolean,
         val hasProgress: Boolean,
         val hasPlaylists: Boolean,
         val hasSubscriptions: Boolean,
@@ -597,6 +652,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
     companion object {
         private const val STREAM_TABLE = "streams"
         private const val HISTORY_TABLE = "stream_history"
+        private const val SEARCH_HISTORY_TABLE = "search_history"
         private const val STATE_TABLE = "stream_state"
         private const val PLAYLIST_TABLE = "playlists"
         private const val PLAYLIST_JOIN_TABLE = "playlist_stream_join"
@@ -615,6 +671,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
             "duration",
             "uploader"
         )
+        private val REQUIRED_SEARCH_HISTORY_COLUMNS = setOf("creation_date", "service_id", "search")
         private val REQUIRED_HISTORY_COLUMNS = setOf(
             "stream_id",
             "access_date",

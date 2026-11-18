@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="migration_search_history_complete">Search history imported: %1$d</string>
+</resources>

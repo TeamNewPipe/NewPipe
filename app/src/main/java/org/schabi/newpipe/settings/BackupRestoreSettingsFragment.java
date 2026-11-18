@@ -682,7 +682,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                                         migrationResult.getSponsorBlockSettings(),
                                         migrationResult.getSkippedItems()) + "\n" + getString(
                                         R.string.migration_groups_complete,
-                                        migrationResult.getChannelGroups()))
+                                        migrationResult.getChannelGroups()) + "\n" + getString(
+                                        R.string.migration_search_history_complete,
+                                        migrationResult.getSearchHistoryItems()))
                                 .setPositiveButton(R.string.ok, null)
                                 .show();
                     });

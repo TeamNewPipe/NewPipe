@@ -613,6 +613,62 @@ class NewPipeDataMigrationManagerTest {
         assertFalse(preferences.contains("sponsor_block_user_id"))
     }
 
+    @Test
+    fun searchHistoryIsImportedIntoSelectedProfileWithoutDuplicateEvents() {
+        val otherProfile = "22222222-2222-2222-2222-222222222222"
+        val manager = NewPipeDataMigrationManager(context)
+        val preview = manager.inspect(sourcePath)
+        assertEquals(2, preview.searchHistoryItems)
+
+        val selection = NewPipeDataMigrationManager.Selection(
+            importHistory = true,
+            importPlaylists = false
+        )
+        val first = manager.importData(sourcePath, selection, targetProfileId = otherProfile)
+        assertEquals(2, first.searchHistoryItems)
+        val searchDao = NewPipeDatabase.getInstance(context).searchHistoryDAO()
+        assertTrue(searchDao.getAllDirectForProfile(ProfileManager.DEFAULT_PROFILE_ID).isEmpty())
+        assertEquals(
+            listOf("zaatar recipe", "spice recipe"),
+            searchDao.getAllDirectForProfile(otherProfile).map { it.search }
+        )
+
+        val second = manager.importData(sourcePath, selection, targetProfileId = otherProfile)
+        assertEquals(0, second.searchHistoryItems)
+        assertEquals(2, searchDao.getAllDirectForProfile(otherProfile).size)
+
+        val defaultProfile = manager.importData(sourcePath, selection)
+        assertEquals(2, defaultProfile.searchHistoryItems)
+        assertEquals(2, searchDao.getAllDirectForProfile(ProfileManager.DEFAULT_PROFILE_ID).size)
+    }
+
+    @Test
+    fun searchOnlyBackupCanBeInspectedAndImported() {
+        SQLiteDatabase.openDatabase(
+            sourcePath.toString(),
+            null,
+            SQLiteDatabase.OPEN_READWRITE
+        ).use { source ->
+            source.execSQL("DROP TABLE stream_history")
+            source.execSQL("DROP TABLE stream_state")
+            source.execSQL("DROP TABLE playlist_stream_join")
+            source.execSQL("DROP TABLE playlists")
+            source.execSQL("DROP TABLE subscriptions")
+            source.execSQL("DROP TABLE streams")
+        }
+        val manager = NewPipeDataMigrationManager(context)
+        val preview = manager.inspect(sourcePath)
+        assertEquals(2, preview.searchHistoryItems)
+        assertTrue(preview.hasHistory)
+        assertTrue(preview.hasImportableData)
+        val result = manager.importData(
+            sourcePath,
+            NewPipeDataMigrationManager.Selection(importHistory = true, importPlaylists = false)
+        )
+        assertEquals(2, result.searchHistoryItems)
+        assertEquals(2, NewPipeDatabase.getInstance(context).searchHistoryDAO().getAllDirect().size)
+    }
+
     private fun restorePreferences() {
         val editor = PreferenceManager.getDefaultSharedPreferences(context).edit().clear()
         originalPreferences.forEach { (key, value) ->
@@ -647,6 +703,16 @@ class NewPipeDataMigrationManagerTest {
                     "uid INTEGER PRIMARY KEY, service_id INTEGER NOT NULL, " +
                     "url TEXT NOT NULL, title TEXT NOT NULL, stream_type TEXT NOT NULL, " +
                     "duration INTEGER NOT NULL, uploader TEXT NOT NULL)"
+            )
+            source.execSQL(
+                "CREATE TABLE search_history (" +
+                    "id INTEGER PRIMARY KEY, creation_date INTEGER, " +
+                    "service_id INTEGER, search TEXT)"
+            )
+            source.execSQL(
+                "INSERT INTO search_history VALUES " +
+                    "(1, 1788253200000, 0, 'zaatar recipe'), " +
+                    "(2, 1788253201000, 0, 'spice recipe')"
             )
             source.execSQL(
                 "CREATE TABLE stream_history (" +
