@@ -18,6 +18,7 @@ import org.schabi.newpipe.profiles.ProfileManager
 /** A queue keeps its original owner and permanently loses persistence eligibility on privacy changes. */
 internal class QueueRecoveryController(
     private val player: Player,
+    private val elapsedRealtime: () -> Long = SystemClock::elapsedRealtime,
     private val save: (String, QueueSnapshot, AtomicBoolean, Long) -> Unit = { owner, snapshot, eligible, epoch ->
         QueueRecovery.save(player.context, owner, snapshot, eligible, epoch)
     }
@@ -56,8 +57,8 @@ internal class QueueRecoveryController(
         val current = queue ?: return
         if (!allowed() || owner != ProfileManager.getActiveProfileId(player.context)) eligible.set(false)
         if (!eligible.get() || epoch != QueueRecovery.generation.get() || player.playQueue !== current) return
-        val elapsed = SystemClock.elapsedRealtime()
-        if (!force && hasConfirmedPosition && elapsed - lastSave < 15_000) return
+        val elapsed = elapsedRealtime()
+        if (!force && hasConfirmedPosition && elapsed - lastSave < PERIODIC_CHECKPOINT_INTERVAL_MILLIS) return
         val item = current.item ?: return
         val engine = if (player.exoPlayerIsNull()) null else player.exoPlayer
         val actualPosition = engine?.takeIf {
@@ -78,5 +79,11 @@ internal class QueueRecoveryController(
     fun close() {
         checkpoint(true)
         player.prefs.unregisterOnSharedPreferenceChangeListener(listener)
+    }
+
+    companion object {
+        // At most five seconds of playback progress is lost after a sudden process death.
+        // Pauses, seeks, and lifecycle transitions still persist an immediate checkpoint.
+        internal const val PERIODIC_CHECKPOINT_INTERVAL_MILLIS = 5_000L
     }
 }

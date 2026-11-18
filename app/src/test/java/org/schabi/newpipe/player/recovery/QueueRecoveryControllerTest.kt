@@ -141,6 +141,46 @@ class QueueRecoveryControllerTest {
         controller.close()
     }
 
+    @Test fun savesConfirmedPlaybackPositionAtMostFiveSecondsApart() {
+        val item = PlayQueueItem.localMedia(
+            "Track", "content://media/external/audio/media/1",
+            100, "Artist", null, null, "audio/mpeg", 1, false, null
+        )
+        val queue = LocalMediaPlayQueue(listOf(item), 0)
+        `when`(player.playQueue).thenReturn(queue)
+        val engine = mock(ExoPlayer::class.java)
+        val timeline = mock(Timeline::class.java)
+        `when`(player.exoPlayerIsNull()).thenReturn(false)
+        `when`(player.exoPlayer).thenReturn(engine)
+        `when`(player.currentItem).thenReturn(queue.item)
+        `when`(engine.currentTimeline).thenReturn(timeline)
+        `when`(engine.currentMediaItemIndex).thenReturn(0)
+        var elapsed = 10_000L
+        controller.close()
+        controller = QueueRecoveryController(player, elapsedRealtime = { elapsed }) { _, snapshot, _, _ ->
+            saves.add(snapshot)
+        }
+        controller.bind(queue)
+
+        `when`(engine.contentPosition).thenReturn(50_000L)
+        controller.checkpoint()
+        elapsed += 4_000
+        `when`(engine.contentPosition).thenReturn(54_000L)
+        controller.checkpoint()
+        assertEquals(listOf(50_000L), saves.map { it.position })
+
+        elapsed += 1_000
+        `when`(engine.contentPosition).thenReturn(55_000L)
+        controller.checkpoint()
+        assertEquals(listOf(50_000L, 55_000L), saves.map { it.position })
+
+        elapsed += 500
+        `when`(engine.contentPosition).thenReturn(55_500L)
+        controller.checkpoint(true)
+        assertEquals(listOf(50_000L, 55_000L, 55_500L), saves.map { it.position })
+        controller.close()
+    }
+
     @Test fun replacementStartsAnotherSession() {
         beginQueue()
         controller.checkpoint(true)
