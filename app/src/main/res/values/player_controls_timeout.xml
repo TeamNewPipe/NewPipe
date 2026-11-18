@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="player_controls_timeout_key" translatable="false">player_controls_timeout</string>
+    <string name="player_controls_timeout_title">Player controls auto-hide</string>
+    <string-array name="player_controls_timeout_entries">
+        <item>Default</item>
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>15 seconds</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="player_controls_timeout_values" translatable="false">
+        <item>default</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>never</item>
+    </string-array>
+</resources>

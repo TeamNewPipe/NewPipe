@@ -797,13 +797,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         showOrHideButtons();
         showSystemUIPartially();
 
-        final long hideTime = binding.playbackControlRoot.isInTouchMode()
-                ? DEFAULT_CONTROLS_HIDE_TIME
-                : DPAD_CONTROLS_HIDE_TIME;
-
+        final boolean touch = binding.playbackControlRoot.isInTouchMode();
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
         showHideShadow(true, DEFAULT_CONTROLS_DURATION);
         animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.ALPHA, 0, () -> hideControls(DEFAULT_CONTROLS_DURATION, hideTime));
+                AnimationType.ALPHA, 0, () -> scheduleControlsAutoHide(touch));
     }
 
     public void showControls(final long duration) {
@@ -818,6 +816,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         showHideShadow(true, duration);
         animate(binding.playbackControlRoot, true, duration);
+    }
+
+    private void scheduleControlsAutoHide(final boolean touch) {
+        final long delay = PlayerControlsTimeout.delayMillis(context, player.getPrefs(), touch);
+        if (delay >= 0) {
+            hideControls(DEFAULT_CONTROLS_DURATION, delay);
+        } else {
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        }
     }
 
     public void hideControls(final long duration, final long delay) {
@@ -1754,7 +1761,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                                     || (v == binding.screenRotationButton && isFullscreen())) {
                                 hideControls(0, 0);
                             } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                                scheduleControlsAutoHide(v.isInTouchMode());
                             }
                         }
                     });
@@ -1821,7 +1828,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 }
 
                 if (isControlsVisible()) {
-                    hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
+                    scheduleControlsAutoHide(false);
                 } else {
                     binding.playPauseButton.requestFocus();
                     showControlsThenHide();

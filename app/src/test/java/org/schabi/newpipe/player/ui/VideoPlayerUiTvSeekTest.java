@@ -13,10 +13,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.KeyEvent;
 
 import org.junit.Test;
 import org.mockito.MockedStatic;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.video.PlayerVideoSurface;
@@ -30,7 +32,10 @@ public class VideoPlayerUiTvSeekTest {
     @Test
     public void repeatedSeekingContinuesUntilDirectionalMenuNavigation() throws Exception {
         final Context context = mock(Context.class);
+        doReturn("player_controls_timeout").when(context)
+                .getString(R.string.player_controls_timeout_key);
         final Player player = mock(Player.class);
+        doReturn(mock(SharedPreferences.class)).when(player).getPrefs();
         final VideoPlayerUi ui = mock(VideoPlayerUi.class, CALLS_REAL_METHODS);
         final PlayerBinding binding = mock(PlayerBinding.class);
         doReturn(mock(PlaybackDimmingLayout.class)).when(binding).getRoot();

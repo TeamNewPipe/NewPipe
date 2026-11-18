@@ -3,6 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_video_audio_title">
 
+    <ListPreference
+        android:defaultValue="default"
+        android:entries="@array/player_controls_timeout_entries"
+        android:entryValues="@array/player_controls_timeout_values"
+        android:key="@string/player_controls_timeout_key"
+        android:title="@string/player_controls_timeout_title"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="enable_360_playback"
