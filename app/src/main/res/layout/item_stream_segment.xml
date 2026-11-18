@@ -24,13 +24,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <!-- Let the text grow so long titles and larger fonts do not cut off the timestamp. -->
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="8dp"
         android:paddingEnd="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/previewImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/previewImage"
         app:layout_constraintTop_toTopOf="parent">
