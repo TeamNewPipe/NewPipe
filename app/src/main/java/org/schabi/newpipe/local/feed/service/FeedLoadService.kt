@@ -56,6 +56,10 @@ class FeedLoadService : Service() {
         private const val NOTIFICATION_SAMPLING_PERIOD = 1500
 
         const val EXTRA_GROUP_ID: String = "FeedLoadService.EXTRA_GROUP_ID"
+
+        fun cancel(context: Context) {
+            context.sendBroadcast(Intent(ACTION_CANCEL).setPackage(context.packageName))
+        }
     }
 
     private var loadingDisposable: Disposable? = null

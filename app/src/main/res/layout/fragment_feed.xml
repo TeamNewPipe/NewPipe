@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_toStartOf="@+id/refreshIcon"
+            android:layout_toStartOf="@+id/refresh_actions_container"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -45,28 +45,83 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:textSize="12sp"
                 tools:text="@tools:sample/lorem/random" />
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/loading_progress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:maxLines="1"
+                android:text="∞/∞"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="1/120"
+                tools:visibility="visible" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/refreshIcon"
-            android:layout_width="24dp"
+        <FrameLayout
+            android:id="@+id/refresh_actions_container"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/refresh_info_container"
             android:layout_alignBottom="@+id/refresh_info_container"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="6dp"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/ic_refresh"
-            tools:ignore="ContentDescription" />
+            android:layout_marginEnd="6dp">
 
-        <View
+            <ImageView
+                android:id="@+id/refreshIcon"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_refresh"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/cancel_refresh_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cancel"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/refresh_progress_container"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/refresh_info_container"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:background="?attr/separator_color" />
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/loading_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:background="?attr/separator_color" />
+        </LinearLayout>
     </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -98,37 +153,6 @@
         android:theme="@style/ServiceColoredButton"
         android:visibility="gone"
         tools:visibility="visible" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ProgressBar
-            android:id="@+id/loading_progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:indeterminate="true"
-            android:minWidth="128dp"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/loading_progress_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="∞/∞"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="16sp"
-            android:visibility="gone"
-            tools:text="1/120"
-            tools:visibility="visible" />
-    </LinearLayout>
 
     <!--ERROR PANEL-->
     <include
