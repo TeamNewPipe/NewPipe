@@ -49,6 +49,17 @@ public class AudioReactor implements AnalyticsListener {
         return AudioManagerCompat.getStreamMaxVolume(audioManager, STREAM_TYPE);
     }
 
+    /**
+     * Checks whether a phone or VoIP call is currently active.
+     *
+     * @return whether the audio mode is {@link AudioManager#MODE_IN_CALL} or
+     *         {@link AudioManager#MODE_IN_COMMUNICATION}
+     */
+    public boolean isInCall() {
+        final int mode = audioManager.getMode();
+        return mode == AudioManager.MODE_IN_CALL || mode == AudioManager.MODE_IN_COMMUNICATION;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Audio Processing
     //////////////////////////////////////////////////////////////////////////*/
