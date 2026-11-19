@@ -1324,6 +1324,8 @@
     <string name="fragment_feed_title">What\'s New</string>
     <string name="feed_group_page_summary">Channel group page</string>
     <string name="feed_groups_header_title">Channel groups</string>
+    <string name="subscription_groups_collapse">Collapse channel groups</string>
+    <string name="subscription_groups_expand">Expand channel groups</string>
     <string name="feed_oldest_subscription_update">Feed last updated: %s</string>
     <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_subscription_not_loaded_count_details">Not loaded: %d · Tap for details</string>

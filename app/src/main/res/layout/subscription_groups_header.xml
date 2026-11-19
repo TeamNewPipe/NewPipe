@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -19,6 +20,16 @@
         android:textSize="16sp"
         android:textStyle="bold"
         tools:text="Header" />
+
+    <ImageButton
+        android:id="@+id/header_toggle_collapse"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/subscription_groups_collapse"
+        android:padding="8dp"
+        android:src="@drawable/ic_arrow_drop_up"
+        app:tint="?attr/colorOnSurfaceVariant" />
 
     <ImageButton
         android:id="@+id/header_toggle_view_mode"

@@ -10,8 +10,10 @@ class GroupsHeader(
     private val title: String,
     private val onSortClicked: () -> Unit,
     private val onToggleListViewModeClicked: () -> Unit,
+    private val onToggleCollapsedClicked: () -> Unit,
     var showSortButton: Boolean = true,
-    var listViewMode: Boolean = true
+    var listViewMode: Boolean = true,
+    var collapsed: Boolean = false
 ) : BindableItem<SubscriptionGroupsHeaderBinding>() {
     companion object {
         const val PAYLOAD_UPDATE_ICONS = 1
@@ -36,6 +38,7 @@ class GroupsHeader(
         viewBinding.headerTitle.text = title
         viewBinding.headerSort.setOnClickListener { onSortClicked() }
         viewBinding.headerToggleViewMode.setOnClickListener { onToggleListViewModeClicked() }
+        viewBinding.headerToggleCollapse.setOnClickListener { onToggleCollapsedClicked() }
         updateIcons(viewBinding)
     }
 
@@ -45,6 +48,13 @@ class GroupsHeader(
         viewBinding.headerToggleViewMode.setImageResource(
             if (listViewMode) R.drawable.ic_apps else R.drawable.ic_list
         )
-        viewBinding.headerSort.isVisible = showSortButton
+        viewBinding.headerSort.isVisible = showSortButton && !collapsed
+        viewBinding.headerToggleViewMode.isVisible = !collapsed
+        viewBinding.headerToggleCollapse.setImageResource(
+            if (collapsed) R.drawable.ic_expand_more else R.drawable.ic_arrow_drop_up
+        )
+        viewBinding.headerToggleCollapse.contentDescription = viewBinding.root.context.getString(
+            if (collapsed) R.string.subscription_groups_expand else R.string.subscription_groups_collapse
+        )
     }
 }

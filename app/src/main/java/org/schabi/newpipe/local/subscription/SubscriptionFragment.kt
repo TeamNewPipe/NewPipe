@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.view.doOnNextLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.evernote.android.state.State
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -78,6 +79,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private lateinit var carouselAdapter: GroupAdapter<GroupieViewHolder<FeedItemCarouselBinding>>
     private lateinit var feedGroupsCarousel: FeedGroupCarouselItem
     private lateinit var feedGroupsSortMenuItem: GroupsHeader
+    private lateinit var feedGroupsSection: Section
+    private var feedGroupsCollapsed = false
     private val subscriptionsSection = Section()
     private var contextualSearchQuery = ""
     private var sortingEnabled = false
@@ -105,6 +108,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activeProfileId = ProfileManager.getActiveProfileId(context)
+        feedGroupsCollapsed = PreferenceManager.getDefaultSharedPreferences(context)
+            .getBoolean(SubscriptionGroupsCollapse.key(activeProfileId), false)
         subscriptionManager = SubscriptionManager(context, activeProfileId)
         channelActions = SubscriptionChannelActions(this, subscriptionManager)
         bulkActions = SubscriptionBulkActions(this, subscriptionManager)
@@ -478,10 +483,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
                 title = getString(R.string.feed_groups_header_title),
                 onSortClicked = ::openReorderDialog,
                 onToggleListViewModeClicked = ::toggleListViewMode,
-                listViewMode = viewModel.getListViewMode()
+                onToggleCollapsedClicked = ::toggleGroupsCollapsed,
+                listViewMode = viewModel.getListViewMode(),
+                collapsed = feedGroupsCollapsed
             )
 
-            add(Section(feedGroupsSortMenuItem, listOf(feedGroupsCarousel)))
+            feedGroupsSection = Section(
+                feedGroupsSortMenuItem,
+                if (feedGroupsCollapsed) emptyList() else listOf(feedGroupsCarousel)
+            )
+            add(feedGroupsSection)
             groupAdapter.clear()
             groupAdapter.add(this)
         }
@@ -514,6 +525,18 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
 
     private fun toggleListViewMode() {
         viewModel.setListViewMode(!viewModel.getListViewMode())
+    }
+
+    private fun toggleGroupsCollapsed() {
+        feedGroupsCollapsed = !feedGroupsCollapsed
+        PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+            .putBoolean(SubscriptionGroupsCollapse.key(activeProfileId), feedGroupsCollapsed)
+            .apply()
+        feedGroupsSortMenuItem.collapsed = feedGroupsCollapsed
+        feedGroupsSortMenuItem.notifyChanged(GroupsHeader.PAYLOAD_UPDATE_ICONS)
+        feedGroupsSection.update(
+            if (feedGroupsCollapsed) emptyList() else listOf(feedGroupsCarousel)
+        )
     }
 
     override fun doInitialLoadLogic() = Unit
