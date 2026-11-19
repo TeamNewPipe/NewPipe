@@ -319,6 +319,8 @@
     <string name="resume_on_audio_focus_gain_title">Resume playing</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phonecalls)</string>
     <string name="download_dialog_title">Download</string>
+    <string name="player_ambient_mode_title">Ambient mode</string>
+    <string name="player_ambient_mode_summary">Show a subtle blurred thumbnail glow around fullscreen videos; uses no live frame sampling</string>
     <string name="playback_dimming_title">Dim screen during playback</string>
     <string name="playback_dimming_summary">Blank the fullscreen picture after inactivity while audio keeps playing. Tap the screen or press a remote key to wake it.</string>
     <string name="playback_dimming_delay_title">Screen dimming delay</string>

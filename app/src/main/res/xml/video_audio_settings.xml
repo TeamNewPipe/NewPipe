@@ -14,6 +14,14 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
+        android:key="player_ambient_mode"
+        android:title="@string/player_ambient_mode_title"
+        android:summary="@string/player_ambient_mode_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
         android:key="enable_360_playback"
         android:title="@string/enable_360_playback_title"
         android:summary="@string/enable_360_playback_summary"

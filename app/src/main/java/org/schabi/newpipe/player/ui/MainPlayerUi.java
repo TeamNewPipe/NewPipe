@@ -108,6 +108,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private static final int DETAIL_TITLE_TEXT_SIZE_TABLET = 15; // sp
 
     private boolean isFullscreen = false;
+    private final PlayerAmbientMode ambientMode;
     private boolean touchLocked;
     private FullscreenOrientationPolicy.VideoContentOrientation videoContentOrientation =
             FullscreenOrientationPolicy.VideoContentOrientation.UNKNOWN;
@@ -135,6 +136,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     public MainPlayerUi(@NonNull final Player player,
                         @NonNull final PlayerBinding playerBinding) {
         super(player, playerBinding);
+        ambientMode = new PlayerAmbientMode(binding);
         binding.touchLockButton.setOnClickListener(view -> setTouchLocked(true));
         binding.touchUnlockButton.setOnClickListener(view -> {
             setTouchLocked(false);
@@ -360,6 +362,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     @Override
     public void destroy() {
+        ambientMode.clear();
         binding.getRoot().configure(false, 60_000);
         getParentActivity().ifPresent(FullscreenCommentsSidebar::hide);
         if (videoAdjustmentDialog != null) {
@@ -463,6 +466,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (mode.rendersVideo()) {
             setupVideoSurfaceIfNeeded();
         }
+        updateAmbientMode();
         player.getFragmentListener().ifPresent(
                 listener -> listener.onPlaybackPresentationModeChanged(mode));
     }
@@ -664,6 +668,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     @Override
     public void onBlocked() {
         binding.getRoot().configure(false, 60_000);
+        ambientMode.setThumbnail(null);
+        updateAmbientMode();
         super.onBlocked();
     }
 
@@ -830,8 +836,25 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     //region Play queue, segments and streams
 
     @Override
+    public void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
+        super.onThumbnailLoaded(bitmap);
+        ambientMode.setThumbnail(bitmap);
+        updateAmbientMode();
+    }
+
+    private void updateAmbientMode() {
+        ambientMode.update(
+                isFullscreen,
+                player.getPlaybackPresentationMode().rendersVideo(),
+                isSphericalVideo(),
+                binding.videoSurfaceContainer.getMiniPlayerMode());
+    }
+
+    @Override
     public void onMetadataChanged(@NonNull final StreamInfo info) {
+        ambientMode.setThumbnail(null);
         super.onMetadataChanged(info);
+        updateAmbientMode();
         updateVideoContentIdentity(info.getServiceId(), info.getUrl());
         binding.openInBrowser.setVisibility(View.VISIBLE);
         showHideKodiButton();
@@ -850,7 +873,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     @Override
     public void onMetadataChanged(@NonNull final MediaItemTag tag) {
+        ambientMode.setThumbnail(null);
         super.onMetadataChanged(tag);
+        updateAmbientMode();
         updateVideoContentIdentity(tag.getServiceId(), tag.getStreamUrl());
         binding.openInBrowser.setVisibility(View.GONE);
         binding.playWithKodi.setVisibility(View.GONE);
@@ -1376,6 +1401,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         setupScreenRotationButton();
+        updateAmbientMode();
         if (player.isPlaying()) {
             checkLandscape();
         }
@@ -1408,6 +1434,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         isFullscreen = fullscreen;
         updateScreenDimming();
+        updateAmbientMode();
         if (!fullscreen) {
             setTouchLocked(false);
         }

@@ -19,6 +19,23 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
 
+            <ImageView
+                android:id="@+id/player_ambient_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/player_ambient_tint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/player_ambient_gradient"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+
             <org.schabi.newpipe.views.ExpandableSurfaceView
                 android:id="@+id/surfaceView"
                 android:layout_width="match_parent"
