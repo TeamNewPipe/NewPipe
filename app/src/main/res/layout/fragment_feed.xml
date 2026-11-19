@@ -164,18 +164,13 @@
                         app:trackCornerRadius="2dp"
                         app:trackThickness="4dp" />
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                    <org.schabi.newpipe.local.feed.ExpressiveRefreshIndicator
                         android:id="@+id/feed_refresh_indeterminate_progress_bar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_width="30dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_horizontal"
                         android:accessibilityLiveRegion="polite"
-                        android:indeterminate="true"
-                        android:visibility="gone"
-                        app:indicatorColor="?attr/colorPrimary"
-                        app:trackColor="?attr/colorSurfaceVariant"
-                        app:trackCornerRadius="2dp"
-                        app:trackThickness="4dp" />
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <include

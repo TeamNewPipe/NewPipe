@@ -370,6 +370,13 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         }
         feedBinding.refreshSubtitleText.setOnClickListener { showNotLoadedSubscriptions() }
         feedBinding.swipeRefreshLayout.setOnRefreshListener { reloadContent() }
+        // Match the native pull gesture indicator to the active Material theme.
+        feedBinding.swipeRefreshLayout.setColorSchemeColors(
+            com.google.android.material.color.MaterialColors.getColor(
+                feedBinding.swipeRefreshLayout,
+                com.google.android.material.R.attr.colorPrimary
+            )
+        )
         feedBinding.cancelRefreshButton.setOnClickListener {
             it.isEnabled = false
             feedBinding.feedFloatingRefresh.isEnabled = false

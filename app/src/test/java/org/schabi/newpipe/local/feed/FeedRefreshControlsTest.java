@@ -126,8 +126,12 @@ public class FeedRefreshControlsTest {
         assertEquals("4dp", progress.getAttributeNS(APP_NAMESPACE, "trackThickness"));
         assertEquals("2dp", progress.getAttributeNS(APP_NAMESPACE, "trackCornerRadius"));
         assertEquals(
-                "com.google.android.material.progressindicator.LinearProgressIndicator",
+                "org.schabi.newpipe.local.feed.ExpressiveRefreshIndicator",
                 indeterminateProgress.getTagName());
+        assertEquals("30dp", indeterminateProgress.getAttributeNS(
+                ANDROID_NAMESPACE, "layout_width"));
+        assertEquals("26dp", indeterminateProgress.getAttributeNS(
+                ANDROID_NAMESPACE, "layout_height"));
 
         assertNotNull(filters);
         assertEquals("include", filters.getTagName());
