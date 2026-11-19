@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="org.schabi.newpipe.MainActivity">
+    tools:context="org.schabi.newpipe.settings.SettingsActivity">
 
-    <include
-        android:id="@+id/settings_toolbar_layout"
-        layout="@layout/toolbar_layout" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/settings_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/settings_collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            app:contentScrim="?attr/colorSurface"
+            app:expandedTitleTextAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:expandedTitleMarginStart="24dp"
+            app:expandedTitleMarginEnd="16dp"
+            app:expandedTitleMarginBottom="16dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@id/toolbar">
+
+            <include
+                android:id="@+id/settings_toolbar_layout"
+                layout="@layout/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/settings_navigation_holder"
@@ -28,5 +55,4 @@
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

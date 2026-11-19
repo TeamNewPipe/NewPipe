@@ -93,12 +93,22 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
             }
         }
         ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
+        updateSettingsTitle();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         ThemeHelper.setTitleToAppCompatActivity(getActivity(), getPreferenceScreen().getTitle());
+        updateSettingsTitle();
+    }
+
+    private void updateSettingsTitle() {
+        if (getActivity() instanceof SettingsActivity) {
+            ((SettingsActivity) getActivity()).setSettingsSectionTitle(
+                    getPreferenceScreen().getTitle() == null
+                            ? getString(R.string.settings) : getPreferenceScreen().getTitle());
+        }
     }
 
     @NonNull
