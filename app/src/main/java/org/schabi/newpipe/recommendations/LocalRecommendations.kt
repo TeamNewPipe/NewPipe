@@ -39,6 +39,7 @@ object LocalRecommendations {
     )
 
     data class TasteSummary(val interests: List<String>, val channels: List<String>)
+    data class FeedSnapshot(val items: List<StreamInfoItem>, val interests: List<String>)
 
     private fun prefs(context: Context) = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
     private fun profile(context: Context) = ProfileManager.getActiveProfileId(context)
@@ -186,35 +187,53 @@ object LocalRecommendations {
     @JvmStatic
     fun rank(context: Context, items: List<StreamInfoItem>): List<StreamInfoItem> {
         if (!enabled(context)) return items.toList()
-        val model = read(context)
+        return rankFromModel(context, read(context), items)
+    }
+
+    private fun rankFromModel(
+        context: Context,
+        model: Model,
+        items: List<StreamInfoItem>
+    ): List<StreamInfoItem> {
         val isEligible = eligibility(context)
+        val options = rankingOptions(context, model)
         return items.filter { isEligible(it) && id(it) !in model.watched }
             .distinctBy(::id)
-            .map { it to recommendationScore(context, model, it) }
+            .map { it to recommendationScore(model, it, options) }
             .sortedByDescending { it.second }
             .map { it.first }
     }
 
     /**
-     * Returns stable positions for all supplied items without applying recommendation eligibility
-     * or watched-state filtering. This lets callers reorder an already-filtered list without
-     * changing which items are visible.
+     * Stable positions without eligibility or watched-state filtering.
+     * Reorders an already-filtered list without changing visibility.
      */
     @JvmStatic
     fun relevanceOrder(context: Context, items: List<StreamInfoItem>): Map<String, Int> {
         if (!enabled(context)) return emptyMap()
         val model = read(context)
+        val options = rankingOptions(context, model)
         return items
-            .map { id(it) to recommendationScore(context, model, it) }
+            .map { id(it) to recommendationScore(model, it, options) }
             .sortedByDescending { it.second }
             .mapIndexed { position, item -> item.first to position }
             .toMap()
     }
 
+    /** One model snapshot supplies both ranked videos and interest chips. */
+    @JvmStatic
+    fun feedSnapshot(context: Context, serviceId: Int): FeedSnapshot {
+        if (!enabled(context)) return FeedSnapshot(emptyList(), emptyList())
+        val model = read(context)
+        val candidates = model.candidates.values
+            .filter { it.service == serviceId }
+            .map { it.item() }
+        return FeedSnapshot(rankFromModel(context, model, candidates), summarize(model).interests)
+    }
+
     @JvmStatic
     fun feed(context: Context, serviceId: Int): List<StreamInfoItem> {
-        if (!enabled(context)) return emptyList()
-        return rank(context, read(context).candidates.values.filter { it.service == serviceId }.map { it.item() })
+        return feedSnapshot(context, serviceId).items
     }
 
     @JvmStatic
@@ -254,7 +273,7 @@ object LocalRecommendations {
 
             bestInterest != null -> context.getString(R.string.local_recommendations_reason_interest, bestInterest.first)
 
-            frequencyScore(model, item) > 0.0 && !item.uploaderName.isNullOrBlank() ->
+            frequencyScore(model, item, recentChannelCounts(model)) > 0.0 && !item.uploaderName.isNullOrBlank() ->
                 context.getString(R.string.local_recommendations_reason_recent, item.uploaderName)
 
             else -> context.getString(R.string.local_recommendations_reason_local)
@@ -263,8 +282,9 @@ object LocalRecommendations {
 
     @JvmStatic
     @Synchronized
-    fun tasteSummary(context: Context): TasteSummary {
-        val model = read(context)
+    fun tasteSummary(context: Context): TasteSummary = summarize(read(context))
+
+    private fun summarize(model: Model): TasteSummary {
         val interests = (model.weights.keys + model.likeWeights.keys).asSequence()
             .distinct()
             .sortedByDescending { (model.weights[it] ?: 0.0) + (model.likeWeights[it] ?: 0.0) }
@@ -328,10 +348,33 @@ object LocalRecommendations {
         }
     }
 
+    private data class RankingOptions(
+        val recentChannels: Map<String, Int>,
+        val reduceShorts: Boolean,
+        val reduceShortVideos: Boolean
+    )
+
+    private fun rankingOptions(context: Context, model: Model): RankingOptions {
+        return RankingOptions(
+            recentChannelCounts(model),
+            setting(context, "reduce_shorts"),
+            setting(context, "reduce_short_videos")
+        )
+    }
+
+    private fun recentChannelCounts(model: Model): Map<String, Int> {
+        val cutoff = System.currentTimeMillis() - ACTIVE_CHANNEL_DAYS * 24 * 60 * 60 * 1000
+        return model.candidates.values.asSequence()
+            .filter { it.uploaded >= cutoff }
+            .mapNotNull { it.channelKey }
+            .groupingBy { it }
+            .eachCount()
+    }
+
     private fun recommendationScore(
-        context: Context,
         model: Model,
-        item: StreamInfoItem
+        item: StreamInfoItem,
+        options: RankingOptions
     ): Double {
         val text = "${item.name} ${item.uploaderName}"
         val terms = score(model.weights, item.serviceId, text) +
@@ -345,15 +388,22 @@ object LocalRecommendations {
         } else {
             0.0
         }
-        return terms + channel + frequencyScore(model, item) + popularity -
-            rankingPenalty(context, item)
+        val penalty = when {
+            options.reduceShorts && item.isShortFormContent -> SHORTS_RANKING_PENALTY
+            options.reduceShortVideos && isRegularShortVideo(item) -> SHORT_VIDEO_RANKING_PENALTY
+            else -> 0.0
+        }
+        return terms + channel + frequencyScore(model, item, options.recentChannels) + popularity - penalty
     }
 
-    private fun frequencyScore(model: Model, item: StreamInfoItem): Double {
+    private fun frequencyScore(
+        model: Model,
+        item: StreamInfoItem,
+        recentChannels: Map<String, Int>
+    ): Double {
         val key = channelId(item.serviceId, item.uploaderUrl, item.uploaderName) ?: return 0.0
         if ((model.channels[key] ?: 0.0) <= 0.0) return 0.0
-        val cutoff = System.currentTimeMillis() - ACTIVE_CHANNEL_DAYS * 24 * 60 * 60 * 1000
-        val recent = model.candidates.values.count { it.channelKey == key && it.uploaded >= cutoff }
+        val recent = recentChannels[key] ?: 0
         return ((recent - 1).coerceAtLeast(0) * 0.05).coerceAtMost(0.25)
     }
 

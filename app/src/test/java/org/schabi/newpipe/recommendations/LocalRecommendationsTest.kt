@@ -70,6 +70,16 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun feedSnapshotMatchesFeedAndInterestSummary() {
+        enable()
+        search("astronomy galaxies")
+        LocalRecommendations.observe(context, listOf(item("astronomy"), item("galaxies")))
+        val snapshot = LocalRecommendations.feedSnapshot(context, 0)
+        assertEquals(LocalRecommendations.feed(context, 0).map { it.url }, snapshot.items.map { it.url })
+        assertEquals(LocalRecommendations.tasteSummary(context).interests, snapshot.interests)
+    }
+
+    @Test
     fun pauseFreezesLearningAndResetDoesNotDeleteHistoryPreferences() {
         enable()
         search("astronomy")

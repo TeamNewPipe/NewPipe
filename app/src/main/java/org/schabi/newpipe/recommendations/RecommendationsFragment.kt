@@ -2,6 +2,7 @@ package org.schabi.newpipe.recommendations
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -12,6 +13,10 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.function.Supplier
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -34,6 +39,10 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     private var headerEnabled = true
     private var displayUpdatePosted = false
     private var loadedRevision: Triple<Int, String, String?>? = null
+    private var loadingRevision: Triple<Int, String, String?>? = null
+    private var loadingRequest = 0L
+    private var loadingDisposable: Disposable? = null
+    private var visibleInterests: List<String> = emptyList()
 
     override fun getContentBlockingTarget(): ContentBlockingHelper.Target = ContentBlockingHelper.Target.KIOSKS
 
@@ -99,15 +108,58 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
             LocalRecommendations.configurationToken(context),
             preferences.getString("$profile:model", null)
         )
-        if (!forceLoad && loadedRevision == revision) return
+        if (!forceLoad && (loadedRevision == revision || loadingRevision == revision)) return
+
+        val request = ++loadingRequest
+        loadingDisposable?.dispose()
+        loadingDisposable = null
+        loadingRevision = null
+        if (!LocalRecommendations.enabled(context)) {
+            visibleInterests = emptyList()
+            loadedRevision = revision
+            handleResult(emptyList())
+            return
+        }
 
         super.startLoading(forceLoad)
-        handleResult(LocalRecommendations.feed(context, serviceId))
-        loadedRevision = revision
+        loadingRevision = revision
+        val app = context.applicationContext
+        loadingDisposable = Single.fromCallable { LocalRecommendations.feedSnapshot(app, serviceId) }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { snapshot ->
+                    if (request == loadingRequest && view != null && isAdded &&
+                        profile == ProfileManager.getActiveProfileId(app) &&
+                        serviceId == ServiceHelper.getSelectedServiceId(app)
+                    ) {
+                        loadingRevision = null
+                        loadingDisposable = null
+                        visibleInterests = snapshot.interests
+                        loadedRevision = revision
+                        handleResult(snapshot.items)
+                    }
+                },
+                { error ->
+                    Log.e("RecommendationsFragment", "Unable to load local recommendations", error)
+                    if (request == loadingRequest && view != null && isAdded) {
+                        loadingRevision = null
+                        loadingDisposable = null
+                        loadedRevision = null
+                        visibleInterests = emptyList()
+                        handleResult(emptyList())
+                    }
+                }
+            )
     }
 
     override fun onDestroyView() {
+        loadingRequest++
+        loadingDisposable?.dispose()
+        loadingDisposable = null
+        loadingRevision = null
         loadedRevision = null
+        visibleInterests = emptyList()
         sourceItems = emptyList()
         interestGroup = null
         interestLabel = null
@@ -179,7 +231,7 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
 
     private fun updateInterests() {
         val group = interestGroup ?: return
-        val interests = LocalRecommendations.tasteSummary(requireContext()).interests
+        val interests = visibleInterests
         if (selectedInterest !in interests) selectedInterest = null
         group.removeAllViews()
         interests.forEach { interest ->

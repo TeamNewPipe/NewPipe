@@ -1,7 +1,9 @@
 package org.schabi.newpipe.recommendations
 
+import android.os.SystemClock
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import java.util.concurrent.atomic.AtomicBoolean
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -31,9 +33,22 @@ class RecommendationsFragmentTest {
                     val fragment = RecommendationsFragment()
                     activity.supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).commitNow()
                     val list = fragment.requireView().findViewById<NewPipeRecyclerView>(R.id.items_list)
-                    assertTrue(list.adapter!!.itemCount > 0)
+                    assertTrue(list.adapter != null)
+                }
+                val loaded = AtomicBoolean()
+                val deadline = SystemClock.elapsedRealtime() + 10_000
+                while (!loaded.get() && SystemClock.elapsedRealtime() < deadline) {
+                    scenario.onActivity { activity ->
+                        val updated = activity.findViewById<NewPipeRecyclerView>(R.id.items_list)
+                        loaded.set((updated.adapter?.itemCount ?: 0) > 0)
+                    }
+                    if (!loaded.get()) SystemClock.sleep(25)
+                }
+                assertTrue("For You should populate asynchronously", loaded.get())
+                scenario.onActivity { activity ->
                     IncognitoMode.setEnabled(activity, true)
-                    assertEquals(0, list.adapter!!.itemCount)
+                    val updated = activity.findViewById<NewPipeRecyclerView>(R.id.items_list)
+                    assertEquals(0, updated.adapter!!.itemCount)
                 }
             }
         } finally {
