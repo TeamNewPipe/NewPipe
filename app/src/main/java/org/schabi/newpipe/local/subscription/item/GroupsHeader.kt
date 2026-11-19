@@ -9,6 +9,7 @@ import org.schabi.newpipe.databinding.SubscriptionGroupsHeaderBinding
 class GroupsHeader(
     private val title: String,
     private val onSortClicked: () -> Unit,
+    private val onSearchClicked: () -> Unit,
     private val onToggleListViewModeClicked: () -> Unit,
     private val onToggleCollapsedClicked: () -> Unit,
     var showSortButton: Boolean = true,
@@ -37,6 +38,7 @@ class GroupsHeader(
     override fun bind(viewBinding: SubscriptionGroupsHeaderBinding, position: Int) {
         viewBinding.headerTitle.text = title
         viewBinding.headerSort.setOnClickListener { onSortClicked() }
+        viewBinding.headerSearch.setOnClickListener { onSearchClicked() }
         viewBinding.headerToggleViewMode.setOnClickListener { onToggleListViewModeClicked() }
         viewBinding.headerToggleCollapse.setOnClickListener { onToggleCollapsedClicked() }
         updateIcons(viewBinding)

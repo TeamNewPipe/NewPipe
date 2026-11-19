@@ -482,6 +482,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             feedGroupsSortMenuItem = GroupsHeader(
                 title = getString(R.string.feed_groups_header_title),
                 onSortClicked = ::openReorderDialog,
+                onSearchClicked = ::showGroupSearch,
                 onToggleListViewModeClicked = ::toggleListViewMode,
                 onToggleCollapsedClicked = ::toggleGroupsCollapsed,
                 listViewMode = viewModel.getListViewMode(),
@@ -521,6 +522,29 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             viewModel.setFilterQuery(contextualSearchQuery)
         }
         sortController?.setQuery(contextualSearchQuery)
+    }
+
+    private fun showGroupSearch() {
+        val input = android.widget.EditText(requireContext()).apply {
+            setSingleLine(true)
+            hint = getString(R.string.subscription_groups_search)
+            setText(contextualSearchQuery)
+            setSelection(text.length)
+        }
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.subscription_groups_search)
+            .setView(input)
+            .setPositiveButton(R.string.search) { _, _ ->
+                if (feedGroupsCollapsed && input.text?.isNotBlank() == true) {
+                    toggleGroupsCollapsed()
+                }
+                setContextualSearchQuery(input.text?.toString().orEmpty())
+            }
+            .setNeutralButton(R.string.subscription_groups_clear_search) { _, _ ->
+                setContextualSearchQuery("")
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun toggleListViewMode() {

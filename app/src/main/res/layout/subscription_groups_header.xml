@@ -22,6 +22,16 @@
         tools:text="Header" />
 
     <ImageButton
+        android:id="@+id/header_search"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/subscription_groups_search"
+        android:padding="8dp"
+        android:src="@drawable/ic_search"
+        app:tint="?attr/colorOnSurfaceVariant" />
+
+    <ImageButton
         android:id="@+id/header_toggle_collapse"
         android:layout_width="48dp"
         android:layout_height="48dp"

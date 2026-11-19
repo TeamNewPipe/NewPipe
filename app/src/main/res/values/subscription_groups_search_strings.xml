@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="subscription_groups_search">Search channel groups</string>
+    <string name="subscription_groups_clear_search">Clear search</string>
+</resources>
