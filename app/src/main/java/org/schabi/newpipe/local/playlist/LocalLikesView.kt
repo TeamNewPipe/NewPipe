@@ -28,7 +28,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.profiles.ProfileManager
-import org.schabi.newpipe.recommendations.LocalRecommendations
+import org.schabi.newpipe.recommendations.RecommendationWorkDispatcher
 import org.schabi.newpipe.util.NavigationHelper
 
 /** Explicit local feedback controls, separate from the service's public like count. */
@@ -194,7 +194,7 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
                 .subscribe({ saved ->
                     if (!active(token)) return@subscribe
                     liked = saved
-                    LocalRecommendations.liked(context, stream, saved)
+                    RecommendationWorkDispatcher.liked(context, stream, saved, profileId)
                     busy = false
                     render()
                     message(if (saved) R.string.local_like_saved else R.string.local_like_removed)

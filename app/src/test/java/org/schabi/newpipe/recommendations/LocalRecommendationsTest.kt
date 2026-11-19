@@ -211,12 +211,14 @@ class LocalRecommendationsTest {
         val tracker = RecommendationWatchTracker(context)
         try {
             tracker.start(info("astronomy"))
+            assertTrue(RecommendationWorkDispatcher.awaitIdleForTesting())
             val initial = model().getJSONObject("weights").getDouble("0:astronomy")
             tracker.update(true)
             repeat(40) {
                 SystemClock.sleep(500)
                 tracker.update(true)
             }
+            assertTrue(RecommendationWorkDispatcher.awaitIdleForTesting())
             val played = model().getJSONObject("weights").getDouble("0:astronomy")
             assertTrue(played > initial)
             tracker.update(false)

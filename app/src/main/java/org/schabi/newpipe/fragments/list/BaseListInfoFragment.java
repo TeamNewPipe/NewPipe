@@ -1,6 +1,6 @@
 package org.schabi.newpipe.fragments.list;
 
-import org.schabi.newpipe.recommendations.LocalRecommendations;
+import org.schabi.newpipe.recommendations.RecommendationWorkDispatcher;
 
 import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
@@ -227,7 +227,7 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
      * @return items to display
      */
     protected List<I> getDisplayItems(final List<I> items) {
-        LocalRecommendations.observe(
+        RecommendationWorkDispatcher.observe(
                 requireContext(), new ArrayList<InfoItem>(items));
         return items;
     }

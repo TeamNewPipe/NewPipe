@@ -18,7 +18,7 @@ package org.schabi.newpipe.local.history;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.schabi.newpipe.recommendations.LocalRecommendations;
+import org.schabi.newpipe.recommendations.RecommendationWorkDispatcher;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -345,7 +345,7 @@ public class HistoryRecordManager {
             return Maybe.empty();
         }
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
-        LocalRecommendations.searched(
+        RecommendationWorkDispatcher.searched(
                 recommendationContext, serviceId, canonicalSearch, profileId);
         final SearchHistoryEntry newEntry = new SearchHistoryEntry(
                 currentTime,

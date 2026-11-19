@@ -35,7 +35,7 @@ class RecommendationWatchTracker(private val context: Context) {
         profile = ProfileManager.getActiveProfileId(context)
         lastSample = null
         elapsedMillis = 0
-        LocalRecommendations.watched(context, value, 0)
+        profile?.let { RecommendationWorkDispatcher.watched(context, value, 0, it) }
     }
     fun update(playing: Boolean) {
         val value = info ?: return
@@ -53,7 +53,7 @@ class RecommendationWatchTracker(private val context: Context) {
             if (elapsedMillis >= 15000) {
                 val elapsed = elapsedMillis / 1000
                 elapsedMillis = 0
-                LocalRecommendations.watched(context, value, elapsed)
+                profile?.let { RecommendationWorkDispatcher.watched(context, value, elapsed, it) }
             }
         } else {
             lastSample = null
