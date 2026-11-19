@@ -64,6 +64,7 @@ import org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior;
 import org.schabi.newpipe.settings.tabs.HomeNavigationMode;
 import org.schabi.newpipe.settings.tabs.HomeNavigationModeResolver;
 import org.schabi.newpipe.settings.tabs.HomeStartupTab;
+import org.schabi.newpipe.settings.tabs.HomeTabGroupIconSync;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabletNavigationPositionResolver;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -77,6 +78,8 @@ import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MainFragment extends BaseFragment
         implements TabLayout.OnTabSelectedListener, BackPressable {
@@ -93,6 +96,7 @@ public class MainFragment extends BaseFragment
     private BottomNavigationView bottomNavigationView;
     private NavigationRailView navigationRailView;
     private SelectedTabsPagerAdapter pagerAdapter;
+    private Disposable homeGroupIconSubscription;
 
     private View contextualSearchContainer;
     private EditText contextualSearchEditText;
@@ -239,6 +243,7 @@ public class MainFragment extends BaseFragment
         updateBottomNavigationLabelVisibility();
         updateMainNavigationMode();
         scheduleBottomNavigationRemeasure();
+        observeHomeGroupIcons();
     }
 
     @Override
@@ -261,6 +266,7 @@ public class MainFragment extends BaseFragment
 
     @Override
     public void onPause() {
+        stopObservingHomeGroupIcons();
         setBottomNavigationRequestedVisibility(false);
         if (contextualSearchEditText != null) {
             KeyboardUtil.hideKeyboard(activity, contextualSearchEditText);
@@ -288,6 +294,7 @@ public class MainFragment extends BaseFragment
 
     @Override
     public void onDestroyView() {
+        stopObservingHomeGroupIcons();
         contextualSearchHandler.removeCallbacksAndMessages(null);
         if (binding != null) {
             ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), null);
@@ -430,6 +437,29 @@ public class MainFragment extends BaseFragment
                 && (contextualSearchTabPosition < 0
                 || contextualSearchTabPosition >= tabsList.size())) {
             closeContextualSearch();
+        }
+        if (isResumed()) {
+            observeHomeGroupIcons();
+        }
+    }
+
+    private void observeHomeGroupIcons() {
+        stopObservingHomeGroupIcons();
+        if (binding == null || !isAdded()) {
+            return;
+        }
+        homeGroupIconSubscription = HomeTabGroupIconSync.observe(
+                requireContext(), () -> tabsList, () -> {
+                    if (binding != null && isAdded()) {
+                        updateTabsIconAndDescription();
+                    }
+                });
+    }
+
+    private void stopObservingHomeGroupIcons() {
+        if (homeGroupIconSubscription != null) {
+            homeGroupIconSubscription.dispose();
+            homeGroupIconSubscription = null;
         }
     }
 

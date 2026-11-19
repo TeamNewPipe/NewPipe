@@ -47,11 +47,14 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 public class ChooseTabsFragment extends Fragment {
     private TabsManager tabsManager;
 
     private final List<Tab> tabList = new ArrayList<>();
     private ChooseTabsFragment.SelectedTabsAdapter selectedTabsAdapter;
+    private Disposable homeGroupIconSubscription;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -95,12 +98,33 @@ public class ChooseTabsFragment extends Fragment {
         super.onResume();
         ThemeHelper.setTitleToAppCompatActivity(getActivity(),
                 getString(R.string.main_page_content));
+        stopObservingGroupIcons();
+        homeGroupIconSubscription = HomeTabGroupIconSync.observe(
+                requireContext(), () -> tabList, () -> {
+                    if (selectedTabsAdapter != null && getView() != null) {
+                        selectedTabsAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override
     public void onPause() {
+        stopObservingGroupIcons();
         super.onPause();
         saveChanges();
+    }
+
+    @Override
+    public void onDestroyView() {
+        stopObservingGroupIcons();
+        super.onDestroyView();
+    }
+
+    private void stopObservingGroupIcons() {
+        if (homeGroupIconSubscription != null) {
+            homeGroupIconSubscription.dispose();
+            homeGroupIconSubscription = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

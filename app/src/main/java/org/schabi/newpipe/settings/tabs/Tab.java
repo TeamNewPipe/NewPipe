@@ -796,6 +796,8 @@ public abstract class Tab {
         private Long feedGroupId;
         private String feedGroupName;
         private int iconId;
+        // Live group icons are not serialized: a manual Home-tab override takes priority.
+        private int observedGroupIconId = DEFAULT_ICON_ID;
 
         private FeedGroupTab() {
             this((long) -1, NO_NAME, R.drawable.ic_asterisk);
@@ -826,7 +828,27 @@ public abstract class Tab {
         @DrawableRes
         @Override
         protected int getDefaultTabIconRes(final Context context) {
-            return iconId > 0 ? iconId : R.drawable.ic_asterisk;
+            final int defaultIcon = observedGroupIconId > 0 ? observedGroupIconId : iconId;
+            return defaultIcon > 0 ? defaultIcon : R.drawable.ic_asterisk;
+        }
+
+        /**
+         * Refresh the icon inherited from the source Channel Group without replacing an
+         * explicitly customized Home-tab icon or altering the saved tab identity.
+         *
+         * @param drawableRes the updated Channel Group icon drawable, or an invalid value
+         *                    to restore the last saved fallback icon
+         * @return whether the visible icon may have changed
+         */
+        public boolean setObservedGroupIcon(@DrawableRes final int drawableRes) {
+            // Resource identifiers may use the sign bit; compare only with our sentinels.
+            final int next = drawableRes == 0 || drawableRes == DEFAULT_ICON_ID
+                    ? DEFAULT_ICON_ID : drawableRes;
+            if (observedGroupIconId == next) {
+                return false;
+            }
+            observedGroupIconId = next;
+            return getCustomIconId() == DEFAULT_ICON_ID;
         }
 
         @Override
