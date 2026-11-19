@@ -23,6 +23,10 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onScreenRotationButtonClicked(boolean fullscreen);
 
+    /** Called when actual video dimensions become available during a fullscreen transition. */
+    default void onVideoContentOrientationChanged() {
+    }
+
     default void onManualFullscreenButtonClicked(final boolean fullscreen) {
         onScreenRotationButtonClicked(fullscreen);
     }

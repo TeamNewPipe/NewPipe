@@ -129,6 +129,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.playqueue.TimestampedPlayQueue;
 import org.schabi.newpipe.player.ui.FullscreenCommentsSidebar;
 import org.schabi.newpipe.player.ui.FullscreenOrientationPolicy;
+import org.schabi.newpipe.player.ui.FullscreenOrientationPreference;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.StartFullscreenRequest;
 import org.schabi.newpipe.player.ui.TvFullscreenFocusGuard;
@@ -3294,6 +3295,25 @@ public final class VideoDetailFragment
         requestFullscreenOrientation(fullscreen);
     }
 
+    @Override
+    public void onVideoContentOrientationChanged() {
+        if (player == null || !isAdded() || activity == null) {
+            return;
+        }
+        final MainPlayerUi ui = player.UIs().get(MainPlayerUi.class).orElse(null);
+        if (ui == null || !isPhoneVideoFullscreenEligible()) {
+            return;
+        }
+        // Do not enter fullscreen merely because a normal video reports its dimensions.
+        // When a fullscreen request is in flight, real dimensions supersede the temporary
+        // landscape fallback used while Media3 had not yet reported the aspect ratio.
+        final boolean entering =
+                pendingFullscreenState == FullscreenOrientationPolicy.ENTER_FULLSCREEN;
+        if (entering || ui.isFullscreen()) {
+            requestFullscreenOrientation(true);
+        }
+    }
+
     private void requestFullscreenOrientation(final boolean fullscreen) {
         final Optional<MainPlayerUi> playerUi = player == null
                 ? Optional.empty() : player.UIs().get(MainPlayerUi.class);
@@ -3321,8 +3341,8 @@ public final class VideoDetailFragment
                 ui == null
                         ? FullscreenOrientationPolicy.VideoContentOrientation.UNKNOWN
                         : ui.getVideoContentOrientation();
-        final int targetOrientation = FullscreenOrientationPolicy.targetConfigurationOrientation(
-                fullscreen, contentOrientation);
+        final int targetOrientation = FullscreenOrientationPreference.targetOrientation(
+                activity, fullscreen, contentOrientation);
         pendingFullscreenOrientation = targetOrientation;
         pendingFullscreenState = fullscreen
                 ? FullscreenOrientationPolicy.ENTER_FULLSCREEN
@@ -3333,8 +3353,7 @@ public final class VideoDetailFragment
         // the device cannot override the video's content orientation.
         if (FullscreenOrientationPolicy.isTargetOrientation(
                 currentOrientation, targetOrientation)) {
-            if (FullscreenOrientationPolicy.shouldLockPortraitFullscreen(
-                    fullscreen, contentOrientation)) {
+            if (fullscreen && targetOrientation == Configuration.ORIENTATION_PORTRAIT) {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
             if (ui != null) {

@@ -1363,26 +1363,16 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                         == FullscreenOrientationPolicy.VideoContentOrientation.PORTRAIT
                         || videoContentOrientation
                         == FullscreenOrientationPolicy.VideoContentOrientation.LANDSCAPE;
-        if (FullscreenOrientationPolicy.shouldAlignFullscreenToKnownContent(
-                isFullscreen,
-                previousContentOrientation,
-                videoContentOrientation)
-                && !DeviceUtils.isTv(context)
-                && !DeviceUtils.isTablet(context)) {
-            // Fullscreen can be entered before Media3 reports a valid size. Once the
-            // content orientation becomes known, align and lock the requested orientation.
+        if (!DeviceUtils.isTv(context) && !DeviceUtils.isTablet(context)
+                && (previousContentOrientation != videoContentOrientation
+                    || globalScreenOrientationLocked(context)
+                    && PlayerRotationMode.get(context) != PlayerRotationMode.FIXED
+                    && isFullscreen && orientationSpecificContent
+                    && isLandscape() == portraitVideo)) {
+            // The detail fragment knows about pending fullscreen requests. It can update an
+            // in-flight landscape request when metadata identifies a portrait video.
             player.getFragmentListener().ifPresent(
-                    listener -> listener.onScreenRotationButtonClicked(true));
-        } else if (globalScreenOrientationLocked(context)
-                && PlayerRotationMode.get(context) != PlayerRotationMode.FIXED
-                && isFullscreen
-                && orientationSpecificContent
-                && isLandscape() == portraitVideo
-                && !DeviceUtils.isTv(context)
-                && !DeviceUtils.isTablet(context)) {
-            // set correct orientation
-            player.getFragmentListener().ifPresent(
-                    listener -> listener.onScreenRotationButtonClicked(true));
+                    listener -> listener.onVideoContentOrientationChanged());
         }
 
         setupScreenRotationButton();

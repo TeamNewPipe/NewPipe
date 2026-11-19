@@ -51,7 +51,7 @@ public class FullscreenExitIntegrationTest {
                 "requestFullscreenOrientation(fullscreen)"));
         assertTrue(manual.contains(
                 "requestFullscreenOrientation(fullscreen)"));
-        assertTrue(rotation.contains("targetConfigurationOrientation("));
+        assertTrue(rotation.contains("FullscreenOrientationPreference.targetOrientation("));
         assertTrue(rotation.contains("pendingFullscreenState"));
         assertTrue(rotation.contains("SCREEN_ORIENTATION_PORTRAIT"));
         assertTrue(rotation.contains(

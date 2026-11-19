@@ -370,6 +370,17 @@
             app:iconSpaceReserved="false" />
 
         <ListPreference
+            android:key="fullscreen_orientation_preference"
+            android:defaultValue="auto"
+            android:entries="@array/fullscreen_orientation_entries"
+            android:entryValues="@array/fullscreen_orientation_values"
+            android:title="@string/fullscreen_orientation_title"
+            android:summary="@string/fullscreen_orientation_summary"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
             android:key="@string/player_rotation_mode_key"
             android:entries="@array/player_rotation_mode_entries"
             android:entryValues="@array/player_rotation_mode_values"

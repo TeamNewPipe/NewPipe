@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fullscreen_orientation_title">Fullscreen orientation</string>
+    <string name="fullscreen_orientation_summary">Automatically match the video, or always use portrait or landscape</string>
+    <string-array name="fullscreen_orientation_entries">
+        <item>Auto (match video)</item>
+        <item>Portrait fullscreen</item>
+        <item>Landscape fullscreen</item>
+    </string-array>
+    <string-array name="fullscreen_orientation_values" translatable="false">
+        <item>auto</item>
+        <item>portrait</item>
+        <item>landscape</item>
+    </string-array>
+</resources>
