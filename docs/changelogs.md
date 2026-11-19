@@ -4,6 +4,27 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.47.0 (`1047000`)
+
+### Playback and presentation
+
+- Choose Auto, Portrait or Landscape fullscreen orientation and correct portrait-video fullscreen behavior when video dimensions arrive.
+- Add optional fullscreen ambient glow using the existing thumbnail, disabled by default.
+- Preserve caption language preferences across videos and improve playback queue recovery.
+
+### Home, feeds and playlists
+
+- Collapse subscription channel groups independently for each profile.
+- Modernize the What's New refresh indicator with lightweight Material styling and reduced-motion support.
+- Improve large-feed pagination, move recommendation work off the main thread and reduce responsiveness delays.
+- Add more local playlist sorting options and allow selecting a Home startup tab.
+
+### Settings, imports and synchronization
+
+- Add shared collapsing headers throughout Settings.
+- Import search history from NewPipe backups and refine migration behavior.
+- Improve Device Sync diagnostics for received history events.
+
 ## WizeStream 1.46.0 (`1046000`)
 
 ### Playback and downloads
