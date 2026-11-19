@@ -983,113 +983,117 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         loadedState: FeedState.LoadedState,
         restoreListState: Boolean
     ) {
-        if (_feedBinding == null) {
-            return
-        }
+        if (_feedBinding == null) return
 
-        val itemVersion = when (getItemViewMode(requireContext())) {
+        val context = requireContext()
+        val applicationContext = context.applicationContext
+        val itemVersion = when (getItemViewMode(context)) {
             ItemViewMode.GRID -> StreamItem.ItemVersion.GRID
             ItemViewMode.CARD -> StreamItem.ItemVersion.CARD
             else -> StreamItem.ItemVersion.NORMAL
         }
-
-        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         val hideMembersOnly = shouldHideMembersOnlyInFeed(
-            MembersOnlyContentHelper.shouldHide(requireContext()),
+            MembersOnlyContentHelper.shouldHide(context),
             preferences.getBoolean(
                 getString(R.string.feed_show_members_only_items_key),
                 DEFAULT_SHOW_MEMBERS_ONLY_IN_FEED
             )
         )
-        val blockingRules = ContentBlockingHelper.getRules(
-            requireContext(),
-            ContentBlockingHelper.Target.SUBSCRIPTIONS
-        )
         val thresholdTime = readFeedCutoffDate(preferences)
             ?.atStartOfDay(ZoneId.systemDefault())
             ?.toOffsetDateTime()
         val shownStreamCategories = buildSet {
-            if (preferences.getBoolean(getString(R.string.feed_show_live_items_key), true)) {
-                add(StreamListFilter.LIVE)
-            }
-            if (preferences.getBoolean(getString(R.string.feed_show_video_items_key), true)) {
-                add(StreamListFilter.VIDEOS)
-            }
-            if (preferences.getBoolean(getString(R.string.feed_show_shorts_items_key), true)) {
-                add(StreamListFilter.SHORTS)
-            }
-            if (viewModel.getShowFutureItemsFromPreferences()) {
-                add(StreamListFilter.UPCOMING)
-            }
+            if (preferences.getBoolean(getString(R.string.feed_show_live_items_key), true)) add(StreamListFilter.LIVE)
+            if (preferences.getBoolean(getString(R.string.feed_show_video_items_key), true)) add(StreamListFilter.VIDEOS)
+            if (preferences.getBoolean(getString(R.string.feed_show_shorts_items_key), true)) add(StreamListFilter.SHORTS)
+            if (viewModel.getShowFutureItemsFromPreferences()) add(StreamListFilter.UPCOMING)
         }
         val selection = StreamFilterSelection.parse(selectedStreamFilters)
         val showWatched = viewModel.getShowPlayedItemsFromPreferences()
         val showPartiallyWatched = viewModel.getShowPartiallyPlayedItemsFromPreferences()
-        val streamFilteredItems = loadedState.items.filter { item ->
-            val streamWithState = item.streamWithState
-            if (hideMembersOnly && streamWithState.stream.requiresMembership) {
-                return@filter false
-            }
-            val stream = streamWithState.stream.toStreamInfoItem()
-            if (thresholdTime != null && stream.uploadDate?.offsetDateTime()?.isBefore(thresholdTime) == true) {
-                return@filter false
-            }
-            if (blockingRules.isBlocked(stream)) {
-                return@filter false
-            }
-            val state = streamWithState.stateProgressMillis?.let {
-                StreamStateEntity(streamWithState.stream.uid, it)
-            }
-            selection.matchesVisible(
-                stream,
-                state,
-                shownStreamCategories,
-                showWatched,
-                showPartiallyWatched
-            )
-        }
-        val searchedItems = ContextualSearchHelper.filter(
-            streamFilteredItems,
-            contextualSearchQuery
-        ) { item ->
-            val stream = item.streamWithState.stream
-            arrayOf(stream.title, stream.uploader)
-        }
+        val query = contextualSearchQuery
+        val byRelevance = viewModel.getSortMode() == FeedSortMode.RELEVANCE
         val request = ++relevanceSortRequest
         relevanceSortDisposable?.dispose()
         relevanceSortDisposable = null
-        if (viewModel.getSortMode() != FeedSortMode.RELEVANCE) {
-            applyFilteredFeedItems(loadedState, restoreListState, itemVersion, searchedItems)
-            return
-        }
 
-        val applicationContext = requireContext().applicationContext
+        // Filtering thousands of cached videos and their contextual search terms must
+        // not block tab transitions, list scrolling, or playback controls.
         relevanceSortDisposable = Single.fromCallable {
-            val rankingItems = searchedItems.map { it.streamWithState.stream.toStreamInfoItem() }
-            val relevanceOrder = LocalRecommendations.relevanceOrder(applicationContext, rankingItems)
-            if (relevanceOrder.isEmpty()) {
-                searchedItems
-            } else {
-                searchedItems.sortedBy { item ->
-                    val stream = item.streamWithState.stream
-                    relevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
+            val blockingRules = ContentBlockingHelper.getRules(
+                applicationContext,
+                ContentBlockingHelper.Target.SUBSCRIPTIONS
+            )
+            val streamFilteredItems = loadedState.items.filter { item ->
+                val streamWithState = item.streamWithState
+                if (hideMembersOnly && streamWithState.stream.requiresMembership) {
+                    return@filter false
                 }
+                val stream = streamWithState.stream.toStreamInfoItem()
+                if (thresholdTime != null && stream.uploadDate?.offsetDateTime()?.isBefore(thresholdTime) == true) {
+                    return@filter false
+                }
+                if (blockingRules.isBlocked(stream)) {
+                    return@filter false
+                }
+                val state = streamWithState.stateProgressMillis?.let {
+                    StreamStateEntity(streamWithState.stream.uid, it)
+                }
+                selection.matchesVisible(
+                    stream,
+                    state,
+                    shownStreamCategories,
+                    showWatched,
+                    showPartiallyWatched
+                )
+            }
+            val searchedItems = ContextualSearchHelper.filter(
+                streamFilteredItems,
+                query
+            ) { item ->
+                val stream = item.streamWithState.stream
+                arrayOf(stream.title, stream.uploader)
+            }
+            val orderedItems = if (byRelevance) {
+                val rankingItems = searchedItems.map { it.streamWithState.stream.toStreamInfoItem() }
+                val relevanceOrder = LocalRecommendations.relevanceOrder(applicationContext, rankingItems)
+                if (relevanceOrder.isEmpty()) {
+                    searchedItems
+                } else {
+                    searchedItems.sortedBy { item ->
+                        val stream = item.streamWithState.stream
+                        relevanceOrder["${stream.serviceId}:${stream.url}"] ?: Int.MAX_VALUE
+                    }
+                }
+            } else {
+                searchedItems
+            }
+            // Preparing immutable Groupie items here avoids another full-list copy
+            // on the UI thread; UI controllers are still attached on the main thread.
+            orderedItems.map { item ->
+                val highlighted = loadedState.highlightAfter?.let {
+                    shouldHighlightFeedStream(item.streamWithState.stream, it)
+                } == true
+                item.copy(itemVersion = itemVersion, isHighlighted = highlighted)
             }
         }
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { orderedItems ->
+                { preparedItems ->
                     if (request == relevanceSortRequest && _feedBinding != null) {
                         relevanceSortDisposable = null
-                        applyFilteredFeedItems(loadedState, restoreListState, itemVersion, orderedItems)
+                        applyFilteredFeedItems(loadedState, restoreListState, preparedItems)
                     }
                 },
                 { error ->
-                    Log.e(TAG, "Unable to rank the feed by relevance", error)
+                    Log.e(TAG, "Unable to filter subscription feed", error)
                     if (request == relevanceSortRequest && _feedBinding != null) {
                         relevanceSortDisposable = null
-                        applyFilteredFeedItems(loadedState, restoreListState, itemVersion, searchedItems)
+                        // Do not show unfiltered data after a filtering error:
+                        // blocked items or excluded categories could become visible.
+                        showError(ErrorInfo(error, UserAction.REQUESTED_FEED, "Filtering feed"))
                     }
                 }
             )
@@ -1098,19 +1102,13 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     private fun applyFilteredFeedItems(
         loadedState: FeedState.LoadedState,
         restoreListState: Boolean,
-        itemVersion: StreamItem.ItemVersion,
-        orderedItems: List<StreamItem>
+        preparedItems: List<StreamItem>
     ) {
-        val displayedItems = orderedItems.map { item ->
-            val highlighted = loadedState.highlightAfter?.let {
-                shouldHighlightFeedStream(item.streamWithState.stream, it)
-            } == true
-            item.copy(itemVersion = itemVersion, isHighlighted = highlighted).also { displayItem ->
-                displayItem.noteBadges = noteBadges
-                displayItem.previewController = feedPreview?.let { WeakReference(it) }
-                displayItem.quickAddController = feedQuickAdd?.let { WeakReference(it) }
-                displayItem.onUploaderSelected = ::openUploaderChannel
-            }
+        preparedItems.forEach { displayItem ->
+            displayItem.noteBadges = noteBadges
+            displayItem.previewController = feedPreview?.let { WeakReference(it) }
+            displayItem.quickAddController = feedQuickAdd?.let { WeakReference(it) }
+            displayItem.onUploaderSelected = ::openUploaderChannel
         }
 
         val completion = loadedState.refreshCompletion
@@ -1121,14 +1119,14 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 pendingListUpdate = null
                 streamSelection?.refresh()
                 if (latestLoadedState?.refreshCompletion === completion &&
-                    completion?.announceIfNew(displayedItems) == true
+                    completion?.announceIfNew(preparedItems) == true
                 ) {
                     showNewItemsLoaded()
                 }
             }
         }
         pendingListUpdate = listener
-        groupAdapter.updateAsync(displayedItems, false, listener)
+        groupAdapter.updateAsync(preparedItems, false, listener)
 
         if (restoreListState) {
             listState?.run {
@@ -1146,8 +1144,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 R.string.empty_list_subtitle
             }
         )
-        if (feedHasContent != displayedItems.isNotEmpty()) {
-            if (displayedItems.isEmpty()) showEmptyState() else hideLoading()
+        if (feedHasContent != preparedItems.isNotEmpty()) {
+            if (preparedItems.isEmpty()) showEmptyState() else hideLoading()
         }
     }
 
