@@ -411,7 +411,12 @@
                         android:layout_height="wrap_content"
                         android:fillViewport="true"
                         android:overScrollMode="ifContentScrolls"
-                        android:scrollbars="none"
+                        android:scrollbars="horizontal"
+                        android:fadeScrollbars="false"
+                        android:scrollbarSize="3dp"
+                        android:scrollbarStyle="insideOverlay"
+                        android:requiresFadingEdge="horizontal"
+                        android:fadingEdgeLength="20dp"
                         android:visibility="invisible"
                         tools:ignore="RtlHardcoded"
                         tools:visibility="visible">

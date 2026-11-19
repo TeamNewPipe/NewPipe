@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -95,6 +96,12 @@ class PlayerSecondaryControlsLayoutTest {
             assertTrue(captionRightInContent <= secondaryControls.width)
             assertTrue(abRepeat.right <= secondaryControls.width)
             assertTrue(content.width > secondaryControls.width)
+            // Portrait actions beyond the initial viewport must be discoverable and reachable.
+            assertTrue(secondaryControls.isHorizontalScrollBarEnabled)
+            assertFalse(secondaryControls.isScrollbarFadingEnabled)
+            secondaryControls.scrollTo(content.width - secondaryControls.width, 0)
+            val mute = root.findViewById<View>(R.id.switchMute)
+            assertTrue(mute.right - secondaryControls.scrollX <= secondaryControls.width)
         }
     }
 
