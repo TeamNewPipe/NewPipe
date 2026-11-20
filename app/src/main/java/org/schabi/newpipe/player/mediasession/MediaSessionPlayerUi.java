@@ -26,7 +26,6 @@ import org.schabi.newpipe.player.notification.NotificationActionData;
 import org.schabi.newpipe.player.notification.NotificationConstants;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
-import org.schabi.newpipe.util.StreamTypeUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -195,19 +194,11 @@ public class MediaSessionPlayerUi extends PlayerUi
             @NonNull
             @Override
             public MediaMetadata getMediaMetadata() {
-                final MediaMetadata current = super.getMediaMetadata();
-                final MediaMetadata.Builder builder = current.buildUpon()
-                        .setTitle(player.getVideoTitle())
-                        .setArtist(player.getUploaderName());
-
-                final long durationMs = Optional.ofNullable(player.getCurrentMetadata())
-                        .filter(tag -> !StreamTypeUtil.isLiveStream(tag.getStreamType()))
-                        .map(tag -> tag.getDurationSeconds() * 1000L)
-                        .orElse(C.TIME_UNSET);
-                if (durationMs != C.TIME_UNSET) {
-                    builder.setDurationMs(durationMs);
-                }
-                return builder.build();
+                // Preserve the MediaItem metadata until the resolved tag is available.
+                // Overriding it with WizeStream's "Unknown" display fallback can make
+                // Android System UI lose the video's title and artist during transitions.
+                return MediaSessionMetadataPolicy.merge(
+                        super.getMediaMetadata(), player.getCurrentMetadata());
             }
         };
     }
