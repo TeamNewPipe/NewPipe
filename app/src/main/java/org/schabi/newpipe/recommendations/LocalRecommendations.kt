@@ -455,11 +455,31 @@ object LocalRecommendations {
         val ignoredInterests: Set<String> = emptySet()
     )
 
-    private data class Candidate(val service: Int, val url: String, val name: String, val uploader: String, val channel: String, val thumbnail: String, val duration: Long, val short: Boolean, val audio: Boolean, val views: Long, val uploaded: Long) {
+    private data class Candidate(
+        val service: Int,
+        val url: String,
+        val name: String,
+        val uploader: String,
+        val channel: String,
+        val thumbnail: String,
+        val avatar: String,
+        val duration: Long,
+        val short: Boolean,
+        val audio: Boolean,
+        val views: Long,
+        val uploaded: Long
+    ) {
         val channelKey: String? get() = LocalRecommendations.channelId(service, channel, uploader)
-        fun item() = StreamInfoItem(service, url, name, if (audio) StreamType.AUDIO_STREAM else StreamType.VIDEO_STREAM).also {
+
+        fun item() = StreamInfoItem(
+            service,
+            url,
+            name,
+            if (audio) StreamType.AUDIO_STREAM else StreamType.VIDEO_STREAM
+        ).also {
             it.uploaderName = uploader
             it.uploaderUrl = channel
+            it.uploaderAvatarUrl = avatar
             it.thumbnailUrl = thumbnail
             it.duration = duration
             it.isShortFormContent = short
@@ -468,15 +488,54 @@ object LocalRecommendations {
                 it.uploadDate = DateWrapper(OffsetDateTime.ofInstant(Instant.ofEpochMilli(uploaded), ZoneOffset.UTC))
             }
         }
-        fun json() = JSONObject().put("service", service).put("url", url).put("name", name).put("uploader", uploader)
-            .put("channel", channel).put("thumbnail", thumbnail).put("duration", duration).put("short", short).put("audio", audio)
-            .put("views", views).put("uploaded", uploaded)
+
+        fun json() = JSONObject()
+            .put("service", service)
+            .put("url", url)
+            .put("name", name)
+            .put("uploader", uploader)
+            .put("channel", channel)
+            .put("thumbnail", thumbnail)
+            .put("avatar", avatar)
+            .put("duration", duration)
+            .put("short", short)
+            .put("audio", audio)
+            .put("views", views)
+            .put("uploaded", uploaded)
+
         companion object {
-            fun from(item: StreamInfoItem) = Candidate(item.serviceId, item.url.take(2048), item.name.take(300), item.uploaderName.orEmpty().take(200), item.uploaderUrl.orEmpty().take(2048), item.thumbnailUrl.orEmpty().take(2048), item.duration, item.isShortFormContent, item.streamType == StreamType.AUDIO_STREAM, item.viewCount, item.uploadDate?.offsetDateTime()?.toInstant()?.toEpochMilli() ?: -1)
-            fun parse(json: JSONObject) = Candidate(json.getInt("service"), json.getString("url"), json.getString("name"), json.optString("uploader"), json.optString("channel"), json.optString("thumbnail"), json.optLong("duration", -1), json.optBoolean("short"), json.optBoolean("audio"), json.optLong("views", -1), json.optLong("uploaded", -1))
+            fun from(item: StreamInfoItem) = Candidate(
+                item.serviceId,
+                item.url.take(2048),
+                item.name.take(300),
+                item.uploaderName.orEmpty().take(200),
+                item.uploaderUrl.orEmpty().take(2048),
+                item.thumbnailUrl.orEmpty().take(2048),
+                item.uploaderAvatarUrl.orEmpty().take(2048),
+                item.duration,
+                item.isShortFormContent,
+                item.streamType == StreamType.AUDIO_STREAM,
+                item.viewCount,
+                item.uploadDate?.offsetDateTime()?.toInstant()?.toEpochMilli() ?: -1
+            )
+
+            fun parse(json: JSONObject) = Candidate(
+                json.getInt("service"),
+                json.getString("url"),
+                json.getString("name"),
+                json.optString("uploader"),
+                json.optString("channel"),
+                json.optString("thumbnail"),
+                // Older on-device recommendation models have no avatar field.
+                json.optString("avatar"),
+                json.optLong("duration", -1),
+                json.optBoolean("short"),
+                json.optBoolean("audio"),
+                json.optLong("views", -1),
+                json.optLong("uploaded", -1)
+            )
         }
     }
-
     private fun read(context: Context, profileId: String = profile(context)): Model = try {
         val json = JSONObject(prefs(context).getString("$profileId:model", "{}").orEmpty())
         val model = Model(ignoredInterests = ignoredInterests(context, profileId))

@@ -70,6 +70,23 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun forYouPreservesChannelAvatarsAcrossModelPersistence() {
+        enable()
+        val avatarUrl = "https://example.org/channel-avatar.jpg"
+        val astronomy = item("astronomy").apply { uploaderAvatarUrl = avatarUrl }
+        LocalRecommendations.observe(context, listOf(astronomy))
+
+        assertEquals(avatarUrl, LocalRecommendations.feed(context, 0).single().uploaderAvatarUrl)
+        val stored = model()
+        assertEquals(avatarUrl, stored.getJSONArray("candidates").getJSONObject(0).getString("avatar"))
+
+        // Existing users may have saved recommendations from before this field was added.
+        stored.getJSONArray("candidates").getJSONObject(0).remove("avatar")
+        prefs.edit().putString("$profile:model", stored.toString()).commit()
+        assertEquals(1, LocalRecommendations.feed(context, 0).size)
+    }
+
+    @Test
     fun feedSnapshotMatchesFeedAndInterestSummary() {
         enable()
         search("astronomy galaxies")
