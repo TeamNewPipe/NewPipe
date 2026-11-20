@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.ui;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.schabi.newpipe.MainActivity.DEBUG;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getMinimumVideoHeight;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -30,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 
+import androidx.media3.common.VideoSize;
 import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.media3.ui.SubtitleView;
 
@@ -39,7 +39,6 @@ import org.schabi.newpipe.databinding.PlayerPopupCloseOverlayBinding;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.gesture.BasePlayerGestureListener;
 import org.schabi.newpipe.player.gesture.PopupPlayerGestureListener;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.util.DeviceUtils;
 
 public final class PopupPlayerUi extends VideoPlayerUi {
@@ -69,6 +68,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
 
     private int screenWidth;
     private int screenHeight;
+    private int preferredPopupWidth;
+    private float popupVideoAspectRatio = 16f / 9f;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Popup player window manager
@@ -228,7 +229,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         super.onBroadcastReceived(intent);
         if (Intent.ACTION_CONFIGURATION_CHANGED.equals(intent.getAction())) {
             updateScreenSize();
-            changePopupSize(popupLayoutParams.width);
+            changePopupSize(preferredPopupWidth > 0
+                    ? preferredPopupWidth : popupLayoutParams.width);
             checkPopupPositionBounds();
         } else if (player.isPlaying() || player.isLoading()) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
@@ -294,30 +296,54 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     /**
-     * Changes the size of the popup based on the width.
-     * @param width the new width, height is calculated with
-     *              {@link PlayerHelper#getMinimumVideoHeight(float)}
+     * Resize a popup using the video's decoded portrait ratio when available.
+     * User-resized width is kept separately so portrait height constraints do not overwrite it.
+     * @param width desired popup width
      */
     public void changePopupSize(final int width) {
-        if (DEBUG) {
-            Log.d(TAG, "changePopupSize() called with: width = [" + width + "]");
-        }
+        preferredPopupWidth = Math.max(1, width);
+        applyPopupVideoSize();
+    }
 
+    @Override
+    public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
+        super.onVideoSizeChanged(videoSize);
+        if (videoSize.width <= 0 || videoSize.height <= 0 || isSphericalVideo()) {
+            return;
+        }
+        final float ratio = PlayerVideoGeometry.calculate(videoSize.width, videoSize.height,
+                videoSize.unappliedRotationDegrees, videoSize.pixelWidthHeightRatio);
+        if (ratio <= 0.0f || popupVideoAspectRatio == ratio) {
+            return;
+        }
+        popupVideoAspectRatio = ratio;
+        applyPopupVideoSize();
+    }
+
+    @Override
+    public void onMediaItemTransition() {
+        super.onMediaItemTransition();
+        popupVideoAspectRatio = 16f / 9f;
+        applyPopupVideoSize();
+    }
+
+    private void applyPopupVideoSize() {
         if (anyPopupViewIsNull()) {
             return;
         }
-
-        final float minimumWidth = context.getResources().getDimension(R.dimen.popup_minimum_width);
-        final int actualWidth = MathUtils.clamp(width, (int) minimumWidth, screenWidth);
-        final int actualHeight = (int) getMinimumVideoHeight(width);
-        if (DEBUG) {
-            Log.d(TAG, "updatePopupSize() updated values:"
-                    + "  width = [" + actualWidth + "], height = [" + actualHeight + "]");
+        final int minWidth = context.getResources().getDimensionPixelSize(
+                R.dimen.popup_minimum_width);
+        final PopupVideoSizing.Size size = PopupVideoSizing.fit(
+                preferredPopupWidth > 0 ? preferredPopupWidth : popupLayoutParams.width,
+                screenWidth, screenHeight, minWidth, popupVideoAspectRatio);
+        if (popupLayoutParams.width == size.getWidth()
+                && popupLayoutParams.height == size.getHeight()) {
+            return;
         }
-
-        popupLayoutParams.width = actualWidth;
-        popupLayoutParams.height = actualHeight;
-        binding.surfaceView.setHeights(popupLayoutParams.height, popupLayoutParams.height);
+        popupLayoutParams.width = size.getWidth();
+        popupLayoutParams.height = size.getHeight();
+        binding.surfaceView.setHeights(size.getHeight(), size.getHeight());
+        checkPopupPositionBounds();
         windowManager.updateViewLayout(binding.getRoot(), popupLayoutParams);
     }
 
@@ -504,18 +530,22 @@ public final class PopupPlayerUi extends VideoPlayerUi {
         final float popupWidth = popupRememberSizeAndPos
                 ? prefs.getFloat(context.getString(R.string.popup_saved_width_key), defaultSize)
                 : defaultSize;
-        final float popupHeight = getMinimumVideoHeight(popupWidth);
+        preferredPopupWidth = Math.max(1, (int) popupWidth);
+        final PopupVideoSizing.Size size = PopupVideoSizing.fit(
+                preferredPopupWidth, screenWidth, screenHeight,
+                context.getResources().getDimensionPixelSize(R.dimen.popup_minimum_width),
+                popupVideoAspectRatio);
 
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                (int) popupWidth, (int) popupHeight,
+                size.getWidth(), size.getHeight(),
                 popupLayoutParamType(),
                 IDLE_WINDOW_FLAGS,
                 PixelFormat.TRANSLUCENT);
         params.gravity = Gravity.LEFT | Gravity.TOP;
         params.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
-        final int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
-        final int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
+        final int centerX = (screenWidth - size.getWidth()) / 2;
+        final int centerY = (screenHeight - size.getHeight()) / 2;
         params.x = popupRememberSizeAndPos
                 ? prefs.getInt(context.getString(R.string.popup_saved_x_key), centerX) : centerX;
         params.y = popupRememberSizeAndPos
@@ -529,7 +559,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
             final Context context = getPlayer().getContext();
             getPlayer().getPrefs().edit()
                     .putFloat(context.getString(R.string.popup_saved_width_key),
-                            popupLayoutParams.width)
+                            preferredPopupWidth > 0 ? preferredPopupWidth : popupLayoutParams.width)
                     .putInt(context.getString(R.string.popup_saved_x_key),
                             popupLayoutParams.x)
                     .putInt(context.getString(R.string.popup_saved_y_key),
