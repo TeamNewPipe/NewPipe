@@ -30,6 +30,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.ktx.getStringSafe
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.FeedScope
+import org.schabi.newpipe.local.feed.archive.withFeedArchive
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.ChannelTabHelper
@@ -39,7 +40,7 @@ import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
 
 class FeedLoadManager @JvmOverloads constructor(
     private val context: Context,
-    profileId: String = ProfileManager.getActiveProfileId(context)
+    private val profileId: String = ProfileManager.getActiveProfileId(context)
 ) {
 
     private val subscriptionManager = SubscriptionManager(context, profileId)
@@ -393,6 +394,7 @@ class FeedLoadManager @JvmOverloads constructor(
     private inner class DatabaseConsumer : Consumer<Notification<FeedUpdateInfo>> {
 
         override fun accept(notification: Notification<FeedUpdateInfo>) {
+            var archiveItems: List<StreamInfoItem>? = null
             feedDatabaseManager.database().runInTransaction {
                 when {
                     notification.isOnNext -> {
@@ -415,6 +417,7 @@ class FeedLoadManager @JvmOverloads constructor(
                             isComplete = info.errors.isEmpty()
                         )
                         subscriptionManager.updateFromInfo(info)
+                        archiveItems = info.streams
 
                         if (info.errors.isNotEmpty()) {
                             feedResultsHolder.addErrors(
@@ -446,6 +449,14 @@ class FeedLoadManager @JvmOverloads constructor(
                                 updateModeMask
                             )
                         }
+                    }
+                }
+            }
+            // Archive only after the Room write succeeds, without retaining it in the feed UI.
+            archiveItems?.let { streams ->
+                runCatching {
+                    withFeedArchive(context) { archive ->
+                        archive.record(profileId, streams)
                     }
                 }
             }

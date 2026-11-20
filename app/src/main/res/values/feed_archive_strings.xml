@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feed_archive_title">Archived feed</string>
+    <string name="feed_archive_page">Archived feed • Page %1$d</string>
+    <string name="feed_archive_settings">Feed archive retention</string>
+    <string name="feed_archive_off">Off (clear archived items)</string>
+    <string name="feed_archive_30">30 days · 2,500 items</string>
+    <string name="feed_archive_90">90 days · 5,000 items</string>
+    <string name="feed_archive_180">180 days · 10,000 items</string>
+    <string name="feed_archive_older">Older</string>
+    <string name="feed_archive_newer">Newer</string>
+    <string name="feed_archive_error">Unable to load archived feed</string>
+</resources>

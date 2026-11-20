@@ -19,6 +19,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_item_feed_archive"
+        android:title="@string/feed_archive_title"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_item_feed_sort"
         android:title="@string/feed_sort_title"
         app:showAsAction="never" />

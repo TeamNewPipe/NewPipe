@@ -89,6 +89,7 @@ import org.schabi.newpipe.ktx.animateHideRecyclerViewAllowingScrolling
 import org.schabi.newpipe.ktx.slideUp
 import org.schabi.newpipe.learning.VideoNoteBadges
 import org.schabi.newpipe.local.actions.RecentActionsDialog
+import org.schabi.newpipe.local.feed.archive.FeedArchiveDialog
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.search.ContextualSearchHelper
@@ -434,7 +435,10 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_item_recent_actions) {
+        if (item.itemId == R.id.menu_item_feed_archive) {
+            FeedArchiveDialog.show(this)
+            return true
+        } else if (item.itemId == R.id.menu_item_recent_actions) {
             RecentActionsDialog.show(this)
             return true
         } else if (item.itemId == R.id.menu_item_feed_refresh_all) {
