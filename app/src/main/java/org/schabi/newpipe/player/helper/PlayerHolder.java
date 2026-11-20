@@ -286,6 +286,13 @@ public final class PlayerHolder {
                 }
 
                 @Override
+                public void onPortraitFullscreenRequested() {
+                    if (listener != null) {
+                        listener.onPortraitFullscreenRequested();
+                    }
+                }
+
+                @Override
                 public void onMoreOptionsLongClicked() {
                     if (listener != null) {
                         listener.onMoreOptionsLongClicked();

@@ -921,11 +921,16 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (globalScreenOrientationLocked(context)
                 && isFullscreen
                 && isLandscape() == isVerticalVideo
-                && !DeviceUtils.isTv(context)
-                && !DeviceUtils.isTablet(context)) {
-            // set correct orientation
-            player.getFragmentListener().ifPresent(
-                    PlayerServiceEventListener::onScreenRotationButtonClicked);
+                && !DeviceUtils.isTv(context)) {
+            if (!DeviceUtils.isTablet(context)) {
+                player.getFragmentListener().ifPresent(
+                        PlayerServiceEventListener::onScreenRotationButtonClicked);
+            } else if (isVerticalVideo
+                    && PlayerHelper.isStartMainPlayerFullscreenEnabled(context)) {
+                // The tablet's rotation button toggles fullscreen instead of rotating.
+                player.getFragmentListener().ifPresent(
+                        PlayerServiceEventListener::onPortraitFullscreenRequested);
+            }
         }
 
         setupScreenRotationButton();
