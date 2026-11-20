@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#release-1048000">WizeStream 1.48.0</a></li>
 <li><a href="#release-1047000">WizeStream 1.47.0</a></li>
 <li><a href="#release-1046000">WizeStream 1.46.0</a></li>
 <li><a href="#release-1045000">WizeStream 1.45.0</a></li>
@@ -117,6 +118,31 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="release-1048000" data-version="1.48.0" data-version-code="1048000">
+<h2>WizeStream 1.48.0</h2>
+<div class="release-notes">
+<h3>Playback and reliability</h3>
+<ul>
+<li>Stabilize high-speed popup quality changes and fit portrait videos to the popup window.</li>
+<li>Keep recently ended livestreams playing through temporary background transitions.</li>
+<li>Present upcoming livestreams as Upcoming/Waiting without trying to play unavailable sources.</li>
+<li>Restore appropriate popup, background and download controls for livestreams, and improve live-chat tab visibility.</li>
+</ul>
+<h3>Feeds, recommendations and interface</h3>
+<ul>
+<li>Add an opt-in, per-profile feed archive with bounded retention and cleanup on profile deletion.</li>
+<li>Load older cached feed videos progressively, with an optional deeper YouTube channel-history fetch.</li>
+<li>Restore channel avatars in For You and local-like controls on video details.</li>
+<li>Add faster list scrolling, comment display controls and a limited Recent Actions undo menu.</li>
+</ul>
+<h3>Synchronization, downloads and tests</h3>
+<ul>
+<li>Retry additional temporary peer network failures during Device Sync.</li>
+<li>Keep downloaded captions with the selected video destination and improve offline subtitle handling.</li>
+<li>Improve Android emulator graphics test reliability while retaining physical-device assertions.</li>
+</ul>
+</div>
+</section>
 <section id="release-1047000" data-version="1.47.0" data-version-code="1047000">
 <h2>WizeStream 1.47.0</h2>
 <div class="release-notes">

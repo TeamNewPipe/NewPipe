@@ -4,6 +4,28 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.48.0 (`1048000`)
+
+### Playback and reliability
+
+- Stabilize high-speed popup quality changes and fit portrait videos to the popup window.
+- Keep recently ended livestreams playing through temporary background transitions.
+- Present upcoming livestreams as Upcoming/Waiting without trying to play unavailable sources.
+- Restore appropriate popup, background and download controls for livestreams, and improve live-chat tab visibility.
+
+### Feeds, recommendations and interface
+
+- Add an opt-in, per-profile feed archive with bounded retention and cleanup on profile deletion.
+- Load older cached feed videos progressively, with an optional deeper YouTube channel-history fetch.
+- Restore channel avatars in For You and local-like controls on video details.
+- Add faster list scrolling, comment display controls and a limited Recent Actions undo menu.
+
+### Synchronization, downloads and tests
+
+- Retry additional temporary peer network failures during Device Sync.
+- Keep downloaded captions with the selected video destination and improve offline subtitle handling.
+- Improve Android emulator graphics test reliability while retaining physical-device assertions.
+
 ## WizeStream 1.47.0 (`1047000`)
 
 ### Playback and presentation

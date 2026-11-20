@@ -1,0 +1,1 @@
+Stabilize high-speed and portrait popup playback, improve recently ended and upcoming livestreams, and restore live chat and local likes. Add opt-in feed archiving and deeper YouTube history retrieval, better comments and fast scrolling, and bounded Recent Actions undo. Improve Device Sync retries, caption downloads and playback-related tests.
