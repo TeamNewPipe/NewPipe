@@ -87,7 +87,7 @@
     <string name="could_not_setup_download_menu">Latausvalikkoa ei voitu asettaa</string>
     <string name="app_ui_crash">Sovellus/UI kaatui</string>
     <string name="sorry_string">Pahoittelut, noin ei olisi pitänyt käydä.</string>
-    <string name="error_report_button_text">Raportoi sähköpostin kautta</string>
+    <string name="error_report_button_text">Ilmoita sähköpostitse</string>
     <string name="error_snackbar_message">Pahoittelut, jokin meni vikaan.</string>
     <string name="error_snackbar_action">Raportti</string>
     <string name="what_happened_headline">Mitä tapahtui:</string>

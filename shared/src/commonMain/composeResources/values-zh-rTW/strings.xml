@@ -38,4 +38,21 @@
     <string name="settings_category_updates_title">更新</string>
     <string name="settings_category_backup_restore_title">備份與還原</string>
     <string name="settings_category_debug_title">除錯</string>
+    <string name="theme_title">主題</string>
+    <string name="light_theme_title">淺色</string>
+    <string name="dark_theme_title">深色</string>
+    <string name="black_theme_title">黑色</string>
+    <string name="auto_device_theme_title">自動（裝置佈景主題）</string>
+    <string name="night_theme_title">夜間佈景主題</string>
+    <string name="night_theme_summary">選擇你喜歡的深色主題 — %1$s</string>
+    <string name="night_theme_available">此選項僅在主題為%1$s時可用</string>
+    <string name="select_night_theme_toast">你可以在下方選擇你喜歡的深色主題</string>
+    <string name="tablet_mode_title">平板模式</string>
+    <string name="main_tabs_position_title">主分頁位子</string>
+    <string name="main_tabs_position_summary">將主分頁選擇器移至底部</string>
+    <string name="auto">自動</string>
+    <string name="on">開</string>
+    <string name="off">關</string>
+    <string name="list">清單</string>
+    <string name="grid">表格</string>
 </resources>

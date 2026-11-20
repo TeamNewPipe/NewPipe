@@ -236,7 +236,7 @@
     <string name="resize_fill">채우기</string>
     <string name="resize_zoom">확대</string>
     <string name="caption_auto_generated">자동 생성됨</string>
-    <string name="enable_leak_canary_summary">메모리 누수 감시를 사용할 시 힙 덤프로 인해 앱이 반응하지 않을 수 있습니다</string>
+    <string name="enable_leak_canary_summary">메모리 누수 모니터링 과정에서 힙 덤프를 생성하면 앱이 일시적으로 응답하지 않을 수 있습니다</string>
     <string name="enable_disposed_exceptions_title">out-of-lifecycle 오류 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
     <string name="file">파일</string>
@@ -607,8 +607,8 @@
     <string name="unknown_quality">알 수 없는 품질</string>
     <string name="show_original_time_ago_title">항목에 원래 시간 전 표시</string>
     <string name="feed_load_error">피드를 불러오는 중 오류</string>
-    <string name="leak_canary_not_available">LeakCanary를 사용할 수 없습니다</string>
-    <string name="show_memory_leaks">메모리 누수 표시</string>
+    <string name="leak_canary_not_available">LeakCanary를 사용할 수 없음</string>
+    <string name="show_memory_leaks">메모리 누수 보기</string>
     <string name="feed_update_threshold_title">피드 업데이트 임계값</string>
     <string name="feed_update_threshold_summary">마지막 업데이트 후 구독이 오래된 것으로 간주되기 전의 시간 — %s</string>
     <string name="feed_update_threshold_option_always_update">항상 업데이트</string>

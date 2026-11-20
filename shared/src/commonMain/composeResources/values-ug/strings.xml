@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">قايتىش</string>
+    <string name="title_activity_about">NewPipe ھەققىدە:</string>
+    <string name="title_licenses">ئۈچىنچى تەرەپ ئىجازەتنامىلىرى</string>
+    <string name="license">%2$ s نىڭ ئاستىدىكى %1$ s تەرىپىدىن</string>
+    <string name="tab_about">ھەققىدە ۋە كۆپ سورىلىدىغان سوئاللار</string>
+    <string name="tab_licenses">ئىجازەتنامىلەر</string>
+    <string name="app_description">ئاندروئىد سىستېمىسىدا ھەقسىز يېنىك دەرىجىدىكى توردا تارقىتىش.</string>
+    <string name="contribution_title">تۆھپە قوشۇش</string>
+    <string name="contribution_encouragement">تەرجىمە، لايىھە ئۆزگەرتىش، كود تازىلاش ياكى كودنى ئېغىر دەرىجىدە ئۆزگەرتىش قاتارلىق ئىدىيەلىرىڭىز بولسۇن، ياردەمگە ھەمىشە قارشى ئالىمىز. قانچە كۆپ ئىش قىلىنسا، شۇنچە ياخشى بولىدۇ!</string>
+    <string name="view_on_github">GitHub (ئامبار) دا كۆرۈش</string>
+    <string name="donation_title">ئىئانە قىلىڭ</string>
+    <string name="donation_encouragement">NewPipe پىدائىيلار تەرىپىدىن بوش ۋاقتىنى سەرپ قىلىپ، سىزگە ئەڭ ياخشى ئىشلەتكۈچى تەجرىبىسىنى ئېلىپ كېلىش ئۈچۈن ئىجاد قىلىنغان. ئاچقۇچىلار بىر ئىستاكان قەھۋە ئىچىپ تۇرۇپ، NewPipe نى تېخىمۇ ياخشىلىشىغا ياردەم بېرىش ئۈچۈن ئىئانە قىلىش</string>
+    <string name="website_title">تور بېكەت</string>
+    <string name="privacy_policy_encouragement">NewPipe تۈرى سىزنىڭ شەخسىي مەخپىيەتلىكىڭىزگە ئىنتايىن ئەھمىيەت بېرىدۇ. شۇڭا، بۇ ئەپ سىزنىڭ رۇخسىتىڭىزسىز ھېچقانداق سانلىق مەلۇمات توپلىمايدۇ.\n\nNewPipe نىڭ مەخپىيەتلىك سىياسىتىدە، سىز خاتالىق دوكلاتىنى ئەۋەتكەندە قانداق سانلىق مەلۇماتلارنىڭ ئەۋەتىلىشى ۋە ساقلىنىشى تەپسىلىي چۈشەندۈرۈلگەن.</string>
+</resources>

@@ -1,0 +1,5 @@
+Jest to aktualizacja typu hotfix, która rozwiązuje ostatnie problemy związane z serwisami Bandcamp i SoundCloud.
+
+[SoundCloud] Naprawiono problem wyodrębniania strumieni audio poprzez dodanie obsługi strumieni audio w formacie aac_96k
+[Bandcamp] Pominięto weryfikację klienta
+[Bandcamp] Naprawiono działanie wyszukiwania przy korzystaniu z treści w języku innym niż angielski

@@ -38,4 +38,7 @@
     <string name="settings_category_updates_title">ਅੱਪਡੇਟਾਂ</string>
     <string name="settings_category_backup_restore_title">ਬੈਕਅੱਪ ਅਤੇ ਰੀਸਟੋਰ</string>
     <string name="settings_category_debug_title">ਡੀ-ਬੱਗ</string>
+    <string name="channel_tab_podcasts">ਪੌਡਕਾਸਟ</string>
+    <string name="channel_tab_courses">ਪਾਠਕ੍ਰਮ</string>
+    <string name="channel_tab_videos">ਵੀਡੀਓਜ਼</string>
 </resources>
