@@ -5,4 +5,9 @@
         android:title="@string/restore_defaults"
         android:icon="@drawable/ic_settings_backup_restore"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_edit_mode"
+        android:title="@string/arrange"
+        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
+        app:showAsAction="always" />
 </menu>
