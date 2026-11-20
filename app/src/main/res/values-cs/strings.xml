@@ -831,7 +831,6 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 obdržená od serveru během přehrávání, pravděpodobně způsobená zákazem IP adresy nebo problémy s deobfuskací streamovací adresy URL</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmítl poskytnout data, žádá o přihlášení k potvrzení, že žadatel není bot.\n\nVaše IP adresa mohla být dočasně zablokována službou %1$s, můžete nějakou dobu počkat nebo přepnout na jinou IP adresu (například zapnutím/vypnutím VPN nebo přepnutím z Wi-Fi na mobilní data).\n\nPro více informací si přečtěte <a href="%2$s">tento záznam v FAQ</a>.</string>
     <string name="unsupported_content_in_country">Tento obsah není pro aktuálně vybranou zemi obsahu dostupný.\n\nZměňte výběr v nabídce \"Nastavení &gt; Obsah &gt; Výchozí země obsahu\".</string>
-
     <string name="kao_dialog_more_info">Podrobnosti</string>
     <string name="kao_solution">Řešení</string>
     <plurals name="export_subscriptions">
@@ -862,4 +861,5 @@
     <string name="api23_requirement_dialog_blogpost">Blogový příspěvek</string>
     <string name="channel_tab_podcasts">Podcasty</string>
     <string name="channel_tab_courses">Kurzy</string>
+    <string name="kao_dialog_warning">Společnost Google začala vynucovat nový požadavek ověření vývojářů pro systém Android, který ztěžuje instalaci NewPipe v Brazílii, Indonésii, Singapuru a Thajsku, s globálním vydáním plánovaným na rok 2027.\n\nPokud nebudou požadavky změněny, může v blízké budoucnosti být obtížnější nebo nemožné nainstalovat NewPipe na certifikovaných zařízeních Android.</string>
 </resources>

@@ -62,4 +62,6 @@
     <string name="grid">Решетка</string>
     <string name="card">Карта</string>
     <string name="cancel">Отказ</string>
+    <string name="image_quality_title">Качество на изображението</string>
+    <string name="notification_action_1_title">Втори бутон за действие</string>
 </resources>

@@ -25,7 +25,7 @@
     <string name="done">Fatto</string>
     <string name="not_available">Non disponibile</string>
     <string name="donation_encouragement">NewPipe è sviluppato da volontari che impiegano il loro tempo libero per offrirti un'esperienza d'uso migliore. Restituisci il favore, aiutandoli a rendere NewPipe ancora più piacevole mentre si gustano una tazza di caffè.</string>
-    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l'app non raccoglie alcun dato senza il tuo consenso. \nL'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l'invio di segnalazioni per arresti anomali.</string>
+    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l'app non raccoglie alcun dato senza il tuo consenso. \nL'informativa sulla privacy di NewPipe spiega nel dettaglio quali dati vengono trattati e memorizzati durante l'invio di segnalazioni per arresti anomali.</string>
     <string name="app_license">NewPipe è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
     <string name="settings">Impostazioni</string>
     <string name="search">Cerca</string>
@@ -48,7 +48,7 @@
     <string name="night_theme_available">Questa opzione è disponibile solo se %1$s è selezionato come tema</string>
     <string name="select_night_theme_toast">Puoi selezionare il tuo tema notturno qui sotto</string>
     <string name="show_hold_to_append_title">Mostra suggerimento \\"Tieni premuto per accodare \\"</string>
-    <string name="show_hold_to_append_summary">Mostra suggerimento quando premi lo sfondo o il pulsante popup nei \\"Dettagli:\\" del video</string>
+    <string name="show_hold_to_append_summary">Mostra suggerimento quando premi lo sfondo o il pulsante popup nei Dettagli del video</string>
     <string name="tablet_mode_title">Modalità tablet</string>
     <string name="list_view_mode">Modalità vista elenco</string>
     <string name="caption_setting_title">Sottotitoli</string>
@@ -62,4 +62,12 @@
     <string name="grid">Griglia</string>
     <string name="card">Scheda</string>
     <string name="cancel">Annulla</string>
+    <string name="default_resolution_title">Risoluzione predefinita</string>
+    <string name="default_popup_resolution_title">Risoluzione predefinita dei popup</string>
+    <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si usano i dati mobili</string>
+    <string name="show_higher_resolutions_title">Mostra risoluzioni più elevate</string>
+    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
+    <string name="default_video_format_title">Formato video predefinito</string>
+    <string name="default_audio_format_title">Formato audio predefinito</string>
+    <string name="prefer_original_audio_title">Preferisci l'audio originale</string>
 </resources>
