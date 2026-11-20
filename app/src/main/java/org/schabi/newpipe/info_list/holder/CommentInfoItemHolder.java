@@ -27,6 +27,7 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.CommentTextSizeHelper;
 import org.schabi.newpipe.util.CommentTranslationProvider;
+import org.schabi.newpipe.fragments.list.comments.CommentDatePresentation;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -116,10 +117,8 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         final String uploaderName = Localization.localizeUserName(item.getUploaderName());
         itemTitleView.setText(Localization.concatenateStrings(
                 uploaderName,
-                Localization.relativeTimeOrTextual(
-                        itemBuilder.getContext(),
-                        item.getUploadDate(),
-                        item.getTextualUploadDate())));
+                CommentDatePresentation.label(
+                        itemBuilder.getContext(), item)));
 
         // setup bottom row, with likes, heart and replies button
         itemLikesCountView.setText(

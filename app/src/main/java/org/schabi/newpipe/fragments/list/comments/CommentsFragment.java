@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.button.MaterialButton;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
@@ -67,8 +69,28 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
         if (savedInstanceState != null) {
             commentSearch.setQuery(savedInstanceState.getString("comment_query", ""));
             commentSearch.setExpanded(savedInstanceState.getBoolean("comment_search_expanded"));
+            commentSearch.setPinnedOnly(savedInstanceState.getBoolean("comments_pinned_only"));
         }
         commentSearch.bind(rootView, this::applyCommentSearch, this::loadMoreItems);
+        final Chip pinnedOnly = rootView.findViewById(R.id.comments_pinned_only);
+        pinnedOnly.setChecked(commentSearch.getPinnedOnly());
+        pinnedOnly.setOnCheckedChangeListener((button, checked) -> {
+            commentSearch.setPinnedOnly(checked);
+            applyCommentSearch();
+        });
+        final MaterialButton dateToggle = rootView.findViewById(R.id.comments_date_toggle);
+        final Runnable updateDateToggle = () -> dateToggle.setText(
+                CommentDatePresentation.isExact(requireContext())
+                        ? R.string.comments_date_exact : R.string.comments_date_relative);
+        updateDateToggle.run();
+        dateToggle.setOnClickListener(view -> {
+            CommentDatePresentation.setExact(requireContext(),
+                    !CommentDatePresentation.isExact(requireContext()));
+            updateDateToggle.run();
+            if (infoListAdapter != null) {
+                infoListAdapter.notifyDataSetChanged();
+            }
+        });
         if (getParentFragment() instanceof VideoDetailFragment detail) {
             detail.getCommentsMiniPlayerAction().bind(rootView, getViewLifecycleOwner());
         }
@@ -167,6 +189,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
             emptyStateDesc.setText(currentInfo.isCommentsDisabled()
                     ? R.string.comments_are_disabled
                     : commentSearch.getQuery().trim().isEmpty()
+                            && !commentSearch.getPinnedOnly()
                     ? R.string.no_comments : R.string.comments_search_no_matches);
         } else {
             hideLoading();
@@ -183,6 +206,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     public void onSaveInstanceState(@NonNull final Bundle state) {
         super.onSaveInstanceState(state);
         state.putBoolean("comments_newest", sortOrder == CommentSortOrder.NEWEST);
+        state.putBoolean("comments_pinned_only", commentSearch.getPinnedOnly());
         state.putString("comment_query", commentSearch.getQuery());
         state.putBoolean("comment_search_expanded", commentSearch.getExpanded());
     }

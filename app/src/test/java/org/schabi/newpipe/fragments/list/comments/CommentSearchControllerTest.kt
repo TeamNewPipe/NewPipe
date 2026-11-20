@@ -40,6 +40,22 @@ class CommentSearchControllerTest {
         assertEquals(listOf(second), restored.matches())
     }
 
+    @Test
+    fun pinnedOnlyFiltersAllLoadedPagesAndCanBeCleared() {
+        val pinned = comment("Pinned", "Creator").apply { isPinned = true }
+        val normal = comment("Normal", "Viewer")
+        val state = CommentSearchController()
+        state.initial(listOf(pinned))
+        state.append(listOf(normal))
+        state.pinnedOnly = true
+        assertEquals(listOf(pinned), state.matches())
+        state.query = "normal"
+        assertEquals(emptyList<CommentsInfoItem>(), state.matches())
+        state.query = ""
+        state.pinnedOnly = false
+        assertEquals(listOf(pinned, normal), state.matches())
+    }
+
     private fun comment(text: String, author: String) = CommentsInfoItem(0, "https://example.org/$author", text).apply {
         commentText = text
         uploaderName = author

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="comments_pinned_only">Pinned only</string>
+    <string name="comments_date_exact">Exact dates</string>
+    <string name="comments_date_relative">Relative dates</string>
+</resources>

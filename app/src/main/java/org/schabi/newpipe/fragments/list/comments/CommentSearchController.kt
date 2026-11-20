@@ -13,6 +13,7 @@ class CommentSearchController {
     private val loaded = mutableListOf<CommentsInfoItem>()
     var query: String = ""
     var expanded: Boolean = false
+    var pinnedOnly: Boolean = false
     private var root: View? = null
 
     fun initial(items: List<CommentsInfoItem>) {
@@ -31,7 +32,8 @@ class CommentSearchController {
         loaded.addAll(items)
     }
     fun matches(): List<CommentsInfoItem> = loaded.filter {
-        ContextualSearchHelper.matches(query, it.commentText, it.uploaderName)
+        (!pinnedOnly || it.isPinned) &&
+            ContextualSearchHelper.matches(query, it.commentText, it.uploaderName)
     }
 
     fun bind(view: View, changed: Runnable, loadMore: Runnable) {
