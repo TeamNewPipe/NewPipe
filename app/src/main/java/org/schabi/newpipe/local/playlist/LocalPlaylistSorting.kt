@@ -10,6 +10,7 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 /** View-only sorting; never changes persisted join indices. */
 enum class LocalPlaylistSortMode {
     PLAYLIST_ORDER,
+    REVERSE_PLAYLIST_ORDER,
     VIEWS_DESC,
     NEWEST_FIRST,
     OLDEST_FIRST,
@@ -31,11 +32,13 @@ object LocalPlaylistSorting {
         mode: LocalPlaylistSortMode
     ): List<PlaylistStreamEntry> {
         if (mode == LocalPlaylistSortMode.PLAYLIST_ORDER) return entries.toList()
+        if (mode == LocalPlaylistSortMode.REVERSE_PLAYLIST_ORDER) return entries.asReversed().toList()
         return entries.withIndex().sortedWith { left, right ->
             val a = left.value.streamEntity
             val b = right.value.streamEntity
             val comparison = when (mode) {
-                LocalPlaylistSortMode.PLAYLIST_ORDER -> 0
+                LocalPlaylistSortMode.PLAYLIST_ORDER,
+                LocalPlaylistSortMode.REVERSE_PLAYLIST_ORDER -> 0
 
                 LocalPlaylistSortMode.VIEWS_DESC ->
                     compareKnown(a.viewCount, b.viewCount, descending = true)

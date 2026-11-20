@@ -235,6 +235,7 @@ object ProfileManager {
         }
         editor.apply()
         KidsMode.forgetProfile(context, profileId)
+        org.schabi.newpipe.local.playlist.LocalPlaylistSortPreferences.clearProfile(context, profileId)
         org.schabi.newpipe.player.recovery.QueueRecovery.clear(context, profileId)
         val localRecommendations = context.getSharedPreferences("local_recommendations", Context.MODE_PRIVATE)
         val localEditor = localRecommendations.edit()

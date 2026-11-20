@@ -55,6 +55,15 @@ class LocalPlaylistSortingTest {
     }
 
     @Test
+    fun reversePlaylistOrderShowsLastAddedFirstWithoutChangingJoinIndices() {
+        val original = listOf(entry(11), entry(12), entry(13))
+        val reversed = LocalPlaylistSorting.sort(original, LocalPlaylistSortMode.REVERSE_PLAYLIST_ORDER)
+        assertEquals(listOf(13L, 12L, 11L), reversed.map { it.streamId })
+        assertEquals(listOf(11L, 12L, 13L), original.map { it.streamId })
+        assertEquals(listOf(11, 12, 13), original.map { it.joinIndex })
+    }
+
+    @Test
     fun publicationSortKeepsUnknownAndSyntheticDatesLast() {
         val original = listOf(
             entry(1, date = "2026-01-01T00:00:00Z"),

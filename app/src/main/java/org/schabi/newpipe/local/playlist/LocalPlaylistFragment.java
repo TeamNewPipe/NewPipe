@@ -166,6 +166,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState == null && playlistId != null) {
+            playlistSortName = LocalPlaylistSortPreferences.get(requireContext(),
+                    ProfileManager.getActiveProfileId(requireContext()), playlistId).name();
+        }
+        if (editMode) {
+            playlistSortName = LocalPlaylistSortMode.PLAYLIST_ORDER.name();
+        }
         playlistManager = new LocalPlaylistManager(
                 NewPipeDatabase.getInstance(requireContext()),
                 ProfileManager.getActiveProfileId(requireContext()));
@@ -252,7 +259,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             editMode = !editMode;
             if (editMode) {
                 // Editing always uses the saved order, not the temporary sorted view.
-                playlistSortName = "PLAYLIST_ORDER";
+                playlistSortName = LocalPlaylistSortMode.PLAYLIST_ORDER.name();
+                applyPlaylistSearch();
+            } else {
+                // Preserve any reordered entries before restoring the user's view-only sort.
+                captureUnfilteredItemsFromAdapter();
+                playlistSortName = LocalPlaylistSortPreferences.get(requireContext(),
+                        ProfileManager.getActiveProfileId(requireContext()), playlistId).name();
                 applyPlaylistSearch();
             }
             updateEditMode();
@@ -565,6 +578,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                         LocalPlaylistSortMode.fromName(playlistSortName).ordinal(),
                         (dialog, which) -> {
                             playlistSortName = modes[which].name();
+                            LocalPlaylistSortPreferences.set(requireContext(),
+                                    ProfileManager.getActiveProfileId(requireContext()),
+                                    playlistId, modes[which]);
                             applyPlaylistSearch();
                             dialog.dismiss();
                         })
@@ -870,10 +886,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         }
 
         isDeletingPlaylist = true;
+        final Context appContext = requireContext().getApplicationContext();
+        final String profileId = ProfileManager.getActiveProfileId(appContext);
         disposables.add(playlistManager.updatePlaylists(Collections.emptyList(),
                         Collections.singletonList(playlistId))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {
+                    LocalPlaylistSortPreferences.clear(appContext, profileId, playlistId);
                     if (debounceSaver != null) {
                         debounceSaver.setNoChangesToSave();
                     }

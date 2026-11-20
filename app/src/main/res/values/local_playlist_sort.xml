@@ -3,6 +3,7 @@
     <string name="local_playlist_sort_title">Sort playlist videos</string>
     <string-array name="local_playlist_sort_entries">
         <item>Playlist order</item>
+        <item>Reverse playlist order (last added first)</item>
         <item>Most viewed first</item>
         <item>Newest published first</item>
         <item>Oldest published first</item>
