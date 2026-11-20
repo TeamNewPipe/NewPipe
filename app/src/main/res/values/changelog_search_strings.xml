@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="changelog_search_hint">Search changelog</string>
+    <string name="changelog_search_previous">Previous match</string>
+    <string name="changelog_search_next">Next match</string>
+</resources>
