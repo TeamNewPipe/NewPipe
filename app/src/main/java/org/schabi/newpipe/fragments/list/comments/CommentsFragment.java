@@ -30,6 +30,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.ItemViewMode;
 import org.schabi.newpipe.ktx.ViewUtils;
+import org.schabi.newpipe.local.history.ListFastScroller;
 import org.schabi.newpipe.util.ContentBlockingHelper;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -42,6 +43,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     private final CommentSearchController commentSearch = new CommentSearchController();
     private TextView emptyStateDesc;
+    private ListFastScroller fastScroller;
     private CommentSortOrder sortOrder = CommentSortOrder.TOP;
 
     public static CommentsFragment getInstance(final int serviceId, final String url,
@@ -64,6 +66,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        fastScroller = ListFastScroller.attach(itemsList);
 
         emptyStateDesc = rootView.findViewById(R.id.empty_state_desc);
         if (savedInstanceState != null) {
@@ -133,6 +136,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     public void onDestroyView() {
+        if (fastScroller != null) {
+            fastScroller.close();
+            fastScroller = null;
+        }
         commentSearch.unbind();
         super.onDestroyView();
     }

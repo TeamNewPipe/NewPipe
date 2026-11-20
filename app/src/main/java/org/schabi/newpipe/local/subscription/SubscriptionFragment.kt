@@ -37,6 +37,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.ktx.animate
 import org.schabi.newpipe.local.feed.SavedSearchFeedManager
+import org.schabi.newpipe.local.history.ListFastScroller
 import org.schabi.newpipe.local.search.ContextualSearchHelper
 import org.schabi.newpipe.local.search.ContextualSearchable
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.SubscriptionState
@@ -88,6 +89,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private var bulkUnsubscribeMenuItem: MenuItem? = null
     private var pendingBrowseAnchor: SubscriptionScrollAnchor? = null
     private var countDisposable: io.reactivex.rxjava3.disposables.Disposable? = null
+    private var fastScroller: ListFastScroller? = null
 
     @State
     @JvmField
@@ -138,6 +140,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         pendingBrowseAnchor = null
         countDisposable?.dispose()
         countDisposable = null
+        fastScroller?.close()
+        fastScroller = null
         super.onDestroyView()
         _binding = null
     }
@@ -331,6 +335,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
 
         applySubscriptionLayout()
         binding.itemsList.adapter = groupAdapter
+        fastScroller = ListFastScroller.attach(binding.itemsList)
         binding.itemsList.itemAnimator = null
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]

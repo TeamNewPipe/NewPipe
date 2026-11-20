@@ -22,6 +22,7 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentGroupChannelsBinding
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.local.history.ListFastScroller
 import org.schabi.newpipe.local.search.ContextualSearchHelper
 import org.schabi.newpipe.local.subscription.item.ChannelItem
 import org.schabi.newpipe.util.ExpandableSearchViewHelper
@@ -39,6 +40,7 @@ class GroupChannelsFragment : Fragment() {
     private var searchQuery = ""
     private var searchExpanded = false
     private var gridMode = false
+    private var fastScroller: ListFastScroller? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +89,7 @@ class GroupChannelsFragment : Fragment() {
             }
         }
         binding.itemsList.adapter = adapter
+        fastScroller = ListFastScroller.attach(binding.itemsList)
 
         viewModel = ViewModelProvider(this)[GroupChannelsViewModel::class.java]
         binding.errorPanel.errorRetryButton.apply {
@@ -154,6 +157,8 @@ class GroupChannelsFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        fastScroller?.close()
+        fastScroller = null
         channelActions.close()
         binding.itemsList.adapter = null
         _binding = null

@@ -110,6 +110,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected String name;
     @State
     Parcelable itemsListState;
+    private org.schabi.newpipe.local.history.ListFastScroller fastScroller;
     @State
     protected String contextualSearchQuery = "";
     private java.util.Map<Long, String> noteSearchText = Collections.emptyMap();
@@ -199,6 +200,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        fastScroller = org.schabi.newpipe.local.history.ListFastScroller.attach(itemsList);
         setTitle(name);
     }
 
@@ -410,6 +412,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     @Override
     public void onDestroyView() {
+        if (fastScroller != null) {
+            fastScroller.close();
+            fastScroller = null;
+        }
         if (selectionController != null) {
             selectionController.close();
             selectionController = null;

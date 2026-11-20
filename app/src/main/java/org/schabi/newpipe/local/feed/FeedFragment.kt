@@ -148,6 +148,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     private var feedHasContent: Boolean? = null
     private var idleAnimator: RecyclerView.ItemAnimator? = null
+    private var fastScroller: org.schabi.newpipe.local.history.ListFastScroller? = null
     private var pendingListUpdate: OnAsyncUpdateListener? = null
     private var relevanceSortDisposable: Disposable? = null
     private var relevanceSortRequest = 0L
@@ -252,6 +253,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         })
 
         feedBinding.itemsList.adapter = groupAdapter
+        fastScroller = org.schabi.newpipe.local.history.ListFastScroller.attach(feedBinding.itemsList)
         idleAnimator = feedBinding.itemsList.itemAnimator
         feedQuickAdd = org.schabi.newpipe.local.feed.quickadd.FeedQuickAddController(feedBinding.itemsList)
         feedPreview = org.schabi.newpipe.local.feed.preview.FeedPreviewController(feedBinding.itemsList, { stream, queue ->
@@ -626,6 +628,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     }
 
     override fun onDestroyView() {
+        fastScroller?.close()
+        fastScroller = null
         feedQuickAdd?.dispose()
         feedQuickAdd = null
         feedPreview?.dispose()
