@@ -106,6 +106,46 @@ class LocalLikesViewTest {
     }
 
     @Test
+    fun switchingBetweenVideosDoesNotShowThePreviousVideosLocalLike() {
+        lateinit var controls: LocalLikesView
+        lateinit var like: MaterialButton
+        val firstUrl = "https://example.com/like-navigation-first"
+        val secondUrl = "https://example.com/like-navigation-second"
+        val first = StreamInfo(0, "test", firstUrl, "First").apply {
+            streamType = StreamType.VIDEO_STREAM
+        }
+        val second = StreamInfo(0, "test", secondUrl, "Second").apply {
+            streamType = StreamType.VIDEO_STREAM
+        }
+
+        ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                controls = LocalLikesView(activity)
+                like = controls.getChildAt(0) as MaterialButton
+                activity.setContentView(controls)
+                controls.bind(first)
+            }
+            await(scenario) { like.isEnabled }
+            scenario.onActivity { like.performClick() }
+            await(scenario) { like.isEnabled && like.isChecked }
+
+            scenario.onActivity { controls.bind(second) }
+            await(scenario) { like.isEnabled }
+            scenario.onActivity { assertFalse(like.isChecked) }
+
+            // Navigation changes the visible video's like state but must not remove saved likes.
+            assertTrue(
+                LikedVideosStore(database, preferences, profileId, "Liked videos")
+                    .observeLiked(0, firstUrl).blockingFirst()
+            )
+            scenario.onActivity {
+                controls.bind(null)
+                assertEquals(View.GONE, controls.visibility)
+            }
+        }
+    }
+
+    @Test
     fun libraryShortcutOpensPlaylistAndCollapsesTheDetailSheet() {
         lateinit var host: LikesHostFragment
         lateinit var behavior: BottomSheetBehavior<FrameLayout>

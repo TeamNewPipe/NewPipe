@@ -1408,6 +1408,7 @@ public final class VideoDetailFragment
         }
         isLoading.set(false);
         currentInfo = null;
+        binding.detailLocalLikes.bind(null);
         currentLocalItem = item;
         serviceId = item.getServiceId();
         url = item.getUrl();
@@ -1502,6 +1503,7 @@ public final class VideoDetailFragment
         }
         setInitialData(item.getServiceId(), item.getUrl(), item.getTitle(), playQueue);
         currentInfo = null;
+        binding.detailLocalLikes.bind(null);
         currentLocalItem = item;
         isLoading.set(false);
         pageAdapter.clearAllItems();
@@ -1521,6 +1523,7 @@ public final class VideoDetailFragment
         }
         setInitialData(item.getServiceId(), item.getUrl(), item.getTitle(), playQueue);
         currentInfo = null;
+        binding.detailLocalLikes.bind(null);
         currentLocalItem = item;
         isLoading.set(false);
         pageAdapter.clearAllItems();
@@ -1573,6 +1576,7 @@ public final class VideoDetailFragment
 
         initTabs();
         currentInfo = null;
+        binding.detailLocalLikes.bind(null);
         if (currentWorker != null) {
             currentWorker.dispose();
         }
@@ -1585,6 +1589,7 @@ public final class VideoDetailFragment
 
         initTabs();
         currentInfo = null;
+        binding.detailLocalLikes.bind(null);
         if (currentWorker != null) {
             currentWorker.dispose();
         }
@@ -2737,6 +2742,7 @@ public final class VideoDetailFragment
         super.handleResult(info);
 
         currentInfo = info;
+        binding.detailLocalLikes.bind(info);
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
         applyTitleDisplayPolicy(false);
