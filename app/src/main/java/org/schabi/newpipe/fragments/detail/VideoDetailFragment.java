@@ -895,6 +895,9 @@ public final class VideoDetailFragment
             }
         }));
         binding.detailThumbnailRootLayout.setOnClickListener(v -> {
+            if (blockUpcomingPlayback()) {
+                return;
+            }
             autoPlayEnabled = true; // forcefully start playing
             // FIXME Workaround #7427
             if (isPlayerAvailable()) {
@@ -1635,6 +1638,22 @@ public final class VideoDetailFragment
 
     private void showLiveNotStartedDialog() {
         handleError();
+        showUpcomingPlaybackDialog();
+    }
+
+    /**
+     * A scheduled broadcast is a valid detail result but not yet a playable source.
+     * @return true when playback was blocked because the broadcast is upcoming
+     */
+    private boolean blockUpcomingPlayback() {
+        if (!UpcomingPlayback.shouldBlock(currentInfo)) {
+            return false;
+        }
+        showUpcomingPlaybackDialog();
+        return true;
+    }
+
+    private void showUpcomingPlaybackDialog() {
         if (!isAdded() || activity == null) {
             return;
         }
@@ -1863,6 +1882,9 @@ public final class VideoDetailFragment
     }
 
     private void openBackgroundPlayer(final boolean append) {
+        if (blockUpcomingPlayback()) {
+            return;
+        }
         if (showAiPlaybackWarningIfNeeded(() -> openBackgroundPlayer(append))) {
             return;
         }
@@ -1886,6 +1908,9 @@ public final class VideoDetailFragment
     }
 
     private void openPopupPlayer(final boolean append) {
+        if (blockUpcomingPlayback()) {
+            return;
+        }
         if (showAiPlaybackWarningIfNeeded(() -> openPopupPlayer(append))) {
             return;
         }
@@ -1948,6 +1973,9 @@ public final class VideoDetailFragment
      *                                       is locked
      */
     public void openVideoPlayer(final boolean directlyFullscreenIfApplicable) {
+        if (blockUpcomingPlayback()) {
+            return;
+        }
         if (showAiPlaybackWarningIfNeeded(
                 () -> openVideoPlayer(directlyFullscreenIfApplicable))) {
             return;
@@ -2745,7 +2773,10 @@ public final class VideoDetailFragment
             displayUploaderAsSubChannel(info);
         }
 
-        if (info.getViewCount() >= 0) {
+        if (info.isUpcoming()) {
+            binding.detailViewCountView.setText(R.string.upcoming_stream_waiting);
+            binding.detailViewCountView.setVisibility(View.VISIBLE);
+        } else if (info.getViewCount() >= 0) {
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 binding.detailViewCountView.setText(Localization.listeningCount(activity,
                         info.getViewCount()));
@@ -2763,7 +2794,12 @@ public final class VideoDetailFragment
 
         updateLikeDislikeViews(info);
 
-        if (info.getDuration() > 0) {
+        if (info.isUpcoming()) {
+            binding.detailDurationView.setText(R.string.feed_show_upcoming);
+            binding.detailDurationView.setBackgroundColor(
+                    ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            animate(binding.detailDurationView, true, 100);
+        } else if (info.getDuration() > 0) {
             binding.detailDurationView.setText(Localization.getDurationString(info.getDuration()));
             binding.detailDurationView.setBackgroundColor(
                     ContextCompat.getColor(activity, R.color.duration_background_color));
@@ -2830,16 +2866,18 @@ public final class VideoDetailFragment
         }
 
         binding.detailControlsDownload.setVisibility(
-                StreamTypeUtil.isLiveStream(info.getStreamType()) ? View.GONE : View.VISIBLE);
-        binding.detailControlsBackground.setVisibility(
-                info.getAudioStreams().isEmpty() && info.getVideoStreams().isEmpty()
+                info.isUpcoming() || StreamTypeUtil.isLiveStream(info.getStreamType())
                         ? View.GONE : View.VISIBLE);
+        binding.detailControlsBackground.setVisibility(
+                info.isUpcoming() || info.getAudioStreams().isEmpty()
+                        && info.getVideoStreams().isEmpty() ? View.GONE : View.VISIBLE);
 
         // YouTube live video can be supplied only through HLS/DASH manifests, without
         // individual video streams in StreamInfo. Keep its video controls and play icon.
-        final boolean hasLiveVideoManifest = info.getStreamType() == StreamType.LIVE_STREAM
+        final boolean hasLiveVideoManifest = !info.isUpcoming()
+                && info.getStreamType() == StreamType.LIVE_STREAM
                 && (!info.getHlsUrl().isEmpty() || !info.getDashMpdUrl().isEmpty());
-        final boolean noVideoStreams = info.getVideoStreams().isEmpty()
+        final boolean noVideoStreams = info.isUpcoming() || info.getVideoStreams().isEmpty()
                 && info.getVideoOnlyStreams().isEmpty() && !hasLiveVideoManifest;
         binding.detailControlsPopup.setVisibility(noVideoStreams ? View.GONE : View.VISIBLE);
         binding.detailThumbnailPlayButton.setImageResource(
