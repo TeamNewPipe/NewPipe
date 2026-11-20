@@ -1,11 +1,13 @@
 package org.schabi.newpipe.player.ui
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -17,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
 import org.schabi.newpipe.fragments.list.chat.LiveChatFragment
@@ -28,6 +31,7 @@ import org.schabi.newpipe.util.DeviceUtils
 class FullscreenCommentsDialog : DialogFragment() {
     private var videoContent: View? = null
     private var originalEndMargin = 0
+    private var ratioOverride: Float? = null
     private var observedRoot: View? = null
     private var backStackListener: FragmentManager.OnBackStackChangedListener? = null
     private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener { updateViewport() }
@@ -35,13 +39,64 @@ class FullscreenCommentsDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, 0)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        ratioOverride = if (prefs.contains(WIDTH_RATIO_KEY)) {
+            prefs.getFloat(WIDTH_RATIO_KEY, 0.4f)
+        } else {
+            null
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fullscreen_comments_sidebar, container, false)
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<View>(R.id.fullscreenCommentsClose).setOnClickListener { dismiss() }
+        val handle = view.findViewById<View>(R.id.fullscreenCommentsResizeHandle)
+        var startX = 0f
+        var startWidth = 0
+        handle.setOnTouchListener { target, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    startX = event.rawX
+                    startWidth = dialog?.window?.attributes?.width ?: 0
+                    true
+                }
+
+                MotionEvent.ACTION_MOVE -> {
+                    val available = (activity?.findViewById<View>(R.id.playerVideoContent)?.parent as? View)?.width ?: 0
+                    if (available > 0 && startWidth > 0) {
+                        val delta = if (target.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+                            event.rawX - startX
+                        } else {
+                            startX - event.rawX
+                        }
+                        val resized = FullscreenCommentsSizing.clampWidth(
+                            (startWidth + delta).toInt(),
+                            available
+                        )
+                        ratioOverride = resized.toFloat() / available
+                        updateViewport()
+                    }
+                    true
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    ratioOverride?.let { ratio ->
+                        PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+                            .putFloat(WIDTH_RATIO_KEY, ratio)
+                            .apply()
+                    }
+                    target.performClick()
+                    true
+                }
+
+                MotionEvent.ACTION_CANCEL -> true
+
+                else -> false
+            }
+        }
         if (requireArguments().getBoolean(CHAT)) {
             view.findViewById<TextView>(R.id.fullscreenCommentsTitle).setText(R.string.live_chat_title)
         }
@@ -105,7 +160,7 @@ class FullscreenCommentsDialog : DialogFragment() {
         val available = (content.parent as? View)?.width ?: return
         if (available <= 0) return
         val desired = (TvPlayerFocusPolicy.commentsWidthDp(DeviceUtils.isTv(requireContext())) * resources.displayMetrics.density).toInt()
-        val width = desired.coerceAtMost((available * 0.45f).toInt()).coerceAtLeast(1)
+        val width = FullscreenCommentsSizing.width(available, desired, ratioOverride)
         if (window.attributes.width != width || window.attributes.height != ViewGroup.LayoutParams.MATCH_PARENT) {
             window.setLayout(width, ViewGroup.LayoutParams.MATCH_PARENT)
         }
@@ -153,6 +208,7 @@ class FullscreenCommentsDialog : DialogFragment() {
         private const val SERVICE = "service"
         private const val URL = "url"
         private const val TITLE = "title"
+        private const val WIDTH_RATIO_KEY = "fullscreen_comments_width_ratio"
 
         fun newInstance(serviceId: Int, url: String, title: String, liveChat: Boolean = false) = FullscreenCommentsDialog().apply {
             arguments = Bundle().apply {

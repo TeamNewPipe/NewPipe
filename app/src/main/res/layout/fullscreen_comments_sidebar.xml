@@ -1,53 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="?attr/colorSurface">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/fullscreenCommentsBack"
-            android:layout_width="48dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back"
-            android:padding="12dp"
-            android:src="@drawable/ic_arrow_back"
-            android:visibility="gone"
-            app:tint="?attr/colorOnSurface" />
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/fullscreenCommentsTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/comments_tab_description"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:textColor="?attr/colorOnSurface" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fullscreenCommentsBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back"
+                android:visibility="gone"
+                app:tint="?attr/colorOnSurface" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/fullscreenCommentsClose"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/close"
-            android:padding="12dp"
-            android:src="@drawable/ic_close"
-            app:tint="?attr/colorOnSurface" />
+            <TextView
+                android:id="@+id/fullscreenCommentsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/comments_tab_description"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="?attr/colorOnSurface" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fullscreenCommentsClose"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/close"
+                android:padding="12dp"
+                android:src="@drawable/ic_close"
+                app:tint="?attr/colorOnSurface" />
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fullscreenCommentsContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fullscreenCommentsContent"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/fullscreenCommentsResizeHandle"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:contentDescription="@string/fullscreen_comments_resize"
+        android:focusable="true">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="?attr/colorOutlineVariant" />
+    </FrameLayout>
+</FrameLayout>
