@@ -29,6 +29,8 @@ object ProfileDeletionManager {
                 historySyncRecorder.recordProgressAllDeleteForProfile(profileId)
                 historySyncRecorder.recordSearchAllDeleteForProfile(profileId)
             }
+            // Delete optional archive data before mutating the Room profile tables.
+            org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(appContext, profileId)
             val database = NewPipeDatabase.getInstance(appContext)
             database.runInTransaction {
                 database.savedSearchFeedDAO().deleteAllForProfile(profileId)

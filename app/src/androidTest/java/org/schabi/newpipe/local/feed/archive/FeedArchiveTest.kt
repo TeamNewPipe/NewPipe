@@ -13,6 +13,32 @@ import org.schabi.newpipe.extractor.stream.StreamType
 @RunWith(AndroidJUnit4::class)
 class FeedArchiveTest {
     @Test
+    fun deletedProfileDoesNotRetainArchiveEntriesOrRetentionSetting() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val profile = "archive-delete-${System.nanoTime()}"
+        val other = "archive-other-${System.nanoTime()}"
+        val item = StreamInfoItem(0, "https://example.org/watch?v=archive", "Archived", StreamType.VIDEO_STREAM)
+        try {
+            FeedArchiveSettings.set(context, profile, 1)
+            FeedArchiveSettings.set(context, other, 1)
+            withFeedArchive(context) {
+                it.record(profile, listOf(item))
+                it.record(other, listOf(item))
+            }
+            forgetProfileFeedArchive(context, profile)
+            withFeedArchive(context) {
+                assertTrue(it.page(profile, 0).isEmpty())
+                assertEquals(1, it.page(other, 0).size)
+            }
+            assertEquals(null, FeedArchiveSettings.mode(context, profile))
+            assertEquals(FeedArchiveSettings.Mode(30, 2_500), FeedArchiveSettings.mode(context, other))
+        } finally {
+            forgetProfileFeedArchive(context, profile)
+            forgetProfileFeedArchive(context, other)
+        }
+    }
+
+    @Test
     fun archiveIsOptInPagedProfileSpecificAndReversible() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val profile = "archive-test-${System.nanoTime()}"

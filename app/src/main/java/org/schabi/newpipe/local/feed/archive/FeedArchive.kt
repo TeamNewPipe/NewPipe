@@ -146,7 +146,7 @@ class FeedArchive(private val context: Context) : SQLiteOpenHelper(
     }
 
     companion object {
-        private const val DATABASE_NAME = "wize_feed_archive.db"
+        internal const val DATABASE_NAME = "wize_feed_archive.db"
     }
 }
 
@@ -177,6 +177,23 @@ object FeedArchiveSettings {
     }
 
     internal fun option(index: Int): Mode? = options.getOrNull(index)
+
+    internal fun forgetProfile(context: Context, profile: String) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+            .remove(key(profile))
+            .apply()
+    }
+}
+
+/**
+ * Remove retained feed metadata when a profile is deleted, including through direct profile
+ * deletion or sync. Do not create an unused archive database just to clean up a profile.
+ */
+internal fun forgetProfileFeedArchive(context: Context, profile: String) {
+    if (context.getDatabasePath(FeedArchive.DATABASE_NAME).exists()) {
+        withFeedArchive(context) { it.clear(profile) }
+    }
+    FeedArchiveSettings.forgetProfile(context, profile)
 }
 
 /**
