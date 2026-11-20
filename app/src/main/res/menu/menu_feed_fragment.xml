@@ -14,6 +14,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/menu_item_recent_actions"
+        android:title="@string/recent_actions_title"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_item_feed_sort"
         android:title="@string/feed_sort_title"
         app:showAsAction="never" />

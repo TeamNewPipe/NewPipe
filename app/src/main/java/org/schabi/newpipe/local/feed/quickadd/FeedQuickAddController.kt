@@ -20,6 +20,7 @@ import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.dao.QuickAddStreamKey
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.local.actions.RecentUndoActions
 import org.schabi.newpipe.profiles.ProfileManager
 
 /** One membership subscription for the feed, never one database query per card. */
@@ -123,6 +124,11 @@ class FeedQuickAddController(private val list: RecyclerView) {
                     if (disposed || !isCurrentProfile()) return@subscribe
                     snackbar?.dismiss()
                     val addition = result.orElse(null)
+                    if (addition != null) {
+                        RecentUndoActions.record(profileId, stream.title) {
+                            store.undo(addition)
+                        }
+                    }
                     snackbar = Snackbar.make(list, context.getString(if (addition == null) R.string.feed_quick_add_saved else R.string.feed_quick_add_added, name), Snackbar.LENGTH_LONG)
                         .also { bar ->
                             if (addition != null) bar.setAction(R.string.undo) { undo(addition) }

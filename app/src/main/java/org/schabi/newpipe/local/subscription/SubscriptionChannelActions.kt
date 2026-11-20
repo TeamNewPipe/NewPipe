@@ -16,6 +16,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.local.actions.RecentUndoActions
 import org.schabi.newpipe.local.feed.FeedAllExclusions
 import org.schabi.newpipe.profiles.KidsMode
 import org.schabi.newpipe.profiles.ProfileManager
@@ -63,12 +64,32 @@ internal class SubscriptionChannelActions(
         commands += fragment.getString(
             if (excluded) R.string.feed_include_in_all else R.string.feed_exclude_from_all
         ) to {
+            val app = fragment.requireContext().applicationContext
             val nowExcluded = FeedAllExclusions.toggle(
-                fragment.requireContext(),
+                app,
                 activeProfileId,
                 selectedItem.serviceId,
                 selectedItem.url
             )
+            RecentUndoActions.record(activeProfileId, selectedItem.name) {
+                if (FeedAllExclusions.isExcluded(
+                        app,
+                        activeProfileId,
+                        selectedItem.serviceId,
+                        selectedItem.url
+                    ) != nowExcluded
+                ) {
+                    false
+                } else {
+                    FeedAllExclusions.toggle(
+                        app,
+                        activeProfileId,
+                        selectedItem.serviceId,
+                        selectedItem.url
+                    )
+                    true
+                }
+            }
             Toast.makeText(
                 fragment.requireContext(),
                 if (nowExcluded) R.string.feed_excluded_from_all else R.string.feed_included_in_all,

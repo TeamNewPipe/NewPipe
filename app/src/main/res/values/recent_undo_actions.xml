@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recent_actions_title">Recent actions</string>
+    <string name="recent_actions_empty">No undoable actions in this session</string>
+    <string name="recent_action_undo">Undo: %1$s</string>
+    <string name="recent_action_undone">Action undone</string>
+    <string name="recent_action_unavailable">Action changed; undo is no longer safe</string>
+</resources>

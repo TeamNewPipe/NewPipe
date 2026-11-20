@@ -23,6 +23,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.fragments.list.BaseListFragment
+import org.schabi.newpipe.local.actions.RecentActionsDialog
 import org.schabi.newpipe.local.feed.quickadd.FeedQuickAddController
 import org.schabi.newpipe.local.history.IncognitoMode
 import org.schabi.newpipe.profiles.ProfileManager
@@ -99,6 +100,10 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        menu.add(R.string.recent_actions_title).setOnMenuItemClickListener {
+            RecentActionsDialog.show(this)
+            true
+        }
         menu.add(R.string.local_recommendations_title).setOnMenuItemClickListener {
             RecommendationControls.show(requireContext()) { startLoading(false) }
             true
