@@ -103,7 +103,8 @@ internal class PlayerPresentationController(
             sourceType: SourceType?,
             audioStreamsEmpty: Boolean
         ): Boolean = !enabled && temporaryBackground && mode.rendersVideo() &&
-            hasTimeline && hasEnabledVideoRenderer && streamType == StreamType.VIDEO_STREAM &&
+            hasTimeline && hasEnabledVideoRenderer &&
+            (streamType == StreamType.VIDEO_STREAM || streamType == StreamType.POST_LIVE_STREAM) &&
             sourceType == SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY && audioStreamsEmpty
     }
 

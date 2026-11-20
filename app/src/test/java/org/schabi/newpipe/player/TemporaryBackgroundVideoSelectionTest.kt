@@ -13,6 +13,22 @@ class TemporaryBackgroundVideoSelectionTest {
     }
 
     @Test
+    fun justEndedLiveMuxedVideoKeepsItsAudioWhenTheScreenTurnsOff() {
+        assertTrue(retain(streamType = StreamType.POST_LIVE_STREAM))
+        val separated = retain(
+            streamType = StreamType.POST_LIVE_STREAM,
+            sourceType = SourceType.VIDEO_WITH_SEPARATED_AUDIO
+        )
+        assertFalse(separated)
+        assertFalse(retain(streamType = StreamType.POST_LIVE_STREAM, audioStreamsEmpty = false))
+        val explicitAudioMode = retain(
+            streamType = StreamType.POST_LIVE_STREAM,
+            temporaryBackground = false
+        )
+        assertFalse(explicitAudioMode)
+    }
+
+    @Test
     fun explicitAudioPlaybackStillDisablesVideo() {
         assertFalse(retain(temporaryBackground = false))
         assertFalse(retain(mode = PlaybackPresentationMode.AUDIO_BACKGROUND))
