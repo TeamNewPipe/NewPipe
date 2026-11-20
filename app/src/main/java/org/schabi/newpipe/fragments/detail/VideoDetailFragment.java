@@ -147,7 +147,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PlayButtonHelper;
 import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.TvRelatedSidebar;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
@@ -2871,23 +2870,17 @@ public final class VideoDetailFragment
             }
         }
 
+        final StreamDetailActionPolicy.Actions actions =
+                StreamDetailActionPolicy.forStream(info);
         binding.detailControlsDownload.setVisibility(
-                info.isUpcoming() || StreamTypeUtil.isLiveStream(info.getStreamType())
-                        ? View.GONE : View.VISIBLE);
+                actions.getShowDownload() ? View.VISIBLE : View.GONE);
         binding.detailControlsBackground.setVisibility(
-                info.isUpcoming() || info.getAudioStreams().isEmpty()
-                        && info.getVideoStreams().isEmpty() ? View.GONE : View.VISIBLE);
-
-        // YouTube live video can be supplied only through HLS/DASH manifests, without
-        // individual video streams in StreamInfo. Keep its video controls and play icon.
-        final boolean hasLiveVideoManifest = !info.isUpcoming()
-                && info.getStreamType() == StreamType.LIVE_STREAM
-                && (!info.getHlsUrl().isEmpty() || !info.getDashMpdUrl().isEmpty());
-        final boolean noVideoStreams = info.isUpcoming() || info.getVideoStreams().isEmpty()
-                && info.getVideoOnlyStreams().isEmpty() && !hasLiveVideoManifest;
-        binding.detailControlsPopup.setVisibility(noVideoStreams ? View.GONE : View.VISIBLE);
+                actions.getShowBackground() ? View.VISIBLE : View.GONE);
+        binding.detailControlsPopup.setVisibility(
+                actions.getShowPopup() ? View.VISIBLE : View.GONE);
         binding.detailThumbnailPlayButton.setImageResource(
-                noVideoStreams ? R.drawable.ic_headset_shadow : R.drawable.ic_play_arrow_shadow);
+                actions.getShowPopup() ? R.drawable.ic_play_arrow_shadow
+                        : R.drawable.ic_headset_shadow);
     }
 
     private void updateLikeDislikeViews(@NonNull final StreamInfo info) {
