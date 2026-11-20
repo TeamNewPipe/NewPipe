@@ -349,6 +349,7 @@ class Player(
     }
 
     fun clearExoPlayerForLifecycle() {
+        streamController.onPlayerReleasing()
         media3Player = null
     }
 
@@ -436,6 +437,7 @@ class Player(
     override fun onPlaybackStateChanged(playbackState: Int) {
         stateController.onPlaybackStateChanged(playbackState)
         errorController.onPlaybackStateChanged(playbackState)
+        streamController.onPlaybackStateChanged(playbackState)
     }
 
     override fun onIsLoadingChanged(isLoading: Boolean) = stateController.onIsLoadingChanged(isLoading)

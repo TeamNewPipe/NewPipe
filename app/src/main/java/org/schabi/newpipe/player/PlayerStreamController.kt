@@ -40,6 +40,7 @@ internal class PlayerStreamController(
 ) {
     private var audioDecoderFallbackUrl: String? = null
     private val audioDecoderFallbackTracks = mutableSetOf<String?>()
+    private val popupQualityTransition = PopupQualityTransition(player)
 
     fun enableAudioDecoderFallback(item: PlayQueueItem) {
         val info = player.currentStreamInfo.orElse(null) ?: return
@@ -159,6 +160,7 @@ internal class PlayerStreamController(
     }
 
     fun setPlaybackQuality(quality: String?) {
+        popupQualityTransition.beforeQualityReload()
         player.saveStreamProgressState()
         player.setRecovery()
         if (quality != null) {
@@ -172,6 +174,10 @@ internal class PlayerStreamController(
         videoResolver.setPlaybackQuality(quality)
         player.reloadPlayQueueManager()
     }
+
+    fun onPlaybackStateChanged(state: Int) = popupQualityTransition.onPlaybackStateChanged(state)
+
+    fun onPlayerReleasing() = popupQualityTransition.cancel()
 
     fun setAudioTrack(audioTrackId: String?) {
         player.saveStreamProgressState()
