@@ -27,6 +27,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.local.feed.archive.FeedArchive;
+import org.schabi.newpipe.local.feed.archive.FeedArchiveBackup;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportExportHelper;
 import org.schabi.newpipe.profiles.ProfileManager;
 import org.schabi.newpipe.recommendations.LocalRecommendations;
@@ -702,23 +704,37 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     }
 
     private void exportDatabase(final StoredFileHelper file, final Uri exportDataUri) {
-        try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
-            //checkpoint before export
-            executor.submit(NewPipeDatabase::checkpoint).get();
-
-            final SharedPreferences preferences = PreferenceManager
-                    .getDefaultSharedPreferences(requireContext());
-            final SharedPreferences localRecommendations = requireContext().getSharedPreferences(
-                    LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
-            manager.exportDatabase(preferences, file,
-                    new BackupFileLocator(requireContext()).getDb(), localRecommendations);
-
-            saveLastImportExportDataUri(exportDataUri); // save export path only on success
-            Snackbar.make(getListView(), getString(R.string.backup_exported_with_file,
-                    file.getName()), Snackbar.LENGTH_LONG).show();
-        } catch (final Exception e) {
-            showErrorSnackbar(e, "Exporting database and settings");
-        }
+        final Activity activity = requireActivity();
+        final Context context = activity.getApplicationContext();
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            try {
+                // Room checkpoint, ZIP compression, and archive serialization may be expensive.
+                // Do not hold the fragment's UI thread while exporting a larger feed archive.
+                NewPipeDatabase.checkpoint();
+                final SharedPreferences preferences = PreferenceManager
+                        .getDefaultSharedPreferences(context);
+                final SharedPreferences localRecommendations = context.getSharedPreferences(
+                        LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
+                manager.exportDatabase(preferences, file,
+                        new BackupFileLocator(context).getDb(), localRecommendations, context);
+                activity.runOnUiThread(() -> {
+                    if (isAdded()) {
+                        saveLastImportExportDataUri(exportDataUri);
+                        Snackbar.make(getListView(), getString(R.string.backup_exported_with_file,
+                                file.getName()), Snackbar.LENGTH_LONG).show();
+                    }
+                });
+            } catch (final Exception error) {
+                activity.runOnUiThread(() -> {
+                    if (isAdded()) {
+                        showErrorSnackbar(error, "Exporting database and settings");
+                    }
+                });
+            } finally {
+                executor.shutdown();
+            }
+        });
     }
 
     private void exportNewPipeCompatibleData(final StoredFileHelper file,
@@ -860,9 +876,20 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                     new HashMap<>(localRecommendations.getAll());
             ImportExportManager.DatabaseRollback databaseRollback = null;
             Path stagedDatabase = null;
+            List<FeedArchive.BackupRow> previousFeedArchive = null;
+            boolean archiveChanged = false;
 
             try {
                 manager.ensureDbDirectoryExists();
+
+                // Validate the bounded optional archive before changing the main database.
+                final List<FeedArchive.BackupRow> importedFeedArchive;
+                if (contents.getHasDatabase()) {
+                    previousFeedArchive = FeedArchiveBackup.currentRows(context);
+                    importedFeedArchive = FeedArchiveBackup.read(file);
+                } else {
+                    importedFeedArchive = null;
+                }
 
                 final Map<String, ?> importedPreferences;
                 if (!importSettings) {
@@ -900,6 +927,11 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                             importedLocalRecommendations);
                 }
 
+                if (importedFeedArchive != null) {
+                    archiveChanged = true;
+                    FeedArchiveBackup.restore(context, importedFeedArchive);
+                }
+
                 if (databaseRollback != null) {
                     manager.finishDbReplacement(databaseRollback);
                 }
@@ -915,6 +947,9 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
                             previousLocalRecommendations);
                     if (databaseRollback != null) {
                         manager.rollbackDb(databaseRollback);
+                    }
+                    if (archiveChanged && previousFeedArchive != null) {
+                        FeedArchiveBackup.restore(context, previousFeedArchive);
                     }
                 } catch (final Exception rollbackError) {
                     e.addSuppressed(rollbackError);

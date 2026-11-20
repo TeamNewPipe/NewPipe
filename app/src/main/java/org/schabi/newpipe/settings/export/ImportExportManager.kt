@@ -1,5 +1,6 @@
 package org.schabi.newpipe.settings.export
 
+import android.content.Context
 import android.content.SharedPreferences
 import com.grack.nanojson.JsonArray
 import com.grack.nanojson.JsonParser
@@ -21,6 +22,7 @@ import java.util.zip.ZipOutputStream
 import kotlin.io.path.createParentDirectories
 import kotlin.io.path.deleteIfExists
 import org.schabi.newpipe.database.Migrations
+import org.schabi.newpipe.local.feed.archive.FeedArchiveBackup
 import org.schabi.newpipe.streams.io.SharpInputStream
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
@@ -78,7 +80,8 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
         preferences: SharedPreferences,
         file: StoredFileHelper,
         database: Path = fileLocator.db,
-        localRecommendations: SharedPreferences? = null
+        localRecommendations: SharedPreferences? = null,
+        archiveContext: Context? = null
     ) {
         // truncate the file before writing to it, otherwise if the new content is smaller than the
         // previous file size, the file will retain part of the previous content and be corrupted
@@ -113,6 +116,11 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                 }
             }
 
+            // The archive is a separate optional database, not part of Room's newpipe.db.
+            val includesFeedArchive = archiveContext?.let {
+                FeedArchiveBackup.exportIfPresent(it, outZip)
+            } ?: false
+
             ZipHelper.addFileToZip(
                 outZip,
                 BackupFileLocator.FILE_NAME_MANIFEST
@@ -127,6 +135,7 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
                     .value("includesDatabase", true)
                     .value("includesPreferences", true)
                     .value("includesLocalRecommendations", localRecommendations != null)
+                    .value("includesFeedArchive", includesFeedArchive)
                     .value(
                         "includesSponsorBlockSettings",
                         preferences.all.keys.any {

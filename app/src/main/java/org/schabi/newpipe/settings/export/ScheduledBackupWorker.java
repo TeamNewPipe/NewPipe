@@ -101,7 +101,7 @@ public final class ScheduledBackupWorker extends Worker {
                     LocalRecommendations.PREFERENCES, Context.MODE_PRIVATE);
             new ImportExportManager(new BackupFileLocator(context)).exportDatabase(preferences,
                     new StoredFileHelper(context, output.getUri(), "application/zip"),
-                    snapshot.toPath(), localRecommendations);
+                    snapshot.toPath(), localRecommendations, context);
             // Keep the new backup even if an unavailable provider prevents retention cleanup.
             output = null;
             preferences.edit().putLong(LAST_SUCCESS_KEY, System.currentTimeMillis())

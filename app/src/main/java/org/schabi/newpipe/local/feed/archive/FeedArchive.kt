@@ -105,6 +105,79 @@ class FeedArchive(private val context: Context) : SQLiteOpenHelper(
         }
     }
 
+    data class BackupRow(
+        val profileId: String,
+        val serviceId: Int,
+        val url: String,
+        val title: String,
+        val uploader: String,
+        val savedAt: Long
+    )
+
+    fun backupRows(): List<BackupRow> {
+        return readableDatabase.query(
+            "feed_archive",
+            arrayOf("profile_id", "service_id", "url", "title", "uploader", "saved_at"),
+            null,
+            null,
+            null,
+            null,
+            "profile_id, saved_at DESC",
+            (MAX_BACKUP_ROWS + 1).toString()
+        ).use { cursor ->
+            buildList {
+                while (cursor.moveToNext()) {
+                    if (size == MAX_BACKUP_ROWS) {
+                        throw java.io.IOException("Feed archive exceeds the backup row limit")
+                    }
+                    add(
+                        BackupRow(
+                            cursor.getString(0),
+                            cursor.getInt(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getLong(5)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    /** Restore and prune atomically so malformed backups cannot leave half-restored rows. */
+    fun replaceBackupRows(rows: List<BackupRow>, profiles: Set<String>) {
+        require(rows.size <= MAX_BACKUP_ROWS)
+        val db = writableDatabase
+        db.beginTransaction()
+        try {
+            db.delete("feed_archive", null, null)
+            rows.forEach { row ->
+                val values = ContentValues().apply {
+                    put("profile_id", row.profileId)
+                    put("service_id", row.serviceId)
+                    put("url", row.url)
+                    put("title", row.title)
+                    put("uploader", row.uploader)
+                    put("saved_at", row.savedAt)
+                }
+                db.insertWithOnConflict("feed_archive", null, values, SQLiteDatabase.CONFLICT_REPLACE)
+            }
+            val now = System.currentTimeMillis()
+            profiles.forEach { profile ->
+                val mode = FeedArchiveSettings.mode(context, profile)
+                if (mode == null) {
+                    db.delete("feed_archive", "profile_id = ?", arrayOf(profile))
+                } else {
+                    pruneInternal(profile, mode, now)
+                }
+            }
+            db.setTransactionSuccessful()
+        } finally {
+            db.endTransaction()
+        }
+    }
+
     fun clear(profile: String) {
         writableDatabase.delete("feed_archive", "profile_id = ?", arrayOf(profile))
     }
@@ -147,6 +220,7 @@ class FeedArchive(private val context: Context) : SQLiteOpenHelper(
 
     companion object {
         internal const val DATABASE_NAME = "wize_feed_archive.db"
+        internal const val MAX_BACKUP_ROWS = 50_000
     }
 }
 
