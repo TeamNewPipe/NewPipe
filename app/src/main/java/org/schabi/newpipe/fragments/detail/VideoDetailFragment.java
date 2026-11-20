@@ -1749,14 +1749,23 @@ public final class VideoDetailFragment
     }
 
     private void updateTabs(@NonNull final StreamInfo info) {
-        if (LiveChatRepository.supports(info)
-                && pageAdapter.getItemPositionByTitle(
-                        VideoDetailNavigationMapper.LIVE_CHAT_TAB_TAG) < 0) {
+        final boolean supportsLiveChat = LiveChatRepository.supports(info);
+        final int chatIndex = pageAdapter.getItemPositionByTitle(
+                VideoDetailNavigationMapper.LIVE_CHAT_TAB_TAG);
+        if (supportsLiveChat && chatIndex < 0) {
             pageAdapter.removeItemByTitle(EMPTY_TAB_TAG);
             pageAdapter.addFragment(
                     LiveChatFragment.newInstance(info.getServiceId(), info.getUrl()),
                     VideoDetailNavigationMapper.LIVE_CHAT_TAB_TAG);
-        } else if (!LiveChatRepository.supports(info)) {
+        } else if (supportsLiveChat) {
+            final Fragment existing = pageAdapter.getItem(chatIndex);
+            if (!(existing instanceof LiveChatFragment)
+                    || !((LiveChatFragment) existing).matchesSource(
+                            info.getServiceId(), info.getUrl())) {
+                pageAdapter.updateItem(chatIndex,
+                        LiveChatFragment.newInstance(info.getServiceId(), info.getUrl()));
+            }
+        } else if (chatIndex >= 0) {
             pageAdapter.removeItemByTitle(VideoDetailNavigationMapper.LIVE_CHAT_TAB_TAG);
             if (pageAdapter.getCount() == 0) {
                 pageAdapter.addFragment(EmptyFragment.newInstance(true), EMPTY_TAB_TAG);

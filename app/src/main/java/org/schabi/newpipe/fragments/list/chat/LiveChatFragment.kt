@@ -151,6 +151,11 @@ class LiveChatFragment : Fragment() {
         super.onDestroyView()
     }
 
+    /** Identifies the extractor stream for reuse when the detail panel switches videos. */
+    fun matchesSource(serviceId: Int, url: String): Boolean = arguments?.let {
+        it.getInt(SERVICE) == serviceId && it.getString(URL) == url
+    } == true
+
     companion object {
         private const val SERVICE = "service"
         private const val URL = "url"

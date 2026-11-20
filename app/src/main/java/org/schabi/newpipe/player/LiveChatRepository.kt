@@ -35,8 +35,12 @@ object LiveChatRepository {
     private val feeds = linkedMapOf<String, Feed>()
 
     @JvmStatic
-    fun supports(info: StreamInfo): Boolean = info.serviceId == ServiceList.YouTube.serviceId &&
-        info.streamType in setOf(StreamType.LIVE_STREAM, StreamType.POST_LIVE_STREAM)
+    fun supports(info: StreamInfo): Boolean {
+        if (info.serviceId != ServiceList.YouTube.serviceId) return false
+        return info.isUpcoming || info.streamType == StreamType.LIVE_STREAM ||
+            info.streamType == StreamType.AUDIO_LIVE_STREAM ||
+            info.streamType == StreamType.POST_LIVE_STREAM
+    }
 
     @Synchronized
     fun messages(serviceId: Int, url: String): SharedFlow<Result<List<BulletCommentsInfoItem>>> {
