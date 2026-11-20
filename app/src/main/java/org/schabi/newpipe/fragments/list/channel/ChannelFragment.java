@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +50,7 @@ import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.search.ContextualSearchHelper;
 import org.schabi.newpipe.local.search.ContextualSearchable;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
+import org.schabi.newpipe.local.subscription.ChannelGroupCreation;
 import org.schabi.newpipe.profiles.ProfileManager;
 import org.schabi.newpipe.profiles.ProfileRecord;
 import org.schabi.newpipe.settings.notifications.NotificationConfigDialog;
@@ -592,11 +592,8 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
 
     private void showChannelGroupsPicker(@NonNull final GroupPickerData data) {
         if (data.groups.isEmpty()) {
-            Toast.makeText(
-                    requireContext(),
-                    R.string.channel_groups_empty,
-                    Toast.LENGTH_SHORT
-            ).show();
+            ChannelGroupCreation.open(this, currentInfo, data.profileId, data.subscription,
+                    data.subscribedInCurrentMode, disposables);
             return;
         }
 
@@ -620,6 +617,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                     }
                 })
                 .setNegativeButton(R.string.cancel, null)
+                .setNeutralButton(R.string.channel_groups_create_from_channel, (dialog, which) ->
+                        ChannelGroupCreation.open(this, currentInfo, data.profileId,
+                                data.subscription, data.subscribedInCurrentMode, disposables))
                 .setPositiveButton(R.string.save, (dialog, which) ->
                         applyChannelGroups(data, selectedGroupIds))
                 .show();

@@ -109,6 +109,11 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getMinWidthDialogTheme(requireContext()))
         groupId = arguments?.getLong(KEY_GROUP_ID, NO_GROUP_SELECTED) ?: NO_GROUP_SELECTED
+        if (savedInstanceState == null && groupId == NO_GROUP_SELECTED) {
+            arguments?.getLong(KEY_PRESELECTED_SUBSCRIPTION, -1L)
+                ?.takeIf { it > 0L }
+                ?.let { selectedSubscriptions.add(it) }
+        }
     }
 
     override fun onCreateView(
@@ -589,7 +594,13 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     companion object {
         private const val KEY_GROUP_ID = "KEY_GROUP_ID"
+        private const val KEY_PRESELECTED_SUBSCRIPTION = "KEY_PRESELECTED_SUBSCRIPTION"
         private const val NO_GROUP_SELECTED = -1L
+
+        fun forChannel(subscriptionId: Long): FeedGroupDialog = newInstance().apply {
+            require(subscriptionId > 0L)
+            requireArguments().putLong(KEY_PRESELECTED_SUBSCRIPTION, subscriptionId)
+        }
 
         fun newInstance(groupId: Long = NO_GROUP_SELECTED): FeedGroupDialog {
             val dialog = FeedGroupDialog()

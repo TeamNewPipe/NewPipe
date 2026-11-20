@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_groups_create_from_channel">Create new Channel Group</string>
+    <string name="channel_groups_subscribe_before_creation">Subscribe to this channel before creating a group with it?</string>
+    <string name="channel_groups_subscribe_and_continue">Subscribe and continue</string>
+    <string name="channel_groups_create_failed">Could not create the Channel Group</string>
+</resources>
