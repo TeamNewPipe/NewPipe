@@ -48,6 +48,7 @@ import org.schabi.newpipe.ktx.AnimationType;
 import org.schabi.newpipe.local.feed.FeedDatabaseManager;
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper;
 import org.schabi.newpipe.local.search.ContextualSearchHelper;
+import org.schabi.newpipe.local.search.ChannelSearchResults;
 import org.schabi.newpipe.local.search.ContextualSearchable;
 import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.local.subscription.ChannelGroupCreation;
@@ -177,6 +178,8 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                             channelSearchQuery = ContextualSearchHelper.normalizeQuery(query);
                             applySearchToCurrentTab();
                         },
+                        query -> ChannelSearchResults.open(
+                                ChannelFragment.this, currentInfo, query),
                         expanded -> channelSearchExpanded = expanded);
 
                 if (DEBUG) {
