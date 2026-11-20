@@ -74,10 +74,15 @@ class FeedQuickAddController(private val list: RecyclerView) {
         )
     }
 
-    fun bind(row: View, stream: StreamEntity, eligible: Boolean) {
+    fun unbind(row: View) {
         rows.remove(row)
         val container = row.findViewById<FrameLayout>(R.id.itemThumbnailContainer) ?: return
         container.findViewById<View>(R.id.feed_quick_add_button)?.let(container::removeView)
+    }
+
+    fun bind(row: View, stream: StreamEntity, eligible: Boolean) {
+        unbind(row)
+        val container = row.findViewById<FrameLayout>(R.id.itemThumbnailContainer) ?: return
         if (disposed || !eligible) return
         rows[row] = stream
         val button = LayoutInflater.from(context).inflate(R.layout.feed_quick_add_button, container, false) as MaterialButton

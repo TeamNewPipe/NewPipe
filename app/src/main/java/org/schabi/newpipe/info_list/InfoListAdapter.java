@@ -44,6 +44,8 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
@@ -104,6 +106,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ItemViewMode itemMode = ItemViewMode.LIST;
 
     private Supplier<View> headerSupplier = null;
+    private BiConsumer<View, StreamInfoItem> streamRowBound;
+    private Consumer<View> streamRowRecycled;
 
     public InfoListAdapter(final Context context,
                            @NonNull final ContentBlockingHelper.Target contentBlockingTarget) {
@@ -113,6 +117,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
         this.contentBlockingTarget = contentBlockingTarget;
+    }
+
+    /**
+     * Optional row decoration used by the local For You tab, not a global stream action.
+     * @param bound a callback invoked when a stream row is bound
+     * @param recycled a callback invoked when a row is recycled
+     */
+    public void setStreamRowListener(@Nullable final BiConsumer<View, StreamInfoItem> bound,
+                                     @Nullable final Consumer<View> recycled) {
+        streamRowBound = bound;
+        streamRowRecycled = recycled;
     }
 
     public void setOnStreamSelectedListener(final OnClickGesture<StreamInfoItem> listener) {
@@ -412,13 +427,21 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((InfoItemHolder) holder).updateFromItem(
                     // If header is present, offset the items by -1
                     infoItemList.get(hasHeader() ? position - 1 : position), recordManager);
-            noteBadges.bindOnline(holder.itemView,
-                    infoItemList.get(hasHeader() ? position - 1 : position));
+            final InfoItem boundItem = infoItemList.get(hasHeader() ? position - 1 : position);
+            noteBadges.bindOnline(holder.itemView, boundItem);
+            if (streamRowBound != null && boundItem instanceof StreamInfoItem) {
+                streamRowBound.accept(holder.itemView, (StreamInfoItem) boundItem);
+            } else if (streamRowRecycled != null) {
+                streamRowRecycled.accept(holder.itemView);
+            }
         }
     }
 
     @Override
     public void onViewRecycled(@NonNull final RecyclerView.ViewHolder holder) {
+        if (streamRowRecycled != null) {
+            streamRowRecycled.accept(holder.itemView);
+        }
         if (holder instanceof InfoItemHolder) {
             ((InfoItemHolder) holder).recycle();
         }

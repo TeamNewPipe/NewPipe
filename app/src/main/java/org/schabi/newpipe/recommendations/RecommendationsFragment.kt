@@ -19,9 +19,11 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.function.Supplier
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.fragments.list.BaseListFragment
+import org.schabi.newpipe.local.feed.quickadd.FeedQuickAddController
 import org.schabi.newpipe.local.history.IncognitoMode
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.ContentBlockingHelper
@@ -30,6 +32,7 @@ import org.schabi.newpipe.util.ServiceHelper
 /** A home tab backed exclusively by the local candidate pool. */
 class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() {
     private var sourceItems: List<StreamInfoItem> = emptyList()
+    private var quickAdd: FeedQuickAddController? = null
     private var selectedInterest: String? = null
     private var contentFilter = ContentFilter.ALL
     private var interestGroup: ChipGroup? = null
@@ -61,6 +64,17 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_kiosk, container, false)
+
+    override fun initViews(rootView: View, savedInstanceState: Bundle?) {
+        super.initViews(rootView, savedInstanceState)
+        quickAdd = FeedQuickAddController(itemsList)
+        infoListAdapter.setStreamRowListener(
+            { row, item ->
+                quickAdd?.bind(row, StreamEntity(item), RecommendationQuickAdd.eligible(item))
+            },
+            { row -> quickAdd?.unbind(row) }
+        )
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -154,6 +168,9 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     }
 
     override fun onDestroyView() {
+        infoListAdapter.setStreamRowListener(null, null)
+        quickAdd?.dispose()
+        quickAdd = null
         loadingRequest++
         loadingDisposable?.dispose()
         loadingDisposable = null
