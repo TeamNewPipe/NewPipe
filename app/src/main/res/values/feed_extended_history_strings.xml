@@ -2,5 +2,5 @@
 <resources>
     <string name="feed_extended_history_key" translatable="false">feed_extended_history_enabled</string>
     <string name="feed_extended_history_title">Fetch older YouTube subscription videos</string>
-    <string name="feed_extended_history_summary">Optional deeper channel-tab refresh: up to 24 continuation pages instead of 8 per tab. Uses more data and time, stops at the existing feed retention boundary, and does not provide unlimited historical results.</string>
+    <string name="feed_extended_history_summary">Optional deeper channel-tab refresh: up to 24 continuation pages instead of 8 per tab. Uses more data, time and local storage; extends normal feed retention from 13 to 26 weeks. Older videos still depend on the source and are not unlimited.</string>
 </resources>

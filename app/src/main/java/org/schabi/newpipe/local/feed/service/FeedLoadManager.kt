@@ -322,7 +322,7 @@ class FeedLoadManager @JvmOverloads constructor(
                     fetchFirst = { getChannelTab(subscriptionEntity.serviceId, it, true).blockingGet() },
                     fetchMore = { tab, page -> getMoreChannelTabItems(subscriptionEntity.serviceId, tab, page).blockingGet() },
                     isCancelled = cancelSignal::get,
-                    oldestAllowedDate = FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE,
+                    oldestAllowedDate = FeedDatabaseManager.oldestAllowedDate(context),
                     errors = errors,
                     maximumContinuationPages = FeedExtractionPlanner.continuationLimit(
                         defaultSharedPreferences.getBoolean(
@@ -362,7 +362,7 @@ class FeedLoadManager @JvmOverloads constructor(
      * Keep the feed and the stream tables small
      * to reduce loading times when trying to display the feed.
      * <br>
-     * Remove streams from the feed which are older than [FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE].
+     * Remove streams from the feed which are older than [FeedDatabaseManager.oldestAllowedDate(context)].
      * Remove streams from the database which are not linked / used by any table.
      */
     private fun postProcessFeed() = Completable.fromRunnable {
@@ -477,7 +477,7 @@ class FeedLoadManager @JvmOverloads constructor(
                     // Therefore, streams which are not in the database,
                     // but older than this date, are considered old.
                     it.uploadDate!!.offsetDateTime().isAfter(
-                        FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE
+                        FeedDatabaseManager.oldestAllowedDate(context)
                     )
             }
         }

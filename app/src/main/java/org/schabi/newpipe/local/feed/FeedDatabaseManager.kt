@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.feed
 
 import android.content.Context
 import android.util.Log
+import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -37,8 +38,15 @@ class FeedDatabaseManager @JvmOverloads constructor(
         /**
          * Only items that are newer than this will be saved.
          */
-        val FEED_OLDEST_ALLOWED_DATE: OffsetDateTime = LocalDate.now().minusWeeks(13)
-            .atStartOfDay().atOffset(ZoneOffset.UTC)
+        val FEED_OLDEST_ALLOWED_DATE: OffsetDateTime
+            get() = FeedRetentionPolicy.cutoff(LocalDate.now(ZoneOffset.UTC), false)
+
+        @JvmStatic
+        fun oldestAllowedDate(context: Context): OffsetDateTime {
+            val enabled = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(org.schabi.newpipe.R.string.feed_extended_history_key), false)
+            return FeedRetentionPolicy.cutoff(LocalDate.now(ZoneOffset.UTC), enabled)
+        }
     }
 
     fun groups() = feedGroupTable.getAllForProfile(activeProfileId)
@@ -196,7 +204,7 @@ class FeedDatabaseManager @JvmOverloads constructor(
         subscriptionId: Long,
         items: List<StreamInfoItem>,
         youtubeModeMask: Int = SubscriptionEntity.YOUTUBE_MODE_REGULAR,
-        oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE,
+        oldestAllowedDate: OffsetDateTime = oldestAllowedDate(appContext),
         uploaderAvatarUrl: String? = null,
         isComplete: Boolean = true
     ) {
@@ -246,7 +254,7 @@ class FeedDatabaseManager @JvmOverloads constructor(
         }
     }
 
-    fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
+    fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = oldestAllowedDate(appContext)) {
         feedTable.unlinkStreamsOlderThanForProfile(activeProfileId, oldestAllowedDate)
         streamTable.deleteOrphans()
     }
