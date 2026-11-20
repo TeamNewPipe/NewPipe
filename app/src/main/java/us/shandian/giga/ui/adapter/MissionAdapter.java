@@ -87,6 +87,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
+import org.schabi.newpipe.download.DownloadCaptionGrouping;
 import us.shandian.giga.get.MetadataOnlyFinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.get.MissionRecoveryInfo;
@@ -124,6 +125,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private final View mView;
     private final ArrayList<Mission> mHidden;
     private Snackbar mSnackbar;
+    private java.util.Map<String, Integer> captionCounts = java.util.Collections.emptyMap();
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -231,8 +233,16 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             h.icon.setScaleType(ImageView.ScaleType.CENTER_CROP);
             CoilHelper.INSTANCE.loadThumbnail(h.icon, thumbnailUrl);
         }
-        h.name.setText(title == null || title.isEmpty()
-                ? item.mission.storage.getName() : title);
+        final String displayName = title == null || title.isEmpty()
+                ? item.mission.storage.getName() : title;
+        h.name.setText(DownloadCaptionGrouping.displayName(item.mission, displayName));
+        final boolean caption = item.mission.kind == 's';
+        final int companions = item.mission instanceof FinishedMission
+                ? captionCounts.getOrDefault(
+                        ((FinishedMission) item.mission).syncId, 0) : 0;
+        h.captionBadge.setVisibility(caption || companions > 0 ? View.VISIBLE : View.GONE);
+        h.captionBadge.setText(caption
+                ? R.string.download_caption_file_badge : R.string.download_has_captions_badge);
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
@@ -802,6 +812,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     public void applyChanges() {
+        refreshCaptionCounts();
         mIterator.start();
         DiffUtil.calculateDiff(mIterator, true).dispatchUpdatesTo(this);
         mIterator.end();
@@ -815,6 +826,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     public void forceUpdate() {
+        refreshCaptionCounts();
         mIterator.start();
         mIterator.end();
 
@@ -907,6 +919,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     public void onResume() {
+        refreshCaptionCounts();
         mDeleter.resume();
         refreshSyncedDownloadMetadata();
         HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 0);
@@ -923,6 +936,11 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                         }, error ->
                                 Log.w(TAG, "Could not load synchronized download metadata", error))
         );
+    }
+
+    private void refreshCaptionCounts() {
+        captionCounts = DownloadCaptionGrouping.captionCounts(
+                mDownloadManager.getFinishedMissionsSnapshot());
     }
 
     public void onPaused() {
@@ -975,6 +993,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         TextView name;
         TextView size;
         TextView date;
+        TextView captionBadge;
         ProgressDrawable progress;
 
         PopupMenu popupMenu;
@@ -1012,6 +1031,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             iconScaleType = icon.getScaleType();
             size = itemView.findViewById(R.id.item_size);
             date = itemView.findViewById(R.id.item_date);
+            captionBadge = itemView.findViewById(R.id.item_caption_badge);
 
             name.setSelected(true);
 
