@@ -129,6 +129,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.player.playqueue.TimestampedPlayQueue;
 import org.schabi.newpipe.player.ui.FullscreenCommentsSidebar;
 import org.schabi.newpipe.player.ui.FullscreenOrientationPolicy;
+import org.schabi.newpipe.player.ui.CollapsedResumeOrientationPolicy;
 import org.schabi.newpipe.player.ui.FullscreenOrientationPreference;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
 import org.schabi.newpipe.player.ui.StartFullscreenRequest;
@@ -483,6 +484,7 @@ public final class VideoDetailFragment
         if (detailLayoutRecreationRequested && binding != null) {
             binding.getRoot().post(this::reconcileDetailLayoutAfterConfigurationChange);
         }
+        restoreCollapsedMiniPlayerOrientationAfterResume();
         scheduleResumeLayoutRestore();
 
         if (tabSettingsChanged) {
@@ -510,8 +512,38 @@ public final class VideoDetailFragment
         // onResume sends a broadcast: the first pre-draw may run while video is still disabled.
         // Correct the fullscreen flag synchronously when the player acknowledges that broadcast,
         // then measure again before drawing the resumed window.
+        restoreCollapsedMiniPlayerOrientationAfterResume();
         restorePlayerLayoutAfterResume();
         scheduleResumeLayoutRestore();
+    }
+
+    /**
+     * A retained mini-player can resume with the old fullscreen rotation request even when
+     * Android did not deliver another bottom-sheet collapse callback while backgrounded.
+     */
+    private void restoreCollapsedMiniPlayerOrientationAfterResume() {
+        if (binding == null || !isAdded() || !isResumed() || activity == null
+                || !isPlayerAndPlayerServiceAvailable() || bottomSheetBehavior == null) {
+            return;
+        }
+        final boolean pip = nativePipPrepared || Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && activity.isInPictureInPictureMode();
+        final boolean nonPhone = DeviceUtils.isTv(activity)
+                || DeviceUtils.isTablet(activity)
+                || DeviceUtils.isDesktopMode(activity)
+                || DeviceUtils.isInMultiWindow(activity);
+        if (!CollapsedResumeOrientationPolicy.shouldRestore(
+                bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED,
+                player.videoPlayerSelected() && !player.isAudioOnly(),
+                isFullscreen() || pendingFullscreenState
+                        == FullscreenOrientationPolicy.ENTER_FULLSCREEN,
+                pip,
+                nonPhone,
+                activity.getRequestedOrientation())) {
+            return;
+        }
+        clearPendingFullscreenTransition();
+        requestFullscreenOrientation(false);
     }
 
     private void scheduleResumeLayoutRestore() {
