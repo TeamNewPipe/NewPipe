@@ -189,23 +189,17 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     private void initViews() {
         setupSubtitleView();
-
         binding.resizeTextView
                 .setText(PlayerHelper.resizeTypeOf(context, binding.surfaceView.getResizeMode()));
-
         applyPlayerSeekBarColor();
-
         final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(context,
                 R.style.PlayerOverlayPopupMenu);
-
         qualityPopupMenu = new PopupMenu(themeWrapper, binding.qualityTextView);
         audioTrackPopupMenu = new PopupMenu(themeWrapper, binding.audioTrackTextView);
         playbackSpeedPopupMenu = new PopupMenu(context, binding.playbackSpeed);
         captionPopupMenu = new PopupMenu(themeWrapper, binding.captionTextView);
-
         binding.progressBarLoadingPanel.getIndeterminateDrawable()
                 .setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
-
         binding.titleTextView.setSelected(true);
         binding.channelTextView.setSelected(true);
 
@@ -225,28 +219,24 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.audioTrackTextView.setOnClickListener(
                 makeOnClickListener(this::onAudioTracksClicked));
         binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
-
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
+        SeekHistoryUi.bind(binding, player);
         binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
         binding.resizeTextView.setOnClickListener(makeOnClickListener(this::onResizeClicked));
         binding.danmakuToggle.setOnClickListener(makeOnClickListener(danmakuController::toggle));
         binding.playbackLiveSync.setOnClickListener(makeOnClickListener(player::seekToDefault));
         binding.playbackLiveSync.setOnLongClickListener(
                 view -> PlayerLiveModeDialog.show(player, view));
-
         playerGestureListener = buildGestureListener();
         gestureDetector = new GestureDetector(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
-
         binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
         binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
-
         binding.playPauseButton.setOnClickListener(makeOnClickListener(player::playPause));
         binding.playPreviousButton.setOnClickListener(
                 makeOnClickListener(() -> PlayerNavigationButtons.previous(player)));
         binding.playNextButton.setOnClickListener(
                 makeOnClickListener(() -> PlayerNavigationButtons.next(player)));
-
         binding.moreOptionsButton.setOnClickListener(
                 makeOnClickListener(this::onMoreOptionsClicked));
         binding.share.setOnClickListener(makeOnClickListener(() -> {
@@ -282,7 +272,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                         .setPackage(App.PACKAGE_NAME))
         ));
         binding.switchMute.setOnClickListener(makeOnClickListener(player::toggleMute));
-
         ViewCompat.setOnApplyWindowInsetsListener(binding.itemsListPanel, (view, windowInsets) -> {
             final Insets cutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout());
             if (!cutout.equals(Insets.NONE)) {
@@ -320,16 +309,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.audioTrackTextView.setOnClickListener(null);
         binding.playbackSpeed.setOnClickListener(null);
         binding.playbackSeekBar.setOnSeekBarChangeListener(null);
+        SeekHistoryUi.clear(binding);
         binding.captionTextView.setOnClickListener(null);
         binding.resizeTextView.setOnClickListener(null);
         binding.danmakuToggle.setOnClickListener(null);
         binding.playbackLiveSync.setOnClickListener(null);
         binding.playbackLiveSync.setOnLongClickListener(null);
-
         binding.getRoot().setOnTouchListener(null);
         playerGestureListener = null;
         gestureDetector = null;
-
         binding.repeatButton.setOnClickListener(null);
         binding.shuffleButton.setOnClickListener(null);
 
@@ -694,6 +682,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     + "seekBar = [" + seekBar + "], progress = [" + progress + "]");
         }
         binding.currentDisplaySeek.setText(getTimeString(progress));
+        SeekHistoryUi.update(binding, player);
         chapterController.onProgressChanged(binding, progress);
         seekbarPreviewThumbnailHolder.requestBitmapAt(progress, bitmap -> {
             SeekbarPreviewThumbnailHelper.tryResizeAndSetSeekbarPreviewThumbnail(
@@ -703,7 +692,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         });
     }
 
-    private void adjustSeekbarPreviewContainer() {
+     private void adjustSeekbarPreviewContainer() {
         try {
             // Should only be required when an error occurred before
             // and the layout was positioned in the center
@@ -761,6 +750,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         }
         seekbarPreviewThumbnailHolder.cancelRequest();
         player.seekTo(seekBar.getProgress());
+        SeekHistoryUi.update(binding, player);
         if (player.getExoPlayer().getDuration() == seekBar.getProgress()) {
             player.getExoPlayer().play();
         }
@@ -937,6 +927,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         super.onMediaItemTransition();
         videoSurface.onMediaItemTransition();
         seekbarPreviewThumbnailHolder.cancelRequest();
+        SeekHistoryUi.update(binding, player);
         chapterController.clear(binding);
         binding.surfaceView.clearAspectRatio();
         danmakuController.reset();

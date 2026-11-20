@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="seek_history_back">Previous seek position</string>
+    <string name="seek_history_forward">Next seek position</string>
+</resources>

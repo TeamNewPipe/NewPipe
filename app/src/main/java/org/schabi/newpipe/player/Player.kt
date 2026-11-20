@@ -594,6 +594,14 @@ class Player(
 
     fun seekTo(positionMillis: Long) = seekController.seekTo(positionMillis)
 
+    fun seekHistoryBack(): Boolean = seekController.seekHistoryBack()
+
+    fun seekHistoryForward(): Boolean = seekController.seekHistoryForward()
+
+    fun canSeekHistoryBack(): Boolean = seekController.canSeekHistoryBack()
+
+    fun canSeekHistoryForward(): Boolean = seekController.canSeekHistoryForward()
+
     fun isNormalLive(): Boolean = isLive && dataSource.isNormalLive(videoUrl)
 
     fun setNormalLive(normal: Boolean) {

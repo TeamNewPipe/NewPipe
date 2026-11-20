@@ -12,6 +12,7 @@ import org.schabi.newpipe.player.helper.CustomPlaybackControls
 
 /** Owns playback-position queries and user-initiated seek operations. */
 internal class PlayerSeekController(private val player: Player) {
+    private val userHistory = UserSeekHistory()
     fun isApproachingPlaybackEdge(timeToEndMillis: Long): Boolean {
         if (player.exoPlayerIsNull() || isLive() || !player.isPlaying) {
             return false
@@ -42,15 +43,45 @@ internal class PlayerSeekController(private val player: Player) {
     }
 
     fun seekTo(positionMillis: Long) {
-        if (player.isNormalLive()) return
+        if (player.isNormalLive() || player.isLive) return
         player.channelSkipController.manualSeek(positionMillis)
         if (Player.DEBUG) {
             Log.d(Player.TAG, "seekBy() called with: position = [$positionMillis]")
         }
         if (!player.exoPlayerIsNull()) {
             val exoPlayer = player.exoPlayer
-            exoPlayer.seekTo(resolveSeekPosition(positionMillis, exoPlayer.duration))
+            val target = resolveSeekPosition(positionMillis, exoPlayer.duration)
+            userHistory.record(mediaIdentity(), exoPlayer.currentPosition, target)
+            exoPlayer.seekTo(target)
         }
+    }
+
+    private fun mediaIdentity(): String {
+        val exoPlayer = player.exoPlayer
+        val item = exoPlayer.currentMediaItem ?: return ""
+        return item.mediaId + "|" + item.localConfiguration?.uri + "|" + exoPlayer.currentMediaItemIndex
+    }
+
+    fun seekHistoryBack(): Boolean = navigateHistory(backward = true)
+
+    fun seekHistoryForward(): Boolean = navigateHistory(backward = false)
+
+    fun canSeekHistoryBack(): Boolean {
+        return !player.exoPlayerIsNull() && !player.isLive && userHistory.canBack(mediaIdentity())
+    }
+
+    fun canSeekHistoryForward(): Boolean {
+        return !player.exoPlayerIsNull() && !player.isLive && userHistory.canForward(mediaIdentity())
+    }
+
+    private fun navigateHistory(backward: Boolean): Boolean {
+        if (player.exoPlayerIsNull() || player.isLive) return false
+        val position = if (backward) userHistory.back(mediaIdentity()) else userHistory.forward(mediaIdentity())
+        if (position == null) return false
+        player.channelSkipController.manualSeek(position)
+        player.exoPlayer.seekTo(resolveSeekPosition(position, player.exoPlayer.duration))
+        player.triggerProgressUpdate()
+        return true
     }
 
     fun seekToDefault() {

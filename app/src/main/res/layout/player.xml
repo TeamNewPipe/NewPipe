@@ -569,6 +569,28 @@
                                 app:tint="@color/white" />
 
                             <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/seekHistoryBack"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/seek_history_back"
+                                android:padding="@dimen/player_main_icon_buttons_padding"
+                                android:src="@drawable/ic_seek_back"
+                                app:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/seekHistoryForward"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/seek_history_forward"
+                                android:padding="@dimen/player_main_icon_buttons_padding"
+                                android:src="@drawable/ic_seek_forward"
+                                app:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/sleepTimerButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
