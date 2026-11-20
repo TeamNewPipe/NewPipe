@@ -1402,6 +1402,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         setupScreenRotationButton();
         updateAmbientMode();
+        // PiP may already have params cached from the previous video. Refresh the aspect ratio
+        // on a valid decoder-size change even if the player holder bounds do not change.
+        getParentActivity().filter(org.schabi.newpipe.MainActivity.class::isInstance)
+                .map(org.schabi.newpipe.MainActivity.class::cast)
+                .ifPresent(org.schabi.newpipe.MainActivity::refreshNativePipAspectRatio);
         if (player.isPlaying()) {
             checkLandscape();
         }

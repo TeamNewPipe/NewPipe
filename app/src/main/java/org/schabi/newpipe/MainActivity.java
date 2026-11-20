@@ -348,6 +348,16 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "App moved to background");
     }
 
+    /**
+     * Update the native PiP window ratio when Media3 reports the next video's dimensions.
+     * The player holder can keep the same dimensions while the video changes aspect ratio.
+     */
+    public void refreshNativePipAspectRatio() {
+        if (nativePipController != null) {
+            nativePipController.updatePictureInPictureParams();
+        }
+    }
+
     @Override
     public void onUserLeaveHint() {
         nativePipController.onUserLeaveHint();
