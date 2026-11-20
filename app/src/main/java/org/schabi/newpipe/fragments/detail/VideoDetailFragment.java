@@ -3934,7 +3934,26 @@ public final class VideoDetailFragment
                         setOverlayLook(binding.appBarLayout, behavior, 1);
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
+                        // A swipe or a programmatic collapse can bypass the Back/fullscreen
+                        // button, leaving an outstanding landscape lock on the browsing UI.
+                        final boolean releaseFullscreenOrientation =
+                                org.schabi.newpipe.player.ui.MiniPlayerCollapseOrientationPolicy
+                                        .shouldExitFullscreen(
+                                                isPlayerAvailable()
+                                                        && player.videoPlayerSelected(),
+                                                isFullscreen(),
+                                                pendingFullscreenState
+                                                        == FullscreenOrientationPolicy
+                                                                .ENTER_FULLSCREEN,
+                                                nativePipPrepared,
+                                                DeviceUtils.isTv(activity)
+                                                        || DeviceUtils.isTablet(activity)
+                                                        || DeviceUtils.isDesktopMode(activity)
+                                                        || DeviceUtils.isInMultiWindow(activity));
                         clearPendingFullscreenTransition();
+                        if (releaseFullscreenOrientation) {
+                            requestFullscreenOrientation(false);
+                        }
                         moveFocusToMainFragment(true);
                         bottomSheetBehavior.setPeekHeight(peekHeight);
 
