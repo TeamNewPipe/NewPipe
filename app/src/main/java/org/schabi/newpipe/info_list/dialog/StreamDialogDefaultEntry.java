@@ -127,12 +127,18 @@ public enum StreamDialogDefaultEntry {
         PlaylistDialog.createCorrespondingDialog(
                 fragment.getContext(),
                 List.of(new StreamEntity(item)),
-                dialog -> dialog.show(
-                        fragment.getParentFragmentManager(),
-                        "StreamDialogEntry@"
-                                + (dialog instanceof PlaylistAppendDialog ? "append" : "create")
-                                + "_playlist"
-                )
+                dialog -> {
+                    if (!fragment.isAdded()
+                            || fragment.getParentFragmentManager().isStateSaved()) {
+                        return;
+                    }
+                    dialog.show(
+                            fragment.getParentFragmentManager(),
+                            "StreamDialogEntry@"
+                                    + (dialog instanceof PlaylistAppendDialog ? "append" : "create")
+                                    + "_playlist"
+                    );
+                }
         )
     ),
 
@@ -249,16 +255,21 @@ public enum StreamDialogDefaultEntry {
     MARK_AS_UNWATCHED(R.string.mark_as_unwatched, (fragment, item) ->
         new HistoryRecordManager(fragment.getContext())
                 .markAsUnwatched(item)
-                .doOnError(error -> ErrorUtil.showSnackbar(
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(error -> {
+                    if (!fragment.isAdded()) {
+                        return;
+                    }
+                    ErrorUtil.showSnackbar(
                         fragment.requireContext(),
                         new ErrorInfo(
                                 error,
                                 UserAction.OPEN_INFO_ITEM_DIALOG,
                                 "Got an error when trying to mark as unwatched"
                         )
-                ))
+                    );
+                })
                 .onErrorComplete()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
     );
 

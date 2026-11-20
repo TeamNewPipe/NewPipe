@@ -170,10 +170,19 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                 .changePlaylistThumbnail(playlist.getUid(), streams.get(0).getUid(),
                                         false)
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(ignore -> successToast.show()));
+                                .subscribe(ignore -> successToast.show(),
+                                        error -> showPlaylistError(error)));
                     }
-                }));
+                }, this::showPlaylistError));
 
         requireDialog().dismiss();
+    }
+
+    private void showPlaylistError(@NonNull final Throwable error) {
+        android.util.Log.e(TAG, "Unable to add stream to playlist", error);
+        if (isAdded()) {
+            Toast.makeText(requireContext(), R.string.feed_quick_add_failed,
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }

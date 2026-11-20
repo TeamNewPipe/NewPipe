@@ -75,7 +75,12 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
 
                     playlistManager.createPlaylist(name, getStreamEntities())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(longs -> successToast.show());
+                            .subscribe(longs -> successToast.show(), error -> {
+                                android.util.Log.e("PlaylistCreationDialog",
+                                        "Unable to save playlist", error);
+                                Toast.makeText(themedContext, R.string.feed_quick_add_failed,
+                                        Toast.LENGTH_LONG).show();
+                            });
                 });
         return dialogBuilder.create();
     }
