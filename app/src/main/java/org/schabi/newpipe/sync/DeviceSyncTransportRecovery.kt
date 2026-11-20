@@ -89,7 +89,13 @@ internal object DeviceSyncTransportRecovery {
             "connection closed" in message ||
             "channel closed" in message ||
             "closedchannelexception" in message ||
-            "total timeout" in message
+            "total timeout" in message ||
+            "network is unreachable" in message ||
+            "no route to host" in message ||
+            "software caused connection abort" in message ||
+            "connection reset" in message ||
+            "broken pipe" in message ||
+            "connection refused" in message
     }
 
     private const val MAX_CAUSE_DEPTH = 8
