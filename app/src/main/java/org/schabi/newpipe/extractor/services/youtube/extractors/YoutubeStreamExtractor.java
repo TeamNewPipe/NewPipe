@@ -94,6 +94,8 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     private JsonObject tvHtml5SimplyEmbedStreamingData;
 
     private JsonObject webStreamingData;
+    // WEB may supply storyboards even when the Android response selected for playback does not.
+    private volatile String webStoryboardSpec;
 
     @Nullable
     private JsonObject safariStreamingData;
@@ -1369,6 +1371,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
         errors.clear();
         playerResponse = null;
+        webStoryboardSpec = null;
         androidPlayerResponse = null;
         iosPlayerResponse = null;
         visionOsPlayerResponse = null;
@@ -1981,6 +1984,8 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                         throw new ExtractionException("Web player response is not valid");
                     }
 
+                    // Keep only the small storyboard descriptor, never the entire WEB response.
+                    webStoryboardSpec = storyboardSpec(webPlayerResponse);
                     final JsonObject streamingData = webPlayerResponse.getObject(STREAMING_DATA);
                     if (!isNullOrEmpty(streamingData)) {
                         webStreamingData = streamingData;
@@ -2584,27 +2589,43 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         }
     }
 
+    /**
+     * Player clients expose storyboards inconsistently. Prefer the playback response, then use
+     * metadata fetched from the existing WEB request without issuing any additional requests.
+     * @param response a candidate player response
+     * @return a usable storyboard specification, or null if unavailable
+     */
+    static String storyboardSpec(@Nullable final JsonObject response) {
+        if (response == null) {
+            return null;
+        }
+        final JsonObject storyboards = response.getObject("storyboards");
+        if (storyboards == null) {
+            return null;
+        }
+        final JsonObject live = storyboards.getObject("playerLiveStoryboardSpecRenderer");
+        final JsonObject regular = storyboards.getObject("playerStoryboardSpecRenderer");
+        final String liveSpec = live == null ? null : live.getString("spec");
+        if (liveSpec != null && !liveSpec.isBlank()) {
+            return liveSpec;
+        }
+        final String regularSpec = regular == null ? null : regular.getString("spec");
+        return regularSpec != null && !regularSpec.isBlank() ? regularSpec : null;
+    }
+
     @Nonnull
     @Override
     public List<Frameset> getFrames() throws ExtractionException {
         try {
-            final JsonObject storyboards = playerResponse.getObject("storyboards");
-            final JsonObject storyboardsRenderer = storyboards.getObject(
-                    storyboards.has("playerLiveStoryboardSpecRenderer")
-                            ? "playerLiveStoryboardSpecRenderer"
-                            : "playerStoryboardSpecRenderer"
-            );
-
-            if (storyboardsRenderer == null) {
+            String storyboard = storyboardSpec(playerResponse);
+            if (storyboard == null) {
+                storyboard = webStoryboardSpec;
+            }
+            if (storyboard == null) {
                 return Collections.emptyList();
             }
 
-            final String storyboardsRendererSpec = storyboardsRenderer.getString("spec");
-            if (storyboardsRendererSpec == null) {
-                return Collections.emptyList();
-            }
-
-            final String[] spec = storyboardsRendererSpec.split("\\|");
+            final String[] spec = storyboard.split("\\|");
             final String url = spec[0];
             final List<Frameset> result = new ArrayList<>(spec.length - 1);
 
