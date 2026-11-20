@@ -87,6 +87,9 @@ abstract class FeedDAO {
             OR fgs.group_id = :groupId
         )
         AND sub.profile_id = :profileId
+        -- Exclude by subscription before LIMIT/OFFSET, only in the All feed.
+        AND (:groupId <> ${FeedGroupEntity.GROUP_ALL_ID}
+            OR sub.uid NOT IN (:excludedSubscriptions))
         AND (:serviceId = -1 OR sub.service_id = :serviceId)
         AND (
             :serviceId <> ${SubscriptionEntity.YOUTUBE_SERVICE_ID}
@@ -144,7 +147,8 @@ abstract class FeedDAO {
         sortByDiscovery: Boolean = false,
         useCurrentTime: Boolean = false,
         limit: Int = 500,
-        offset: Int = 0
+        offset: Int = 0,
+        excludedSubscriptions: List<Long> = listOf(-1L)
     ): Flowable<List<StreamWithState>>
 
     fun getStreams(
@@ -157,7 +161,8 @@ abstract class FeedDAO {
         youtubeModeMask: Int,
         sortByDiscovery: Boolean = false,
         limit: Int = 500,
-        offset: Int = 0
+        offset: Int = 0,
+        excludedSubscriptions: List<Long> = listOf(-1L)
     ): Maybe<List<StreamWithState>> = observeStreams(
         profileId,
         groupId,
@@ -168,7 +173,8 @@ abstract class FeedDAO {
         youtubeModeMask,
         sortByDiscovery,
         limit = limit,
-        offset = offset
+        offset = offset,
+        excludedSubscriptions = excludedSubscriptions
     ).firstElement()
 
     /**

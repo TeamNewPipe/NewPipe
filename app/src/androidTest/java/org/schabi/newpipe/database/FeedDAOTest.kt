@@ -118,6 +118,34 @@ class FeedDAOTest {
     }
 
     @Test
+    fun excludedSubscriptionsAreFilteredBeforePaginationOnlyForAllFeed() {
+        clearAndFillTables()
+        val profile = SubscriptionEntity.DEFAULT_PROFILE_ID
+        val groupId = db.feedGroupDAO().insert(
+            FeedGroupEntity(0, "Keep visible here", org.schabi.newpipe.local.subscription.FeedGroupIcon.NEWS)
+        )
+        db.feedGroupDAO().updateSubscriptionsForGroupForProfile(profile, groupId, listOf(4L))
+        val modes = SubscriptionEntity.YOUTUBE_MODE_REGULAR
+        fun ids(group: Long, excluded: List<Long>, limit: Int = 500): List<Long> = feedDAO.getStreams(
+            profile,
+            group,
+            true,
+            true,
+            null,
+            serviceId,
+            modes,
+            limit = limit,
+            excludedSubscriptions = excluded
+        ).blockingGet()!!.map { it.stream.uid }
+
+        val selectedGroupStreams = feedDAO.getMemberships(4L).map { it.streamId }.toSet()
+        assertTrue(selectedGroupStreams.isNotEmpty())
+        assertTrue(ids(FeedGroupEntity.GROUP_ALL_ID, listOf(4L)).none { it in selectedGroupStreams })
+        assertTrue(ids(groupId, listOf(4L)).any { it in selectedGroupStreams })
+        assertEquals(1, ids(FeedGroupEntity.GROUP_ALL_ID, listOf(4L), limit = 1).size)
+    }
+
+    @Test
     fun thresholdSkipsRecentSubscriptionsButImmediateRefreshIncludesThem() {
         clearAndFillTables()
         val now = OffsetDateTime.parse("2026-10-04T12:00:00Z")

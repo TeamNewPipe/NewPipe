@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feed_exclude_from_all">Exclude from All feed</string>
+    <string name="feed_include_in_all">Show in All feed</string>
+    <string name="feed_excluded_from_all">Channel hidden from All feed</string>
+    <string name="feed_included_in_all">Channel restored to All feed</string>
+</resources>

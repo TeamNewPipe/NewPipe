@@ -16,6 +16,7 @@ import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.local.feed.FeedAllExclusions
 import org.schabi.newpipe.profiles.KidsMode
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.profiles.ProfileRecord
@@ -51,6 +52,28 @@ internal class SubscriptionChannelActions(
             commands += fragment.getString(R.string.channel_subscribe_to_profile) to {
                 showSubscribeToProfileDialog(selectedItem)
             }
+        }
+        val activeProfileId = ProfileManager.getActiveProfileId(fragment.requireContext())
+        val excluded = FeedAllExclusions.isExcluded(
+            fragment.requireContext(),
+            activeProfileId,
+            selectedItem.serviceId,
+            selectedItem.url
+        )
+        commands += fragment.getString(
+            if (excluded) R.string.feed_include_in_all else R.string.feed_exclude_from_all
+        ) to {
+            val nowExcluded = FeedAllExclusions.toggle(
+                fragment.requireContext(),
+                activeProfileId,
+                selectedItem.serviceId,
+                selectedItem.url
+            )
+            Toast.makeText(
+                fragment.requireContext(),
+                if (nowExcluded) R.string.feed_excluded_from_all else R.string.feed_included_in_all,
+                Toast.LENGTH_SHORT
+            ).show()
         }
         commands += fragment.getString(R.string.unsubscribe) to {
             deleteChannel(selectedItem)

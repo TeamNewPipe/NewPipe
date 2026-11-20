@@ -28,6 +28,7 @@ class FeedDatabaseManager @JvmOverloads constructor(
     private val activeProfileId: String = ProfileManager.getActiveProfileId(context)
 ) {
     private val database = NewPipeDatabase.getInstance(context)
+    private val appContext = context.applicationContext
     private val feedTable = database.feedDAO()
     private val feedGroupTable = database.feedGroupDAO()
     private val streamTable = database.streamDAO()
@@ -76,20 +77,37 @@ class FeedDatabaseManager @JvmOverloads constructor(
         limit: Int = 500,
         offset: Int = 0
     ): Flowable<List<StreamWithState>> {
-        return feedTable.observeStreams(
-            activeProfileId,
-            groupId,
-            includePlayedStreams,
-            includePartiallyPlayedStreams,
-            if (includeFutureStreams) null else OffsetDateTime.now(),
-            scope.serviceId,
-            scope.youtubeModeMask,
-            sortByDiscovery,
-            // A long-lived observation must include uploads published after it began.
-            useCurrentTime = !includeFutureStreams,
-            limit = limit.coerceAtLeast(1),
-            offset = offset.coerceAtLeast(0)
-        )
+        val query: (List<Long>) -> Flowable<List<StreamWithState>> = { excluded ->
+            feedTable.observeStreams(
+                activeProfileId,
+                groupId,
+                includePlayedStreams,
+                includePartiallyPlayedStreams,
+                if (includeFutureStreams) null else OffsetDateTime.now(),
+                scope.serviceId,
+                scope.youtubeModeMask,
+                sortByDiscovery,
+                // A long-lived observation must include uploads published after it began.
+                useCurrentTime = !includeFutureStreams,
+                limit = limit.coerceAtLeast(1),
+                offset = offset.coerceAtLeast(0),
+                excludedSubscriptions = excluded
+            )
+        }
+        if (groupId != FeedGroupEntity.GROUP_ALL_ID) return query(listOf(-1L))
+        return FeedAllExclusions.changes(appContext, activeProfileId)
+            .observeOn(Schedulers.io())
+            .map { keys ->
+                if (keys.isEmpty()) {
+                    listOf(-1L)
+                } else {
+                    database.subscriptionDAO().getAllDirectForProfile(activeProfileId)
+                        .filter { FeedAllExclusions.channelKey(it.serviceId, it.url.orEmpty()) in keys }
+                        .map { it.uid }
+                        .ifEmpty { listOf(-1L) }
+                }
+            }
+            .switchMap(query)
     }
 
     fun outdatedSubscriptions(
