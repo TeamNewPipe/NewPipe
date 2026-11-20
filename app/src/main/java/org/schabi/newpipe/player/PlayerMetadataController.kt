@@ -22,6 +22,7 @@ import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.player.mediaitem.LocalMediaItemTag
 import org.schabi.newpipe.player.mediaitem.MediaItemTag
 import org.schabi.newpipe.recommendations.LocalRecommendations
+import org.schabi.newpipe.recommendations.RecommendationWorkDispatcher
 import org.schabi.newpipe.util.image.ExtractorImageCompat
 
 /** Owns current media metadata and the work triggered when it changes. */
@@ -114,7 +115,9 @@ internal class PlayerMetadataController(
         sponsorBlockController.updateSegments(info)
         maybeAutoQueueNextStream(info)
         thumbnailController.load(ExtractorImageCompat.thumbnailImages(info))
-        LocalRecommendations.observe(context, info.relatedItems.orEmpty())
+        // The recommendation model is serialized to preferences; do not perform that work
+        // on the playback event thread when a new video's metadata arrives.
+        RecommendationWorkDispatcher.observe(context, info.relatedItems.orEmpty())
         historyController.registerViewed()
 
         player.notifyMetadataUpdateToListeners()
