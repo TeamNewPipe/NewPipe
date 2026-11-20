@@ -141,7 +141,7 @@ class QueueRecoveryControllerTest {
         controller.close()
     }
 
-    @Test fun savesConfirmedPlaybackPositionAtMostFiveSecondsApart() {
+    @Test fun savesConfirmedPlaybackPositionEveryThreeSecondsWhenActive() {
         val item = PlayQueueItem.localMedia(
             "Track", "content://media/external/audio/media/1",
             100, "Artist", null, null, "audio/mpeg", 1, false, null
@@ -164,20 +164,20 @@ class QueueRecoveryControllerTest {
 
         `when`(engine.contentPosition).thenReturn(50_000L)
         controller.checkpoint()
-        elapsed += 4_000
-        `when`(engine.contentPosition).thenReturn(54_000L)
+        elapsed += 2_500
+        `when`(engine.contentPosition).thenReturn(52_500L)
         controller.checkpoint()
         assertEquals(listOf(50_000L), saves.map { it.position })
 
-        elapsed += 1_000
-        `when`(engine.contentPosition).thenReturn(55_000L)
+        elapsed += 500
+        `when`(engine.contentPosition).thenReturn(53_000L)
         controller.checkpoint()
-        assertEquals(listOf(50_000L, 55_000L), saves.map { it.position })
+        assertEquals(listOf(50_000L, 53_000L), saves.map { it.position })
 
         elapsed += 500
-        `when`(engine.contentPosition).thenReturn(55_500L)
+        `when`(engine.contentPosition).thenReturn(53_500L)
         controller.checkpoint(true)
-        assertEquals(listOf(50_000L, 55_000L, 55_500L), saves.map { it.position })
+        assertEquals(listOf(50_000L, 53_000L, 53_500L), saves.map { it.position })
         controller.close()
     }
 

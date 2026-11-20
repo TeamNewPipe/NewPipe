@@ -82,8 +82,9 @@ internal class QueueRecoveryController(
     }
 
     companion object {
-        // At most five seconds of playback progress is lost after a sudden process death.
-        // Pauses, seeks, and lifecycle transitions still persist an immediate checkpoint.
-        internal const val PERIODIC_CHECKPOINT_INTERVAL_MILLIS = 5_000L
+        // Save playback progress every three seconds while the player thread remains responsive.
+        // A hard OOM can still prevent later callbacks and pending asynchronous disk writes.
+        // Pauses, seeks, lifecycle events and memory-pressure callbacks force a checkpoint.
+        internal const val PERIODIC_CHECKPOINT_INTERVAL_MILLIS = 3_000L
     }
 }

@@ -339,6 +339,11 @@ class Player(
         lifecycleController.initPlayback(queue, playOnReady)
     }
 
+    /** Capture a fresh position before Android reclaims resources, when possible. */
+    fun checkpointPlaybackRecovery() {
+        queueRecovery.checkpoint(true)
+    }
+
     fun setPlayQueueForLifecycle(queue: PlayQueue) {
         activePlayQueue = queue
         queueRecovery.bind(queue)

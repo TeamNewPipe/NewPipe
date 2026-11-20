@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.player;
 
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
@@ -237,6 +238,24 @@ public final class PlayerService extends MediaLibraryService {
         onDestroy();
         // Unload from memory completely
         Runtime.getRuntime().halt(0);
+    }
+
+    @Override
+    public void onTrimMemory(final int level) {
+        super.onTrimMemory(level);
+        // The service can remain alive when the activity moves to the background. Persist
+        // a final confirmed position before background reclamation or increased memory pressure.
+        if (player != null && level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
+            player.checkpointPlaybackRecovery();
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        if (player != null) {
+            player.checkpointPlaybackRecovery();
+        }
     }
 
     @Override
