@@ -287,6 +287,14 @@
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            android:key="@string/feed_extended_history_key"
+            android:title="@string/feed_extended_history_title"
+            android:summary="@string/feed_extended_history_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <MultiSelectListPreference
             android:key="@string/feed_fetch_channel_tabs_key"
             android:summary="@string/feed_fetch_channel_tabs_summary"

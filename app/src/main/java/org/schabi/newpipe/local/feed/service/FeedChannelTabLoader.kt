@@ -17,7 +17,8 @@ internal object FeedChannelTabLoader {
         fetchMore: (ListLinkHandler, Page) -> InfoItemsPage<InfoItem>,
         isCancelled: () -> Boolean,
         oldestAllowedDate: OffsetDateTime,
-        errors: MutableList<Throwable>
+        errors: MutableList<Throwable>,
+        maximumContinuationPages: Int = FeedExtractionPlanner.MAX_FEED_CONTINUATION_PAGES_PER_TAB
     ): List<InfoItem> {
         val collected = mutableListOf<InfoItem>()
         for (tab in tabs) {
@@ -35,7 +36,8 @@ internal object FeedChannelTabLoader {
                             .mapNotNull { it.uploadDate?.offsetDateTime() },
                         hasNextPage = Page.isValid(nextPage),
                         continuationPagesLoaded = pagesLoaded,
-                        oldestAllowedDate = oldestAllowedDate
+                        oldestAllowedDate = oldestAllowedDate,
+                        maximumContinuationPages = maximumContinuationPages
                     )
                 ) {
                     val page = fetchMore(tab, nextPage ?: break)

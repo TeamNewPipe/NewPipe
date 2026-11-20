@@ -126,6 +126,44 @@ class FeedExtractionPlannerTest {
     }
 
     @Test
+    fun extendedYouTubeContinuationIsOptInAndBounded() {
+        assertEquals(8, FeedExtractionPlanner.continuationLimit(false))
+        assertEquals(24, FeedExtractionPlanner.continuationLimit(true))
+
+        val cutoff = OffsetDateTime.parse("2026-07-01T00:00:00Z")
+        val sourceDates = listOf(OffsetDateTime.parse("2026-09-01T00:00:00Z"))
+        assertFalse(
+            FeedExtractionPlanner.shouldLoadFeedContinuation(
+                pageItemCount = 30,
+                sourceUploadDates = sourceDates,
+                hasNextPage = true,
+                continuationPagesLoaded = 8,
+                oldestAllowedDate = cutoff
+            )
+        )
+        assertTrue(
+            FeedExtractionPlanner.shouldLoadFeedContinuation(
+                pageItemCount = 30,
+                sourceUploadDates = sourceDates,
+                hasNextPage = true,
+                continuationPagesLoaded = 8,
+                oldestAllowedDate = cutoff,
+                maximumContinuationPages = FeedExtractionPlanner.continuationLimit(true)
+            )
+        )
+        assertFalse(
+            FeedExtractionPlanner.shouldLoadFeedContinuation(
+                pageItemCount = 30,
+                sourceUploadDates = sourceDates,
+                hasNextPage = true,
+                continuationPagesLoaded = 24,
+                oldestAllowedDate = cutoff,
+                maximumContinuationPages = FeedExtractionPlanner.continuationLimit(true)
+            )
+        )
+    }
+
+    @Test
     fun `feed backfill respects continuation page cap`() {
         assertFalse(
             FeedExtractionPlanner.shouldLoadFeedContinuation(

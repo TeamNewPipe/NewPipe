@@ -323,7 +323,13 @@ class FeedLoadManager @JvmOverloads constructor(
                     fetchMore = { tab, page -> getMoreChannelTabItems(subscriptionEntity.serviceId, tab, page).blockingGet() },
                     isCancelled = cancelSignal::get,
                     oldestAllowedDate = FeedDatabaseManager.FEED_OLDEST_ALLOWED_DATE,
-                    errors = errors
+                    errors = errors,
+                    maximumContinuationPages = FeedExtractionPlanner.continuationLimit(
+                        defaultSharedPreferences.getBoolean(
+                            context.getString(R.string.feed_extended_history_key),
+                            false
+                        )
+                    )
                 ).filterIsInstance<StreamInfoItem>()
             }
 

@@ -10,6 +10,14 @@ internal object FeedExtractionPlanner {
     const val DEDICATED_FEED_PARALLELISM = 5
     const val FULL_CHANNEL_PARALLELISM = 3
     const val MAX_FEED_CONTINUATION_PAGES_PER_TAB = 8
+    const val EXTENDED_FEED_CONTINUATION_PAGES_PER_TAB = 24
+
+    /** Extended history is a deliberate opt-in to avoid extra YouTube requests by default. */
+    fun continuationLimit(extendedHistory: Boolean): Int = if (extendedHistory) {
+        EXTENDED_FEED_CONTINUATION_PAGES_PER_TAB
+    } else {
+        MAX_FEED_CONTINUATION_PAGES_PER_TAB
+    }
     private const val YOUTUBE_FULL_EXTRACTION_BATCH_SIZE = 50
 
     fun isFullYouTubeExtraction(
@@ -33,10 +41,14 @@ internal object FeedExtractionPlanner {
         sourceUploadDates: List<OffsetDateTime>,
         hasNextPage: Boolean,
         continuationPagesLoaded: Int,
-        oldestAllowedDate: OffsetDateTime
+        oldestAllowedDate: OffsetDateTime,
+        maximumContinuationPages: Int = MAX_FEED_CONTINUATION_PAGES_PER_TAB
     ): Boolean {
         if (!hasNextPage ||
-            continuationPagesLoaded >= MAX_FEED_CONTINUATION_PAGES_PER_TAB
+            continuationPagesLoaded >= maximumContinuationPages.coerceIn(
+                0,
+                EXTENDED_FEED_CONTINUATION_PAGES_PER_TAB
+            )
         ) {
             return false
         }
