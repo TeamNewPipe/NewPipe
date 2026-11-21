@@ -1,0 +1,1 @@
+Fix the Downloads List view crash caused by a missing caption badge in the linear layout, and add regression coverage for both Downloads item layouts.

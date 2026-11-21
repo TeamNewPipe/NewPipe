@@ -4,6 +4,13 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.49.1 (`1049001`)
+
+### Downloads hotfix
+
+- Fix a crash when switching Downloads to List view caused by a missing caption badge in the linear download item layout.
+- Add regression coverage ensuring both Downloads layouts provide the required item views.
+
 ## WizeStream 1.49.0 (`1049000`)
 
 ### Playback and live media
