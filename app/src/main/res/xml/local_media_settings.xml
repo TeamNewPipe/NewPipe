@@ -11,6 +11,14 @@
         app:iconSpaceReserved="false"
         app:singleLineTitle="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/local_media_show_duplicate_parent_key"
+        android:summary="@string/local_media_show_duplicate_parent_summary"
+        android:title="@string/local_media_show_duplicate_parent_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
     <Preference
         android:key="@string/local_media_ignored_status_key"
         android:title="@string/local_media_ignored_status_title"

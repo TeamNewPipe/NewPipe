@@ -28,6 +28,39 @@ class LocalMediaVideoIndexTest {
     }
 
     @Test
+    fun `duplicate folder names show parent but preserve underlying folder identities`() {
+        val videos = listOf(
+            video(1, path = "Movies/Family", folder = "Family"),
+            video(2, path = "Downloads/Family", folder = "Family"),
+            video(3, path = "Pictures/Holiday", folder = "Holiday")
+        )
+        val groups = LocalMediaVideoIndex.folders(videos, "Unknown folder")
+        assertEquals(
+            setOf("Family (Movies)", "Family (Downloads)", "Holiday"),
+            groups.map(LocalMediaGroup::title).toSet()
+        )
+        assertEquals(
+            setOf("folder:external:Movies/Family", "folder:external:Downloads/Family", "folder:external:Pictures/Holiday"),
+            groups.map(LocalMediaGroup::stableKey).toSet()
+        )
+        val plain = LocalMediaVideoIndex.folders(videos, "Unknown folder", showParentForDuplicates = false)
+        assertEquals(2, plain.count { it.title == "Family" })
+    }
+
+    @Test
+    fun `identical parents are qualified by storage location`() {
+        val groups = LocalMediaVideoIndex.folders(
+            listOf(
+                video(1, volume = "external", path = "Movies/Family", folder = "Family"),
+                video(2, volume = "sdcard", path = "Movies/Family", folder = "Family")
+            ),
+            "Unknown folder"
+        )
+        assertEquals(2, groups.map(LocalMediaGroup::title).toSet().size)
+        assertEquals(true, groups.all { it.title.startsWith("Family (") })
+    }
+
+    @Test
     fun `mixed media can share a folder group`() {
         val groups = LocalMediaVideoIndex.folders(
             listOf(

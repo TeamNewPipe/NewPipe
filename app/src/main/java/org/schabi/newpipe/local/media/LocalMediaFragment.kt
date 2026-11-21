@@ -492,6 +492,10 @@ class LocalMediaFragment : Fragment() {
         }
     }
 
+    private fun showParentForDuplicateFolders(): Boolean = PreferenceManager
+        .getDefaultSharedPreferences(requireContext())
+        .getBoolean(getString(R.string.local_media_show_duplicate_parent_key), true)
+
     private fun groupAllMediaByFolder(): Boolean = PreferenceManager
         .getDefaultSharedPreferences(requireContext())
         .getBoolean(
@@ -503,7 +507,8 @@ class LocalMediaFragment : Fragment() {
         val groups = LocalMediaVideoIndex.folders(
             allItems,
             getString(R.string.local_media_unknown_folder),
-            LocalMediaGroupKind.MEDIA_FOLDER
+            LocalMediaGroupKind.MEDIA_FOLDER,
+            showParentForDuplicateFolders()
         ).filter { group ->
             term.isEmpty() || listOf(group.title, group.subtitle).any { value ->
                 value.lowercase(Locale.getDefault()).contains(term)
@@ -530,7 +535,8 @@ class LocalMediaFragment : Fragment() {
     private fun showVideoGroups(term: String) {
         val groups = LocalMediaVideoIndex.folders(
             allItems.filter(LocalMediaItem::isVideo),
-            getString(R.string.local_media_unknown_folder)
+            getString(R.string.local_media_unknown_folder),
+            showParentForDuplicates = showParentForDuplicateFolders()
         ).filter { group ->
             term.isEmpty() || listOf(group.title, group.subtitle).any { value ->
                 value.lowercase(Locale.getDefault()).contains(term)

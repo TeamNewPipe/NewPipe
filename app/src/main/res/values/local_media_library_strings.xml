@@ -10,6 +10,9 @@
     <string name="local_media_back_to_categories">Back to categories</string>
     <string name="local_media_folders">Folders</string>
     <string name="local_media_unknown_folder">Unknown folder</string>
+    <string name="local_media_show_duplicate_parent_key" translatable="false">local_media_show_duplicate_parent</string>
+    <string name="local_media_show_duplicate_parent_title">Distinguish folders with the same name</string>
+    <string name="local_media_show_duplicate_parent_summary">Show the parent folder or storage location beside duplicate folder names. Keeps folder contents and sorting unchanged.</string>
     <string name="local_media_play_all">Play all</string>
     <string name="local_media_shuffle_all">Shuffle all</string>
     <string name="local_media_group_more_actions">More group actions</string>
