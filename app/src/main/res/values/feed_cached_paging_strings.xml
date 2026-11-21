@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feed_older_cached_page">Browse older cached videos</string>
+    <string name="feed_newer_cached_page">Back toward recent cached videos</string>
+</resources>

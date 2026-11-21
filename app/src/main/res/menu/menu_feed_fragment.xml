@@ -19,6 +19,18 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_item_feed_older_cached"
+        android:title="@string/feed_older_cached_page"
+        android:visible="false"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_feed_newer_cached"
+        android:title="@string/feed_newer_cached_page"
+        android:visible="false"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_item_feed_archive"
         android:title="@string/feed_archive_title"
         app:showAsAction="never" />

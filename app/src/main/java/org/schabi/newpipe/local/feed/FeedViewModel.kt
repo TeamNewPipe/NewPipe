@@ -39,21 +39,50 @@ class FeedViewModel(
 ) : ViewModel() {
     private val feedDatabaseManager = FeedDatabaseManager(application)
     private val selectedGroup = BehaviorProcessor.createDefault(groupId)
-    private val cachedFeedLimit = BehaviorProcessor.createDefault(FeedPagination.INITIAL_LIMIT)
+    private val cachedFeedWindow = BehaviorProcessor.createDefault(FeedPagination.Window())
     private var loadedFeedCount = 0
+
+    fun hasOlderCachedPage(): Boolean = FeedPagination.older(
+        cachedFeedWindow.value ?: FeedPagination.Window(),
+        loadedFeedCount
+    ) != null
+
+    fun hasNewerCachedPage(): Boolean {
+        return (cachedFeedWindow.value ?: FeedPagination.Window()).offset > 0
+    }
+
+    fun showOlderCachedPage(): Boolean {
+        val current = cachedFeedWindow.value ?: FeedPagination.Window()
+        val next = FeedPagination.older(current, loadedFeedCount) ?: return false
+        loadedFeedCount = 0
+        cachedFeedWindow.onNext(next)
+        return true
+    }
+
+    fun showNewerCachedPage(): Boolean {
+        val current = cachedFeedWindow.value ?: FeedPagination.Window()
+        val next = FeedPagination.newer(current) ?: return false
+        loadedFeedCount = 0
+        cachedFeedWindow.onNext(next)
+        return true
+    }
+
+    private fun resetCachedFeedWindow() {
+        loadedFeedCount = 0
+        cachedFeedWindow.onNext(FeedPagination.Window())
+    }
 
     fun selectGroup(groupId: Long) {
         if (groupId != selectedGroup.value) {
-            loadedFeedCount = 0
-            cachedFeedLimit.onNext(FeedPagination.INITIAL_LIMIT)
+            resetCachedFeedWindow()
         }
         selectedGroup.onNext(groupId)
     }
 
     fun loadMoreCachedItems() {
-        val limit = cachedFeedLimit.value ?: FeedPagination.INITIAL_LIMIT
-        val next = FeedPagination.nextLimit(limit, loadedFeedCount)
-        if (next > limit) cachedFeedLimit.onNext(next)
+        val window = cachedFeedWindow.value ?: FeedPagination.Window()
+        val next = FeedPagination.expanded(window, loadedFeedCount)
+        if (next != window) cachedFeedWindow.onNext(next)
     }
 
     private val showPlayedItems = BehaviorProcessor.create<Boolean>()
@@ -95,7 +124,7 @@ class FeedViewModel(
         showPartiallyPlayedItemsFlowable,
         showFutureItemsFlowable,
         selectedGroup.distinctUntilChanged(),
-        cachedFeedLimit.distinctUntilChanged(),
+        cachedFeedWindow.distinctUntilChanged(),
         Function7 {
                 scope: FeedScope,
                 sort: FeedSortMode,
@@ -103,9 +132,9 @@ class FeedViewModel(
                 partial: Boolean,
                 future: Boolean,
                 group: Long,
-                limit: Int
+                window: FeedPagination.Window
             ->
-            FeedQuery(scope, sort, played, partial, future, group, limit)
+            FeedQuery(scope, sort, played, partial, future, group, window)
         }
     )
         .switchMap { query ->
@@ -118,7 +147,8 @@ class FeedViewModel(
                 query.future,
                 query.scope,
                 query.sortMode == FeedSortMode.DISCOVERY,
-                limit = query.limit
+                limit = query.window.limit,
+                offset = query.window.offset
             )
                 .throttleLatestDropOverflow(FEED_SNAPSHOT_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -190,7 +220,7 @@ class FeedViewModel(
         val partial: Boolean,
         val future: Boolean,
         val groupId: Long,
-        val limit: Int
+        val window: FeedPagination.Window
     )
 
     private data class FeedResult(
@@ -231,6 +261,7 @@ class FeedViewModel(
                 mode == FeedSortMode.DISCOVERY
             )
         }
+        resetCachedFeedWindow()
         sortMode.onNext(mode)
     }
 

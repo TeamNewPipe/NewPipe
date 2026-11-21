@@ -154,6 +154,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     private var pendingListUpdate: OnAsyncUpdateListener? = null
     private var relevanceSortDisposable: Disposable? = null
     private var relevanceSortRequest = 0L
+    private var cachedPageMenuState: Pair<Boolean, Boolean>? = null
 
     private var glassLayout: GlassFeedLayout? = null
     private var glassBottomInset = 0
@@ -434,7 +435,30 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             groupId != FeedGroupEntity.GROUP_ALL_ID
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.menu_item_feed_older_cached)?.isVisible =
+            viewModel.hasOlderCachedPage()
+        menu.findItem(R.id.menu_item_feed_newer_cached)?.isVisible =
+            viewModel.hasNewerCachedPage()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_item_feed_older_cached) {
+            if (viewModel.showOlderCachedPage()) {
+                listState = null
+                feedBinding.itemsList.scrollToPosition(0)
+                activity.invalidateOptionsMenu()
+            }
+            return true
+        } else if (item.itemId == R.id.menu_item_feed_newer_cached) {
+            if (viewModel.showNewerCachedPage()) {
+                listState = null
+                feedBinding.itemsList.scrollToPosition(0)
+                activity.invalidateOptionsMenu()
+            }
+            return true
+        }
         if (item.itemId == R.id.menu_item_feed_archive) {
             FeedArchiveDialog.show(this)
             return true
@@ -708,6 +732,14 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         }
 
         updateRefreshViewState()
+        if (result is FeedState.LoadedState) {
+            val currentState = viewModel.hasOlderCachedPage() to
+                viewModel.hasNewerCachedPage()
+            if (currentState != cachedPageMenuState) {
+                cachedPageMenuState = currentState
+                activity?.invalidateOptionsMenu()
+            }
+        }
     }
 
     override fun handleError() {
