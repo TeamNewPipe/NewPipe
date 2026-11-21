@@ -25,6 +25,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.testUtil.TestDatabase
+import org.xmlpull.v1.XmlPullParser
 
 @RunWith(AndroidJUnit4::class)
 class LocalLikesViewTest {
@@ -55,6 +56,8 @@ class LocalLikesViewTest {
                 val touchSize = (48 * density + 0.5f).toInt()
 
                 assertEquals(LinearLayout.HORIZONTAL, controls.orientation)
+                assertEquals(0, controls.paddingStart)
+                assertEquals(0, controls.paddingEnd)
                 assertEquals(touchSize, like.layoutParams.width)
                 assertEquals(touchSize, like.layoutParams.height)
                 assertTrue(like.minimumHeight >= touchSize)
@@ -67,6 +70,41 @@ class LocalLikesViewTest {
                 assertEquals(LinearLayout.HORIZONTAL, controls.orientation)
                 assertEquals(1, controls.childCount)
             }
+        }
+    }
+
+    @Test
+    fun localLikeIsInsideTheExistingPublicLikesRowOnlyOnce() {
+        context.resources.getXml(R.layout.fragment_video_detail).use { parser ->
+            val ancestors = mutableListOf<Int>()
+            var localLikeCount = 0
+            var publicLikeFollows = false
+            while (parser.eventType != XmlPullParser.END_DOCUMENT) {
+                when (parser.eventType) {
+                    XmlPullParser.START_TAG -> {
+                        val id = parser.getAttributeResourceValue(
+                            "http://schemas.android.com/apk/res/android",
+                            "id",
+                            0
+                        )
+                        if (id == R.id.detail_local_likes) {
+                            assertEquals(R.id.detail_likes_row, ancestors.lastOrNull())
+                            assertTrue(ancestors.contains(R.id.details_panel))
+                            localLikeCount++
+                        }
+                        if (id == R.id.detail_thumbs_up_img_view) {
+                            assertEquals(R.id.detail_likes_row, ancestors.lastOrNull())
+                            publicLikeFollows = localLikeCount == 1
+                        }
+                        ancestors.add(id)
+                    }
+
+                    XmlPullParser.END_TAG -> ancestors.removeAt(ancestors.lastIndex)
+                }
+                parser.next()
+            }
+            assertEquals(1, localLikeCount)
+            assertTrue("Public like count must follow the local heart in one row", publicLikeFollows)
         }
     }
 

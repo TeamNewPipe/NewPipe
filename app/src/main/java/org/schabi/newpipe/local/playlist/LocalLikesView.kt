@@ -7,6 +7,8 @@ package org.schabi.newpipe.local.playlist
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
@@ -53,10 +55,16 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         orientation = HORIZONTAL
         gravity = Gravity.START
         val density = resources.displayMetrics.density
-        val outerPadding = (12 * density + 0.5f).toInt()
-        setPadding(outerPadding, 0, outerPadding, 0)
+        // The parent likes row supplies spacing; padding here would widen its hit area.
+        setPadding(0, 0, 0, 0)
 
+        // Keep the supported Material style but remove its border and
+        // background so the heart remains visually compact in the stats row.
+        like.strokeWidth = 0
+        like.backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
+        like.elevation = 0f
         like.isCheckable = true
+        like.gravity = Gravity.CENTER
         like.text = ""
         like.minimumWidth = minimumTouchSize
         like.minWidth = minimumTouchSize
