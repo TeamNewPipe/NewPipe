@@ -11,10 +11,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.preference.PreferenceManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -26,21 +23,16 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.player.helper.PlayerHolder
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.recommendations.RecommendationWorkDispatcher
-import org.schabi.newpipe.util.NavigationHelper
 
-/** Explicit local feedback controls, separate from the service's public like count. */
+/** A single local-only like action; never alters the service's public like count. */
 class LocalLikesView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val controlsPreferenceKey = context.getString(R.string.show_local_like_controls_key)
     private val tasks = CompositeDisposable()
     private val like = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
-    private val library = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
-    private val buttonSpacing = (8 * resources.displayMetrics.density).toInt()
-    private val buttonHorizontalPadding = (12 * resources.displayMetrics.density).toInt()
-    private val minimumTouchHeight = (48 * resources.displayMetrics.density).toInt()
+    private val minimumTouchSize = (48 * resources.displayMetrics.density + 0.5f).toInt()
     private var info: StreamInfo? = null
     private var generation = 0
     private var profileId = ""
@@ -61,47 +53,27 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         orientation = HORIZONTAL
         gravity = Gravity.START
         val density = resources.displayMetrics.density
-        val outerPadding = (12 * density).toInt()
+        val outerPadding = (12 * density + 0.5f).toInt()
         setPadding(outerPadding, 0, outerPadding, 0)
+
         like.isCheckable = true
-        like.setIconResource(R.drawable.ic_thumb_up)
-        library.setIconResource(R.drawable.ic_playlist_play)
-        library.setText(R.string.local_liked_videos)
-        listOf(like, library).forEach { button ->
-            button.minimumWidth = 0
-            button.minWidth = 0
-            button.minimumHeight = minimumTouchHeight
-            button.minHeight = minimumTouchHeight
-            button.setPaddingRelative(
-                buttonHorizontalPadding,
-                0,
-                buttonHorizontalPadding,
-                0
-            )
-            button.iconPadding = (6 * density).toInt()
-        }
-        addView(like, compactLayoutParams(vertical = false, isLast = false))
-        addView(library, compactLayoutParams(vertical = false, isLast = true))
+        like.text = ""
+        like.minimumWidth = minimumTouchSize
+        like.minWidth = minimumTouchSize
+        like.minimumHeight = minimumTouchSize
+        like.minHeight = minimumTouchSize
+        like.iconSize = (24 * density + 0.5f).toInt()
+        like.iconPadding = 0
+        like.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+        like.setPaddingRelative(0, 0, 0, 0)
+        addView(like, LayoutParams(minimumTouchSize, minimumTouchSize))
         like.setOnClickListener { save() }
         like.setOnLongClickListener {
             message(R.string.local_like_explanation)
             true
         }
-        library.setOnClickListener { openLibrary() }
+        render()
         visibility = GONE
-    }
-
-    private fun compactLayoutParams(
-        vertical: Boolean,
-        isLast: Boolean
-    ): LayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
-        if (!isLast) {
-            if (vertical) {
-                bottomMargin = buttonSpacing
-            } else {
-                marginEnd = buttonSpacing
-            }
-        }
     }
 
     fun bind(streamInfo: StreamInfo?) {
@@ -121,27 +93,6 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
         snackbar?.dismiss()
         super.onDetachedFromWindow()
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        val direction = if (
-            w / resources.displayMetrics.density < 360 ||
-            resources.configuration.fontScale > 1.3f
-        ) {
-            VERTICAL
-        } else {
-            HORIZONTAL
-        }
-        if (orientation != direction) {
-            orientation = direction
-            listOf(like, library).forEachIndexed { index, button ->
-                button.layoutParams = compactLayoutParams(
-                    vertical = direction == VERTICAL,
-                    isLast = index == 1
-                )
-            }
-        }
     }
 
     private fun refresh() {
@@ -225,43 +176,15 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         )
     }
 
-    private fun openLibrary() {
-        if (!loaded || busy || !active(generation)) return
-        val fragment = FragmentManager.findFragment<Fragment>(this)
-        val manager = fragment.parentFragmentManager
-        val token = generation
-        val target = store()
-        busy = true
-        render()
-        tasks.add(
-            Single.fromCallable { target.getOrCreatePlaylist() }
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ id ->
-                    if (!active(token)) return@subscribe
-                    busy = false
-                    render()
-                    if (!manager.isStateSaved) {
-                        PlayerHolder.getInstance().exitMainPlayerFullscreenForMiniPlayer()
-                        fragment.activity?.findViewById<View>(R.id.fragment_player_holder)?.let { holder ->
-                            BottomSheetBehavior.from(holder).state = BottomSheetBehavior.STATE_COLLAPSED
-                        }
-                        NavigationHelper.openLocalPlaylistFragment(manager, id, context.getString(R.string.local_liked_videos))
-                    }
-                }, {
-                    if (!active(token)) return@subscribe
-                    busy = false
-                    render()
-                    message(R.string.local_like_failed)
-                })
-        )
-    }
-
     private fun render() {
         like.isChecked = liked
-        like.setText(if (liked) R.string.local_liked else R.string.local_like)
-        like.contentDescription = context.getString(if (liked) R.string.local_unlike_description else R.string.local_like_description)
+        like.setIconResource(
+            if (liked) R.drawable.ic_favorite else R.drawable.ic_favorite_outline
+        )
+        like.contentDescription = context.getString(
+            if (liked) R.string.local_unlike_description else R.string.local_like_description
+        )
         like.isEnabled = loaded && !busy
-        library.isEnabled = loaded && !busy
     }
 
     private fun message(text: Int) {

@@ -4,11 +4,11 @@
     <string name="local_liked">Liked locally</string>
     <string name="local_liked_videos">Liked videos</string>
     <string name="local_like_description">Like this video locally</string>
-    <string name="local_unlike_description">Remove this video from Liked videos</string>
-    <string name="local_like_explanation">Saved in your profile’s Liked videos playlist. This does not submit a vote to the video service.</string>
-    <string name="local_like_saved">Saved to Liked videos on this device</string>
+    <string name="local_unlike_description">Remove this video from your local Liked videos playlist</string>
+    <string name="local_like_explanation">Liked videos is in Playlists/Bookmarks for this profile. Local likes do not send votes to the video service.</string>
+    <string name="local_like_saved">Saved to Liked videos in Playlists on this device</string>
     <string name="local_like_removed">Removed from Liked videos</string>
     <string name="local_like_failed">Could not update Liked videos. Please try again.</string>
-    <string name="show_local_like_controls_title">Show local like controls</string>
-    <string name="show_local_like_controls_summary">Show the Like locally and Liked videos buttons on video details</string>
+    <string name="show_local_like_controls_title">Show local Like button</string>
+    <string name="show_local_like_controls_summary">Show one compact local-only Like button on video details. Liked videos remains in Playlists.</string>
 </resources>

@@ -1,20 +1,15 @@
 package org.schabi.newpipe.local.playlist
 
 import android.content.Context
-import android.os.Bundle
 import android.os.SystemClock
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.button.MaterialButton
 import java.util.concurrent.atomic.AtomicBoolean
 import org.junit.After
@@ -50,28 +45,27 @@ class LocalLikesViewTest {
     }
 
     @Test
-    fun buttonsStayCompactWhileKeepingAccessibleTouchHeight() {
+    fun oneLocalLikeIconKeepsAnAccessibleTouchTargetOnNarrowScreens() {
         ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
                 val controls = LocalLikesView(activity)
+                assertEquals(1, controls.childCount)
                 val like = controls.getChildAt(0) as MaterialButton
-                val library = controls.getChildAt(1) as MaterialButton
                 val density = activity.resources.displayMetrics.density
-
-                controls.layout(0, 0, (420 * density).toInt(), (64 * density).toInt())
+                val touchSize = (48 * density + 0.5f).toInt()
 
                 assertEquals(LinearLayout.HORIZONTAL, controls.orientation)
-                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, like.layoutParams.width)
-                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, library.layoutParams.width)
-                assertTrue(like.minimumHeight >= (48 * density).toInt())
-                assertTrue(library.minimumHeight >= (48 * density).toInt())
-                assertTrue((like.layoutParams as LinearLayout.LayoutParams).marginEnd > 0)
+                assertEquals(touchSize, like.layoutParams.width)
+                assertEquals(touchSize, like.layoutParams.height)
+                assertTrue(like.minimumHeight >= touchSize)
+                assertTrue(like.minimumWidth >= touchSize)
+                assertTrue(like.text.isEmpty())
+                assertTrue(like.icon != null)
+                assertTrue(like.contentDescription.toString().contains("locally", ignoreCase = true))
 
-                controls.layout(0, 0, (320 * density).toInt(), (128 * density).toInt())
-
-                assertEquals(LinearLayout.VERTICAL, controls.orientation)
-                assertEquals(ViewGroup.LayoutParams.WRAP_CONTENT, like.layoutParams.width)
-                assertTrue((like.layoutParams as LinearLayout.LayoutParams).bottomMargin > 0)
+                controls.layout(0, 0, (320 * density).toInt(), (64 * density).toInt())
+                assertEquals(LinearLayout.HORIZONTAL, controls.orientation)
+                assertEquals(1, controls.childCount)
             }
         }
     }
@@ -146,38 +140,38 @@ class LocalLikesViewTest {
     }
 
     @Test
-    fun libraryShortcutOpensPlaylistAndCollapsesTheDetailSheet() {
-        lateinit var host: LikesHostFragment
-        lateinit var behavior: BottomSheetBehavior<FrameLayout>
+    fun likedVideosPlaylistRemainsInTheLibraryWithoutASecondButton() {
+        lateinit var controls: LocalLikesView
+        lateinit var like: MaterialButton
         ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
-                val root = CoordinatorLayout(activity)
-                val destination = FrameLayout(activity).apply { id = R.id.fragment_holder }
-                root.addView(destination, CoordinatorLayout.LayoutParams(-1, -1))
-                val player = FrameLayout(activity).apply { id = R.id.fragment_player_holder }
-                behavior = BottomSheetBehavior<FrameLayout>().apply { peekHeight = 64 }
-                root.addView(player, CoordinatorLayout.LayoutParams(-1, -1).apply { this.behavior = behavior })
-                activity.setContentView(root)
-                host = LikesHostFragment()
-                activity.supportFragmentManager.beginTransaction().replace(player.id, host).commitNow()
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                controls = LocalLikesView(activity)
+                like = controls.getChildAt(0) as MaterialButton
+                activity.setContentView(FrameLayout(activity).apply { addView(controls) })
+                controls.bind(
+                    StreamInfo(0, "test", "https://example.com/local-like-library", "Video").apply {
+                        streamType = StreamType.VIDEO_STREAM
+                    }
+                )
+                assertEquals(1, controls.childCount)
             }
-            await(scenario) { (host.controls.getChildAt(1) as MaterialButton).isEnabled }
-            scenario.onActivity { (host.controls.getChildAt(1) as MaterialButton).performClick() }
-            await(scenario) {
-                host.requireActivity().supportFragmentManager.findFragmentById(R.id.fragment_holder) is LocalPlaylistFragment &&
-                    behavior.state == BottomSheetBehavior.STATE_COLLAPSED
+            await(scenario) { like.isEnabled }
+            scenario.onActivity { like.performClick() }
+            await(scenario, timeoutMillis = 12_000) { like.isEnabled && like.isChecked }
+
+            val linkedId = (preferences.all[LikedVideosStore.preferenceKey(profileId)] as? Number)
+                ?.toLong() ?: error("Liked videos playlist link not created")
+            val playlists = database.playlistDAO().getAllDirectForProfile(profileId)
+            assertTrue(playlists.any { it.uid == linkedId })
+            assertEquals(
+                context.getString(R.string.local_liked_videos),
+                playlists.first { it.uid == linkedId }.name
+            )
+            assertEquals(1, database.playlistStreamDAO().getQuickAddEntries(linkedId).size)
+            scenario.onActivity {
+                assertEquals(1, controls.childCount)
+                assertTrue(like.contentDescription.toString().contains("local", ignoreCase = true))
             }
-        }
-    }
-
-    class LikesHostFragment : Fragment() {
-        lateinit var controls: LocalLikesView
-
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-            controls = LocalLikesView(requireContext())
-            controls.bind(StreamInfo(0, "test", "https://example.com/liked-library-ui", "Video").apply { streamType = StreamType.VIDEO_STREAM })
-            return controls
         }
     }
 
