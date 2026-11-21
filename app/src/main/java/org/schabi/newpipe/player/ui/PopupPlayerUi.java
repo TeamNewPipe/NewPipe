@@ -234,8 +234,9 @@ public final class PopupPlayerUi extends VideoPlayerUi {
             checkPopupPositionBounds();
         } else if (player.isPlaying() || player.isLoading()) {
             if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-                // Use only audio source when screen turns off while popup player is playing
-                player.useVideoAndSubtitles(false);
+                // A temporarily hidden popup must keep muxed video selected when it carries
+                // the only usable audio, including recently ended livestream VODs.
+                player.useVideoAndSubtitlesForTemporaryBackground();
             } else if (Intent.ACTION_SCREEN_ON.equals(intent.getAction())) {
                 // Restore video source when screen turns on and user was watching video in popup
                 player.useVideoAndSubtitles(true);
