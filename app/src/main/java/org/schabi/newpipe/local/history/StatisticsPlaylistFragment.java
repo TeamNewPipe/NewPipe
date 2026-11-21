@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.util.Pair;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,7 +64,6 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -83,10 +83,17 @@ public class StatisticsPlaylistFragment
     private static final long FAST_SCROLL_FADE_IN_MILLIS = 140L;
     private static final long FAST_SCROLL_FADE_OUT_MILLIS = 220L;
     private static final String DATE_PICKER_TAG = "history_date_picker";
+    private static final String DATE_RANGE_PICKER_TAG = "history_date_range_picker";
 
     private final CompositeDisposable disposables = new CompositeDisposable();
     @State
     Parcelable itemsListState;
+    @State
+    String historySortMode = StatisticSortMode.LAST_PLAYED.name();
+    @State
+    long historyDateFrom = Long.MIN_VALUE;
+    @State
+    long historyDateTo = Long.MAX_VALUE;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
     private List<StreamStatisticsEntry> completeHistory = Collections.emptyList();
     private List<StreamStatisticsEntry> displayedHistory = Collections.emptyList();
@@ -112,17 +119,21 @@ public class StatisticsPlaylistFragment
             @NonNull final List<StreamStatisticsEntry> completeHistory,
             @NonNull final String selectedStreamFilters,
             @NonNull final String contextualSearchQuery,
-            @NonNull final StatisticSortMode sortMode) {
+            @NonNull final StatisticSortMode sortMode,
+            final long dateFrom,
+            final long dateTo) {
         final String normalizedQuery = contextualSearchQuery.toLowerCase(Locale.ROOT);
         final boolean hasFilters = !selectedStreamFilters.isEmpty()
                 || !normalizedQuery.isEmpty();
-        if (!hasFilters && sortMode == StatisticSortMode.LAST_PLAYED) {
+        if (!hasFilters && sortMode == StatisticSortMode.LAST_PLAYED
+                && dateFrom == Long.MIN_VALUE && dateTo == Long.MAX_VALUE) {
             return new HistoryViewData(completeHistory);
         }
         final List<StreamStatisticsEntry> filteredHistory = new ArrayList<>();
         final StreamFilterSelection selection = StreamFilterSelection.parse(selectedStreamFilters);
         for (final StreamStatisticsEntry item : completeHistory) {
-            if (!selection.matches(item)) {
+            if (!HistoryViewOptions.inDateRange(item.getLatestAccessDate().toLocalDate(),
+                    dateFrom, dateTo) || !selection.matches(item)) {
                 continue;
             }
             if (!normalizedQuery.isEmpty()) {
@@ -139,13 +150,7 @@ public class StatisticsPlaylistFragment
             filteredHistory.add(item);
         }
 
-        if (sortMode == StatisticSortMode.MOST_PLAYED) {
-            filteredHistory.sort(Comparator
-                    .comparingLong(StreamStatisticsEntry::getWatchCount)
-                    .reversed());
-        }
-
-        return new HistoryViewData(filteredHistory);
+        return new HistoryViewData(HistoryViewOptions.sort(filteredHistory, sortMode.name()));
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -156,6 +161,12 @@ public class StatisticsPlaylistFragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recordManager = new HistoryRecordManager(getContext());
+        try {
+            sortMode = StatisticSortMode.valueOf(historySortMode);
+        } catch (final IllegalArgumentException ignored) {
+            sortMode = StatisticSortMode.LAST_PLAYED;
+            historySortMode = sortMode.name();
+        }
     }
 
     @Override
@@ -178,6 +189,8 @@ public class StatisticsPlaylistFragment
                                     @NonNull final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_history, menu);
+        menu.findItem(R.id.action_history_clear_date_range).setVisible(
+                historyDateFrom != Long.MIN_VALUE || historyDateTo != Long.MAX_VALUE);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -287,7 +300,14 @@ public class StatisticsPlaylistFragment
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == R.id.action_history_clear) {
+        if (item.getItemId() == R.id.action_history_date_range) {
+            showDateRangePicker();
+        } else if (item.getItemId() == R.id.action_history_clear_date_range) {
+            historyDateFrom = Long.MIN_VALUE;
+            historyDateTo = Long.MAX_VALUE;
+            requireActivity().invalidateOptionsMenu();
+            showFilteredHistory();
+        } else if (item.getItemId() == R.id.action_history_clear) {
             HistorySettingsFragment
                     .openDeleteWatchHistoryDialog(requireContext(), recordManager, disposables);
         } else {
@@ -422,9 +442,12 @@ public class StatisticsPlaylistFragment
         final String filterSnapshot = selectedStreamFilters;
         final String querySnapshot = contextualSearchQuery;
         final StatisticSortMode sortModeSnapshot = sortMode;
+        final long dateFrom = historyDateFrom;
+        final long dateTo = historyDateTo;
 
         historyProcessingDisposable = Single.fromCallable(() -> processHistory(
-                        historySnapshot, filterSnapshot, querySnapshot, sortModeSnapshot))
+                        historySnapshot, filterSnapshot, querySnapshot, sortModeSnapshot,
+                        dateFrom, dateTo))
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::applyProcessedHistory,
@@ -453,7 +476,8 @@ public class StatisticsPlaylistFragment
         }
 
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
-        headerBinding.sortButton.setOnClickListener(view -> toggleSortMode());
+        headerBinding.sortButton.setOnClickListener(view -> showSortPicker());
+        updateSortHeader();
 
         updateDateNavigation();
         hideLoading();
@@ -481,21 +505,78 @@ public class StatisticsPlaylistFragment
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void toggleSortMode() {
-        if (sortMode == StatisticSortMode.LAST_PLAYED) {
-            sortMode = StatisticSortMode.MOST_PLAYED;
-            setTitle(getString(R.string.title_most_played));
-            headerBinding.sortButtonIcon.setImageResource(R.drawable.ic_history);
-            headerBinding.sortButtonText.setText(R.string.title_last_played);
-        } else {
-            sortMode = StatisticSortMode.LAST_PLAYED;
-            setTitle(getString(R.string.title_last_played));
-            headerBinding.sortButtonIcon.setImageResource(
-                R.drawable.ic_filter_list);
-            headerBinding.sortButtonText.setText(R.string.title_most_played);
+    private void showSortPicker() {
+        final String[] titles = {
+            getString(R.string.title_last_played),
+            getString(R.string.history_sort_earliest),
+            getString(R.string.title_most_played),
+            getString(R.string.history_sort_least),
+            getString(R.string.history_sort_title)
+        };
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.sort)
+                .setSingleChoiceItems(titles, sortMode.ordinal(), (dialog, index) -> {
+                    sortMode = StatisticSortMode.values()[index];
+                    historySortMode = sortMode.name();
+                    updateSortHeader();
+                    hideDateNavigation();
+                    showFilteredHistory();
+                    dialog.dismiss();
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    private void updateSortHeader() {
+        if (headerBinding == null) {
+            return;
         }
-        hideDateNavigation();
-        showFilteredHistory();
+        final int label;
+        switch (sortMode) {
+            case EARLIEST_PLAYED:
+                label = R.string.history_sort_earliest;
+                break;
+            case MOST_PLAYED:
+                label = R.string.title_most_played;
+                break;
+            case LEAST_PLAYED:
+                label = R.string.history_sort_least;
+                break;
+            case TITLE:
+                label = R.string.history_sort_title;
+                break;
+            case LAST_PLAYED:
+            default:
+                label = R.string.title_last_played;
+                break;
+        }
+        headerBinding.sortButtonText.setText(label);
+        headerBinding.sortButton.setContentDescription(getString(label));
+    }
+
+    private void showDateRangePicker() {
+        if (getParentFragmentManager().findFragmentByTag(DATE_RANGE_PICKER_TAG) != null) {
+            return;
+        }
+        final MaterialDatePicker.Builder<Pair<Long, Long>> builder =
+                MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTitleText(R.string.history_date_range_title);
+        if (historyDateFrom != Long.MIN_VALUE && historyDateTo != Long.MAX_VALUE) {
+            builder.setSelection(new Pair<>(
+                    toUtcMillis(LocalDate.ofEpochDay(historyDateFrom)),
+                    toUtcMillis(LocalDate.ofEpochDay(historyDateTo))));
+        }
+        final MaterialDatePicker<Pair<Long, Long>> picker = builder.build();
+        picker.addOnPositiveButtonClickListener(range -> {
+            if (range.first == null || range.second == null) {
+                return;
+            }
+            historyDateFrom = utcMillisToDate(range.first).toEpochDay();
+            historyDateTo = utcMillisToDate(range.second).toEpochDay();
+            requireActivity().invalidateOptionsMenu();
+            showFilteredHistory();
+        });
+        picker.show(getParentFragmentManager(), DATE_RANGE_PICKER_TAG);
     }
 
     private void hideDateNavigation() {
@@ -822,6 +903,9 @@ public class StatisticsPlaylistFragment
 
     private enum StatisticSortMode {
         LAST_PLAYED,
+        EARLIEST_PLAYED,
         MOST_PLAYED,
+        LEAST_PLAYED,
+        TITLE
     }
 }

@@ -4,6 +4,18 @@
     tools:context="org.schabi.newpipe.history.HistoryActivity">
 
     <item
+        android:id="@+id/action_history_date_range"
+        android:orderInCategory="920"
+        android:title="@string/history_date_range_title"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_history_clear_date_range"
+        android:orderInCategory="930"
+        android:title="@string/history_date_range_clear"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_history_clear"
         android:orderInCategory="940"
         android:title="@string/clear_views_history_title"

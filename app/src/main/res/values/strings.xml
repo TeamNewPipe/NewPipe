@@ -1989,5 +1989,10 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="metadata_channel_links">Links</string>
     <string name="downloaded_available_offline">Downloaded — Available offline</string>
     <string name="filter_downloaded_only">Downloaded only</string>
+    <string name="history_sort_earliest">Earliest played</string>
+    <string name="history_sort_least">Least played</string>
+    <string name="history_sort_title">Video title (A–Z)</string>
+    <string name="history_date_range_title">Filter watch history by date</string>
+    <string name="history_date_range_clear">Clear history date filter</string>
 </resources>
 
