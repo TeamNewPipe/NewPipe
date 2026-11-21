@@ -132,6 +132,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     private var oldestSubscriptionUpdate: OffsetDateTime? = null
     private var latestLoadedState: FeedState.LoadedState? = null
     private var contextualSearchQuery = ""
+    private var groupSearchExpanded = false
 
     @State
     @JvmField
@@ -500,6 +501,24 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         groupSelector?.attach(activity.findViewById<View>(R.id.toolbar_contextual_search_container)?.isVisible == true)
 
         inflater.inflate(R.menu.menu_feed_fragment, menu)
+        val localSearch = menu.findItem(R.id.menu_item_search_content)
+        localSearch.isVisible = GroupFeedSearchPolicy.showLocalSearch(
+            groupId,
+            parentFragment != null
+        )
+        if (localSearch.isVisible) {
+            org.schabi.newpipe.util.ExpandableSearchViewHelper.configure(
+                localSearch,
+                getString(
+                    R.string.contextual_search_hint,
+                    groupName.ifBlank { getString(R.string.fragment_feed_title) }
+                ),
+                contextualSearchQuery,
+                groupSearchExpanded,
+                { query -> setContextualSearchQuery(query) },
+                { expanded -> groupSearchExpanded = expanded }
+            )
+        }
         menu.findItem(R.id.menu_item_feed_channels)?.isVisible =
             groupId != FeedGroupEntity.GROUP_ALL_ID
     }

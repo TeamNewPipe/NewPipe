@@ -8,6 +8,14 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_item_search_content"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        android:visible="false"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
         android:id="@+id/menu_item_feed_channels"
         android:icon="@drawable/ic_people"
         android:title="@string/channels"
