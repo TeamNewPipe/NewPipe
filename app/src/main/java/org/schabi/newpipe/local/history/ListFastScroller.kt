@@ -17,7 +17,8 @@ class ListFastScroller private constructor(
     private val list: RecyclerView,
     private val track: HistoryDateFastScroller,
     private val added: Boolean,
-    private val originalScrollBar: Boolean
+    private val originalScrollBar: Boolean,
+    private val hideWhileFirstItemVisible: Boolean
 ) : AutoCloseable {
     private val adapter = requireNotNull(list.adapter)
     private var disposed = false
@@ -46,13 +47,14 @@ class ListFastScroller private constructor(
     private fun update() {
         if (disposed) return
         val count = adapter.itemCount
-        val visible = shouldEnable(count) && list.visibility == View.VISIBLE
-        track.visibility = if (visible) View.VISIBLE else View.GONE
-        list.isVerticalScrollBarEnabled = !visible
-        track.setItemCount(count)
         val position = (list.layoutManager as? LinearLayoutManager)
             ?.findFirstVisibleItemPosition()
             ?.coerceAtLeast(0) ?: 0
+        val visible = shouldShow(count, position, hideWhileFirstItemVisible) &&
+            list.visibility == View.VISIBLE
+        track.visibility = if (visible) View.VISIBLE else View.GONE
+        list.isVerticalScrollBarEnabled = !visible
+        track.setItemCount(count)
         if (!track.isDragging) track.setPosition(position)
     }
 
@@ -79,13 +81,21 @@ class ListFastScroller private constructor(
 
         internal fun shouldEnable(count: Int): Boolean = count >= MIN_ITEMS
 
+        internal fun shouldShow(count: Int, firstVisiblePosition: Int, avoidFirstItem: Boolean): Boolean {
+            return shouldEnable(count) && (!avoidFirstItem || firstVisiblePosition > 0)
+        }
+
         internal fun label(position: Int, count: Int): String {
             return "${(position + 1).coerceIn(0, count)} / $count"
         }
 
         @JvmStatic
         @JvmOverloads
-        fun attach(list: RecyclerView, topClearanceDp: Int = 0): ListFastScroller? {
+        fun attach(
+            list: RecyclerView,
+            topClearanceDp: Int = 0,
+            hideWhileFirstItemVisible: Boolean = false
+        ): ListFastScroller? {
             if (list.adapter == null) return null
             val parent = list.parent as? ViewGroup ?: return null
             val existing = parent.findViewById<HistoryDateFastScroller>(
@@ -117,7 +127,13 @@ class ListFastScroller private constructor(
                 }
                 parent.addView(track, params)
             }
-            return ListFastScroller(list, track, added, list.isVerticalScrollBarEnabled)
+            return ListFastScroller(
+                list,
+                track,
+                added,
+                list.isVerticalScrollBarEnabled,
+                hideWhileFirstItemVisible
+            )
         }
     }
 }
