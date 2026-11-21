@@ -162,15 +162,25 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         render()
         if (!eligible || stream == null || !isAttachedToWindow) return
         profileId = ProfileManager.getActiveProfileId(context)
+        observeLikedState(token, stream)
+    }
+
+    /**
+     * Observe only the state for the current video/profile. Cancel the old observation before a
+     * local write: queued Room emissions from before the write must never replace its result.
+     */
+    private fun observeLikedState(token: Int, stream: StreamInfo) {
         tasks.add(
             store().observeLiked(stream.serviceId, stream.url)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ saved ->
-                    if (!active(token)) return@subscribe
+                    if (!active(token) || busy) return@subscribe
                     liked = saved
                     loaded = true
                     render()
-                }, { if (active(token)) message(R.string.local_like_failed) })
+                }, {
+                    if (active(token) && !busy) message(R.string.local_like_failed)
+                })
         )
     }
 
@@ -186,6 +196,8 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         val desired = !liked
         val target = store()
         val entity = StreamEntity(stream)
+        // Prevent already-queued snapshots from racing with the completed write on the UI thread.
+        tasks.clear()
         busy = true
         render()
         tasks.add(
@@ -196,12 +208,18 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
                     liked = saved
                     RecommendationWorkDispatcher.liked(context, stream, saved, profileId)
                     busy = false
+                    loaded = true
                     render()
+                    // Resubscribe only after the transaction has committed, to track later edits.
+                    observeLikedState(token, stream)
                     message(if (saved) R.string.local_like_saved else R.string.local_like_removed)
                 }, {
                     if (!active(token)) return@subscribe
                     busy = false
+                    loaded = false
                     render()
+                    // Restore the control from the database rather than trusting a failed write.
+                    observeLikedState(token, stream)
                     message(R.string.local_like_failed)
                 })
         )

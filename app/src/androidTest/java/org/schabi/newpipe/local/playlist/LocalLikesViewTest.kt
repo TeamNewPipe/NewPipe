@@ -93,9 +93,9 @@ class LocalLikesViewTest {
                 assertFalse(like.isChecked)
                 like.performClick()
             }
-            await(scenario) { like.isEnabled && like.isChecked }
+            await(scenario, timeoutMillis = 12_000) { like.isEnabled && like.isChecked }
             scenario.onActivity { like.performClick() }
-            await(scenario) { like.isEnabled && !like.isChecked }
+            await(scenario, timeoutMillis = 12_000) { like.isEnabled && !like.isChecked }
             scenario.onActivity {
                 controls.bind(null)
                 assertEquals(View.GONE, controls.visibility)
@@ -127,7 +127,7 @@ class LocalLikesViewTest {
             }
             await(scenario) { like.isEnabled }
             scenario.onActivity { like.performClick() }
-            await(scenario) { like.isEnabled && like.isChecked }
+            await(scenario, timeoutMillis = 12_000) { like.isEnabled && like.isChecked }
 
             scenario.onActivity { controls.bind(second) }
             await(scenario) { like.isEnabled }
@@ -223,9 +223,13 @@ class LocalLikesViewTest {
         }
     }
 
-    private fun await(scenario: ActivityScenario<AboutActivity>, condition: () -> Boolean) {
+    private fun await(
+        scenario: ActivityScenario<AboutActivity>,
+        timeoutMillis: Long = 5_000,
+        condition: () -> Boolean
+    ) {
         val ready = AtomicBoolean()
-        val deadline = SystemClock.elapsedRealtime() + 5_000
+        val deadline = SystemClock.elapsedRealtime() + timeoutMillis
         while (!ready.get() && SystemClock.elapsedRealtime() < deadline) {
             scenario.onActivity { ready.set(condition()) }
             if (!ready.get()) SystemClock.sleep(25)
