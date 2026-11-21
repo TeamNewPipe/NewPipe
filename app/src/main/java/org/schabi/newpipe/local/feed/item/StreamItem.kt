@@ -17,6 +17,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.databinding.ListStreamItemBinding
+import org.schabi.newpipe.download.DownloadedBadgeBinder
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_STREAM
@@ -143,6 +144,7 @@ data class StreamItem(
             stream.duration
         )
         CoilHelper.loadThumbnail(viewBinding.itemThumbnailView, stream.thumbnailUrl)
+        DownloadedBadgeBinder.bind(viewBinding.itemThumbnailView, stream.serviceId, stream.url)
 
         if (itemVersion != ItemVersion.MINI) {
             viewBinding.itemAdditionalDetails.text =

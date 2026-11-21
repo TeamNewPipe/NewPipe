@@ -69,6 +69,7 @@ import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.FragmentFeedBinding
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
@@ -214,6 +215,10 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             setOnItemClickListener(listenerStreamItem)
             setOnItemLongClickListener(listenerStreamItem)
         }
+        DownloadedAvailabilityIndex.updates.observe(viewLifecycleOwner) {
+            groupAdapter.notifyDataSetChanged()
+        }
+        DownloadedAvailabilityIndex.requestRefresh(requireContext())
         streamSelection = StreamSelectionController(
             this,
             feedBinding.itemsList,

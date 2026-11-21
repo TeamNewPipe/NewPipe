@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.DocumentsContract;
@@ -347,6 +348,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         ContentValues values = getValuesOfMission(Objects.requireNonNull(finishedMission));
         SQLiteDatabase database = getWritableDatabase();
         database.insert(FINISHED_TABLE_NAME, null, values);
+        DownloadedAvailabilityIndex.invalidate(context);
     }
 
     public void deleteMission(Mission mission) {
@@ -372,6 +374,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         } else {
             throw new UnsupportedOperationException("DownloadMission");
         }
+        DownloadedAvailabilityIndex.invalidate(context);
     }
 
     public void updateMission(Mission mission) {

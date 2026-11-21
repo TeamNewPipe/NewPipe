@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.download.DownloadedBadgeBinder;
 import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -109,6 +110,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         }
         final StreamInfoItem item = (StreamInfoItem) infoItem;
         sponsorshipBadge.bind(item.getServiceId(), item.getUrl());
+        DownloadedBadgeBinder.bind(itemThumbnailView, item.getServiceId(), item.getUrl());
 
         itemVideoTitleView.setText(item.getName());
         itemUploaderView.setText(item.getUploaderName());

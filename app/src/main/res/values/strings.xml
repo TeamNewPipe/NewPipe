@@ -1987,5 +1987,6 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="use_default_icon">Use default icon</string>
     <string name="metadata_channel_joined">Channel joined</string>
     <string name="metadata_channel_links">Links</string>
+    <string name="downloaded_available_offline">Downloaded — Available offline</string>
 </resources>
 

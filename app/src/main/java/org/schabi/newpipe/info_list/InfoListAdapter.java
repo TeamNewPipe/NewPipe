@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.schabi.newpipe.databinding.PignateFooterBinding;
@@ -94,6 +96,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private final LayoutInflater layoutInflater;
     private final InfoItemBuilder infoItemBuilder;
+    private Observer<Long> downloadedAvailabilityObserver;
     private final List<InfoItem> infoItemList;
     private final HistoryRecordManager recordManager;
     private final VideoNoteBadges noteBadges;
@@ -453,11 +456,22 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onAttachedToRecyclerView(@NonNull final RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         noteBadges.watch(recyclerView);
+        if (downloadedAvailabilityObserver == null) {
+            downloadedAvailabilityObserver = ignored -> notifyDataSetChanged();
+            DownloadedAvailabilityIndex.INSTANCE.getUpdates().observeForever(
+                    downloadedAvailabilityObserver);
+        }
+        DownloadedAvailabilityIndex.requestRefresh(recyclerView.getContext());
     }
 
     @Override
     public void onDetachedFromRecyclerView(@NonNull final RecyclerView recyclerView) {
         noteBadges.unwatch(recyclerView);
+        if (downloadedAvailabilityObserver != null) {
+            DownloadedAvailabilityIndex.INSTANCE.getUpdates().removeObserver(
+                    downloadedAvailabilityObserver);
+            downloadedAvailabilityObserver = null;
+        }
         super.onDetachedFromRecyclerView(recyclerView);
     }
 
