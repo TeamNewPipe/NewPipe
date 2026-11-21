@@ -599,6 +599,8 @@ class Player(
 
     override fun onPlaybackSynchronize(item: PlayQueueItem, wasBlocked: Boolean) = queueSynchronizer.synchronize(item, wasBlocked)
 
+    fun canSeekCurrentWindow(): Boolean = seekController.canSeekCurrentWindow()
+
     fun seekTo(positionMillis: Long) = seekController.seekTo(positionMillis)
 
     fun seekHistoryBack(): Boolean = seekController.seekHistoryBack()

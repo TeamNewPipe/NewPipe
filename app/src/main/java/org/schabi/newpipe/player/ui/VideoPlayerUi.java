@@ -639,7 +639,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     + "duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
         }
         binding.playbackLiveSync.setClickable(!player.isLiveEdge());
-        binding.playbackSeekBar.setEnabled(!player.isNormalLive());
+        binding.playbackSeekBar.setEnabled(player.canSeekCurrentWindow());
     }
 
     /**
@@ -942,7 +942,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         updateStreamRelatedViews();
         danmakuController.start();
 
-        binding.playbackSeekBar.setEnabled(!player.isNormalLive());
+        binding.playbackSeekBar.setEnabled(player.canSeekCurrentWindow());
         applyPlayerSeekBarColor();
 
         binding.loadingPanel.setVisibility(View.GONE);

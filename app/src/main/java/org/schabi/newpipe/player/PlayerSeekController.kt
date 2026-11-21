@@ -42,8 +42,25 @@ internal class PlayerSeekController(private val player: Player) {
         return timelineWindow.defaultPositionMs <= exoPlayer.currentPosition
     }
 
+    /**
+     * Dynamic live media can still have a seekable DVR window. Normal live streams without
+     * a seekable timeline remain protected from unsupported seek requests.
+     */
+    fun canSeekCurrentWindow(): Boolean {
+        // getExoPlayer() can be null while playback is being initialized or torn down.
+        val exoPlayer = player.getExoPlayer() ?: return false
+        return try {
+            canSeekInWindow(
+                exoPlayer.isCurrentMediaItemDynamic,
+                exoPlayer.isCurrentMediaItemSeekable
+            )
+        } catch (_: IndexOutOfBoundsException) {
+            false
+        }
+    }
+
     fun seekTo(positionMillis: Long) {
-        if (player.isNormalLive() || player.isLive) return
+        if (!canSeekCurrentWindow()) return
         player.channelSkipController.manualSeek(positionMillis)
         if (Player.DEBUG) {
             Log.d(Player.TAG, "seekBy() called with: position = [$positionMillis]")
@@ -126,6 +143,10 @@ internal class PlayerSeekController(private val player: Player) {
     }
 
     companion object {
+        internal fun canSeekInWindow(dynamic: Boolean, seekable: Boolean): Boolean {
+            return !dynamic || seekable
+        }
+
         internal fun resolveSeekPosition(positionMillis: Long, durationMillis: Long): Long {
             val position = positionMillis.coerceAtLeast(0)
             return if (durationMillis == C.TIME_UNSET || durationMillis < 0) {

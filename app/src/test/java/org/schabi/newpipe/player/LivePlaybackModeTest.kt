@@ -5,6 +5,7 @@
 
 package org.schabi.newpipe.player
 
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.preference.PreferenceManager
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -23,11 +24,38 @@ import org.schabi.newpipe.R
 @Config(sdk = [35])
 class LivePlaybackModeTest {
     @Test
-    fun normalModeRejectsUserSeekingBeforeChangingPlayerState() {
+    fun nonSeekableLiveWindowRejectsUserSeekingBeforeChangingPlayerState() {
         val player = mock(Player::class.java)
-        `when`(player.isNormalLive()).thenReturn(true)
-        PlayerSeekController(player).seekTo(1000)
-        verify(player).isNormalLive()
+        val exoPlayer = mock(ExoPlayer::class.java)
+        `when`(player.getExoPlayer()).thenReturn(exoPlayer)
+        `when`(exoPlayer.isCurrentMediaItemDynamic).thenReturn(true)
+        `when`(exoPlayer.isCurrentMediaItemSeekable).thenReturn(false)
+
+        PlayerSeekController(player).seekTo(1_000)
+
+        verify(player).getExoPlayer()
+        verifyNoMoreInteractions(player)
+        verify(exoPlayer).isCurrentMediaItemDynamic
+        verify(exoPlayer).isCurrentMediaItemSeekable
+        verifyNoMoreInteractions(exoPlayer)
+    }
+
+    @Test
+    fun seekableLiveDvrWindowIsRecognizedEvenInNormalLiveMode() {
+        val player = mock(Player::class.java)
+        val exoPlayer = mock(ExoPlayer::class.java)
+        `when`(player.getExoPlayer()).thenReturn(exoPlayer)
+        `when`(exoPlayer.isCurrentMediaItemDynamic).thenReturn(true)
+        `when`(exoPlayer.isCurrentMediaItemSeekable).thenReturn(true)
+
+        assertTrue(PlayerSeekController(player).canSeekCurrentWindow())
+    }
+
+    @Test
+    fun uninitializedPlayerRejectsSeekWithoutTouchingPlaybackState() {
+        val player = mock(Player::class.java)
+        PlayerSeekController(player).seekTo(1_000)
+        verify(player).getExoPlayer()
         verifyNoMoreInteractions(player)
     }
 
