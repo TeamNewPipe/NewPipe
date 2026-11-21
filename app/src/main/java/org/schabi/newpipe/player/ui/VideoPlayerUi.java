@@ -845,6 +845,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     protected void showOrHideButtons() {
+        if (this instanceof MainPlayerUi) {
+            PortraitPlayerActions.apply(binding.secondaryControls);
+        }
         PlayerNavigationButtons.updateVisibility(player, binding);
     }
 

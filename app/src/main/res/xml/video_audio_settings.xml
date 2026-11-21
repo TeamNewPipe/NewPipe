@@ -12,6 +12,13 @@
         app:iconSpaceReserved="false"
         app:useSimpleSummaryProvider="true" />
 
+    <Preference
+        android:key="@string/portrait_player_actions_key"
+        android:title="@string/portrait_player_actions_title"
+        android:summary="@string/portrait_player_actions_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
     <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/player_touch_unlock_auto_hide_key"

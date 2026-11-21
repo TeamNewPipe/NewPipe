@@ -44,6 +44,11 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         updateSeekOptions();
         updateResolutionOptions();
         setupEqualizerPreference();
+        requirePreference(R.string.portrait_player_actions_key)
+                .setOnPreferenceClickListener(preference -> {
+                    org.schabi.newpipe.player.ui.PortraitPlayerActionsDialog.show(requireContext());
+                    return true;
+                });
         org.schabi.newpipe.util.external_communication.YtFifoUtils.configurePreference(
                 requirePreference(R.string.yt_fifo_url_key));
         setupCaptionTranslationPreferences();

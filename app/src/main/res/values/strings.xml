@@ -2048,5 +2048,11 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="player_touch_unlock_auto_hide_title">Auto-hide Unlock when screen is locked</string>
     <string name="player_touch_unlock_auto_hide_summary">Hide Unlock after 3 seconds. Tap the locked screen once to reveal it and again to unlock. Disable to keep Unlock visible.</string>
     <string name="player_touch_unlock_reveal">Tap to show Unlock</string>
+    <string name="portrait_player_actions_key" translatable="false">portrait_player_actions_order</string>
+    <string name="portrait_player_actions_title">Reorder portrait player actions</string>
+    <string name="portrait_player_actions_summary">Long-press and drag secondary portrait-player controls into your preferred order</string>
+    <string name="portrait_player_actions_drag_hint">Long press and drag to move</string>
+    <string name="portrait_player_actions_save">Save order</string>
+    <string name="portrait_player_actions_reset">Reset to default</string>
 </resources>
 
