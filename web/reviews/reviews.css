@@ -4,6 +4,8 @@
 .review-app .hero h2 { font-size: clamp(2.1rem, 4vw, 3.5rem); }
 .review-app .lead { color: var(--muted); max-width: 480px; font-size: 1.06rem; }
 .review-app .hero .button { margin: 12px 0; }
+/* Keep adjacent hero actions distinct without offsetting wrapped buttons. */
+.review-app .hero .button[href="#write-review"] { margin-inline-end: 12px; }
 .review-app .quiet { color: var(--muted); font-size: .8rem; line-height: 1.8; }
 .review-app .rating-card { padding: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
 .review-app .rating-card h2 { font-size: .9rem; letter-spacing: 0; font-weight: 650; }
