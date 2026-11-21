@@ -10,6 +10,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.schabi.newpipe.R
 
@@ -24,6 +25,11 @@ class SettingsCollapsingHeaderTest {
                 )
                 assertNotNull(appBar)
                 assertNotNull(header)
+                // Keep the large M3 title while reclaiming the empty space below the toolbar.
+                val density = activity.resources.displayMetrics.density
+                assertEquals(120, kotlin.math.round(header.layoutParams.height / density).toInt())
+                val toolbar = activity.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+                assertTrue(header.layoutParams.height > toolbar.layoutParams.height)
                 activity.setSettingsSectionTitle("Playback")
                 assertEquals("Playback", header.title)
                 appBar.setExpanded(false, false)

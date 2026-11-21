@@ -7,6 +7,9 @@
     <dimen name="spacing_micro">4dp</dimen>
     <dimen name="spacing_nano">2dp</dimen>
 
+    <!-- Compact large-title app bar: room for the pinned toolbar and expanded title. -->
+    <dimen name="settings_collapsing_header_height">120dp</dimen>
+
     <!-- Settings card dimensions -->
     <dimen name="settings_card_margin_horizontal">16dp</dimen>
     <dimen name="settings_card_margin_top">8dp</dimen>
