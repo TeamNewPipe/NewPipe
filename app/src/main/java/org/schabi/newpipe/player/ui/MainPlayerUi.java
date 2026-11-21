@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.FragmentActivity;
@@ -1255,8 +1256,11 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         if (!touchLocked) {
             return false;
         }
-        binding.touchUnlockButton.requestFocus();
-        // Preserve the dimming layout's first-press wake behavior before reaching Unlock.
+        // Allow PlaybackDimmingLayout to consume the first wake press before
+        // Unlock processes another confirmation key.
+        if (binding.touchUnlockButton.getVisibility() == View.VISIBLE) {
+            binding.touchUnlockButton.requestFocus();
+        }
         return binding.getRoot().dispatchKeyEvent(event)
                 || binding.touchLockOverlay.dispatchKeyEvent(event);
     }
@@ -1264,6 +1268,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private void setTouchLocked(final boolean locked) {
         touchLocked = locked && isFullscreen;
         binding.touchLockOverlay.setVisibility(touchLocked ? View.VISIBLE : View.GONE);
+        if (touchLocked) {
+            final boolean autoHide = PreferenceManager.getDefaultSharedPreferences(context)
+                    .getBoolean(context.getString(R.string.player_touch_unlock_auto_hide_key),
+                            true);
+            binding.touchLockOverlay.startLocked(autoHide);
+        } else {
+            binding.touchLockOverlay.stopLocked();
+        }
         binding.playbackControlRoot.setImportantForAccessibility(touchLocked
                 ? View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS
                 : View.IMPORTANT_FOR_ACCESSIBILITY_AUTO);

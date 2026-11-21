@@ -123,6 +123,67 @@ public class TouchLockOverlayTest {
         });
     }
 
+    @Test
+    public void hiddenUnlockRequiresARevealPressBeforeRemoteConfirmation() {
+        try (ActivityScenario<AboutActivity> scenario =
+                     ActivityScenario.launch(AboutActivity.class)) {
+            scenario.onActivity(activity -> {
+                final TouchLockOverlay overlay = new TouchLockOverlay(activity, null);
+                final Button unlock = new Button(activity);
+                unlock.setId(org.schabi.newpipe.R.id.touchUnlockButton);
+                unlock.setFocusableInTouchMode(true);
+                final AtomicInteger unlocks = new AtomicInteger();
+                unlock.setOnClickListener(view -> unlocks.incrementAndGet());
+                overlay.addView(unlock);
+                activity.setContentView(overlay);
+                final int exact = View.MeasureSpec.makeMeasureSpec(400, View.MeasureSpec.EXACTLY);
+                overlay.measure(exact, exact);
+                overlay.layout(0, 0, 400, 400);
+                overlay.startLocked(true);
+                unlock.setVisibility(View.INVISIBLE);
+
+                assertTrue(overlay.dispatchKeyEvent(
+                        new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER)));
+                assertEquals(View.VISIBLE, unlock.getVisibility());
+                assertTrue(overlay.dispatchKeyEvent(
+                        new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER)));
+                assertEquals(0, unlocks.get());
+
+                assertTrue(unlock.requestFocus());
+                assertTrue(overlay.dispatchKeyEvent(
+                        new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER)));
+                assertTrue(overlay.dispatchKeyEvent(
+                        new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER)));
+                assertEquals(1, unlocks.get());
+                overlay.stopLocked();
+            });
+        }
+    }
+
+    @Test
+    public void screenTapRevealsTheButtonWithoutUnlockingPlayback() {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+            final Context context = ApplicationProvider.getApplicationContext();
+            final TouchLockOverlay overlay = new TouchLockOverlay(context, null);
+            final Button unlock = new Button(context);
+            unlock.setId(org.schabi.newpipe.R.id.touchUnlockButton);
+            final AtomicInteger unlocks = new AtomicInteger();
+            unlock.setOnClickListener(view -> unlocks.incrementAndGet());
+            overlay.addView(unlock, new FrameLayout.LayoutParams(100, 100,
+                    Gravity.RIGHT | Gravity.BOTTOM));
+            final int size = View.MeasureSpec.makeMeasureSpec(400, View.MeasureSpec.EXACTLY);
+            overlay.measure(size, size);
+            overlay.layout(0, 0, 400, 400);
+            overlay.startLocked(true);
+            unlock.setVisibility(View.INVISIBLE);
+            tap(overlay, 50, 50);
+            assertEquals(View.VISIBLE, unlock.getVisibility());
+            assertEquals(0, unlocks.get());
+            overlay.stopLocked();
+            assertEquals(View.VISIBLE, unlock.getVisibility());
+        });
+    }
+
     private static void tap(final View root, final float x, final float y) {
         final MotionEvent down = MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, x, y, 0);
         final MotionEvent up = MotionEvent.obtain(0, 20, MotionEvent.ACTION_UP, x, y, 0);
