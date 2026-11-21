@@ -46,10 +46,10 @@ internal class PopupQualityTransition(private val player: Player) {
 
     fun onPlaybackStateChanged(state: Int) {
         if (engine == null) return
-        when (state) {
-            Media3Player.STATE_BUFFERING -> sawBuffering = true
-            Media3Player.STATE_READY -> if (sawBuffering) finish()
-            Media3Player.STATE_ENDED, Media3Player.STATE_IDLE -> finish()
+        if (state == Media3Player.STATE_BUFFERING) {
+            sawBuffering = true
+        } else if (PopupQualitySwitchPolicy.shouldFinishOnState(state, sawBuffering)) {
+            finish()
         }
     }
 
@@ -96,5 +96,13 @@ internal object PopupQualitySwitchPolicy {
             speed.isFinite() && speed >= 3.0f
     }
 
-    fun shouldRestore(sameEngine: Boolean, sameMedia: Boolean, currentSpeed: Float): Boolean = sameEngine && sameMedia && currentSpeed == 1.0f
+    fun shouldRestore(sameEngine: Boolean, sameMedia: Boolean, currentSpeed: Float): Boolean {
+        return sameEngine && sameMedia && currentSpeed == 1.0f
+    }
+
+    /** STATE_IDLE may be an intermediate source-replacement state, not a completed switch. */
+    fun shouldFinishOnState(state: Int, sawBuffering: Boolean): Boolean {
+        return state == Media3Player.STATE_ENDED ||
+            state == Media3Player.STATE_READY && sawBuffering
+    }
 }
