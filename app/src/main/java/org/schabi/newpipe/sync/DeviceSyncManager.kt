@@ -205,13 +205,15 @@ class DeviceSyncManager private constructor(context: Context) {
         }
         val attempts = peers.map { peer ->
             var activePeer = peer
+            val transportGate = PeerSyncTransportGate()
             val retryDiagnostics = linkedMapOf<DeviceSyncLogCategory, String>()
             val diagnostics = exchangeDiagnostics(activePeer)
 
             val profileAttempt = runSyncStage(
                 activePeer,
                 DeviceSyncLogCategory.PROFILES,
-                retryDiagnostics
+                retryDiagnostics,
+                transportGate
             ) { candidate ->
                 node.syncProfiles(candidate, recordStatus = !background)
             }
@@ -223,7 +225,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 val attempt = runSyncStage(
                     activePeer,
                     DeviceSyncLogCategory.SUBSCRIPTIONS,
-                    retryDiagnostics
+                    retryDiagnostics,
+                    transportGate
                 ) { candidate ->
                     node.syncSubscriptions(candidate, recordStatus = !background)
                 }
@@ -262,7 +265,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 val attempt = runSyncStage(
                     activePeer,
                     DeviceSyncLogCategory.PLAYLISTS,
-                    retryDiagnostics
+                    retryDiagnostics,
+                    transportGate
                 ) { candidate ->
                     node.syncPlaylists(candidate, recordStatus = !background)
                 }
@@ -279,7 +283,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 val attempt = runSyncStage(
                     activePeer,
                     DeviceSyncLogCategory.WATCH_HISTORY,
-                    retryDiagnostics
+                    retryDiagnostics,
+                    transportGate
                 ) { candidate ->
                     node.syncHistory(
                         candidate,
@@ -300,7 +305,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 val attempt = runSyncStage(
                     activePeer,
                     DeviceSyncLogCategory.SEARCH_HISTORY,
-                    retryDiagnostics
+                    retryDiagnostics,
+                    transportGate
                 ) { candidate ->
                     node.syncHistory(
                         candidate,
@@ -321,7 +327,8 @@ class DeviceSyncManager private constructor(context: Context) {
                 val attempt = runSyncStage(
                     activePeer,
                     DeviceSyncLogCategory.LEARNING_NOTES,
-                    retryDiagnostics
+                    retryDiagnostics,
+                    transportGate
                 ) { candidate ->
                     node.syncHistory(
                         candidate,
@@ -347,7 +354,8 @@ class DeviceSyncManager private constructor(context: Context) {
                         val attempt = runSyncStage(
                             activePeer,
                             category.toLogCategory(),
-                            retryDiagnostics
+                            retryDiagnostics,
+                            transportGate
                         ) { candidate ->
                             node.syncStructuredPreferences(
                                 candidate,
@@ -472,8 +480,15 @@ class DeviceSyncManager private constructor(context: Context) {
         peer: TrustedPeer,
         category: DeviceSyncLogCategory,
         retryDiagnostics: MutableMap<DeviceSyncLogCategory, String>,
+        transportGate: PeerSyncTransportGate? = null,
         operation: (TrustedPeer) -> T
     ): Pair<TrustedPeer, Result<T>> {
+        if (transportGate?.isOpen == true) {
+            retryDiagnostics[category] = PeerSyncTransportGate.SKIPPED_DIAGNOSTIC
+            return peer to Result.failure<T>(
+                IllegalStateException(PeerSyncTransportGate.SKIPPED_DIAGNOSTIC)
+            )
+        }
         val attempt = DeviceSyncTransportRecovery.run(
             peer = peer,
             refreshPeer = node::refreshPeerAddresses,
@@ -482,6 +497,7 @@ class DeviceSyncManager private constructor(context: Context) {
         attempt.retryDiagnostic?.let { diagnostic ->
             retryDiagnostics[category] = diagnostic
         }
+        transportGate?.record(attempt.result.exceptionOrNull())
         return attempt.peer to attempt.result
     }
 
