@@ -702,6 +702,18 @@
 
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/overlay_progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@id/overlay_thumbnail"
+            android:max="1000"
+            android:progressDrawable="?attr/progress_horizontal_drawable"
+            android:visibility="gone"
+            tools:progress="400"
+            tools:visibility="visible" />
+
     </RelativeLayout>
 
 </FrameLayout>

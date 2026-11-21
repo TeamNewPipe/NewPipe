@@ -281,6 +281,7 @@ public final class VideoDetailFragment
         player = null;
         // the binding could be null at this point, if the app is finishing
         if (binding != null) {
+            binding.overlayProgress.setVisibility(View.GONE);
             restoreDefaultBrightness();
         }
     }
@@ -371,6 +372,7 @@ public final class VideoDetailFragment
         activity.sendBroadcast(new Intent(ACTION_VIDEO_FRAGMENT_RESUMED));
 
         updateOverlayPlayQueueButtonVisibility();
+        updateOverlayProgress();
 
         setupBrightness();
 
@@ -1828,7 +1830,11 @@ public final class VideoDetailFragment
                                  final int repeatMode,
                                  final boolean shuffled,
                                  final PlaybackParameters parameters) {
+        if (binding == null) {
+            return;
+        }
         setOverlayPlayPauseImage(player != null && player.isPlaying());
+        updateOverlayProgress();
 
         switch (state) {
             case Player.STATE_PLAYING:
@@ -1847,7 +1853,12 @@ public final class VideoDetailFragment
     public void onProgressUpdate(final int currentProgress,
                                  final int duration,
                                  final int bufferPercent) {
-        // Progress updates every second even if media is paused. It's useless until playing
+        if (binding == null || player == null) {
+            return;
+        }
+        updateOverlayProgress();
+
+        // Only update the detail thumbnail while the displayed stream is playing.
         if (!player.isPlaying() || playQueue == null) {
             return;
         }
@@ -2463,6 +2474,23 @@ public final class VideoDetailFragment
         binding.overlayChannelTextView.setText(isEmpty(uploader) ? "" : uploader);
         binding.overlayThumbnail.setImageDrawable(null);
         CoilHelper.INSTANCE.loadDetailsThumbnail(binding.overlayThumbnail, thumbnails);
+        updateOverlayProgress();
+    }
+
+    private void updateOverlayProgress() {
+        final var progressBar = binding.overlayProgress;
+        if (playerIsNotStopped()) {
+            final var exoPlayer = player.getExoPlayer();
+            final long duration = exoPlayer.getDuration();
+            if (duration > 0 && !exoPlayer.isCurrentMediaItemLive()) {
+                final double fraction = player.getCurrentState() == Player.STATE_COMPLETED
+                        ? 1.0 : (double) exoPlayer.getCurrentPosition() / duration;
+                progressBar.setProgress((int) (fraction * progressBar.getMax()));
+                progressBar.setVisibility(View.VISIBLE);
+                return;
+            }
+        }
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setOverlayPlayPauseImage(final boolean playerIsPlaying) {
