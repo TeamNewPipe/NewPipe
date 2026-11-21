@@ -13,6 +13,8 @@ import org.schabi.newpipe.extractor.utils.Utils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +40,8 @@ class YoutubeCommentsEUVMInfoItemExtractor implements CommentsInfoItemExtractor 
     @Nonnull
     private final JsonObject engagementToolbarStateEntityPayload;
     @Nonnull
+    private final JsonObject commentSurface;
+    @Nonnull
     private final String videoUrl;
     @Nonnull
     private final TimeAgoParser timeAgoParser;
@@ -49,10 +53,23 @@ class YoutubeCommentsEUVMInfoItemExtractor implements CommentsInfoItemExtractor 
             @Nonnull final JsonObject engagementToolbarStateEntityPayload,
             @Nonnull final String videoUrl,
             @Nonnull final TimeAgoParser timeAgoParser) {
+        this(commentViewModel, commentRepliesRenderer, commentEntityPayload,
+                engagementToolbarStateEntityPayload, new JsonObject(), videoUrl, timeAgoParser);
+    }
+
+    YoutubeCommentsEUVMInfoItemExtractor(
+            @Nonnull final JsonObject commentViewModel,
+            @Nullable final JsonObject commentRepliesRenderer,
+            @Nonnull final JsonObject commentEntityPayload,
+            @Nonnull final JsonObject engagementToolbarStateEntityPayload,
+            @Nonnull final JsonObject commentSurface,
+            @Nonnull final String videoUrl,
+            @Nonnull final TimeAgoParser timeAgoParser) {
         this.commentViewModel = commentViewModel;
         this.commentRepliesRenderer = commentRepliesRenderer;
         this.commentEntityPayload = commentEntityPayload;
         this.engagementToolbarStateEntityPayload = engagementToolbarStateEntityPayload;
+        this.commentSurface = commentSurface;
         this.videoUrl = videoUrl;
         this.timeAgoParser = timeAgoParser;
     }
@@ -95,6 +112,26 @@ class YoutubeCommentsEUVMInfoItemExtractor implements CommentsInfoItemExtractor 
         return HtmlParser.htmlToString(new Description(
                 attributedDescriptionToHtml(commentEntityPayload.getObject(PROPERTIES)
                         .getObject("content")), Description.HTML).getContent());
+    }
+
+    @Nonnull
+    @Override
+    public Collection<Image> getPictures() {
+        final JsonObject attachment = commentSurface.getObject("imageAttachmentViewModel");
+        final JsonObject imageViewModel = attachment.has("commentImageAttachmentViewModel")
+                ? attachment.getObject("commentImageAttachmentViewModel") : attachment;
+        final JsonObject image = imageViewModel.getObject("image");
+        final List<Image> candidates = getImagesFromThumbnailsArray(
+                image.getArray("sources").isEmpty()
+                        ? image.getArray("thumbnails") : image.getArray("sources"));
+        if (candidates.isEmpty()) {
+            return Collections.emptyList();
+        }
+        // Sources are alternative sizes of the same attached picture, not separate pictures.
+        final Image largest = candidates.stream().max(java.util.Comparator
+                .comparingLong(candidate -> (long) candidate.getHeight()
+                        * candidate.getWidth())).orElse(candidates.get(0));
+        return Collections.singletonList(largest);
     }
 
     @Override

@@ -2008,5 +2008,10 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="selective_settings_failed">Could not process the selected settings file</string>
     <string name="service_rate_limited_advice">%1$s is limiting requests (HTTP 429). Wait before trying again; repeated attempts may prolong the block.</string>
     <string name="service_access_denied_advice">%1$s refused this request (HTTP 403). The media URL may have expired, or access may be temporarily restricted. Try again later or open it in your browser.</string>
+    <string name="comment_view_images">View comment images (%1$d)</string>
+    <string name="comment_image_preview">View attached comment image</string>
+    <string name="comment_image_viewer_title">Comment image %1$d of %2$d</string>
+    <string name="comment_image_previous">Previous image</string>
+    <string name="comment_image_next">Next image</string>
 </resources>
 

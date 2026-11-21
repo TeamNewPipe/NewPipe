@@ -155,6 +155,26 @@ public class YoutubeCommentsExtractor extends CommentsExtractor {
                 .getObject("payload");
     }
 
+    /** Comment images are stored separately from the main comment entity in newer responses. */
+    @Nonnull
+    private JsonObject getOptionalCommentSurface(@Nonnull final JsonArray mutations,
+                                                 @Nonnull final JsonObject viewModel) {
+        final String key = viewModel.getString("commentSurfaceKey", "");
+        if (key.isEmpty()) {
+            return new JsonObject();
+        }
+        return mutations.stream()
+                .filter(JsonObject.class::isInstance)
+                .map(JsonObject.class::cast)
+                .filter(mutation -> key.equals(mutation.getString("entityKey"))
+                        || key.equals(mutation.getObject("payload")
+                        .getObject("commentSurfaceEntityPayload").getString("key")))
+                .findFirst()
+                .map(mutation -> mutation.getObject("payload")
+                        .getObject("commentSurfaceEntityPayload"))
+                .orElseGet(JsonObject::new);
+    }
+
     @Nonnull
     private InfoItemsPage<CommentsInfoItem> getInfoItemsPageForDisabledComments() {
         return new InfoItemsPage<>(Collections.emptyList(), null, Collections.emptyList());
@@ -374,6 +394,7 @@ public class YoutubeCommentsExtractor extends CommentsExtractor {
                         getMutationPayloadFromEntityKey(mutations,
                                 commentViewModel.getString("toolbarStateKey", ""))
                                 .getObject("engagementToolbarStateEntityPayload"),
+                        getOptionalCommentSurface(mutations, commentViewModel),
                         videoUrl,
                         timeAgoParser));
             } else if (commentThreadRenderer.has("comment")) {
@@ -396,6 +417,7 @@ public class YoutubeCommentsExtractor extends CommentsExtractor {
                     getMutationPayloadFromEntityKey(mutations,
                             commentViewModel.getString("toolbarStateKey", ""))
                             .getObject("engagementToolbarStateEntityPayload"),
+                    getOptionalCommentSurface(mutations, commentViewModel),
                     videoUrl,
                     timeAgoParser));
         } else if (content.has(COMMENT_RENDERER_KEY)) {

@@ -21,12 +21,14 @@ import androidx.fragment.app.FragmentActivity;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.CommentTextSizeHelper;
 import org.schabi.newpipe.util.CommentTranslationProvider;
+import org.schabi.newpipe.util.image.CommentImageViewerDialog;
 import org.schabi.newpipe.fragments.list.comments.CommentDatePresentation;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
@@ -48,6 +50,8 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     private final TextView itemLikesCountView;
     private final TextView itemTitleView;
     private final ImageView itemHeartView;
+    private final ImageView commentImagePreview;
+    private final Button commentImagesButton;
     private final ImageView itemPinnedView;
     private final Button translateButton;
     private final Button repliesButton;
@@ -71,6 +75,8 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemTitleView = itemView.findViewById(R.id.itemTitleView);
         itemHeartView = itemView.findViewById(R.id.detail_heart_image_view);
+        commentImagePreview = itemView.findViewById(R.id.comment_image_preview);
+        commentImagesButton = itemView.findViewById(R.id.comment_images_button);
         itemPinnedView = itemView.findViewById(R.id.detail_pinned_view);
         translateButton = itemView.findViewById(R.id.translate_button);
         repliesButton = itemView.findViewById(R.id.replies_button);
@@ -137,6 +143,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         textEllipsizer.setStreamingService(getServiceById(item.getServiceId()));
         textEllipsizer.setStreamUrl(item.getUrl());
         showCommentText(item.getCommentText());
+        bindCommentPictures(item);
 
         //noinspection ClickableViewAccessibility
         itemContentView.setOnTouchListener((v, event) -> {
@@ -190,6 +197,34 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         translateButton.setOnClickListener(null);
         translateButton.setVisibility(View.GONE);
         CoilHelper.INSTANCE.clearAvatar(itemThumbnailView);
+        CoilHelper.INSTANCE.clearImage(commentImagePreview);
+        commentImagePreview.setOnClickListener(null);
+        commentImagesButton.setOnClickListener(null);
+        commentImagePreview.setVisibility(View.GONE);
+        commentImagesButton.setVisibility(View.GONE);
+    }
+
+    private void bindCommentPictures(@NonNull final CommentsInfoItem item) {
+        final java.util.List<Image> pictures = new java.util.ArrayList<>(item.getPictures());
+        if (!ImageStrategy.shouldLoadImages() || pictures.isEmpty()) {
+            CoilHelper.INSTANCE.clearImage(commentImagePreview);
+            commentImagePreview.setVisibility(View.GONE);
+            commentImagesButton.setVisibility(View.GONE);
+            commentImagePreview.setOnClickListener(null);
+            commentImagesButton.setOnClickListener(null);
+            return;
+        }
+        commentImagePreview.setVisibility(View.VISIBLE);
+        commentImagesButton.setVisibility(View.VISIBLE);
+        commentImagesButton.setText(itemBuilder.getContext().getString(
+                R.string.comment_view_images, pictures.size()));
+        CoilHelper.INSTANCE.loadThumbnail(commentImagePreview,
+                ImageStrategy.choosePreferredImage(pictures));
+        final View.OnClickListener openViewer = view ->
+                CommentImageViewerDialog.show((FragmentActivity) itemBuilder.getContext(),
+                        pictures);
+        commentImagePreview.setOnClickListener(openViewer);
+        commentImagesButton.setOnClickListener(openViewer);
     }
 
     private void setupTranslation(@NonNull final CommentsInfoItem item) {

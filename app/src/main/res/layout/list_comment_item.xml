@@ -57,11 +57,33 @@
         android:textSize="@dimen/comment_item_content_text_size"
         tools:text="@tools:sample/lorem/random[1]" />
 
+    <ImageView
+        android:id="@+id/comment_image_preview"
+        android:layout_width="210dp"
+        android:layout_height="118dp"
+        android:layout_below="@id/itemCommentContentView"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@id/itemThumbnailView"
+        android:contentDescription="@string/comment_image_preview"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/comment_images_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_image_preview"
+        android:layout_toEndOf="@id/itemThumbnailView"
+        android:minHeight="40dp"
+        android:textColor="?attr/colorPrimary"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/comment_actions_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/itemCommentContentView"
+        android:layout_below="@id/comment_images_button"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:gravity="center_vertical"
         android:minHeight="40dp"
