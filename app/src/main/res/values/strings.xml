@@ -2006,5 +2006,7 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="selective_settings_done">Settings updated: %1$d</string>
     <string name="selective_settings_exported">Settings exported: %1$d</string>
     <string name="selective_settings_failed">Could not process the selected settings file</string>
+    <string name="service_rate_limited_advice">%1$s is limiting requests (HTTP 429). Wait before trying again; repeated attempts may prolong the block.</string>
+    <string name="service_access_denied_advice">%1$s refused this request (HTTP 403). The media URL may have expired, or access may be temporarily restricted. Try again later or open it in your browser.</string>
 </resources>
 

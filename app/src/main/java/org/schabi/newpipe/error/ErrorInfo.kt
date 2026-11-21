@@ -190,6 +190,16 @@ class ErrorInfo private constructor(
                 }
                 return ErrorMessage(resource, error.status.toString())
             }
+            ServiceRestrictionMessages.kind(throwable)?.let { restriction ->
+                val message = when (restriction) {
+                    ServiceRestrictionMessages.Kind.RATE_LIMIT ->
+                        R.string.service_rate_limited_advice
+
+                    ServiceRestrictionMessages.Kind.ACCESS_DENIED ->
+                        R.string.service_access_denied_advice
+                }
+                return ErrorMessage(message, getServiceName(serviceId))
+            }
             return when {
                 // player exceptions
                 // some may be IOException, so do these checks before isNetworkRelated!
@@ -324,6 +334,11 @@ class ErrorInfo private constructor(
 
         fun isReportable(throwable: Throwable?): Boolean {
             if (findInvidiousApiFailure(throwable) != null) return false
+            if (ServiceRestrictionMessages.kind(throwable) ==
+                ServiceRestrictionMessages.Kind.RATE_LIMIT
+            ) {
+                return false
+            }
             return when (throwable) {
                 // we don't have an exception, so this is a manually built error, which likely
                 // indicates that it's important and is thus reportable
