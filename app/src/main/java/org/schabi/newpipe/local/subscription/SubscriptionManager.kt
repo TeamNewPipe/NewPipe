@@ -190,6 +190,35 @@ class SubscriptionManager @JvmOverloads constructor(
             }
     }
 
+    /** Change every subscription in one profile-scoped database transaction. */
+    fun updateAllNotificationModes(@NotificationMode mode: Int): Completable = Completable.fromAction {
+        val (changed, firstEnabled) = database.runInTransaction<Pair<List<SubscriptionEntity>, List<SubscriptionEntity>>> {
+            val changed = subscriptionTable.getAllDirectForProfile(profileId)
+                .filter { it.notificationMode != mode }
+            val firstEnabled = changed.filter {
+                it.notificationMode == NotificationMode.DISABLED &&
+                    mode != NotificationMode.DISABLED
+            }
+            if (changed.isNotEmpty()) {
+                subscriptionTable.setNotificationModeForProfile(profileId, mode)
+                changed.forEach { it.notificationMode = mode }
+            }
+            changed to firstEnabled
+        }
+        try {
+            subscriptionSyncStore.recordLocalUpserts(changed)
+        } catch (error: Exception) {
+            Log.e(TAG, "Could not journal bulk notification changes", error)
+        }
+        // Preserve the old baseline rule without waiting for every channel's network request
+        // before allowing the user to interact with the updated subscriptions list.
+        if (firstEnabled.isNotEmpty()) {
+            Completable.concat(firstEnabled.map(::rememberAllStreams))
+                .subscribeOn(Schedulers.io())
+                .subscribe({}, { error -> Log.e(TAG, "Could not prime subscription notifications", error) })
+        }
+    }
+
     fun updateNotificationSettings(
         serviceId: Int,
         url: String,

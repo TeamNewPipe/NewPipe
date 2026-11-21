@@ -23,6 +23,10 @@ internal interface SubscriptionSyncStore {
 
     fun recordLocalUpsert(subscription: SubscriptionEntity)
 
+    fun recordLocalUpserts(subscriptions: List<SubscriptionEntity>) {
+        subscriptions.forEach(::recordLocalUpsert)
+    }
+
     fun recordLocalDelete(profileId: String, serviceId: Int, url: String)
 
     fun recordLocalDelete(serviceId: Int, url: String) {
@@ -98,6 +102,13 @@ internal class RoomSubscriptionSyncStore internal constructor(
     override fun recordLocalUpsert(subscription: SubscriptionEntity) {
         database.runInTransaction {
             recordLocalUpsertInTransaction(subscription)
+        }
+    }
+
+    override fun recordLocalUpserts(subscriptions: List<SubscriptionEntity>) {
+        if (subscriptions.isEmpty()) return
+        database.runInTransaction {
+            subscriptions.forEach(::recordLocalUpsertInTransaction)
         }
     }
 

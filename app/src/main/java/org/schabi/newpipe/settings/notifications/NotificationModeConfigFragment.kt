@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings.notifications
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -16,6 +17,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.NotificationMode
 import org.schabi.newpipe.databinding.FragmentChannelsNotificationsBinding
+import org.schabi.newpipe.error.ErrorInfo
+import org.schabi.newpipe.error.ErrorUtil
+import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 
 /**
@@ -29,6 +33,7 @@ class NotificationModeConfigFragment : Fragment() {
 
     private val disposables = CompositeDisposable()
     private var loader: Disposable? = null
+    private var bulkUpdating = false
     private lateinit var adapter: NotificationModeConfigAdapter
     private lateinit var subscriptionManager: SubscriptionManager
 
@@ -90,12 +95,26 @@ class NotificationModeConfigFragment : Fragment() {
     }
 
     private fun toggleAll() {
-        val mode = adapter.currentList.firstOrNull()?.notificationMode ?: return
-        val newMode = when (mode) {
-            NotificationMode.DISABLED -> NotificationMode.ENABLED
-            else -> NotificationMode.DISABLED
-        }
-        adapter.currentList.forEach { updateNotificationMode(it, newMode) }
+        if (bulkUpdating) return
+        val newMode = NotificationModeBulkPolicy.nextMode(
+            adapter.currentList.map { it.notificationMode }
+        ) ?: return
+        bulkUpdating = true
+        disposables.add(
+            subscriptionManager.updateAllNotificationModes(newMode)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally { bulkUpdating = false }
+                .subscribe({}, { error ->
+                    Log.e("NotificationModeConfig", "Unable to update channel notifications", error)
+                    if (isAdded) {
+                        ErrorUtil.showSnackbar(
+                            this,
+                            ErrorInfo(error, UserAction.SOMETHING_ELSE, "Bulk notification settings")
+                        )
+                    }
+                })
+        )
     }
 
     private fun updateNotificationMode(item: SubscriptionItem, @NotificationMode mode: Int) {

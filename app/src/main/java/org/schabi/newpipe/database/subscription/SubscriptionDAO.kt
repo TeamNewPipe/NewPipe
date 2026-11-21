@@ -52,6 +52,12 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM subscriptions WHERE profile_id = :profileId")
     abstract fun getAllDirectForProfile(profileId: String): List<SubscriptionEntity>
 
+    @Query(
+        "UPDATE subscriptions SET notification_mode = :mode " +
+            "WHERE profile_id = :profileId AND notification_mode <> :mode"
+    )
+    abstract fun setNotificationModeForProfile(profileId: String, @NotificationMode mode: Int): Int
+
     open fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>> = getAll().map { channels -> channels.filter { SubscriptionSearch.matches(filter, it) } }
 
     open fun getSubscriptionsFilteredForProfile(profileId: String, filter: String): Flowable<List<SubscriptionEntity>> = getAllForProfile(profileId).map { channels -> channels.filter { SubscriptionSearch.matches(filter, it) } }
