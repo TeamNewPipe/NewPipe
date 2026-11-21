@@ -234,6 +234,7 @@ object ProfileManager {
             editor.putString(ACTIVE_PROFILE_ID_PREFERENCE_KEY, fallbackId(prefs))
         }
         editor.apply()
+        org.schabi.newpipe.local.feed.FeedSeenStore.forgetProfile(context, profileId)
         KidsMode.forgetProfile(context, profileId)
         org.schabi.newpipe.local.playlist.LocalPlaylistSortPreferences.clearProfile(context, profileId)
         org.schabi.newpipe.player.recovery.QueueRecovery.clear(context, profileId)

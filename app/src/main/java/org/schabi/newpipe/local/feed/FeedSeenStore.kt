@@ -10,6 +10,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import java.security.MessageDigest
 import org.schabi.newpipe.local.history.IncognitoMode
+import org.schabi.newpipe.profiles.ProfileManager
 
 /**
  * A bounded, ordered ledger of feed-only markers. IDs are stable video identities, not stream
@@ -63,10 +64,20 @@ internal class FeedSeenLedger private constructor() {
 
 /** Keeps the feed-scrolled state separate from playback progress, history and recommendations. */
 internal class FeedSeenStore(context: Context, val profileId: String) {
+    companion object {
+        private const val STORAGE_PREFIX = "feed_seen_v1_"
+
+        /** Profile deletion must also discard feed-only markers, never another profile's data. */
+        fun forgetProfile(context: Context, profileId: String) {
+            PreferenceManager.getDefaultSharedPreferences(context.applicationContext)
+                .edit().remove("$STORAGE_PREFIX$profileId").apply()
+        }
+    }
+
     private val appContext = context.applicationContext
     private val preferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(appContext)
-    private val storageKey = "feed_seen_v1_$profileId"
+    private val storageKey = "$STORAGE_PREFIX$profileId"
     private val ledger = FeedSeenLedger.restore(preferences.getString(storageKey, null))
     private var dirty = false
 
@@ -87,6 +98,12 @@ internal class FeedSeenStore(context: Context, val profileId: String) {
     @Synchronized
     fun flush() {
         if (!dirty || !available()) return
+        // A paused fragment can still own an old store after its profile was deleted.
+        // Never allow that stale store to recreate cleared profile data on resume.
+        if (ProfileManager.isProfileSyncTombstoned(appContext, profileId)) {
+            dirty = false
+            return
+        }
         preferences.edit().putString(storageKey, ledger.serialize()).apply()
         dirty = false
     }
