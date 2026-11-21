@@ -93,6 +93,13 @@
     </PreferenceCategory>
 
     <Preference
+        android:key="@string/selective_settings_key"
+        android:title="@string/selective_settings_title"
+        android:summary="@string/selective_settings_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
         android:key="@string/reset_settings"
         android:title="@string/reset_settings_title"
         android:summary="@string/reset_settings_summary"

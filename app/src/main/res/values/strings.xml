@@ -1994,5 +1994,17 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="history_sort_title">Video title (A–Z)</string>
     <string name="history_date_range_title">Filter watch history by date</string>
     <string name="history_date_range_clear">Clear history date filter</string>
+    <string name="selective_settings_key">selective_settings_transfer</string>
+    <string name="selective_settings_title">Import, export or reset individual settings</string>
+    <string name="selective_settings_summary">Choose specific settings; excludes account tokens, device keys and other private data</string>
+    <string name="selective_settings_choose">Select settings</string>
+    <string name="selective_settings_export">Export selected</string>
+    <string name="selective_settings_import">Import selected</string>
+    <string name="selective_settings_reset">Reset selected</string>
+    <string name="selective_settings_reset_confirm">Reset only the selected settings to their defaults?</string>
+    <string name="selective_settings_none">Select at least one setting</string>
+    <string name="selective_settings_done">Settings updated: %1$d</string>
+    <string name="selective_settings_exported">Settings exported: %1$d</string>
+    <string name="selective_settings_failed">Could not process the selected settings file</string>
 </resources>
 

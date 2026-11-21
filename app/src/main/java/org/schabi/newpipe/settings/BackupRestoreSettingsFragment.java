@@ -38,6 +38,7 @@ import org.schabi.newpipe.settings.export.ImportExportManager;
 import org.schabi.newpipe.settings.export.NewPipeCompatibleExportManager;
 import org.schabi.newpipe.settings.export.NewPipeDataMigrationManager;
 import org.schabi.newpipe.settings.export.ScheduledBackupWorker;
+import org.schabi.newpipe.settings.export.SelectiveSettingsDialog;
 import org.schabi.newpipe.settings.export.TakeoutImportWorker;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -151,6 +152,7 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
         importExportDataPathKey = getString(R.string.import_export_data_path);
 
         addPreferencesFromResourceRegistry();
+        bindSelectiveSettingsTransfer();
         requirePreference(R.string.takeout_import_key).setOnPreferenceClickListener(preference -> {
             new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.takeout_import_title)
@@ -332,6 +334,18 @@ public class BackupRestoreSettingsFragment extends BasePreferenceFragment {
     public void onPause() {
         defaultPreferences.unregisterOnSharedPreferenceChangeListener(backupStatusListener);
         super.onPause();
+    }
+
+    private void bindSelectiveSettingsTransfer() {
+        requirePreference(R.string.selective_settings_key)
+                .setOnPreferenceClickListener(preference -> {
+                    if (getChildFragmentManager().findFragmentByTag(
+                            SelectiveSettingsDialog.TAG) == null) {
+                        new SelectiveSettingsDialog().show(getChildFragmentManager(),
+                                SelectiveSettingsDialog.TAG);
+                    }
+                    return true;
+                });
     }
 
     private void updateAutomaticBackupSummary() {
