@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player
 
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -11,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
@@ -28,6 +28,9 @@ import org.schabi.newpipe.player.helper.PlayerHolder
 /** One connection shared by the visible chat tab and fullscreen panel. */
 @OptIn(ExperimentalCoroutinesApi::class)
 object LiveChatRepository {
+    private const val MAX_AUTOMATIC_RETRIES = 3
+    private const val RETRY_DELAY_MILLIS = 1_000L
+
     private data class Feed(
         val scope: CoroutineScope,
         val retries: MutableStateFlow<Int>,
@@ -69,22 +72,39 @@ object LiveChatRepository {
 
     internal fun observe(
         positionProvider: suspend () -> Long? = { null },
+        retryDelayMillis: Long = RETRY_DELAY_MILLIS,
         factory: () -> BulletCommentsExtractor
     ): Flow<Result<List<BulletCommentsInfoItem>>> = flow {
-        val extractor = factory()
-        try {
-            extractor.fetchPage()
-            if (extractor.isDisabled) error("Live chat unavailable")
-            extractor.initialPage
-            while (currentCoroutineContext().isActive) {
-                positionProvider()?.let(extractor::setCurrentPlayPosition)
-                emit(Result.success(extractor.liveMessages.orEmpty()))
-                delay(1000)
+        var failures = 0
+        while (currentCoroutineContext().isActive) {
+            var extractor: BulletCommentsExtractor? = null
+            var retry = false
+            try {
+                extractor = factory()
+                extractor.fetchPage()
+                if (extractor.isDisabled) {
+                    emit(Result.failure(IllegalStateException("Live chat unavailable")))
+                    return@flow
+                }
+                extractor.initialPage
+                while (currentCoroutineContext().isActive) {
+                    positionProvider()?.let(extractor::setCurrentPlayPosition)
+                    emit(Result.success(extractor.liveMessages.orEmpty()))
+                    delay(1000)
+                }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (error: Exception) {
+                emit(Result.failure(error))
+                failures++
+                retry = failures <= MAX_AUTOMATIC_RETRIES
+            } finally {
+                extractor?.disconnect()
             }
-        } finally {
-            extractor.disconnect()
+            if (!retry) return@flow
+            delay(retryDelayMillis * failures)
         }
-    }.catch { emit(Result.failure(it)) }
+    }
 
     /** Media3 player state is main-thread-confined, even while extraction runs on IO. */
     private suspend fun currentPlaybackPosition(url: String): Long? {

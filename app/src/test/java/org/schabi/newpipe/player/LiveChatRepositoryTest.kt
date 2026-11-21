@@ -1,7 +1,10 @@
 package org.schabi.newpipe.player
 
+import java.io.IOException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -50,6 +53,33 @@ class LiveChatRepositoryTest {
         `when`(extractor.isDisabled).thenReturn(true)
         assertTrue(LiveChatRepository.observe { extractor }.first().isFailure)
         verify(extractor).disconnect()
+    }
+
+    @Test
+    fun transientLiveChatConnectionFailureRetriesWhileVisible() = runBlocking {
+        val recovered = mock(BulletCommentsExtractor::class.java)
+        `when`(recovered.liveMessages).thenReturn(emptyList())
+        var attempts = 0
+        val results = LiveChatRepository.observe(retryDelayMillis = 0L) {
+            if (++attempts == 1) throw IOException("Temporary connection interruption")
+            recovered
+        }.take(2).toList()
+
+        assertTrue(results.first().isFailure)
+        assertTrue(results.last().isSuccess)
+        assertTrue(attempts == 2)
+        verify(recovered).disconnect()
+    }
+
+    @Test
+    fun persistentLiveChatErrorsStopAfterBoundedRetries() = runBlocking {
+        var attempts = 0
+        val results = LiveChatRepository.observe(retryDelayMillis = 0L) {
+            attempts++
+            throw IOException("Unavailable")
+        }.toList()
+        assertTrue(results.all { it.isFailure })
+        assertTrue(attempts == 4)
     }
 
     @Test

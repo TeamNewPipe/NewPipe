@@ -33,6 +33,8 @@ class LiveChatFragment : Fragment() {
                 if (overlayChosen) {
                     stop()
                     status?.setText(R.string.live_chat_overlay_active)
+                } else {
+                    startIfVisible()
                 }
             }
         }
@@ -105,7 +107,10 @@ class LiveChatFragment : Fragment() {
         collection = viewLifecycleOwner.lifecycleScope.launch {
             LiveChatRepository.messages(args.getInt(SERVICE), args.getString(URL).orEmpty()).collect { result ->
                 result.fold(
-                    onSuccess = { messages -> append(messages) },
+                    onSuccess = { messages ->
+                        status?.setText(R.string.live_chat_read_only)
+                        append(messages)
+                    },
                     onFailure = { status?.setText(R.string.live_chat_unavailable) }
                 )
             }
