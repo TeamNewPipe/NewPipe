@@ -39,6 +39,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.withSettings
 import org.mockito.junit.MockitoJUnitRunner
 import org.schabi.newpipe.database.Migrations
+import org.schabi.newpipe.local.feed.quickadd.QuickAddPreference
 import org.schabi.newpipe.settings.export.BackupFileLocator
 import org.schabi.newpipe.settings.export.ImportExportManager
 import org.schabi.newpipe.settings.export.ImportExportManager.BackupSource
@@ -370,6 +371,49 @@ class ImportExportManagerTest {
         verify(editor, atLeastOnce()).putBoolean(anyString(), anyBoolean())
         verify(editor, atLeastOnce()).putString(anyString(), anyString())
         verify(editor, atLeastOnce()).putInt(anyString(), anyInt())
+    }
+
+    @Test
+    fun `JSON backup normalizes small quick-add playlist IDs to Long`() {
+        val targetKey = QuickAddPreference.targetKey("00000000-0000-0000-0000-000000000000")
+        val zip = createTempFile("quick_add_restore_", ".zip")
+        ZipOutputStream(zip.outputStream()).use { output ->
+            output.putNextEntry(ZipEntry(BackupFileLocator.FILE_NAME_JSON_PREFS))
+            output.write("""{"$targetKey":12,"other_integer":7}""".toByteArray())
+            output.closeEntry()
+        }
+        `when`(storedFileHelper.stream).thenReturn(FileStream(zip.toFile()))
+
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val editor = Mockito.mock(SharedPreferences.Editor::class.java)
+        `when`(preferences.edit()).thenReturn(editor)
+        `when`(editor.commit()).thenReturn(true)
+
+        ImportExportManager(fileLocator).loadJsonPrefs(storedFileHelper, preferences)
+
+        verify(editor).clear()
+        verify(editor).putLong(targetKey, 12L)
+        verify(editor).putInt("other_integer", 7)
+        verify(editor).commit()
+    }
+
+    @Test
+    fun `Legacy serialized backup normalizes quick-add target without changing other numbers`() {
+        val targetKey = QuickAddPreference.targetKey("other-profile")
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val editor = Mockito.mock(SharedPreferences.Editor::class.java)
+        `when`(preferences.edit()).thenReturn(editor)
+        `when`(editor.commit()).thenReturn(true)
+
+        ImportExportManager(fileLocator).replacePreferences(
+            preferences,
+            mapOf<String, Any>(targetKey to 23, "other_integer" to 15, "already_long" to 18L)
+        )
+
+        verify(editor).putLong(targetKey, 23L)
+        verify(editor).putInt("other_integer", 15)
+        verify(editor).putLong("already_long", 18L)
+        verify(editor).commit()
     }
 
     @Suppress("DEPRECATION")

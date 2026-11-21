@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.feed.quickadd
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.AttributeSet
 import android.widget.Toast
 import androidx.preference.Preference
@@ -47,7 +48,7 @@ class QuickAddPreference(context: Context, attrs: AttributeSet?) : Preference(co
         if (!loaded || ProfileManager.getActiveProfileId(context) != profileId) return
         val choices = playlists.toList()
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val selected = prefs.getLong(targetKey(profileId), -1)
+        val selected = readTargetId(prefs, profileId)
         MaterialAlertDialogBuilder(context)
             .setTitle(R.string.feed_quick_add_title)
             .setSingleChoiceItems((listOf(context.getString(R.string.feed_quick_add_off)) + choices.map { it.name.orEmpty() }).toTypedArray(), choices.indexOfFirst { it.uid == selected } + 1) { dialog, index ->
@@ -63,12 +64,34 @@ class QuickAddPreference(context: Context, attrs: AttributeSet?) : Preference(co
     }
 
     private fun updateSummary() {
-        val selected = PreferenceManager.getDefaultSharedPreferences(context).getLong(targetKey(profileId), -1)
+        val selected = readTargetId(PreferenceManager.getDefaultSharedPreferences(context), profileId)
         summary = playlists.find { it.uid == selected }?.let { context.getString(R.string.feed_quick_add_target, it.name) }
             ?: context.getString(R.string.feed_quick_add_disabled)
     }
 
     companion object {
-        fun targetKey(profileId: String) = "feed_quick_add_target_$profileId"
+        const val TARGET_KEY_PREFIX = "feed_quick_add_target_"
+
+        fun targetKey(profileId: String) = "$TARGET_KEY_PREFIX$profileId"
+
+        /**
+         * Older JSON backups lose the original Int/Long distinction for small playlist IDs.
+         * Repair an already-restored value as well as newly imported backups so opening the
+         * feed or settings cannot crash when SharedPreferences.getLong sees an Integer.
+         */
+        fun readTargetId(preferences: SharedPreferences, profileId: String): Long {
+            val key = targetKey(profileId)
+            return try {
+                preferences.getLong(key, -1L)
+            } catch (_: ClassCastException) {
+                val recovered = when (val stored = preferences.all[key]) {
+                    is Int -> stored.toLong()
+                    is Long -> stored
+                    else -> -1L
+                }
+                preferences.edit().putLong(key, recovered).apply()
+                recovered
+            }
+        }
     }
 }

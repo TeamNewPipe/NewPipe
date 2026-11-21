@@ -23,6 +23,7 @@ import kotlin.io.path.createParentDirectories
 import kotlin.io.path.deleteIfExists
 import org.schabi.newpipe.database.Migrations
 import org.schabi.newpipe.local.feed.archive.FeedArchiveBackup
+import org.schabi.newpipe.local.feed.quickadd.QuickAddPreference
 import org.schabi.newpipe.streams.io.SharpInputStream
 import org.schabi.newpipe.streams.io.SharpOutputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
@@ -555,7 +556,15 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
     private fun sanitizePreferences(entries: Map<String, *>): Map<String, Any?> {
         return entries.mapNotNull { (key, value) ->
             when (value) {
-                is Boolean, is Float, is Int, is Long, is String -> key to value
+                // JSON decoders represent small Long values as Int. Restore the expected
+                // SharedPreferences type for per-profile quick-add playlist IDs.
+                is Int -> key to if (key.startsWith(QuickAddPreference.TARGET_KEY_PREFIX)) {
+                    value.toLong()
+                } else {
+                    value
+                }
+
+                is Boolean, is Float, is Long, is String -> key to value
 
                 is Set<*> -> {
                     val strings = value.filterIsInstance<String>().toSet()

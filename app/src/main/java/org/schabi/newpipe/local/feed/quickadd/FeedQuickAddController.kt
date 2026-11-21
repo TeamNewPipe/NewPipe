@@ -54,7 +54,7 @@ class FeedQuickAddController(private val list: RecyclerView) {
         watch.set(null)
         playlistName = null
         saved = emptySet()
-        targetId = if (isCurrentProfile()) preferences.getLong(QuickAddPreference.targetKey(profileId), -1) else -1
+        targetId = if (isCurrentProfile()) QuickAddPreference.readTargetId(preferences, profileId) else -1
         renderAll()
         if (disposed || targetId < 0) return
         watch.set(
