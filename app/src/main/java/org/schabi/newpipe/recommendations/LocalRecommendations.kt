@@ -57,7 +57,12 @@ object LocalRecommendations {
         return prefix + prefs(context).all.filterKeys { it.startsWith(prefix) && it != prefix + "model" }.hashCode() + IncognitoMode.isEnabled(context)
     }
 
-    private fun learns(context: Context): Boolean = enabled(context) && !setting(context, "paused")
+    /** Queued events use their captured profile's settings, not a later active profile. */
+    private fun learns(context: Context, profileId: String): Boolean {
+        return prefs(context).getBoolean("$profileId:enabled", false) &&
+            !prefs(context).getBoolean("$profileId:paused", false) &&
+            !IncognitoMode.isEnabled(context)
+    }
 
     @JvmStatic
     @Synchronized
@@ -110,24 +115,25 @@ object LocalRecommendations {
     }
 
     @JvmStatic
+    @JvmOverloads
     @Synchronized
-    fun observe(context: Context, items: List<InfoItem>) {
-        if (!learns(context)) return
-        val model = read(context)
-        val isEligible = eligibility(context)
+    fun observe(context: Context, items: List<InfoItem>, profileId: String = profile(context)) {
+        if (profileId != profile(context) || !learns(context, profileId)) return
+        val model = read(context, profileId)
+        val isEligible = eligibility(context, profileId)
         items.filterIsInstance<StreamInfoItem>().take(MAX_CANDIDATES).forEach { item ->
             if (isEligible(item) && id(item) !in model.watched) {
                 model.candidates.remove(id(item))
                 model.candidates[id(item)] = Candidate.from(item)
             }
         }
-        write(context, model)
+        write(context, model, profileId)
     }
 
     @JvmStatic
     @Synchronized
     fun searched(context: Context, serviceId: Int, query: String, profileId: String) {
-        if (profileId != profile(context) || !learns(context) ||
+        if (profileId != profile(context) || !learns(context, profileId) ||
             !PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.enable_search_history_key), true)
         ) {
             return
@@ -138,36 +144,39 @@ object LocalRecommendations {
     }
 
     @JvmStatic
+    @JvmOverloads
     @Synchronized
-    fun watched(context: Context, info: StreamInfo, seconds: Long) {
-        if (!learns(context) || !PreferenceManager.getDefaultSharedPreferences(context)
+    fun watched(context: Context, info: StreamInfo, seconds: Long, profileId: String = profile(context)) {
+        if (profileId != profile(context) || !learns(context, profileId) ||
+            !PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.enable_watch_history_key), true)
         ) {
             return
         }
-        val model = read(context)
+        val model = read(context, profileId)
         val item = StreamInfoItem(info.serviceId, info.url, info.name, info.streamType).apply {
             uploaderName = info.uploaderName
             uploaderUrl = info.uploaderUrl
         }
-        if (!eligibility(context)(item)) return
+        if (!eligibility(context, profileId)(item)) return
         val streamId = id(item)
         model.watched.remove(streamId)
         model.watched.add(streamId)
         model.candidates.remove(streamId)
         val engagement = if (seconds == 0L) 1.0 else seconds.coerceIn(0, 60) / 30.0
         val amount = engagement * (1.0 + qualityBoost(info.likeCount, info.viewCount)) *
-            passiveLearningMultiplier(context, info)
+            passiveLearningMultiplier(context, info, profileId)
         addTerms(model, info.serviceId, "${info.name} ${info.uploaderName}", amount)
         addChannel(model, info.serviceId, info.uploaderUrl, info.uploaderName, amount * 0.75)
-        write(context, model)
+        write(context, model, profileId)
     }
 
     @JvmStatic
+    @JvmOverloads
     @Synchronized
-    fun liked(context: Context, info: StreamInfo, liked: Boolean) {
-        if (!learns(context)) return
-        val model = read(context)
+    fun liked(context: Context, info: StreamInfo, liked: Boolean, profileId: String = profile(context)) {
+        if (profileId != profile(context) || !learns(context, profileId)) return
+        val model = read(context, profileId)
         val streamId = "${info.serviceId}:${info.url}"
         val changed = if (liked) model.liked.add(streamId) else model.liked.remove(streamId)
         if (!changed) return
@@ -180,7 +189,7 @@ object LocalRecommendations {
             info.uploaderName,
             direction * 3.0
         )
-        write(context, model)
+        write(context, model, profileId)
     }
 
     /** Returns a fresh list; extractor/cache results are never reordered in place. */
@@ -300,9 +309,9 @@ object LocalRecommendations {
     fun matchesInterest(item: StreamInfoItem, interest: String): Boolean = interest
         .lowercase(Locale.ROOT) in tokens("${item.name} ${item.uploaderName}")
 
-    private fun eligibility(context: Context): (StreamInfoItem) -> Boolean {
-        val excluded = prefs(context).getStringSet(key(context, "excluded"), emptySet()).orEmpty()
-        val hidden = topics(context).split(',', '\n').map { it.trim().lowercase(Locale.ROOT) }.filter { it.isNotEmpty() }
+    private fun eligibility(context: Context, profileId: String = profile(context)): (StreamInfoItem) -> Boolean {
+        val excluded = prefs(context).getStringSet("$profileId:excluded", emptySet()).orEmpty()
+        val hidden = prefs(context).getString("$profileId:topics", "").orEmpty().split(',', '\n').map { it.trim().lowercase(Locale.ROOT) }.filter { it.isNotEmpty() }
         val rules = ContentBlockingHelper.getRules(context, ContentBlockingHelper.Target.KIOSKS)
         return { item ->
             val text = "${item.name} ${item.uploaderName}".lowercase(Locale.ROOT)
@@ -337,11 +346,11 @@ object LocalRecommendations {
     private fun isRegularShortVideo(item: StreamInfoItem): Boolean = !item.isShortFormContent &&
         item.duration in 1 until SHORT_VIDEO_SECONDS
 
-    private fun passiveLearningMultiplier(context: Context, info: StreamInfo): Double {
+    private fun passiveLearningMultiplier(context: Context, info: StreamInfo, profileId: String): Double {
         val hasProviderDisclosure = info.metaInfo.orEmpty().any {
             it is YoutubeContentDisclosure
         }
-        return if (setting(context, "reduce_disclosed_ai") && hasProviderDisclosure) {
+        return if (prefs(context).getBoolean("$profileId:reduce_disclosed_ai", false) && hasProviderDisclosure) {
             DISCLOSED_AI_LEARNING_MULTIPLIER
         } else {
             1.0

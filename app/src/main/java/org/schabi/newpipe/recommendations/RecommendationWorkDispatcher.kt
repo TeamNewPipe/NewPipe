@@ -67,12 +67,12 @@ object RecommendationWorkDispatcher {
 
     @JvmStatic
     fun watched(context: Context, info: StreamInfo, seconds: Long, profileId: String) {
-        dispatch(context, profileId) { LocalRecommendations.watched(it, info, seconds) }
+        dispatch(context, profileId) { LocalRecommendations.watched(it, info, seconds, profileId) }
     }
 
     @JvmStatic
     fun liked(context: Context, info: StreamInfo, liked: Boolean, profileId: String) {
-        dispatch(context, profileId) { LocalRecommendations.liked(it, info, liked) }
+        dispatch(context, profileId) { LocalRecommendations.liked(it, info, liked, profileId) }
     }
 
     @JvmStatic
@@ -89,7 +89,7 @@ object RecommendationWorkDispatcher {
         }
         batches.forEach { batch ->
             safeRun(batch.context, batch.profileId, batch.generation) {
-                LocalRecommendations.observe(it, batch.items.values.toList())
+                LocalRecommendations.observe(it, batch.items.values.toList(), batch.profileId)
             }
         }
     }

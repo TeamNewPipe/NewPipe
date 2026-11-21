@@ -135,6 +135,24 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun capturedProfileEventsNeverLearnUnderTheNextActiveProfile() {
+        enable()
+        val original = profile
+        val other = ProfileManager.createProfile(context, "Second profile")!!
+        enable()
+        val target = item("queued")
+        LocalRecommendations.observe(context, listOf(target), original)
+        LocalRecommendations.watched(context, info("queued"), 30, original)
+        LocalRecommendations.liked(context, info("queued"), true, original)
+        assertFalse(prefs.contains(other.id + ":model"))
+
+        assertTrue(ProfileManager.setActiveProfile(context, original))
+        LocalRecommendations.observe(context, listOf(target), original)
+        assertTrue(LocalRecommendations.feed(context, 0).any { it.url == target.url })
+        assertFalse(prefs.contains(other.id + ":model"))
+    }
+
+    @Test
     fun excludesBlockedWatchedAndQueuedVideosWithoutAutoplayFallback() {
         enable("autoplay" to true, "shorts" to true)
         val excluded = item("astronomy")
