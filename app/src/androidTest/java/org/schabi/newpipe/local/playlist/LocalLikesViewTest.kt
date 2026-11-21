@@ -1,11 +1,14 @@
 package org.schabi.newpipe.local.playlist
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.SystemClock
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
@@ -46,7 +49,7 @@ class LocalLikesViewTest {
     }
 
     @Test
-    fun oneLocalLikeIconKeepsAnAccessibleTouchTargetOnNarrowScreens() {
+    fun compactLocalLikeUsesSmallerIconWithoutLosingButtonWidth() {
         ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
                 val controls = LocalLikesView(activity)
@@ -59,9 +62,12 @@ class LocalLikesViewTest {
                 assertEquals(0, controls.paddingStart)
                 assertEquals(0, controls.paddingEnd)
                 assertEquals(touchSize, like.layoutParams.width)
-                assertEquals(touchSize, like.layoutParams.height)
-                assertTrue(like.minimumHeight >= touchSize)
+                val visualHeight = (24 * density + 0.5f).toInt()
+                val iconSize = (20 * density + 0.5f).toInt()
+                assertEquals(visualHeight, like.layoutParams.height)
+                assertTrue(like.minimumHeight >= visualHeight)
                 assertTrue(like.minimumWidth >= touchSize)
+                assertEquals(iconSize, like.iconSize)
                 assertTrue(like.text.isEmpty())
                 assertTrue(like.icon != null)
                 assertTrue(like.contentDescription.toString().contains("locally", ignoreCase = true))
@@ -105,6 +111,75 @@ class LocalLikesViewTest {
             }
             assertEquals(1, localLikeCount)
             assertTrue("Public like count must follow the local heart in one row", publicLikeFollows)
+        }
+    }
+
+    @Test
+    fun compactRowStillRespondsToTapAboveItWithin48DpHitArea() {
+        lateinit var panel: RelativeLayout
+        lateinit var controls: LocalLikesView
+        lateinit var like: MaterialButton
+        lateinit var row: LinearLayout
+        ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                val density = activity.resources.displayMetrics.density
+                fun dp(value: Int) = (value * density + 0.5f).toInt()
+
+                panel = RelativeLayout(activity).apply {
+                    id = R.id.details_panel
+                    minimumHeight = dp(48)
+                }
+                val viewCount = View(activity).apply { id = R.id.detail_view_count_view }
+                panel.addView(viewCount, RelativeLayout.LayoutParams(dp(160), dp(28)))
+                row = LinearLayout(activity).apply {
+                    id = R.id.detail_likes_row
+                    orientation = LinearLayout.HORIZONTAL
+                }
+                panel.addView(
+                    row,
+                    RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    ).apply { addRule(RelativeLayout.BELOW, viewCount.id) }
+                )
+                controls = LocalLikesView(activity)
+                like = controls.getChildAt(0) as MaterialButton
+                row.addView(controls, LinearLayout.LayoutParams(dp(48), dp(24)))
+                activity.setContentView(panel)
+                controls.bind(
+                    StreamInfo(
+                        0,
+                        "test",
+                        "https://example.com/like-expanded-hit",
+                        "Video"
+                    ).apply { streamType = StreamType.VIDEO_STREAM }
+                )
+            }
+
+            await(scenario) { like.isEnabled && panel.touchDelegate != null }
+            scenario.onActivity { activity ->
+                val density = activity.resources.displayMetrics.density
+                val dp = { n: Int -> (n * density + 0.5f).toInt() }
+                assertEquals(dp(24), row.height)
+                assertTrue(panel.height >= dp(48))
+                val bounds = Rect(0, 0, controls.width, controls.height)
+                panel.offsetDescendantRectToMyCoords(controls, bounds)
+                val aboveRow = bounds.top - dp(6)
+                assertTrue(aboveRow > 0)
+                val x = bounds.centerX().toFloat()
+                val y = aboveRow.toFloat()
+                val eventTime = SystemClock.uptimeMillis()
+                val down = MotionEvent.obtain(eventTime, eventTime, MotionEvent.ACTION_DOWN, x, y, 0)
+                val up = MotionEvent.obtain(eventTime, eventTime + 50, MotionEvent.ACTION_UP, x, y, 0)
+                try {
+                    assertTrue(panel.dispatchTouchEvent(down))
+                    panel.dispatchTouchEvent(up)
+                } finally {
+                    down.recycle()
+                    up.recycle()
+                }
+            }
+            await(scenario, timeoutMillis = 12_000) { like.isEnabled && like.isChecked }
         }
     }
 

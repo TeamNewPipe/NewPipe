@@ -9,9 +9,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.TouchDelegate
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.LinearLayout
 import androidx.preference.PreferenceManager
 import com.google.android.material.button.MaterialButton
@@ -35,6 +39,12 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
     private val tasks = CompositeDisposable()
     private val like = MaterialButton(context, null, com.google.android.material.R.attr.materialButtonOutlinedStyle)
     private val minimumTouchSize = (48 * resources.displayMetrics.density + 0.5f).toInt()
+    private val compactButtonHeight = (24 * resources.displayMetrics.density + 0.5f).toInt()
+    private val onGlobalLayout = ViewTreeObserver.OnGlobalLayoutListener {
+        updateTouchDelegate()
+    }
+    private var touchHost: ViewGroup? = null
+    private var touchBounds: Rect? = null
     private var info: StreamInfo? = null
     private var generation = 0
     private var profileId = ""
@@ -68,13 +78,15 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
         like.text = ""
         like.minimumWidth = minimumTouchSize
         like.minWidth = minimumTouchSize
-        like.minimumHeight = minimumTouchSize
-        like.minHeight = minimumTouchSize
-        like.iconSize = (24 * density + 0.5f).toInt()
+        // The visible row is only 24dp tall. Its 48dp touch area overlaps the
+        // non-interactive view count above, without increasing the details panel height.
+        like.minimumHeight = compactButtonHeight
+        like.minHeight = compactButtonHeight
+        like.iconSize = (20 * density + 0.5f).toInt()
         like.iconPadding = 0
         like.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
         like.setPaddingRelative(0, 0, 0, 0)
-        addView(like, LayoutParams(minimumTouchSize, minimumTouchSize))
+        addView(like, LayoutParams(minimumTouchSize, compactButtonHeight))
         like.setOnClickListener { save() }
         like.setOnLongClickListener {
             message(R.string.local_like_explanation)
@@ -91,16 +103,57 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayout)
         preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
         refresh()
     }
 
     override fun onDetachedFromWindow() {
+        viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayout)
+        clearTouchDelegate()
         generation++
         tasks.clear()
         preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
         snackbar?.dismiss()
         super.onDetachedFromWindow()
+    }
+
+    /**
+     * The public statistics are only 18sp high. Expand the small visual heart's
+     * hit area upward into the existing view-count row, instead of making the
+     * whole details row 48dp tall. This is updated after layout and on tab changes.
+     */
+    private fun updateTouchDelegate() {
+        val row = parent as? ViewGroup
+        val host = row?.parent as? ViewGroup
+        if (
+            !isAttachedToWindow || visibility != VISIBLE ||
+            host?.id != R.id.details_panel || width <= 0 || height <= 0 ||
+            host.height < minimumTouchSize
+        ) {
+            clearTouchDelegate()
+            return
+        }
+        val bounds = Rect(0, 0, width, height)
+        host.offsetDescendantRectToMyCoords(this, bounds)
+        // The heart occupies 48dp horizontally, so it cannot steal taps from the
+        // adjacent public thumbs-up image or count.
+        val top = (bounds.bottom - minimumTouchSize)
+            .coerceIn(0, host.height - minimumTouchSize)
+        bounds.top = top
+        bounds.bottom = top + minimumTouchSize
+
+        if (touchHost !== host) clearTouchDelegate()
+        if (touchBounds == bounds) return
+        host.touchDelegate = TouchDelegate(Rect(bounds), this)
+        touchHost = host
+        touchBounds = Rect(bounds)
+    }
+
+    private fun clearTouchDelegate() {
+        touchHost?.touchDelegate = null
+        touchHost = null
+        touchBounds = null
     }
 
     private fun refresh() {
@@ -118,6 +171,11 @@ class LocalLikesView @JvmOverloads constructor(context: Context, attrs: Attribut
                 StreamType.POST_LIVE_STREAM
             )
         visibility = if (eligible) VISIBLE else GONE
+        if (eligible) {
+            post { updateTouchDelegate() }
+        } else {
+            clearTouchDelegate()
+        }
         render()
         if (!eligible || stream == null || !isAttachedToWindow) return
         profileId = ProfileManager.getActiveProfileId(context)

@@ -327,7 +327,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:paddingLeft="6dp"
-                            android:paddingRight="6dp">
+                            android:paddingRight="6dp"
+                            android:minHeight="48dp">
 
                             <org.schabi.newpipe.views.MediaTextView
                                 android:id="@+id/detail_view_count_view"
@@ -343,8 +344,9 @@
                                 app:mediaTextRole="videoMetadata"
                                 tools:text="2,816,821,505 views" />
 
-                            <!-- Group actions together so the local heart never adds its own row.
-                                 GONE local likes leave the public stats in their normal position. -->
+                            <!-- Keep the public stats row compact. The local heart extends its
+                                 touch target into the non-interactive view count above instead
+                                 of increasing this row's measured height. -->
                             <LinearLayout
                                 android:id="@+id/detail_likes_row"
                                 android:layout_width="wrap_content"
@@ -357,7 +359,7 @@
                                 <org.schabi.newpipe.local.playlist.LocalLikesView
                                     android:id="@+id/detail_local_likes"
                                     android:layout_width="48dp"
-                                    android:layout_height="48dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginEnd="4dp"
                                     android:visibility="gone" />
 
