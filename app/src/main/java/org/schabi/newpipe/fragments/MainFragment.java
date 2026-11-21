@@ -65,6 +65,7 @@ import org.schabi.newpipe.settings.tabs.HomeNavigationMode;
 import org.schabi.newpipe.settings.tabs.HomeNavigationModeResolver;
 import org.schabi.newpipe.settings.tabs.HomeStartupTab;
 import org.schabi.newpipe.settings.tabs.HomeTabGroupIconSync;
+import org.schabi.newpipe.settings.tabs.HomeTabTooltipBinder;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabletNavigationPositionResolver;
 import org.schabi.newpipe.settings.tabs.TabsManager;
@@ -488,8 +489,10 @@ public class MainFragment extends BaseFragment
             final TabLayout.Tab tabToSet = binding.mainTabLayout.getTabAt(i);
             if (tabToSet != null) {
                 final Tab tab = tabsList.get(i);
-                tabToSet.setIcon(getSafeTabIconRes(tab));
-                tabToSet.setContentDescription(tab.getTabName(requireContext()));
+                // Material tab tooltips can retain an old ViewPager title when only
+                // contentDescription is updated. Bind the real title as hidden text.
+                HomeTabTooltipBinder.bind(
+                        tabToSet, tab.getTabName(requireContext()), getSafeTabIconRes(tab));
             }
         }
     }
