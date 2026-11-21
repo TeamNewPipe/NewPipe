@@ -61,6 +61,9 @@ public final class TabsManager {
 
     public void resetTabs() {
         sharedPreferences.edit().remove(savedTabsKey).apply();
+        // Restore the first Home section as the startup destination as well.
+        // Otherwise a previously customized startup tab can survive Restore Defaults.
+        HomeStartupTab.save(context, null);
     }
 
     public List<Tab> getDefaultTabs() {

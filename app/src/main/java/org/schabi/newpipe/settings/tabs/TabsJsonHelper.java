@@ -19,12 +19,14 @@ import java.util.stream.Collectors;
 public final class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
 
+    // Same five Home sections as the bundled first-launch preferences, in display order.
+    // This list is also used when the user restores the Content screen defaults.
     private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = List.of(
-            Tab.Type.BLANK.getTab(),
-            Tab.Type.DEFAULT_KIOSK.getTab(),
             Tab.Type.FEED.getTab(),
             Tab.Type.SUBSCRIPTIONS.getTab(),
-            Tab.Type.BOOKMARKS.getTab());
+            Tab.Type.DEFAULT_KIOSK.getTab(),
+            Tab.Type.BOOKMARKS.getTab(),
+            Tab.Type.HISTORY.getTab());
 
     private TabsJsonHelper() { }
 

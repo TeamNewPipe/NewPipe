@@ -22,11 +22,17 @@ public class TabsJsonHelperTest {
     private static final String JSON_TAB_ID_KEY = "tab_id";
 
     @Test
-    public void defaultTabsStartWithNeutralSearchPage() {
+    public void defaultTabsMatchTheFiveContentSectionsInTheirRequestedOrder()
+            throws TabsJsonHelper.InvalidJsonException {
         final List<Tab> defaultTabs = TabsJsonHelper.getDefaultTabs();
 
-        assertEquals(Tab.Type.BLANK.getTab(), defaultTabs.get(0));
-        assertEquals(Tab.Type.DEFAULT_KIOSK.getTab(), defaultTabs.get(1));
+        assertEquals(List.of(
+                Tab.Type.FEED.getTab(),
+                Tab.Type.SUBSCRIPTIONS.getTab(),
+                Tab.Type.DEFAULT_KIOSK.getTab(),
+                Tab.Type.BOOKMARKS.getTab(),
+                Tab.Type.HISTORY.getTab()), defaultTabs);
+        assertEquals(defaultTabs, TabsJsonHelper.getTabsFromJson(null));
     }
 
     @Test
