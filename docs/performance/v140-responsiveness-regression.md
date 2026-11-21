@@ -63,3 +63,26 @@ Record input latency and first-frame latency separately in accompanying notes.
 Compare **medians and slowest samples**, identify a repeatable regression,
 and test the changed workload again after each optimization. Preserve the
 features of v1.46.0 and the app's privacy guarantees.
+
+## Repeated Home-tab heap and frame-time evidence (#1410, #1414, #1538)
+
+The original Android 17 reports hit a 256 MiB Java heap while switching Home tabs,
+sometimes leaving the player's recovery timestamp stale. Record **each navigation
+cycle** as well as the total before selecting another cache or checkpoint change:
+
+```sh
+bash scripts/benchmark-home-tab-memory.sh v1.48.0 /tmp/wize-memory 12
+# Repeat against the exact commit containing a proposed Home-tab fix.
+```
+
+The interactive script retains per-round `dumpsys meminfo` and `gfxinfo
+framestats`, plus the app process ID to identify restarts. Run it on the same
+physical device and profile with identical tabs and library content. If an OOM
+occurs, preserve the first failing round and the crash report. A rising total
+PSS is a lead, **not proof of a retained-object leak**; identify a reachable
+retaining path with Android Studio heap-dump analysis or Perfetto. Keep the
+original timestamp freeze separate from the subsequent crash and record the
+last confirmed/recovered playback positions when recovery is tested.
+
+Do not add more cached feed rows, shorten the three-second recovery interval,
+or close the memory issue merely because CI emulators pass.
