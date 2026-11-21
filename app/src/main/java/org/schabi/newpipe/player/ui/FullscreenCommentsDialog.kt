@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.ui
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -163,6 +164,20 @@ class FullscreenCommentsDialog : DialogFragment() {
         val width = FullscreenCommentsSizing.width(available, desired, ratioOverride)
         if (window.attributes.width != width || window.attributes.height != ViewGroup.LayoutParams.MATCH_PARENT) {
             window.setLayout(width, ViewGroup.LayoutParams.MATCH_PARENT)
+        }
+        val isLandscapeOverlay = LiveChatLandscapeOverlay.shouldOverlay(
+            requireArguments().getBoolean(CHAT),
+            resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
+            DeviceUtils.isTv(requireContext()),
+            PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(
+                getString(R.string.live_chat_landscape_overlay_key),
+                true
+            )
+        )
+        if (isLandscapeOverlay) {
+            // Only the chat panel overlays the player; do not shrink the video viewport.
+            restoreViewport()
+            return
         }
         if (videoContent !== content) {
             restoreViewport()

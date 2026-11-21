@@ -28,6 +28,14 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/live_chat_landscape_overlay_key"
+        android:title="@string/live_chat_landscape_overlay_title"
+        android:summary="@string/live_chat_landscape_overlay_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="player_ambient_mode"
         android:title="@string/player_ambient_mode_title"

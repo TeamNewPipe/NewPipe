@@ -2082,5 +2082,8 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string-array name="comment_archive_limit_values" translatable="false">
         <item>100</item><item>300</item><item>500</item><item>1000</item>
     </string-array>
+    <string name="live_chat_landscape_overlay_key" translatable="false">live_chat_landscape_overlay</string>
+    <string name="live_chat_landscape_overlay_title">Overlay live chat in landscape</string>
+    <string name="live_chat_landscape_overlay_summary">Show the live-chat panel over the video instead of shrinking the video while in landscape on phones. Off shows the original sidecar layout.</string>
 </resources>
 
