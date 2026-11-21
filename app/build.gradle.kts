@@ -188,6 +188,16 @@ wire {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    // Robolectric resolves Android framework jars at test runtime, outside Gradle's
+    // dependency resolver. Maven Central's shared CI IPs can be rate-limited;
+    // use the public Google-hosted Maven Central mirror only on GitHub Actions.
+    // The same Robolectric SDKs and all test assertions still run unchanged.
+    if (System.getenv("GITHUB_ACTIONS") == "true") {
+        systemProperty(
+            "robolectric.dependency.repo.url",
+            "https://maven-central.storage-download.googleapis.com/maven2/"
+        )
+    }
 }
 
 // Custom dependency configuration for ktlint
