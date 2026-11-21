@@ -166,7 +166,9 @@ public class HistoryRecordManager {
                     return 0L;
                 }
             });
-        }).subscribeOn(Schedulers.io());
+        }).subscribeOn(Schedulers.io())
+                .doOnSuccess(ignored -> RecommendationWorkDispatcher.manuallySetWatched(
+                        recommendationContext, info, true, profileId));
     }
 
     /**
@@ -269,7 +271,9 @@ public class HistoryRecordManager {
             recordWatchStreamDelete(streamId);
             streamStateTable.deleteStateForProfile(profileId, streamId);
             streamHistoryTable.deleteStreamHistoryForProfile(profileId, streamId);
-        })).subscribeOn(Schedulers.io());
+        })).subscribeOn(Schedulers.io())
+                .doOnComplete(() -> RecommendationWorkDispatcher.manuallySetWatched(
+                        recommendationContext, info, false, profileId));
     }
 
     public Completable markLocalMediaAsUnwatched(@NonNull final PlayQueueItem item) {

@@ -171,6 +171,35 @@ class LocalRecommendationsTest {
     }
 
     @Test
+    fun manuallyMarkedWatchedAffectsLocalRecommendationsAndUnwatchRestoresCandidate() {
+        enable()
+        val video = item("manual-watch")
+        LocalRecommendations.observe(context, listOf(video))
+        assertEquals(listOf(video.url), LocalRecommendations.rank(context, listOf(video)).map { it.url })
+
+        LocalRecommendations.manuallySetWatched(context, video, true, profile)
+        assertTrue(LocalRecommendations.rank(context, listOf(video)).isEmpty())
+        assertTrue(LocalRecommendations.feed(context, 0).none { it.url == video.url })
+
+        LocalRecommendations.manuallySetWatched(context, video, false, profile)
+        assertEquals(listOf(video.url), LocalRecommendations.rank(context, listOf(video)).map { it.url })
+    }
+
+    @Test
+    fun manualWatchedActionsRespectPauseIncognitoAndProfileSeparation() {
+        enable("paused" to true)
+        val video = item("private-manual")
+        LocalRecommendations.manuallySetWatched(context, video, true, profile)
+        assertTrue(LocalRecommendations.rank(context, listOf(video)).isEmpty())
+        assertEquals(0, model().optJSONObject("weights")?.length() ?: 0)
+
+        val prior = prefs.getString("$profile:model", null)
+        IncognitoMode.setEnabled(context, true)
+        LocalRecommendations.manuallySetWatched(context, video, false, profile)
+        assertEquals(prior, prefs.getString("$profile:model", null))
+    }
+
+    @Test
     fun topicExclusionsAndDisabledHistoryAreRespected() {
         enable()
         val defaults = PreferenceManager.getDefaultSharedPreferences(context)

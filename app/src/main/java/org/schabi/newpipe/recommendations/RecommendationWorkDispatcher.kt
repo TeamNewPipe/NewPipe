@@ -71,6 +71,11 @@ object RecommendationWorkDispatcher {
     }
 
     @JvmStatic
+    fun manuallySetWatched(context: Context, info: StreamInfoItem, watched: Boolean, profileId: String) {
+        dispatch(context, profileId) { LocalRecommendations.manuallySetWatched(it, info, watched, profileId) }
+    }
+
+    @JvmStatic
     fun liked(context: Context, info: StreamInfo, liked: Boolean, profileId: String) {
         dispatch(context, profileId) { LocalRecommendations.liked(it, info, liked, profileId) }
     }

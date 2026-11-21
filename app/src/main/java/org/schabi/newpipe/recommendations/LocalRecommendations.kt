@@ -171,6 +171,36 @@ object LocalRecommendations {
         write(context, model, profileId)
     }
 
+    /** Explicit watched/unwatched actions update local ranking without fetching video metadata. */
+    @JvmStatic
+    @Synchronized
+    fun manuallySetWatched(context: Context, item: StreamInfoItem, watched: Boolean, profileId: String) {
+        if (profileId != profile(context) || !enabled(context) ||
+            !PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(context.getString(R.string.enable_watch_history_key), true)
+        ) {
+            return
+        }
+        val model = read(context, profileId)
+        val streamId = id(item)
+        if (watched) {
+            if (!eligibility(context, profileId)(item)) return
+            val newWatch = model.watched.add(streamId)
+            model.candidates.remove(streamId)
+            if (newWatch && learns(context, profileId)) {
+                // A deliberate watched action is a modest interest signal; never count it twice.
+                addTerms(model, item.serviceId, "${item.name} ${item.uploaderName}", 1.0)
+                addChannel(model, item.serviceId, item.uploaderUrl, item.uploaderName, 0.75)
+            }
+        } else {
+            model.watched.remove(streamId)
+            if (learns(context, profileId) && eligibility(context, profileId)(item)) {
+                model.candidates[streamId] = Candidate.from(item)
+            }
+        }
+        write(context, model, profileId)
+    }
+
     @JvmStatic
     @JvmOverloads
     @Synchronized
