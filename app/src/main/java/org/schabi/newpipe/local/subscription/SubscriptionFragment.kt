@@ -335,7 +335,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
 
         applySubscriptionLayout()
         binding.itemsList.adapter = groupAdapter
-        fastScroller = ListFastScroller.attach(binding.itemsList)
+        // Keep the drag surface below the collapsible group header so its
+        // right-hand expand button remains tappable even for long subscription lists.
+        fastScroller = ListFastScroller.attach(binding.itemsList, topClearanceDp = 56)
         binding.itemsList.itemAnimator = null
 
         viewModel = ViewModelProvider(this)[SubscriptionViewModel::class.java]

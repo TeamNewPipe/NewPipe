@@ -2,6 +2,10 @@ package org.schabi.newpipe.local.history
 
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlin.math.roundToInt
@@ -62,6 +66,48 @@ class HistoryDateFastScrollerTest {
             view.onTouchEvent(event(MotionEvent.ACTION_UP, 982f))
             assertFalse(view.isDragging)
             assertEquals(listOf(true, false), dragStates)
+        }
+    }
+
+    @Test
+    fun subscriptionFastScrollerLeavesCollapsedHeaderButtonUncovered() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.runOnMainSync {
+            val context = instrumentation.targetContext
+            val container = RelativeLayout(context)
+            val list = RecyclerView(context).apply {
+                id = View.generateViewId()
+                layoutManager = LinearLayoutManager(context)
+                adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                    override fun onCreateViewHolder(
+                        parent: ViewGroup,
+                        viewType: Int
+                    ): RecyclerView.ViewHolder {
+                        return object : RecyclerView.ViewHolder(View(parent.context)) {}
+                    }
+
+                    override fun onBindViewHolder(
+                        holder: RecyclerView.ViewHolder,
+                        position: Int
+                    ) = Unit
+
+                    override fun getItemCount(): Int = 75
+                }
+            }
+            container.addView(
+                list,
+                RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            )
+            val scroller = requireNotNull(ListFastScroller.attach(list, topClearanceDp = 56))
+            val overlay = container.getChildAt(1) as HistoryDateFastScroller
+            val params = overlay.layoutParams as RelativeLayout.LayoutParams
+            val expected = (56 * context.resources.displayMetrics.density + 0.5f).toInt()
+            assertEquals(expected, params.topMargin)
+            assertTrue(overlay.visibility == View.VISIBLE)
+            scroller.close()
         }
     }
 

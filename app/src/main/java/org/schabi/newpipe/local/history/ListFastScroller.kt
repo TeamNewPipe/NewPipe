@@ -84,7 +84,8 @@ class ListFastScroller private constructor(
         }
 
         @JvmStatic
-        fun attach(list: RecyclerView): ListFastScroller? {
+        @JvmOverloads
+        fun attach(list: RecyclerView, topClearanceDp: Int = 0): ListFastScroller? {
             if (list.adapter == null) return null
             val parent = list.parent as? ViewGroup ?: return null
             val existing = parent.findViewById<HistoryDateFastScroller>(
@@ -93,19 +94,24 @@ class ListFastScroller private constructor(
             val track = existing ?: HistoryDateFastScroller(list.context)
             val added = existing == null
             if (added) {
-                val width = (48 * list.resources.displayMetrics.density + 0.5f).toInt()
+                val density = list.resources.displayMetrics.density
+                val width = (48 * density + 0.5f).toInt()
+                // On subscription lists, the full-width drag surface otherwise covers
+                // the collapsed channel-groups expand button in the first header row.
+                val topClearance = (topClearanceDp.coerceAtLeast(0) * density + 0.5f).toInt()
                 val params = when (parent) {
                     is RelativeLayout -> RelativeLayout.LayoutParams(width, 0).apply {
                         addRule(RelativeLayout.ALIGN_TOP, list.id)
                         addRule(RelativeLayout.ALIGN_BOTTOM, list.id)
                         addRule(RelativeLayout.ALIGN_PARENT_END)
+                        topMargin = topClearance
                     }
 
                     is FrameLayout -> FrameLayout.LayoutParams(
                         width,
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         Gravity.END
-                    )
+                    ).apply { topMargin = topClearance }
 
                     else -> return null
                 }
