@@ -77,6 +77,11 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             }
         }
 
+        final String upcoming = org.schabi.newpipe.util.UpcomingStreamCountdown
+                .label(itemBuilder.getContext(), infoItem);
+        if (upcoming != null) {
+            return upcoming;
+        }
         final String uploadDate = Localization.relativeTimeOrTextual(itemBuilder.getContext(),
                 infoItem.getUploadDate(),
                 infoItem.getTextualUploadDate());

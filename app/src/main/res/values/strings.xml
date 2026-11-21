@@ -2040,5 +2040,6 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="selective_settings_preview_default">Use default</string>
     <string name="selective_settings_preview_more">And %1$d more changes</string>
     <string name="selective_settings_preview_restart">Review the changes before applying. Some settings may require a restart.</string>
+    <string name="upcoming_stream_starts">Starts %1$s</string>
 </resources>
 
