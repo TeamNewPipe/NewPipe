@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.subscription
 
+import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -18,6 +19,48 @@ import org.schabi.newpipe.profiles.KidsMode
 import org.schabi.newpipe.profiles.ProfileManager
 
 object StreamSubscriptionActions {
+    /** Query only local profile data; never fetch channel metadata to label a context menu. */
+    @JvmStatic
+    fun isSubscribed(context: Context, serviceId: Int, channelUrl: String): Single<Boolean> {
+        val profileId = ProfileManager.getActiveProfileId(context)
+        val manager = SubscriptionManager(context.applicationContext, profileId)
+        return Single.fromCallable {
+            manager.subscriptionTable().getSubscriptionDirectForProfile(
+                profileId,
+                serviceId,
+                channelUrl
+            )?.let(manager::isSubscribedInCurrentMode) == true
+        }.subscribeOn(Schedulers.io())
+    }
+
+    @JvmStatic
+    fun actionLabel(subscribed: Boolean): Int {
+        return if (subscribed) R.string.unsubscribe else R.string.subscribe_button_title
+    }
+
+    /** Remove only the current service/mode membership, preserving other profile memberships. */
+    @JvmStatic
+    fun unsubscribe(fragment: Fragment, serviceId: Int, channelUrl: String) {
+        if (!fragment.isAdded || channelUrl.isBlank()) return
+        val context = fragment.requireContext()
+        val profileId = ProfileManager.getActiveProfileId(context)
+        val manager = SubscriptionManager(context.applicationContext, profileId)
+        val disposable = manager.deleteSubscription(serviceId, channelUrl)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                if (fragment.isAdded) {
+                    Toast.makeText(context, R.string.channel_unsubscribed, Toast.LENGTH_SHORT).show()
+                }
+            }, {
+                if (fragment.isAdded) {
+                    Toast.makeText(context, R.string.subscription_change_failed, Toast.LENGTH_LONG).show()
+                }
+            })
+        fragment.viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) = disposable.dispose()
+        })
+    }
+
     @JvmStatic
     fun show(fragment: Fragment, serviceId: Int, channelUrl: String, chooseGroups: Boolean) {
         if (!fragment.isAdded || fragment.view == null || channelUrl.isBlank()) return

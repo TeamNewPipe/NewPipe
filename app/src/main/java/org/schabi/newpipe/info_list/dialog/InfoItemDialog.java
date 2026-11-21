@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -32,6 +33,8 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.learning.LearningMode;
 import org.schabi.newpipe.learning.LearningContentManager;
 import org.schabi.newpipe.player.helper.PlayerHolder;
+import org.schabi.newpipe.local.subscription.StreamSubscriptionActions;
+import org.schabi.newpipe.profiles.ProfileManager;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
@@ -41,6 +44,9 @@ import org.schabi.newpipe.util.external_communication.YtFifoUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Dialog for a {@link StreamInfoItem}.
@@ -57,12 +63,20 @@ public final class InfoItemDialog {
      * Its result is stored in this class variable to allow access via the {@link #show()} method.
      */
     private final AlertDialog dialog;
+    private final Fragment fragment;
+    private final StreamInfoItem stream;
+    private final List<StreamDialogEntry> actions;
+    private final ArrayAdapter<String> actionAdapter;
+    private Disposable subscriptionLookup;
 
     private InfoItemDialog(@NonNull final Activity activity,
                            @NonNull final Fragment fragment,
                            @NonNull final StreamInfoItem info,
                            @NonNull final List<StreamDialogEntry> entries) {
 
+        this.fragment = fragment;
+        this.stream = info;
+        this.actions = new ArrayList<>(entries);
         final Context dialogContext = new ContextThemeWrapper(
                 activity, ThemeHelper.getDialogTheme(activity));
 
@@ -83,16 +97,17 @@ public final class InfoItemDialog {
         }
 
         // Get the entry's descriptions which are displayed in the dialog
-        final String[] items = entries.stream()
-                .map(entry -> entry.getString(activity)).toArray(String[]::new);
+        final List<String> items = actions.stream()
+                .map(entry -> entry.getString(activity))
+                .collect(java.util.stream.Collectors.toList());
 
         // Call an entry's action / onClick method when the entry is selected.
         final DialogInterface.OnClickListener action = (d, index) ->
-            entries.get(index).action.onClick(fragment, info);
+            actions.get(index).action.onClick(fragment, info);
 
         // AlertDialog's stock list item can fall back to legacy typography. Use an explicit
         // Material 3 BodyLarge row so the stream action popup matches the rest of WizeStream.
-        final ArrayAdapter<String> actionAdapter = new ArrayAdapter<>(
+        actionAdapter = new ArrayAdapter<>(
                 dialogContext,
                 R.layout.dialog_stream_action_item,
                 android.R.id.text1,
@@ -104,11 +119,51 @@ public final class InfoItemDialog {
                 .setCustomTitle(bannerView)
                 .setAdapter(actionAdapter, action)
                 .create();
-
+        dialog.setOnDismissListener(unused -> {
+            if (subscriptionLookup != null) {
+                subscriptionLookup.dispose();
+                subscriptionLookup = null;
+            }
+        });
     }
 
     public void show() {
         dialog.show();
+        // Update the *existing* long-press menu after a local Room query. Do not
+        // query SQLite on the main thread or fetch a channel page just to show actions.
+        if (!fragment.isAdded() || TextUtils.isEmpty(stream.getUploaderUrl())) {
+            return;
+        }
+        int subscriptionIndex = -1;
+        for (int i = 0; i < actions.size(); i++) {
+            if (actions.get(i).resource == R.string.subscribe_button_title) {
+                subscriptionIndex = i;
+                break;
+            }
+        }
+        if (subscriptionIndex < 0) {
+            return;
+        }
+        final int index = subscriptionIndex;
+        final String profileId = ProfileManager.getActiveProfileId(fragment.requireContext());
+        subscriptionLookup = StreamSubscriptionActions.isSubscribed(
+                fragment.requireContext(), stream.getServiceId(), stream.getUploaderUrl())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isSubscribed -> {
+                    if (!dialog.isShowing() || !fragment.isAdded()
+                            || !profileId.equals(ProfileManager.getActiveProfileId(
+                                    fragment.requireContext()))) {
+                        return;
+                    }
+                    actions.set(index, isSubscribed
+                            ? StreamDialogDefaultEntry.UNSUBSCRIBE_CHANNEL.toStreamDialogEntry()
+                            : StreamDialogDefaultEntry.SUBSCRIBE_CHANNEL.toStreamDialogEntry());
+                    actionAdapter.clear();
+                    for (final StreamDialogEntry entry : actions) {
+                        actionAdapter.add(entry.getString(fragment.requireContext()));
+                    }
+                    actionAdapter.notifyDataSetChanged();
+                }, error -> Log.w(TAG, "Unable to resolve local subscription status", error));
     }
 
     /**

@@ -72,6 +72,12 @@ public enum StreamDialogDefaultEntry {
                             fragment, item.getServiceId(), url, false))
     ),
 
+    UNSUBSCRIBE_CHANNEL(R.string.unsubscribe, (fragment, item) ->
+            fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
+                    item.getUploaderUrl(), url -> StreamSubscriptionActions.unsubscribe(
+                            fragment, item.getServiceId(), url))
+    ),
+
     CHANNEL_GROUPS(R.string.feed_groups_header_title, (fragment, item) ->
             fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
                     item.getUploaderUrl(), url -> StreamSubscriptionActions.show(
