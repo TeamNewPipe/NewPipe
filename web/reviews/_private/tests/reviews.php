@@ -253,6 +253,15 @@ $tests['concurrent PHP workers enforce challenge reuse and queue capacity atomic
     }
 };
 
+$tests['optional local review access requires an explicit UI choice'] = function (): void {
+    $script = file_get_contents(dirname(__DIR__, 2) . '/reviews.js');
+    $fragment = file_get_contents(dirname(__DIR__, 3) . '/content/reviews.fragment');
+    equal(str_contains($script, "localStorage.setItem(REVIEW_ACCESS_STORAGE_KEY"), true);
+    equal(str_contains($script, "$('remember-review-on-device').checked"), true);
+    equal(str_contains($script, 'document.cookie'), false);
+    equal(str_contains($fragment, 'id="remember-review-on-device" type="checkbox"'), true);
+    equal(str_contains($fragment, 'id="mine-page"'), true);
+};
 $failed = 0;
 foreach ($tests as $name => $test) {
     try { $test(); echo "PASS: $name\n"; }

@@ -52,6 +52,7 @@ jobs:
         run: |
           find web -name '*.php' -print0 | xargs -0 -n1 php -l
           node --check web/reviews/reviews.js
+          node --test web/reviews/_private/tests/review-access.test.cjs
       - name: Test PHP and MySQL across independent workers
         run: php web/reviews/_private/tests/reviews.php
       - name: Test PHP HTTP entry points and private configuration

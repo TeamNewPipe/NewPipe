@@ -95,6 +95,71 @@ function getChallenge() {
   }
   return challengePromise;
 }
+const REVIEW_ACCESS_STORAGE_KEY = 'wizestream-private-review-access-v1';
+const reviewIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+const reviewTokenPattern = /^[A-Za-z0-9_-]{43}$/;
+function validReviewAccess(value) {
+  return value && typeof value === 'object' && reviewIdPattern.test(value.id) &&
+    reviewTokenPattern.test(value.token) && Number.isFinite(value.savedAt);
+}
+function savedReviewAccess() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(REVIEW_ACCESS_STORAGE_KEY) || '[]');
+    return Array.isArray(parsed) ? parsed.filter(validReviewAccess).slice(0, 30) : [];
+  } catch { return []; }
+}
+function saveReviewAccess(id, token) {
+  const entry = { id, token, savedAt: Date.now() };
+  if (!validReviewAccess(entry)) throw new Error('Invalid private management link.');
+  try {
+    const stored = savedReviewAccess().filter(value => value.id !== id);
+    localStorage.setItem(REVIEW_ACCESS_STORAGE_KEY, JSON.stringify([entry, ...stored].slice(0, 30)));
+  } catch {
+    throw new Error('Browser storage is unavailable. Copy your private management link instead.');
+  }
+}
+function forgetReviewAccess(id) {
+  try {
+    const retained = savedReviewAccess().filter(value => value.id !== id);
+    if (retained.length) localStorage.setItem(REVIEW_ACCESS_STORAGE_KEY, JSON.stringify(retained));
+    else localStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY);
+  } catch { throw new Error('Could not clear saved access. Check your browser site data.'); }
+}
+function reviewAccessLink(id, token) {
+  if (!validReviewAccess({ id, token, savedAt: Date.now() })) throw new Error('Invalid private management link.');
+  const link = new URL('?view=manage', location.href);
+  link.hash = `${id}:${token}`;
+  return link.toString();
+}
+function setupMine() {
+  const saved = savedReviewAccess();
+  const container = $('saved-reviews');
+  container.replaceChildren();
+  $('forget-all-reviews').hidden = saved.length === 0;
+  $('mine-status').textContent = saved.length
+    ? `${saved.length} private management ${saved.length === 1 ? 'link' : 'links'} saved only in this browser.`
+    : 'No reviews are remembered in this browser. You can still use an original private management link.';
+  for (const entry of saved) {
+    const card = node('article', undefined, 'review saved-review');
+    const date = new Date(entry.savedAt).toLocaleDateString();
+    card.append(node('h3', 'Saved review'), node('p', `Saved on ${date}`, 'quiet'));
+    const actions = node('div', undefined, 'actions');
+    const open = node('a', 'View or edit review', 'button');
+    open.href = reviewAccessLink(entry.id, entry.token);
+    const forget = node('button', 'Forget on this device', 'danger');
+    forget.type = 'button'; forget.onclick = () => {
+      try { forgetReviewAccess(entry.id); setupMine(); }
+      catch (error) { $('mine-status').textContent = error.message; }
+    };
+    actions.append(open, forget); card.append(actions); container.append(card);
+  }
+  $('forget-all-reviews').onclick = () => {
+    if (!confirm('Forget all saved review management links from this browser? This will not delete any public reviews.')) return;
+    try { localStorage.removeItem(REVIEW_ACCESS_STORAGE_KEY); setupMine(); }
+    catch { $('mine-status').textContent = 'Unable to clear browser storage.'; }
+  };
+}
+
 let receipt;
 function createReceipt() {
   const bytes = crypto.getRandomValues(new Uint8Array(32));
@@ -102,9 +167,9 @@ function createReceipt() {
   return { id: crypto.randomUUID(), token };
 }
 function showReceipt(uncertain = false) {
-  const link = `${new URL('?view=manage', location.href)}#${receipt.id}:${receipt.token}`;
+  const link = reviewAccessLink(receipt.id, receipt.token);
   $('receipt-link').value = link; $('open-receipt').href = link;
-  $('receipt-title').textContent = uncertain ? 'Keep this link while checking your submission.' : 'Thank you. Save your deletion link.';
+  $('receipt-title').textContent = uncertain ? 'Keep this link while checking your submission.' : 'Thank you. Save your management link.';
   $('receipt-message').textContent = uncertain
     ? 'The connection ended before receipt could be confirmed. Use this private link to check whether your review arrived before trying again. Anyone with the link can access or remove it.'
     : 'Your review is awaiting moderation. Use this private link to check or remove it, without an account. Anyone with the link can access or remove it.';
@@ -136,6 +201,13 @@ function setupPublic() {
       } });
       showReceipt();
       $('submit-status').textContent = result.alreadyReceived ? 'This review was already received. Use your private link to manage it.' : 'Received. Your rating and review will appear after moderation.';
+      if ($('remember-review-on-device').checked) {
+        try {
+          saveReviewAccess(receipt.id, receipt.token);
+          $('remember-receipt').textContent = 'Remembered on this device';
+          $('receipt-message').textContent += ' Your management link is also saved in this browser.';
+        } catch (error) { $('submit-status').textContent += ' ' + error.message; }
+      }
       $('receipt').scrollIntoView({ behavior: 'smooth', block: 'start' });
       button.textContent = 'Review received';
       $('review-form').querySelectorAll('input, textarea').forEach(field => { field.disabled = true; });
@@ -146,6 +218,12 @@ function setupPublic() {
       button.disabled = false;
     }
   });
+  $('remember-receipt').onclick = () => {
+    try {
+      saveReviewAccess(receipt.id, receipt.token);
+      $('remember-receipt').textContent = 'Remembered on this device';
+    } catch (error) { $('submit-status').textContent = error.message; }
+  };
   $('copy-receipt').onclick = async () => {
     try {
       await navigator.clipboard.writeText($('receipt-link').value);
@@ -164,6 +242,24 @@ async function setupManage() {
   try {
     const review = await api('/api/manage', { method: 'POST', data: {}, authorization });
     $('managed-review').replaceChildren(reviewCard(review));
+    const remembered = savedReviewAccess().some(entry => entry.id === match[1] && entry.token === match[2]);
+    $('remember-managed-review').hidden = false;
+    $('forget-managed-review').hidden = !remembered;
+    $('remember-managed-review').textContent = remembered ? 'Remembered in this browser' : 'Remember on this device';
+    $('remember-managed-review').onclick = () => {
+      try {
+        saveReviewAccess(match[1], match[2]);
+        $('remember-managed-review').textContent = 'Remembered in this browser';
+        $('forget-managed-review').hidden = false;
+      } catch (error) { $('manage-status').textContent = error.message; }
+    };
+    $('forget-managed-review').onclick = () => {
+      try {
+        forgetReviewAccess(match[1]);
+        $('forget-managed-review').hidden = true;
+        $('remember-managed-review').textContent = 'Remember on this device';
+      } catch (error) { $('manage-status').textContent = error.message; }
+    };
     $('manage-status').textContent = review.state === 'published' ? 'Your review is published.' : 'Your review is awaiting moderation. Pending reviews expire after 30 days.';
     const editForm = $('edit-review-form');
     const fields = review.pendingEdit || review;
@@ -207,6 +303,8 @@ async function setupManage() {
         await api('/api/manage', { method: 'DELETE', data: {}, authorization });
         $('managed-review').replaceChildren(); $('delete-review').hidden = true;
         $('edit-review-form').hidden = true; $('cancel-review-edit').hidden = true;
+        try { forgetReviewAccess(match[1]); } catch { /* The public deletion has succeeded. */ }
+        $('remember-managed-review').hidden = true; $('forget-managed-review').hidden = true;
         $('manage-status').textContent = 'Your review and rating have been deleted.';
         history.replaceState(null, '', new URL('?view=manage', location.href));
       } catch (error) { $('manage-status').textContent = error.message; $('delete-review').disabled = false; }
@@ -305,8 +403,9 @@ function setupModeration() {
 }
 
 const view = new URL(location.href).searchParams.get('view');
-if (view === 'manage' || view === 'moderate') {
+if (view === 'manage' || view === 'moderate' || view === 'mine') {
   $('public-page').hidden = true;
   if (view === 'manage') { $('manage-page').hidden = false; setupManage(); }
+  else if (view === 'mine') { $('mine-page').hidden = false; setupMine(); }
   else { $('moderate-page').hidden = false; setupModeration(); }
 } else setupPublic();

@@ -101,3 +101,9 @@
 .review-app #edit-review-form label { display: block; margin: 12px 0 8px; }
 .review-app #edit-review-form select { width: 100%; min-height: 42px; padding: 8px; border: 1px solid var(--line); color: var(--ink); background: var(--bg); border-radius: 8px; }
 .review-app #edit-review-form .two-fields label { margin-top: 0; }
+
+/* Saved review management links are optional and remain browser-local. */
+.review-app .saved-reviews { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin: 25px 0; }
+.review-app .saved-review h3 { font-size: 1rem; }
+.review-app .saved-review .quiet { margin: 8px 0; }
+.review-app #remember-receipt { background: var(--surface); }

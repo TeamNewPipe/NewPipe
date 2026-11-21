@@ -15,3 +15,9 @@ Import `_private/schema.sql` through phpMyAdmin. Configure the private PHP file 
 Unlock `?view=moderate` with the existing moderator key. Publish, update or remove one official developer reply per published review. Replies cannot change the reviewer's rating or content. The public API exposes no management token, email, IP or device ID, and the client renders feedback as text rather than HTML.
 
 Run the review tests with the disposable MySQL database in `.github/workflows/reviews.yml`. Run `python3 web/build.py` and `python3 web/check.py` before deployment. A PR does not deploy the site.
+
+## Optional remembered review access
+
+**Remember my review** is unchecked by default. Only an explicit opt-in stores the review's ID, private 43-character management key and local save date in that browser's localStorage. The My Reviews page uses those browser-local records only; it cannot list or recover arbitrary anonymous reviews from the server. A private link can also be remembered later from its management page. The credential never appears in the public API, local nickname lists, cookies, analytics, or third-party scripts. A browser reset or a new device cannot recover keys that were not saved elsewhere.
+
+Anyone using the same browser profile may edit or delete a remembered review. Do not enable it on shared devices. "Forget" clears local access but does **not** delete the review; deleting an owned review removes its remembered key. When storage is disabled or full, users must save the original private link manually.
