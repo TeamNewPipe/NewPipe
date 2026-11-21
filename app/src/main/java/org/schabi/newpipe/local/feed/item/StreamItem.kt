@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.preference.PreferenceManager
 import com.xwray.groupie.viewbinding.BindableItem
 import java.lang.ref.WeakReference
@@ -25,6 +26,9 @@ import org.schabi.newpipe.extractor.stream.StreamType.POST_LIVE_STREAM
 import org.schabi.newpipe.extractor.stream.StreamType.VIDEO_STREAM
 import org.schabi.newpipe.info_list.StreamUploaderNavigation
 import org.schabi.newpipe.learning.VideoNoteBadges
+import org.schabi.newpipe.local.feed.FeedItemVisualState
+import org.schabi.newpipe.local.feed.FeedSeenLedger
+import org.schabi.newpipe.local.feed.FeedSeenVisuals
 import org.schabi.newpipe.local.feed.preview.FeedPreviewController
 import org.schabi.newpipe.util.GridTitleDisplayPolicy
 import org.schabi.newpipe.util.Localization
@@ -36,7 +40,8 @@ import org.schabi.newpipe.util.image.CoilHelper
 data class StreamItem(
     val streamWithState: StreamWithState,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
-    val isHighlighted: Boolean = false
+    val isHighlighted: Boolean = false,
+    var isSeen: Boolean = false
 ) : BindableItem<ListStreamItemBinding>() {
     companion object {
         const val UPDATE_RELATIVE_TIME = 1
@@ -44,6 +49,11 @@ data class StreamItem(
 
     private val stream: StreamEntity = streamWithState.stream
     private val stateProgressTime: Long? = streamWithState.stateProgressMillis
+    val seenIdentity: String by lazy(LazyThreadSafetyMode.NONE) {
+        FeedSeenLedger.identity(stream.serviceId, stream.url)
+    }
+    val isWatched: Boolean
+        get() = FeedSeenVisuals.isWatched(stream.duration, stateProgressTime)
 
     /** Shared reactive index supplied by the feed view, independently of highlighting. */
     var noteBadges: VideoNoteBadges? = null
@@ -148,6 +158,17 @@ data class StreamItem(
             selector
         }
         viewBinding.itemVideoTitleView.typeface = if (isHighlighted) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        val visualState = FeedSeenVisuals.state(isWatched, isSeen)
+        // Always reset the recycled view; dimming affects neither clicks nor playback/history.
+        viewBinding.itemRoot.alpha = visualState.opacity
+        ViewCompat.setStateDescription(
+            viewBinding.itemRoot,
+            when (visualState) {
+                FeedItemVisualState.SEEN -> context.getString(R.string.feed_item_seen_state)
+                FeedItemVisualState.WATCHED -> context.getString(R.string.feed_item_watched_state)
+                FeedItemVisualState.UNSEEN -> null
+            }
+        )
         previewController?.get()?.bind(viewBinding.root, stream, itemVersion == ItemVersion.CARD)
         quickAddController?.get()?.bind(viewBinding.root, stream, itemVersion != ItemVersion.MINI)
     }

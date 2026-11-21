@@ -295,6 +295,14 @@
             app:iconSpaceReserved="false"
             app:singleLineTitle="false" />
 
+        <SwitchPreferenceCompat
+            android:key="@string/feed_mark_scrolled_seen_key"
+            android:title="@string/feed_mark_scrolled_seen_title"
+            android:summary="@string/feed_mark_scrolled_seen_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <MultiSelectListPreference
             android:key="@string/feed_fetch_channel_tabs_key"
             android:summary="@string/feed_fetch_channel_tabs_summary"

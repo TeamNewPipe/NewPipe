@@ -92,10 +92,12 @@ import org.schabi.newpipe.local.actions.RecentActionsDialog
 import org.schabi.newpipe.local.feed.archive.FeedArchiveDialog
 import org.schabi.newpipe.local.feed.item.StreamItem
 import org.schabi.newpipe.local.feed.service.FeedLoadService
+import org.schabi.newpipe.local.history.IncognitoMode
 import org.schabi.newpipe.local.search.ContextualSearchHelper
 import org.schabi.newpipe.local.search.ContextualSearchable
 import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue
+import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.recommendations.LocalRecommendations
 import org.schabi.newpipe.themes.GlassFeedLayout
 import org.schabi.newpipe.util.ContentBlockingHelper
@@ -155,6 +157,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     private var relevanceSortDisposable: Disposable? = null
     private var relevanceSortRequest = 0L
     private var cachedPageMenuState: Pair<Boolean, Boolean>? = null
+    private var seenStore: FeedSeenStore? = null
+    private var firstUnpassedItem = RecyclerView.NO_POSITION
 
     private var glassLayout: GlassFeedLayout? = null
     private var glassBottomInset = 0
@@ -182,6 +186,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 updateRefreshControls()
             } else if (org.schabi.newpipe.util.ThemeHelper.isListLayoutPreference(requireContext(), key)) {
                 updateListViewModeOnResume = true
+            } else if (key == getString(R.string.feed_mark_scrolled_seen_key)) {
+                if (!autoMarkSeenEnabled()) stopTrackingSeenScroll()
             } else if (ContentBlockingHelper.isPreferenceKey(requireContext(), key)) {
                 latestLoadedState?.let { showFilteredFeedItems(it, false) }
             }
@@ -195,6 +201,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     override fun onViewCreated(rootView: View, savedInstanceState: Bundle?) {
         // super.onViewCreated() calls initListeners() which require the binding to be initialized
         _feedBinding = FragmentFeedBinding.bind(rootView)
+        seenStore = FeedSeenStore(requireContext(), ProfileManager.getActiveProfileId(requireContext()))
         super.onViewCreated(rootView, savedInstanceState)
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(onSettingsChangeListener)
@@ -238,12 +245,22 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 if (dy <= 0 || groupAdapter.itemCount == 0) return
                 val layout = recyclerView.layoutManager as? androidx.recyclerview.widget.LinearLayoutManager
                     ?: return
+                markItemsPassedByUser(layout.findFirstVisibleItemPosition())
                 if (layout.findLastVisibleItemPosition() >= groupAdapter.itemCount - 12) {
                     viewModel.loadMoreCachedItems()
                 }
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                when (newState) {
+                    RecyclerView.SCROLL_STATE_DRAGGING -> {
+                        val layout = recyclerView.layoutManager as? androidx.recyclerview.widget.LinearLayoutManager
+                        firstUnpassedItem = layout?.findFirstVisibleItemPosition()
+                            ?: RecyclerView.NO_POSITION
+                    }
+
+                    RecyclerView.SCROLL_STATE_IDLE -> stopTrackingSeenScroll()
+                }
                 // Check if we scrolled to the top
                 if (newState == RecyclerView.SCROLL_STATE_IDLE &&
                     !recyclerView.canScrollVertically(-1)
@@ -271,6 +288,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     }
 
     override fun onPause() {
+        stopTrackingSeenScroll()
         glassLayout?.detach()
         glassLayout = null
         feedPreview?.stop()
@@ -291,6 +309,12 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     override fun onResume() {
         super.onResume()
+        val activeProfile = ProfileManager.getActiveProfileId(requireContext())
+        if (seenStore?.profileId != activeProfile) {
+            stopTrackingSeenScroll()
+            seenStore = FeedSeenStore(requireContext(), activeProfile)
+            latestLoadedState?.let { showFilteredFeedItems(it, false) }
+        }
         val host = activity as? MainActivity
         if (parentFragment is MainFragment && host != null) {
             glassLayout = GlassFeedLayout.attach(feedBinding, host) { inset ->
@@ -310,7 +334,43 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         }
     }
 
+    private fun autoMarkSeenEnabled(): Boolean {
+        return PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(
+            getString(R.string.feed_mark_scrolled_seen_key),
+            false
+        )
+    }
+
+    /**
+     * Only forward user gestures can mark passed rows. Programmatic scroll restoration,
+     * group changes, page jumps and initial layout never enter this tracking state.
+     */
+    private fun markItemsPassedByUser(firstVisible: Int) {
+        val start = firstUnpassedItem
+        if (start == RecyclerView.NO_POSITION || firstVisible <= start ||
+            !autoMarkSeenEnabled()
+        ) {
+            return
+        }
+        val store = seenStore ?: return
+        val end = firstVisible.coerceAtMost(groupAdapter.itemCount)
+        for (index in start until end) {
+            val item = groupAdapter.getItem(index) as? StreamItem ?: continue
+            if (!item.isWatched && !item.isSeen && store.update(item.seenIdentity, true)) {
+                // The item is already above the viewport; its next bind displays the marker.
+                item.isSeen = true
+            }
+        }
+        firstUnpassedItem = firstVisible
+    }
+
+    private fun stopTrackingSeenScroll() {
+        firstUnpassedItem = RecyclerView.NO_POSITION
+        seenStore?.flush()
+    }
+
     private fun selectFeedGroup(id: Long, name: String) {
+        stopTrackingSeenScroll()
         val changed = groupId != id
         groupId = id
         groupName = name
@@ -445,6 +505,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_feed_older_cached) {
+            stopTrackingSeenScroll()
             if (viewModel.showOlderCachedPage()) {
                 listState = null
                 feedBinding.itemsList.scrollToPosition(0)
@@ -452,6 +513,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             }
             return true
         } else if (item.itemId == R.id.menu_item_feed_newer_cached) {
+            stopTrackingSeenScroll()
             if (viewModel.showNewerCachedPage()) {
                 listState = null
                 feedBinding.itemsList.scrollToPosition(0)
@@ -660,6 +722,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
     }
 
     override fun onDestroyView() {
+        stopTrackingSeenScroll()
+        seenStore = null
         fastScroller?.close()
         fastScroller = null
         feedQuickAdd?.dispose()
@@ -833,17 +897,45 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         )
     }
 
-    private fun showInfoItemDialog(item: StreamInfoItem) {
+    private fun showInfoItemDialog(item: StreamItem) {
         val context = context
         val activity: Activity? = getActivity()
         if (context == null || context.resources == null || activity == null) return
 
-        InfoItemDialog.Builder(activity, context, this, item)
-            .addEntry(
-                StreamDialogEntry(R.string.stream_select) { _, selected ->
-                    streamSelection?.start(selected)
+        val builder = InfoItemDialog.Builder(
+            activity,
+            context,
+            this,
+            item.streamWithState.stream.toStreamInfoItem()
+        ).addEntry(
+            StreamDialogEntry(R.string.stream_select) { _, selected ->
+                streamSelection?.start(selected)
+            }
+        )
+        // A watched video remains watched; only an independently seen video can be toggled.
+        if (!item.isWatched && !IncognitoMode.isEnabled(context)) {
+            val previouslySeen = seenStore?.isSeen(item.seenIdentity) == true
+            builder.addEntry(
+                StreamDialogEntry(
+                    if (previouslySeen) R.string.feed_mark_unseen else R.string.feed_mark_seen
+                ) { _, _ ->
+                    val store = seenStore
+                    if (store != null && store.update(item.seenIdentity, !previouslySeen)) {
+                        store.flush()
+                        if (_feedBinding != null) {
+                            val position = (0 until groupAdapter.itemCount).firstOrNull { index ->
+                                (groupAdapter.getItem(index) as? StreamItem)?.seenIdentity == item.seenIdentity
+                            }
+                            if (position != null) {
+                                (groupAdapter.getItem(position) as? StreamItem)?.isSeen = !previouslySeen
+                                groupAdapter.notifyItemChanged(position)
+                            }
+                        }
+                    }
                 }
-            ).create().show()
+            )
+        }
+        builder.create().show()
     }
 
     private val listenerStreamItem = object : OnItemClickListener, OnItemLongClickListener {
@@ -889,7 +981,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 ) {
                     return true
                 }
-                showInfoItemDialog(item.streamWithState.stream.toStreamInfoItem())
+                showInfoItemDialog(item)
                 return true
             }
             return false
@@ -1064,6 +1156,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         val showWatched = viewModel.getShowPlayedItemsFromPreferences()
         val showPartiallyWatched = viewModel.getShowPartiallyPlayedItemsFromPreferences()
         val query = contextualSearchQuery
+        val currentSeenStore = seenStore
         val byRelevance = viewModel.getSortMode() == FeedSortMode.RELEVANCE
         val request = ++relevanceSortRequest
         relevanceSortDisposable?.dispose()
@@ -1126,7 +1219,11 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 val highlighted = loadedState.highlightAfter?.let {
                     shouldHighlightFeedStream(item.streamWithState.stream, it)
                 } == true
-                item.copy(itemVersion = itemVersion, isHighlighted = highlighted)
+                item.copy(
+                    itemVersion = itemVersion,
+                    isHighlighted = highlighted,
+                    isSeen = currentSeenStore?.isSeen(item.seenIdentity) == true
+                )
             }
         }
             .subscribeOn(Schedulers.computation())
@@ -1167,6 +1264,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         val listener = object : OnAsyncUpdateListener {
             override fun onUpdateComplete() {
                 if (pendingListUpdate !== this) return
+                // New rows or changed ordering invalidate positions tracked for the last drag.
+                stopTrackingSeenScroll()
                 pendingListUpdate = null
                 streamSelection?.refresh()
                 if (latestLoadedState?.refreshCompletion === completion &&

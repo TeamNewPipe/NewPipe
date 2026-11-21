@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feed_mark_scrolled_seen_key" translatable="false">feed_mark_scrolled_seen_enabled</string>
+    <string name="feed_mark_scrolled_seen_title">Automatically mark scrolled videos as seen</string>
+    <string name="feed_mark_scrolled_seen_summary">Optionally dim videos you scroll past in What’s New. Seen is stored separately for each profile and never counts as watched. Off by default.</string>
+    <string name="feed_mark_seen">Mark as seen</string>
+    <string name="feed_mark_unseen">Mark as unseen</string>
+    <string name="feed_item_seen_state">Seen in What’s New</string>
+    <string name="feed_item_watched_state">Watched video</string>
+</resources>
