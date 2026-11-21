@@ -109,6 +109,9 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     private Disposable currentWorker;
     private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
+    private Boolean lastCompactLandscapeHeader;
+    private boolean pendingLandscapeHeaderCollapse;
+
     private SubscriptionManager subscriptionManager;
     private int lastTab;
     private boolean channelContentNotSupported = false;
@@ -293,6 +296,10 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         return orientation == Configuration.ORIENTATION_LANDSCAPE && !largeScreenDevice;
     }
 
+    static int landscapeHeaderHeightDp(final boolean compactLandscape) {
+        return compactLandscape ? 60 : 86;
+    }
+
     private void applyLandscapeHeaderPolicy() {
         if (binding == null || activity == null) {
             return;
@@ -302,8 +309,12 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                 || DeviceUtils.isTv(activity)
                 || DeviceUtils.isDesktopMode(activity);
         final boolean compactLandscape = shouldUseCompactLandscapeHeader(
-                getResources().getConfiguration().orientation,
-                largeScreenDevice);
+                getResources().getConfiguration().orientation, largeScreenDevice);
+        final boolean wasCompact = Boolean.TRUE.equals(lastCompactLandscapeHeader);
+        if (lastCompactLandscapeHeader == null || wasCompact != compactLandscape) {
+            pendingLandscapeHeaderCollapse = compactLandscape;
+            lastCompactLandscapeHeader = compactLandscape;
+        }
 
         final ViewGroup.LayoutParams rawLayoutParams = binding.channelMetadataRow.getLayoutParams();
         if (rawLayoutParams instanceof AppBarLayout.LayoutParams) {
@@ -314,12 +325,39 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
             binding.channelMetadataRow.setLayoutParams(layoutParams);
         }
 
+        final float density = getResources().getDisplayMetrics().density;
+        binding.channelMetadataRow.setMinimumHeight(Math.round(
+                landscapeHeaderHeightDp(compactLandscape) * density));
+        final ViewGroup.LayoutParams avatarLayout = binding.channelAvatarView.getLayoutParams();
+        final int avatarSize = compactLandscape ? Math.round(44 * density)
+                : getResources().getDimensionPixelSize(R.dimen.channel_avatar_size);
+        if (avatarLayout.width != avatarSize || avatarLayout.height != avatarSize) {
+            avatarLayout.width = avatarSize;
+            avatarLayout.height = avatarSize;
+            binding.channelAvatarView.setLayoutParams(avatarLayout);
+        }
+
         if (compactLandscape) {
             binding.channelBannerContainer.setVisibility(View.GONE);
-        } else if (currentInfo != null
-                && ImageStrategy.shouldLoadImages()
-                && !currentInfo.getBanners().isEmpty()) {
-            binding.channelBannerContainer.setVisibility(View.VISIBLE);
+            if (pendingLandscapeHeaderCollapse && currentInfo != null) {
+                pendingLandscapeHeaderCollapse = false;
+                // Start with the video list visible on short landscape phone screens.
+                // Swiping down can still reveal the scrollable channel metadata.
+                binding.appBarLayout.post(() -> {
+                    if (binding != null && Boolean.TRUE.equals(lastCompactLandscapeHeader)) {
+                        binding.appBarLayout.setExpanded(false, false);
+                    }
+                });
+            }
+        } else {
+            if (wasCompact) {
+                binding.appBarLayout.setExpanded(true, false);
+            }
+            if (currentInfo != null
+                    && ImageStrategy.shouldLoadImages()
+                    && !currentInfo.getBanners().isEmpty()) {
+                binding.channelBannerContainer.setVisibility(View.VISIBLE);
+            }
         }
     }
 

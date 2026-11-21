@@ -51,6 +51,26 @@ public class OrientationLayoutPreferencesTest {
     }
 
     @Test
+    public void autoLayoutUsesCompactListOnPhoneLandscapeWithoutOverridingExplicitChoices() {
+        final var preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        RuntimeEnvironment.setQualifiers("normal-port");
+        assertEquals(ItemViewMode.CARD, ThemeHelper.getItemViewMode(context));
+
+        RuntimeEnvironment.setQualifiers("normal-land");
+        assertEquals(ItemViewMode.LIST, ThemeHelper.getItemViewMode(context));
+
+        preferences.edit()
+                .putString(context.getString(R.string.list_view_mode_landscape_key), "card")
+                .commit();
+        assertEquals(ItemViewMode.CARD, ThemeHelper.getItemViewMode(context));
+
+        preferences.edit()
+                .putString(context.getString(R.string.list_view_mode_landscape_key), "grid")
+                .commit();
+        assertEquals(ItemViewMode.GRID, ThemeHelper.getItemViewMode(context));
+    }
+
+    @Test
     public void defaultRetainsLegacyPreferences() {
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString(context.getString(R.string.list_view_mode_key), "grid")

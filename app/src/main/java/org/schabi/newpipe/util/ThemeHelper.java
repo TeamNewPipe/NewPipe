@@ -395,9 +395,14 @@ public final class ThemeHelper {
             result = ItemViewMode.CARD;
         } else {
             final Configuration configuration = context.getResources().getConfiguration();
-            final boolean useGrid = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
-            result = useGrid ? ItemViewMode.GRID : ItemViewMode.CARD;
+            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                // Full-width cards waste vertical space on landscape phones. Use
+                // compact video rows unless the user explicitly selected Card/Grid.
+                result = configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)
+                        ? ItemViewMode.GRID : ItemViewMode.LIST;
+            } else {
+                result = ItemViewMode.CARD;
+            }
         }
         return result;
     }
