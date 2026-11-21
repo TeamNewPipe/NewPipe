@@ -8,7 +8,7 @@ Import `_private/schema.sql` through phpMyAdmin. Configure the private PHP file 
 
 ## Upgrading a running v1 database
 
-**Back up the MySQL database first**, then apply `_private/migrations/001_developer_replies.sql` using phpMyAdmin **before** deploying the PHP requiring schema v2. Existing review records, ratings, approval status and token hashes are not altered. Apply subsequent migrations in order.
+**Back up the MySQL database first**, then apply `_private/migrations/001_developer_replies.sql` using phpMyAdmin **before** deploying the PHP requiring schema v2. Existing review records, ratings, approval status and token hashes are not altered. Apply `_private/migrations/002_pending_review_edits.sql` after the first migration to upgrade schema v2 → v3 before deploying author-edit code. Published review edits are stored separately and require moderation. The original published rating/text and public aggregate remain unchanged until approved. Pending reviews can be edited in place; authors may cancel a pending update without deleting their review. Apply subsequent migrations in order.
 
 ## Moderation
 

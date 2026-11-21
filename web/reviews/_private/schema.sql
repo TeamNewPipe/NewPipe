@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS wize_review_guard (
     id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
     schema_version TINYINT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
-INSERT IGNORE INTO wize_review_guard (id, schema_version) VALUES (1, 2);
+INSERT IGNORE INTO wize_review_guard (id, schema_version) VALUES (1, 3);
 
 CREATE TABLE IF NOT EXISTS wize_reviews (
     id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
@@ -23,6 +23,17 @@ CREATE TABLE IF NOT EXISTS wize_review_replies (
     content TEXT NOT NULL,
     updated_day CHAR(10) CHARACTER SET ascii NOT NULL,
     CONSTRAINT fk_review_reply_author FOREIGN KEY (review_id)
+        REFERENCES wize_reviews(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS wize_review_edits (
+    review_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    rating TINYINT UNSIGNED NOT NULL,
+    nickname VARCHAR(160) NOT NULL,
+    content TEXT NOT NULL,
+    app_version VARCHAR(128) NOT NULL,
+    submitted_at BIGINT NOT NULL,
+    CONSTRAINT fk_review_edit_author FOREIGN KEY (review_id)
         REFERENCES wize_reviews(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

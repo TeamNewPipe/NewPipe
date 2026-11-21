@@ -56,7 +56,7 @@ function manage(ReviewService $service, array $review, string $operation = 'read
 function fixture(array $options = []): array
 {
     $db = testDatabase();
-    foreach (['wize_review_replies', 'wize_reviews', 'wize_review_challenges', 'wize_review_limits'] as $table) { $db->exec('DELETE FROM ' . $table); }
+    foreach (['wize_review_edits', 'wize_review_replies', 'wize_reviews', 'wize_review_challenges', 'wize_review_limits'] as $table) { $db->exec('DELETE FROM ' . $table); }
     $clock = new stdClass(); $clock->now = 1794571200000;
     $config = array_replace(testConfig(), $options);
     $service = new ReviewService($db, $config, static fn(): int => $clock->now);
@@ -115,6 +115,39 @@ $tests['developer replies require moderation and preserve rating'] = function ()
     equal(post($s, 'moderation', $reply, $headers)['status'], 200);
     equal(manage($s, $review, 'delete')['status'], 200);
     equal((int) $db->query('SELECT COUNT(*) FROM wize_review_replies')->fetchColumn(), 0);
+};
+$tests['review author edits preserve published rating until moderator approval'] = function (): void {
+    [$s, $clock, $db] = fixture();
+    $review = draft($s, $clock->now, ['content' => 'Original review feedback.', 'rating' => 5]);
+    equal(submit($s, $review)['status'], 201);
+    $author = ['x-review-authorization' => 'Review ' . $review['id'] . ':' . $review['deletionToken']];
+    $changes = ['operation' => 'edit', 'rating' => 2, 'nickname' => 'Updated', 'content' => 'The issue remains in this version.', 'appVersion' => '1.43.0'];
+    equal(post($s, 'manage', $changes, ['x-review-authorization' => 'Review ' . $review['id'] . ':' . str_repeat('a', 43)])['status'], 404);
+    equal(post($s, 'manage', $changes, $author)['status'], 200); // pending edit replaces unpublished content
+    equal(payload(manage($s, $review))['rating'], 2);
+    equal(moderate($s, $review['id'])['status'], 200);
+    $edited = array_replace($changes, ['rating' => 3, 'content' => 'The landscape UI needs more compact controls.']);
+    equal(post($s, 'manage', $edited, $author)['status'], 202);
+    equal(payload($s->handle('GET', 'reviews'))['reviews'][0]['rating'], 2);
+    equal(payload($s->handle('GET', 'summary'))['distribution'], [0, 1, 0, 0, 0]);
+    equal(payload(manage($s, $review))['pendingEdit']['rating'], 3);
+    $moderator = ['x-moderator-key' => testConfig()['moderator_key']];
+    $queue = payload($s->handle('GET', 'moderation', ['state' => 'edits'], $moderator));
+    equal($queue['count'], 1); equal($queue['reviews'][0]['rating'], 3);
+    equal(moderate($s, $review['id'], 'approve-edit')['status'], 200);
+    equal(payload($s->handle('GET', 'reviews'))['reviews'][0]['rating'], 3);
+    equal(payload($s->handle('GET', 'summary'))['distribution'], [0, 0, 1, 0, 0]);
+    equal(post($s, 'manage', array_replace($edited, ['rating' => 1]), $author)['status'], 202);
+    equal(moderate($s, $review['id'], 'reject-edit')['status'], 200);
+    equal(payload($s->handle('GET', 'reviews'))['reviews'][0]['rating'], 3);
+    equal(post($s, 'manage', array_replace($edited, ['rating' => 1]), $author)['status'], 202);
+    equal(post($s, 'manage', ['operation' => 'cancel-edit'], $author)['status'], 200);
+    equal(payload(manage($s, $review))['pendingEdit'], null);
+    equal(post($s, 'manage', array_replace($edited, ['content' => 'short']), $author)['status'], 400);
+    equal(post($s, 'manage', $edited, ['x-review-authorization' => $author['x-review-authorization'], 'origin' => 'https://wrong.example'])['status'], 403);
+    equal(post($s, 'manage', $edited, $author)['status'], 202);
+    equal(manage($s, $review, 'delete')['status'], 200);
+    equal((int) $db->query('SELECT COUNT(*) FROM wize_review_edits')->fetchColumn(), 0);
 };
 $tests['author deletion and moderator removal purge live records and ratings'] = function (): void {
     [$s, $clock, $db] = fixture();

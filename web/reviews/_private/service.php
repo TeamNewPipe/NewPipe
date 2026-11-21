@@ -25,7 +25,7 @@ final class ReviewService
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        if ((int) $db->query('SELECT schema_version FROM wize_review_guard WHERE id = 1')->fetchColumn() !== 2) {
+        if ((int) $db->query('SELECT schema_version FROM wize_review_guard WHERE id = 1')->fetchColumn() !== 3) {
             throw new RuntimeException('Import the supported schema before enabling the service.');
         }
     }
@@ -266,23 +266,71 @@ final class ReviewService
                 $input = $this->body($headers, $raw);
                 $this->limit($ip, 'manage', 120);
                 $record = $this->owned($headers);
+                if (($input['operation'] ?? 'read') === 'edit') {
+                    $content = $this->text($input['content'] ?? null, 3000);
+                    $nickname = $this->text($input['nickname'] ?? null, 40, true);
+                    $version = $this->text($input['appVersion'] ?? null, 32, true);
+                    $rating = $input['rating'] ?? null;
+                    if (!is_int($rating) || $rating < 1 || $rating > 5 || preg_match_all('/./us', $content) < 10) {
+                        throw new ReviewHttpError(400, 'Choose 1–5 stars and write at least 10 characters.');
+                    }
+                    if ($record['state'] === 'pending') {
+                        $this->query("UPDATE wize_reviews SET rating = ?, nickname = ?, content = ?, app_version = ? WHERE id = ? AND state = 'pending'", [$rating, $nickname, $content, $version, $record['id']]);
+                        return $this->json(['state' => 'pending', 'editState' => null]);
+                    }
+                    return $this->transaction(function () use ($record, $rating, $nickname, $content, $version): array {
+                        if (!$this->query("SELECT id FROM wize_reviews WHERE id = ? AND state = 'published'", [$record['id']])->fetch()) {
+                            throw new ReviewHttpError(404, 'Review unavailable.');
+                        }
+                        $existing = $this->query('SELECT review_id FROM wize_review_edits WHERE review_id = ?', [$record['id']])->fetch();
+                        if (!$existing && (int) $this->query('SELECT COUNT(*) FROM wize_review_edits')->fetchColumn() >= (int) ($this->config['max_pending'] ?? 500)) {
+                            throw new ReviewHttpError(503, 'The review edit queue is full. Please try again later.');
+                        }
+                        $this->query('INSERT INTO wize_review_edits (review_id, rating, nickname, content, app_version, submitted_at) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE rating = VALUES(rating), nickname = VALUES(nickname), content = VALUES(content), app_version = VALUES(app_version), submitted_at = VALUES(submitted_at)', [$record['id'], $rating, $nickname, $content, $version, $this->now()]);
+                        return $this->json(['state' => 'published', 'editState' => 'pending'], 202);
+                    });
+                }
+                if (($input['operation'] ?? 'read') === 'cancel-edit') {
+                    $this->query('DELETE FROM wize_review_edits WHERE review_id = ?', [$record['id']]);
+                    return $this->json(['cancelled' => true]);
+                }
                 if (($input['operation'] ?? 'read') === 'delete') {
                     $this->query('DELETE FROM wize_reviews WHERE id = ?', [$record['id']]);
                     return $this->json(['deleted' => true]);
                 }
                 if (($input['operation'] ?? 'read') !== 'read') { throw new ReviewHttpError(400, 'Invalid management action.'); }
-                return $this->json(['rating' => (int) $record['rating'], 'nickname' => $record['nickname'], 'content' => $record['content'], 'appVersion' => $record['app_version'], 'date' => $record['created_day'], 'state' => $record['state']]);
+                $pendingEdit = $this->query('SELECT rating, nickname, content, app_version AS appVersion FROM wize_review_edits WHERE review_id = ?', [$record['id']])->fetch();
+                if ($pendingEdit) { $pendingEdit['rating'] = (int) $pendingEdit['rating']; }
+                return $this->json(['rating' => (int) $record['rating'], 'nickname' => $record['nickname'], 'content' => $record['content'], 'appVersion' => $record['app_version'], 'date' => $record['created_day'], 'state' => $record['state'], 'pendingEdit' => $pendingEdit ?: null]);
             }
             if (in_array($method, ['GET', 'POST'], true) && $action === 'moderation') {
                 $this->moderator($headers, $ip);
                 if ($method === 'GET') {
                     $state = $query['state'] ?? 'pending'; $page = $this->page($query);
+                    if ($state === 'edits') {
+                        $count = (int) $this->query("SELECT COUNT(*) FROM wize_review_edits e JOIN wize_reviews r ON r.id = e.review_id WHERE r.state = 'published'")->fetchColumn();
+                        $reviews = $this->records($this->query("SELECT e.review_id AS id, e.rating, e.nickname, e.content, e.app_version AS appVersion, r.created_day AS date, 'edit' AS state, r.rating AS originalRating, r.content AS originalContent FROM wize_review_edits e JOIN wize_reviews r ON r.id = e.review_id WHERE r.state = 'published' ORDER BY e.submitted_at ASC, e.review_id ASC LIMIT ? OFFSET ?", [self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
+                        return $this->json(['reviews' => $reviews, 'count' => $count, 'page' => $page, 'pageSize' => self::PAGE_SIZE]);
+                    }
                     if (!in_array($state, ['pending', 'published'], true)) { throw new ReviewHttpError(400, 'Invalid filter.'); }
                     $count = (int) $this->query('SELECT COUNT(*) FROM wize_reviews WHERE state = ?', [$state])->fetchColumn();
                     $reviews = $this->records($this->query('SELECT r.id, r.rating, r.nickname, r.content, r.app_version AS appVersion, r.created_day AS date, r.state, rep.content AS developerReply, rep.updated_day AS replyDate FROM wize_reviews AS r LEFT JOIN wize_review_replies AS rep ON rep.review_id = r.id WHERE r.state = ? ORDER BY r.submitted_at ASC, r.id ASC LIMIT ? OFFSET ?', [$state, self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
                     return $this->json(['reviews' => $reviews, 'count' => $count, 'page' => $page, 'pageSize' => self::PAGE_SIZE]);
                 }
                 $input = $this->body($headers, $raw);
+                if (in_array($input['action'] ?? null, ['approve-edit', 'reject-edit'], true)) {
+                    if (!$this->validId($input['id'] ?? null)) { throw new ReviewHttpError(400, 'Invalid review.'); }
+                    return $this->transaction(function () use ($input): array {
+                        $edit = $this->query('SELECT * FROM wize_review_edits WHERE review_id = ?', [$input['id']])->fetch();
+                        $published = $this->query("SELECT id FROM wize_reviews WHERE id = ? AND state = 'published'", [$input['id']])->fetch();
+                        if (!$edit || !$published) { throw new ReviewHttpError(404, 'Pending review edit unavailable.'); }
+                        if ($input['action'] === 'approve-edit') {
+                            $this->query("UPDATE wize_reviews SET rating = ?, nickname = ?, content = ?, app_version = ? WHERE id = ? AND state = 'published'", [(int) $edit['rating'], $edit['nickname'], $edit['content'], $edit['app_version'], $input['id']]);
+                        }
+                        $this->query('DELETE FROM wize_review_edits WHERE review_id = ?', [$input['id']]);
+                        return $this->json(['success' => true]);
+                    });
+                }
                 if (in_array($input['action'] ?? null, ['reply', 'remove-reply'], true)) {
                     if (!$this->validId($input['id'] ?? null)) { throw new ReviewHttpError(400, 'Invalid review.'); }
                     $this->limit($ip, 'moderator-write', 120);
