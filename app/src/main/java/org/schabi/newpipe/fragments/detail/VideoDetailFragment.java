@@ -352,6 +352,8 @@ public final class VideoDetailFragment
         }
         player = connectedPlayer;
         updateCommentsMiniPlayerAction();
+        // Direct popup/long-press playback may never open a VideoDetailFragment for this item.
+        updateCollapsedPlayerMetadata(null, player.getPlayQueue());
 
         // It will do nothing if the player is not in fullscreen mode
         hideSystemUiIfNeeded();
@@ -3222,6 +3224,7 @@ public final class VideoDetailFragment
         // then changes screen orientation. In that case the fragment will set itself as
         // a service listener and will receive initial call to onMetadataUpdate()
         if (!queue.equalStreams(playQueue)) {
+            updateCollapsedPlayerMetadata(info, queue);
             return;
         }
 
@@ -4153,6 +4156,38 @@ public final class VideoDetailFragment
             binding.overlayPlayQueueButton.setVisibility(
                     isPlayQueueEmpty ? View.GONE : View.VISIBLE);
         }
+    }
+
+    /**
+     * Populate the collapsed mini-player from the active queue even without video details.
+     *
+     * @param info resolved metadata when available, otherwise use the queue item
+     * @param eventQueue source queue for the metadata callback, if any
+     */
+    private void updateCollapsedPlayerMetadata(@Nullable final StreamInfo info,
+                                               @Nullable final PlayQueue eventQueue) {
+        if (binding == null || player == null || playerDismissed
+                || bottomSheetState != BottomSheetBehavior.STATE_COLLAPSED) {
+            return;
+        }
+        final PlayQueue activeQueue = player.getPlayQueue();
+        if (activeQueue == null || (eventQueue != null && !eventQueue.equalStreams(activeQueue))) {
+            return;
+        }
+        final PlayQueueItem currentItem = activeQueue.getItem();
+        if (currentItem == null) {
+            return;
+        }
+        if (info != null && info.getServiceId() == currentItem.getServiceId()
+                && Objects.equals(info.getUrl(), currentItem.getUrl())) {
+            updateOverlayData(info.getName(), info.getUploaderName(),
+                    ExtractorImageCompat.thumbnailImages(info));
+        } else {
+            updateOverlayData(currentItem.getTitle(), currentItem.getUploader(),
+                    currentItem.getThumbnails());
+        }
+        updateOverlayPlayQueueButtonVisibility();
+        setOverlayPlayPauseImage(player.isPlaying());
     }
 
     private void updateOverlayData(@Nullable final String overlayTitle,
