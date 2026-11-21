@@ -2041,5 +2041,8 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="selective_settings_preview_more">And %1$d more changes</string>
     <string name="selective_settings_preview_restart">Review the changes before applying. Some settings may require a restart.</string>
     <string name="upcoming_stream_starts">Starts %1$s</string>
+    <string name="device_sync_performance_diagnostics_key" translatable="false">device_sync_performance_diagnostics</string>
+    <string name="device_sync_performance_diagnostics_title">Device Sync performance diagnostics</string>
+    <string name="device_sync_performance_diagnostics_summary">Off by default. Record elapsed time and total app-process CPU time for each sync stage in local sync logs. No media, history, or private content is recorded.</string>
 </resources>
 

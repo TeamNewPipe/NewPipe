@@ -7,6 +7,8 @@ package org.schabi.newpipe.sync
 
 import android.content.Context
 import android.os.Build
+import android.os.Process
+import android.os.SystemClock
 import androidx.preference.PreferenceManager
 import java.util.UUID
 import org.schabi.newpipe.BuildConfig
@@ -504,12 +506,29 @@ class DeviceSyncManager private constructor(context: Context) {
                 IllegalStateException(PeerSyncTransportGate.SKIPPED_DIAGNOSTIC)
             )
         }
+        val measurePerformance = defaultPreferences.getBoolean(
+            applicationContext.getString(R.string.device_sync_performance_diagnostics_key),
+            false
+        )
+        val startWall = if (measurePerformance) SystemClock.elapsedRealtime() else 0L
+        val startCpu = if (measurePerformance) Process.getElapsedCpuTime() else 0L
         val attempt = DeviceSyncTransportRecovery.run(
             peer = peer,
             refreshPeer = node::refreshPeerAddresses,
             operation = operation
         )
-        attempt.retryDiagnostic?.let { diagnostic ->
+        val performance = if (measurePerformance) {
+            SyncStagePerformanceDiagnostics.describe(
+                SystemClock.elapsedRealtime() - startWall,
+                Process.getElapsedCpuTime() - startCpu
+            )
+        } else {
+            null
+        }
+        SyncStagePerformanceDiagnostics.combine(
+            attempt.retryDiagnostic,
+            performance
+        )?.let { diagnostic ->
             retryDiagnostics[category] = diagnostic
         }
         transportGate?.record(attempt.result.exceptionOrNull())
