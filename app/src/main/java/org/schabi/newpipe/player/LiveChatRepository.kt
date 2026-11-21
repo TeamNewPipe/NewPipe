@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withContext
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.bulletComments.BulletCommentsExtractor
@@ -67,7 +68,7 @@ object LiveChatRepository {
     }
 
     internal fun observe(
-        positionProvider: () -> Long? = { null },
+        positionProvider: suspend () -> Long? = { null },
         factory: () -> BulletCommentsExtractor
     ): Flow<Result<List<BulletCommentsInfoItem>>> = flow {
         val extractor = factory()
@@ -85,10 +86,14 @@ object LiveChatRepository {
         }
     }.catch { emit(Result.failure(it)) }
 
-    private fun currentPlaybackPosition(url: String): Long? {
-        val player = PlayerHolder.getInstance().player.orElse(null) ?: return null
-        val currentUrl = player.currentStreamInfo.map(StreamInfo::getUrl).orElse(null)
-        if (currentUrl != url || player.exoPlayerIsNull()) return null
-        return player.exoPlayer.currentPosition.coerceAtLeast(0L)
+    /** Media3 player state is main-thread-confined, even while extraction runs on IO. */
+    private suspend fun currentPlaybackPosition(url: String): Long? {
+        return withContext(Dispatchers.Main.immediate) {
+            val player = PlayerHolder.getInstance().player.orElse(null)
+                ?: return@withContext null
+            val currentUrl = player.currentStreamInfo.map(StreamInfo::getUrl).orElse(null)
+            if (currentUrl != url || player.exoPlayerIsNull()) return@withContext null
+            player.exoPlayer.currentPosition.coerceAtLeast(0L)
+        }
     }
 }

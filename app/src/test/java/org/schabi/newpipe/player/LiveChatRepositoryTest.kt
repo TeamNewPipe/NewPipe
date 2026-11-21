@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertFalse
@@ -59,6 +60,24 @@ class LiveChatRepositoryTest {
         assertTrue(LiveChatRepository.observe({ 42_000L }) { extractor }.first().isSuccess)
 
         verify(extractor).setCurrentPlayPosition(42_000L)
+        verify(extractor).disconnect()
+    }
+
+    @Test
+    fun replayChatPositionSourceCanSuspendWithoutBlockingExtraction() = runBlocking {
+        val extractor = mock(BulletCommentsExtractor::class.java)
+        `when`(extractor.liveMessages).thenReturn(emptyList())
+
+        val result = LiveChatRepository.observe(
+            positionProvider = {
+                delay(1)
+                3_500L
+            },
+            factory = { extractor }
+        ).first()
+        assertTrue(result.isSuccess)
+
+        verify(extractor).setCurrentPlayPosition(3_500L)
         verify(extractor).disconnect()
     }
 }
