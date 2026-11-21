@@ -23,6 +23,16 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onScreenRotationButtonClicked(boolean fullscreen);
 
+    /**
+     * True after a deliberate fullscreen exit while the phone is still in landscape.
+     * The player must not undo that exit merely because playback resumes or changes size.
+     *
+     * @return whether automatic fullscreen entry should be suppressed
+     */
+    default boolean shouldSuppressAutomaticFullscreenInLandscape() {
+        return false;
+    }
+
     /** Called when actual video dimensions become available during a fullscreen transition. */
     default void onVideoContentOrientationChanged() {
     }

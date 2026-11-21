@@ -52,7 +52,7 @@ class FullscreenOrientationPreferenceTest {
             )
         )
         assertEquals(
-            Configuration.ORIENTATION_PORTRAIT,
+            Configuration.ORIENTATION_UNDEFINED,
             FullscreenOrientationPreference.targetOrientation(
                 FullscreenOrientationPreference.Mode.LANDSCAPE,
                 false,

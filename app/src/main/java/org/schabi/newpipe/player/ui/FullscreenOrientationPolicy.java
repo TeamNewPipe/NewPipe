@@ -61,9 +61,8 @@ public final class FullscreenOrientationPolicy {
             final VideoContentOrientation contentOrientation,
             final boolean landscape,
             final boolean targetFullscreen) {
-        // A manual fullscreen exit while the device is physically in landscape must always
-        // request portrait. Content orientation can temporarily be UNKNOWN during renderer
-        // changes, so relying on it here can leave the activity stuck in landscape.
+        // A manual fullscreen exit in landscape must release the player orientation lock.
+        // Its caller determines whether to keep Android's current physical orientation.
         if (landscape && !targetFullscreen) {
             return true;
         }
@@ -139,6 +138,19 @@ public final class FullscreenOrientationPolicy {
             return EXIT_FULLSCREEN;
         }
         return KEEP_FULLSCREEN_STATE;
+    }
+
+    /**
+     * A manual exit is allowed to keep the phone in landscape without reentering
+     * fullscreen through the automatic orientation observer on the next layout pass.
+     *
+     * @param exitedInLandscape whether the user deliberately left fullscreen in landscape
+     * @param orientation the current Android configuration orientation
+     * @return true when automatic fullscreen entry should be suppressed temporarily
+     */
+    public static boolean shouldSuppressFullscreenForManualExit(
+            final boolean exitedInLandscape, final int orientation) {
+        return exitedInLandscape && orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     public static boolean isFullscreenStateApplied(

@@ -94,6 +94,16 @@ public class FullscreenOrientationPolicyTest {
     }
 
     @Test
+    public void manualFullscreenExitCanRemainNonFullscreenInLandscape() {
+        assertTrue(FullscreenOrientationPolicy.shouldSuppressFullscreenForManualExit(
+                true, Configuration.ORIENTATION_LANDSCAPE));
+        assertFalse(FullscreenOrientationPolicy.shouldSuppressFullscreenForManualExit(
+                true, Configuration.ORIENTATION_PORTRAIT));
+        assertFalse(FullscreenOrientationPolicy.shouldSuppressFullscreenForManualExit(
+                false, Configuration.ORIENTATION_LANDSCAPE));
+    }
+
+    @Test
     public void automaticLandscapePhoneTracksConfiguration() {
         assertEquals(FullscreenOrientationPolicy.ENTER_FULLSCREEN,
                 FullscreenOrientationPolicy.resolveFullscreenState(

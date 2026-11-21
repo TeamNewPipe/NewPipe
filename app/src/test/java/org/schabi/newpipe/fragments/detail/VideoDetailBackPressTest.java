@@ -105,21 +105,30 @@ public class VideoDetailBackPressTest {
     }
 
     @Test
-    public void backWaitsForPortraitBeforeExitingFullscreenWithoutPausing() throws Exception {
+    public void backExitsFullscreenWithoutForcingPortraitOrPausing() throws Exception {
         assertTrue(fragment.onBackPressed());
-        verify(activity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        verify(playerUi, never()).toggleFullscreen();
-
-        // A surface reattachment may still see landscape while Android handles the request.
-        syncFullscreenWithOrientation();
-        verify(playerUi, never()).setFullscreen(anyBoolean());
-        assertTrue(fullscreen.get());
-
-        configuration.orientation = Configuration.ORIENTATION_PORTRAIT;
-        syncFullscreenWithOrientation();
+        verify(activity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         verify(playerUi).setFullscreen(false);
+        verify(playerUi, never()).toggleFullscreen();
+        assertFalse(fullscreen.get());
+
+        // Player and surface changes cannot undo a deliberate exit while landscape persists.
+        assertTrue(fragment.shouldSuppressAutomaticFullscreenInLandscape());
+        syncFullscreenWithOrientation();
         verify(playerUi, never()).setFullscreen(true);
         assertFalse(fullscreen.get());
+
+        // Rotate to portrait to clear the guard, then rotate back to allow fullscreen.
+        configuration.orientation = Configuration.ORIENTATION_PORTRAIT;
+        assertFalse(fragment.shouldSuppressAutomaticFullscreenInLandscape());
+        syncFullscreenWithOrientation();
+        verify(playerUi, never()).setFullscreen(true);
+
+        configuration.orientation = Configuration.ORIENTATION_LANDSCAPE;
+        syncFullscreenWithOrientation();
+        verify(playerUi).setFullscreen(true);
+        assertTrue(fullscreen.get());
+
         verify(player, never()).pause();
         verify(player, never()).getPlayQueue();
         verify(fragment).setAutoPlay(false);

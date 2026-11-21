@@ -44,6 +44,8 @@ public class VideoDetailOrientationHandlingTest {
         assertTrue(rotationAction.contains(
                 "targetOrientation == Configuration.ORIENTATION_PORTRAIT"));
         assertTrue(rotationAction.contains(
+                "setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)"));
+        assertTrue(rotationAction.contains(
                 "setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)"));
     }
 

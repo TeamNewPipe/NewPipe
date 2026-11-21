@@ -21,8 +21,9 @@ object FullscreenOrientationPreference {
         fullscreen: Boolean,
         video: FullscreenOrientationPolicy.VideoContentOrientation
     ): Int {
-        // Exiting fullscreen never needs to consult preferences (or retain a landscape lock).
-        if (!fullscreen) return Configuration.ORIENTATION_PORTRAIT
+        // On exit, preserve the current configuration; the player releases its lock
+        // rather than requesting portrait while the phone is still in landscape.
+        if (!fullscreen) return context.resources.configuration.orientation
         val preference = PreferenceManager.getDefaultSharedPreferences(context)
             .getString(KEY, "auto")
         val mode = when (preference) {
@@ -38,7 +39,7 @@ object FullscreenOrientationPreference {
         fullscreen: Boolean,
         video: FullscreenOrientationPolicy.VideoContentOrientation
     ): Int {
-        if (!fullscreen) return Configuration.ORIENTATION_PORTRAIT
+        if (!fullscreen) return Configuration.ORIENTATION_UNDEFINED
         return when (mode) {
             Mode.PORTRAIT -> Configuration.ORIENTATION_PORTRAIT
             Mode.LANDSCAPE -> Configuration.ORIENTATION_LANDSCAPE

@@ -1468,7 +1468,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     /**
      * Applies explicit fullscreen intent while preserving the video's content orientation.
-     * Exiting fullscreen returns phones to portrait.
+     * Exiting fullscreen releases the player's rotation lock so browsing follows Android.
      */
     public void toggleFullscreenWithOrientation() {
         final boolean targetFullscreen = !isFullscreen();
@@ -1502,7 +1502,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         updateVideoContentIdentityFromCurrentItem();
         final Context playerContext = getParentContext().orElse(player.getService());
         final int orientation = playerContext.getResources().getConfiguration().orientation;
-        if (shouldEnterFullscreenForConfiguration(
+        // Playback resumption and video-size updates also call checkLandscape().
+        // Honor an explicit fullscreen exit even if the phone stays in landscape.
+        final boolean userExitedFullscreen = player.getFragmentListener()
+                .map(PlayerServiceEventListener::shouldSuppressAutomaticFullscreenInLandscape)
+                .orElse(false);
+        if (!userExitedFullscreen && shouldEnterFullscreenForConfiguration(
                 orientation,
                 isFullscreen,
                 player.isAudioOnly(),

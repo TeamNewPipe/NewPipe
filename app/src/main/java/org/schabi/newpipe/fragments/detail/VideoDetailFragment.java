@@ -324,6 +324,8 @@ public final class VideoDetailFragment
     private final StartFullscreenRequest startFullscreenRequest = new StartFullscreenRequest();
     private int pendingFullscreenOrientation = Configuration.ORIENTATION_UNDEFINED;
     private int pendingFullscreenState = FullscreenOrientationPolicy.KEEP_FULLSCREEN_STATE;
+    private boolean userExitedFullscreenInLandscape;
+
     @Nullable
     private OneShotPreDrawListener resumeLayoutListener;
 
@@ -652,7 +654,8 @@ public final class VideoDetailFragment
             @NonNull final Optional<MainPlayerUi> playerUi) {
         final int currentOrientation = getResources().getConfiguration().orientation;
         final MainPlayerUi ui = playerUi.orElse(null);
-        if (ui == null || !isPhoneVideoFullscreenEligible()) {
+        if (ui == null || !isPhoneVideoFullscreenEligible()
+                || suppressAutomaticFullscreenAfterUserExit(currentOrientation)) {
             return;
         }
 
@@ -684,7 +687,8 @@ public final class VideoDetailFragment
             @NonNull final Optional<MainPlayerUi> playerUi,
             final int orientation) {
         final MainPlayerUi ui = playerUi.orElse(null);
-        if (ui == null || !isPhoneVideoFullscreenEligible()) {
+        if (ui == null || !isPhoneVideoFullscreenEligible()
+                || suppressAutomaticFullscreenAfterUserExit(orientation)) {
             return;
         }
         final int state = FullscreenOrientationPolicy.resolveFullscreenState(
@@ -695,6 +699,20 @@ public final class VideoDetailFragment
                 Configuration.ORIENTATION_UNDEFINED,
                 FullscreenOrientationPolicy.KEEP_FULLSCREEN_STATE);
         applyFullscreenState(ui, state);
+    }
+
+    private boolean suppressAutomaticFullscreenAfterUserExit(final int orientation) {
+        if (orientation != Configuration.ORIENTATION_LANDSCAPE) {
+            userExitedFullscreenInLandscape = false;
+        }
+        return FullscreenOrientationPolicy.shouldSuppressFullscreenForManualExit(
+                userExitedFullscreenInLandscape, orientation);
+    }
+
+    @Override
+    public boolean shouldSuppressAutomaticFullscreenInLandscape() {
+        return suppressAutomaticFullscreenAfterUserExit(
+                getResources().getConfiguration().orientation);
     }
 
     private boolean isPhoneVideoFullscreenEligible() {
@@ -2601,6 +2619,10 @@ public final class VideoDetailFragment
                                   @Nullable final String newUrl,
                                   @NonNull final String newTitle,
                                   @Nullable final PlayQueue newPlayQueue) {
+        if (newServiceId != this.serviceId || !Objects.equals(newUrl, this.url)) {
+            // A manual fullscreen exit is specific to the previously selected stream.
+            userExitedFullscreenInLandscape = false;
+        }
         this.serviceId = newServiceId;
         this.url = newUrl;
         this.title = newTitle;
@@ -3415,6 +3437,20 @@ public final class VideoDetailFragment
             return;
         }
 
+        if (!fullscreen) {
+            // Stop forcing portrait when the user leaves fullscreen on a landscape phone.
+            // Releasing our sensor/landscape lock lets Android keep its current orientation
+            // according to the user's system auto-rotate setting.
+            clearPendingFullscreenTransition();
+            userExitedFullscreenInLandscape = landscape;
+            if (ui != null) {
+                ui.setFullscreen(false);
+            }
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            return;
+        }
+        userExitedFullscreenInLandscape = false;
+
         final FullscreenOrientationPolicy.VideoContentOrientation contentOrientation =
                 ui == null
                         ? FullscreenOrientationPolicy.VideoContentOrientation.UNKNOWN
@@ -3958,6 +3994,8 @@ public final class VideoDetailFragment
                                 && isPlayerAvailable()
                                 && player.isPlaying()
                                 && !isFullscreen()
+                                && !suppressAutomaticFullscreenAfterUserExit(
+                                        getResources().getConfiguration().orientation)
                                 && !DeviceUtils.isTablet(activity)) {
                             player.UIs().get(MainPlayerUi.class)
                                     .ifPresent(MainPlayerUi::toggleFullscreen);
