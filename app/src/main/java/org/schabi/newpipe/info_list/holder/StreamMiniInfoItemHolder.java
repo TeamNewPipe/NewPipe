@@ -202,19 +202,34 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         final ChannelInfoItem channel = StreamUploaderNavigation.fromStream(item);
         final OnClickGesture<ChannelInfoItem> listener =
                 itemBuilder.getOnChannelSelectedListener();
+        // The full-width metadata container can include blank space. Only the
+        // actual avatar and channel name should navigate away from the video.
+        itemUploaderRoot.setOnClickListener(null);
+        itemUploaderRoot.setClickable(false);
+        itemUploaderRoot.setFocusable(false);
+        itemUploaderRoot.setContentDescription(null);
         if (channel != null && listener != null) {
-            itemUploaderRoot.setClickable(true);
-            itemUploaderRoot.setFocusable(true);
-            itemUploaderRoot.setContentDescription(itemBuilder.getContext().getString(
-                    R.string.open_channel, item.getUploaderName()));
-            itemUploaderRoot.setOnClickListener(view -> listener.selected(channel));
+            final String description = itemBuilder.getContext().getString(
+                    R.string.open_channel, item.getUploaderName());
+            bindUploaderClick(itemUploaderView, description, view -> listener.selected(channel));
+            bindUploaderClick(itemUploaderAvatarView, description,
+                    view -> listener.selected(channel));
+            itemUploaderAvatarView.setImportantForAccessibility(
+                    View.IMPORTANT_FOR_ACCESSIBILITY_YES);
         } else {
-            // Clear every interactive property because holders are recycled between items.
-            itemUploaderRoot.setOnClickListener(null);
-            itemUploaderRoot.setClickable(false);
-            itemUploaderRoot.setFocusable(false);
-            itemUploaderRoot.setContentDescription(null);
+            bindUploaderClick(itemUploaderView, null, null);
+            bindUploaderClick(itemUploaderAvatarView, null, null);
+            itemUploaderAvatarView.setImportantForAccessibility(
+                    View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         }
+    }
+
+    private void bindUploaderClick(final View target, final String description,
+                                   final View.OnClickListener listener) {
+        target.setOnClickListener(listener);
+        target.setClickable(listener != null);
+        target.setFocusable(listener != null);
+        target.setContentDescription(description);
     }
 
     @Override

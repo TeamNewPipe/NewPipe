@@ -95,8 +95,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:focusable="true"
+        android:clickable="false"
+        android:focusable="false"
         android:minHeight="@dimen/stream_item_uploader_touch_target"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/itemThumbnailContainer"
@@ -119,8 +119,9 @@
 
         <org.schabi.newpipe.views.MediaTextView
             android:id="@+id/itemUploaderView"
+            app:layout_constrainedWidth="true"
             app:mediaTextRole="channelName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             android:ellipsize="end"
