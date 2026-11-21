@@ -458,7 +458,11 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             FeedLoadService.cancel(requireContext())
         }
         feedBinding.swipeRefreshLayout.setOnChildScrollUpCallback { _, _ ->
-            !feedHeaderExpanded || feedBinding.itemsList.canScrollVertically(-1)
+            FeedPullRefreshPolicy.shouldBlockGesture(
+                feedHeaderExpanded,
+                feedBinding.itemsList.canScrollVertically(-1),
+                parentFragment != null
+            )
         }
         feedBinding.newItemsLoadedButton.setOnClickListener {
             scrollToTop()
