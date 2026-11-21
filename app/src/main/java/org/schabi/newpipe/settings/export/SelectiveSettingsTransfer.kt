@@ -42,23 +42,92 @@ internal object SelectiveSettingsTransfer {
         return document to values.length()
     }
 
+    data class ImportChange(
+        val id: PortableSettingId,
+        val preferenceKey: String,
+        val before: Any?,
+        val after: Any
+    )
+
+    data class ImportPreview(
+        val entries: List<ImportChange>,
+        val missingCount: Int
+    ) {
+        val changes: List<ImportChange> get() = entries.filter { it.before != it.after }
+        val unchangedCount: Int get() = entries.size - changes.size
+    }
+
+    private data class ParsedSetting(
+        val id: PortableSettingId,
+        val key: String,
+        val value: Any
+    )
+
+    /** Validate the entire file without modifying a single preference. */
+    fun previewImport(
+        context: Context,
+        preferences: SharedPreferences,
+        selected: Set<PortableSettingId>,
+        document: String
+    ): ImportPreview {
+        val entries = parseSelectedSettings(context, selected, document)
+        val current = preferences.all
+        return ImportPreview(
+            entries = entries.map { ImportChange(it.id, it.key, current[it.key], it.value) },
+            missingCount = (selected.size - entries.size).coerceAtLeast(0)
+        )
+    }
+
     /**
-     * Validate everything before touching SharedPreferences. An imported file cannot write
-     * unknown keys, protected identity data, tokens or values of the wrong type.
+     * Revalidate both the file and the live settings when the user confirms the
+     * preview. A changed preference must be reviewed again instead of being silently
+     * overwritten by an import started before the change.
      */
+    fun applyPreview(
+        context: Context,
+        preferences: SharedPreferences,
+        selected: Set<PortableSettingId>,
+        document: String,
+        preview: ImportPreview
+    ): Int {
+        check(previewImport(context, preferences, selected, document) == preview) {
+            "Settings changed since import preview; review the file again"
+        }
+        return importSelected(context, preferences, selected, document)
+    }
+
+    /** Validate before applying one atomic SharedPreferences edit. */
     fun importSelected(
         context: Context,
         preferences: SharedPreferences,
         selected: Set<PortableSettingId>,
         document: String
     ): Int {
+        val updates = parseSelectedSettings(context, selected, document)
+        val editor = preferences.edit()
+        updates.forEach { (id, key, value) ->
+            when (value) {
+                is Boolean -> editor.putBoolean(key, value)
+                is String -> editor.putString(key, value)
+                is Float -> editor.putFloat(key, value)
+            }
+        }
+        check(editor.commit()) { "Unable to save selected settings" }
+        return updates.size
+    }
+
+    private fun parseSelectedSettings(
+        context: Context,
+        selected: Set<PortableSettingId>,
+        document: String
+    ): List<ParsedSetting> {
         require(document.length <= MAX_FILE_CHARS) { "Settings file too large" }
         val json = JSONObject(document)
         require(json.optString("format") == "wizestream-selected-settings")
         require(json.optInt("version") == FORMAT_VERSION)
         val values = json.getJSONObject("settings")
         val allowlist = portableSettingSpecs(context).associateBy { it.id.name }
-        val updates = mutableListOf<Pair<String, Any>>()
+        val updates = mutableListOf<ParsedSetting>()
         val keys = values.keys()
         while (keys.hasNext()) {
             val id = keys.next()
@@ -85,18 +154,9 @@ internal object SelectiveSettingsTransfer {
                     actual.toFloat().also { require(it.isFinite()) }
                 }
             }
-            updates += spec.preferenceKey to typed
+            updates += ParsedSetting(spec.id, spec.preferenceKey, typed)
         }
-        val editor = preferences.edit()
-        updates.forEach { (key, value) ->
-            when (value) {
-                is Boolean -> editor.putBoolean(key, value)
-                is String -> editor.putString(key, value)
-                is Float -> editor.putFloat(key, value)
-            }
-        }
-        check(editor.commit()) { "Unable to save selected settings" }
-        return updates.size
+        return updates.sortedBy { it.id.name }
     }
 
     fun reset(

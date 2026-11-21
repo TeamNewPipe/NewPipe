@@ -9,6 +9,7 @@ import androidx.preference.PreferenceManager
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -94,5 +95,62 @@ class SelectiveSettingsTransferTest {
             }.isFailure
         )
         assertTrue(preferences.getBoolean(comments, false))
+    }
+
+    @Test
+    fun previewReportsChangesAndBlocksAStaleConfirmation() {
+        val keys = setOf(PortableSettingId.SHOW_COMMENTS, PortableSettingId.THEME)
+        val commentsKey = context.getString(R.string.show_comments_key)
+        val themeKey = context.getString(R.string.theme_key)
+        preferences.edit().clear()
+            .putBoolean(commentsKey, true)
+            .putString(themeKey, "dark")
+            .commit()
+        val (document, _) = SelectiveSettingsTransfer.export(context, preferences, keys)
+
+        preferences.edit().putBoolean(commentsKey, false).putString(themeKey, "light").commit()
+        val preview = SelectiveSettingsTransfer.previewImport(context, preferences, keys, document)
+        assertEquals(2, preview.changes.size)
+        assertEquals(0, preview.unchangedCount)
+        assertEquals(0, preview.missingCount)
+        assertFalse(preferences.getBoolean(commentsKey, true))
+
+        // Another user action changes a setting after preview but before confirmation.
+        preferences.edit().putBoolean(commentsKey, true).commit()
+        assertThrows(IllegalStateException::class.java) {
+            SelectiveSettingsTransfer.applyPreview(context, preferences, keys, document, preview)
+        }
+        assertEquals("light", preferences.getString(themeKey, ""))
+        val refreshed = SelectiveSettingsTransfer.previewImport(context, preferences, keys, document)
+        assertEquals(1, refreshed.changes.size)
+
+        assertEquals(
+            2,
+            SelectiveSettingsTransfer.applyPreview(context, preferences, keys, document, refreshed)
+        )
+        assertEquals("dark", preferences.getString(themeKey, ""))
+        assertTrue(preferences.getBoolean(commentsKey, false))
+    }
+
+    @Test
+    fun previewRejectsUnknownKeysBeforeAnyWrites() {
+        val selected = setOf(PortableSettingId.SHOW_COMMENTS)
+        val commentsKey = context.getString(R.string.show_comments_key)
+        preferences.edit().clear().putBoolean(commentsKey, true).commit()
+        val document = JSONObject()
+            .put("format", "wizestream-selected-settings")
+            .put("version", 1)
+            .put(
+                "settings",
+                JSONObject().put(
+                    "PRIVATE_TOKEN",
+                    JSONObject().put("type", "STRING").put("value", "secret")
+                )
+            ).toString()
+
+        assertThrows(IllegalStateException::class.java) {
+            SelectiveSettingsTransfer.previewImport(context, preferences, selected, document)
+        }
+        assertTrue(preferences.getBoolean(commentsKey, false))
     }
 }

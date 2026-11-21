@@ -2035,5 +2035,10 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="device_cast_status_summary">%1$s · %2$s · %3$d seconds</string>
     <string name="device_cast_playing">Playing</string>
     <string name="device_cast_paused">Paused</string>
+    <string name="selective_settings_preview_title">Review settings import</string>
+    <string name="selective_settings_preview_summary">Changes: %1$d · unchanged: %2$d · not included: %3$d</string>
+    <string name="selective_settings_preview_default">Use default</string>
+    <string name="selective_settings_preview_more">And %1$d more changes</string>
+    <string name="selective_settings_preview_restart">Review the changes before applying. Some settings may require a restart.</string>
 </resources>
 
