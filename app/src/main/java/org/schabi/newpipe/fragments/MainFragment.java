@@ -223,9 +223,12 @@ public class MainFragment extends BaseFragment
 
         final boolean newYoutubeRestrictedModeEnabled =
                 prefs.getBoolean(youtubeRestrictedModeEnabledKey, false);
-        if (youtubeRestrictedModeEnabled != newYoutubeRestrictedModeEnabled || hasTabsChanged) {
+        final boolean restrictedModeChanged =
+                youtubeRestrictedModeEnabled != newYoutubeRestrictedModeEnabled;
+        if (restrictedModeChanged || hasTabsChanged) {
             youtubeRestrictedModeEnabled = newYoutubeRestrictedModeEnabled;
-            setupTabs();
+            // Restricted-mode and explicit tab changes still require fresh tab fragments.
+            setupTabs(restrictedModeChanged || hasTabsChanged);
         }
 
         final boolean newMainTabsPosition = prefs.getBoolean(mainTabsPositionKey, true);
@@ -408,12 +411,18 @@ public class MainFragment extends BaseFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     private void setupTabs() {
+        setupTabs(false);
+    }
+
+    private void setupTabs(final boolean forceRebuild) {
         tabsSetupInProgress = true;
         tabsList.clear();
         tabsList.addAll(tabsManager.getVisibleTabs());
 
-        final boolean replacePagerAdapter = pagerAdapter == null
-                || !pagerAdapter.sameTabs(tabsList);
+        final boolean replacePagerAdapter = shouldRebuildPager(
+                pagerAdapter == null,
+                pagerAdapter != null && pagerAdapter.sameTabs(tabsList),
+                forceRebuild);
         if (contextualSearchOpen && pagerAdapter != null && replacePagerAdapter) {
             closeContextualSearch();
         }
@@ -422,8 +431,12 @@ public class MainFragment extends BaseFragment
                     getChildFragmentManager(), tabsList);
         }
 
-        binding.pager.setAdapter(null);
-        binding.pager.setAdapter(pagerAdapter);
+        if (binding.pager.getAdapter() != pagerAdapter) {
+            // A full detach and reattach re-creates Home-tab views and thumbnails. Avoid it
+            // when the visible tabs and their owning adapter have not changed.
+            binding.pager.setAdapter(null);
+            binding.pager.setAdapter(pagerAdapter);
+        }
 
         updateTabsIconAndDescription();
         updateBottomNavigationItems();
@@ -441,6 +454,13 @@ public class MainFragment extends BaseFragment
         if (isResumed()) {
             observeHomeGroupIcons();
         }
+    }
+
+    @VisibleForTesting
+    static boolean shouldRebuildPager(final boolean missingAdapter,
+                                      final boolean sameTabs,
+                                      final boolean forceRebuild) {
+        return missingAdapter || !sameTabs || forceRebuild;
     }
 
     private void observeHomeGroupIcons() {
