@@ -22,6 +22,21 @@
             android:scaleType="fitXY"
             app:tint="?attr/colorOnSurfaceVariant" />
 
+        <TextView
+            android:id="@+id/item_caption_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/item_icon"
+            android:layout_alignEnd="@id/item_icon"
+            android:background="?attr/colorPrimaryContainer"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="@string/download_has_captions_badge"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <org.schabi.newpipe.views.NewPipeTextView
             android:id="@+id/item_name"
             android:layout_width="match_parent"
