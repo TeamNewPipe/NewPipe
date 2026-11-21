@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#release-1049000">WizeStream 1.49.0</a></li>
 <li><a href="#release-1048000">WizeStream 1.48.0</a></li>
 <li><a href="#release-1047000">WizeStream 1.47.0</a></li>
 <li><a href="#release-1046000">WizeStream 1.46.0</a></li>
@@ -118,6 +119,38 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="release-1049000" data-version="1.49.0" data-version-code="1049000">
+<h2>WizeStream 1.49.0</h2>
+<div class="release-notes">
+<h3>Playback and live media</h3>
+<ul>
+<li>Preserve fullscreen-to-landscape browsing and use more compact phone landscape player, video-list and channel layouts.</li>
+<li>Improve player queue recovery checkpoints, popup playback quality, picture-in-picture sizing and Media3 title/artwork continuity.</li>
+<li>Allow seeking within supported live-DVR windows, retain selected livestream speed and stabilize post-live audio transitions.</li>
+<li>Correct live-chat replay position sampling on the Media3 main thread.</li>
+</ul>
+<h3>Feeds, history and local library</h3>
+<ul>
+<li>Show optional seen markers and clearer watched states in What&#x27;s New, plus downloaded-video badges on thumbnails.</li>
+<li>Browse older cached feed pages, retain recent feed entries for 26 weeks, and include bounded feed archives in full backups.</li>
+<li>Expand watch-history sorting and date filters, add view-only reverse local-playlist ordering and preserve long quick-add playlist IDs in backups.</li>
+<li>Support full YouTube channel searching, show attached images in comments, and improve video-card touch targets and subscription menu actions.</li>
+</ul>
+<h3>Personalization, settings and devices</h3>
+<ul>
+<li>Refine local-like controls and recommendation learning so queued events remain attached to the correct profile.</li>
+<li>Cast videos to and control playback on paired WizeStream devices, with bounded Device Sync transport retries.</li>
+<li>Preview selective settings imports and allow exporting or resetting supported preferences, with improved Home-tab defaults and tooltips.</li>
+<li>Clarify rate-limiting and HTTP 403 errors and refine fast-scroller positioning in subscriptions.</li>
+</ul>
+<h3>Community reviews</h3>
+<ul>
+<li>Let maintainers publish official developer replies under moderated reviews.</li>
+<li>Allow original reviewers to propose changes without altering their published ratings or text before moderation approval.</li>
+<li>Add optional browser-local Remember My Review and My Reviews management without accounts or cookies.</li>
+</ul>
+</div>
+</section>
 <section id="release-1048000" data-version="1.48.0" data-version-code="1048000">
 <h2>WizeStream 1.48.0</h2>
 <div class="release-notes">

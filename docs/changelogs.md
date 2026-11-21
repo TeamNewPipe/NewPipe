@@ -4,6 +4,35 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.49.0 (`1049000`)
+
+### Playback and live media
+
+- Preserve fullscreen-to-landscape browsing and use more compact phone landscape player, video-list and channel layouts.
+- Improve player queue recovery checkpoints, popup playback quality, picture-in-picture sizing and Media3 title/artwork continuity.
+- Allow seeking within supported live-DVR windows, retain selected livestream speed and stabilize post-live audio transitions.
+- Correct live-chat replay position sampling on the Media3 main thread.
+
+### Feeds, history and local library
+
+- Show optional seen markers and clearer watched states in What's New, plus downloaded-video badges on thumbnails.
+- Browse older cached feed pages, retain recent feed entries for 26 weeks, and include bounded feed archives in full backups.
+- Expand watch-history sorting and date filters, add view-only reverse local-playlist ordering and preserve long quick-add playlist IDs in backups.
+- Support full YouTube channel searching, show attached images in comments, and improve video-card touch targets and subscription menu actions.
+
+### Personalization, settings and devices
+
+- Refine local-like controls and recommendation learning so queued events remain attached to the correct profile.
+- Cast videos to and control playback on paired WizeStream devices, with bounded Device Sync transport retries.
+- Preview selective settings imports and allow exporting or resetting supported preferences, with improved Home-tab defaults and tooltips.
+- Clarify rate-limiting and HTTP 403 errors and refine fast-scroller positioning in subscriptions.
+
+### Community reviews
+
+- Let maintainers publish official developer replies under moderated reviews.
+- Allow original reviewers to propose changes without altering their published ratings or text before moderation approval.
+- Add optional browser-local Remember My Review and My Reviews management without accounts or cookies.
+
 ## WizeStream 1.48.0 (`1048000`)
 
 ### Playback and reliability
