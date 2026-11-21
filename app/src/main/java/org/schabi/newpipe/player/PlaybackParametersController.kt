@@ -74,8 +74,8 @@ internal class PlaybackParametersController(private val player: Player) {
         val roundedSpeed = Math.round(speed * DECIMAL_SCALE) / DECIMAL_SCALE
         val roundedPitch = Math.round(pitch * DECIMAL_SCALE) / DECIMAL_SCALE
         val currentInfo = player.currentStreamInfo.orElse(null)
-        // The dialog shows the effective (disabled) value during live playback. Editing speed,
-        // pitch, or resetting that dialog must not erase the user's preference for ordinary media.
+        // Skip silence is unavailable on active live timelines, but playback speed and pitch
+        // remain user-controlled, including when playing behind the live edge.
         val requestedSkipSilence = if (skipSilenceAvailable) skipSilence else preferredSkipSilence
 
         if (
@@ -154,9 +154,8 @@ internal class PlaybackParametersController(private val player: Player) {
             profileSpeed: Float?,
             preferredSpeed: Float
         ): Float {
-            if (streamType != null && StreamTypeUtil.isLiveStream(streamType)) {
-                return NORMAL_SPEED
-            }
+            // A channel or global speed preference also applies to active livestreams.
+            // Forcing live streams back to 1× loses explicit choices after DASH/HLS updates.
             return profileSpeed ?: preferredSpeed
         }
     }

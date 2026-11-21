@@ -56,7 +56,9 @@ internal class PlayerMedia3ListenerController(
         }
         val item = player.currentItem
         if (item != null && player.isLive) {
-            playbackParametersController.applySpeedProfile(item)
+            // Manifest refreshes also trigger timeline updates. The speed profile is already
+            // applied on item/metadata changes; reapplying it here overrides the user's
+            // in-session speed, including while rewinding an active DVR stream.
             if (Player.DEBUG && !timeline.isEmpty) {
                 val index = player.exoPlayer.currentMediaItemIndex
                     .coerceIn(0, timeline.windowCount - 1)

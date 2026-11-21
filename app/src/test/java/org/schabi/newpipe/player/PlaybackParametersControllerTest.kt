@@ -6,23 +6,23 @@ import org.schabi.newpipe.extractor.stream.StreamType
 
 class PlaybackParametersControllerTest {
     @Test
-    fun liveStreamAlwaysResolvesToNormalSpeed() {
+    fun liveStreamRespectsChannelSpeedOrGlobalDefault() {
         assertEquals(
-            PlaybackParametersController.NORMAL_SPEED,
+            1.75f,
             PlaybackParametersController.resolvePlaybackSpeed(StreamType.LIVE_STREAM, 1.75f, 2.0f),
             0.001f
         )
         assertEquals(
-            PlaybackParametersController.NORMAL_SPEED,
+            1.5f,
             PlaybackParametersController.resolvePlaybackSpeed(StreamType.LIVE_STREAM, null, 1.5f),
             0.001f
         )
     }
 
     @Test
-    fun audioLiveStreamAlwaysResolvesToNormalSpeed() {
+    fun audioLiveStreamRespectsChannelSpeedOrGlobalDefault() {
         assertEquals(
-            PlaybackParametersController.NORMAL_SPEED,
+            1.25f,
             PlaybackParametersController.resolvePlaybackSpeed(
                 StreamType.AUDIO_LIVE_STREAM,
                 1.25f,
@@ -31,7 +31,7 @@ class PlaybackParametersControllerTest {
             0.001f
         )
         assertEquals(
-            PlaybackParametersController.NORMAL_SPEED,
+            1.75f,
             PlaybackParametersController.resolvePlaybackSpeed(
                 StreamType.AUDIO_LIVE_STREAM,
                 null,
