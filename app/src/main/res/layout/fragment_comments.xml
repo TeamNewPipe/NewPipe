@@ -38,6 +38,15 @@
     </com.google.android.material.chip.ChipGroup>
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/comments_show_cached"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/comment_archive_view"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_file_download"
+                app:tint="?attr/colorOnSurface" />
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/comments_search_toggle"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

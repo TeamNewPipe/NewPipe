@@ -2054,5 +2054,33 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="portrait_player_actions_drag_hint">Long press and drag to move</string>
     <string name="portrait_player_actions_save">Save order</string>
     <string name="portrait_player_actions_reset">Reset to default</string>
+    <string name="comment_archive_enabled_key" translatable="false">comment_archive_enabled</string>
+    <string name="comment_archive_limit_key" translatable="false">comment_archive_limit</string>
+    <string name="comment_archive_keep_downloaded_key" translatable="false">comment_archive_keep_downloaded</string>
+    <string name="comment_archive_clear_key" translatable="false">comment_archive_clear</string>
+    <string name="comment_archive_enabled_title">Save loaded comments offline</string>
+    <string name="comment_archive_enabled_summary">Opt in to storing comments and replies you view in compressed app-private snapshots, with automatic size and age limits. Does not fetch additional pages.</string>
+    <string name="comment_archive_limit_title">Comments per video</string>
+    <string name="comment_archive_keep_downloaded_title">Prefer retaining comments for downloads</string>
+    <string name="comment_archive_keep_downloaded_summary">Keep cached comments longer for already verified offline videos. The overall storage limit still applies.</string>
+    <string name="comment_archive_clear_title">Clear saved comments</string>
+    <string name="comment_archive_clear_summary">Delete compressed comments across all profiles</string>
+    <string name="comment_archive_clear_confirm">Delete all saved comments and replies on this device?</string>
+    <string name="comment_archive_cleared">Saved comments cleared</string>
+    <string name="comment_archive_view">View saved comments</string>
+    <string name="comment_archive_empty">No comments have been saved for this video yet.</string>
+    <string name="comment_archive_no_author">Unknown author</string>
+    <string name="comment_archive_reply">Reply</string>
+    <string name="comment_archive_saved_title">Saved comments (offline)</string>
+    <string name="comment_archive_read_failed">Could not read saved comments</string>
+    <string-array name="comment_archive_limit_labels">
+        <item>100 comments</item>
+        <item>300 comments</item>
+        <item>500 comments</item>
+        <item>1,000 comments</item>
+    </string-array>
+    <string-array name="comment_archive_limit_values" translatable="false">
+        <item>100</item><item>300</item><item>500</item><item>1000</item>
+    </string-array>
 </resources>
 

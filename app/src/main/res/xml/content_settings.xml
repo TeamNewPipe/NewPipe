@@ -185,6 +185,41 @@
         app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/comment_archive_enabled_key"
+        android:title="@string/comment_archive_enabled_title"
+        android:summary="@string/comment_archive_enabled_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <ListPreference
+        android:defaultValue="300"
+        android:dependency="@string/comment_archive_enabled_key"
+        android:key="@string/comment_archive_limit_key"
+        android:title="@string/comment_archive_limit_title"
+        android:entries="@array/comment_archive_limit_labels"
+        android:entryValues="@array/comment_archive_limit_values"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:dependency="@string/comment_archive_enabled_key"
+        android:key="@string/comment_archive_keep_downloaded_key"
+        android:title="@string/comment_archive_keep_downloaded_title"
+        android:summary="@string/comment_archive_keep_downloaded_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <Preference
+        android:key="@string/comment_archive_clear_key"
+        android:title="@string/comment_archive_clear_title"
+        android:summary="@string/comment_archive_clear_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:key="@string/show_next_video_key"
         android:title="@string/show_next_and_similar_title"

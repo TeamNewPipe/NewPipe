@@ -21,6 +21,8 @@ import com.google.android.material.button.MaterialButton;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
+import org.schabi.newpipe.local.comments.CommentArchive;
+import org.schabi.newpipe.local.comments.CachedCommentsDialog;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentSortOrder;
@@ -75,6 +77,11 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
             commentSearch.setPinnedOnly(savedInstanceState.getBoolean("comments_pinned_only"));
         }
         commentSearch.bind(rootView, this::applyCommentSearch, this::loadMoreItems);
+        final View cachedAction = rootView.findViewById(R.id.comments_show_cached);
+        cachedAction.setVisibility(CommentArchive.isEnabled(requireContext())
+                ? View.VISIBLE : View.GONE);
+        cachedAction.setOnClickListener(v -> CachedCommentsDialog.show(
+                requireContext(), serviceId, url));
         final Chip pinnedOnly = rootView.findViewById(R.id.comments_pinned_only);
         pinnedOnly.setChecked(commentSearch.getPinnedOnly());
         pinnedOnly.setOnCheckedChangeListener((button, checked) -> {
@@ -224,13 +231,19 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
+        final android.content.Context app = requireContext().getApplicationContext();
         return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPage)
+                .doOnSuccess(page -> CommentArchive.record(
+                        app, serviceId, url, page.getItems(), null))
                 .doFinally(() -> commentSearch.paginationFinished(hasMoreItems()));
     }
 
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
-        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad, sortOrder);
+        final android.content.Context app = requireContext().getApplicationContext();
+        return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad, sortOrder)
+                .doOnSuccess(info -> CommentArchive.record(
+                        app, serviceId, url, info.getRelatedItems(), null));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

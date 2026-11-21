@@ -51,6 +51,33 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         setupAppLanguagePreferences();
         setupImageQualityPref();
         setupInvidiousPreferences();
+        requirePreference(R.string.comment_archive_clear_key)
+                .setOnPreferenceClickListener(preference -> {
+                    new MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.comment_archive_clear_title)
+                            .setMessage(R.string.comment_archive_clear_confirm)
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .setPositiveButton(R.string.comment_archive_clear_title,
+                                    (dialog, which) -> clearOfflineComments())
+                            .show();
+                    return true;
+                });
+    }
+
+    private void clearOfflineComments() {
+        final Context appContext = requireContext().getApplicationContext();
+        invidiousDirectoryDisposables.add(
+                io.reactivex.rxjava3.core.Completable.fromAction(() ->
+                        org.schabi.newpipe.local.comments.CommentArchive.clear(appContext))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                () -> Toast.makeText(requireContext(),
+                                        R.string.comment_archive_cleared,
+                                        Toast.LENGTH_SHORT).show(),
+                                error -> Log.e(TAG, "Could not clear comment cache", error)
+                        )
+        );
     }
 
     private void setupInvidiousPreferences() {

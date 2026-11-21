@@ -219,6 +219,7 @@ object ProfileManager {
         // Clean the separate feed archive before committing profile deletion metadata.
         // If disk cleanup fails, do not silently orphan the user's archived feed data.
         org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(context, profileId)
+        org.schabi.newpipe.local.comments.CommentArchive.forgetProfile(context, profileId)
         val tombstones = syncTombstones(prefs).toMutableSet().apply { add(profileId) }
         val editor = prefs.edit()
             .putStringSet(PROFILE_IDS_KEY, ids)
