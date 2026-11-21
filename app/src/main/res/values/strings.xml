@@ -2013,5 +2013,27 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="comment_image_viewer_title">Comment image %1$d of %2$d</string>
     <string name="comment_image_previous">Previous image</string>
     <string name="comment_image_next">Next image</string>
+    <string name="device_sync_remote_playback_key">device_sync_remote_playback_enabled</string>
+    <string name="device_cast_title">Cast to WizeStream device</string>
+    <string name="device_cast_choose">Choose a paired device</string>
+    <string name="device_cast_receiver_title">Allow remote playback control</string>
+    <string name="device_cast_receiver_summary">Let trusted paired WizeStream devices start and control playback here. Off by default; keeps a foreground listener active while enabled.</string>
+    <string name="device_cast_no_peers">Pair a device in Settings → Device Sync first</string>
+    <string name="device_cast_no_video">Choose a supported service video before casting</string>
+    <string name="device_cast_commands">Control %1$s</string>
+    <string name="device_cast_send">Play current video on device</string>
+    <string name="device_cast_play">Play</string>
+    <string name="device_cast_pause">Pause</string>
+    <string name="device_cast_seek_back">Back 10 seconds</string>
+    <string name="device_cast_seek_forward">Forward 10 seconds</string>
+    <string name="device_cast_previous">Previous</string>
+    <string name="device_cast_next">Next</string>
+    <string name="device_cast_stop">Stop</string>
+    <string name="device_cast_status">Show remote status</string>
+    <string name="device_cast_sent">Remote playback command accepted</string>
+    <string name="device_cast_error">Remote playback failed: %1$s</string>
+    <string name="device_cast_status_summary">%1$s · %2$s · %3$d seconds</string>
+    <string name="device_cast_playing">Playing</string>
+    <string name="device_cast_paused">Paused</string>
 </resources>
 

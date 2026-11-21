@@ -84,7 +84,10 @@ class DeviceSyncManager private constructor(context: Context) {
             },
             localAppVersion = localAppVersion,
             onDiagnosticsReceived = syncLogRepository::recordIncoming,
-            onIncomingHistoryBatch = syncLogRepository::recordIncomingHistoryBatch
+            onIncomingHistoryBatch = syncLogRepository::recordIncomingHistoryBatch,
+            onRemotePlaybackReceived = { _, request ->
+                RemotePlaybackReceiver.handle(applicationContext, request)
+            }
         )
     }
 
@@ -107,6 +110,18 @@ class DeviceSyncManager private constructor(context: Context) {
     fun pair(pairingCode: String): TrustedPeer {
         startNode()
         return node.pair(pairingCode)
+    }
+
+    @Synchronized
+    internal fun remotePlayback(
+        peer: TrustedPeer,
+        request: RemotePlaybackRequest
+    ): RemotePlaybackResponse {
+        startNode()
+        val selectedPeer = trustedPeers.firstOrNull { it.peerId == peer.peerId }
+            ?: throw RemotePlaybackException("The receiver is not paired")
+        val refreshed = node.refreshPeerAddresses(selectedPeer) ?: selectedPeer
+        return node.sendRemotePlayback(refreshed, request)
     }
 
     @Synchronized

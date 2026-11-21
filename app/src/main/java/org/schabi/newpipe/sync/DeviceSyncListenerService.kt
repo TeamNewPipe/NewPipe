@@ -48,9 +48,12 @@ class DeviceSyncListenerService : Service() {
         val explicitlyEnabled = startIntent.takeIf {
             it.hasExtra(EXTRA_BACKGROUND_SYNC_ENABLED)
         }?.getBooleanExtra(EXTRA_BACKGROUND_SYNC_ENABLED, false)
-        val canRun = if (explicitlyEnabled != null) {
+        val explicitlyRemote = startIntent.takeIf {
+            it.hasExtra(EXTRA_REMOTE_PLAYBACK_ENABLED)
+        }?.getBooleanExtra(EXTRA_REMOTE_PLAYBACK_ENABLED, false)
+        val canRun = if (explicitlyEnabled != null || explicitlyRemote != null) {
             DeviceSyncListenerPolicy.shouldRun(
-                backgroundSyncEnabled = explicitlyEnabled,
+                backgroundSyncEnabled = explicitlyEnabled == true || explicitlyRemote == true,
                 hasTrustedPeers = DeviceSyncManager.hasTrustedPeers(this)
             )
         } else {
@@ -181,6 +184,8 @@ class DeviceSyncListenerService : Service() {
         private const val NOTIFICATION_ID = 0x57535
         private const val EXTRA_BACKGROUND_SYNC_ENABLED =
             "org.schabi.newpipe.sync.BACKGROUND_SYNC_ENABLED"
+        private const val EXTRA_REMOTE_PLAYBACK_ENABLED =
+            "org.schabi.newpipe.sync.REMOTE_PLAYBACK_ENABLED"
 
         fun startIfEnabled(context: Context) {
             val appContext = context.applicationContext
@@ -201,10 +206,11 @@ class DeviceSyncListenerService : Service() {
         fun update(
             context: Context,
             backgroundSyncEnabled: Boolean,
-            hasTrustedPeers: Boolean
+            hasTrustedPeers: Boolean,
+            remotePlaybackEnabled: Boolean = RemotePlaybackReceiver.isEnabled(context)
         ) {
             if (DeviceSyncListenerPolicy.shouldRun(
-                    backgroundSyncEnabled,
+                    backgroundSyncEnabled || remotePlaybackEnabled,
                     hasTrustedPeers
                 )
             ) {
@@ -212,7 +218,8 @@ class DeviceSyncListenerService : Service() {
                     ContextCompat.startForegroundService(
                         context.applicationContext,
                         Intent(context.applicationContext, DeviceSyncListenerService::class.java)
-                            .putExtra(EXTRA_BACKGROUND_SYNC_ENABLED, true)
+                            .putExtra(EXTRA_BACKGROUND_SYNC_ENABLED, backgroundSyncEnabled)
+                            .putExtra(EXTRA_REMOTE_PLAYBACK_ENABLED, remotePlaybackEnabled)
                     )
                 } catch (error: RuntimeException) {
                     Log.w(TAG, "Could not start foreground device sync listener", error)
@@ -235,7 +242,7 @@ class DeviceSyncListenerService : Service() {
                 true
             )
             return DeviceSyncListenerPolicy.shouldRun(
-                backgroundSyncEnabled = enabled,
+                backgroundSyncEnabled = enabled || RemotePlaybackReceiver.isEnabled(context),
                 hasTrustedPeers = DeviceSyncManager.hasTrustedPeers(context)
             )
         }

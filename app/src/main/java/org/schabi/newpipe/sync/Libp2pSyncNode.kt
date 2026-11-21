@@ -33,13 +33,22 @@ class Libp2pSyncNode(
     private val peerAddressResolver: (TrustedPeer) -> List<String> = { emptyList() },
     private val localAppVersion: SyncAppVersion = SyncAppVersion("Unknown", 0),
     private val onDiagnosticsReceived: (TrustedPeer, SyncPeerDiagnostics) -> Unit = { _, _ -> },
-    private val onIncomingHistoryBatch: (IncomingHistoryBatch) -> Unit = {}
+    private val onIncomingHistoryBatch: (IncomingHistoryBatch) -> Unit = {},
+    private val onRemotePlaybackReceived: (String, RemotePlaybackRequest) -> RemotePlaybackResponse =
+        { _, request ->
+            RemotePlaybackResponse(false, request.requestId, error = "Remote playback unavailable")
+        }
 ) {
     private val identity = stateRepository.loadOrCreateIdentity()
     private val requestDispatcher = SyncRequestDispatcher()
     private val pairingProtocol = SyncProtocolBinding { peer, request, controller ->
         requestDispatcher.execute({ controller.close() }) {
             handlePairingRequest(peer, request, controller)
+        }
+    }
+    private val remotePlaybackProtocol = RemotePlaybackProtocolBinding { peer, request, controller ->
+        requestDispatcher.execute({ controller.close() }) {
+            handleRemotePlaybackRequest(peer, request, controller)
         }
     }
     private val profileProtocol = ProfileSyncProtocolBinding { peer, request, controller ->
@@ -95,6 +104,7 @@ class Libp2pSyncNode(
             +playlistProtocol
             +historyProtocol
             +structuredPreferenceProtocol
+            +remotePlaybackProtocol
         }
         network {
             listen(address)
@@ -232,6 +242,41 @@ class Libp2pSyncNode(
             remoteAppVersion = response.appVersion,
             remoteSyncProtocolVersion = response.syncProtocolVersion
         )
+    }
+
+    /**
+     * Remote playback uses the same authenticated libp2p identity and trusted-address validation
+     * as Device Sync, but its own bounded protocol. Never dial an unpaired device.
+     */
+    fun sendRemotePlayback(
+        peer: TrustedPeer,
+        request: RemotePlaybackRequest
+    ): RemotePlaybackResponse {
+        val currentHost = requireStartedHost()
+        ensureTrusted(peer.peerId)
+        RemotePlaybackValidation.validateRequest(request)
+        val remotePeerId = parsePeerId(peer.peerId)
+        val remoteAddresses = parseAddresses(remotePeerId, peer.addresses)
+        val streamPromise = remotePlaybackProtocol.dial(
+            currentHost,
+            remotePeerId,
+            *remoteAddresses
+        )
+        val controller = try {
+            streamPromise.controller.get(REMOTE_PLAYBACK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+        } catch (error: Exception) {
+            throw RemotePlaybackException("Could not contact the paired playback device", error)
+        }
+        val response = try {
+            controller.sendRequest(request)
+            controller.response.get(REMOTE_PLAYBACK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+        } catch (error: Exception) {
+            throw RemotePlaybackException("Remote playback command failed", error)
+        } finally {
+            controller.close()
+        }
+        RemotePlaybackValidation.validateResponse(response, request.requestId)
+        return response
     }
 
     fun createPairingCode(): String {
@@ -854,6 +899,29 @@ class Libp2pSyncNode(
         }
     }
 
+    private fun handleRemotePlaybackRequest(
+        remotePeerId: PeerId,
+        request: RemotePlaybackRequest,
+        controller: RemotePlaybackProtocolController
+    ) {
+        val response = try {
+            ensureTrusted(remotePeerId.toBase58())
+            RemotePlaybackValidation.validateRequest(request)
+            onRemotePlaybackReceived(remotePeerId.toBase58(), request).also {
+                require(it.requestId == request.requestId) {
+                    "The playback handler returned a mismatched request"
+                }
+            }
+        } catch (error: Exception) {
+            RemotePlaybackResponse(
+                accepted = false,
+                requestId = request.requestId,
+                error = (error.message ?: "Remote playback rejected").take(MAX_SYNC_ERROR_LENGTH)
+            )
+        }
+        controller.sendResponse(response)
+    }
+
     private fun handleProfileSyncRequest(
         remotePeerId: PeerId,
         request: ProfileSyncRequest,
@@ -1138,6 +1206,7 @@ class Libp2pSyncNode(
         private const val STOP_TIMEOUT_SECONDS = 10L
         private const val PAIR_TIMEOUT_SECONDS = 20L
         private const val DIAGNOSTICS_TIMEOUT_SECONDS = 5L
+        private const val REMOTE_PLAYBACK_TIMEOUT_SECONDS = 8L
         private const val SYNC_TIMEOUT_SECONDS = 30L
         private const val MAX_SYNC_ROUNDS = 2048
         private const val MAX_SYNC_ERROR_LENGTH = 512

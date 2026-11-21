@@ -41,6 +41,14 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
+        android:key="@string/device_sync_remote_playback_key"
+        android:title="@string/device_cast_receiver_title"
+        android:summary="@string/device_cast_receiver_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
         android:dependency="@string/device_sync_background_key"
         android:key="@string/device_sync_charging_key"
         android:summary="@string/device_sync_charging_summary"

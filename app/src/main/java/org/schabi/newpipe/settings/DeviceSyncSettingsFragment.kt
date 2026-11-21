@@ -62,6 +62,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     private lateinit var syncNowPreference: Preference
     private lateinit var syncLogPreference: Preference
     private lateinit var backgroundSyncPreference: SwitchPreferenceCompat
+    private lateinit var remotePlaybackPreference: SwitchPreferenceCompat
     private lateinit var trustedDevicesCategory: PreferenceCategory
     private lateinit var showPairingCodePreference: Preference
     private lateinit var scanPairingCodePreference: Preference
@@ -75,6 +76,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
         syncNowPreference = requirePreference(R.string.device_sync_sync_now_key)
         syncLogPreference = requirePreference(R.string.device_sync_log_key)
         backgroundSyncPreference = requirePreference(R.string.device_sync_background_key)
+        remotePlaybackPreference = requirePreference(R.string.device_sync_remote_playback_key)
         trustedDevicesCategory =
             requirePreference(R.string.device_sync_trusted_devices_category_key)
         showPairingCodePreference = requirePreference(R.string.device_sync_show_code_key)
@@ -100,6 +102,15 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 requireContext(),
                 backgroundSyncEnabled = enabled,
                 hasTrustedPeers = hasTrustedPeers
+            )
+            true
+        }
+        remotePlaybackPreference.setOnPreferenceChangeListener { _, value ->
+            DeviceSyncListenerService.update(
+                requireContext(),
+                backgroundSyncEnabled = backgroundSyncPreference.isChecked,
+                hasTrustedPeers = syncManager.trustedPeers.isNotEmpty(),
+                remotePlaybackEnabled = value as Boolean
             )
             true
         }
@@ -136,7 +147,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     }
 
     override fun onPause() {
-        if (!backgroundSyncPreference.isChecked) {
+        if (!backgroundSyncPreference.isChecked && !remotePlaybackPreference.isChecked) {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                 syncManager.stopListening()
             }

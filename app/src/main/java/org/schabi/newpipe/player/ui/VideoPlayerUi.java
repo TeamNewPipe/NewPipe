@@ -83,6 +83,7 @@ import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.sync.RemotePlaybackCastUi;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
@@ -257,6 +258,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     Objects.requireNonNull(player.getPlayQueue()), true);
         }));
         binding.playWithKodi.setOnClickListener(makeOnClickListener(this::onPlayWithKodiClicked));
+        binding.castToPairedDevice.setOnClickListener(makeOnClickListener(() ->
+                RemotePlaybackCastUi.show(player, binding.castToPairedDevice)));
         binding.openInBrowser.setOnClickListener(makeOnClickListener(this::onOpenInBrowserClicked));
         binding.openInBrowser.setOnLongClickListener(v -> {
             player.getCurrentStreamInfo().ifPresent(info -> ShareUtils.openUrlInBrowser(context,
@@ -333,6 +336,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.fullScreenButton.setOnClickListener(null);
         binding.screenRotationButton.setOnClickListener(null);
         binding.playWithKodi.setOnClickListener(null);
+        binding.castToPairedDevice.setOnClickListener(null);
         binding.openInBrowser.setOnClickListener(null);
         binding.openInBrowser.setOnLongClickListener(null);
         binding.playerCloseButton.setOnClickListener(null);
