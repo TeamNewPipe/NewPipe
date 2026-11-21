@@ -42,6 +42,13 @@ function reviewCard(review) {
   meta.append(node('span', date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })));
   article.append(meta);
   if (review.appVersion) article.append(node('p', `App version: ${review.appVersion}`, 'quiet'));
+  if (review.developerReply) {
+    const reply = node('section', undefined, 'developer-reply');
+    reply.append(node('p', 'Official WizeStream developer response', 'developer-reply-heading'));
+    reply.append(node('p', review.developerReply, 'developer-reply-content'));
+    if (review.replyDate) reply.append(node('p', `Updated ${review.replyDate}`, 'quiet'));
+    article.append(reply);
+  }
   return article;
 }
 
@@ -193,6 +200,39 @@ async function loadQueue(page = moderationPage) {
             await loadQueue(1);
           } catch (error) { $('moderator-status').textContent = error.message; button.disabled = false; }
         }; actions.append(button);
+      }
+      if (review.state === 'published') {
+        const editor = node('div', undefined, 'developer-reply-editor');
+        const label = node('label', 'Official developer reply');
+        const field = node('textarea');
+        field.id = `developer-reply-${review.id}`; label.htmlFor = field.id;
+        field.rows = 4; field.maxLength = 1500; field.value = review.developerReply || '';
+        const replyActions = node('div', undefined, 'actions');
+        const save = node('button', review.developerReply ? 'Update reply' : 'Publish reply');
+        save.type = 'button'; save.onclick = async () => {
+          if (!field.value.trim()) { $('moderator-status').textContent = 'Write a reply before saving.'; return; }
+          save.disabled = true;
+          try {
+            await api('/api/moderation', { method: 'POST', authorization: `Bearer ${moderatorKey}`,
+              data: { id: review.id, action: 'reply', content: field.value } });
+            await loadQueue(moderationPage);
+          } catch (error) { $('moderator-status').textContent = error.message; save.disabled = false; }
+        };
+        replyActions.append(save);
+        if (review.developerReply) {
+          const remove = node('button', 'Remove reply', 'danger');
+          remove.type = 'button'; remove.onclick = async () => {
+            if (!confirm('Remove the official response from this review?')) return;
+            remove.disabled = true;
+            try {
+              await api('/api/moderation', { method: 'POST', authorization: `Bearer ${moderatorKey}`,
+                data: { id: review.id, action: 'remove-reply' } });
+              await loadQueue(moderationPage);
+            } catch (error) { $('moderator-status').textContent = error.message; remove.disabled = false; }
+          };
+          replyActions.append(remove);
+        }
+        editor.append(label, field, replyActions); card.append(editor);
       }
       card.append(actions); return card;
     });

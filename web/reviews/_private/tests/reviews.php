@@ -56,7 +56,7 @@ function manage(ReviewService $service, array $review, string $operation = 'read
 function fixture(array $options = []): array
 {
     $db = testDatabase();
-    foreach (['wize_reviews', 'wize_review_challenges', 'wize_review_limits'] as $table) { $db->exec('DELETE FROM ' . $table); }
+    foreach (['wize_review_replies', 'wize_reviews', 'wize_review_challenges', 'wize_review_limits'] as $table) { $db->exec('DELETE FROM ' . $table); }
     $clock = new stdClass(); $clock->now = 1794571200000;
     $config = array_replace(testConfig(), $options);
     $service = new ReviewService($db, $config, static fn(): int => $clock->now);
@@ -94,6 +94,27 @@ $tests['moderation is authorized on the server for both reads and writes'] = fun
     equal($s->handle('GET', 'moderation', [], ['x-moderator-key' => 'wrong'])['status'], 401);
     equal($s->handle('GET', 'moderation', [], ['x-moderator-key' => testConfig()['moderator_key']])['status'], 200);
     equal(post($s, 'moderation', ['id' => $r['id'], 'action' => 'publish'], ['x-moderator-key' => testConfig()['moderator_key'], 'origin' => 'https://evil.example'])['status'], 403);
+};
+$tests['developer replies require moderation and preserve rating'] = function (): void {
+    [$s, $clock, $db] = fixture();
+    $review = draft($s, $clock->now, ['rating' => 2]);
+    equal(submit($s, $review)['status'], 201);
+    $headers = ['x-moderator-key' => testConfig()['moderator_key']];
+    $reply = ['id' => $review['id'], 'action' => 'reply', 'content' => 'We are fixing this.'];
+    equal(post($s, 'moderation', $reply)['status'], 401);
+    equal(post($s, 'moderation', $reply, $headers)['status'], 404);
+    equal(moderate($s, $review['id'])['status'], 200);
+    equal(post($s, 'moderation', array_replace($reply, ['content' => '']), $headers)['status'], 400);
+    equal(post($s, 'moderation', $reply, $headers)['status'], 200);
+    equal(payload($s->handle('GET', 'reviews'))['reviews'][0]['developerReply'], $reply['content']);
+    equal(payload($s->handle('GET', 'summary'))['distribution'], [0, 1, 0, 0, 0]);
+    equal(post($s, 'moderation', array_replace($reply, ['content' => '<script>test</script>']), $headers)['status'], 200);
+    equal(payload($s->handle('GET', 'moderation', ['state' => 'published'], $headers))['reviews'][0]['developerReply'], '<script>test</script>');
+    equal(post($s, 'moderation', ['id' => $review['id'], 'action' => 'remove-reply'], $headers)['status'], 200);
+    equal(payload($s->handle('GET', 'reviews'))['reviews'][0]['developerReply'], null);
+    equal(post($s, 'moderation', $reply, $headers)['status'], 200);
+    equal(manage($s, $review, 'delete')['status'], 200);
+    equal((int) $db->query('SELECT COUNT(*) FROM wize_review_replies')->fetchColumn(), 0);
 };
 $tests['author deletion and moderator removal purge live records and ratings'] = function (): void {
     [$s, $clock, $db] = fixture();

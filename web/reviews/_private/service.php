@@ -25,7 +25,7 @@ final class ReviewService
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        if ((int) $db->query('SELECT schema_version FROM wize_review_guard WHERE id = 1')->fetchColumn() !== 1) {
+        if ((int) $db->query('SELECT schema_version FROM wize_review_guard WHERE id = 1')->fetchColumn() !== 2) {
             throw new RuntimeException('Import the supported schema before enabling the service.');
         }
     }
@@ -217,7 +217,7 @@ final class ReviewService
             }
             if ($method === 'GET' && $action === 'reviews') {
                 $page = $this->page($query);
-                $reviews = $this->records($this->query("SELECT id, rating, nickname, content, app_version AS appVersion, created_day AS date FROM wize_reviews WHERE state = 'published' ORDER BY submitted_at DESC, id DESC LIMIT ? OFFSET ?", [self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
+                $reviews = $this->records($this->query("SELECT r.id, r.rating, r.nickname, r.content, r.app_version AS appVersion, r.created_day AS date, rep.content AS developerReply, rep.updated_day AS replyDate FROM wize_reviews AS r LEFT JOIN wize_review_replies AS rep ON rep.review_id = r.id WHERE r.state = 'published' ORDER BY r.submitted_at DESC, r.id DESC LIMIT ? OFFSET ?", [self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
                 return $this->json(['reviews' => $reviews, 'page' => $page, 'pageSize' => self::PAGE_SIZE] + $this->summary());
             }
             if ($method === 'GET' && $action === 'challenge') {
@@ -279,10 +279,27 @@ final class ReviewService
                     $state = $query['state'] ?? 'pending'; $page = $this->page($query);
                     if (!in_array($state, ['pending', 'published'], true)) { throw new ReviewHttpError(400, 'Invalid filter.'); }
                     $count = (int) $this->query('SELECT COUNT(*) FROM wize_reviews WHERE state = ?', [$state])->fetchColumn();
-                    $reviews = $this->records($this->query('SELECT id, rating, nickname, content, app_version AS appVersion, created_day AS date, state FROM wize_reviews WHERE state = ? ORDER BY submitted_at ASC, id ASC LIMIT ? OFFSET ?', [$state, self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
+                    $reviews = $this->records($this->query('SELECT r.id, r.rating, r.nickname, r.content, r.app_version AS appVersion, r.created_day AS date, r.state, rep.content AS developerReply, rep.updated_day AS replyDate FROM wize_reviews AS r LEFT JOIN wize_review_replies AS rep ON rep.review_id = r.id WHERE r.state = ? ORDER BY r.submitted_at ASC, r.id ASC LIMIT ? OFFSET ?', [$state, self::PAGE_SIZE, ($page - 1) * self::PAGE_SIZE])->fetchAll());
                     return $this->json(['reviews' => $reviews, 'count' => $count, 'page' => $page, 'pageSize' => self::PAGE_SIZE]);
                 }
                 $input = $this->body($headers, $raw);
+                if (in_array($input['action'] ?? null, ['reply', 'remove-reply'], true)) {
+                    if (!$this->validId($input['id'] ?? null)) { throw new ReviewHttpError(400, 'Invalid review.'); }
+                    $this->limit($ip, 'moderator-write', 120);
+                    return $this->transaction(function () use ($input): array {
+                        $record = $this->query('SELECT state FROM wize_reviews WHERE id = ?', [$input['id']])->fetch();
+                        if (!$record || $record['state'] !== 'published') { throw new ReviewHttpError(404, 'Published review unavailable.'); }
+                        if ($input['action'] === 'remove-reply') {
+                            $this->query('DELETE FROM wize_review_replies WHERE review_id = ?', [$input['id']]);
+                            return $this->json(['success' => true]);
+                        }
+                        $content = $this->text($input['content'] ?? null, 1500);
+                        if ($content === '') { throw new ReviewHttpError(400, 'Write a reply before saving.'); }
+                        $day = gmdate('Y-m-d', intdiv($this->now(), 1000));
+                        $this->query('INSERT INTO wize_review_replies (review_id, content, updated_day) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE content = VALUES(content), updated_day = VALUES(updated_day)', [$input['id'], $content, $day]);
+                        return $this->json(['success' => true, 'developerReply' => $content, 'replyDate' => $day]);
+                    });
+                }
                 if (!$this->validId($input['id'] ?? null) || !in_array($input['action'] ?? '', ['publish', 'remove'], true)) { throw new ReviewHttpError(400, 'Invalid moderation action.'); }
                 if ($input['action'] === 'publish') {
                     if (!$this->query('SELECT id FROM wize_reviews WHERE id = ?', [$input['id']])->fetch()) { throw new ReviewHttpError(404, 'Review unavailable.'); }

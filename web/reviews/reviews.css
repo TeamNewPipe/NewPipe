@@ -86,3 +86,11 @@
   .review-app .pagination { gap: 10px; }
   .review-app .write-section, .review-app .privacy { padding-top: 35px; }
 }
+
+/* Official replies never change the reviewer's text or rating. */
+.review-app .developer-reply { margin-top: 18px; padding: 12px 14px; border-inline-start: 3px solid var(--red); background: var(--bg); border-radius: 0 8px 8px 0; }
+.review-app .developer-reply-heading { font-weight: 700; font-size: .8rem; margin: 0 0 8px; }
+.review-app .developer-reply-content { font-size: .85rem; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; margin: 0; }
+.review-app .developer-reply-editor { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+.review-app .developer-reply-editor label { display: block; margin-bottom: 8px; }
+.review-app .developer-reply-editor textarea { min-height: 90px; }
