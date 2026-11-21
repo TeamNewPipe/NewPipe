@@ -36,11 +36,23 @@
         android:layout_marginRight="8dp"
         android:background="?attr/separator_color" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/search_downloaded_only"
+        style="@style/Widget.Material3.Chip.Filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_meta_info_separator"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:checkable="true"
+        android:text="@string/filter_downloaded_only" />
+
     <LinearLayout
         android:id="@+id/deep_search_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/search_meta_info_separator"
+        android:layout_below="@id/search_downloaded_only"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="12dp"

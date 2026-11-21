@@ -49,6 +49,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.profiles.KidsMode;
 import org.schabi.newpipe.database.feed.model.SavedSearchFeedEntity;
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex;
 import org.schabi.newpipe.databinding.FragmentSearchBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
@@ -186,6 +187,9 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     private boolean showRemoteSuggestions = true;
 
     @State
+    boolean downloadedOnly = false;
+
+    @State
     int durationOrder = 0;
 
     @State
@@ -304,6 +308,18 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     public void onViewCreated(@NonNull final View rootView, final Bundle savedInstanceState) {
         searchBinding = FragmentSearchBinding.bind(rootView);
         super.onViewCreated(rootView, savedInstanceState);
+        searchBinding.searchDownloadedOnly.setChecked(downloadedOnly);
+        searchBinding.searchDownloadedOnly.setOnCheckedChangeListener((chip, selected) -> {
+            downloadedOnly = selected;
+            applyDownloadedOnlyFilter();
+        });
+        DownloadedAvailabilityIndex.INSTANCE.getUpdates().observe(getViewLifecycleOwner(),
+                ignored -> {
+                    if (downloadedOnly && !collectedSearchItems.isEmpty()) {
+                        applyDownloadedOnlyFilter();
+                    }
+                });
+        DownloadedAvailabilityIndex.requestRefresh(requireContext());
 
         updateService();
         // Add the service name to search string hint
@@ -472,7 +488,8 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
             if (wasLoading.getAndSet(false)) {
                 search(searchString, contentFilter, sortFilter);
                 return;
-            } else if (infoListAdapter.getItemsList().isEmpty()) {
+            } else if (infoListAdapter.getItemsList().isEmpty()
+                    && collectedSearchItems.isEmpty()) {
                 if (savedState == null) {
                     search(searchString, contentFilter, sortFilter);
                     return;
@@ -732,8 +749,10 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(items -> {
                     if (!items.isEmpty()) {
+                        collectedSearchItems.clear();
+                        collectedSearchItems.addAll(items);
                         if (infoListAdapter.getItemsList().isEmpty()) {
-                            infoListAdapter.addInfoItemList(items);
+                            renderSearchItems();
                         }
                         hideLoading();
                     } else if (!TextUtils.isEmpty(searchString)) {
@@ -1362,9 +1381,30 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
     }
 
     private void renderSearchItems() {
+        final List<InfoItem> ordered = SearchResultOrdering.arrange(collectedSearchItems,
+                durationOrder, minimumDuration, maximumDuration);
+        final List<InfoItem> displayed = downloadedOnly
+                ? ordered.stream()
+                        .filter(item -> item instanceof StreamInfoItem
+                                && DownloadedAvailabilityIndex.isAvailable(
+                                        item.getServiceId(), item.getUrl()))
+                        .collect(Collectors.toList())
+                : ordered;
         infoListAdapter.clearStreamItemList();
-        infoListAdapter.addInfoItemList(SearchResultOrdering.arrange(collectedSearchItems,
-                durationOrder, minimumDuration, maximumDuration));
+        infoListAdapter.addInfoItemList(displayed);
+    }
+
+    private void applyDownloadedOnlyFilter() {
+        if (searchBinding == null || infoListAdapter == null) {
+            return;
+        }
+        renderSearchItems();
+        if (infoListAdapter.getItemsList().isEmpty()) {
+            showEmptyState();
+        } else {
+            hideLoading();
+        }
+        updateDeepSearchStatus();
     }
 
     private void updateDeepSearchStatus() {
@@ -1757,7 +1797,7 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
         cacheSavedSearchResults(result.getItems(), false);
         showListFooter(false);
         final List<InfoItem> added = collectSearchItems(result.getItems());
-        if (hasDurationOptions()) {
+        if (hasDurationOptions() || downloadedOnly) {
             renderSearchItems();
         } else {
             infoListAdapter.addInfoItemList(added);

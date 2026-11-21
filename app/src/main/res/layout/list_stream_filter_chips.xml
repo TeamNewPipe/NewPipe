@@ -112,4 +112,18 @@
                 android:text="@string/feed_show_watched" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="12dp"
+        android:scrollbars="none">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/filter_downloaded"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:checkable="true"
+            android:text="@string/filter_downloaded_only" />
+    </HorizontalScrollView>
 </LinearLayout>

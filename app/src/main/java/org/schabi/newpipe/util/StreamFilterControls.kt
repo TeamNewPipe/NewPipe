@@ -23,10 +23,13 @@ object StreamFilterControls {
         val selection = StreamFilterSelection.parse(saved)
         val content = binding.streamFilterChipGroup
         val watch = binding.watchFilterChipGroup
+        val downloaded = binding.filterDownloaded
         binding.filterAudio.visibility = if (showAudio) View.VISIBLE else View.GONE
         (content.parent as View).visibility = if (showContentTypes) View.VISIBLE else View.GONE
         content.setOnCheckedStateChangeListener(null)
         watch.setOnCheckedStateChangeListener(null)
+        downloaded.setOnCheckedChangeListener(null)
+        downloaded.isChecked = selection.downloadedOnly
         content.clearCheck()
         watch.clearCheck()
         var updating = false
@@ -40,6 +43,15 @@ object StreamFilterControls {
             revealCheckedChip(content)
         }
         revealCheckedChip(watch)
+
+        fun notifySelection() {
+            val ids = (if (showContentTypes) content.checkedChipIds else emptyList()) +
+                watch.checkedChipIds
+            val filters = ids.map { StreamListFilter.fromChipId(it) }
+                .filter { it != StreamListFilter.NONE } +
+                (if (downloaded.isChecked) listOf(StreamListFilter.DOWNLOADED) else emptyList())
+            listener.onChanged(filters.joinToString(",") { it.name })
+        }
 
         fun observe(group: ChipGroup, allId: Int) {
             var previous = group.checkedChipIds.toSet()
@@ -57,12 +69,12 @@ object StreamFilterControls {
                 previous = group.checkedChipIds.toSet()
                 updating = false
                 revealCheckedChip(group)
-                val filters = (if (showContentTypes) content.checkedChipIds else emptyList()) + watch.checkedChipIds
-                listener.onChanged(filters.map { StreamListFilter.fromChipId(it) }.filter { it != StreamListFilter.NONE }.joinToString(",") { it.name })
+                notifySelection()
             }
         }
         observe(content, R.id.filter_all)
         observe(watch, R.id.filter_watch_all)
+        downloaded.setOnCheckedChangeListener { _, _ -> notifySelection() }
     }
 
     private fun revealCheckedChip(group: ChipGroup) {

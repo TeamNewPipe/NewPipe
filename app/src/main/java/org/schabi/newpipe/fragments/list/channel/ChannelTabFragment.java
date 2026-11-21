@@ -32,6 +32,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistControlViewHolder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex;
 import org.schabi.newpipe.local.search.ContextualSearchHelper;
 import org.schabi.newpipe.local.search.ContextualSearchable;
 import org.schabi.newpipe.player.playqueue.ChannelTabPlayQueue;
@@ -143,6 +144,12 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                 false, selection -> {
                     selectedStreamFilters = selection;
                     applyStreamFilter();
+                });
+        DownloadedAvailabilityIndex.INSTANCE.getUpdates().observe(getViewLifecycleOwner(),
+                ignored -> {
+                    if (StreamFilterSelection.parse(selectedStreamFilters).getDownloadedOnly()) {
+                        applyStreamFilter();
+                    }
                 });
     }
 

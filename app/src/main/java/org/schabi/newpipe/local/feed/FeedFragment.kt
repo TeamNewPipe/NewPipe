@@ -216,7 +216,11 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             setOnItemLongClickListener(listenerStreamItem)
         }
         DownloadedAvailabilityIndex.updates.observe(viewLifecycleOwner) {
-            groupAdapter.notifyDataSetChanged()
+            if (StreamFilterSelection.parse(selectedStreamFilters).downloadedOnly) {
+                latestLoadedState?.let { showFilteredFeedItems(it, false) }
+            } else {
+                groupAdapter.notifyDataSetChanged()
+            }
         }
         DownloadedAvailabilityIndex.requestRefresh(requireContext())
         streamSelection = StreamSelectionController(

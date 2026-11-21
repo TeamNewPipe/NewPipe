@@ -85,6 +85,29 @@ class StreamFilterSelectionTest {
         assertFalse(StreamFilterSelection.parse("VIDEOS,UNWATCHED").matchesVisible(stream, progress, hiddenVideos, true, true))
     }
 
+    @Test
+    fun downloadedIsIndependentOfWatchStatusAndContentTypes() {
+        val selection = StreamFilterSelection.parse("VIDEOS,UNWATCHED,DOWNLOADED")
+        assertTrue(selection.downloadedOnly)
+        assertEquals(setOf(StreamListFilter.UNWATCHED), selection.watchFilters)
+        assertFalse(selection.matchesDownloaded(false))
+        assertTrue(selection.matchesDownloaded(true))
+        assertEquals(
+            setOf("VIDEOS", "UNWATCHED", "DOWNLOADED"),
+            StreamFilterSelection.parse(selection.encode()).encode().split(",").toSet()
+        )
+        val binding = binding()
+        var value = ""
+        StreamFilterControls.bind(binding, "VIDEOS,UNWATCHED,DOWNLOADED", true) { value = it }
+        assertTrue(binding.filterDownloaded.isChecked)
+        binding.filterDownloaded.performClick()
+        assertEquals(setOf("VIDEOS", "UNWATCHED"), value.split(",").toSet())
+        binding.filterDownloaded.performClick()
+        assertEquals(setOf("VIDEOS", "UNWATCHED", "DOWNLOADED"), value.split(",").toSet())
+        binding.filterWatchAll.performClick()
+        assertEquals(setOf("VIDEOS", "DOWNLOADED"), value.split(",").toSet())
+    }
+
     private fun binding(): ListStreamFilterChipsBinding {
         val context = ContextThemeWrapper(RuntimeEnvironment.getApplication(), R.style.LightTheme)
         return ListStreamFilterChipsBinding.inflate(LayoutInflater.from(context))

@@ -5,6 +5,7 @@ import java.time.OffsetDateTime
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
+import org.schabi.newpipe.download.DownloadedAvailabilityIndex
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 
@@ -17,7 +18,8 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
     SHORTS(R.id.filter_shorts),
     UPCOMING(R.id.filter_upcoming),
     PARTIALLY_WATCHED(R.id.filter_partially_watched),
-    WATCHED(R.id.filter_watched);
+    WATCHED(R.id.filter_watched),
+    DOWNLOADED(R.id.filter_downloaded);
 
     companion object {
         @JvmStatic
@@ -33,6 +35,8 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
             NONE -> true
 
             UNWATCHED -> state == null || !state.isValid(stream.duration)
+
+            DOWNLOADED -> DownloadedAvailabilityIndex.isAvailable(stream.serviceId, stream.url)
 
             WATCHED -> state?.isFinished(stream.duration) == true
 
