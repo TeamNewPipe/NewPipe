@@ -51,9 +51,8 @@
     <item
         android:id="@+id/menu_item_feed_toggle_played_items"
         android:orderInCategory="2"
-        android:icon="@drawable/ic_visibility_on"
-        android:title="@string/feed_show_hide_streams"
-        app:showAsAction="ifRoom" />
+        android:title="@string/feed_options_title"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_item_feed_help"

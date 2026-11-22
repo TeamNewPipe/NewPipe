@@ -96,8 +96,6 @@ public class FeedRefreshControlsTest {
 
         assertNotNull(controlsRow);
         assertEquals("LinearLayout", controlsRow.getTagName());
-        assertEquals("48dp",
-                controlsRow.getAttributeNS(ANDROID_NAMESPACE, "layout_height"));
         assertEquals("horizontal",
                 controlsRow.getAttributeNS(ANDROID_NAMESPACE, "orientation"));
 

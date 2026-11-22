@@ -17,6 +17,11 @@ Release history is listed newest first. The number beside each release is its An
 - Keep Search Vimeo available from local search, offer direct API setup when needed, and continue with the original query after configuration.
 - Use Open link for public Vimeo navigation; downloads require an advertised progressive video file. Account sign-in, comment posting, live chat and protected videos remain unsupported.
 
+### Feed filters
+
+- Keep content-type, watch-status and downloaded filters fully visible in What's New instead of clipping the lower rows.
+- Move saved feed visibility defaults into Feed options in the overflow menu while preserving date and members-only controls.
+
 ## WizeStream 1.50.0 (`1050000`)
 
 ### Channel pages

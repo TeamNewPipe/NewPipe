@@ -107,8 +107,9 @@
             <LinearLayout
                 android:id="@+id/feed_controls_row"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="48dp"
                 android:orientation="horizontal">
 
                 <LinearLayout

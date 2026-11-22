@@ -46,6 +46,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.evernote.android.state.State
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textview.MaterialTextView
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.OnAsyncUpdateListener
@@ -701,16 +702,21 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             orientation = LinearLayout.VERTICAL
             val padding = (24 * resources.displayMetrics.density).toInt()
             setPaddingRelative(padding, 0, padding, 0)
+            addView(
+                MaterialTextView(context).apply {
+                    setTextAppearance(com.google.android.material.R.style.TextAppearance_Material3_BodyMedium)
+                    text = getString(R.string.feed_default_visibility_help, getString(R.string.filter_all_visible))
+                }
+            )
             addView(dateButton)
             addView(clearButton)
         }
 
-        MaterialAlertDialogBuilder(context)
+        val dialog = MaterialAlertDialogBuilder(context)
             .setTitle(R.string.feed_default_visibility_title)
             .setMultiChoiceItems(dialogItems.map { getString(it.title) }.toTypedArray(), checkedItems) { _, which, isChecked ->
                 checkedItems[which] = isChecked
             }
-            .setView(dateControls)
             .setPositiveButton(R.string.ok) { _, _ ->
                 preferences.edit {
                     dialogItems.forEachIndexed { index, item ->
@@ -722,7 +728,10 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                 latestLoadedState?.let { showFilteredFeedItems(it, false) }
             }
             .setNegativeButton(R.string.cancel, null)
-            .show()
+            .create()
+        // Keep the explanation and date controls in the same scrolling list as the choices.
+        dialog.listView.addFooterView(dateControls, null, false)
+        dialog.show()
     }
 
     private fun readFeedCutoffDate(preferences: SharedPreferences): LocalDate? {
