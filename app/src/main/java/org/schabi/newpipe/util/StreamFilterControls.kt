@@ -19,6 +19,7 @@ object StreamFilterControls {
         showContentTypes: Boolean,
         showAudio: Boolean = false,
         showHistoryDetails: Boolean = false,
+        showHistoryCategories: Boolean = false,
         listener: Listener
     ) {
         val selection = StreamFilterSelection.parse(saved)
@@ -30,6 +31,10 @@ object StreamFilterControls {
         binding.filterLiveAudio.visibility = historyVisibility
         binding.filterPostLiveVideo.visibility = historyVisibility
         binding.filterPostLiveAudio.visibility = historyVisibility
+        val categoryVisibility = if (showHistoryCategories) View.VISIBLE else View.GONE
+        binding.filterTracks.visibility = categoryVisibility
+        binding.filterPodcasts.visibility = categoryVisibility
+        binding.filterCourses.visibility = categoryVisibility
         (content.parent as View).visibility = if (showContentTypes) View.VISIBLE else View.GONE
         content.setOnCheckedStateChangeListener(null)
         watch.setOnCheckedStateChangeListener(null)

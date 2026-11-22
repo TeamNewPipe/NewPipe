@@ -51,7 +51,8 @@ object Migrations {
     const val DB_VER_29 = 29
     const val DB_VER_30 = 30
     const val DB_VER_31 = 31
-    const val DB_VER_CURRENT = DB_VER_31
+    const val DB_VER_32 = 32
+    const val DB_VER_CURRENT = DB_VER_32
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -1073,5 +1074,10 @@ object Migrations {
     }
     val MIGRATION_30_31 = Migration(DB_VER_30, DB_VER_31) { db ->
         db.execSQL("ALTER TABLE subscriptions ADD COLUMN handle TEXT")
+    }
+
+    val MIGRATION_31_32 = Migration(DB_VER_31, DB_VER_32) { db ->
+        // Unknown is deliberately NULL; do not infer provider categories from titles or URLs.
+        db.execSQL("ALTER TABLE streams ADD COLUMN content_category TEXT")
     }
 }

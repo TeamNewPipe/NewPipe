@@ -88,7 +88,10 @@ data class StreamEntity(
     var localFolder: String? = null,
 
     @ColumnInfo(name = STREAM_IS_SHORT_FORM_CONTENT, defaultValue = "0")
-    var isShortFormContent: Boolean = false
+    var isShortFormContent: Boolean = false,
+
+    @ColumnInfo(name = STREAM_CONTENT_CATEGORY)
+    var contentCategory: String? = null
 ) : Serializable {
     @Ignore
     constructor(item: StreamInfoItem) : this(
@@ -102,7 +105,8 @@ data class StreamEntity(
             ExtractorImageCompat.uploaderAvatarImages(item)
         ),
         requiresMembership = item.requiresMembership(),
-        isShortFormContent = item.isShortFormContent
+        isShortFormContent = item.isShortFormContent,
+        contentCategory = if (!item.albumUrl.isNullOrBlank()) "TRACKS" else null
     )
 
     @Ignore
@@ -117,8 +121,22 @@ data class StreamEntity(
             ExtractorImageCompat.uploaderAvatarImages(info)
         ),
         requiresMembership = info.requiresMembership(),
-        isShortFormContent = info.isShortFormContent
+        isShortFormContent = info.isShortFormContent,
+        contentCategory = org.schabi.newpipe.util.HistoryContentCategory.fromProvider(info.category)
     )
+
+    @Ignore
+    constructor(info: StreamInfo, item: PlayQueueItem?) : this(info) {
+        // Album links can be present on the list item but absent from full stream details.
+        // Extraction can canonicalize its input URL, so also accept that recorded original URL.
+        if (contentCategory == null && item != null &&
+            item.serviceId == info.serviceId && item.url.isNotBlank() &&
+            (item.url == info.url || item.url == info.originalUrl) &&
+            !item.albumUrl.isNullOrBlank()
+        ) {
+            contentCategory = "TRACKS"
+        }
+    }
 
     @Ignore
     constructor(item: PlayQueueItem) : this(
@@ -216,6 +234,7 @@ data class StreamEntity(
         const val STREAM_LOCAL_FOLDER = "local_folder"
         const val STREAM_THUMBNAIL_URL = "thumbnail_url"
         const val STREAM_IS_SHORT_FORM_CONTENT = "is_short_form_content"
+        const val STREAM_CONTENT_CATEGORY = "content_category"
 
         const val SOURCE_TYPE_REMOTE = "REMOTE"
         const val SOURCE_TYPE_LOCAL = "LOCAL"

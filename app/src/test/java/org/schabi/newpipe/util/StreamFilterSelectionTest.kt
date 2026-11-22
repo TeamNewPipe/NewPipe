@@ -13,6 +13,8 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.stream.StreamStatisticsEntry
+import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.databinding.ListStreamFilterChipsBinding
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -134,6 +136,62 @@ class StreamFilterSelectionTest {
         binding.filterLiveAudio.performClick()
         assertEquals("LIVE_AUDIO", current)
     }
+
+    @Test
+    fun historyCategorySelectionRequiresExplicitMetadata() {
+        val entry = historyEntry(StreamType.AUDIO_STREAM, "TRACKS")
+        assertTrue(StreamFilterSelection.parse("TRACKS").matches(entry))
+        assertFalse(StreamFilterSelection.parse("PODCASTS").matches(entry))
+        assertTrue(StreamFilterSelection.parse("TRACKS,AUDIO").matches(entry))
+        assertFalse(StreamFilterSelection.parse("COURSES").matches(entry))
+        assertFalse(
+            StreamFilterSelection.parse("TRACKS").matches(
+                entry.copy(streamEntity = entry.streamEntity.copy(contentCategory = null))
+            )
+        )
+    }
+
+    @Test
+    fun addingTracksToVideosDoesNotReclassifyUnknownAudioAsVideo() {
+        val unknownAudio = historyEntry(StreamType.AUDIO_STREAM, null)
+        val track = historyEntry(StreamType.AUDIO_STREAM, "TRACKS")
+        val video = historyEntry(StreamType.VIDEO_STREAM, null)
+        val videos = StreamFilterSelection.parse("VIDEOS")
+        val videosAndTracks = StreamFilterSelection.parse("VIDEOS,TRACKS")
+
+        assertFalse(videos.matches(unknownAudio))
+        assertFalse(videosAndTracks.matches(unknownAudio))
+        assertFalse(videos.matches(track))
+        assertTrue(videosAndTracks.matches(track))
+        assertTrue(videos.matches(video))
+        assertTrue(videosAndTracks.matches(video))
+    }
+
+    @Test
+    fun historyCategoryAndMediaChoicesStillRequireSelectedWatchStatus() {
+        val track = historyEntry(StreamType.AUDIO_STREAM, "TRACKS")
+        val mixed = StreamFilterSelection.parse("VIDEOS,TRACKS,WATCHED")
+
+        assertFalse(mixed.matches(track))
+        assertTrue(mixed.matches(track.copy(progressMillis = 99_000)))
+        assertTrue(StreamFilterSelection.parse("TRACKS,UNWATCHED").matches(track))
+    }
+
+    private fun historyEntry(type: StreamType, category: String?): StreamStatisticsEntry = StreamStatisticsEntry(
+        StreamEntity(
+            serviceId = 0,
+            url = "https://example.com/track",
+            title = "Example",
+            streamType = type,
+            duration = 100,
+            uploader = "Artist",
+            contentCategory = category
+        ),
+        progressMillis = 0,
+        streamId = 123,
+        latestAccessDate = java.time.OffsetDateTime.parse("2026-11-22T00:00:00Z"),
+        watchCount = 1
+    )
 
     private fun binding(): ListStreamFilterChipsBinding {
         val context = ContextThemeWrapper(RuntimeEnvironment.getApplication(), R.style.LightTheme)

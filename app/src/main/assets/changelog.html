@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#release-1049002">WizeStream 1.49.2</a></li>
 <li><a href="#release-1049001">WizeStream 1.49.1 · 2026-11-21</a></li>
 <li><a href="#release-1049000">WizeStream 1.49.0</a></li>
 <li><a href="#release-1048000">WizeStream 1.48.0 · 2026-11-20</a></li>
@@ -120,6 +121,32 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="release-1049002" data-version="1.49.2" data-version-code="1049002">
+<h2>WizeStream 1.49.2</h2>
+<div class="release-notes">
+<h3>History and library</h3>
+<ul>
+<li>Expand History filters for live audio and post-live video and audio.</li>
+<li>Add History-only Tracks, Podcasts and Courses filters when explicit provider metadata is available; preserve known categories across partial refreshes and leave unknown items unclassified.</li>
+<li>Update local recommendations after manual watched actions and distinguish local media folders with the same name.</li>
+</ul>
+<h3>Playback and offline media</h3>
+<ul>
+<li>Add an optional second caption track, reorderable portrait player actions and a landscape live-chat overlay.</li>
+<li>Allow opt-in live-chat capture and offline replay, show saved-chat badges in Downloads, and cache viewed comments and replies for offline reading.</li>
+<li>Reconnect visible live chat after transient failures, show time until scheduled streams and premieres, and restore collapsed miniplayer details when starting popup playback.</li>
+<li>Release obsolete Home pager references, coalesce playback recovery writes and acknowledge checkpoints only after they are saved.</li>
+<li>Fall back when a seekbar storyboard quality fails and auto-hide the fullscreen Unlock button while keeping touch lock usable.</li>
+</ul>
+<h3>Settings and navigation</h3>
+<ul>
+<li>Preview danmaku appearance, portrait player action order and notification action selections while editing.</li>
+<li>Make the Home tab picker searchable and fast-scrollable, restore pull-to-refresh and contextual search for Home channel-group feeds, and keep feed controls clear of fast-scroller touch areas.</li>
+<li>Prevent translated subscription labels from clipping and make bulk notification changes transactional.</li>
+<li>Add optional Device Sync stage timings and app CPU metrics, plus verified publication dates for existing releases in the in-app changelog.</li>
+</ul>
+</div>
+</section>
 <section id="release-1049001" data-version="1.49.1" data-version-code="1049001">
 <h2>WizeStream 1.49.1 <time datetime="2026-11-21">2026-11-21</time></h2>
 <div class="release-notes">

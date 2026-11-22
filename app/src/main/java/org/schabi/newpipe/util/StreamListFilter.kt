@@ -18,6 +18,9 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
     LIVE_AUDIO(R.id.filter_live_audio),
     POST_LIVE_VIDEO(R.id.filter_post_live_video),
     POST_LIVE_AUDIO(R.id.filter_post_live_audio),
+    TRACKS(R.id.filter_tracks),
+    PODCASTS(R.id.filter_podcasts),
+    COURSES(R.id.filter_courses),
     SHORTS(R.id.filter_shorts),
     UPCOMING(R.id.filter_upcoming),
     PARTIALLY_WATCHED(R.id.filter_partially_watched),
@@ -48,6 +51,8 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
             VIDEOS -> categoryOf(stream) == VIDEOS
 
             AUDIO -> categoryOf(stream, includeAudio = true) == AUDIO
+
+            TRACKS, PODCASTS, COURSES -> false
 
             LIVE_AUDIO -> stream.streamType == StreamType.AUDIO_LIVE_STREAM
 

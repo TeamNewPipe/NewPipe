@@ -91,7 +91,8 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     @Query(
         """
         SELECT uid, stream_type, textual_upload_date, upload_date,
-        is_upload_date_approximation, duration, uploader_avatar_url, is_short_form_content
+        is_upload_date_approximation, duration, uploader_avatar_url, is_short_form_content,
+        content_category
         FROM streams WHERE url = :url AND service_id = :serviceId
         """
     )
@@ -166,6 +167,11 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             newerStream.uploaderAvatarUrl = existentMinimalStream.uploaderAvatarUrl
         }
 
+        // A refresh without category metadata must not discard a previously verified label.
+        if (newerStream.contentCategory == null) {
+            newerStream.contentCategory = existentMinimalStream.contentCategory
+        }
+
         // Some endpoints cannot identify Shorts reliably. Once an extractor has positively
         // identified an item as short-form content, do not erase that information on refresh.
         newerStream.isShortFormContent =
@@ -229,6 +235,9 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         var uploaderAvatarUrl: String? = null,
 
         @ColumnInfo(name = StreamEntity.STREAM_IS_SHORT_FORM_CONTENT)
-        var isShortFormContent: Boolean = false
+        var isShortFormContent: Boolean = false,
+
+        @ColumnInfo(name = StreamEntity.STREAM_CONTENT_CATEGORY)
+        var contentCategory: String? = null
     )
 }

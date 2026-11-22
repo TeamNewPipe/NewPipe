@@ -58,7 +58,7 @@ internal class PlayerHistoryController(private val player: Player) {
         } else {
             player.currentStreamInfo.ifPresent { info ->
                 recommendations.start(info)
-                updates.add(records().onViewed(info).onErrorComplete().subscribe())
+                updates.add(records().onViewed(info, item).onErrorComplete().subscribe())
             }
         }
     }

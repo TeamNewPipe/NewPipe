@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.NewPipeDatabase;
@@ -199,6 +200,10 @@ public class HistoryRecordManager {
     }
 
     public Maybe<Long> onViewed(final StreamInfo info) {
+        return onViewed(info, null);
+    }
+
+    public Maybe<Long> onViewed(final StreamInfo info, @Nullable final PlayQueueItem item) {
         if (!isStreamHistoryEnabled()) {
             return Maybe.empty();
         }
@@ -208,7 +213,7 @@ public class HistoryRecordManager {
                 if (IncognitoMode.isEnabled(sharedPreferences)) {
                     return null;
                 }
-            final long streamId = streamTable.upsert(new StreamEntity(info));
+            final long streamId = streamTable.upsert(new StreamEntity(info, item));
             recordWatchEvent(
                     streamId,
                     currentTime.toInstant().toEpochMilli(),

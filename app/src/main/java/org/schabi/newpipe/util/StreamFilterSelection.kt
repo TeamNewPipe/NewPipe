@@ -21,10 +21,15 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
     private fun matches(
         stream: StreamInfoItem,
         state: StreamStateEntity?,
-        includeAudio: Boolean
+        includeAudio: Boolean,
+        contentCategory: String? = null
     ): Boolean {
         val matchesContent = contentFilters.isEmpty() || contentFilters.any { filter ->
             when (filter) {
+                StreamListFilter.TRACKS,
+                StreamListFilter.PODCASTS,
+                StreamListFilter.COURSES -> filter.name == contentCategory
+
                 StreamListFilter.LIVE_AUDIO,
                 StreamListFilter.POST_LIVE_VIDEO,
                 StreamListFilter.POST_LIVE_AUDIO -> StreamListFilter.matches(filter, stream, state)
@@ -56,13 +61,17 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
     fun matches(entry: StreamStatisticsEntry): Boolean = matches(
         entry.toStreamInfoItem(),
         StreamStateEntity(entry.streamId, entry.progressMillis),
-        includeAudio = true
+        includeAudio = true,
+        contentCategory = entry.streamEntity.contentCategory
     )
 
     fun encode(): String = StreamListFilter.entries.filter { it in filters }.joinToString(",") { it.name }
 
     companion object {
         val CONTENT_FILTERS = setOf(
+            StreamListFilter.TRACKS,
+            StreamListFilter.PODCASTS,
+            StreamListFilter.COURSES,
             StreamListFilter.LIVE,
             StreamListFilter.VIDEOS,
             StreamListFilter.AUDIO,

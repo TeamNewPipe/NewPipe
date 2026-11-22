@@ -75,6 +75,30 @@
                 android:text="@string/history_filter_post_live_audio"
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
+                android:id="@+id/filter_tracks"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/history_filter_tracks"
+                android:visibility="gone" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_podcasts"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/history_filter_podcasts"
+                android:visibility="gone" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_courses"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="@string/history_filter_courses"
+                android:visibility="gone" />
+            <com.google.android.material.chip.Chip
                 android:id="@+id/filter_shorts"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"

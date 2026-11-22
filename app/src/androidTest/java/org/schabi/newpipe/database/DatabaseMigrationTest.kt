@@ -66,6 +66,95 @@ class DatabaseMigrationTest {
     }
 
     @Test
+    fun migrate31to32PreservesHistoryAndLeavesCategoriesUnknown() {
+        testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_31).use { database ->
+            database.insert(
+                "streams",
+                SQLiteDatabase.CONFLICT_FAIL,
+                ContentValues().apply {
+                    put("uid", 42L)
+                    put("service_id", DEFAULT_SERVICE_ID)
+                    put("url", DEFAULT_URL)
+                    put("title", DEFAULT_TITLE)
+                    put("stream_type", DEFAULT_TYPE.name)
+                    put("duration", DEFAULT_DURATION)
+                    put("uploader", DEFAULT_UPLOADER_NAME)
+                    put("thumbnail_url", DEFAULT_THUMBNAIL)
+                    put("is_short_form_content", 1)
+                }
+            )
+            database.execSQL(
+                "INSERT INTO stream_history (stream_id, access_date, repeat_count, profile_id) " +
+                    "VALUES (42, 123456789, 3, 'profile-a')"
+            )
+            database.execSQL(
+                "INSERT INTO stream_state (stream_id, progress_time, profile_id) " +
+                    "VALUES (42, 45000, 'profile-a')"
+            )
+        }
+
+        val migrated = testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_32,
+            true,
+            Migrations.MIGRATION_31_32
+        )
+        migrated.query(
+            "SELECT uid, service_id, url, title, stream_type, duration, uploader, " +
+                "thumbnail_url, is_short_form_content, content_category FROM streams"
+        ).use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(42L, cursor.getLong(0))
+            assertEquals(DEFAULT_SERVICE_ID, cursor.getInt(1))
+            assertEquals(DEFAULT_URL, cursor.getString(2))
+            assertEquals(DEFAULT_TITLE, cursor.getString(3))
+            assertEquals(DEFAULT_TYPE.name, cursor.getString(4))
+            assertEquals(DEFAULT_DURATION, cursor.getLong(5))
+            assertEquals(DEFAULT_UPLOADER_NAME, cursor.getString(6))
+            assertEquals(DEFAULT_THUMBNAIL, cursor.getString(7))
+            assertEquals(1, cursor.getInt(8))
+            assertTrue(cursor.isNull(9))
+            assertFalse(cursor.moveToNext())
+        }
+        migrated.query(
+            "SELECT stream_id, access_date, repeat_count, profile_id FROM stream_history"
+        ).use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(42L, cursor.getLong(0))
+            assertEquals(123456789L, cursor.getLong(1))
+            assertEquals(3L, cursor.getLong(2))
+            assertEquals("profile-a", cursor.getString(3))
+            assertFalse(cursor.moveToNext())
+        }
+        migrated.query("SELECT stream_id, progress_time, profile_id FROM stream_state").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(42L, cursor.getLong(0))
+            assertEquals(45000L, cursor.getLong(1))
+            assertEquals("profile-a", cursor.getString(2))
+            assertFalse(cursor.moveToNext())
+        }
+
+        migrated.insert(
+            "streams",
+            SQLiteDatabase.CONFLICT_FAIL,
+            ContentValues().apply {
+                put("uid", 43L)
+                put("service_id", DEFAULT_SERVICE_ID)
+                put("url", DEFAULT_SECOND_URL)
+                put("title", "Unknown category")
+                put("stream_type", DEFAULT_TYPE.name)
+                put("duration", DEFAULT_DURATION)
+                put("uploader", DEFAULT_UPLOADER_NAME)
+            }
+        )
+        migrated.query("SELECT content_category FROM streams WHERE uid = 43").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertTrue(cursor.isNull(0))
+            assertFalse(cursor.moveToNext())
+        }
+    }
+
+    @Test
     fun migrateDatabaseFrom2to3() {
         val databaseInV2 = testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_2)
 
@@ -1249,7 +1338,8 @@ class DatabaseMigrationTest {
                 Migrations.MIGRATION_27_28,
                 Migrations.MIGRATION_28_29,
                 Migrations.MIGRATION_29_30,
-                Migrations.MIGRATION_30_31
+                Migrations.MIGRATION_30_31,
+                Migrations.MIGRATION_31_32
             )
             .build()
         testHelper.closeWhenFinished(database)

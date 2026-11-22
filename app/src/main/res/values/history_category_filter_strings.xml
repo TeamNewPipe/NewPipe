@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_filter_tracks">Tracks</string>
+    <string name="history_filter_podcasts">Podcasts</string>
+    <string name="history_filter_courses">Courses</string>
+</resources>
