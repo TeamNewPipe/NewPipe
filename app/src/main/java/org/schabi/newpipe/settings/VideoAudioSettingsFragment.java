@@ -44,6 +44,11 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         updateSeekOptions();
         updateResolutionOptions();
         setupEqualizerPreference();
+        requirePreference(R.string.danmaku_preview_key)
+                .setOnPreferenceClickListener(preference -> {
+                    org.schabi.newpipe.settings.VisualDanmakuPreviewDialog.show(requireContext());
+                    return true;
+                });
         requirePreference(R.string.portrait_player_actions_key)
                 .setOnPreferenceClickListener(preference -> {
                     org.schabi.newpipe.player.ui.PortraitPlayerActionsDialog.show(requireContext());

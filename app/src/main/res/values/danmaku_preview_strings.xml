@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="danmaku_preview_key" translatable="false">danmaku_preview</string>
+    <string name="danmaku_preview_title">Preview danmaku appearance</string>
+    <string name="danmaku_preview_summary">Try visual changes on sample messages before applying them</string>
+    <string name="danmaku_preview_apply">Apply preview settings</string>
+    <string name="danmaku_preview_sample_description">Sample danmaku messages</string>
+    <string name="danmaku_preview_sample_one">Hello from the preview!</string>
+    <string name="danmaku_preview_sample_two">This is a sample comment</string>
+    <string name="danmaku_preview_sample_three">WizeStream</string>
+</resources>

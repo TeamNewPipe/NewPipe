@@ -301,6 +301,13 @@
         android:title="@string/danmaku_settings_title"
         app:iconSpaceReserved="false">
 
+        <Preference
+            android:key="@string/danmaku_preview_key"
+            android:title="@string/danmaku_preview_title"
+            android:summary="@string/danmaku_preview_summary"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="@string/danmaku_enabled_key"
