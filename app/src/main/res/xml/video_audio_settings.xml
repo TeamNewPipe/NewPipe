@@ -348,6 +348,21 @@
             app:iconSpaceReserved="false"
             app:showSeekBarValue="true"
             app:singleLineTitle="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/danmaku_show_usernames_key"
+            android:title="@string/danmaku_show_usernames_title"
+            android:summary="@string/danmaku_show_usernames_summary"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/danmaku_hold_drag_key"
+            android:title="@string/danmaku_hold_drag_title"
+            android:summary="@string/danmaku_hold_drag_summary"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
     </PreferenceCategory>
 
     <PreferenceCategory

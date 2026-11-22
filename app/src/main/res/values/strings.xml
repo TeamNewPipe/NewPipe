@@ -2094,5 +2094,12 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="live_chat_capture_read_failure">Could not read saved live chat</string>
     <string name="live_chat_capture_title">Saved live chat</string>
     <string name="live_chat_capture_unknown">Unknown author</string>
+    <string name="danmaku_show_usernames_key" translatable="false">danmaku_show_usernames</string>
+    <string name="danmaku_show_usernames_title">Show usernames on danmaku</string>
+    <string name="danmaku_show_usernames_summary">Prefix messages with the sender name when available</string>
+    <string name="danmaku_hold_drag_key" translatable="false">danmaku_hold_drag</string>
+    <string name="danmaku_hold_drag_title">Hold and drag danmaku messages</string>
+    <string name="danmaku_hold_drag_summary">Touch a moving message to pause it, drag vertically, and hold to copy its full text. Disable for uninterrupted video gestures.</string>
+    <string name="danmaku_copied">Chat message copied</string>
 </resources>
 

@@ -9,6 +9,8 @@ package org.schabi.newpipe.views;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,10 +19,13 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,6 +99,10 @@ public final class DanmakuOverlayView extends FrameLayout {
                 prefs.getInt(getContext().getString(R.string.danmaku_duration_key), 8),
                 4,
                 15) * 1000;
+        final boolean showNames = prefs.getBoolean(
+                getContext().getString(R.string.danmaku_show_usernames_key), false);
+        final boolean interactive = prefs.getBoolean(
+                getContext().getString(R.string.danmaku_hold_drag_key), false);
 
         if (rowAvailableAt.length != maxRows) {
             rowAvailableAt = new long[maxRows];
@@ -106,7 +115,8 @@ public final class DanmakuOverlayView extends FrameLayout {
                     || item.getCommentText().isBlank()) {
                 continue;
             }
-            drawComment(item, textSizeSp, opacityPercent, durationMs, maxRows);
+            drawComment(item, textSizeSp, opacityPercent, durationMs, maxRows,
+                    showNames, interactive);
         }
     }
 
@@ -114,9 +124,12 @@ public final class DanmakuOverlayView extends FrameLayout {
                              final int textSizeSp,
                              final int opacityPercent,
                              final int durationMs,
-                             final int maxRows) {
+                             final int maxRows,
+                             final boolean showNames,
+                             final boolean interactive) {
         final TextView text = new TextView(getContext());
-        text.setText(item.getCommentText());
+        text.setText(DanmakuTextFormatter.format(
+                item.getName(), item.getCommentText(), showNames));
         text.setSingleLine(true);
         text.setGravity(Gravity.CENTER);
         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,
@@ -177,7 +190,75 @@ public final class DanmakuOverlayView extends FrameLayout {
                 }
             });
             activeAnimators.add(animator);
+            if (interactive) {
+                enableBubbleInteraction(text, item, animator);
+            }
             animator.start();
+        });
+    }
+
+    /**
+     * Opt-in touch interaction pauses the chosen bubble while pressed. Dragging it changes its
+     * vertical position; holding long enough copies the full message including its author.
+     *
+     * @param text moving message view
+     * @param item original comment
+     * @param animator movement animation
+     */
+    private void enableBubbleInteraction(@NonNull final TextView text,
+                                         @NonNull final BulletCommentsInfoItem item,
+                                         @NonNull final Animator animator) {
+        final String copied = DanmakuTextFormatter.format(
+                item.getName(), item.getCommentText(), true);
+        text.setClickable(true);
+        text.setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
+        text.setContentDescription(copied);
+        text.setOnClickListener(view -> { });
+        text.setOnTouchListener(new View.OnTouchListener() {
+            private float previousRawY;
+
+            @Override
+            public boolean onTouch(final View view, final MotionEvent event) {
+                switch (event.getActionMasked()) {
+                    case MotionEvent.ACTION_DOWN:
+                        previousRawY = event.getRawY();
+                        if (animator.isStarted() && !animator.isPaused()) {
+                            animator.pause();
+                        }
+                        return true;
+                    case MotionEvent.ACTION_MOVE:
+                        final float movement = event.getRawY() - previousRawY;
+                        previousRawY = event.getRawY();
+                        final float dragged = text.getTranslationY() + movement;
+                        final float maxY = Math.max(0, getHeight() - text.getHeight());
+                        text.setTranslationY(Math.max(0, Math.min(maxY, dragged)));
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        if (event.getEventTime() - event.getDownTime()
+                                >= ViewConfiguration.getLongPressTimeout()) {
+                            final ClipboardManager clipboard = (ClipboardManager)
+                                    getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                            if (clipboard != null) {
+                                clipboard.setPrimaryClip(ClipData.newPlainText(
+                                        getContext().getString(R.string.danmaku_copied), copied));
+                                Toast.makeText(getContext(), R.string.danmaku_copied,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        view.performClick();
+                        if (animator.isPaused()) {
+                            animator.resume();
+                        }
+                        return true;
+                    case MotionEvent.ACTION_CANCEL:
+                        if (animator.isPaused()) {
+                            animator.resume();
+                        }
+                        return true;
+                    default:
+                        return false;
+                }
+            }
         });
     }
 
