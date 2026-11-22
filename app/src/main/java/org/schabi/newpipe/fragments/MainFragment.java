@@ -316,6 +316,15 @@ public class MainFragment extends BaseFragment
         contextualSearchClose = null;
         contextualSearchTextWatcher = null;
         contextualSearchTarget = null;
+        // Detach Home pages before releasing the view. Otherwise this fragment retains
+        // the ViewPager adapter (and its fragment/activity references) across view recreation.
+        if (binding != null) {
+            binding.pager.setAdapter(null);
+        }
+        if (pagerAdapter != null) {
+            pagerAdapter.releaseRetainedFragments();
+            pagerAdapter = null;
+        }
         clearMainNavigation(bottomNavigationView);
         clearMainNavigation(navigationRailView);
         bottomNavigation = null;
@@ -817,6 +826,9 @@ public class MainFragment extends BaseFragment
     }
 
     public void commitPlaylistTabs() {
+        if (pagerAdapter == null) {
+            return;
+        }
         pagerAdapter.getLocalPlaylistFragments()
                 .stream()
                 .forEach(LocalPlaylistFragment::saveImmediate);
@@ -1182,6 +1194,25 @@ public class MainFragment extends BaseFragment
 
         public List<LocalPlaylistFragment> getLocalPlaylistFragments() {
             return localPlaylistFragments;
+        }
+
+        /** Release tab references when the adapter is detached from a destroyed Home view. */
+        void releaseRetainedFragments() {
+            primaryFragment = null;
+            localPlaylistFragments.clear();
+        }
+
+        @Override
+        public void destroyItem(@NonNull final ViewGroup container, final int position,
+                                @NonNull final Object object) {
+            super.destroyItem(container, position, object);
+            if (object instanceof LocalPlaylistFragment) {
+                HomeTabRetention.INSTANCE.forget(localPlaylistFragments,
+                        (LocalPlaylistFragment) object);
+            }
+            if (primaryFragment == object) {
+                primaryFragment = null;
+            }
         }
 
         @Override
