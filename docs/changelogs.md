@@ -9,6 +9,10 @@ Release history is listed newest first. The number beside each release is its An
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.
 - Keep the selected font consistent across app controls and recycled lists while preserving text sizing, emphasis, accessibility scaling and separate caption settings.
 
+### Synchronization diagnostics
+
+- Make optional Device Sync performance diagnostics available in Device synchronization settings on release builds, keeping them off by default.
+
 ### Replay heatmap
 
 - Add an optional Most replayed graph for supported YouTube videos using replay data from the existing metadata request.
