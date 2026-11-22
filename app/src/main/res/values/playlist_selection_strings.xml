@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <item name="playlist_selection_remove" type="id" />
+    <item name="playlist_selection_move" type="id" />
+    <string name="playlist_select_items">Select items</string>
+    <string name="playlist_remove_selected">Remove selected</string>
+    <string name="playlist_selection_remove_confirm">Remove</string>
+    <string name="playlist_download_selected">Download selected</string>
+    <string name="playlist_selection_selected">Selected</string>
+    <string name="playlist_selection_not_selected">Not selected</string>
+    <string name="playlist_selection_saving">Saving playlist changes…</string>
+    <plurals name="playlist_remove_selected_confirmation">
+        <item quantity="one">Remove the selected item from this playlist?</item>
+        <item quantity="other">Remove the %1$d selected items from this playlist?</item>
+    </plurals>
+    <plurals name="playlist_selection_download_skipped">
+        <item quantity="one">Skipping %1$d selected item that cannot be downloaded.</item>
+        <item quantity="other">Skipping %1$d selected items that cannot be downloaded.</item>
+    </plurals>
+</resources>

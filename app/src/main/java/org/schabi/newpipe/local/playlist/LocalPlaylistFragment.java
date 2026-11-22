@@ -127,7 +127,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private ItemTouchHelper itemTouchHelper;
     @State
     public boolean editMode;
-    private org.schabi.newpipe.local.CollectionSelectionController selectionController;
+    private LocalPlaylistSelectionController selectionController;
+    private final PlaylistSelectionSaveGate selectionSaveGate = new PlaylistSelectionSaveGate();
+    private String playlistProfileId;
     private Snackbar swipeRemovalSnackbar;
 
     private LocalPlaylistManager playlistManager;
@@ -173,9 +175,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (editMode) {
             playlistSortName = LocalPlaylistSortMode.PLAYLIST_ORDER.name();
         }
+        playlistProfileId = ProfileManager.getActiveProfileId(requireContext());
         playlistManager = new LocalPlaylistManager(
-                NewPipeDatabase.getInstance(requireContext()),
-                ProfileManager.getActiveProfileId(requireContext()));
+                NewPipeDatabase.getInstance(requireContext()), playlistProfileId);
         learningContentManager = LearningContentManager.getInstance(requireContext());
 
         disposables = new CompositeDisposable();
@@ -237,25 +239,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         editToggle = requireView().findViewById(R.id.playlist_edit_toggle);
         selectMove = requireView().findViewById(R.id.collection_select_move);
         headerBinding.playlistTitleView.setOnClickListener(view -> createRenameDialog());
-        selectMove.setOnClickListener(view -> {
-            if (!editMode || ContextualSearchHelper.isActive(contextualSearchQuery)
-                    || separators == null) {
+        selectionController = new LocalPlaylistSelectionController(this, itemsList,
+                itemListAdapter, selectMove, playlistProfileId, () -> playlistId,
+                this::getSelectionItems,
+                () -> debounceSaver != null && debounceSaver.getIsModified(),
+                selectionSaveGate, this::saveImmediate, this::handleResult);
+        editToggle.setOnClickListener(view -> {
+            if (!selectionController.finishBeforeChange()) {
                 return;
             }
-            if (selectionController != null) {
-                selectionController.close();
-            }
-            selectionController = new org.schabi.newpipe.local.CollectionSelectionController(
-                    (androidx.appcompat.app.AppCompatActivity) requireActivity(),
-                    itemsList, itemListAdapter, separators, () -> {
-                        captureUnfilteredItemsFromAdapter();
-                        if (debounceSaver != null) {
-                            debounceSaver.setHasChangesToSave();
-                        }
-                    });
-            selectionController.show();
-        });
-        editToggle.setOnClickListener(view -> {
             editMode = !editMode;
             if (editMode) {
                 // Editing always uses the saved order, not the temporary sorted view.
@@ -470,6 +462,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (disposables != null) {
             disposables.dispose();
         }
+        selectionSaveGate.close();
         if (tabsPagerAdapter != null) {
             tabsPagerAdapter.getLocalPlaylistFragments().remove(this);
         }
@@ -526,6 +519,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
+        if (selectionController != null && !selectionController.finishBeforeChange()) {
+            return true;
+        }
         if (item.getItemId() == R.id.menu_item_learning_review) {
             LearningReviewDialog.show(getParentFragmentManager(),
                     LearningContentManager.localPlaylistSourceId(playlistId),
@@ -571,6 +567,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void showPlaylistSortDialog() {
+        if (selectionController != null && !selectionController.finishBeforeChange()) {
+            return;
+        }
         final LocalPlaylistSortMode[] modes = LocalPlaylistSortMode.values();
         new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.local_playlist_sort_title)
@@ -750,6 +749,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         updateLearningProgress(result);
         unfilteredItems.clear();
         unfilteredItems.addAll(result);
+        setStreamCountAndOverallDuration(result);
 
         if (result.isEmpty()) {
             showEmptyState();
@@ -761,8 +761,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
         }
-        setStreamCountAndOverallDuration(result);
-
         PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
     }
 
@@ -779,7 +777,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void captureUnfilteredItemsFromAdapter() {
         // A temporary sorted view must never replace the saved playlist order.
-        if (itemListAdapter == null || isPlaylistSortActive()) {
+        if (itemListAdapter == null || isPlaylistSortActive()
+                || ContextualSearchHelper.isActive(contextualSearchQuery)) {
             return;
         }
         unfilteredItems.clear();
@@ -833,9 +832,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 displayedItems, LocalPlaylistSortMode.fromName(playlistSortName)));
 
         final boolean searchActive = ContextualSearchHelper.isActive(contextualSearchQuery);
-        if (selectMove != null) {
-            selectMove.setEnabled(!searchActive);
-        }
         if (itemTouchHelper != null) {
             itemTouchHelper.attachToRecyclerView(searchActive ? null : itemsList);
         }
@@ -1065,6 +1061,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (playlistManager == null || itemListAdapter == null || isDeletingPlaylist) {
             return;
         }
+        if (selectionController != null && selectionController.isWriting()) {
+            return;
+        }
 
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || debounceSaver == null
@@ -1087,29 +1086,37 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     + "with [" + streamIds.size() + "] items");
         }
 
-        final Disposable disposable = playlistManager.updateJoin(playlistId, streamIds)
+        final Disposable disposable = selectionSaveGate.write(
+                NewPipeDatabase.getInstance(requireContext()), playlistProfileId,
+                playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> {
-                            if (debounceSaver != null) {
+                        saved -> {
+                            if (debounceSaver != null && selectionSaveGate.canClearDirty(saved,
+                                    getSelectionItems().stream()
+                                            .map(PlaylistStreamEntry::getStreamId)
+                                            .collect(Collectors.toList()))) {
                                 debounceSaver.setNoChangesToSave();
                             }
+                            if (selectionController != null) {
+                                selectionController.onSaveSettled();
+                            }
                         },
-                        throwable -> showError(new ErrorInfo(throwable,
-                                UserAction.REQUESTED_BOOKMARK, "Saving playlist"))
+                        throwable -> {
+                            if (selectionController != null) {
+                                selectionController.onSaveFailed();
+                            }
+                            showError(new ErrorInfo(throwable,
+                                    UserAction.REQUESTED_BOOKMARK, "Saving playlist"));
+                        }
                 );
         disposables.add(disposable);
     }
 
 
     private void updateEditMode() {
-        if (!editMode && selectionController != null) {
-            selectionController.close();
-        }
         if (selectMove != null) {
-            selectMove.setVisibility(editMode ? View.VISIBLE : View.GONE);
-            selectMove
-                    .setEnabled(!ContextualSearchHelper.isActive(contextualSearchQuery));
+            selectMove.setVisibility(View.VISIBLE);
             editToggle.setText(
                     editMode ? R.string.playlist_edit_done : R.string.playlist_edit_mode);
         }
@@ -1385,6 +1392,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void editSeparatorRow(final int row) {
+        if (selectionController != null && !selectionController.finishBeforeChange()) {
+            return;
+        }
         if (separators != null && itemListAdapter != null) {
             separators.editRow(requireContext(), itemListAdapter.getItemsList(), row,
                     () -> itemListAdapter.setSeparators(separators::labels,
@@ -1394,6 +1404,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void editSeparatorAt(final int index) {
+        if (selectionController != null && !selectionController.finishBeforeChange()) {
+            return;
+        }
         if (separators != null && itemListAdapter != null) {
             separators.edit(requireContext(), itemListAdapter.getItemsList(), index,
                     () -> itemListAdapter.setSeparators(separators::labels,
@@ -1404,6 +1417,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void showVideoNotes(final PlaylistStreamEntry item) {
         org.schabi.newpipe.learning.VideoNotesDialog.show(getParentFragmentManager(),
                 item.getStreamEntity().getUid(), item.getStreamEntity().getTitle());
+    }
+
+    private List<PlaylistStreamEntry> getSelectionItems() {
+        return LocalPlaylistSelectionController.savedOrder(itemListAdapter,
+                unfilteredItems, contextualSearchQuery, playlistSortName);
     }
 
     private void setInitialData(final long pid, final String title) {

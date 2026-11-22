@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.concurrent.ConcurrentHashMap
 import org.json.JSONObject
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.LocalItem
@@ -21,6 +22,7 @@ import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 class ListSeparators(context: Context, profileId: String, listId: String) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context.applicationContext)
     private val preferenceKey = "list_separators_${profileId}_$listId"
+    private val writeLock = locks.getOrPut(preferenceKey) { Any() }
 
     private val positionsKey = "${preferenceKey}_positions"
 
@@ -73,6 +75,13 @@ class ListSeparators(context: Context, profileId: String, listId: String) {
         val result = ListSelectionOrder.move(items.size, labels(items), selected, boundary)
         writePositions(result.labels)
         return result.itemIndices.map(items::get)
+    }
+
+    /** Publish staged headings only after the matching saved playlist edit commits. */
+    fun commitSelection(items: List<LocalItem>, expected: Map<Int, String>, replacement: Map<Int, String>, change: () -> Boolean): Boolean = synchronized(writeLock) {
+        if (labels(items) != expected || !change()) return@synchronized false
+        writePositions(replacement)
+        true
     }
 
     fun removeRow(items: List<LocalItem>, row: Int) {
@@ -138,7 +147,7 @@ class ListSeparators(context: Context, profileId: String, listId: String) {
         }
     }
 
-    private fun writePositions(labels: Map<Int, String>) {
+    private fun writePositions(labels: Map<Int, String>) = synchronized(writeLock) {
         val data = JSONObject()
         labels.forEach { (row, label) -> data.put(row.toString(), label) }
         preferences.edit().putString(positionsKey, data.toString()).apply()
@@ -151,6 +160,8 @@ class ListSeparators(context: Context, profileId: String, listId: String) {
     }
 
     companion object {
+        private val locks = ConcurrentHashMap<String, Any>()
+
         internal fun keys(items: List<LocalItem>): List<String> {
             val occurrences = mutableMapOf<String, Int>()
             return items.map { item ->

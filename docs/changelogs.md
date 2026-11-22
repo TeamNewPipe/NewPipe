@@ -32,6 +32,12 @@ Release history is listed newest first. The number beside each release is its An
 - Keep content-type, watch-status and downloaded filters fully visible in What's New instead of clipping the lower rows.
 - Move saved feed visibility defaults into Feed options in the overflow menu while preserving date and members-only controls.
 
+### Local playlists
+
+- Make Select items available outside Edit mode, with actions to remove, add to another playlist, enqueue, download or move the selected entries.
+- Select only the current filtered results while keeping duplicate occurrences distinct and preserving hidden entries and the saved playlist order.
+- Keep local media in selected queues and playlist copies, and explain skipped items when a selection includes entries that cannot be downloaded.
+
 ## WizeStream 1.50.0 (`1050000`)
 
 ### Channel pages

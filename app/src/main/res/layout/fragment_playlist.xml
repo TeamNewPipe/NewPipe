@@ -27,7 +27,7 @@
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/collection_select_move"
+            android:text="@string/playlist_select_items"
             android:visibility="gone" />
     </LinearLayout>
 
