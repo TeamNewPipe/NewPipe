@@ -212,8 +212,7 @@ public class ChooseTabsFragment extends Fragment {
                 }
             };
 
-            new AddTabDialog(requireContext(), availableTabs, actionListener)
-                    .show();
+            SearchableTabChooser.show(requireContext(), availableTabs, actionListener);
         });
     }
 

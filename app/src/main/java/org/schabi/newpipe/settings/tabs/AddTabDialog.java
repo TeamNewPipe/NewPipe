@@ -37,7 +37,7 @@ public final class AddTabDialog {
         dialog.show();
     }
 
-    static final class ChooseTabListItem {
+    public static final class ChooseTabListItem {
         final int tabId;
         @Nullable
         final Tab tab;
