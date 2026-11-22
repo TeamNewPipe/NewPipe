@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.ui
 
 import android.content.Context
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,6 +17,7 @@ object PortraitPlayerActionsDialog {
     fun show(context: Context) {
         val order = PortraitPlayerActions.keys(context).toMutableList()
         val adapter = ActionAdapter(context, order)
+        val preview = PortraitActionPreview(context, order)
         val scale = context.resources.displayMetrics.density
         fun dp(value: Int) = (value * scale + 0.5f).toInt()
         val hint = TextView(context).apply {
@@ -45,6 +47,7 @@ object PortraitPlayerActionsDialog {
                 val moved = order.removeAt(from)
                 order.add(to, moved)
                 adapter.notifyItemMoved(from, to)
+                preview.update(order)
                 return true
             }
 
@@ -54,6 +57,7 @@ object PortraitPlayerActionsDialog {
 
         val content = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
+            addView(preview.view)
             addView(hint)
             addView(list)
         }
@@ -99,4 +103,42 @@ object PortraitPlayerActionsDialog {
 
         class Holder(val label: TextView) : RecyclerView.ViewHolder(label)
     }
+}
+
+/** Read-only miniature action strip. Reordering never touches playback controls or preferences. */
+internal class PortraitActionPreview(
+    context: Context,
+    initial: List<String>
+) {
+    private val row = LinearLayout(context).apply {
+        orientation = LinearLayout.HORIZONTAL
+    }
+    val view = HorizontalScrollView(context).apply {
+        isHorizontalScrollBarEnabled = true
+        addView(row)
+        contentDescription = context.getString(R.string.portrait_actions_preview_title)
+    }
+
+    init {
+        update(initial)
+    }
+
+    fun update(keys: List<String>) {
+        row.removeAllViews()
+        PortraitActionPreviewModel.visible(keys).forEach { key ->
+            val label = TextView(row.context).apply {
+                text = PortraitPlayerActions.label(context, key)
+                val inset = (10 * resources.displayMetrics.density).toInt()
+                setPadding(inset, inset, inset, inset)
+                setTextAppearance(com.google.android.material.R.style.TextAppearance_Material3_LabelMedium)
+            }
+            row.addView(label)
+        }
+    }
+}
+
+internal object PortraitActionPreviewModel {
+    private const val MAX_PREVIEW_ACTIONS = 8
+
+    fun visible(keys: List<String>): List<String> = keys.take(MAX_PREVIEW_ACTIONS)
 }
