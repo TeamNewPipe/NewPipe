@@ -1,0 +1,49 @@
+{
+  "total": 3,
+  "page": 2,
+  "per_page": 25,
+  "paging": {
+    "next": null,
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": [
+    {
+      "uri": "/videos/100101/comments/300103",
+      "text": "Earlier comment.",
+      "created_on": "2026-01-03T15:45:00+02:00",
+      "user": {
+        "uri": "/users/200101",
+        "name": "Example filmmaker",
+        "link": "https://vimeo.com/examplefilmmaker",
+        "pictures": {
+          "sizes": [
+            {
+              "width": 75,
+              "height": 75,
+              "link": "https://i.vimeocdn.com/portrait/example_75.jpg"
+            },
+            {
+              "width": 150,
+              "height": 150,
+              "link": "https://i.vimeocdn.com/portrait/example_150.jpg"
+            }
+          ]
+        }
+      },
+      "metadata": {
+        "connections": {
+          "replies": {
+            "uri": "/videos/100101/comments/300103/replies",
+            "total": 0,
+            "options": [
+              "GET",
+              "POST"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

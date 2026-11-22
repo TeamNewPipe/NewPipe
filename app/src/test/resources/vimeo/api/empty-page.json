@@ -1,0 +1,12 @@
+{
+  "total": 0,
+  "page": 1,
+  "per_page": 25,
+  "paging": {
+    "next": null,
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": []
+}

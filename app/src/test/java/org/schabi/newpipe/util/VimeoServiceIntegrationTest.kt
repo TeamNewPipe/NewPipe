@@ -2,7 +2,7 @@ package org.schabi.newpipe.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNull
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
@@ -53,7 +53,7 @@ class VimeoServiceIntegrationTest {
     }
 
     @Test
-    fun publicBrowsingDoesNotAdvertiseUnsupportedKeywordSearchOrShowcases() {
+    fun publicBrowsingIncludesShowcasesWhileApiSearchRequiresConfiguration() {
         assertFalse(ServiceSearchSupport.supportsSearch(ServiceList.Vimeo.serviceId))
         assertThrows(UnsupportedOperationException::class.java) {
             ServiceSearchSupport.requireSearchFactory(ServiceList.Vimeo.serviceId)
@@ -66,7 +66,7 @@ class VimeoServiceIntegrationTest {
         }
         assertTrue(ServiceSearchSupport.supportsSearch(ServiceList.YouTube.serviceId))
         assertSame(ServiceList.YouTube.searchQHFactory, ServiceSearchSupport.requireSearchFactory(ServiceList.YouTube.serviceId))
-        assertNull(ServiceList.Vimeo.playlistLHFactory)
+        assertNotNull(ServiceList.Vimeo.playlistLHFactory)
         val kiosks = ServiceList.Vimeo.kioskList
         assertEquals("Staff Picks", kiosks.defaultKioskId)
         assertEquals(setOf("Staff Picks"), kiosks.availableKiosks)
@@ -102,6 +102,18 @@ class VimeoServiceIntegrationTest {
         )) {
             assertSame(url, ServiceList.Vimeo, NewPipe.getServiceByUrl(url))
             assertEquals(url, StreamingService.LinkType.STREAM, ServiceList.Vimeo.getLinkTypeByUrl(url))
+        }
+    }
+
+    @Test
+    fun applicationServiceLookupKeepsCollectionsAndRecurringEventsSeparateFromVideoIds() {
+        for (url in listOf("https://vimeo.com/showcase/2632481", "https://vimeo.com/album/2632481", "https://vimeo.com/showcase/lean")) {
+            assertSame(ServiceList.Vimeo, NewPipe.getServiceByUrl(url))
+            assertEquals(StreamingService.LinkType.PLAYLIST, ServiceList.Vimeo.getLinkTypeByUrl(url))
+        }
+        for (url in listOf("https://vimeo.com/event/4768062", "https://vimeo.com/event/4768062/embed", "https://vimeo.com/event/4753126/videos/1247036786")) {
+            assertSame(ServiceList.Vimeo, NewPipe.getServiceByUrl(url))
+            assertEquals(StreamingService.LinkType.STREAM, ServiceList.Vimeo.getLinkTypeByUrl(url))
         }
     }
 }

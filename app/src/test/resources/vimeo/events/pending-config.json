@@ -1,0 +1,58 @@
+{
+  "view": 1,
+  "video": {
+    "id": 1085320934,
+    "title": "Skidmore College Commencement 2025",
+    "width": 940,
+    "height": 540,
+    "duration": 0,
+    "privacy": "anybody",
+    "embed_permission": "public",
+    "unlisted_hash": null,
+    "thumbnail_url": "https://i.vimeocdn.com/fixture/1085320934/2016862880-284ec76acc9458a51b177f3d05b21231db4f4cda1faa907b21eff4404157f3cc-d",
+    "owner": {
+      "name": "Skidmore College",
+      "url": "https://vimeo.com/user116066434",
+      "img": "https://i.vimeocdn.com/fixture/1085320934/99643168_60x60?fixture=redacted",
+      "img_2x": "https://i.vimeocdn.com/fixture/1085320934/99643168_60x60?fixture=redacted"
+    },
+    "live_event": {
+      "status": "pending",
+      "show_viewer_count": false,
+      "settings": {
+        "event_schedule": true,
+        "hide_live_label": false
+      },
+      "low_latency": false,
+      "dvr": true,
+      "archive": {
+        "status": "",
+        "source_url": ""
+      },
+      "ingest": {
+        "scheduled_start_time": "",
+        "start_time": 0,
+        "width": 0,
+        "height": 0,
+        "codecs": null
+      }
+    }
+  },
+  "request": {
+    "expires": 3600,
+    "files": {
+      "hls": {
+        "default_cdn": "akamai_live",
+        "separate_av": false,
+        "cdns": {
+          "akamai_live": {
+            "origin": "studio"
+          },
+          "fastly_live": {
+            "origin": "studio"
+          }
+        }
+      }
+    }
+  }
+}

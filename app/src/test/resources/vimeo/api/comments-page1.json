@@ -1,0 +1,67 @@
+{
+  "total": 3,
+  "page": 1,
+  "per_page": 25,
+  "paging": {
+    "next": "/videos/100101/comments?per_page=25&page=2&direction=desc",
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": [
+    {
+      "uri": "/videos/100101/comments/300101",
+      "text": "A thoughtful film. The scene at 1:20 is memorable.",
+      "created_on": "2026-01-03T15:45:00+02:00",
+      "user": {
+        "uri": "/users/200101",
+        "name": "Example filmmaker",
+        "link": "https://vimeo.com/examplefilmmaker",
+        "pictures": {
+          "sizes": [
+            {
+              "width": 75,
+              "height": 75,
+              "link": "https://i.vimeocdn.com/portrait/example_75.jpg"
+            },
+            {
+              "width": 150,
+              "height": 150,
+              "link": "https://i.vimeocdn.com/portrait/example_150.jpg"
+            }
+          ]
+        }
+      },
+      "metadata": {
+        "connections": {
+          "replies": {
+            "uri": "/videos/100101/comments/300101/replies",
+            "total": 2,
+            "options": [
+              "GET",
+              "POST"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "uri": "/videos/100101/comments/300102",
+      "text": "Comment by a removed account.",
+      "created_on": "2026-01-03T15:45:00+02:00",
+      "user": null,
+      "metadata": {
+        "connections": {
+          "replies": {
+            "uri": "/videos/100101/comments/300102/replies",
+            "total": 0,
+            "options": [
+              "GET",
+              "POST"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

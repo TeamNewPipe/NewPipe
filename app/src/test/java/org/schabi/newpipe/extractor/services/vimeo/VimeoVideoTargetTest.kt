@@ -76,7 +76,6 @@ class VimeoVideoTargetTest {
             "https://player.vimeo.com/35572051",
             "https://vimeo.com/video/35572051",
             "https://vimeo.com/manage/videos/35572051",
-            "https://vimeo.com/event/35572051",
             "https://vimeo.com/ondemand/35572051",
             "https://vimeo.com/user123/review/35572051/8272103f6e",
             "https://vimeo.com/showcase/123",
@@ -88,5 +87,6 @@ class VimeoVideoTargetTest {
         }
         assertNotNull(VimeoVideoTarget.fromId("9223372036854775807"))
         assertNull(VimeoVideoTarget.fromId("35572051/8272103f6e/extra"))
+        assertNull(VimeoVideoTarget.fromUrl("https://vimeo.com/event/35572051"))
     }
 }

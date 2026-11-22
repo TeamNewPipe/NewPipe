@@ -1,0 +1,31 @@
+{
+  "total": 3,
+  "page": 2,
+  "per_page": 25,
+  "paging": {
+    "next": null,
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": [
+    {
+      "uri": "/videos/100103",
+      "name": "Ocean",
+      "description": "Synthetic public-video contract fixture.",
+      "link": "https://vimeo.com/100103",
+      "duration": 42,
+      "created_time": "2026-01-01T10:00:00+00:00",
+      "privacy": {
+        "view": "anybody"
+      },
+      "stats": {
+        "plays": null
+      },
+      "user": null,
+      "pictures": {
+        "sizes": []
+      }
+    }
+  ]
+}

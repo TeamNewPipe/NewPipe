@@ -76,6 +76,7 @@ import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ServiceSearchSupport;
+import org.schabi.newpipe.util.VimeoSearchSetupDialog;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -249,6 +250,8 @@ public class MainFragment extends BaseFragment
         updateMainNavigationMode();
         scheduleBottomNavigationRemeasure();
         observeHomeGroupIcons();
+        updateContextualSearchToolbar(false);
+        requireActivity().invalidateOptionsMenu();
     }
 
     @Override
@@ -724,7 +727,7 @@ public class MainFragment extends BaseFragment
 
         contextualSearchContainer.setVisibility(contextualSearchOpen ? View.VISIBLE : View.GONE);
         binding.contextualGlobalSearchFab.setVisibility(
-                contextualSearchOpen && ServiceSearchSupport.supportsSearch(
+                contextualSearchOpen && ServiceSearchSupport.canOpenSearch(
                         ServiceHelper.getSelectedServiceId(requireContext()))
                         && KidsMode.isSearchAllowed(requireContext(),
                         ServiceHelper.getSelectedServiceId(requireContext()))
@@ -775,8 +778,12 @@ public class MainFragment extends BaseFragment
     private void openGlobalSearchFromContext() {
         final String query = ContextualSearchHelper.normalizeQuery(
                 contextualSearchEditText == null ? "" : contextualSearchEditText.getText());
-        closeContextualSearch();
         try {
+            if (VimeoSearchSetupDialog.showIfRequired(getFM(),
+                    ServiceHelper.getSelectedServiceId(activity), query)) {
+                return;
+            }
+            closeContextualSearch();
             NavigationHelper.openSearchFragment(getFM(),
                     ServiceHelper.getSelectedServiceId(activity), query);
         } catch (final Exception e) {

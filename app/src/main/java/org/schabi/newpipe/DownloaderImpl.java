@@ -102,6 +102,7 @@ public final class DownloaderImpl extends Downloader {
                     }
                     return chain.proceed(request.newBuilder().header("Cookie", cookies).build());
                 })
+                .addNetworkInterceptor(new org.schabi.newpipe.network.VimeoApiRedirectInterceptor())
                 .readTimeout(30, TimeUnit.SECONDS)
 //                .cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"),
 //                        16 * 1024 * 1024))

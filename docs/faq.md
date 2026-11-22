@@ -67,18 +67,46 @@ main [README](../README.md#supported-services) for the current list.
 
 ## How do I use Vimeo?
 
-Select Vimeo, then browse **Staff Picks** or choose **Open link** to paste a Vimeo video, creator or
-channel URL. Android's Share action can also send a supported Vimeo link to WizeStream. Public
-creator uploads and thematic channels load additional pages as you scroll.
+Select Vimeo, then browse **Staff Picks** or choose **Open link** to paste a Vimeo video, creator,
+channel, showcase/album or live-event URL. Android's Share action can also send a supported Vimeo
+link to WizeStream. Public creator uploads and thematic channels load additional pages as you scroll.
+Public showcases, including legacy album links and custom showcase names, open as playlists.
 
 Public videos and shared unlisted video links play when Vimeo exposes an unencrypted stream.
 Keep the complete unlisted URL, including its access hash. Available captions use the native
 player. Downloads appear only when Vimeo provides a progressive video file; videos offering
 only adaptive streams can be played but cannot be downloaded by this integration.
 
-Vimeo keyword search, whole showcase/album lists, live events, comments and account sign-in are unavailable.
-Individual video links inside showcases/albums are supported. Password-protected, private,
-domain-restricted and DRM-only videos are not supported.
+Public live-event links open the broadcast or recording that Vimeo currently selects. Upcoming
+events have no playable stream until the broadcaster starts. Recurring event URLs retain their
+event identity; explicit archive links open only the recording advertised for that event.
+
+**Optional global search and comments:** Vimeo requires an API token even for public API data.
+The standard **Search Vimeo** action stays available while filtering tabs such as **What's New**.
+If API access is not configured, it offers **Open Vimeo settings** and keeps your query while you
+set up access. Canceling setup leaves the local filter intact. **Open link** in the same prompt
+lets you enter a supported public URL without setting up API access.
+
+To enable keyword search and reading public video comments/replies:
+
+1. Follow [Vimeo's official token instructions](https://help.vimeo.com/hc/en-us/articles/12427789081745-How-to-generate-a-personal-access-token)
+   to create an API app in your Vimeo developer account.
+2. Generate an **Unauthenticated** token for public data only. WizeStream accepts only the `public`
+   scope and rejects tokens granting private data, editing, uploading or other account permissions.
+3. Open **Settings > Content > Vimeo > Set public API token**, paste the token and choose **Verify and save**.
+4. Return to Vimeo. A search started before setup continues with its original query, and public
+   videos have a comments tab. Search uses relevance order; comments use Vimeo's chronological
+   order. Replies open from their parent comment.
+
+The token stays encrypted on that device and is excluded from backups and Device Sync. Configure
+each device separately; **Remove API token** disables the optional API features. Public playback,
+showcases and events still work without a token. Large showcases whose public embed omits members
+can use API pagination when a token is configured; incomplete lists are never presented as complete.
+Vimeo's regional restrictions, API quotas and content permissions still apply.
+
+Account sign-in inside WizeStream, posting or liking comments, live chat, account libraries,
+password-protected, private, domain-restricted and DRM-only videos are not supported. Unlisted
+video playback preserves its share hash; public API access to its discussion is not guaranteed.
 
 ## How do bulk downloads work?
 

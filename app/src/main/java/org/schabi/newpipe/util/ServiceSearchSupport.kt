@@ -3,12 +3,17 @@ package org.schabi.newpipe.util
 import android.view.MenuItem
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.linkhandler.SearchQueryHandlerFactory
 
 /** A missing search factory is a service capability, not an empty search result. */
 object ServiceSearchSupport {
     @JvmStatic
     fun supportsSearch(serviceId: Int): Boolean = NewPipe.getService(serviceId).searchQHFactory != null
+
+    /** Keep configurable search discoverable even before its API access is ready. */
+    @JvmStatic
+    fun canOpenSearch(serviceId: Int): Boolean = serviceId == ServiceList.Vimeo.serviceId || supportsSearch(serviceId)
 
     @JvmStatic
     fun requireSearchFactory(serviceId: Int): SearchQueryHandlerFactory {
@@ -19,7 +24,7 @@ object ServiceSearchSupport {
 
     @JvmStatic
     fun configureAction(item: MenuItem, serviceId: Int, localSearch: Boolean) {
-        val search = localSearch || supportsSearch(serviceId)
+        val search = localSearch || canOpenSearch(serviceId)
         item.setTitle(if (search) R.string.search else R.string.open_link)
         item.setIcon(if (search) R.drawable.ic_search else R.drawable.ic_link)
     }

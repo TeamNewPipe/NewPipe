@@ -128,6 +128,7 @@ open class App :
         )
 
         org.schabi.newpipe.settings.InvidiousMediaPreferences.configure(this)
+        org.schabi.newpipe.settings.VimeoApiSettings.configure(this)
 
         NewPipe.init(
             getDownloader(),

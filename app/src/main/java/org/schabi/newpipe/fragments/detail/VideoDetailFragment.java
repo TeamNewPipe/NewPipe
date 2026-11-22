@@ -491,7 +491,9 @@ public final class VideoDetailFragment
         restoreCollapsedMiniPlayerOrientationAfterResume();
         scheduleResumeLayoutRestore();
 
-        if (tabSettingsChanged) {
+        if (tabSettingsChanged
+                || org.schabi.newpipe.util.VimeoCommentsSupport.shouldRefreshTabs(
+                        serviceId, pageAdapter, COMMENTS_TAB_TAG, shouldShowComments())) {
             tabSettingsChanged = false;
             initTabs();
             if (currentInfo != null) {
@@ -1856,7 +1858,9 @@ public final class VideoDetailFragment
 
     private boolean shouldShowComments() {
         try {
-            return showComments && NewPipe.getService(serviceId)
+            return showComments
+                    && org.schabi.newpipe.util.VimeoCommentsSupport.supportsUrl(serviceId, url)
+                    && NewPipe.getService(serviceId)
                     .getServiceInfo()
                     .getMediaCapabilities()
                     .contains(COMMENTS);

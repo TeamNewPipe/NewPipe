@@ -173,12 +173,21 @@ WizeStream supports these services through extractor source integrated directly 
 - BitChute
 - Rumble
 - Odysee (experimental)
-- Vimeo (public videos, shared unlisted links, public creators/channels and Staff Picks)
+- Vimeo (public videos, shared unlisted links, creators/channels, Staff Picks, showcases and live events)
 
-For Vimeo, use **Open link** or share a video/channel URL to WizeStream. Native playback supports
-the unencrypted streams Vimeo exposes, with captions when available. Downloads require a
-progressive video file. Keyword search, showcase/album browsing, sign-in and protected videos
-are not supported. Keep the full URL when sharing an unlisted video so its access hash is retained.
+For Vimeo, use **Open link** or share a video, channel, showcase/album or event URL to WizeStream.
+Public showcases open as playlists; event links follow the broadcast or recording Vimeo selects.
+Native playback supports the unencrypted streams Vimeo exposes, with captions when available.
+Downloads require a progressive video file. Keep the full URL when sharing an unlisted video so
+its access hash is retained.
+
+Global keyword search and reading public video comments/replies require an optional **public-only
+Vimeo API token** in **Settings > Content > Vimeo**. **Search Vimeo** stays visible and offers
+direct setup when needed, preserving the query when you return. The user supplies a token from their own Vimeo
+API app; WizeStream verifies its scope and stores it encrypted on the device, outside backups and
+Device Sync. No shared credential is included in the app. Normal public playback, showcases and
+events do not require it. Account sign-in, posting comments, live chat and protected videos remain
+unsupported. See the [Vimeo setup guide](docs/faq.md#how-do-i-use-vimeo).
 
 YouTube playback and downloads use conventional progressive, DASH, and HLS stream URLs exposed by
 the bundled extractor source.

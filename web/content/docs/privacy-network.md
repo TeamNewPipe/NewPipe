@@ -11,6 +11,7 @@ Incognito is not a VPN. Your media service, proxy, receiver or network provider 
 | Feature | What leaves the device when used |
 | --- | --- |
 | Normal streaming | Requests to the chosen service and its media hosts, with normal connection information. |
+| Optional Vimeo API features | Search keywords or public video/showcase identifiers, plus your configured public-only API token sent to Vimeo's API over HTTPS. |
 | Update checks | Requests to the WizeStream GitHub Releases API when checks are enabled or requested. |
 | SponsorBlock playback | Supported public video lookups to the selected community service. |
 | SponsorBlock contributions | The public submission/vote and a private persistent contribution ID, after explicit opt-in. |
@@ -25,6 +26,12 @@ An optional community provider has its own policies. Disabling a feature is diff
 On Android 12 and newer, translation can use Android’s on-device translation framework when the required language pair is already present and ready. WizeStream does not download a translation model or provide a cloud fallback for this feature.
 
 Language detection uses Android text-classification services, which can be supplied by the OS or device manufacturer in a local process. A missing Translate action can reflect language detection, matching languages or an unavailable ready language pair rather than a missing Google login.
+
+## Optional Vimeo API access
+
+Global Vimeo video search and public comments/replies can use a token you supply under **Settings > Content > Vimeo**. Vimeo receives the token to identify your API app and apply its request limits. WizeStream verifies that it grants only public access, sends it only in an HTTPS authorization header to `api.vimeo.com`, and rejects redirects for these authenticated requests.
+
+The token is encrypted with Android Keystore and stored only on that device, outside preferences, backups and Device Sync. Removing it disables the optional API features; ordinary public video, showcase and event playback continues without it. This integration does not sign in to a Vimeo account or request private account data.
 
 ## Proxy connections
 
@@ -46,7 +53,7 @@ Direct YouTube requests remain blocked in Invidious mode until an explicit direc
 
 Device Sync uses encrypted peer-to-peer connections after one-time QR pairing. Search history is excluded unless enabled on both devices. Actual downloaded media files are not transferred.
 
-Portable backups can contain personal library information even when the app uses no cloud account. Share those files intentionally and review them before sending them to anyone. Proxy credentials and private SponsorBlock contribution identity are not normal backup/sync content.
+Portable backups can contain personal library information even when the app uses no cloud account. Share those files intentionally and review them before sending them to anyone. Proxy credentials, Vimeo API tokens and private SponsorBlock contribution identity are not normal backup/sync content.
 
 ## Error reports are deliberate
 

@@ -1,0 +1,64 @@
+{
+  "view": 1,
+  "video": {
+    "id": 1240101097,
+    "title": "Graceland Cam",
+    "width": 1280,
+    "height": 720,
+    "duration": 0,
+    "privacy": "anybody",
+    "embed_permission": "public",
+    "unlisted_hash": null,
+    "thumbnail_url": "https://i.vimeocdn.com/fixture/1240101097/2217824681-47b7a7660f041e7419d6139bb0e94ed79879a35250bbfcd9fcac5c5bd3944003-d",
+    "owner": {
+      "name": "Elvis Presley's Graceland",
+      "url": "https://vimeo.com/visitgraceland",
+      "img": "https://i.vimeocdn.com/fixture/1240101097/79703567_60x60?fixture=redacted",
+      "img_2x": "https://i.vimeocdn.com/fixture/1240101097/79703567_60x60?fixture=redacted"
+    },
+    "live_event": {
+      "status": "started",
+      "show_viewer_count": false,
+      "settings": {
+        "event_schedule": false,
+        "hide_live_label": false
+      },
+      "low_latency": false,
+      "dvr": false,
+      "archive": {
+        "status": "started",
+        "source_url": ""
+      },
+      "ingest": {
+        "scheduled_start_time": "",
+        "start_time": 1793195660,
+        "width": 1280,
+        "height": 720,
+        "codecs": [
+          "avc"
+        ]
+      }
+    }
+  },
+  "request": {
+    "expires": 3600,
+    "files": {
+      "hls": {
+        "default_cdn": "akamai_live",
+        "separate_av": false,
+        "cdns": {
+          "akamai_live": {
+            "avc_url": "https://live-api.vimeocdn.com/fixture/1240101097/hls.m3u8?fixture=redacted",
+            "origin": "studio",
+            "url": "https://live-api.vimeocdn.com/fixture/1240101097/hls.m3u8?fixture=redacted"
+          },
+          "fastly_live": {
+            "avc_url": "https://live-api.vimeocdn.com/fixture/1240101097/hls.m3u8?fixture=redacted",
+            "origin": "studio",
+            "url": "https://live-api.vimeocdn.com/fixture/1240101097/hls.m3u8?fixture=redacted"
+          }
+        }
+      }
+    }
+  }
+}

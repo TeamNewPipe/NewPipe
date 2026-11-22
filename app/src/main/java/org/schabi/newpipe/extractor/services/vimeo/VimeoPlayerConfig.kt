@@ -19,6 +19,36 @@ import org.schabi.newpipe.extractor.exceptions.PrivateContentException
 internal object VimeoPlayerConfig {
     private val ASSIGNMENT = Regex("\\b(?:window\\.)?(?:playerConfig|config)\\s*=\\s*(?=\\{)")
 
+    /** Reads one named JSON assignment from public embed markup, never a script's executable code. */
+    fun assignment(document: Document, variable: String): JsonObject? {
+        val pattern = Regex("\\b(?:window\\.)?${Regex.escape(variable)}\\s*=\\s*(?=\\{)")
+        for (script in document.select("script")) {
+            val source = script.data()
+            val match = pattern.find(source) ?: continue
+            val json = balancedObject(source, match.range.last + 1)
+                ?: throw ParsingException("Vimeo embed returned incomplete public metadata")
+            return try {
+                JsonParser.`object`().from(json)
+            } catch (error: Exception) {
+                throw ParsingException("Vimeo embed returned invalid public metadata", error)
+            }
+        }
+        return null
+    }
+
+    /** Config links are accepted only when the public embed explicitly associates them with a clip. */
+    fun configTarget(url: String, expectedVideoId: String): VimeoVideoTarget {
+        val uri = VimeoVideoTarget.publicUri(url)
+            ?: throw ParsingException("Invalid Vimeo player configuration origin")
+        if (uri.scheme != "https" || !uri.host.equals("player.vimeo.com", true) || uri.rawFragment != null ||
+            uri.rawPath != "/video/$expectedVideoId/config"
+        ) {
+            throw ParsingException("Vimeo configuration link belongs to another video")
+        }
+        return VimeoVideoTarget.fromUrl("https://player.vimeo.com/video/$expectedVideoId" + uri.rawQuery?.let { "?$it" }.orEmpty())
+            ?: throw ParsingException("Invalid Vimeo configuration video identity")
+    }
+
     fun fromDocument(document: Document, target: VimeoVideoTarget): JsonObject {
         val redirected = VimeoVideoTarget.fromUrl(document.location())
         if (redirected == null || redirected.videoId != target.videoId ||

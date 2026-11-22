@@ -1,0 +1,58 @@
+{
+  "view": 1,
+  "video": {
+    "id": 1247036786,
+    "title": "Salem Live Event",
+    "width": 1280,
+    "height": 720,
+    "duration": 2777,
+    "privacy": "anybody",
+    "embed_permission": "public",
+    "unlisted_hash": null,
+    "thumbnail_url": "https://i.vimeocdn.com/fixture/1247036786/2228005624-0381a7356087a4089d55e905b193342bd19f030461658c9b4443ff8a4ad256df-d",
+    "owner": {
+      "name": "Salem United Church of Christ",
+      "url": "https://vimeo.com/user230181094",
+      "img": "https://i.vimeocdn.com/fixture/1247036786/defaults-blue_60x60?fixture=redacted",
+      "img_2x": "https://i.vimeocdn.com/fixture/1247036786/defaults-blue_60x60?fixture=redacted"
+    },
+    "live_event": null
+  },
+  "request": {
+    "expires": 11108,
+    "files": {
+      "hls": {
+        "default_cdn": "akfire_interconnect_quic",
+        "separate_av": true,
+        "cdns": {
+          "akfire_interconnect_quic": {
+            "avc_url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1247036786/playlist.m3u8?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1247036786/playlist.m3u8?fixture=redacted"
+          },
+          "fastly_skyfire": {
+            "avc_url": "https://skyfire.vimeocdn.com/fixture/1247036786/playlist.m3u8?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://skyfire.vimeocdn.com/fixture/1247036786/playlist.m3u8?fixture=redacted"
+          }
+        }
+      },
+      "dash": {
+        "default_cdn": "akfire_interconnect_quic",
+        "separate_av": true,
+        "cdns": {
+          "akfire_interconnect_quic": {
+            "avc_url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1247036786/playlist.json?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1247036786/playlist.json?fixture=redacted"
+          },
+          "fastly_skyfire": {
+            "avc_url": "https://skyfire.vimeocdn.com/fixture/1247036786/playlist.json?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://skyfire.vimeocdn.com/fixture/1247036786/playlist.json?fixture=redacted"
+          }
+        }
+      }
+    }
+  }
+}

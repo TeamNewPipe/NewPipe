@@ -70,7 +70,7 @@ class VimeoAppIntegrationTest {
     }
 
     @Test
-    fun androidViewIntentsResolveSupportedVimeoVideoAndChannelFormsToRouter() {
+    fun androidViewIntentsResolveSupportedVimeoVideoChannelShowcaseAndEventFormsToRouter() {
         for (url in listOf(
             "https://vimeo.com/76979871",
             "http://www.vimeo.com/76979871",
@@ -80,6 +80,13 @@ class VimeoAppIntegrationTest {
             "https://vimeo.com/groups/shortfilms/videos/76979871",
             "https://vimeo.com/album/123/video/76979871",
             "https://vimeo.com/showcase/123/video/76979871",
+            "https://vimeo.com/showcase/2632481",
+            "https://vimeo.com/album/2632481",
+            "https://vimeo.com/showcase/lean",
+            "https://vimeo.com/showcase/2632481/embed",
+            "https://vimeo.com/event/4768062",
+            "https://vimeo.com/event/4768062/embed",
+            "https://vimeo.com/event/4753126/videos/1247036786",
             "https://vimeo.com/channels/staffpicks",
             "https://vimeo.com/vimeo/videos",
             "https://vimeo.com/vimeo/videos/"
@@ -97,12 +104,12 @@ class VimeoAppIntegrationTest {
     }
 
     @Test
-    fun unsupportedGlobalSearchIsLabelledOpenLinkAndLocalFilteringStaysSearch() {
+    fun vimeoGlobalSearchAndLocalFilteringKeepTheSearchActionDiscoverable() {
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             val themed = ContextThemeWrapper(context, R.style.DarkTheme_Vimeo)
             val item = Toolbar(themed).menu.add("Search")
             ServiceSearchSupport.configureAction(item, ServiceList.Vimeo.serviceId, false)
-            assertEquals(context.getString(R.string.open_link), item.title.toString())
+            assertEquals(context.getString(R.string.search), item.title.toString())
             assertNotNull(item.icon)
             ServiceSearchSupport.configureAction(item, ServiceList.Vimeo.serviceId, true)
             assertEquals(context.getString(R.string.search), item.title.toString())

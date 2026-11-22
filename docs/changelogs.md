@@ -7,7 +7,11 @@ Release history is listed newest first. The number beside each release is its An
 ### Vimeo
 
 - Add Vimeo public videos and shared unlisted links with native playback and available captions, plus paginated public creator/channel uploads and Staff Picks.
-- Use Open link for Vimeo navigation; downloads require an advertised progressive video file. Keyword search, whole showcase/album lists, comments, sign-in and protected videos are unsupported.
+- Open full public showcases and legacy albums as playlists, including custom showcase links; keep restricted or incomplete collections explicit.
+- Add public live-event links with active, upcoming and archived playback states while preserving recurring event identity.
+- Add optional global video search and public comments/replies through a user-supplied, public-only Vimeo API token, verified and encrypted locally outside backups and Device Sync.
+- Keep Search Vimeo available from local search, offer direct API setup when needed, and continue with the original query after configuration.
+- Use Open link for public Vimeo navigation; downloads require an advertised progressive video file. Account sign-in, comment posting, live chat and protected videos remain unsupported.
 
 ## WizeStream 1.50.0 (`1050000`)
 

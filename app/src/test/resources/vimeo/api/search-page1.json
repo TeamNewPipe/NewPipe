@@ -1,0 +1,109 @@
+{
+  "total": 3,
+  "page": 1,
+  "per_page": 25,
+  "paging": {
+    "next": "/videos?query=nature%20%26%20water&per_page=25&page=2&sort=relevant",
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": [
+    {
+      "uri": "/videos/100101",
+      "name": "Nature and water",
+      "description": "Synthetic public-video contract fixture.",
+      "link": "https://vimeo.com/100101",
+      "duration": 42,
+      "release_time": "2026-01-02T12:30:00+02:00",
+      "created_time": "2026-01-01T10:00:00+00:00",
+      "privacy": {
+        "view": "anybody"
+      },
+      "stats": {
+        "plays": 1234
+      },
+      "user": {
+        "uri": "/users/200101",
+        "name": "Example filmmaker",
+        "link": "https://vimeo.com/examplefilmmaker",
+        "pictures": {
+          "sizes": [
+            {
+              "width": 75,
+              "height": 75,
+              "link": "https://i.vimeocdn.com/portrait/example_75.jpg"
+            },
+            {
+              "width": 150,
+              "height": 150,
+              "link": "https://i.vimeocdn.com/portrait/example_150.jpg"
+            }
+          ]
+        }
+      },
+      "pictures": {
+        "sizes": [
+          {
+            "width": 640,
+            "height": 360,
+            "link": "https://i.vimeocdn.com/video/example_100101_640.jpg"
+          },
+          {
+            "width": 1280,
+            "height": 720,
+            "link": "https://i.vimeocdn.com/video/example_100101_1280.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "uri": "/videos/100102",
+      "name": "Waterfall study",
+      "description": "Synthetic public-video contract fixture.",
+      "link": "https://vimeo.com/100102",
+      "duration": 42,
+      "release_time": "2026-01-02T12:30:00+02:00",
+      "created_time": "2026-01-01T10:00:00+00:00",
+      "privacy": {
+        "view": "anybody"
+      },
+      "stats": {
+        "plays": 1234
+      },
+      "user": {
+        "uri": "/users/200101",
+        "name": "Example filmmaker",
+        "link": "https://vimeo.com/examplefilmmaker",
+        "pictures": {
+          "sizes": [
+            {
+              "width": 75,
+              "height": 75,
+              "link": "https://i.vimeocdn.com/portrait/example_75.jpg"
+            },
+            {
+              "width": 150,
+              "height": 150,
+              "link": "https://i.vimeocdn.com/portrait/example_150.jpg"
+            }
+          ]
+        }
+      },
+      "pictures": {
+        "sizes": [
+          {
+            "width": 640,
+            "height": 360,
+            "link": "https://i.vimeocdn.com/video/example_100102_640.jpg"
+          },
+          {
+            "width": 1280,
+            "height": 720,
+            "link": "https://i.vimeocdn.com/video/example_100102_1280.jpg"
+          }
+        ]
+      }
+    }
+  ]
+}

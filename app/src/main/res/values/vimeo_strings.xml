@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vimeo_settings_key" translatable="false">vimeo_settings</string>
+    <string name="vimeo_api_set_key" translatable="false">vimeo_api_set</string>
+    <string name="vimeo_api_help_key" translatable="false">vimeo_api_help</string>
+    <string name="vimeo_api_remove_key" translatable="false">vimeo_api_remove</string>
+    <string name="vimeo_settings_title" translatable="false">Vimeo</string>
+    <string name="vimeo_settings_summary">Optional public API access for global video search and comments</string>
+    <string name="vimeo_search_setup_message">Vimeo keyword search requires a public API token. Open Vimeo settings to enable search, then return to continue with your query.</string>
+    <string name="vimeo_search_setup_action">Open Vimeo settings</string>
+    <string name="vimeo_link_entry_message">Paste a public or shared unlisted Vimeo video, creator, channel, showcase or event link.</string>
+    <string name="vimeo_api_set_title">Set public API token</string>
+    <string name="vimeo_api_not_configured">Not configured. Public videos, showcases and events work without a token.</string>
+    <string name="vimeo_api_configured">Public API access is configured on this device. Search and public video comments are available.</string>
+    <string name="vimeo_api_token_hint">Vimeo API access token</string>
+    <string name="vimeo_api_token_message">Paste an unauthenticated Vimeo API token with only the public scope. It enables global video search and reading public comments. The token stays encrypted on this device and is excluded from backups and Device Sync.</string>
+    <string name="vimeo_api_verify">Verify and save</string>
+    <string name="vimeo_api_invalid_token">Enter the access token alone, without the Bearer prefix or spaces.</string>
+    <string name="vimeo_api_verification_error">Vimeo could not verify a public-only token. Check the token, its permissions, your connection and API request limits, then try again.</string>
+    <string name="vimeo_api_storage_error">Could not update the securely stored Vimeo token.</string>
+    <string name="vimeo_api_saved">Vimeo search and public comments enabled</string>
+    <string name="vimeo_api_help_title">How to get a public token</string>
+    <string name="vimeo_api_help_summary">Open Vimeo’s instructions. Create an API app, then choose an Unauthenticated token for public data only.</string>
+    <string name="vimeo_api_remove_title">Remove API token</string>
+    <string name="vimeo_api_remove_summary">Disable API search and comments on this device. Public playback and showcases remain available.</string>
+    <string name="vimeo_api_removed">Vimeo API token removed</string>
+</resources>

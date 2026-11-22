@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.StreamingService
 
 /** Link entry for services that offer public browsing but no anonymous keyword search. */
@@ -29,7 +30,13 @@ class OpenServiceLinkDialog : DialogFragment() {
         input = editText
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.open_link)
-            .setMessage(getString(R.string.service_keyword_search_unavailable, service.serviceInfo.name))
+            .setMessage(
+                if (serviceId == ServiceList.Vimeo.serviceId) {
+                    getString(R.string.vimeo_link_entry_message)
+                } else {
+                    getString(R.string.service_keyword_search_unavailable, service.serviceInfo.name)
+                }
+            )
             .setView(content)
             .setNegativeButton(R.string.cancel, null)
             .setPositiveButton(R.string.feed_preview_open, null)
@@ -65,7 +72,13 @@ class OpenServiceLinkDialog : DialogFragment() {
 
         @JvmStatic
         fun showIfSearchUnsupported(manager: FragmentManager, serviceId: Int, query: String): Boolean {
+            if (VimeoSearchSetupDialog.showIfRequired(manager, serviceId, query)) return true
             if (ServiceSearchSupport.supportsSearch(serviceId)) return false
+            showForService(manager, serviceId, query)
+            return true
+        }
+
+        fun showForService(manager: FragmentManager, serviceId: Int, query: String) {
             if (!manager.isStateSaved && manager.findFragmentByTag(TAG) == null) {
                 OpenServiceLinkDialog().apply {
                     arguments = Bundle().apply {
@@ -74,7 +87,6 @@ class OpenServiceLinkDialog : DialogFragment() {
                     }
                 }.show(manager, TAG)
             }
-            return true
         }
 
         internal fun acceptsLink(serviceId: Int, url: String): Boolean = runCatching {

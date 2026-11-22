@@ -1,0 +1,31 @@
+{
+  "total": 2,
+  "page": 2,
+  "per_page": 25,
+  "paging": {
+    "next": null,
+    "previous": null,
+    "first": null,
+    "last": null
+  },
+  "data": [
+    {
+      "uri": "/videos/100101/comments/300105",
+      "text": "Second reply.",
+      "created_on": "2026-01-03T15:45:00+02:00",
+      "user": null,
+      "metadata": {
+        "connections": {
+          "replies": {
+            "uri": "/videos/100101/comments/300105/replies",
+            "total": 0,
+            "options": [
+              "GET",
+              "POST"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

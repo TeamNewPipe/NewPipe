@@ -9,12 +9,14 @@ import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory
 
 class VimeoStreamLinkHandlerFactory private constructor() : LinkHandlerFactory() {
     override fun getId(url: String): String = VimeoVideoTarget.fromUrl(url)?.id
+        ?: VimeoEventTarget.fromUrl(url)?.id
         ?: throw ParsingException("Not a supported Vimeo video URL")
 
     override fun getUrl(id: String): String = VimeoVideoTarget.fromId(id)?.canonicalUrl
+        ?: VimeoEventTarget.fromId(id)?.canonicalUrl
         ?: throw ParsingException("Invalid Vimeo video identity")
 
-    override fun onAcceptUrl(url: String): Boolean = VimeoVideoTarget.fromUrl(url) != null
+    override fun onAcceptUrl(url: String): Boolean = VimeoVideoTarget.fromUrl(url) != null || VimeoEventTarget.fromUrl(url) != null
 
     companion object {
         @JvmField val INSTANCE = VimeoStreamLinkHandlerFactory()

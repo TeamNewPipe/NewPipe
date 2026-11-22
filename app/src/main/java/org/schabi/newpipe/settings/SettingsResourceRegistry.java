@@ -34,6 +34,7 @@ public final class SettingsResourceRegistry {
         add(AppearanceSettingsFragment.class, R.xml.appearance_settings);
         add(ThemePackSettingsFragment.class, R.xml.theme_pack_settings);
         add(ContentSettingsFragment.class, R.xml.content_settings);
+        add(VimeoSettingsFragment.class, R.xml.vimeo_settings);
         add(ContentBlockingSettingsFragment.class, R.xml.content_blocking_settings);
         add(DebugSettingsFragment.class, R.xml.debug_settings).setSearchable(false);
         add(DownloadSettingsFragment.class, R.xml.download_settings);

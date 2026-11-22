@@ -1,0 +1,58 @@
+{
+  "view": 1,
+  "video": {
+    "id": 1082194134,
+    "title": "Skidmore College Commencement 2025",
+    "width": 1280,
+    "height": 720,
+    "duration": 9810,
+    "privacy": "anybody",
+    "embed_permission": "public",
+    "unlisted_hash": null,
+    "thumbnail_url": "https://i.vimeocdn.com/fixture/1082194134/2016631467-47dec74079e8b19e265805c027b224e0721514a3d68b9e2c0a44b240d7e75660-d",
+    "owner": {
+      "name": "Skidmore College",
+      "url": "https://vimeo.com/user116066434",
+      "img": "https://i.vimeocdn.com/fixture/1082194134/99643168_60x60?fixture=redacted",
+      "img_2x": "https://i.vimeocdn.com/fixture/1082194134/99643168_60x60?fixture=redacted"
+    },
+    "live_event": null
+  },
+  "request": {
+    "expires": 39240,
+    "files": {
+      "hls": {
+        "default_cdn": "akfire_interconnect_quic",
+        "separate_av": true,
+        "cdns": {
+          "akfire_interconnect_quic": {
+            "avc_url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1082194134/playlist.m3u8?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1082194134/playlist.m3u8?fixture=redacted"
+          },
+          "fastly_skyfire": {
+            "avc_url": "https://skyfire.vimeocdn.com/fixture/1082194134/playlist.m3u8?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://skyfire.vimeocdn.com/fixture/1082194134/playlist.m3u8?fixture=redacted"
+          }
+        }
+      },
+      "dash": {
+        "default_cdn": "akfire_interconnect_quic",
+        "separate_av": true,
+        "cdns": {
+          "akfire_interconnect_quic": {
+            "avc_url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1082194134/playlist.json?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://vod-adaptive-ak.vimeocdn.com/fixture/1082194134/playlist.json?fixture=redacted"
+          },
+          "fastly_skyfire": {
+            "avc_url": "https://skyfire.vimeocdn.com/fixture/1082194134/playlist.json?fixture=redacted",
+            "origin": "gcs",
+            "url": "https://skyfire.vimeocdn.com/fixture/1082194134/playlist.json?fixture=redacted"
+          }
+        }
+      }
+    }
+  }
+}

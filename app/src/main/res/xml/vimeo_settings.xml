@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/vimeo_settings_title">
+
+    <Preference
+        android:key="@string/vimeo_api_set_key"
+        android:title="@string/vimeo_api_set_title"
+        android:summary="@string/vimeo_api_not_configured"
+        android:persistent="false"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <Preference
+        android:key="@string/vimeo_api_help_key"
+        android:title="@string/vimeo_api_help_title"
+        android:summary="@string/vimeo_api_help_summary"
+        android:persistent="false"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <Preference
+        android:key="@string/vimeo_api_remove_key"
+        android:title="@string/vimeo_api_remove_title"
+        android:summary="@string/vimeo_api_remove_summary"
+        android:persistent="false"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+</PreferenceScreen>

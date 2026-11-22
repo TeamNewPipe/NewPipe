@@ -523,7 +523,7 @@
                 <data android:host="*.bandcamp.com" />
             </intent-filter>
 
-            <!-- Vimeo video/channel links; the extractor validates IDs and unlisted hashes. -->
+            <!-- Vimeo videos, channels, showcases and events; extractors validate identities. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
@@ -548,11 +548,12 @@
                 <data android:pathPrefix="/8" />
                 <data android:pathPrefix="/9" />
                 <data android:pathPrefix="/channels/" />
+                <data android:pathPrefix="/album/" />
+                <data android:pathPrefix="/showcase/" />
+                <data android:pathPrefix="/event/" />
                 <data android:pathPattern="/.*/videos" />
                 <data android:pathPattern="/.*/videos/" />
                 <data android:pathPattern="/groups/.*/videos/.*" />
-                <data android:pathPattern="/album/.*/video/.*" />
-                <data android:pathPattern="/showcase/.*/video/.*" />
             </intent-filter>
 
             <intent-filter>

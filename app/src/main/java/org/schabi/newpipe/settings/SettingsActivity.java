@@ -147,7 +147,8 @@ public class SettingsActivity extends AppCompatActivity implements
             } else if (getIntent().getBooleanExtra(EXTRA_OPEN_PROFILES_SETTINGS, false)) {
                 initial = new ProfilesSettingsFragment();
             } else {
-                initial = twoPane ? new VideoAudioSettingsFragment() : new MainSettingsFragment();
+                initial = VimeoSettingsFragment.initialOrDefault(getIntent(),
+                        twoPane ? new VideoAudioSettingsFragment() : new MainSettingsFragment());
             }
             if (twoPane) {
                 getSupportFragmentManager().beginTransaction()

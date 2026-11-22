@@ -1,0 +1,48 @@
+{
+  "uri": "/videos/100104",
+  "name": "Shared fixture",
+  "description": "Synthetic public-video contract fixture.",
+  "link": "https://vimeo.com/100104/abcdef1234",
+  "duration": 42,
+  "release_time": "2026-01-02T12:30:00+02:00",
+  "created_time": "2026-01-01T10:00:00+00:00",
+  "privacy": {
+    "view": "unlisted"
+  },
+  "stats": {
+    "plays": 1234
+  },
+  "user": {
+    "uri": "/users/200101",
+    "name": "Example filmmaker",
+    "link": "https://vimeo.com/examplefilmmaker",
+    "pictures": {
+      "sizes": [
+        {
+          "width": 75,
+          "height": 75,
+          "link": "https://i.vimeocdn.com/portrait/example_75.jpg"
+        },
+        {
+          "width": 150,
+          "height": 150,
+          "link": "https://i.vimeocdn.com/portrait/example_150.jpg"
+        }
+      ]
+    }
+  },
+  "pictures": {
+    "sizes": [
+      {
+        "width": 640,
+        "height": 360,
+        "link": "https://i.vimeocdn.com/video/example_100104_640.jpg"
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "link": "https://i.vimeocdn.com/video/example_100104_1280.jpg"
+      }
+    ]
+  }
+}
