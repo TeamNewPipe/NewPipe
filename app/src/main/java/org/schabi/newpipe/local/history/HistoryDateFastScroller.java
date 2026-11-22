@@ -160,6 +160,11 @@ public final class HistoryDateFastScroller extends View {
 
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
+                if (!FastScrollerTouchTarget.INSTANCE.isOnThumb(
+                        event.getX(), event.getY(), getTrackCenterX(), getThumbCenterY(),
+                        dp(16), thumbHeight / 2f + dp(12))) {
+                    return false;
+                }
                 setDragging(true);
                 requestParentDisallowIntercept(true);
                 updateFromTouch(event.getY());
@@ -263,6 +268,11 @@ public final class HistoryDateFastScroller extends View {
                 Math.min(edgeInset, getWidth() - minimumCenter));
         return layoutDirection == LAYOUT_DIRECTION_RTL
                 ? insetCenter : getWidth() - insetCenter;
+    }
+
+    private float getThumbCenterY() {
+        final float travel = Math.max(1f, getHeight() - 2f * verticalInset);
+        return verticalInset + getFraction() * travel;
     }
 
     private float getFraction() {
