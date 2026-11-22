@@ -122,6 +122,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private final BottomPlayerControls bottomPlayerControls;
     private final PlayerUiTheme playerUiTheme;
     private final DanmakuController danmakuController;
+    private final DualCaptionController dualCaptionController;
     private final Handler controlsVisibilityHandler = new Handler(Looper.getMainLooper());
     private long lastTvBackPressedAt;
     private final PlayerQualityFeedback qualityFeedback;
@@ -171,6 +172,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         bottomPlayerControls = new BottomPlayerControls(binding);
         playerUiTheme = new PlayerUiTheme(context, binding.playbackSeekBar);
         danmakuController = new DanmakuController(player, binding);
+        dualCaptionController = new DualCaptionController(player, binding.playerVideoContent,
+                binding.subtitleView);
         qualityFeedback = new PlayerQualityFeedback(player);
         setupFromView();
         player.getCurrentStreamInfo().ifPresent(danmakuController::onMetadataChanged);
@@ -223,6 +226,10 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
         SeekHistoryUi.bind(binding, player);
         binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
+        binding.captionTextView.setOnLongClickListener(view -> {
+            dualCaptionController.showLanguagePicker();
+            return true;
+        });
         binding.resizeTextView.setOnClickListener(makeOnClickListener(this::onResizeClicked));
         binding.danmakuToggle.setOnClickListener(makeOnClickListener(danmakuController::toggle));
         binding.playbackLiveSync.setOnClickListener(makeOnClickListener(player::seekToDefault));
@@ -314,6 +321,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSeekBar.setOnSeekBarChangeListener(null);
         SeekHistoryUi.clear(binding);
         binding.captionTextView.setOnClickListener(null);
+        binding.captionTextView.setOnLongClickListener(null);
         binding.resizeTextView.setOnClickListener(null);
         binding.danmakuToggle.setOnClickListener(null);
         binding.playbackLiveSync.setOnClickListener(null);
@@ -462,6 +470,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackInformationButton.setOnClickListener(null);
         playerUiTheme.close();
         danmakuController.destroy();
+        dualCaptionController.release();
         seekbarPreviewThumbnailHolder.clear();
         super.destroy();
         clearScaledEndScreenThumbnail();
@@ -642,6 +651,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     + "currentProgress = [" + currentProgress + "], "
                     + "duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
         }
+        dualCaptionController.onProgress(currentProgress);
         binding.playbackLiveSync.setClickable(!player.isLiveEdge());
         binding.playbackSeekBar.setEnabled(player.canSeekCurrentWindow());
     }
@@ -938,6 +948,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         chapterController.clear(binding);
         binding.surfaceView.clearAspectRatio();
         danmakuController.reset();
+        dualCaptionController.clear();
         qualityFeedback.reset();
     }
 
@@ -1174,6 +1185,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.surfaceView.resetUserTransform();
 
         danmakuController.onMetadataChanged(info);
+        dualCaptionController.onMetadata(info);
         updateStreamRelatedViews();
 
         binding.titleTextView.setText(info.getName());
@@ -1193,6 +1205,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         videoSurface.selectItem(tag.getServiceId() + ":" + tag.getStreamUrl(), false);
         chapterController.clear(binding);
         danmakuController.reset();
+        dualCaptionController.clear();
         binding.surfaceView.resetUserTransform();
         binding.qualityTextView.setVisibility(View.GONE);
         binding.audioTrackTextView.setVisibility(View.GONE);
@@ -1428,6 +1441,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     showPopupMenu(captionPopupMenu, binding.captionTextView);
                 }));
 
+        captionPopupMenu.getMenu().add(POPUP_MENU_ID_CAPTION, -3, Menu.NONE,
+                R.string.dual_captions_title).setOnMenuItemClickListener(item -> {
+                    dualCaptionController.showLanguagePicker();
+                    return true;
+                });
         // apply caption language from previous user preference
         final int textRendererIndex = player.getCaptionRendererIndex();
         if (textRendererIndex == RENDERER_UNAVAILABLE) {
@@ -1709,7 +1727,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onCues(@NonNull final List<Cue> cues) {
         super.onCues(cues);
-        binding.subtitleView.setCues(cues);
+        dualCaptionController.renderPrimary(cues);
     }
 
     private void setupSubtitleView() {
@@ -1875,7 +1893,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             KoreUtils.playWithKore(context, Uri.parse(player.getVideoUrl()));
         }
     }
-
     private void onOpenInBrowserClicked() {
         player.getCurrentStreamInfo().ifPresent(streamInfo ->
                 ShareUtils.openUrlInBrowser(player.getContext(), streamInfo.getOriginalUrl()));
@@ -1885,17 +1902,14 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     // Video size
     //////////////////////////////////////////////////////////////////////////*/
     //region Video size
-
     protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
         binding.surfaceView.setResizeMode(resizeMode);
         binding.resizeTextView.setText(PlayerHelper.resizeTypeOf(context, resizeMode));
     }
-
     void onResizeClicked() {
         binding.surfaceView.resetUserTransform();
         setResizeMode(nextResizeModeAndSaveToPrefs(player, binding.surfaceView.getResizeMode()));
     }
-
     @Override
     public void onVideoSizeChanged(@NonNull final VideoSize videoSize) {
         super.onVideoSizeChanged(videoSize);
@@ -1906,20 +1920,17 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         updateQualityLabel(null);
         qualityFeedback.onVideoSizeChanged(videoSize, binding.getRoot());
     }
-
     private void applyVideoAspectRatio(@NonNull final VideoSize videoSize) {
         if (videoSize.width > 0 && videoSize.height > 0) {
             PlayerVideoGeometry.apply(binding.surfaceView, videoSize);
         }
     }
-
     private void restoreVideoAspectRatioFromPlayer() {
         final ExoPlayer exoPlayer = player.getExoPlayer();
         if (exoPlayer != null) {
             applyVideoAspectRatio(exoPlayer.getVideoSize());
         }
     }
-
     static float calculateDisplayAspectRatio(final int width,
                                              final int height,
                                              final int unappliedRotationDegrees,
@@ -1932,7 +1943,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     // SurfaceHolderCallback helpers
     //////////////////////////////////////////////////////////////////////////*/
     //region SurfaceHolderCallback helpers
-
     /**
      * Connects the video surface to the exo player. This can be called anytime without the risk for
      * issues to occur, since the player will run just fine when no surface is connected. Therefore
@@ -1945,11 +1955,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void setupVideoSurfaceIfNeeded() {
         videoSurface.setup();
     }
-
     protected final void restoreVideoSurfaceAfterResume() {
         restoreVideoSurfaceAfterLayoutTransition();
     }
-
     public final void restoreVideoSurfaceAfterLayoutTransition() {
         if (!player.getPlaybackPresentationMode().rendersVideo()) {
             return;
@@ -1960,23 +1968,18 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             videoSurface.restore();
         });
     }
-
     private void clearVideoSurface() {
         videoSurface.clear();
     }
-
     public View getRenderedVideoSurface() {
         return videoSurface.activeVideoView();
     }
-
     public boolean isSphericalVideo() {
         return videoSurface.isSpherical();
     }
-
     public boolean handleSphericalTouch(final View source, final MotionEvent event) {
         return videoSurface.handleTouch(source, event);
     }
-
     @Override
     public void onPlaybackPresentationModeChanged(@NonNull final PlaybackPresentationMode mode) {
         videoSurface.presentationChanged();
@@ -1986,11 +1989,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     // Getters
     //////////////////////////////////////////////////////////////////////////*/
     //region Getters
-
     public PlayerBinding getBinding() {
         return binding;
     }
-
     public GestureDetector getGestureDetector() {
         return gestureDetector;
     }
