@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="replay_heatmap_title">Most replayed</string>
+    <string name="replay_heatmap_summary">Show YouTube replay activity above the seekbar and enable jumping to the next peak when data is available.</string>
+    <string name="next_replay_peak">Next replay peak</string>
+    <string name="next_replay_peak_at">Next replay peak at %1$s</string>
+</resources>

@@ -123,6 +123,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private final PlayerUiTheme playerUiTheme;
     private final DanmakuController danmakuController;
     private final DualCaptionController dualCaptionController;
+    private final ReplayHeatmapController replayHeatmapController;
     private final Handler controlsVisibilityHandler = new Handler(Looper.getMainLooper());
     private long lastTvBackPressedAt;
     private final PlayerQualityFeedback qualityFeedback;
@@ -174,9 +175,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         danmakuController = new DanmakuController(player, binding);
         dualCaptionController = new DualCaptionController(player, binding.playerVideoContent,
                 binding.subtitleView);
+        replayHeatmapController = ReplayHeatmapController.forPlayer(binding, player);
         qualityFeedback = new PlayerQualityFeedback(player);
         setupFromView();
         player.getCurrentStreamInfo().ifPresent(danmakuController::onMetadataChanged);
+        player.getCurrentStreamInfo().ifPresent(replayHeatmapController::onMetadataChanged);
     }
 
     public void setupFromView() {
@@ -457,6 +460,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void destroyPlayer() {
         dismissPopupMenus();
+        replayHeatmapController.clear();
         seekbarPreviewThumbnailHolder.cancelRequest();
         super.destroyPlayer();
         clearVideoSurface();
@@ -469,6 +473,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackInformationPanel.clear();
         binding.playbackInformationButton.setOnClickListener(null);
         playerUiTheme.close();
+        replayHeatmapController.close();
         danmakuController.destroy();
         dualCaptionController.release();
         seekbarPreviewThumbnailHolder.clear();
@@ -636,7 +641,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                                  final int bufferPercent) {
 
         if (duration != binding.playbackSeekBar.getMax()) {
-            setVideoDurationToControls(duration);
+            PlayerTimelineUi.setDuration(binding, player, duration);
         }
         if (player.getCurrentState() != STATE_PAUSED) {
             updatePlayBackElementsCurrentDuration(currentProgress);
@@ -654,6 +659,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         dualCaptionController.onProgress(currentProgress);
         binding.playbackLiveSync.setClickable(!player.isLiveEdge());
         binding.playbackSeekBar.setEnabled(player.canSeekCurrentWindow());
+        replayHeatmapController.update();
     }
 
     /**
@@ -667,21 +673,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             binding.playbackSeekBar.setProgress(currentProgress);
         }
         binding.playbackCurrentTime.setText(getTimeString(currentProgress));
-    }
-
-    /**
-     * Sets the video duration time into all control components (e.g. seekbar).
-     *
-     * @param duration the video duration, in milliseconds
-     */
-    private void setVideoDurationToControls(final int duration) {
-        binding.playbackEndTime.setText(getTimeString(duration));
-
-        binding.playbackSeekBar.setMax(duration);
-        // This is important for Android TVs otherwise it would apply the default from
-        // setMax/Min methods which is (max - min) / 20
-        binding.playbackSeekBar.setKeyProgressIncrement(
-                PlayerHelper.retrieveSeekDurationFromPreferences(player));
     }
 
     @Override // seekbar listener
@@ -913,8 +904,9 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onPrepared() {
         super.onPrepared();
-        setVideoDurationToControls((int) player.getExoPlayer().getDuration());
+        PlayerTimelineUi.setDuration(binding, player, (int) player.getExoPlayer().getDuration());
         binding.playbackSpeed.setText(formatSpeed(player.getPlaybackSpeed()));
+        replayHeatmapController.update();
     }
 
     @Override
@@ -946,6 +938,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         seekbarPreviewThumbnailHolder.cancelRequest();
         SeekHistoryUi.update(binding, player);
         chapterController.clear(binding);
+        replayHeatmapController.clear();
         binding.surfaceView.clearAspectRatio();
         danmakuController.reset();
         dualCaptionController.clear();
@@ -955,6 +948,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onPlaying() {
         super.onPlaying();
+        replayHeatmapController.update();
         binding.playbackSeekBar.setPlaybackActive(true);
 
         updateStreamRelatedViews();
@@ -993,6 +987,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onPaused() {
         super.onPaused();
+        replayHeatmapController.update();
         binding.playbackSeekBar.setPlaybackActive(false);
         danmakuController.pause();
 
@@ -1182,6 +1177,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         super.onMetadataChanged(info);
         videoSurface.selectItem(info.getServiceId() + ":" + info.getUrl(), info.isSpherical());
         chapterController.setChapters(binding, info.getStreamSegments());
+        replayHeatmapController.onMetadataChanged(info);
         binding.surfaceView.resetUserTransform();
 
         danmakuController.onMetadataChanged(info);
@@ -1205,6 +1201,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         videoSurface.selectItem(tag.getServiceId() + ":" + tag.getStreamUrl(), false);
         chapterController.clear(binding);
         danmakuController.reset();
+        replayHeatmapController.clear();
         dualCaptionController.clear();
         binding.surfaceView.resetUserTransform();
         binding.qualityTextView.setVisibility(View.GONE);

@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.ColorFilter
@@ -31,7 +32,8 @@ class WavySeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val flatDrawable = progressDrawable
     private val density = resources.displayMetrics.density
-    private val wave = WaveTrack(density)
+    private val wave: WaveTrack?
+        get() = ((progressDrawable as? LayerDrawable)?.findDrawableByLayerId(android.R.id.progress) as? ClipDrawable)?.drawable as? WaveTrack
     private var wavy = false
     private var attached = false
     private var chapterSegments: List<StreamSegment> = emptyList()
@@ -43,7 +45,8 @@ class WavySeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         repeatCount = ValueAnimator.INFINITE
         interpolator = LinearInterpolator()
         addUpdateListener {
-            wave.phase = it.animatedValue as Float
+            // Native tinting may clone the layers, so animate the displayed track.
+            wave?.phase = it.animatedValue as Float
             if (!isShown) cancel()
         }
     }
@@ -153,7 +156,7 @@ class WavySeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             cornerRadius = 2 * density
         }
         return LayerDrawable(
-            arrayOf(flat(), ClipDrawable(flat(), Gravity.LEFT, ClipDrawable.HORIZONTAL), ClipDrawable(wave, Gravity.LEFT, ClipDrawable.HORIZONTAL))
+            arrayOf(flat(), ClipDrawable(flat(), Gravity.LEFT, ClipDrawable.HORIZONTAL), ClipDrawable(WaveTrack(density), Gravity.LEFT, ClipDrawable.HORIZONTAL))
         ).apply {
             setId(0, android.R.id.background)
             setId(1, android.R.id.secondaryProgress)
@@ -218,8 +221,24 @@ class WavySeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             invalidateSelf()
         }
 
+        // Android 6 clones every LayerDrawable child when ProgressBar applies native tints.
+        override fun getConstantState(): ConstantState = WaveState(density, colors, phase)
+
         @Deprecated("Required by Drawable")
         override fun getOpacity() = PixelFormat.TRANSLUCENT
+
+        private class WaveState(private val density: Float, private val colors: ColorStateList, private val phase: Float) : ConstantState() {
+            override fun newDrawable(): Drawable = create(density)
+
+            override fun newDrawable(resources: Resources?): Drawable = create(resources?.displayMetrics?.density ?: density)
+
+            override fun getChangingConfigurations(): Int = colors.changingConfigurations
+
+            private fun create(targetDensity: Float) = WaveTrack(targetDensity).apply {
+                setTintList(this@WaveState.colors)
+                phase = this@WaveState.phase
+            }
+        }
     }
 
     companion object {

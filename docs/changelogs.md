@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Replay heatmap
+
+- Add an optional Most replayed graph for supported YouTube videos using replay data from the existing metadata request.
+- Add Next replay peak navigation while preserving normal seeking, chapters, SponsorBlock markers and seek history; hide replay controls when data is unavailable.
+
 ### Video lists
 
 - Fix excessive spacing between channel avatars, channel names and video details in What's New, Live and History, including wide windows and right-to-left layouts.

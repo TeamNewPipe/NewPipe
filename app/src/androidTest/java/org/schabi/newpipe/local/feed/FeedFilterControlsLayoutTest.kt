@@ -25,11 +25,13 @@ import androidx.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -38,6 +40,7 @@ import java.io.File
 import java.time.LocalDate
 import java.util.Locale
 import kotlin.math.roundToInt
+import org.hamcrest.Matcher
 import org.hamcrest.Matchers.anything
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -217,9 +220,8 @@ class FeedFilterControlsLayoutTest {
     }
 
     private fun clearDateFromFooter(position: Int) {
-        // A partially visible footer can count as rendered before its last button is exposed.
-        onView(isAssignableFrom(ListView::class.java)).inRoot(isDialog()).perform(swipeUp())
         footerChild(position, context.getString(R.string.feed_date_filter_clear))
+            .perform(scrollFooterChildIntoView())
             .check(matches(isDisplayed()))
             .check { view, error ->
                 if (error != null) throw error
@@ -232,6 +234,21 @@ class FeedFilterControlsLayoutTest {
                 if (error != null) throw error
                 assertTrue("The date picker must remain available after clearing the cutoff", view.height > 0)
             }
+    }
+
+    private fun scrollFooterChildIntoView() = object : ViewAction {
+        override fun getConstraints(): Matcher<View> = isDescendantOfA(isAssignableFrom(ListView::class.java))
+
+        override fun getDescription() = "scroll the footer control into view without flinging"
+
+        override fun perform(uiController: UiController, view: View) {
+            // Loading a footer can leave its last button clipped. A fast swipe can leave Android's
+            // fling or edge stretch consuming the next tap, so reveal the control synchronously.
+            val bounds = Rect()
+            view.getDrawingRect(bounds)
+            view.requestRectangleOnScreen(bounds, true)
+            uiController.loopMainThreadUntilIdle()
+        }
     }
 
     private fun footerChild(position: Int, text: String) = onData(anything())

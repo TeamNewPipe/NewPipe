@@ -26,6 +26,7 @@ object PortraitPlayerActions {
         Action("info", R.id.playbackInformationButton, R.string.playback_information),
         Action("seek_back", R.id.seekHistoryBack, R.string.seek_history_back),
         Action("seek_forward", R.id.seekHistoryForward, R.string.seek_history_forward),
+        Action("replay_peak", R.id.nextReplayPeak, R.string.next_replay_peak),
         Action("sleep", R.id.sleepTimerButton, R.string.sleep_timer),
         Action("sponsor", R.id.sponsorBlockContributeButton, R.string.sb_contribute_title),
         Action("equalizer", R.id.equalizerButton, R.string.equalizer),

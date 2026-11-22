@@ -47,6 +47,7 @@ object FCastManager {
     private val castContext by lazy { CastContext() }
     private val devices = linkedMapOf<String, DeviceInfo>()
     private val observers = CopyOnWriteArraySet<(List<DeviceInfo>) -> Unit>()
+    private val sessionObservers = CopyOnWriteArraySet<() -> Unit>()
     private var discoverer: NsdDeviceDiscoverer? = null
 
     @Volatile
@@ -61,6 +62,19 @@ object FCastManager {
 
     @JvmStatic
     fun isAvailable(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+
+    /** Local timeline actions must not imply that they control the connected receiver. */
+    fun isCasting(): Boolean = activeDevice?.isReady() == true
+
+    /** Observe receiver connection changes without retaining a player UI after it is destroyed. */
+    fun observeSession(listener: () -> Unit): AutoCloseable {
+        sessionObservers.add(listener)
+        return AutoCloseable { sessionObservers.remove(listener) }
+    }
+
+    private fun notifySessionChanged() {
+        mainHandler.post { sessionObservers.forEach { it() } }
+    }
 
     @JvmStatic
     fun canCast(context: Context, info: StreamInfo): Boolean = isAvailable() && selectSource(context, info) != null
@@ -334,6 +348,7 @@ object FCastManager {
                 DeviceConnectionState.Connecting,
                 DeviceConnectionState.Reconnecting -> Unit
             }
+            if (activeDevice === device) notifySessionChanged()
         }
 
         override fun volumeChanged(volume: Double) = Unit
@@ -472,6 +487,7 @@ object FCastManager {
         activeDeviceName = null
         activeHandler = null
         activePlaying = false
+        notifySessionChanged()
     }
 
     private data class CastSource(val url: String, val contentType: String)

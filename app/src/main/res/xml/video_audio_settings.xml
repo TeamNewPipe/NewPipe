@@ -222,6 +222,14 @@
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
 
+        <SwitchPreferenceCompat
+            android:key="player_replay_heatmap"
+            android:defaultValue="false"
+            android:title="@string/replay_heatmap_title"
+            android:summary="@string/replay_heatmap_summary"
+            app:iconSpaceReserved="false"
+            app:singleLineTitle="false" />
+
         <ListPreference
             android:defaultValue="@string/default_visualizer_style_value"
             android:entries="@array/visualizer_style_entries"

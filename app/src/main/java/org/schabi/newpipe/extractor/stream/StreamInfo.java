@@ -413,6 +413,11 @@ public class StreamInfo extends Info {
             streamInfo.addError(e);
         }
         try {
+            streamInfo.setReplayHeatmap(extractor.getReplayHeatmap());
+        } catch (final Exception e) {
+            streamInfo.addError(e);
+        }
+        try {
             streamInfo.setMetaInfo(extractor.getMetaInfo());
         } catch (final Exception e) {
             streamInfo.addError(e);
@@ -518,6 +523,7 @@ public class StreamInfo extends Info {
     private Locale language = null;
     private List<String> tags = new ArrayList<>();
     private List<StreamSegment> streamSegments = new ArrayList<>();
+    private List<ReplayHeatmapSample> replayHeatmap = Collections.emptyList();
     private List<MetaInfo> metaInfo = new ArrayList<>();
     private boolean supportComments;
     private boolean supportRelatedItems;
@@ -910,6 +916,15 @@ public class StreamInfo extends Info {
 
     public void setStreamSegments(final List<StreamSegment> streamSegments) {
         this.streamSegments = streamSegments;
+    }
+
+    @Nonnull
+    public List<ReplayHeatmapSample> getReplayHeatmap() {
+        return replayHeatmap == null ? Collections.emptyList() : replayHeatmap;
+    }
+
+    public void setReplayHeatmap(@Nonnull final List<ReplayHeatmapSample> samples) {
+        replayHeatmap = Collections.unmodifiableList(new ArrayList<>(samples));
     }
 
     public void setMetaInfo(final List<MetaInfo> metaInfo) {

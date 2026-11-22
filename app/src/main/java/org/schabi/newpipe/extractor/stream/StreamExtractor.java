@@ -618,6 +618,12 @@ public abstract class StreamExtractor extends Extractor {
         return Collections.emptyList();
     }
 
+    /** Optional provider replay intensity. Missing data must not prevent playback. */
+    @Nonnull
+    public List<ReplayHeatmapSample> getReplayHeatmap() throws ParsingException {
+        return Collections.emptyList();
+    }
+
     /**
      * Meta information about the stream.
      * <p>

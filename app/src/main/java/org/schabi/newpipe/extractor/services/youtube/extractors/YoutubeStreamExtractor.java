@@ -1371,6 +1371,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
         errors.clear();
         playerResponse = null;
+        nextResponse = null;
         webStoryboardSpec = null;
         androidPlayerResponse = null;
         iosPlayerResponse = null;
@@ -2708,6 +2709,12 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public List<String> getTags() {
         return JsonUtils.getStringListFromJsonArray(playerResponse.getObject("videoDetails")
                 .getArray("keywords"));
+    }
+
+    @Nonnull
+    @Override
+    public List<ReplayHeatmapSample> getReplayHeatmap() throws ParsingException {
+        return YoutubeReplayHeatmap.parse(nextResponse, getId(), getLength());
     }
 
     @Nonnull

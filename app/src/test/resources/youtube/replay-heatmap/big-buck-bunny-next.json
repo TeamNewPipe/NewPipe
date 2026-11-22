@@ -1,0 +1,520 @@
+{
+  "frameworkUpdates": {
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "payload": {
+            "macroMarkersListEntity": {
+              "markersList": {
+                "markerType": "MARKER_TYPE_HEATMAP",
+                "markers": [
+                  {
+                    "startMillis": "0",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 1
+                  },
+                  {
+                    "startMillis": "5970",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.00942748905757293
+                  },
+                  {
+                    "startMillis": "11940",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.029183374041249616
+                  },
+                  {
+                    "startMillis": "17910",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.05658363563176491
+                  },
+                  {
+                    "startMillis": "23880",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.045093719204769116
+                  },
+                  {
+                    "startMillis": "29850",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.005292932399165608
+                  },
+                  {
+                    "startMillis": "35820",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0
+                  },
+                  {
+                    "startMillis": "41790",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.00917748062693938
+                  },
+                  {
+                    "startMillis": "47760",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.013580312088672065
+                  },
+                  {
+                    "startMillis": "53730",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0018258678065953783
+                  },
+                  {
+                    "startMillis": "59700",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.001786257210868077
+                  },
+                  {
+                    "startMillis": "65670",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.005671474536542648
+                  },
+                  {
+                    "startMillis": "71640",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.01586909527793524
+                  },
+                  {
+                    "startMillis": "77610",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.039364367699807355
+                  },
+                  {
+                    "startMillis": "83580",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.04531361822986671
+                  },
+                  {
+                    "startMillis": "89550",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.021592357991999732
+                  },
+                  {
+                    "startMillis": "95520",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.007876754307786105
+                  },
+                  {
+                    "startMillis": "101490",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.004341408274439336
+                  },
+                  {
+                    "startMillis": "107460",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.010543644720790798
+                  },
+                  {
+                    "startMillis": "113430",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.01974086373580375
+                  },
+                  {
+                    "startMillis": "119400",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.024070830436139425
+                  },
+                  {
+                    "startMillis": "125370",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.016844974566250594
+                  },
+                  {
+                    "startMillis": "131340",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.01963792302376582
+                  },
+                  {
+                    "startMillis": "137310",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.031314685039559746
+                  },
+                  {
+                    "startMillis": "143280",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.037063607658119876
+                  },
+                  {
+                    "startMillis": "149250",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.050621571876905254
+                  },
+                  {
+                    "startMillis": "155220",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.05210573138556258
+                  },
+                  {
+                    "startMillis": "161190",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.04979861491381751
+                  },
+                  {
+                    "startMillis": "167160",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.05397321708158766
+                  },
+                  {
+                    "startMillis": "173130",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0767068888178753
+                  },
+                  {
+                    "startMillis": "179100",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07941395855982297
+                  },
+                  {
+                    "startMillis": "185070",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07340826962183122
+                  },
+                  {
+                    "startMillis": "191040",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.11086373446555403
+                  },
+                  {
+                    "startMillis": "197010",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.08874951356582612
+                  },
+                  {
+                    "startMillis": "202980",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06203577987642565
+                  },
+                  {
+                    "startMillis": "208950",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06907278286381395
+                  },
+                  {
+                    "startMillis": "214920",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06370902645184877
+                  },
+                  {
+                    "startMillis": "220890",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0628680373003345
+                  },
+                  {
+                    "startMillis": "226860",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06150525215088211
+                  },
+                  {
+                    "startMillis": "232830",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06100152179626558
+                  },
+                  {
+                    "startMillis": "238800",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0751086146622367
+                  },
+                  {
+                    "startMillis": "244770",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07642917973414867
+                  },
+                  {
+                    "startMillis": "250740",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.09939358988152686
+                  },
+                  {
+                    "startMillis": "256710",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10347214304563729
+                  },
+                  {
+                    "startMillis": "262680",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.09569203992962161
+                  },
+                  {
+                    "startMillis": "268650",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10243306746059147
+                  },
+                  {
+                    "startMillis": "274620",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.1024963975769021
+                  },
+                  {
+                    "startMillis": "280590",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.09604973966738875
+                  },
+                  {
+                    "startMillis": "286560",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0840957703912938
+                  },
+                  {
+                    "startMillis": "292530",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.08048692395354426
+                  },
+                  {
+                    "startMillis": "298500",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06854891266238337
+                  },
+                  {
+                    "startMillis": "304470",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06747577999418687
+                  },
+                  {
+                    "startMillis": "310440",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06288339309715783
+                  },
+                  {
+                    "startMillis": "316410",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0698057127043492
+                  },
+                  {
+                    "startMillis": "322380",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.08525424649673721
+                  },
+                  {
+                    "startMillis": "328350",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10312190374946405
+                  },
+                  {
+                    "startMillis": "334320",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.1270350612652802
+                  },
+                  {
+                    "startMillis": "340290",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10430884997058645
+                  },
+                  {
+                    "startMillis": "346260",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10282405481892337
+                  },
+                  {
+                    "startMillis": "352230",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0880215350497568
+                  },
+                  {
+                    "startMillis": "358200",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07872234551466208
+                  },
+                  {
+                    "startMillis": "364170",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.08997162088163552
+                  },
+                  {
+                    "startMillis": "370140",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.11682442656971706
+                  },
+                  {
+                    "startMillis": "376110",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.09238482282555226
+                  },
+                  {
+                    "startMillis": "382080",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07691869175837322
+                  },
+                  {
+                    "startMillis": "388050",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07958779019445056
+                  },
+                  {
+                    "startMillis": "394020",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06551147583191619
+                  },
+                  {
+                    "startMillis": "399990",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06616060116037634
+                  },
+                  {
+                    "startMillis": "405960",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06278443351762966
+                  },
+                  {
+                    "startMillis": "411930",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.27930608659625616
+                  },
+                  {
+                    "startMillis": "417900",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.1111220397101575
+                  },
+                  {
+                    "startMillis": "423870",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.1034817780554088
+                  },
+                  {
+                    "startMillis": "429840",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10858515501927805
+                  },
+                  {
+                    "startMillis": "435810",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.13574260098159338
+                  },
+                  {
+                    "startMillis": "441780",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.15494075941005905
+                  },
+                  {
+                    "startMillis": "447750",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.07827930233964801
+                  },
+                  {
+                    "startMillis": "453720",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0877040815507227
+                  },
+                  {
+                    "startMillis": "459690",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.0823636766554954
+                  },
+                  {
+                    "startMillis": "465660",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.06722747776320037
+                  },
+                  {
+                    "startMillis": "471630",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.08025073239456222
+                  },
+                  {
+                    "startMillis": "477600",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.10449683302581594
+                  },
+                  {
+                    "startMillis": "483570",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.1422214090452401
+                  },
+                  {
+                    "startMillis": "489540",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.18067573669017073
+                  },
+                  {
+                    "startMillis": "495510",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.18304571490969587
+                  },
+                  {
+                    "startMillis": "501480",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.22078450925951204
+                  },
+                  {
+                    "startMillis": "507450",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.3105640655887232
+                  },
+                  {
+                    "startMillis": "513420",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.4046147414578947
+                  },
+                  {
+                    "startMillis": "519390",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.40087950242668424
+                  },
+                  {
+                    "startMillis": "525360",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.3616427316965593
+                  },
+                  {
+                    "startMillis": "531330",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.3771845377363187
+                  },
+                  {
+                    "startMillis": "537300",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.36496627478940813
+                  },
+                  {
+                    "startMillis": "543270",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.3852124412598953
+                  },
+                  {
+                    "startMillis": "549240",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.4219790363598505
+                  },
+                  {
+                    "startMillis": "555210",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.44797964550657937
+                  },
+                  {
+                    "startMillis": "561180",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.44979658085619906
+                  },
+                  {
+                    "startMillis": "567150",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.5222188009016228
+                  },
+                  {
+                    "startMillis": "573120",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.5482760826405494
+                  },
+                  {
+                    "startMillis": "579090",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.5510469508673382
+                  },
+                  {
+                    "startMillis": "585060",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.4506036467441428
+                  },
+                  {
+                    "startMillis": "591030",
+                    "durationMillis": "5970",
+                    "intensityScoreNormalized": 0.5023612464919197
+                  }
+                ]
+              },
+              "externalVideoId": "YE7VzlLtp-4"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

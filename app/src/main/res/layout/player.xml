@@ -603,6 +603,20 @@
                                 app:tint="@color/white" />
 
                             <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/nextReplayPeak"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/next_replay_peak"
+                                android:focusable="true"
+                                android:padding="@dimen/player_main_icon_buttons_padding"
+                                android:src="@drawable/ic_replay_peak"
+                                android:visibility="gone"
+                                app:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
                                 android:id="@+id/sleepTimerButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -832,34 +846,49 @@
                         tools:text="1:06:29" />
 
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="2dp"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <org.schabi.newpipe.views.WavySeekBar
-                            android:id="@+id/playbackSeekBar"
-                            style="@style/Widget.WizeStream.SeekBar"
+                        <org.schabi.newpipe.views.ReplayHeatmapView
+                            android:id="@+id/replayHeatmap"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:nextFocusDown="@id/screenRotationButton"
-                            tools:progress="25"
-                            tools:secondaryProgress="50" />
-
-                        <org.schabi.newpipe.views.SponsorBlockSeekBarMarkersView
-                            android:id="@+id/sponsorBlockSeekBarMarkers"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/sponsor_block_marker_height"
-                            android:layout_gravity="center_vertical"
+                            android:layout_height="24dp"
                             android:clickable="false"
                             android:focusable="false"
                             android:importantForAccessibility="no"
-                            android:visibility="gone"
-                            tools:visibility="visible" />
+                            android:visibility="gone" />
 
-                    </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <org.schabi.newpipe.views.WavySeekBar
+                                android:id="@+id/playbackSeekBar"
+                                style="@style/Widget.WizeStream.SeekBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:nextFocusDown="@id/screenRotationButton"
+                                tools:progress="25"
+                                tools:secondaryProgress="50" />
+
+                            <org.schabi.newpipe.views.SponsorBlockSeekBarMarkersView
+                                android:id="@+id/sponsorBlockSeekBarMarkers"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/sponsor_block_marker_height"
+                                android:layout_gravity="center_vertical"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:importantForAccessibility="no"
+                                android:visibility="gone"
+                                tools:visibility="visible" />
+
+                        </FrameLayout>
+                    </LinearLayout>
 
                     <org.schabi.newpipe.views.NewPipeTextView
                         android:id="@+id/playbackEndTime"
