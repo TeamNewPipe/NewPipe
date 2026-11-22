@@ -116,6 +116,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearance="@style/CircularImageView" />
 
+        <!-- Bound long channel names while leaving room for the metadata. -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/itemUploaderNameLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <org.schabi.newpipe.views.MediaTextView
             android:id="@+id/itemUploaderView"
             app:layout_constrainedWidth="true"
@@ -126,10 +134,12 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:lines="1"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/itemAdditionalDetails"
+            app:layout_constraintEnd_toStartOf="@+id/itemUploaderNameLimit"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/itemUploaderAvatarView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Uploader" />
@@ -138,13 +148,17 @@
             android:id="@+id/itemAdditionalDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:lines="1"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/itemUploaderView"
             app:layout_constraintTop_toTopOf="parent"
             app:mediaTextRole="videoMetadata"
