@@ -23,8 +23,15 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
         state: StreamStateEntity?,
         includeAudio: Boolean
     ): Boolean {
-        val matchesContent = contentFilters.isEmpty() ||
-            StreamListFilter.categoryOf(stream, includeAudio = includeAudio) in contentFilters
+        val matchesContent = contentFilters.isEmpty() || contentFilters.any { filter ->
+            when (filter) {
+                StreamListFilter.LIVE_AUDIO,
+                StreamListFilter.POST_LIVE_VIDEO,
+                StreamListFilter.POST_LIVE_AUDIO -> StreamListFilter.matches(filter, stream, state)
+
+                else -> StreamListFilter.categoryOf(stream, includeAudio = includeAudio) == filter
+            }
+        }
         val matchesWatch = watchFilters.isEmpty() || watchFilters.any { StreamListFilter.matches(it, stream, state) }
         return matchesContent && matchesWatch &&
             (!downloadedOnly || matchesDownloaded(DownloadedAvailabilityIndex.isAvailable(stream.serviceId, stream.url)))
@@ -59,6 +66,9 @@ class StreamFilterSelection private constructor(val filters: Set<StreamListFilte
             StreamListFilter.LIVE,
             StreamListFilter.VIDEOS,
             StreamListFilter.AUDIO,
+            StreamListFilter.LIVE_AUDIO,
+            StreamListFilter.POST_LIVE_VIDEO,
+            StreamListFilter.POST_LIVE_AUDIO,
             StreamListFilter.SHORTS,
             StreamListFilter.UPCOMING
         )

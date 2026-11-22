@@ -213,7 +213,7 @@ public class StatisticsPlaylistFragment
         });
 
         StreamFilterControls.bind(contentBinding.streamFilterChips, selectedStreamFilters,
-                true, true, selection -> {
+                true, true, true, selection -> {
                     selectedStreamFilters = selection;
                     showFilteredHistory();
                 });

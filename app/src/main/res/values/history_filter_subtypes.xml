@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_filter_live_audio">Live audio</string>
+    <string name="history_filter_post_live_video">Recent live recordings</string>
+    <string name="history_filter_post_live_audio">Recent live audio recordings</string>
+</resources>

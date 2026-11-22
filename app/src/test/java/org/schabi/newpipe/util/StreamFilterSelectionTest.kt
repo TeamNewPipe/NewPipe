@@ -108,6 +108,33 @@ class StreamFilterSelectionTest {
         assertEquals(setOf("VIDEOS", "DOWNLOADED"), value.split(",").toSet())
     }
 
+    @Test
+    fun historyMediaSubtypesMatchWithoutGuessingContentCategories() {
+        val liveAudio = stream(type = StreamType.AUDIO_LIVE_STREAM)
+        val endedVideo = stream(type = StreamType.POST_LIVE_STREAM)
+        val endedAudio = stream(type = StreamType.POST_LIVE_AUDIO_STREAM)
+        val regularAudio = stream(type = StreamType.AUDIO_STREAM)
+        val selected = StreamFilterSelection.parse("LIVE_AUDIO,POST_LIVE_AUDIO")
+        assertTrue(selected.matches(liveAudio, null))
+        assertTrue(selected.matches(endedAudio, null))
+        assertFalse(selected.matches(endedVideo, null))
+        assertFalse(selected.matches(regularAudio, null))
+        assertTrue(StreamFilterSelection.parse("POST_LIVE_VIDEO").matches(endedVideo, null))
+        assertEquals("LIVE_AUDIO,POST_LIVE_AUDIO", selected.encode())
+    }
+
+    @Test
+    fun advancedHistoryChoicesAreHiddenInFeedControls() {
+        val binding = binding()
+        StreamFilterControls.bind(binding, "", true) { }
+        assertEquals(View.GONE, binding.filterLiveAudio.visibility)
+        var current = ""
+        StreamFilterControls.bind(binding, "", true, true, true) { current = it }
+        assertEquals(View.VISIBLE, binding.filterLiveAudio.visibility)
+        binding.filterLiveAudio.performClick()
+        assertEquals("LIVE_AUDIO", current)
+    }
+
     private fun binding(): ListStreamFilterChipsBinding {
         val context = ContextThemeWrapper(RuntimeEnvironment.getApplication(), R.style.LightTheme)
         return ListStreamFilterChipsBinding.inflate(LayoutInflater.from(context))
