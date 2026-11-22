@@ -3,6 +3,7 @@ package org.schabi.newpipe.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.google.android.material.button.MaterialButton
 import org.schabi.newpipe.R
@@ -12,6 +13,30 @@ class SubscriptionSplitButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val primary = findViewById<MaterialButton>(R.id.channel_subscribe_button)
+        val secondary = findViewById<MaterialButton>(R.id.channel_group_button)
+        if (primary == null || secondary == null || secondary.visibility == View.GONE) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+            return
+        }
+
+        // First measure both children at natural height. This also lets the group button shrink
+        // after the Subscribe label becomes shorter, or when the system font scale decreases.
+        secondary.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        val requiredHeight = SubscriptionButtonSizing.height(
+            primary.measuredHeight,
+            secondary.measuredHeight,
+            secondary.minimumHeight
+        )
+        if (secondary.measuredHeight != requiredHeight) {
+            secondary.layoutParams.height = requiredHeight
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        }
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         val primary = findViewById<MaterialButton>(R.id.channel_subscribe_button) ?: return
@@ -31,5 +56,12 @@ class SubscriptionSplitButton @JvmOverloads constructor(
         }
         primary.shapeAppearanceModel = primaryShape.build()
         secondary.shapeAppearanceModel = secondaryShape.build()
+    }
+}
+
+/** Measured height must follow text content rather than a fixed adjacent icon height. */
+internal object SubscriptionButtonSizing {
+    fun height(primary: Int, secondary: Int, minimum: Int): Int {
+        return maxOf(primary, secondary, minimum)
     }
 }
