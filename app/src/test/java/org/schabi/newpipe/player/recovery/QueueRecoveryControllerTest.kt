@@ -47,9 +47,10 @@ class QueueRecoveryControllerTest {
         `when`(player.context).thenReturn(context)
         `when`(player.prefs).thenReturn(prefs)
         `when`(player.exoPlayerIsNull()).thenReturn(true)
-        controller = QueueRecoveryController(player) { _, snapshot, eligible, _ ->
+        controller = QueueRecoveryController(player) { _, snapshot, eligible, _, onCommitted ->
             saves.add(snapshot)
             eligibility.add(eligible)
+            onCommitted(true)
         }
     }
 
@@ -157,8 +158,9 @@ class QueueRecoveryControllerTest {
         `when`(engine.currentMediaItemIndex).thenReturn(0)
         var elapsed = 10_000L
         controller.close()
-        controller = QueueRecoveryController(player, elapsedRealtime = { elapsed }) { _, snapshot, _, _ ->
+        controller = QueueRecoveryController(player, elapsedRealtime = { elapsed }) { _, snapshot, _, _, onCommitted ->
             saves.add(snapshot)
+            onCommitted(true)
         }
         controller.bind(queue)
 
@@ -178,6 +180,25 @@ class QueueRecoveryControllerTest {
         `when`(engine.contentPosition).thenReturn(53_500L)
         controller.checkpoint(true)
         assertEquals(listOf(50_000L, 53_000L, 53_500L), saves.map { it.position })
+        controller.close()
+    }
+
+    @Test fun confirmedPositionTracksSuccessfulWritesOnly() {
+        beginQueue()
+        controller.close()
+        val queue = player.playQueue!!
+        var acknowledge: ((Boolean) -> Unit)? = null
+        controller = QueueRecoveryController(player) { _, _, _, _, onCommitted ->
+            acknowledge = onCommitted
+        }
+        controller.bind(queue)
+        controller.checkpoint(true)
+        assertEquals(PlayQueueItem.RECOVERY_UNSET, controller.lastCommittedPositionMs)
+        acknowledge?.invoke(false)
+        assertEquals(PlayQueueItem.RECOVERY_UNSET, controller.lastCommittedPositionMs)
+        controller.checkpoint(true)
+        acknowledge?.invoke(true)
+        assertEquals(9_000L, controller.lastCommittedPositionMs)
         controller.close()
     }
 

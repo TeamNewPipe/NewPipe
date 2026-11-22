@@ -19,9 +19,10 @@ import org.schabi.newpipe.profiles.ProfileManager
 internal class QueueRecoveryController(
     private val player: Player,
     private val elapsedRealtime: () -> Long = SystemClock::elapsedRealtime,
-    private val save: (String, QueueSnapshot, AtomicBoolean, Long) -> Unit = { owner, snapshot, eligible, epoch ->
-        QueueRecovery.save(player.context, owner, snapshot, eligible, epoch)
-    }
+    private val save: (String, QueueSnapshot, AtomicBoolean, Long, (Boolean) -> Unit) -> Unit =
+        { owner, snapshot, eligible, epoch, onCommitted ->
+            QueueRecovery.save(player.context, owner, snapshot, eligible, epoch, onCommitted)
+        }
 ) {
     private var queue: PlayQueue? = null
     private var session = ""
@@ -31,6 +32,15 @@ internal class QueueRecoveryController(
     private var hasSavedSnapshot = false
     private var hasConfirmedPosition = false
     private var epoch = 0L
+
+    @Volatile
+    internal var lastCommittedPositionMs: Long = PlayQueueItem.RECOVERY_UNSET
+        private set
+
+    @Volatile
+    internal var lastCommittedElapsedMs: Long = 0L
+        private set
+
     private val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == ProfileManager.ACTIVE_PROFILE_ID_PREFERENCE_KEY || !allowed()) eligible.set(false)
     }
@@ -51,6 +61,8 @@ internal class QueueRecoveryController(
         lastSave = 0
         hasSavedSnapshot = false
         hasConfirmedPosition = false
+        lastCommittedPositionMs = PlayQueueItem.RECOVERY_UNSET
+        lastCommittedElapsedMs = 0L
     }
 
     fun checkpoint(force: Boolean = false) {
@@ -73,7 +85,15 @@ internal class QueueRecoveryController(
         lastSave = elapsed
         hasSavedSnapshot = true
         hasConfirmedPosition = actualPosition != null
-        save(owner, snapshot, eligible, epoch)
+        val submittedSession = session
+        save(owner, snapshot, eligible, epoch) { committed ->
+            if (committed && submittedSession == session && eligible.get() &&
+                epoch == QueueRecovery.generation.get()
+            ) {
+                lastCommittedPositionMs = snapshot.position
+                lastCommittedElapsedMs = elapsedRealtime()
+            }
+        }
     }
 
     fun close() {

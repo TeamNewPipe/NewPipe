@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager
 import java.io.File
 import java.util.UUID
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
 import org.json.JSONArray
 import org.json.JSONObject
 import org.schabi.newpipe.R
@@ -42,22 +43,23 @@ internal class QueueRecoveryStore(private val file: File) {
         emptyList()
     }
 
-    fun save(snapshot: QueueSnapshot) {
+    fun save(snapshot: QueueSnapshot): Boolean {
         val old = load(snapshot.savedAt)
         val previous = old.firstOrNull { it.session != snapshot.session }
-        write(listOfNotNull(snapshot, previous))
+        return write(listOfNotNull(snapshot, previous))
     }
 
-    private fun write(queues: List<QueueSnapshot>) {
+    private fun write(queues: List<QueueSnapshot>): Boolean {
         val data = JSONObject().put("version", 1).put("queues", JSONArray().also { list -> queues.forEach { list.put(it.json()) } })
             .toString().toByteArray(Charsets.UTF_8)
-        if (data.size > MAX_BYTES) return
+        if (data.size > MAX_BYTES) return false
         file.parentFile?.mkdirs()
         val atomic = AtomicFile(file)
         val output = atomic.startWrite()
         try {
             output.write(data)
             atomic.finishWrite(output)
+            return true
         } catch (error: Exception) {
             atomic.failWrite(output)
             throw error
@@ -90,6 +92,9 @@ object QueueRecovery {
     const val ENABLED_KEY = "queue_recovery_enabled"
     private val io = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
+    private val pendingWrites = PendingRecoveryWrites()
+    private val pendingLock = Any()
+    private var drainScheduled = false
     private var listener: SharedPreferences.OnSharedPreferenceChangeListener? = null
 
     @JvmStatic
@@ -120,11 +125,48 @@ object QueueRecovery {
         return prefs.getBoolean(ENABLED_KEY, true) && prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
     }
 
-    internal fun save(context: Context, profile: String, snapshot: QueueSnapshot, eligible: java.util.concurrent.atomic.AtomicBoolean, epoch: Long) {
-        io.execute {
-            if (generation.get() == epoch && eligible.get() && enabled(context) && !IncognitoMode.isEnabled(context) && ProfileManager.getProfile(context, profile) != null) {
-                runCatching { store(context, profile).save(snapshot) }
+    internal fun save(
+        context: Context,
+        profile: String,
+        snapshot: QueueSnapshot,
+        eligible: AtomicBoolean,
+        epoch: Long,
+        onCommitted: (Boolean) -> Unit
+    ) {
+        val applicationContext = context.applicationContext
+        synchronized(pendingLock) {
+            pendingWrites.offer(
+                PendingRecoveryWrites.Write(profile, snapshot, eligible, epoch, onCommitted)
+            )
+            if (!drainScheduled) {
+                drainScheduled = true
+                io.execute { drain(applicationContext) }
             }
+        }
+    }
+
+    private fun drain(context: Context) {
+        while (true) {
+            val pending = synchronized(pendingLock) {
+                pendingWrites.poll().also {
+                    if (it == null) drainScheduled = false
+                }
+            } ?: return
+            val committed = runCatching {
+                if (generation.get() != pending.epoch ||
+                    !pending.eligible.get() ||
+                    !enabled(context) ||
+                    IncognitoMode.isEnabled(context) ||
+                    ProfileManager.getProfile(context, pending.profile) == null
+                ) {
+                    false
+                } else {
+                    // Only acknowledge after AtomicFile.finishWrite; oversize snapshots are
+                    // intentionally not written and must never be reported as committed.
+                    store(context, pending.profile).save(pending.snapshot)
+                }
+            }.getOrDefault(false)
+            pending.onCommitted(committed)
         }
     }
 
@@ -143,4 +185,53 @@ object QueueRecovery {
 
     private fun directory(context: Context) = File(context.noBackupFilesDir, "queue-recovery")
     private fun store(context: Context, profile: String) = QueueRecoveryStore(File(directory(context), "${UUID.fromString(profile)}.json"))
+}
+
+// At most one pending snapshot per session, with a strict memory bound even during a stalled IO
+// worker. Different sessions remain distinct so a newly started queue does not erase the previous
+// recoverable queue. Older pending positions never replace newer positions merely due to timing.
+internal class PendingRecoveryWrites {
+    internal data class Write(
+        val profile: String,
+        val snapshot: QueueSnapshot,
+        val eligible: AtomicBoolean,
+        val epoch: Long,
+        val onCommitted: (Boolean) -> Unit
+    )
+
+    private val pending = LinkedHashMap<String, Write>()
+
+    fun offer(write: Write) {
+        val key = "${write.profile}:${write.snapshot.session}"
+        val previous = pending[key]
+        if (previous != null && previous.snapshot.savedAt > write.snapshot.savedAt) {
+            write.onCommitted(false)
+            return
+        }
+        if (previous != null) {
+            previous.onCommitted(false)
+            pending.remove(key)
+        }
+        pending[key] = write
+        if (pending.size > MAX_PENDING) {
+            val first = pending.entries.iterator()
+            if (first.hasNext()) {
+                val discarded = first.next().value
+                first.remove()
+                discarded.onCommitted(false)
+            }
+        }
+    }
+
+    fun poll(): Write? {
+        val first = pending.entries.iterator()
+        if (!first.hasNext()) return null
+        val next = first.next().value
+        first.remove()
+        return next
+    }
+
+    companion object {
+        private const val MAX_PENDING = 8
+    }
 }
