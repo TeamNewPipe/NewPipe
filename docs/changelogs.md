@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### App fonts
+
+- Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.
+- Keep the selected font consistent across app controls and recycled lists while preserving text sizing, emphasis, accessibility scaling and separate caption settings.
+
 ### Replay heatmap
 
 - Add an optional Most replayed graph for supported YouTube videos using replay data from the existing metadata request.

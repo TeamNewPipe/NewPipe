@@ -44,6 +44,7 @@ public final class ThemeHelper {
     }
 
     public static void applyThemeColor(final Context context) {
+        AppFonts.prepareContext(context);
         if (isEyeComfortSelected(context)) {
             context.getTheme().applyStyle(R.style.EyeComfortTheme, true);
             return;

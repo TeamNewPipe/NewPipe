@@ -183,6 +183,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     public void setupFromView() {
+        org.schabi.newpipe.util.AppFonts.observe(binding.getRoot());
         initViews();
         initListeners();
         SponsorBlockContributionMenu.bind(binding.sponsorBlockContributeButton, player);

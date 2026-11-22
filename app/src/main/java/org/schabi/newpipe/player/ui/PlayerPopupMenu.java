@@ -103,6 +103,7 @@ public final class PlayerPopupMenu {
                 final TextView row = (TextView) super.getView(position, recycled, parent);
                 row.setText(getItem(position).getTitle());
                 row.setEnabled(isEnabled(position));
+                org.schabi.newpipe.util.AppFonts.inflated(row);
                 return row;
             }
         };
@@ -134,6 +135,7 @@ public final class PlayerPopupMenu {
             }
             try {
                 choices.show();
+                org.schabi.newpipe.util.AppFonts.observeDialog(choices);
                 return true;
             } catch (final WindowManager.BadTokenException exception) {
                 dismiss();

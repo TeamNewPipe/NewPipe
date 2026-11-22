@@ -63,6 +63,7 @@ public final class PlayerUiTheme implements AutoCloseable {
         } else {
             ThemeHelper.applyThemeColorOverlay(themed);
         }
+        org.schabi.newpipe.util.AppFonts.prepareContext(themed);
         return themed;
     }
 

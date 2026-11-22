@@ -32,7 +32,7 @@ fun getLicenseStylesheet(context: Context): String {
     val licenseTextColor = getThemeHexRGBColor(context, MaterialR.attr.colorOnSurface)
     val licenseLinkColor = getThemeHexRGBColor(context, MaterialR.attr.colorPrimary)
     return "body{padding:12px 15px;margin:0;background:#$licenseBackgroundColor;color:#$licenseTextColor}" +
-        "a[href]{color:#$licenseLinkColor}pre{white-space:pre-wrap}"
+        "a[href]{color:#$licenseLinkColor}pre{white-space:pre-wrap}" + org.schabi.newpipe.util.AppFonts.css(context)
 }
 
 /**

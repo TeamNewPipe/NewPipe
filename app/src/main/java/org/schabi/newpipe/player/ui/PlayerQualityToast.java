@@ -20,6 +20,7 @@ final class PlayerQualityToast {
         text.setText(message);
         text.setTextAppearance(
                 com.google.android.material.R.style.TextAppearance_Material3_BodyMedium);
+        org.schabi.newpipe.util.AppFonts.apply(text);
         text.setTextColor(MaterialColors.getColor(text,
                 com.google.android.material.R.attr.colorOnSurface));
         final int padding = Math.round(16 * density);

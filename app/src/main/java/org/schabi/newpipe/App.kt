@@ -120,6 +120,7 @@ open class App :
         // forced dark/black theme, especially on pre-Android 12 cold starts.
         ThemeHelper.setDayNightMode(this)
         applyDynamicColorsIfAvailable()
+        org.schabi.newpipe.util.AppFonts.initialize(this)
 
         val backendPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousBackend.configure(

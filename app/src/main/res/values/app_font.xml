@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_font_key" translatable="false">app_font_family</string>
+    <string name="app_font_title">App font</string>
+    <string name="app_font_system">System default</string>
+    <string name="app_font_sans_serif">Sans serif</string>
+    <string name="app_font_serif">Serif</string>
+    <string name="app_font_monospace">Monospace</string>
+    <string name="app_font_apply">Apply font</string>
+    <string name="app_font_preview_title">Preview</string>
+    <string name="app_font_preview_normal">Explore your favorite videos and channels.</string>
+    <string name="app_font_preview_bold">Bold text keeps important details clear.</string>
+    <string name="app_font_preview_numbers" translatable="false">0123456789 · 12:34 · 1.5×</string>
+    <string name="app_font_preview_long">A longer video title that wraps naturally while following your text-size settings</string>
+    <string name="app_font_preview_scripts" translatable="false">مرحبا بالعالم · 日本語 · Ελληνικά</string>
+    <string name="app_font_preview_help">System default restores the original app fonts. Text sizes and subtitle settings stay separate.</string>
+    <item name="app_font_original" type="id" />
+    <item name="app_font_root" type="id" />
+    <item name="app_font_exempt" type="id" />
+    <item name="app_font_attach_hook" type="id" />
+    <item name="app_font_preview_normal" type="id" />
+    <item name="app_font_preview_bold" type="id" />
+    <item name="app_font_preview_numbers" type="id" />
+    <item name="app_font_preview_long" type="id" />
+    <style name="ThemeOverlay.WizeStream.AppFontInflater" parent="">
+        <item name="viewInflaterClass">org.schabi.newpipe.util.AppFontViewInflater</item>
+    </style>
+</resources>

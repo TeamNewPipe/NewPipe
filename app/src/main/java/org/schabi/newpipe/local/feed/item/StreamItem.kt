@@ -159,7 +159,7 @@ data class StreamItem(
         } else {
             selector
         }
-        viewBinding.itemVideoTitleView.typeface = if (isHighlighted) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        org.schabi.newpipe.util.AppFonts.applyTypeface(viewBinding.itemVideoTitleView, if (isHighlighted) Typeface.DEFAULT_BOLD else Typeface.DEFAULT)
         val visualState = FeedSeenVisuals.state(isWatched, isSeen)
         // Always reset the recycled view; dimming affects neither clicks nor playback/history.
         viewBinding.itemRoot.alpha = visualState.opacity
