@@ -252,11 +252,20 @@ WizeStream is free software based on NewPipe and is distributed under the GNU Ge
 - Keep cumulative release notes in `docs/changelogs.md`, newest first. Use
   ``## WizeStream X.Y.Z (`VERSION_CODE`)`` for release headings and `## Unreleased` for work that
   has not shipped yet. Preserve the existing older release entries.
-- When bumping the version in `buildSrc/src/main/kotlin/ProjectConfig.kt`, move the relevant
-  Unreleased notes into a release section with the matching version name and code.
+- Keep pending changes under Unreleased even when `buildSrc/src/main/kotlin/ProjectConfig.kt`
+  already identifies the next development version. When preparing an actual release, move the
+  relevant notes into a numbered section matching that version name and code, and add its
+  `fastlane/metadata/android/en-US/changelogs/VERSION_CODE.txt` summary.
 - Run `python3 scripts/generate-changelog.py` and commit `app/src/main/assets/changelog.html`
-  together with the Markdown changes. CI runs the generator with `--check` to reject stale assets
-  and missing current-release notes. The generator uses only Python standard-library modules.
-- The first-run dialog shows the installed release when no previous acknowledgement exists.
+  together with the Markdown changes. CI uses `--check` to reject stale assets. A development
+  version newer than all numbered entries can use nonempty Unreleased notes; an existing numbered
+  entry or recorded publication date still requires matching numbered notes. The generator uses
+  only Python standard-library modules, and its tests run with
+  `python3 -B -m unittest discover -s scripts/tests -p 'test_generate_changelog.py' -v`.
+- Before publishing, the release workflow runs
+  `python3 scripts/generate-changelog.py --check --require-release`
+  and requires the Fastlane summary. Unreleased notes cannot satisfy this gate.
+- The first-run dialog shows the matching installed release when no previous acknowledgement exists.
   Subsequent upgrades show releases newer than the last acknowledged version, up to the installed
-  release. Nightly suffixes use their named base release; Unreleased notes remain in the full history.
+  release. Nightly suffixes use their named base release. A development version without a matching
+  numbered entry has no automatic release dialog; Unreleased notes remain in the full history.

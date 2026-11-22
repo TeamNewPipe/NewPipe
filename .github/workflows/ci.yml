@@ -10,6 +10,9 @@ on:
       - release**
       - material
       - pipe
+      # Validate stacked PRs against their feature or fix base branch.
+      - feature-**
+      - fix-**
     paths-ignore:
       - 'README.md'
       # Keep the changelog and other existing docs covered by CI.
@@ -95,6 +98,9 @@ jobs:
 
       - name: Verify bundled changelog
         run: python3 scripts/generate-changelog.py --check
+
+      - name: Test changelog validation
+        run: python3 -B -m unittest discover -s scripts/tests -p 'test_generate_changelog.py' -v
 
       - name: Build debug APK and run JVM tests
         run: >-

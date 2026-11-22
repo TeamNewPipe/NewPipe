@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
+import io.reactivex.rxjava3.core.Maybe
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import org.junit.After
@@ -15,12 +16,25 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
 import org.schabi.newpipe.about.AboutActivity
 
 class ChangelogDialogTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
+    private val releasedNotice = ChangelogNotice(
+        "1.49.1",
+        1049001,
+        """
+        <section data-version="1.49.1" data-version-code="1049001">
+        <h2>WizeStream 1.49.1</h2><div class="release-notes"><p>Published fixture changes</p></div>
+        </section>
+        """.trimIndent()
+    )
+    private val developmentHistory = """
+        <section id="unreleased"><h2>Unreleased</h2>
+        <div class="release-notes"><p>Pending development changes</p></div></section>
+        ${releasedNotice.html}
+    """.trimIndent()
 
     @Before
     fun resetSeenRelease() {
@@ -30,10 +44,6 @@ class ChangelogDialogTest {
     @After
     fun clearSeenRelease() {
         resetSeenRelease()
-    }
-
-    private fun notice(): ChangelogNotice = context.assets.open("changelog.html").bufferedReader().use {
-        ChangelogCatalog.parse(it.readText()).notice(BuildConfig.VERSION_NAME, 0)!!
     }
 
     @Test
@@ -50,7 +60,7 @@ class ChangelogDialogTest {
                     },
                     false
                 )
-                val controller = ChangelogPromptController(activity)
+                val controller = ChangelogPromptController(activity) { Maybe.just(releasedNotice) }
                 controller.maybeShow()
                 assertNull(activity.supportFragmentManager.findFragmentByTag(ChangelogDialogFragment.TAG))
                 controller.onNewIntent(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER))
@@ -61,13 +71,42 @@ class ChangelogDialogTest {
                 (fragment.requireDialog() as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             }
             InstrumentationRegistry.getInstrumentation().waitForIdleSync()
-            assertEquals(notice().code, ChangelogPreferences(context).lastSeenCode)
+            assertEquals(releasedNotice.code, ChangelogPreferences(context).lastSeenCode)
+        }
+    }
+
+    @Test
+    fun developmentNotesDoNotShowOrAcknowledgeARelease() {
+        val loaded = CountDownLatch(1)
+        var loadError: Throwable? = null
+        val preferences = ChangelogPreferences(context)
+        preferences.acknowledge(releasedNotice.code)
+        val intent = Intent(context, AboutActivity::class.java).setAction(Intent.ACTION_MAIN)
+        ActivityScenario.launch<AboutActivity>(intent).use { scenario ->
+            scenario.onActivity { activity ->
+                val controller = ChangelogPromptController(activity) {
+                    Maybe.fromCallable {
+                        ChangelogCatalog.parse(developmentHistory).notice("1.49.2", preferences.lastSeenCode)
+                    }.doOnEvent { _, error ->
+                        loadError = error
+                        loaded.countDown()
+                    }
+                }
+                controller.maybeShow()
+            }
+            assertTrue("The development changelog should finish loading", loaded.await(5, TimeUnit.SECONDS))
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            scenario.onActivity { activity ->
+                assertNull(loadError)
+                assertNull(activity.supportFragmentManager.findFragmentByTag(ChangelogDialogFragment.TAG))
+                assertEquals(releasedNotice.code, preferences.lastSeenCode)
+            }
         }
     }
 
     @Test
     fun rotationKeepsDialogAndCloseAcknowledgesTheRelease() {
-        val notice = notice()
+        val notice = releasedNotice
         ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
             scenario.onActivity {
                 ChangelogDialogFragment.newInstance(notice).showNow(it.supportFragmentManager, ChangelogDialogFragment.TAG)
@@ -98,13 +137,13 @@ class ChangelogDialogTest {
         try {
             ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
                 scenario.onActivity {
-                    val fragment = ChangelogDialogFragment.newInstance(notice())
+                    val fragment = ChangelogDialogFragment.newInstance(releasedNotice)
                     fragment.showNow(it.supportFragmentManager, ChangelogDialogFragment.TAG)
                     (fragment.requireDialog() as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE).performClick()
                 }
                 val page = instrumentation.waitForMonitorWithTimeout(monitor, 5000)
                 assertNotNull(page)
-                assertEquals(notice().code, ChangelogPreferences(context).lastSeenCode)
+                assertEquals(releasedNotice.code, ChangelogPreferences(context).lastSeenCode)
                 instrumentation.runOnMainSync { page.finish() }
             }
         } finally {
@@ -116,15 +155,15 @@ class ChangelogDialogTest {
     fun cancelledDialogAcknowledgesButDowngradeCannotResetSeenVersion() {
         ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
             scenario.onActivity {
-                val fragment = ChangelogDialogFragment.newInstance(notice())
+                val fragment = ChangelogDialogFragment.newInstance(releasedNotice)
                 fragment.showNow(it.supportFragmentManager, ChangelogDialogFragment.TAG)
                 fragment.requireDialog().cancel()
             }
             InstrumentationRegistry.getInstrumentation().waitForIdleSync()
             val preferences = ChangelogPreferences(context)
-            assertEquals(notice().code, preferences.lastSeenCode)
+            assertEquals(releasedNotice.code, preferences.lastSeenCode)
             preferences.acknowledge(1)
-            assertEquals(notice().code, preferences.lastSeenCode)
+            assertEquals(releasedNotice.code, preferences.lastSeenCode)
         }
     }
 
@@ -137,6 +176,19 @@ class ChangelogDialogTest {
                 assertTrue(text.contains("• First fix"))
                 assertTrue(text.contains("• Second fix"))
                 assertTrue(text.substringAfter("First fix").substringBefore("Second fix").contains('\n'))
+            }
+        }
+    }
+
+    @Test
+    fun fullHistoryKeepsUnreleasedNotesSearchable() {
+        ActivityScenario.launch(AboutActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                val scroll = changelogTextView(activity, developmentHistory, false)
+                val text = (scroll.getChildAt(0) as android.widget.TextView).text
+                assertTrue(text.contains("Unreleased"))
+                assertTrue(text.contains("Published fixture changes"))
+                assertEquals(1, ChangelogSearch.findMatches(text, "Pending development changes").size)
             }
         }
     }

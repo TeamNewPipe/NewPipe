@@ -69,7 +69,7 @@ def blocks(lines):
     return "\n".join(output)
 
 
-def generate(markdown):
+def generate(markdown, *, require_release=False):
     sections = []
     current = None
     for line in markdown.splitlines():
@@ -89,9 +89,14 @@ def generate(markdown):
     parts = [int(re.search(rf"const val WIZESTREAM_VERSION_{part} = (\d+)", config)[1]) for part in ("MAJOR", "MINOR", "PATCH")]
     version = ".".join(map(str, parts))
     code = parts[0] * 1_000_000 + parts[1] * 1_000 + parts[2]
-    if not any(section["version"] == version and section["code"] == code and blocks(section["lines"]) for section in releases):
-        raise ValueError(f"Add release notes for WizeStream {version} ({code}) to {SOURCE.relative_to(ROOT)}")
     release_dates = json.loads(RELEASE_DATES.read_text(encoding="utf-8"))
+    if not any(section["version"] == version and section["code"] == code and blocks(section["lines"]) for section in releases):
+        current_heading = any(section["version"] == version or section["code"] == code for section in releases)
+        development_version = code > codes[0] and version not in release_dates and not current_heading
+        if require_release or not development_version:
+            raise ValueError(f"Add numbered release notes for WizeStream {version} ({code}) to {SOURCE.relative_to(ROOT)}")
+        if not any(section["code"] is None and blocks(section["lines"]) for section in sections):
+            raise ValueError(f"Add development notes under ## Unreleased in {SOURCE.relative_to(ROOT)}")
     toc = []
     content = []
     for section in sections:
@@ -139,12 +144,13 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Fail if the committed asset needs regeneration")
+    parser.add_argument("--require-release", action="store_true", help="Require numbered notes matching the app version before publication")
     args = parser.parse_args()
-    generated = generate(SOURCE.read_text(encoding="utf-8"))
+    generated = generate(SOURCE.read_text(encoding="utf-8"), require_release=args.require_release)
     if args.check:
         if not TARGET.exists() or TARGET.read_text(encoding="utf-8") != generated:
             sys.exit("Changelog asset is stale. Run: python3 scripts/generate-changelog.py")
-        print("Bundled changelog matches docs/changelogs.md and the current release.")
+        print("Bundled changelog matches docs/changelogs.md and the app version.")
     else:
         TARGET.write_text(generated, encoding="utf-8")
         print(f"Updated {TARGET.relative_to(ROOT)}")

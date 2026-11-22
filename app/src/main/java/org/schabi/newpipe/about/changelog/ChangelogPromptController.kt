@@ -15,7 +15,21 @@ import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.util.KEY_LINK_TYPE
 import org.schabi.newpipe.util.KEY_OPEN_SEARCH
 
-class ChangelogPromptController(private val activity: FragmentActivity) : DefaultLifecycleObserver {
+class ChangelogPromptController internal constructor(
+    private val activity: FragmentActivity,
+    private val loadNotice: () -> Maybe<ChangelogNotice>
+) : DefaultLifecycleObserver {
+    constructor(activity: FragmentActivity) : this(
+        activity,
+        {
+            val context = activity.applicationContext
+            Maybe.fromCallable {
+                val html = context.assets.open("changelog.html").bufferedReader().use { it.readText() }
+                ChangelogCatalog.parse(html).notice(BuildConfig.VERSION_NAME, ChangelogPreferences(context).lastSeenCode)
+            }.subscribeOn(Schedulers.io())
+        }
+    )
+
     private var load: Disposable? = null
     private var loaded = false
     private var pending: ChangelogNotice? = null
@@ -57,11 +71,7 @@ class ChangelogPromptController(private val activity: FragmentActivity) : Defaul
         }
         if (!loaded) {
             loaded = true
-            val context = activity.applicationContext
-            load = Maybe.fromCallable {
-                val html = context.assets.open("changelog.html").bufferedReader().use { it.readText() }
-                ChangelogCatalog.parse(html).notice(BuildConfig.VERSION_NAME, ChangelogPreferences(context).lastSeenCode)
-            }.subscribeOn(Schedulers.io())
+            load = loadNotice()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {

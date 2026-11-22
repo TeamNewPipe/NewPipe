@@ -54,4 +54,22 @@ class ChangelogCatalogTest {
         assertNull(ChangelogCatalog.parse("<section data-version='1.3.0' data-version-code='bad'>Broken</section>").notice("1.3.0", 0))
         assertNull(ChangelogCatalog.parse("<section data-version='1.3.0' data-version-code='1003000'><div class='release-notes'></div></section>").notice("1.3.0", 0))
     }
+
+    @Test
+    fun unreleasedDevelopmentNotesNeverBecomeAPublishedReleaseNotice() {
+        val history = ChangelogCatalog.parse(
+            """
+            <section id="unreleased"><h2>Unreleased</h2><div class="release-notes"><p>Pending changes</p></div></section>
+            <section data-version="1.49.1" data-version-code="1049001"><h2>1.49.1</h2><div class="release-notes"><p>Published changes</p></div></section>
+            """.trimIndent()
+        )
+        for (lastSeenCode in listOf(0, 1049001)) {
+            assertNull(history.notice("1.49.2", lastSeenCode))
+            assertNull(history.notice("1.49.2-nightly.20261122.abcdef", lastSeenCode))
+        }
+        val published = requireNotNull(history.notice("1.49.1", 0))
+        assertEquals(1049001, published.code)
+        assertTrue(published.html.contains("Published changes"))
+        assertFalse(published.html.contains("Pending changes"))
+    }
 }

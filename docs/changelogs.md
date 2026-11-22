@@ -4,8 +4,6 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
-## WizeStream 1.49.2 (`1049002`)
-
 ### History and library
 
 - Expand History filters for live audio and post-live video and audio.

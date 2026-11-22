@@ -181,6 +181,7 @@ jobs:
       - name: "Validate changelog"
         if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.release_target == 'release' || inputs.release_target == 'all')) }}
         run: |
+          python3 scripts/generate-changelog.py --check --require-release
           test -s "${{ steps.release_info.outputs.changelog_path }}"
 
       - name: "Create release"
