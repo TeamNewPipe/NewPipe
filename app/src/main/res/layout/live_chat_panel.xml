@@ -9,6 +9,15 @@
         android:layout_height="48dp" android:text="@string/live_chat_retry" />
     <Button android:id="@+id/liveChatDanmaku" android:layout_width="wrap_content"
         android:layout_height="48dp" android:text="@string/live_chat_use_danmaku" />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:id="@+id/liveChatCapture"
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:text="@string/live_chat_capture_start" />
+        <Button android:id="@+id/liveChatSaved"
+            android:layout_width="wrap_content" android:layout_height="48dp"
+            android:text="@string/live_chat_saved_open" />
+    </LinearLayout>
     <ListView android:id="@+id/liveChatMessages"
         android:layout_width="match_parent" android:layout_height="0dp"
         android:layout_weight="1" android:transcriptMode="disabled"

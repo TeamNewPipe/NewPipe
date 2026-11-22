@@ -2085,5 +2085,14 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="live_chat_landscape_overlay_key" translatable="false">live_chat_landscape_overlay</string>
     <string name="live_chat_landscape_overlay_title">Overlay live chat in landscape</string>
     <string name="live_chat_landscape_overlay_summary">Show the live-chat panel over the video instead of shrinking the video while in landscape on phones. Off shows the original sidecar layout.</string>
+    <string name="live_chat_capture_start">Record chat</string>
+    <string name="live_chat_capture_stop">Stop recording</string>
+    <string name="live_chat_capture_busy">Another chat recording is active</string>
+    <string name="live_chat_saved_open">Saved chat</string>
+    <string name="live_chat_saved_badge">Saved chat ✓</string>
+    <string name="live_chat_capture_empty">No saved chat for this stream. Recording starts from when you tap Record chat.</string>
+    <string name="live_chat_capture_read_failure">Could not read saved live chat</string>
+    <string name="live_chat_capture_title">Saved live chat</string>
+    <string name="live_chat_capture_unknown">Unknown author</string>
 </resources>
 

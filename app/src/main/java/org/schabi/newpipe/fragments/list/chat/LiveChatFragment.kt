@@ -19,6 +19,8 @@ import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.bulletComments.BulletCommentsInfoItem
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem
+import org.schabi.newpipe.player.LiveChatRecorder
+import org.schabi.newpipe.player.LiveChatRecordingDialog
 import org.schabi.newpipe.player.LiveChatRepository
 import org.schabi.newpipe.util.ContentBlockingHelper
 
@@ -50,6 +52,40 @@ class LiveChatFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.live_chat_panel, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val source = requireArguments()
+        val chatService = source.getInt(SERVICE)
+        val chatUrl = source.getString(URL).orEmpty()
+        val captureButton = view.findViewById<Button>(R.id.liveChatCapture)
+        val savedButton = view.findViewById<Button>(R.id.liveChatSaved)
+        fun updateButtons() {
+            val capturing = LiveChatRecorder.isRecording(chatService, chatUrl)
+            captureButton.setText(
+                if (capturing) R.string.live_chat_capture_stop else R.string.live_chat_capture_start
+            )
+            savedButton.setText(
+                if (LiveChatRecorder.hasSaved(requireContext(), chatService, chatUrl)) {
+                    R.string.live_chat_saved_badge
+                } else {
+                    R.string.live_chat_saved_open
+                }
+            )
+        }
+        captureButton.setOnClickListener {
+            if (LiveChatRecorder.isRecording(chatService, chatUrl)) {
+                LiveChatRecorder.stop(chatService, chatUrl)
+            } else if (!LiveChatRecorder.start(requireContext(), chatService, chatUrl)) {
+                android.widget.Toast.makeText(
+                    requireContext(),
+                    R.string.live_chat_capture_busy,
+                    android.widget.Toast.LENGTH_SHORT
+                ).show()
+            }
+            updateButtons()
+        }
+        savedButton.setOnClickListener {
+            LiveChatRecordingDialog.show(requireContext(), chatService, chatUrl)
+        }
+        updateButtons()
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(modeListener)
         view.findViewById<Button>(R.id.liveChatDanmaku).setOnClickListener {
@@ -89,6 +125,18 @@ class LiveChatFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        val args = arguments
+        if (args != null && view != null) {
+            val service = args.getInt(SERVICE)
+            val link = args.getString(URL).orEmpty()
+            view?.findViewById<Button>(R.id.liveChatCapture)?.setText(
+                if (LiveChatRecorder.isRecording(service, link)) {
+                    R.string.live_chat_capture_stop
+                } else {
+                    R.string.live_chat_capture_start
+                }
+            )
+        }
         startIfVisible()
     }
 
