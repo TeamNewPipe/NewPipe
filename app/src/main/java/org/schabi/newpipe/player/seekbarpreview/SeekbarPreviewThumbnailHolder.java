@@ -32,6 +32,8 @@ public class SeekbarPreviewThumbnailHolder {
     private final BitmapLoader loader;
     private Context context;
     private Frameset frameset;
+    private List<Frameset> fallbackFramesets = List.of();
+    private int activeFramesetIndex;
     private Disposable request;
     private long generation;
     private int pendingPage = -1;
@@ -57,9 +59,14 @@ public class SeekbarPreviewThumbnailHolder {
         if (type != SeekbarPreviewThumbnailType.NONE) {
             final Comparator<Frameset> quality = Comparator.comparingLong(
                     fs -> (long) fs.getFrameHeight() * fs.getFrameWidth());
-            frameset = framesets.stream().filter(SeekbarPreviewThumbnailHolder::isValid)
-                    .min(type == SeekbarPreviewThumbnailType.HIGH_QUALITY
-                            ? quality.reversed() : quality).orElse(null);
+            fallbackFramesets = framesets.stream()
+                    .filter(SeekbarPreviewThumbnailHolder::isValid)
+                    .sorted(type == SeekbarPreviewThumbnailType.HIGH_QUALITY
+                            ? quality.reversed() : quality)
+                    .toList();
+            if (!fallbackFramesets.isEmpty()) {
+                frameset = fallbackFramesets.get(0);
+            }
         }
     }
 
@@ -108,13 +115,28 @@ public class SeekbarPreviewThumbnailHolder {
             }
             pendingPage = -1;
             request = null;
+            final Bitmap crop = crop(bitmap, positionMs);
+            if (crop == null && activeFramesetIndex + 1 < fallbackFramesets.size()) {
+                // A storyboard page may be blocked, empty or malformed even when metadata
+                // exists. Try the next advertised quality level without re-extracting.
+                final Consumer<Bitmap> receiver = consumer;
+                activeFramesetIndex++;
+                frameset = fallbackFramesets.get(activeFramesetIndex);
+                pages.evictAll();
+                if (receiver != null) {
+                    requestBitmapAt(positionMs, receiver);
+                }
+                return;
+            }
             if (bitmap != null && !bitmap.isRecycled()) {
                 pages.put(page, bitmap);
             }
             final Consumer<Bitmap> receiver = consumer;
             consumer = null;
             if (receiver != null) {
-                receiver.accept(crop(bitmap, positionMs));
+                receiver.accept(crop);
+            } else if (crop != null) {
+                crop.recycle();
             }
         });
     }
@@ -155,6 +177,8 @@ public class SeekbarPreviewThumbnailHolder {
     public void clear() {
         cancelRequest();
         frameset = null;
+        fallbackFramesets = List.of();
+        activeFramesetIndex = 0;
         context = null;
         // Coil owns the page bitmaps. Drop references without recycling shared images.
         pages.evictAll();
