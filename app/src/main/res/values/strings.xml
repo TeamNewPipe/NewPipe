@@ -131,6 +131,10 @@
     <string name="bulk_download_folder_error">Choose a valid default download folder in Download settings first.</string>
     <string name="controls_download_desc">Download stream file</string>
     <string name="search">Search</string>
+    <string name="open_link">Open link</string>
+    <string name="service_link_hint">Paste a video or channel link</string>
+    <string name="service_keyword_search_unavailable">%1$s keyword search is not available. Paste a video or channel link to open it.</string>
+    <string name="vimeo_staff_picks">Staff Picks</string>
     <string name="search_filters">Search filters</string>
     <string name="search_filter_content_type">Content type</string>
     <string name="search_filter_apply">Apply</string>

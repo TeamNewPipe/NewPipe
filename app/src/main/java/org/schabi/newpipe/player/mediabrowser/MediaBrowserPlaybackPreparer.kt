@@ -29,6 +29,7 @@ import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.ServiceSearchSupport
 
 /**
  * This class is used to cleanly separate the Service implementation (in
@@ -97,6 +98,10 @@ class MediaBrowserPlaybackPreparer(
 
         disposable?.dispose()
         val serviceId = ServiceHelper.getSelectedServiceId(context)
+        if (!ServiceSearchSupport.supportsSearch(serviceId)) {
+            onUnsupportedError()
+            return
+        }
         disposable = ExtractorHelper.searchFor(serviceId, query, listOf(), "")
             .map { searchInfo ->
                 CarAudioSearchResultSelector.firstPlayable(searchInfo.relatedItems)

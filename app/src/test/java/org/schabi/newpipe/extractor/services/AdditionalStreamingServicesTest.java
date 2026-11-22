@@ -19,7 +19,7 @@ class AdditionalStreamingServicesTest {
 
     @Test
     void registersServicesWithoutChangingExistingIds() {
-        assertEquals(10, ServiceList.all().size());
+        assertEquals(11, ServiceList.all().size());
         assertSame(ServiceList.BitChute, ServiceList.all().get(7));
         assertSame(ServiceList.Rumble, ServiceList.all().get(8));
         assertSame(ServiceList.Odysee, ServiceList.all().get(9));

@@ -436,6 +436,9 @@ public final class ThemeHelper {
             case "LightTheme.Bandcamp" -> R.style.LightTheme_Bandcamp;
             case "DarkTheme.Bandcamp" -> R.style.DarkTheme_Bandcamp;
             case "BlackTheme.Bandcamp" -> R.style.BlackTheme_Bandcamp;
+            case "LightTheme.Vimeo" -> R.style.LightTheme_Vimeo;
+            case "DarkTheme.Vimeo" -> R.style.DarkTheme_Vimeo;
+            case "BlackTheme.Vimeo" -> R.style.BlackTheme_Vimeo;
             default -> baseTheme;
         };
     }

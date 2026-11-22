@@ -105,8 +105,8 @@ public final class ExtractorHelper {
                 throw new IllegalStateException(App.getInstance()
                         .getString(R.string.kids_mode_search_disabled));
             }
-            final SearchQueryHandlerFactory factory = NewPipe.getService(serviceId)
-                    .getSearchQHFactory();
+            final SearchQueryHandlerFactory factory =
+                    ServiceSearchSupport.requireSearchFactory(serviceId);
             return SearchInfo.getInfo(NewPipe.getService(serviceId), factory.fromQuery(
                     searchString,
                     resolveContentFilterItems(factory.getAvailableContentFilter(), contentFilter),
@@ -123,8 +123,8 @@ public final class ExtractorHelper {
                 throw new IllegalStateException(App.getInstance()
                         .getString(R.string.kids_mode_search_disabled));
             }
-            final SearchQueryHandlerFactory factory = NewPipe.getService(serviceId)
-                    .getSearchQHFactory();
+            final SearchQueryHandlerFactory factory =
+                    ServiceSearchSupport.requireSearchFactory(serviceId);
             return SearchInfo.getInfo(NewPipe.getService(serviceId), factory.fromQuery(
                     searchString,
                     resolveContentFilterItems(factory.getAvailableContentFilter(), contentFilter),
@@ -144,8 +144,8 @@ public final class ExtractorHelper {
                 throw new IllegalStateException(App.getInstance()
                         .getString(R.string.kids_mode_search_disabled));
             }
-            final SearchQueryHandlerFactory factory = NewPipe.getService(serviceId)
-                    .getSearchQHFactory();
+            final SearchQueryHandlerFactory factory =
+                    ServiceSearchSupport.requireSearchFactory(serviceId);
             return SearchInfo.getMoreItems(NewPipe.getService(serviceId), factory.fromQuery(
                     searchString,
                     resolveContentFilterItems(factory.getAvailableContentFilter(), contentFilter),

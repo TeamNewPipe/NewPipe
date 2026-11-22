@@ -155,7 +155,7 @@ final class SearchFilterDialog {
     }
 
     static boolean hasFilters(@Nullable final StreamingService service) {
-        if (service == null) {
+        if (service == null || service.getSearchQHFactory() == null) {
             return false;
         }
         final Filter content = service.getSearchQHFactory().getAvailableContentFilter();

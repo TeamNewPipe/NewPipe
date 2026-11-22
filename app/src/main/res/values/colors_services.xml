@@ -35,4 +35,10 @@
     <color name="dark_bandcamp_primary_color">#1383a1</color>
     <color name="dark_bandcamp_accent_color">#FFFFFF</color>
 
+    <!-- Vimeo: use contrasting primary/on-primary pairs in both display modes. -->
+    <color name="light_vimeo_primary_color">#006F91</color>
+    <color name="light_vimeo_on_primary_color">#FFFFFF</color>
+    <color name="dark_vimeo_primary_color">#70D5F3</color>
+    <color name="dark_vimeo_on_primary_color">#003546</color>
+
 </resources>

@@ -523,6 +523,52 @@
                 <data android:host="*.bandcamp.com" />
             </intent-filter>
 
+            <!-- Vimeo video/channel links; the extractor validates IDs and unlisted hashes. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="vimeo.com" />
+                <data android:host="www.vimeo.com" />
+                <!-- Prefixes work on older Android versions without advanced path patterns. -->
+                <data android:pathPrefix="/0" />
+                <data android:pathPrefix="/1" />
+                <data android:pathPrefix="/2" />
+                <data android:pathPrefix="/3" />
+                <data android:pathPrefix="/4" />
+                <data android:pathPrefix="/5" />
+                <data android:pathPrefix="/6" />
+                <data android:pathPrefix="/7" />
+                <data android:pathPrefix="/8" />
+                <data android:pathPrefix="/9" />
+                <data android:pathPrefix="/channels/" />
+                <data android:pathPattern="/.*/videos" />
+                <data android:pathPattern="/.*/videos/" />
+                <data android:pathPattern="/groups/.*/videos/.*" />
+                <data android:pathPattern="/album/.*/video/.*" />
+                <data android:pathPattern="/showcase/.*/video/.*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="player.vimeo.com" />
+                <data android:pathPrefix="/video/" />
+            </intent-filter>
+
             <!-- Bandcamp filter for radio -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -24,6 +24,7 @@ object KioskTranslator {
             "recent" -> context.getString(R.string.recent)
             "live", "Recommended Lives" -> context.getString(R.string.recommended_lives)
             "Featured" -> context.getString(R.string.featured)
+            "Staff Picks" -> context.getString(R.string.vimeo_staff_picks)
             "Radio" -> context.getString(R.string.radio)
             "trending_gaming" -> context.getString(R.string.trending_gaming)
             "trending_music" -> context.getString(R.string.trending_music)
@@ -45,6 +46,7 @@ object KioskTranslator {
             "Most liked" -> R.drawable.ic_thumb_up
             "live", "Recommended Lives" -> R.drawable.ic_live_tv
             "Featured" -> R.drawable.ic_stars
+            "Staff Picks" -> R.drawable.ic_stars
             "Radio" -> R.drawable.ic_radio
             "trending_gaming" -> R.drawable.ic_videogame_asset
             "trending_music" -> R.drawable.ic_music_note

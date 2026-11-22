@@ -95,4 +95,26 @@
         <item name="colorAccent">@color/dark_bandcamp_accent_color</item>
     </style>
 
+    <!-- Vimeo -->
+    <style name="LightTheme.Vimeo" parent="LightTheme" tools:keep="@style/LightTheme_Vimeo">
+        <item name="colorPrimary">@color/light_vimeo_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_vimeo_primary_color</item>
+        <item name="colorOnPrimary">@color/light_vimeo_on_primary_color</item>
+        <item name="colorAccent">@color/light_vimeo_primary_color</item>
+    </style>
+
+    <style name="DarkTheme.Vimeo" parent="DarkTheme" tools:keep="@style/DarkTheme_Vimeo">
+        <item name="colorPrimary">@color/dark_vimeo_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_vimeo_on_primary_color</item>
+        <item name="colorOnPrimary">@color/dark_vimeo_on_primary_color</item>
+        <item name="colorAccent">@color/dark_vimeo_primary_color</item>
+    </style>
+
+    <style name="BlackTheme.Vimeo" parent="BlackTheme" tools:keep="@style/BlackTheme_Vimeo">
+        <item name="colorPrimary">@color/dark_vimeo_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_vimeo_on_primary_color</item>
+        <item name="colorOnPrimary">@color/dark_vimeo_on_primary_color</item>
+        <item name="colorAccent">@color/dark_vimeo_primary_color</item>
+    </style>
+
 </resources>

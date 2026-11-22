@@ -47,6 +47,7 @@ import org.schabi.newpipe.local.playlist.RemotePlaylistManager
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.ExtractorHelper
 import org.schabi.newpipe.util.ServiceHelper
+import org.schabi.newpipe.util.ServiceSearchSupport
 import org.schabi.newpipe.util.image.ExtractorImageCompat
 import org.schabi.newpipe.util.image.ImageStrategy
 
@@ -142,8 +143,11 @@ class MediaBrowserImpl(
         return immediateResult(LibraryResult.ofItem(root, resultParams))
     }
 
-    private fun createRootExtras(recent: Boolean = false): Bundle = Bundle().apply {
-        putBoolean(MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED, true)
+    internal fun createRootExtras(recent: Boolean = false): Bundle = Bundle().apply {
+        putBoolean(
+            MediaConstants.BROWSER_SERVICE_EXTRAS_KEY_SEARCH_SUPPORTED,
+            ServiceSearchSupport.supportsSearch(ServiceHelper.getSelectedServiceId(context))
+        )
         if (recent) {
             putBoolean("android.service.media.extra.RECENT", true)
         }
@@ -482,6 +486,9 @@ class MediaBrowserImpl(
         query: String,
         params: LibraryParams?
     ): ListenableFuture<LibraryResult<Void>> {
+        if (!ServiceSearchSupport.supportsSearch(ServiceHelper.getSelectedServiceId(context))) {
+            return immediateResult(LibraryResult.ofError(SessionError.ERROR_NOT_SUPPORTED))
+        }
         if (DEBUG) {
             Log.d(TAG, "onSearch($query)")
         }
@@ -510,6 +517,9 @@ class MediaBrowserImpl(
         pageSize: Int,
         params: LibraryParams?
     ): ListenableFuture<LibraryResult<ImmutableList<MediaItem>>> {
+        if (!ServiceSearchSupport.supportsSearch(ServiceHelper.getSelectedServiceId(context))) {
+            return immediateResult(LibraryResult.ofError(SessionError.ERROR_NOT_SUPPORTED))
+        }
         val future = SettableFuture.create<LibraryResult<ImmutableList<MediaItem>>>()
         disposables.add(
             search(query)

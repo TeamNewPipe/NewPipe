@@ -48,6 +48,7 @@ object ServiceHelper {
             7 -> R.drawable.ic_placeholder_bitchute
             8 -> R.drawable.ic_placeholder_rumble
             ServiceList.Odysee.serviceId -> R.drawable.ic_placeholder_odysee
+            ServiceList.Vimeo.serviceId -> R.drawable.ic_placeholder_vimeo
             else -> R.drawable.ic_circle
         }
     }
@@ -243,6 +244,10 @@ object ServiceHelper {
 
             ServiceList.NicoNico.serviceId ->
                 TimeUnit.MILLISECONDS.convert(2, TimeUnit.MINUTES)
+
+            // Vimeo media URLs expire; refresh well before the observed one-hour lifetime.
+            ServiceList.Vimeo.serviceId ->
+                TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES)
 
             else -> TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS)
         }

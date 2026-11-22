@@ -75,6 +75,7 @@ import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.KeyboardUtil;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ServiceSearchSupport;
 import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
@@ -368,6 +369,8 @@ public class MainFragment extends BaseFragment
         if (searchItem != null) {
             final boolean localSearch = shouldUseContextualSearch(prefersGlobalSearch(),
                     getCurrentContextualSearchable() != null);
+            ServiceSearchSupport.configureAction(searchItem,
+                    ServiceHelper.getSelectedServiceId(requireContext()), localSearch);
             searchItem.setVisible(!contextualSearchOpen);
             if (!localSearch && !KidsMode.isSearchAllowed(requireContext(),
                     ServiceHelper.getSelectedServiceId(requireContext()))) {
@@ -721,7 +724,9 @@ public class MainFragment extends BaseFragment
 
         contextualSearchContainer.setVisibility(contextualSearchOpen ? View.VISIBLE : View.GONE);
         binding.contextualGlobalSearchFab.setVisibility(
-                contextualSearchOpen && KidsMode.isSearchAllowed(requireContext(),
+                contextualSearchOpen && ServiceSearchSupport.supportsSearch(
+                        ServiceHelper.getSelectedServiceId(requireContext()))
+                        && KidsMode.isSearchAllowed(requireContext(),
                         ServiceHelper.getSelectedServiceId(requireContext()))
                         ? View.VISIBLE : View.GONE);
         final ActionBar actionBar = activity.getSupportActionBar();

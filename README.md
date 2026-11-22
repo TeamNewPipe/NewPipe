@@ -173,6 +173,12 @@ WizeStream supports these services through extractor source integrated directly 
 - BitChute
 - Rumble
 - Odysee (experimental)
+- Vimeo (public videos, shared unlisted links, public creators/channels and Staff Picks)
+
+For Vimeo, use **Open link** or share a video/channel URL to WizeStream. Native playback supports
+the unencrypted streams Vimeo exposes, with captions when available. Downloads require a
+progressive video file. Keyword search, showcase/album browsing, sign-in and protected videos
+are not supported. Keep the full URL when sharing an unlisted video so its access hash is retained.
 
 YouTube playback and downloads use conventional progressive, DASH, and HLS stream URLs exposed by
 the bundled extractor source.

@@ -13,12 +13,15 @@ WizeStream integrates extractor source directly into the Android app. Services p
 | Bilibili and Niconico | Integrated service support; details vary by source. |
 | BitChute and Rumble | Integrated browsing and playback support. |
 | Odysee | Experimental support; expect limitations. |
+| Vimeo | Public videos, shared unlisted video links, public creator/channel uploads and Staff Picks. |
 
 Live Radio and Live TV use separate station/channel directories and imported stream lists. They do not turn every directory item into a supported social-platform subscription. See [live media and local files](live-media.html).
 
 ## Search the right service
 
 Select the service before searching. Use its available content, date, duration, feature and sorting filters. YouTube Music has its own filter context. Supported presets can preserve repeatable search choices for a profile and service.
+
+Vimeo offers **Open link** in place of keyword search. Paste or share a video, creator or channel URL, or browse **Staff Picks**. Keep the full URL for an unlisted video, including its access hash. Public creator/channel uploads support pagination. Videos use the native player when Vimeo provides unencrypted streams, with captions when available; downloads require a progressive video file. Keyword search, whole showcase/album lists, live events, comments, account sign-in and password/private/domain-restricted/DRM-only videos are unsupported. Individual video links inside showcases/albums can be opened.
 
 YouTube searches can use custom or relative upload-date ranges, duration limits and supported deeper collection. Larger searches can take longer and still depend on the service’s returned results; they are not a complete database query over every upload.
 

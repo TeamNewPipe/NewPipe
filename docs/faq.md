@@ -65,6 +65,21 @@ Use the same source from which you installed it whenever possible. IzzyOnDroid u
 Service support comes from the extractor source integrated into each WizeStream build. See the
 main [README](../README.md#supported-services) for the current list.
 
+## How do I use Vimeo?
+
+Select Vimeo, then browse **Staff Picks** or choose **Open link** to paste a Vimeo video, creator or
+channel URL. Android's Share action can also send a supported Vimeo link to WizeStream. Public
+creator uploads and thematic channels load additional pages as you scroll.
+
+Public videos and shared unlisted video links play when Vimeo exposes an unencrypted stream.
+Keep the complete unlisted URL, including its access hash. Available captions use the native
+player. Downloads appear only when Vimeo provides a progressive video file; videos offering
+only adaptive streams can be played but cannot be downloaded by this integration.
+
+Vimeo keyword search, whole showcase/album lists, live events, comments and account sign-in are unavailable.
+Individual video links inside showcases/albums are supported. Password-protected, private,
+domain-restricted and DRM-only videos are not supported.
+
 ## How do bulk downloads work?
 
 Open a remote or local playlist's menu and choose **Download playlist**, or open the play queue and

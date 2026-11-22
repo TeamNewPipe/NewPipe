@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Vimeo
+
+- Add Vimeo public videos and shared unlisted links with native playback and available captions, plus paginated public creator/channel uploads and Staff Picks.
+- Use Open link for Vimeo navigation; downloads require an advertised progressive video file. Keyword search, whole showcase/album lists, comments, sign-in and protected videos are unsupported.
+
 ## WizeStream 1.50.0 (`1050000`)
 
 ### Channel pages

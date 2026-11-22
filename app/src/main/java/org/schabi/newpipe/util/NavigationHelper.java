@@ -434,6 +434,10 @@ public final class NavigationHelper {
                     android.widget.Toast.LENGTH_SHORT).show();
             return;
         }
+        if (OpenServiceLinkDialog.showIfSearchUnsupported(
+                fragmentManager, serviceId, searchString)) {
+            return;
+        }
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, searchString))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
@@ -447,6 +451,10 @@ public final class NavigationHelper {
             android.widget.Toast.makeText(App.getInstance().getApplicationContext(),
                     R.string.kids_mode_search_disabled,
                     android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (OpenServiceLinkDialog.showIfSearchUnsupported(fragmentManager,
+                savedSearchFeed.getServiceId(), savedSearchFeed.getQuery())) {
             return;
         }
         defaultTransaction(fragmentManager)
