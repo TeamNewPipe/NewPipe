@@ -25,6 +25,7 @@ class MissionItemLayoutsTest {
                     assertEquals(View.GONE, badge.visibility)
                     assertNotNull(root.findViewById<View>(R.id.item_bkg))
                     assertNotNull(root.findViewById<View>(R.id.item_icon))
+                    assertNotNull(root.findViewById<View>(R.id.item_chat_badge))
                     assertNotNull(root.findViewById<View>(R.id.item_name))
                     assertNotNull(root.findViewById<View>(R.id.item_size))
                     assertNotNull(root.findViewById<View>(R.id.item_status))

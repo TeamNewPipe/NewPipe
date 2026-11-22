@@ -60,6 +60,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.player.LiveChatRecorder;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
@@ -243,6 +244,18 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         h.captionBadge.setVisibility(caption || companions > 0 ? View.VISIBLE : View.GONE);
         h.captionBadge.setText(caption
                 ? R.string.download_caption_file_badge : R.string.download_has_captions_badge);
+        boolean chatSaved = false;
+        final String sourceUrl = item.mission.source;
+        if (item.mission instanceof FinishedMission
+                && sourceUrl != null && !sourceUrl.trim().isEmpty()) {
+            try {
+                final int serviceId = NewPipe.getServiceByUrl(sourceUrl).getServiceId();
+                chatSaved = LiveChatRecorder.hasSaved(mContext, serviceId, sourceUrl);
+            } catch (final Exception ignored) {
+                // Local files or unsupported services have no associated chat recording.
+            }
+        }
+        h.chatBadge.setVisibility(chatSaved ? View.VISIBLE : View.GONE);
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
@@ -994,6 +1007,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         TextView size;
         TextView date;
         TextView captionBadge;
+        TextView chatBadge;
         ProgressDrawable progress;
 
         PopupMenu popupMenu;
@@ -1032,6 +1046,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             size = itemView.findViewById(R.id.item_size);
             date = itemView.findViewById(R.id.item_date);
             captionBadge = itemView.findViewById(R.id.item_caption_badge);
+            chatBadge = itemView.findViewById(R.id.item_chat_badge);
 
             name.setSelected(true);
 
