@@ -1038,8 +1038,12 @@ public final class Player implements PlaybackListener, Listener {
         return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, MILLISECONDS,
                         AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> triggerProgressUpdate(),
-                        error -> Log.e(TAG, "Progress update failure: ", error));
+                .subscribe(ignored -> {
+                    triggerProgressUpdate();
+                    if (isPlaying()) {
+                        saveStreamProgressState(simpleExoPlayer.getCurrentPosition());
+                    }
+                }, error -> Log.e(TAG, "Progress update failure: ", error));
     }
 
     //endregion
