@@ -4,6 +4,10 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Channel pages
+
+- Align both halves of the subscription control and keep its bottom border visible, including with large text and right-to-left layouts.
+
 ### History and library
 
 - Expand History filters for live audio and post-live video and audio.

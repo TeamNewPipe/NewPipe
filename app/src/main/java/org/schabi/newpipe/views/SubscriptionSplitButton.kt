@@ -13,25 +13,31 @@ class SubscriptionSplitButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
+    init {
+        // Align the button outlines, not the different text baselines of the label and icon.
+        isBaselineAligned = false
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val primary = findViewById<MaterialButton>(R.id.channel_subscribe_button)
         val secondary = findViewById<MaterialButton>(R.id.channel_group_button)
+
+        // Reset both natural heights so a shorter label, smaller font or hidden group action
+        // can shrink the control again after either half previously needed extra height.
+        primary?.layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        secondary?.layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (primary == null || secondary == null || secondary.visibility == View.GONE) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
             return
         }
-
-        // First measure both children at natural height. This also lets the group button shrink
-        // after the Subscribe label becomes shorter, or when the system font scale decreases.
-        secondary.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         val requiredHeight = SubscriptionButtonSizing.height(
             primary.measuredHeight,
             secondary.measuredHeight,
-            secondary.minimumHeight
+            maxOf(primary.minimumHeight, secondary.minimumHeight)
         )
-        if (secondary.measuredHeight != requiredHeight) {
+        if (primary.measuredHeight != requiredHeight || secondary.measuredHeight != requiredHeight) {
+            primary.layoutParams.height = requiredHeight
             secondary.layoutParams.height = requiredHeight
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         }
