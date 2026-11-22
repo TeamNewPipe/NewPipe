@@ -34,6 +34,7 @@ public class NotificationActionsPreference extends Preference {
 
     private NotificationSlot[] notificationSlots;
     private List<Integer> compactSlots;
+    private NotificationActionPreview getViewHolderPreview;
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,7 @@ public class NotificationActionsPreference extends Preference {
         }
 
         holder.itemView.setClickable(false);
+        getViewHolderPreview = holder.itemView.findViewById(R.id.notification_actions_preview);
         setupActions(holder.itemView);
     }
 
@@ -57,6 +59,7 @@ public class NotificationActionsPreference extends Preference {
     public void onDetached() {
         super.onDetached();
         saveChanges();
+        getViewHolderPreview = null;
         // set package to this app's package to prevent the intent from being seen outside
         getContext().sendBroadcast(new Intent(ACTION_RECREATE_NOTIFICATION)
                 .setPackage(App.PACKAGE_NAME));
@@ -72,8 +75,21 @@ public class NotificationActionsPreference extends Preference {
                 getContext(), getSharedPreferences()));
         notificationSlots = IntStream.range(0, 5)
                 .mapToObj(i -> new NotificationSlot(getContext(), getSharedPreferences(), i, view,
-                        compactSlots.contains(i), this::onToggleCompactSlot))
+                        compactSlots.contains(i), this::onToggleCompactSlot,
+                        this::refreshPreview))
                 .toArray(NotificationSlot[]::new);
+        refreshPreview();
+    }
+
+    private void refreshPreview() {
+        if (notificationSlots == null || getViewHolderPreview == null) {
+            return;
+        }
+        final java.util.List<Integer> actions = new java.util.ArrayList<>();
+        for (final NotificationSlot slot : notificationSlots) {
+            actions.add(slot.getSelectedAction());
+        }
+        getViewHolderPreview.update(actions, compactSlots);
     }
 
     private void onToggleCompactSlot(final int i, final CheckBox checkBox) {
@@ -89,6 +105,7 @@ public class NotificationActionsPreference extends Preference {
         }
 
         checkBox.toggle();
+        refreshPreview();
     }
 
 

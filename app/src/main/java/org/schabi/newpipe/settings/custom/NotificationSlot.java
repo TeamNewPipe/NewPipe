@@ -52,6 +52,7 @@ class NotificationSlot {
     private @NotificationConstants.Action int selectedAction;
     private final Context context;
     private final BiConsumer<Integer, CheckBox> onToggleCompactSlot;
+    private final Runnable onActionChanged;
 
     private ImageView icon;
     private TextView summary;
@@ -61,10 +62,12 @@ class NotificationSlot {
                      final int actionIndex,
                      final View parentView,
                      final boolean isCompactSlotChecked,
-                     final BiConsumer<Integer, CheckBox> onToggleCompactSlot) {
+                     final BiConsumer<Integer, CheckBox> onToggleCompactSlot,
+                     final Runnable onActionChanged) {
         this.context = context;
         this.i = actionIndex;
         this.onToggleCompactSlot = onToggleCompactSlot;
+        this.onActionChanged = onActionChanged;
 
         selectedAction = Objects.requireNonNull(prefs).getInt(
                 context.getString(NotificationConstants.SLOT_PREF_KEYS[i]),
@@ -134,6 +137,7 @@ class NotificationSlot {
         final View.OnClickListener radioButtonsClickListener = v -> {
             selectedAction = NotificationConstants.ALL_ACTIONS[v.getId()];
             updateInfo();
+            onActionChanged.run();
             alertDialog.dismiss();
         };
 

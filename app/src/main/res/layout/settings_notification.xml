@@ -23,6 +23,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <org.schabi.newpipe.settings.custom.NotificationActionPreview
+        android:id="@+id/notification_actions_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/notification_actions_preview_description"
+        app:layout_constraintTop_toBottomOf="@+id/summary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <include
         android:id="@+id/notificationAction0"
         layout="@layout/settings_notification_action"
@@ -31,7 +41,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summary" />
+        app:layout_constraintTop_toBottomOf="@+id/notification_actions_preview" />
 
     <include
         android:id="@+id/notificationAction1"
