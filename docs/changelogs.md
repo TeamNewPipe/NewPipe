@@ -4,6 +4,8 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.50.0 (`1050000`)
+
 ### Channel pages
 
 - Align both halves of the subscription control and keep its bottom border visible, including with large text and right-to-left layouts.
@@ -17,6 +19,7 @@ Release history is listed newest first. The number beside each release is its An
 ### Playback and offline media
 
 - Add an optional second caption track, reorderable portrait player actions and a landscape live-chat overlay.
+- Add optional usernames and hold, drag and copy controls for danmaku messages.
 - Allow opt-in live-chat capture and offline replay, show saved-chat badges in Downloads, and cache viewed comments and replies for offline reading.
 - Reconnect visible live chat after transient failures, show time until scheduled streams and premieres, and restore collapsed miniplayer details when starting popup playback.
 - Release obsolete Home pager references, coalesce playback recovery writes and acknowledge checkpoints only after they are saved.
@@ -27,7 +30,7 @@ Release history is listed newest first. The number beside each release is its An
 - Preview danmaku appearance, portrait player action order and notification action selections while editing.
 - Make the Home tab picker searchable and fast-scrollable, restore pull-to-refresh and contextual search for Home channel-group feeds, and keep feed controls clear of fast-scroller touch areas.
 - Prevent translated subscription labels from clipping and make bulk notification changes transactional.
-- Add optional Device Sync stage timings and app CPU metrics, plus verified publication dates for existing releases in the in-app changelog.
+- Add optional Device Sync stage timings and app CPU metrics, plus release dates in parentheses in the in-app changelog.
 
 ## WizeStream 1.49.1 (`1049001`)
 

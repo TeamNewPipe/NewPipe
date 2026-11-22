@@ -110,9 +110,9 @@ def generate(markdown, *, require_release=False):
         released_on = release_dates.get(version) if version else None
         if released_on:
             date.fromisoformat(released_on)
-        nav_title = f"{title} · {released_on}" if released_on else title
+        nav_title = f"{title} ({released_on})" if released_on else title
         heading = (
-            f'{html.escape(title)} <time datetime="{released_on}">{released_on}</time>'
+            f'{html.escape(title)} (<time datetime="{released_on}">{released_on}</time>)'
             if released_on else html.escape(title)
         )
         toc.append(f'<li><a href="#{anchor}">{html.escape(nav_title)}</a></li>')
