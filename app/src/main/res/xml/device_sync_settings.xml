@@ -184,6 +184,13 @@
         app:iconSpaceReserved="false"
         app:singleLineTitle="false" />
 
+    <Preference
+        android:key="@string/device_sync_enter_code_key"
+        android:summary="@string/device_sync_enter_code_summary"
+        android:title="@string/device_sync_enter_code_title"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
     <PreferenceCategory
         android:key="@string/device_sync_trusted_devices_category_key"
         android:layout="@layout/settings_category_header_layout"

@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingStart="@dimen/margin_normal"
-    android:paddingTop="@dimen/margin_small"
-    android:paddingEnd="@dimen/margin_normal"
-    android:paddingBottom="@dimen/margin_small">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/device_pairing_qr"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/device_sync_pairing_qr_description"
-        android:padding="@dimen/margin_small"
-        android:scaleType="fitCenter" />
-
-    <TextView
-        android:id="@+id/device_pairing_peer_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margin_normal"
         android:paddingTop="@dimen/margin_small"
-        android:textAppearance="?attr/textAppearanceBodyMedium" />
+        android:paddingEnd="@dimen/margin_normal"
+        android:paddingBottom="@dimen/margin_small">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/margin_small"
-        android:text="@string/device_sync_pairing_code_expiry"
-        android:textAppearance="?attr/textAppearanceBodySmall" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/device_pairing_qr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/device_sync_pairing_qr_description"
+            android:padding="@dimen/margin_small"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/device_pairing_qr_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/device_sync_pairing_qr_unavailable"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_pairing_peer_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_small"
+            android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_small"
+            android:text="@string/device_sync_pairing_code_expiry"
+            android:textAppearance="?attr/textAppearanceBodySmall" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

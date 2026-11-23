@@ -397,7 +397,7 @@
     <string name="device_sync_sync_now_title">Sync now</string>
     <string name="device_sync_sync_now_summary">Exchange subscriptions, playlists, histories, and structured preferences with trusted devices</string>
     <string name="device_sync_log_title">Synchronization log</string>
-    <string name="device_sync_log_empty">No synchronization attempts recorded</string>
+    <string name="device_sync_log_empty">No pairing or synchronization events recorded</string>
     <string name="device_sync_log_summary">%1$d attempts recorded · latest %2$s</string>
     <string name="device_sync_log_manual">Manual synchronization</string>
     <string name="device_sync_log_background">Automatic background synchronization</string>
@@ -464,7 +464,7 @@
     <string name="device_sync_android_version_unsupported">Secure device synchronization requires Android 7.0 or newer on this device</string>
     <string name="device_sync_identity_title">This device PeerID</string>
     <string name="device_sync_show_code_title">Show pairing code</string>
-    <string name="device_sync_show_code_summary">Let another WizeStream device scan this one-time QR code</string>
+    <string name="device_sync_show_code_summary">Let another WizeStream device scan or copy this one-time pairing code</string>
     <string name="device_sync_scan_code_title">Scan pairing code</string>
     <string name="device_sync_scan_code_summary">Scan the QR code displayed by another WizeStream device</string>
     <string name="device_sync_scan_prompt">Scan the WizeStream pairing QR code</string>
@@ -473,7 +473,7 @@
     <string name="device_sync_pairing_failed">Pairing failed</string>
     <string name="device_sync_pairing_qr_description">One-time device pairing QR code</string>
     <string name="device_sync_pairing_peer_id">PeerID: %1$s</string>
-    <string name="device_sync_pairing_code_expiry">Keep this screen open while the other device scans. This code expires after five minutes and can be used only once.</string>
+    <string name="device_sync_pairing_code_expiry">Keep this screen open while the other device scans or enters this code. The code expires after five minutes and can be used only once. Share it only with the device you want to pair.</string>
     <string name="device_sync_trusted_devices_title">Trusted devices</string>
     <string name="device_sync_no_trusted_devices">No trusted devices</string>
     <string name="device_sync_clear_devices_title">Clear trusted devices</string>

@@ -2,6 +2,8 @@ package org.schabi.newpipe.local.subscription
 
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit.SECONDS
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
@@ -9,6 +11,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
@@ -17,16 +20,33 @@ import org.schabi.newpipe.testUtil.TestDatabase
 @RunWith(AndroidJUnit4::class)
 class ProfileSubscriptionIsolationTest {
     private val context = ApplicationProvider.getApplicationContext<android.content.Context>()
+    private val queryExecutor = Executors.newSingleThreadExecutor()
     private lateinit var database: AppDatabase
 
     @Before
     fun setUp() {
-        database = TestDatabase.createReplacingNewPipeDatabase()
+        database = TestDatabase.createReplacingNewPipeDatabase(queryExecutor)
     }
 
     @After
     fun tearDown() {
-        database.close()
+        try {
+            // blockingFirst cancels its Room subscription before returning, but an invalidation
+            // query may still be unwinding. Finish queued work before closing its connection pool.
+            queryExecutor.submit {}.get(10, SECONDS)
+        } finally {
+            try {
+                if (::database.isInitialized) {
+                    NewPipeDatabase.close()
+                    // Closing Room cancels its coroutine scope. Drain the queued cleanup before
+                    // stopping the executor so cancellation work can still be dispatched.
+                    queryExecutor.submit {}.get(10, SECONDS)
+                }
+            } finally {
+                queryExecutor.shutdown()
+                assertTrue("Room test executor did not stop", queryExecutor.awaitTermination(10, SECONDS))
+            }
+        }
     }
 
     @Test

@@ -303,7 +303,7 @@ class PairingSecurity(
         private const val MAX_CLOCK_SKEW_MILLIS = 60 * 1000L
         private const val MAX_REQUEST_AGE_MILLIS = 2 * 60 * 1000L
         private const val TOKEN_SIZE_BYTES = 32
-        private const val MAX_PAIRING_URI_LENGTH = 16 * 1024
+        internal const val MAX_PAIRING_URI_LENGTH = 16 * 1024
         private const val PAIRING_URI_SCHEME = "wizestream"
         private const val PAIRING_URI_HOST = "pair"
         private const val PAIRING_URI_PREFIX = "$PAIRING_URI_SCHEME://$PAIRING_URI_HOST/"

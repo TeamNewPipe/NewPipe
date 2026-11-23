@@ -179,6 +179,7 @@ class LearningPlaylistIntegrationTest {
             savePreview("learning-local-playlist-menu")
             clickDialogText(context.getString(R.string.learning_mark_content))
             waitFor { manager.isLocalPlaylistMarked(playlistId) }
+            waitForBookmarkSource(scenario, LearningContentManager.localPlaylistSourceId(playlistId))
             longPress(scenario, "Local course")
             waitFor { findDialogText(context.getString(R.string.learning_remove_content)) != null }
             clickDialogText(context.getString(R.string.rename))
@@ -189,6 +190,7 @@ class LearningPlaylistIntegrationTest {
             savePreview("learning-remote-playlist-menu")
             clickDialogText(context.getString(R.string.learning_mark_content))
             waitFor { manager.isRemotePlaylistMarked(0, REMOTE_URL) && manager.isStreamLearning(0, lessons[1].url) }
+            waitForBookmarkSource(scenario, LearningContentManager.remotePlaylistSourceId(0, REMOTE_URL))
             // Removal remains available offline, without re-extracting the playlist.
             InfoCache.getInstance().removeInfo(0, REMOTE_URL, InfoCache.Type.PLAYLIST)
             longPress(scenario, "Remote course")
@@ -323,6 +325,20 @@ class LearningPlaylistIntegrationTest {
             pressed
         }
         waitFor { findDialogText(context.getString(R.string.delete)) != null }
+    }
+
+    private fun waitForBookmarkSource(scenario: ActivityScenario<AboutActivity>, sourceId: String) {
+        // The manager and fragment observe Room separately. Reopen the menu only after the
+        // fragment has received the mark; an already opened menu keeps its original labels.
+        val sourcesField = BookmarkFragment::class.java.getDeclaredField("learningSources").apply { isAccessible = true }
+        waitFor {
+            var observed = false
+            onActivity(scenario) { activity ->
+                val fragment = activity.supportFragmentManager.findFragmentById(R.id.fragment_holder) as BookmarkFragment
+                observed = (sourcesField.get(fragment) as Set<*>).contains(sourceId)
+            }
+            observed
+        }
     }
 
     private fun descendants(view: View): Sequence<View> = sequence {

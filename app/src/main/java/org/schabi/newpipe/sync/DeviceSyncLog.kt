@@ -76,7 +76,8 @@ data class DeviceSyncLogEntry(
     val direction: DeviceSyncLogDirection = DeviceSyncLogDirection.OUTGOING,
     val localAddresses: List<String> = emptyList(),
     val attempts: List<DeviceSyncLogAttempt> = emptyList(),
-    val fatalError: String? = null
+    val fatalError: String? = null,
+    val setup: DeviceSyncSetupDiagnostic? = null
 )
 
 class DeviceSyncLogRepository(context: Context) {
@@ -121,6 +122,20 @@ class DeviceSyncLogRepository(context: Context) {
                 sentChanges = 0,
                 receivedChanges = 0,
                 fatalError = error.diagnosticMessage()
+            )
+        )
+    }
+
+    fun recordSetup(diagnostic: DeviceSyncSetupDiagnostic) {
+        save(
+            DeviceSyncLogEntry(
+                timestampEpochMillis = System.currentTimeMillis(),
+                background = false,
+                succeededDevices = 0,
+                failedDevices = 0,
+                sentChanges = 0,
+                receivedChanges = 0,
+                setup = diagnostic
             )
         )
     }

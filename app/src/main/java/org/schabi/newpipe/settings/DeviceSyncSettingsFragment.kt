@@ -7,7 +7,6 @@ package org.schabi.newpipe.settings
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -17,6 +16,7 @@ import android.text.style.StyleSpan
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.getSystemService
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
@@ -24,8 +24,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.SwitchPreferenceCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.zxing.BarcodeFormat
-import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 import java.text.DateFormat
@@ -34,7 +32,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
-import org.schabi.newpipe.databinding.DialogDevicePairingBinding
 import org.schabi.newpipe.sync.DeviceSyncAttempt
 import org.schabi.newpipe.sync.DeviceSyncBackgroundScheduler
 import org.schabi.newpipe.sync.DeviceSyncListenerService
@@ -66,6 +63,8 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     private lateinit var trustedDevicesCategory: PreferenceCategory
     private lateinit var showPairingCodePreference: Preference
     private lateinit var scanPairingCodePreference: Preference
+    private lateinit var enterPairingCodePreference: Preference
+    private var pairingDialog: AlertDialog? = null
     private val trustedDevicePreferences = mutableListOf<Preference>()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -81,6 +80,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
             requirePreference(R.string.device_sync_trusted_devices_category_key)
         showPairingCodePreference = requirePreference(R.string.device_sync_show_code_key)
         scanPairingCodePreference = requirePreference(R.string.device_sync_scan_code_key)
+        enterPairingCodePreference = requirePreference(R.string.device_sync_enter_code_key)
 
         syncNowPreference.setOnPreferenceClickListener {
             syncData()
@@ -132,6 +132,10 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
             launchScanner()
             true
         }
+        enterPairingCodePreference.setOnPreferenceClickListener {
+            pairingDialog = DevicePairingDialog.showEntry(requireContext(), ::pairWithCode)
+            true
+        }
         requirePreference<Preference>(R.string.device_sync_clear_devices_key)
             .setOnPreferenceClickListener {
                 confirmClearTrustedDevices()
@@ -155,6 +159,12 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
         super.onPause()
     }
 
+    override fun onDestroyView() {
+        pairingDialog?.dismiss()
+        pairingDialog = null
+        super.onDestroyView()
+    }
+
     private fun updateState() {
         identityPreference.summary = syncManager.peerId
         val peers = syncManager.trustedPeers
@@ -165,7 +175,11 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
             getString(R.string.device_sync_log_empty)
         } else {
             getString(
-                R.string.device_sync_log_summary,
+                if (logEntries.any { it.setup != null }) {
+                    R.string.device_sync_log_events_summary
+                } else {
+                    R.string.device_sync_log_summary
+                },
                 logEntries.size,
                 relativeTime(logEntries.first().timestampEpochMillis)
             )
@@ -212,6 +226,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
             } catch (error: CancellationException) {
                 throw error
             } catch (error: Exception) {
+                updateState()
                 statusPreference.summary = error.message ?: getString(R.string.general_error)
             }
         }
@@ -245,12 +260,17 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 val code = withContext(Dispatchers.IO) {
                     syncManager.createPairingCode()
                 }
-                showPairingCodeDialog(code)
+                pairingDialog = DevicePairingDialog.showCode(
+                    requireContext(),
+                    code,
+                    abbreviatePeerId(syncManager.peerId)
+                )
             } catch (error: CancellationException) {
                 throw error
             } catch (error: Exception) {
                 showError(R.string.device_sync_pairing_failed, error)
             }
+            updateState()
             setActionsEnabled(true)
         }
     }
@@ -268,6 +288,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     private fun pairWithCode(code: String) {
         setActionsEnabled(false)
         scanPairingCodePreference.summary = getString(R.string.device_sync_pairing_in_progress)
+        enterPairingCodePreference.summary = getString(R.string.device_sync_pairing_in_progress)
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val peer = withContext(Dispatchers.IO) {
@@ -285,36 +306,10 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 showError(R.string.device_sync_pairing_failed, error)
             }
             scanPairingCodePreference.setSummary(R.string.device_sync_scan_code_summary)
+            enterPairingCodePreference.setSummary(R.string.device_sync_enter_code_summary)
+            updateState()
             setActionsEnabled(true)
         }
-    }
-
-    private fun showPairingCodeDialog(code: String) {
-        val binding = DialogDevicePairingBinding.inflate(layoutInflater)
-        val qrSize = minOf(
-            resources.displayMetrics.widthPixels -
-                (PAIRING_DIALOG_HORIZONTAL_MARGIN_DP * resources.displayMetrics.density).toInt(),
-            (MAX_QR_SIZE_DP * resources.displayMetrics.density).toInt()
-        )
-        binding.devicePairingQr.setImageBitmap(
-            BarcodeEncoder().encodeBitmap(
-                code,
-                BarcodeFormat.QR_CODE,
-                qrSize,
-                qrSize
-            )
-        )
-        binding.devicePairingQr.setBackgroundColor(Color.WHITE)
-        binding.devicePairingPeerId.text = getString(
-            R.string.device_sync_pairing_peer_id,
-            abbreviatePeerId(syncManager.peerId)
-        )
-
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.device_sync_show_code_title)
-            .setView(binding.root)
-            .setNegativeButton(R.string.close, null)
-            .show()
     }
 
     private fun confirmClearTrustedDevices() {
@@ -541,6 +536,10 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
                 }
                 appendBold(dateFormat.format(entry.timestampEpochMillis))
                 append(" · ")
+                entry.setup?.let { setup ->
+                    append(setup.displayText(requireContext()))
+                    return@forEachIndexed
+                }
                 append(
                     getString(
                         if (entry.direction == DeviceSyncLogDirection.INCOMING) {
@@ -829,6 +828,7 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     private fun setActionsEnabled(enabled: Boolean) {
         showPairingCodePreference.isEnabled = enabled
         scanPairingCodePreference.isEnabled = enabled
+        enterPairingCodePreference.isEnabled = enabled
         syncNowPreference.isEnabled = enabled && syncManager.trustedPeers.isNotEmpty()
     }
 
@@ -848,8 +848,6 @@ class DeviceSyncSettingsFragment : BasePreferenceFragment() {
     }
 
     companion object {
-        private const val MAX_QR_SIZE_DP = 420
-        private const val PAIRING_DIALOG_HORIZONTAL_MARGIN_DP = 64
         private const val PEER_ID_EDGE_LENGTH = 8
         private const val ABBREVIATED_PEER_ID_LENGTH = PEER_ID_EDGE_LENGTH * 2
         private const val REPORT_HORIZONTAL_PADDING_DP = 24

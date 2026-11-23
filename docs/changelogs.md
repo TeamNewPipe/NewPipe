@@ -36,6 +36,12 @@ Release history is listed newest first. The number beside each release is its An
 - Keep content-type, watch-status and downloaded filters fully visible in What's New instead of clipping the lower rows.
 - Move saved feed visibility defaults into Feed options in the overflow menu while preserving date and members-only controls.
 
+### Device pairing
+
+- Copy the existing one-time pairing code or paste it in Device synchronization to pair without a camera, using the same signed invitation, expiry and replay checks as QR scanning.
+- Save pairing and listener-start failures in the synchronization log with safe diagnostic categories, without storing invitation codes, tokens or network addresses in these setup records.
+- Keep pairing dialogs scrollable and explain the reachable local-network connection needed when pairing a phone with Waydroid.
+
 ### Local playlists
 
 - Make Select items available outside Edit mode, with actions to remove, add to another playlist, enqueue, download or move the selected entries.

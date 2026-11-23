@@ -50,6 +50,10 @@ class DeviceSyncManager private constructor(context: Context) {
         name = BuildConfig.VERSION_NAME,
         code = BuildConfig.VERSION_CODE.toLong()
     )
+    private val setupDiagnostics = DeviceSyncSetupDiagnostics(
+        localAppVersion,
+        syncLogRepository::recordSetup
+    )
     private val node by lazy {
         val listenPort = stateRepository.getListenPort()
             ?: if (stateRepository.getTrustedPeers().isEmpty()) {
@@ -104,14 +108,19 @@ class DeviceSyncManager private constructor(context: Context) {
 
     @Synchronized
     fun createPairingCode(): String {
-        startNode()
-        return node.createPairingCode()
+        return setupDiagnostics.run(DeviceSyncSetupOperation.CREATE_INVITATION) {
+            startNode()
+            node.createPairingCode()
+        }
     }
 
     @Synchronized
     fun pair(pairingCode: String): TrustedPeer {
-        startNode()
-        return node.pair(pairingCode)
+        return setupDiagnostics.run(DeviceSyncSetupOperation.PAIR) {
+            val code = PairingCodeInput.normalize(pairingCode)
+            startNode()
+            node.pair(code)
+        }
     }
 
     @Synchronized
@@ -128,7 +137,9 @@ class DeviceSyncManager private constructor(context: Context) {
 
     @Synchronized
     fun startListening() {
-        startNode()
+        setupDiagnostics.run(DeviceSyncSetupOperation.START_LISTENER) {
+            startNode()
+        }
     }
 
     @Synchronized

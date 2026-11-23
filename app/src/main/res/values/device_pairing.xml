@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_sync_enter_code_key" translatable="false">device_sync_enter_pairing_code</string>
+    <string name="device_sync_enter_code_title">Enter pairing code</string>
+    <string name="device_sync_enter_code_summary">Paste a code copied from another device to pair without a camera</string>
+    <string name="device_sync_enter_code_help">On the other device, open Show pairing code and choose Copy pairing code. Paste the complete code here within five minutes. Keep the other device’s pairing screen open.</string>
+    <string name="device_sync_enter_code_network_help">For Waydroid, copy the phone’s code into Waydroid, then start Sync now there. Both devices still need a reachable local-network connection.</string>
+    <string name="device_sync_pairing_code_hint">Pairing code</string>
+    <string name="device_sync_pairing_code_empty">Enter or paste the complete pairing code</string>
+    <string name="device_sync_pairing_code_too_large">This code is too long. Copy a new pairing code from the other device.</string>
+    <string name="device_sync_pairing_clipboard_empty">No text to paste. Copy a pairing code from the other device first.</string>
+    <string name="device_sync_pairing_paste">Paste</string>
+    <string name="device_sync_pairing_pair">Pair</string>
+    <string name="device_sync_pairing_copy">Copy pairing code</string>
+    <string name="device_sync_pairing_copied">Pairing code copied. Paste it only on the device you want to pair.</string>
+    <string name="device_sync_pairing_copy_failed">Could not copy the pairing code</string>
+    <string name="device_sync_pairing_qr_unavailable">The QR code could not be displayed. Use Copy pairing code to pair with the other device.</string>
+    <string name="device_sync_log_events_summary">%1$d events recorded · latest %2$s</string>
+    <string name="device_sync_setup_create">Create pairing code</string>
+    <string name="device_sync_setup_pair">Pair device</string>
+    <string name="device_sync_setup_listener">Start synchronization listener</string>
+    <string name="device_sync_setup_succeeded">Completed</string>
+    <string name="device_sync_setup_failed">Failed</string>
+    <string name="device_sync_setup_invalid_code">The code is incomplete, invalid or could not be verified. Copy a new code from the other device.</string>
+    <string name="device_sync_setup_expired">The code expired or was already used. Show a new pairing code on the other device.</string>
+    <string name="device_sync_setup_clock">Check the date and time on both devices, then create a new code.</string>
+    <string name="device_sync_setup_same_device">Use the code displayed by the other device.</string>
+    <string name="device_sync_setup_no_address">No usable network address was available. Check the local network connection.</string>
+    <string name="device_sync_setup_unreachable">The other device could not be reached. Keep its pairing screen open and check that the local network allows a connection between the devices.</string>
+    <string name="device_sync_setup_timeout">The connection timed out. Keep the other device’s pairing screen open and check the local network connection.</string>
+    <string name="device_sync_setup_listener_unavailable">The synchronization listener could not start. Close and reopen Device synchronization, then try again.</string>
+    <string name="device_sync_setup_rejected">The other device rejected pairing. Show a new code there and try again.</string>
+    <string name="device_sync_setup_unknown">Setup failed for an unrecognized reason. Raw error details are omitted to protect pairing codes and network information.</string>
+</resources>
