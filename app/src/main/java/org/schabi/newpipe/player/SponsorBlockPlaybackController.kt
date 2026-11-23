@@ -46,6 +46,22 @@ internal class SponsorBlockPlaybackController(private val player: Player) {
         updateSeekBarMarkers()
     }
 
+    fun remainingTimeMillis(durationMs: Long, positionMs: Long, speed: Float): Long? {
+        val automaticSkips = if (isEnabled()) {
+            segments.asSequence().filter { segment ->
+                val category = segment.category
+                segment.startTime.isFinite() && segment.endTime.isFinite() &&
+                    segment.startTime >= 0 && segment.endTime > segment.startTime &&
+                    segment.action == SponsorBlockAction.SKIP && category != null &&
+                    category != SponsorBlockCategory.HIGHLIGHT && categoryStateProvider.isEnabled(category) &&
+                    behavior(segment) == SponsorBlockBehavior.SKIP && isRunnableSegment(segment, SponsorBlockBehavior.SKIP)
+            }.map { PlaybackTimeRemaining.Interval(startMillis(it), endMillis(it)) }.toList()
+        } else {
+            emptyList()
+        }
+        return PlaybackTimeRemaining.estimate(durationMs, positionMs, speed, automaticSkips)
+    }
+
     fun onPositionDiscontinuity(isManualSeek: Boolean, positionMillis: Long) {
         if (isManualSeek && !skipInProgress) {
             ignoredSegmentKey = SponsorBlockPlaybackDecision.resolveIgnoredSegmentAfterManualSeek(

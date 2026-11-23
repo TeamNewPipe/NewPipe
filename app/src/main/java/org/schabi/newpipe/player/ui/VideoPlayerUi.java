@@ -7,7 +7,6 @@ import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 import static org.schabi.newpipe.player.Player.RENDERER_UNAVAILABLE;
 import static org.schabi.newpipe.player.Player.STATE_BUFFERING;
 import static org.schabi.newpipe.player.Player.STATE_COMPLETED;
-import static org.schabi.newpipe.player.Player.STATE_PAUSED;
 import static org.schabi.newpipe.player.Player.STATE_PAUSED_SEEK;
 import static org.schabi.newpipe.player.Player.STATE_PLAYING;
 import static org.schabi.newpipe.player.helper.CustomPlaybackControls.seekMillis;
@@ -124,6 +123,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     private final DanmakuController danmakuController;
     private final DualCaptionController dualCaptionController;
     private final ReplayHeatmapController replayHeatmapController;
+    private final PlaybackTimeDisplay playbackTimeDisplay;
     private final Handler controlsVisibilityHandler = new Handler(Looper.getMainLooper());
     private long lastTvBackPressedAt;
     private final PlayerQualityFeedback qualityFeedback;
@@ -176,6 +176,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         dualCaptionController = new DualCaptionController(player, binding.playerVideoContent,
                 binding.subtitleView);
         replayHeatmapController = ReplayHeatmapController.forPlayer(binding, player);
+        playbackTimeDisplay = PlaybackTimeDisplay.forPlayer(binding.playbackEndTime, player);
         qualityFeedback = new PlayerQualityFeedback(player);
         setupFromView();
         player.getCurrentStreamInfo().ifPresent(danmakuController::onMetadataChanged);
@@ -475,6 +476,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackInformationButton.setOnClickListener(null);
         playerUiTheme.close();
         replayHeatmapController.close();
+        playbackTimeDisplay.close();
         danmakuController.destroy();
         dualCaptionController.release();
         seekbarPreviewThumbnailHolder.clear();
@@ -641,16 +643,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                                  final int duration,
                                  final int bufferPercent) {
 
-        if (duration != binding.playbackSeekBar.getMax()) {
-            PlayerTimelineUi.setDuration(binding, player, duration);
-        }
-        if (player.getCurrentState() != STATE_PAUSED) {
-            updatePlayBackElementsCurrentDuration(currentProgress);
-        }
-        if (player.isLoading() || bufferPercent > 90) {
-            binding.playbackSeekBar.setSecondaryProgress(
-                    (int) (binding.playbackSeekBar.getMax() * ((float) bufferPercent / 100)));
-        }
+        PlayerTimelineUi.updateProgress(binding, player, currentProgress, duration, bufferPercent);
+        playbackTimeDisplay.update();
         if (DEBUG && bufferPercent % 20 == 0) { //Limit log
             Log.d(TAG, "notifyProgressUpdateToListeners() called with: "
                     + "isVisible = " + isControlsVisible() + ", "
@@ -661,19 +655,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackLiveSync.setClickable(!player.isLiveEdge());
         binding.playbackSeekBar.setEnabled(player.canSeekCurrentWindow());
         replayHeatmapController.update();
-    }
-
-    /**
-     * Sets the current duration into the corresponding elements.
-     *
-     * @param currentProgress the current progress, in milliseconds
-     */
-    private void updatePlayBackElementsCurrentDuration(final int currentProgress) {
-        // Don't set seekbar progress while user is seeking
-        if (player.getCurrentState() != STATE_PAUSED_SEEK) {
-            binding.playbackSeekBar.setProgress(currentProgress);
-        }
-        binding.playbackCurrentTime.setText(getTimeString(currentProgress));
     }
 
     @Override // seekbar listener
@@ -906,6 +887,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void onPrepared() {
         super.onPrepared();
         PlayerTimelineUi.setDuration(binding, player, (int) player.getExoPlayer().getDuration());
+        playbackTimeDisplay.update();
         binding.playbackSpeed.setText(formatSpeed(player.getPlaybackSpeed()));
         replayHeatmapController.update();
     }
@@ -1036,7 +1018,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.getRoot().setKeepScreenOn(false);
 
         // When a (short) video ends the elements have to display the correct values - see #6180
-        updatePlayBackElementsCurrentDuration(binding.playbackSeekBar.getMax());
+        PlayerTimelineUi.updatePosition(binding, player, binding.playbackSeekBar.getMax());
 
         showControls(500);
         binding.screenRotationButton.setVisibility(isFullscreen() ? View.VISIBLE
@@ -1158,6 +1140,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     public void onPlaybackParametersChanged(@NonNull final PlaybackParameters playbackParameters) {
         super.onPlaybackParametersChanged(playbackParameters);
         binding.playbackSpeed.setText(formatSpeed(playbackParameters.speed));
+        playbackTimeDisplay.update();
     }
 
     @Override
@@ -1192,6 +1175,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 ExtractorImageCompat.uploaderAvatarImages(info));
 
         this.seekbarPreviewThumbnailHolder.resetFrom(player.getContext(), info.getPreviewFrames());
+        playbackTimeDisplay.update();
         videoSurface.presentationChanged();
     }
 
@@ -1220,11 +1204,17 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         CoilHelper.INSTANCE.clearAvatar(binding.channelAvatarView);
         binding.channelAvatarView.setImageResource(R.drawable.placeholder_person);
         seekbarPreviewThumbnailHolder.resetFrom(player.getContext(), Collections.emptyList());
+        playbackTimeDisplay.update();
         videoSurface.presentationChanged();
     }
 
     public void onPlaybackTimelineChanged() {
         ArchivePresentation.onTimelineChanged(player, binding);
+        playbackTimeDisplay.update();
+    }
+
+    public void updatePlaybackTime() {
+        playbackTimeDisplay.update();
     }
 
     protected void updateStreamRelatedViews() {

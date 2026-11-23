@@ -153,6 +153,9 @@ internal class PlayerMedia3ListenerController(
         if (reason != Media3Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
             sleepTimerController.onPositionDiscontinuity(queue.getItem(newIndex))
         }
+        player.UIs().call { ui ->
+            if (ui is org.schabi.newpipe.player.ui.VideoPlayerUi) ui.updatePlaybackTime()
+        }
     }
 
     fun onRenderedFirstFrame() {

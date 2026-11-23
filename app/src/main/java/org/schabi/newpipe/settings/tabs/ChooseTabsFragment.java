@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -90,7 +91,8 @@ public class ChooseTabsFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(listSelectedTabs);
 
         selectedTabsAdapter = new SelectedTabsAdapter(requireContext(), itemTouchHelper);
-        listSelectedTabs.setAdapter(selectedTabsAdapter);
+        listSelectedTabs.setAdapter(new ConcatAdapter(new HomeTabsHelpAdapter(),
+                selectedTabsAdapter));
     }
 
     @Override
@@ -386,6 +388,15 @@ public class ChooseTabsFragment extends Fragment {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
+            public int getMovementFlags(@NonNull final RecyclerView recyclerView,
+                                        @NonNull final RecyclerView.ViewHolder viewHolder) {
+                if (viewHolder.getBindingAdapter() != selectedTabsAdapter) {
+                    return 0;
+                }
+                return super.getMovementFlags(recyclerView, viewHolder);
+            }
+
+            @Override
             public int interpolateOutOfBoundsScroll(@NonNull final RecyclerView recyclerView,
                                                     final int viewSize,
                                                     final int viewSizeOutOfBounds,
@@ -426,7 +437,13 @@ public class ChooseTabsFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder,
                                  final int swipeDir) {
+                if (viewHolder.getBindingAdapter() != selectedTabsAdapter) {
+                    return;
+                }
                 final int position = viewHolder.getBindingAdapterPosition();
+                if (position == RecyclerView.NO_POSITION) {
+                    return;
+                }
                 tabList.remove(position);
                 selectedTabsAdapter.notifyItemRemoved(position);
 

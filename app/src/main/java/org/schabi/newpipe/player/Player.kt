@@ -404,6 +404,12 @@ class Player(
     val playbackSpeed: Float
         get() = playbackParametersController.speed
 
+    fun remainingPlaybackTimeMillis(): Long? {
+        val current = media3Player ?: return null
+        if (current.isCurrentMediaItemLive || current.isCurrentMediaItemDynamic || abRepeat.active) return null
+        return sponsorBlockController.remainingTimeMillis(current.duration, current.currentPosition, current.playbackParameters.speed)
+    }
+
     fun setPlaybackSpeed(speed: Float) = playbackParametersController.setSpeed(speed)
 
     fun setPlaybackSpeedTemporarily(speed: Float) = playbackParametersController.setSpeedTemporarily(speed)

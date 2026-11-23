@@ -4,6 +4,16 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Remaining playback time
+
+- Tap the player's total duration to switch to estimated remaining playback time, accounting for playback speed and enabled automatic SponsorBlock skips without counting overlaps twice.
+- Remember the display choice and refresh it after seeking or changing playback options; show an unavailable indicator for live, casting or active A-B repeat sessions.
+
+### Customize Home
+
+- Keep the final Home section's Remove and Reorder controls clear of the Add button, including compact layouts and large text.
+- Let the full Customize Home instructions scroll with the list so large text does not crowd out the section controls.
+
 ### Fullscreen comments and chat
 
 - Keep portrait fullscreen comments readable in a full-width panel below the video, with resizable space for playback and complete scrollable filter labels.

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.schabi.newpipe.views.NewPipeTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/helpTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingStart="8dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="16dp"
+    android:text="@string/main_page_content_swipe_remove"
+    android:textColor="?attr/colorOnSurfaceVariant" />

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playback_time_remaining_value">−%1$s</string>
+    <string name="playback_time_unavailable_value" translatable="false">—</string>
+    <string name="playback_time_total_description">Total duration: %1$s</string>
+    <string name="playback_time_remaining_description">Estimated remaining playback time: %1$s</string>
+    <string name="playback_time_unavailable">Playback time unavailable</string>
+    <string name="playback_time_show_total">Show total duration</string>
+    <string name="playback_time_show_remaining">Show remaining playback time</string>
+</resources>

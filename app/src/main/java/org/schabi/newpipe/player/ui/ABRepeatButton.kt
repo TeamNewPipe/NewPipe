@@ -49,6 +49,7 @@ class ABRepeatButton @JvmOverloads constructor(context: Context, attrs: Attribut
                         }
                     }
                     Toast.makeText(context, if (success) R.string.ab_repeat_updated else R.string.ab_repeat_invalid, Toast.LENGTH_SHORT).show()
+                    if (success) value.triggerProgressUpdate()
                 }.setNegativeButton(R.string.cancel, null).create()
             dialog?.let { AnchoredPlaybackDialog.show(this, it) }
         }
