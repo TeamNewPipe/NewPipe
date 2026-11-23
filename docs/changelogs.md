@@ -111,6 +111,7 @@ Release history is listed newest first. The number beside each release is its An
 
 ### Synchronization diagnostics
 
+- Include optional receiver-side history-batch processing time and aggregate app-process CPU time so synchronization can be compared in both directions.
 - Make optional Device Sync performance diagnostics available in Device synchronization settings on release builds, keeping them off by default.
 
 ### Profile deletion

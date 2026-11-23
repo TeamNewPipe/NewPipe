@@ -2052,7 +2052,7 @@ Use the button below to add For you to Home. Long-press a recommendation to excl
     <string name="upcoming_stream_starts">Starts %1$s</string>
     <string name="device_sync_performance_diagnostics_key" translatable="false">device_sync_performance_diagnostics</string>
     <string name="device_sync_performance_diagnostics_title">Device Sync performance diagnostics</string>
-    <string name="device_sync_performance_diagnostics_summary">Off by default. Record elapsed time and total app-process CPU time for each sync stage in local sync logs. No media, history, or private content is recorded.</string>
+    <string name="device_sync_performance_diagnostics_summary">Off by default. Record elapsed time and total app-process CPU time for sync stages and incoming history batches in local sync logs. No media, history, or private content is recorded.</string>
     <string name="player_touch_unlock_auto_hide_key" translatable="false">player_touch_unlock_auto_hide</string>
     <string name="player_touch_unlock_auto_hide_title">Auto-hide Unlock when screen is locked</string>
     <string name="player_touch_unlock_auto_hide_summary">Hide Unlock after 3 seconds. Tap the locked screen once to reveal it and again to unlock. Disable to keep Unlock visible.</string>

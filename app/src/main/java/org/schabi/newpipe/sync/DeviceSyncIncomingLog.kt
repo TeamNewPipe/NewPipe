@@ -10,7 +10,8 @@ data class IncomingHistoryBatch(
     val category: HistorySyncCategory,
     val sentChanges: Int,
     val receivedChanges: Int,
-    val error: String? = null
+    val error: String? = null,
+    val performance: SyncPerformanceSample? = null
 )
 
 /** Updates a receiver-side diagnostic record without storing synced user content. */
@@ -25,6 +26,10 @@ internal object DeviceSyncIncomingLog {
             attempts = entry.attempts.map { attempt ->
                 if (attempt.peerId != batch.peerId) return@map attempt
                 val previous = attempt.categories.firstOrNull { it.category == category }
+                val performance = SyncStagePerformanceDiagnostics.accumulate(
+                    previous?.incomingPerformance,
+                    batch.performance
+                )
                 val result = DeviceSyncLogCategoryResult(
                     category = category,
                     status = if (batch.error != null ||
@@ -36,7 +41,9 @@ internal object DeviceSyncIncomingLog {
                     },
                     sentChanges = (previous?.sentChanges ?: 0) + batch.sentChanges,
                     receivedChanges = (previous?.receivedChanges ?: 0) + batch.receivedChanges,
-                    error = batch.error?.take(512) ?: previous?.error
+                    error = batch.error?.take(512) ?: previous?.error,
+                    retryDiagnostic = performance?.let(SyncStagePerformanceDiagnostics::describeIncoming),
+                    incomingPerformance = performance
                 )
                 attempt.copy(
                     categories = attempt.categories.filterNot { it.category == category } + result

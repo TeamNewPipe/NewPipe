@@ -91,6 +91,17 @@ class DeviceSyncManager private constructor(context: Context) {
             localAppVersion = localAppVersion,
             onDiagnosticsReceived = syncLogRepository::recordIncoming,
             onIncomingHistoryBatch = syncLogRepository::recordIncomingHistoryBatch,
+            incomingHistoryPerformanceClock = {
+                val enabled = defaultPreferences.getBoolean(
+                    applicationContext.getString(R.string.device_sync_performance_diagnostics_key),
+                    false
+                )
+                if (enabled) {
+                    SyncPerformanceSample(SystemClock.elapsedRealtime(), Process.getElapsedCpuTime())
+                } else {
+                    null
+                }
+            },
             onRemotePlaybackReceived = { _, request ->
                 RemotePlaybackReceiver.handle(applicationContext, request)
             }

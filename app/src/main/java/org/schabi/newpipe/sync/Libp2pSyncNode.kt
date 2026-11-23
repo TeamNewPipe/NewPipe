@@ -34,6 +34,7 @@ class Libp2pSyncNode(
     private val localAppVersion: SyncAppVersion = SyncAppVersion("Unknown", 0),
     private val onDiagnosticsReceived: (TrustedPeer, SyncPeerDiagnostics) -> Unit = { _, _ -> },
     private val onIncomingHistoryBatch: (IncomingHistoryBatch) -> Unit = {},
+    private val incomingHistoryPerformanceClock: () -> SyncPerformanceSample? = { null },
     private val onRemotePlaybackReceived: (String, RemotePlaybackRequest) -> RemotePlaybackResponse =
         { _, request ->
             RemotePlaybackResponse(false, request.requestId, error = "Remote playback unavailable")
@@ -1051,6 +1052,7 @@ class Libp2pSyncNode(
         controller: HistorySyncProtocolController
     ) {
         val peerIdValue = remotePeerId.toBase58()
+        val performanceStart = runCatching(incomingHistoryPerformanceClock).getOrNull()
         val response = try {
             ensureTrusted(peerIdValue)
             val engine = historySyncEngine
@@ -1068,6 +1070,11 @@ class Libp2pSyncNode(
             )
         }
         val sendError = runCatching { controller.sendResponse(response) }.exceptionOrNull()
+        val performanceEnd = if (performanceStart != null) {
+            runCatching(incomingHistoryPerformanceClock).getOrNull()
+        } else {
+            null
+        }
         runCatching {
             onIncomingHistoryBatch(
                 IncomingHistoryBatch(
@@ -1075,7 +1082,8 @@ class Libp2pSyncNode(
                     category = request.category,
                     sentChanges = response.changes.size,
                     receivedChanges = request.changes.size,
-                    error = sendError?.message ?: response.error
+                    error = sendError?.message ?: response.error,
+                    performance = SyncStagePerformanceDiagnostics.elapsed(performanceStart, performanceEnd)
                 )
             )
         }

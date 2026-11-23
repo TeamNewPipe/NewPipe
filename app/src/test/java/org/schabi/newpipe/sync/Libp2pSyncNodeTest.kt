@@ -11,10 +11,14 @@ import io.libp2p.core.crypto.generateKeyPair
 import java.net.ServerSocket
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
+import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -270,6 +274,10 @@ class Libp2pSyncNodeTest {
     fun `paired nodes exchange watch and search histories over Noise streams`() {
         val tabletState = InMemorySyncStateRepository()
         val phoneState = InMemorySyncStateRepository()
+        val tabletBatches = LinkedBlockingQueue<IncomingHistoryBatch>()
+        val phoneBatches = LinkedBlockingQueue<IncomingHistoryBatch>()
+        val clockTicks = AtomicInteger()
+        val clockFails = AtomicBoolean()
         val tabletHistory = TestHistorySyncStore(
             tabletState.loadOrCreateIdentity().peerId.toBase58()
         )
@@ -286,7 +294,13 @@ class Libp2pSyncNodeTest {
             deviceName = "Test tablet",
             advertisedAddressProvider = ::loopbackAddresses,
             listenAddress = TEST_LISTEN_ADDRESS,
-            historySyncEngine = HistorySyncEngine(tabletHistory)
+            historySyncEngine = HistorySyncEngine(tabletHistory),
+            onIncomingHistoryBatch = { tabletBatches.add(it) },
+            incomingHistoryPerformanceClock = {
+                check(!clockFails.get()) { "Clock unavailable" }
+                val tick = clockTicks.getAndIncrement()
+                SyncPerformanceSample(tick * 10L, tick * 7L)
+            }
         )
         val phone = Libp2pSyncNode(
             stateRepository = phoneState,
@@ -294,7 +308,8 @@ class Libp2pSyncNodeTest {
             deviceName = "Test phone",
             advertisedAddressProvider = ::loopbackAddresses,
             listenAddress = TEST_LISTEN_ADDRESS,
-            historySyncEngine = HistorySyncEngine(phoneHistory)
+            historySyncEngine = HistorySyncEngine(phoneHistory),
+            onIncomingHistoryBatch = { phoneBatches.add(it) }
         )
 
         try {
@@ -306,10 +321,12 @@ class Libp2pSyncNodeTest {
                 trustedTablet,
                 HistorySyncCategory.WATCH
             )
+            val watchBatch = requireNotNull(tabletBatches.poll(5, TimeUnit.SECONDS))
             val searchResult = phone.syncHistory(
                 trustedTablet,
                 HistorySyncCategory.SEARCH
             )
+            val searchBatch = requireNotNull(tabletBatches.poll(5, TimeUnit.SECONDS))
 
             assertEquals(1, watchResult.sentChanges)
             assertEquals(0, watchResult.receivedChanges)
@@ -320,6 +337,22 @@ class Libp2pSyncNodeTest {
             assertEquals(0, searchResult.sentChanges)
             assertEquals(1, searchResult.receivedChanges)
             assertEquals(listOf("tablet search"), phoneHistory.searchQueries)
+            assertEquals(HistorySyncCategory.WATCH, watchBatch.category)
+            assertEquals(SyncPerformanceSample(10, 7), watchBatch.performance)
+            assertEquals(HistorySyncCategory.SEARCH, searchBatch.category)
+            assertEquals(SyncPerformanceSample(10, 7), searchBatch.performance)
+
+            val trustedPhone = tabletState.getTrustedPeers().single()
+            tablet.syncHistory(trustedPhone, HistorySyncCategory.WATCH)
+            val unmeasured = requireNotNull(phoneBatches.poll(5, TimeUnit.SECONDS))
+            assertNull(unmeasured.performance)
+            assertNull(unmeasured.error)
+
+            clockFails.set(true)
+            phone.syncHistory(trustedTablet, HistorySyncCategory.WATCH)
+            val unavailable = requireNotNull(tabletBatches.poll(5, TimeUnit.SECONDS))
+            assertNull(unavailable.performance)
+            assertNull(unavailable.error)
         } finally {
             phone.stop()
             tablet.stop()

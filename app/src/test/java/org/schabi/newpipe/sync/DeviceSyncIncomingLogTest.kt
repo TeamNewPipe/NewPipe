@@ -5,6 +5,8 @@
 
 package org.schabi.newpipe.sync
 
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -73,5 +75,116 @@ class DeviceSyncIncomingLogTest {
             IncomingHistoryBatch("peer-2", HistorySyncCategory.WATCH, 1, 1)
         )
         assertEquals(entry, other)
+    }
+
+    @Test
+    fun sumsOnlyMeasuredBatchesWithinTheirCategoryAndKeepsFailureDetails() {
+        val first = DeviceSyncIncomingLog.merge(
+            entry,
+            IncomingHistoryBatch(
+                "peer-1",
+                HistorySyncCategory.WATCH,
+                0,
+                8,
+                performance = SyncPerformanceSample(500, 720)
+            )
+        )
+        val search = DeviceSyncIncomingLog.merge(
+            first,
+            IncomingHistoryBatch(
+                "peer-1",
+                HistorySyncCategory.SEARCH,
+                1,
+                2,
+                performance = SyncPerformanceSample(40, 10)
+            )
+        )
+        val failed = DeviceSyncIncomingLog.merge(
+            search,
+            IncomingHistoryBatch(
+                "peer-1",
+                HistorySyncCategory.WATCH,
+                0,
+                3,
+                "Interrupted",
+                SyncPerformanceSample(100, 30)
+            )
+        )
+        val unmeasured = DeviceSyncIncomingLog.merge(
+            failed,
+            IncomingHistoryBatch("peer-1", HistorySyncCategory.WATCH, 0, 2)
+        )
+        val categories = unmeasured.attempts.single().categories.associateBy { it.category }
+        val watch = requireNotNull(categories[DeviceSyncLogCategory.WATCH_HISTORY])
+        assertEquals(SyncPerformanceSample(600, 750, 2), watch.incomingPerformance)
+        assertEquals(
+            "Receiver batches 2: Elapsed 600 ms; app-process CPU 750 ms",
+            watch.retryDiagnostic
+        )
+        assertEquals(13, watch.receivedChanges)
+        assertEquals(DeviceSyncLogStatus.FAILED, watch.status)
+        assertEquals("Interrupted", watch.error)
+        assertEquals(
+            SyncPerformanceSample(40, 10),
+            categories[DeviceSyncLogCategory.SEARCH_HISTORY]?.incomingPerformance
+        )
+        assertEquals(
+            unmeasured,
+            DeviceSyncIncomingLog.merge(
+                unmeasured,
+                IncomingHistoryBatch(
+                    "peer-2",
+                    HistorySyncCategory.WATCH,
+                    1,
+                    1,
+                    performance = SyncPerformanceSample(900, 900)
+                )
+            )
+        )
+    }
+
+    @Test
+    fun oldLogsAndDisabledDiagnosticsKeepNoPerformanceSample() {
+        val oldCategory = Json.decodeFromString<DeviceSyncLogCategoryResult>(
+            """{"category":"WATCH_HISTORY","status":"SUCCEEDED","receivedChanges":8}"""
+        )
+        assertNull(oldCategory.incomingPerformance)
+        val merged = DeviceSyncIncomingLog.merge(
+            entry,
+            IncomingHistoryBatch("peer-1", HistorySyncCategory.WATCH, 0, 8)
+        )
+        val category = merged.attempts.single().categories.single()
+        assertNull(category.incomingPerformance)
+        assertNull(category.retryDiagnostic)
+        assertEquals(oldCategory, category)
+    }
+
+    @Test
+    fun measuredCategoriesCanBeRestoredAndContinueAccumulating() {
+        val measured = DeviceSyncIncomingLog.merge(
+            entry,
+            IncomingHistoryBatch(
+                "peer-1",
+                HistorySyncCategory.LEARNING_NOTES,
+                1,
+                2,
+                performance = SyncPerformanceSample(30, 20)
+            )
+        )
+        val restored = Json.decodeFromString<DeviceSyncLogEntry>(Json.encodeToString(measured))
+        val next = DeviceSyncIncomingLog.merge(
+            restored,
+            IncomingHistoryBatch(
+                "peer-1",
+                HistorySyncCategory.LEARNING_NOTES,
+                1,
+                0,
+                performance = SyncPerformanceSample(10, 5)
+            )
+        )
+        assertEquals(
+            SyncPerformanceSample(40, 25, 2),
+            next.attempts.single().categories.single().incomingPerformance
+        )
     }
 }

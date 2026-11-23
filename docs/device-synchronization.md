@@ -45,6 +45,27 @@ A trusted device being temporarily unavailable does not remove the pairing.
 Use **Sync now** when both devices are available if an immediate update is
 needed.
 
+## Investigate a slow or interrupted synchronization
+
+Enable **Device Sync performance diagnostics** under **Device synchronization**, below
+**Synchronization log**, on both devices before comparing attempts in each direction.
+The option is off by default and records only local aggregate timing, alongside existing
+category counts and error diagnostics. It does not record synchronized media or history
+contents and does not upload telemetry.
+
+The initiating device records elapsed time and app-process CPU time for each stage.
+The receiving device records the summed processing time and app-process CPU time for
+measured incoming watch-history, search-history, and learning-note batches, with the
+number of measured batches. Receiver processing covers handling the request and queuing
+its response; it excludes time waiting in the request queue and network transit.
+App-process CPU time can include concurrent app work, so it is not a per-thread CPU
+percentage or a direct measure of network speed. Existing log entries remain available
+when diagnostics is turned off.
+
+Compare logs with matching attempt IDs and keep the same app version, network, and
+workload on both devices. A timing improvement alone does not establish that an
+intermittent connection failure has been fixed.
+
 ## Synchronized data
 
 WizeStream synchronizes:

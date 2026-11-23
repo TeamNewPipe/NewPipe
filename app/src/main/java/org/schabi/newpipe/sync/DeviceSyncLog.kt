@@ -49,7 +49,8 @@ data class DeviceSyncLogCategoryResult(
     val sentChanges: Int = 0,
     val receivedChanges: Int = 0,
     val error: String? = null,
-    val retryDiagnostic: String? = null
+    val retryDiagnostic: String? = null,
+    val incomingPerformance: SyncPerformanceSample? = null
 )
 
 @Serializable
