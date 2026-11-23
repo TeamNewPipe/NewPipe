@@ -54,9 +54,13 @@ The guide Markdown subset supports paragraphs, `##`–`####` headings, flat list
 
 ## Keep factual and release context current
 
-The initial content snapshot is reviewed on 13 November 2026, with stable 1.41.0 listed separately from the reviewed development branch. In particular, FreeTube transfer, SponsorBlock contributions/disclosures and independent off-by-default 360°/A–B switches are marked as newer development work. Do not remove those labels merely because a change is merged.
+The WizeStream source snapshot was reviewed on 23 November 2026 at `fb0a89a2eb4b71e3318fa60717e0bb7098200e0d`. The latest reviewed release is **1.50.0 (22 November 2026)**, tagged at `88b40eb8c0c6bef1a29befe46f63916fa8885e5b`. `content/site.json` records both identities and the release date; page notices, footers and generated metadata use these values.
 
-The links for the current stable release point to GitHub’s latest-release page, which lists both architecture-specific APKs. Direct website downloads use the architecture-specific `download.php` routes. Historical milestone cards link to their specific tags. Update the review date, pinned source commit, competitor versions and feature evidence together when doing a new factual review.
+FreeTube transfer, SponsorBlock contributions/disclosures and the independent off-by-default 360°/A–B switches were released in 1.42.0 and are included in 1.50.0. Manual pairing, newer sync/profile fixes, Vimeo, offline chapters/transcripts and previous-playback navigation are marked as merged after 1.50.0. Open pull requests are excluded. Verify a feature against the release tag before changing its availability label; a merge alone does not establish release availability.
+
+Other projects' comparison cells retain the official-source review from **13 November 2026**, recorded separately as `comparisonReviewed`. Their pinned versions, source links and feature judgments are unchanged by this WizeStream refresh. Update that date only when rechecking those external facts, and preserve the distinction when refreshing just the WizeStream column.
+
+The links for the current stable release point to GitHub’s latest-release page, which lists both architecture-specific APKs. Direct website downloads use the architecture-specific `download.php` routes. Reviewed-release notices and historical milestone cards link to their specific tags. Update WizeStream's release/source metadata and guide availability together when doing a new source review.
 
 The comparison describes selected capabilities rather than declaring an overall winner. Preserve competitors' verified strengths. `unknown` means not established by the reviewed official sources, not a proven absence. The “Differences only” filter compares capability status among visible projects; feature notes can still differ when statuses match. Archived Tubular is explicitly historical. Refer to the linked tagged docs/source files before changing a cell.
 

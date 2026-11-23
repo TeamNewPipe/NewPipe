@@ -38,8 +38,11 @@ and translated comment text is not persisted by WizeStream.
 ## Device synchronization
 
 Device synchronization is optional and does not require a WizeStream cloud account. After you pair
-two devices with a one-time QR code, WizeStream can exchange supported records directly through an
-encrypted peer-to-peer connection between those trusted device identities.
+two devices with a one-time code, WizeStream can exchange supported records directly through an
+encrypted peer-to-peer connection between those trusted device identities. The code can be scanned
+as a QR code or, in builds containing the manual pairing controls, copied and entered on the other
+device. Both paths use the same signed invitation, expiry and single-use checks. See the
+[synchronization guide](docs/device-synchronization.md) for build availability and setup.
 
 Synchronized records can include subscriptions, feed groups, playlists, watch history, playback
 progress, home tabs, content-filter selections, channel playback profiles, allowlisted settings, and

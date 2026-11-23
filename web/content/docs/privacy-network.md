@@ -51,7 +51,7 @@ Direct YouTube requests remain blocked in Invidious mode until an explicit direc
 
 ## Sync and backups
 
-Device Sync uses encrypted peer-to-peer connections after one-time QR pairing. Search history is excluded unless enabled on both devices. Actual downloaded media files are not transferred.
+Device Sync uses encrypted peer-to-peer connections after one-time pairing. The reviewed 1.50.0 release uses QR scanning; current source after that release also supports copying and entering the same code manually. Search history is excluded unless enabled on both devices. Actual downloaded media files are not transferred.
 
 Portable backups can contain personal library information even when the app uses no cloud account. Share those files intentionally and review them before sending them to anyone. Proxy credentials, Vimeo API tokens and private SponsorBlock contribution identity are not normal backup/sync content.
 

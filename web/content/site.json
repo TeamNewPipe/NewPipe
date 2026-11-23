@@ -1,15 +1,15 @@
 {
   "name": "WizeStream",
-  "release": "1.41.0",
-  "releaseDate": "2026-11-12",
-  "reviewed": "2026-11-13",
-  "sourceCommit": "4a6dc96af37d2b9136e9569f7c15981b26142cad",
+  "release": "1.50.0",
+  "releaseDate": "2026-11-22",
+  "reviewed": "2026-11-23",
+  "sourceCommit": "fb0a89a2eb4b71e3318fa60717e0bb7098200e0d",
   "repository": "https://github.com/wizdom13/WizeStream",
   "projects": [
     {
       "key": "wizestream",
       "name": "WizeStream",
-      "version": "Current development",
+      "version": "1.50.0 + merged changes",
       "url": "https://github.com/wizdom13/WizeStream",
       "status": "Active"
     },
@@ -79,9 +79,9 @@
       "feature": "Streaming services",
       "cells": {
         "wizestream": {
-          "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de, Bilibili, Niconico, Rumble, BitChute; experimental Odysee",
+          "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de, Bilibili, Niconico, Rumble, BitChute; experimental Odysee; Vimeo after 1.50.0",
           "level": "yes",
-          "next": false
+          "next": true
         },
         "newpipe": {
           "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de",
@@ -143,7 +143,7 @@
         "wizestream": {
           "text": "Explicit opt-in contribution tools",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "Not integrated",
@@ -174,7 +174,7 @@
         "wizestream": {
           "text": "Separate optional disclosures",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "Not verified",
@@ -358,9 +358,9 @@
       "feature": "Captions and chapters",
       "cells": {
         "wizestream": {
-          "text": "Captions, chapter markers and searchable transcripts",
+          "text": "Captions, second track and searchable transcripts; offline chapters after 1.50.0",
           "level": "yes",
-          "next": false
+          "next": true
         },
         "newpipe": {
           "text": "Captions and chapter divisions",
@@ -730,9 +730,9 @@
       "feature": "Cross-device synchronization",
       "cells": {
         "wizestream": {
-          "text": "Encrypted peer-to-peer Device Sync",
+          "text": "Encrypted peer-to-peer Device Sync; manual pairing after 1.50.0",
           "level": "yes",
-          "next": false
+          "next": true
         },
         "newpipe": {
           "text": "Manual backup transfer; live sync not verified",
@@ -887,7 +887,7 @@
         "wizestream": {
           "text": "Subscriptions/playlists import and export",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "Not verified",
@@ -1354,5 +1354,7 @@
       "icon": "help"
     }
   ],
-  "baseUrl": "https://wizestream.org/"
+  "baseUrl": "https://wizestream.org/",
+  "releaseCommit": "88b40eb8c0c6bef1a29befe46f63916fa8885e5b",
+  "comparisonReviewed": "2026-11-13"
 }

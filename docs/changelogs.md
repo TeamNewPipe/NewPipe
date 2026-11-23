@@ -167,6 +167,11 @@ Release history is listed newest first. The number beside each release is its An
 - Select only the current filtered results while keeping duplicate occurrences distinct and preserving hidden entries and the saved playlist order.
 - Keep local media in selected queues and playlist copies, and explain skipped items when a selection includes entries that cannot be downloaded.
 
+### Documentation
+
+- Refresh the README and website for the reviewed 1.50.0 release and newer merged source, keeping release availability and external comparison review dates distinct.
+- Document manual pairing and Waydroid setup, synchronization diagnostics and the limits of recent synchronization and Home memory fixes.
+
 ## WizeStream 1.50.0 (`1050000`)
 
 ### Channel pages

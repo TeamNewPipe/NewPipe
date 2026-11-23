@@ -13,7 +13,7 @@ WizeStream integrates extractor source directly into the Android app. Services p
 | Bilibili and Niconico | Integrated service support; details vary by source. |
 | BitChute and Rumble | Integrated browsing and playback support. |
 | Odysee | Experimental support; expect limitations. |
-| Vimeo | Public videos, shared unlisted links, creator/channel uploads, Staff Picks, showcases and live events. Optional API search and public comments. |
+| Vimeo | Merged after 1.50.0: public videos, shared unlisted links, creator/channel uploads, Staff Picks, showcases and live events. Optional API search and public comments. |
 
 Live Radio and Live TV use separate station/channel directories and imported stream lists. They do not turn every directory item into a supported social-platform subscription. See [live media and local files](live-media.html).
 
@@ -21,7 +21,7 @@ Live Radio and Live TV use separate station/channel directories and imported str
 
 Select the service before searching. Use its available content, date, duration, feature and sorting filters. YouTube Music has its own filter context. Supported presets can preserve repeatable search choices for a profile and service.
 
-For Vimeo, use **Open link** to paste or share a video, creator, channel, showcase/album or event URL, or browse **Staff Picks**. Keep the full URL for an unlisted video, including its access hash. Public creator/channel uploads support pagination. Public showcases open as complete playlists, including legacy album and custom showcase links. Event links follow the broadcast or recording selected by Vimeo, with a waiting state for upcoming events. Videos use the native player when Vimeo provides unencrypted streams, with captions when available; downloads require a progressive video file.
+**Vimeo requires a build containing the changes merged after 1.50.0.** Use **Open link** to paste or share a video, creator, channel, showcase/album or event URL, or browse **Staff Picks**. Keep the full URL for an unlisted video, including its access hash. Public creator/channel uploads support pagination. Public showcases open as complete playlists, including legacy album and custom showcase links. Event links follow the broadcast or recording selected by Vimeo, with a waiting state for upcoming events. Videos use the native player when Vimeo provides unencrypted streams, with captions when available; downloads require a progressive video file.
 
 Global keyword search and reading public video comments/replies require an optional **public-only Vimeo API token**. Follow [Vimeo's official instructions](https://help.vimeo.com/hc/en-us/articles/12427789081745-How-to-generate-a-personal-access-token) to create your own API app and generate an **Unauthenticated** token, then verify it under **Settings > Content > Vimeo > Set public API token**. WizeStream accepts only the public scope, stores the token encrypted on the device, and excludes it from backups and Device Sync. Search uses relevance order; comments use Vimeo's chronological order. Removing the token disables these API features. Public playback, showcases and events do not require a token. If a large showcase's public embed omits members, configured API access can load the remaining pages; partial lists are never labeled complete.
 

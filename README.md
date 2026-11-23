@@ -129,6 +129,13 @@ This README describes the current `pipe` branch; recently merged features may ar
 release. See the [release history](docs/changelogs.md) and [published releases](https://github.com/wizdom13/WizeStream/releases)
 for version-specific availability.
 
+The latest release checked for this documentation is **WizeStream 1.50.0 (22 November 2026)**.
+The source review covers merged `pipe` changes through
+[`fb0a89a2`](https://github.com/wizdom13/WizeStream/tree/fb0a89a2eb4b71e3318fa60717e0bb7098200e0d)
+(23 November 2026), including changes not yet in that release. Open pull requests are not part of
+this snapshot. See the [release availability page](https://wizestream.org/releases.html) for the
+distinction between the reviewed release and newer source features.
+
 ---
 
 ## Screenshots
@@ -730,7 +737,7 @@ data migration, and synchronization details.
 
 ### Sync highlights
 
-- Encrypted peer-to-peer pairing between trusted WizeStream devices using a one-time QR code
+- Encrypted peer-to-peer pairing between trusted WizeStream devices using a one-time code, with QR scanning and a manual entry option in current source
 - Manual synchronization and automatic background synchronization over Wi-Fi or Ethernet, with
   an optional charging-only constraint for scheduled attempts
 - Synchronization of local profile identities plus profile-scoped subscriptions, feed groups,
@@ -774,6 +781,13 @@ requiring a platform account or a WizeStream cloud account.
 
 Open **Settings > Device synchronization** on both devices. One device displays a one-time QR code
 and the other scans it. The pairing code expires after five minutes and can be used only once.
+
+**Merged after 1.50.0:** builds containing the manual pairing change also offer **Copy pairing code**
+on the first device and **Enter pairing code** on the second. Keep the first device's pairing screen
+open and paste the complete code within five minutes. For Waydroid, copy the phone's code into
+Waydroid and start **Sync now** there. This avoids needing a camera; both devices still need a
+reachable local-network connection.
+
 After pairing, use **Sync now** for an immediate exchange or leave **Automatic background
 synchronization** enabled. Background synchronization runs approximately once per hour when the
 device has sufficient battery and can reach a trusted device on the same Wi-Fi or Ethernet network.
@@ -795,8 +809,10 @@ files are not transferred. If another device reports a completed download but it
 missing locally, the Downloads screen marks it **Not local** and offers **Download on this device**
 using the original source. Existing local and pending copies are deduplicated.
 
-See [Device synchronization](docs/device-synchronization.md) for pairing instructions, synchronized
-data details, background behavior, and privacy notes.
+See [Device synchronization](docs/device-synchronization.md) for build availability, pairing
+instructions, synchronization logs, data details, background behavior, and privacy notes. Manual
+pairing and diagnostics help investigate failures; they do not establish that every sync issue is
+resolved.
 
 ---
 

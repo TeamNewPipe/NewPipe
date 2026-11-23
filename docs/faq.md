@@ -1,5 +1,9 @@
 # WizeStream FAQ
 
+This FAQ describes the current `pipe` source. The latest release checked is
+**WizeStream 1.50.0 (22 November 2026)**; features marked as merged after that release need a build
+containing the change. See the [changelog](changelogs.md) for version-specific availability.
+
 ## What is WizeStream?
 
 WizeStream is an independent, NewPipe-based streaming client for Android. It combines a modern
@@ -41,8 +45,13 @@ collection.
 
 Open **Settings > Device synchronization** on two WizeStream devices, show the one-time QR code on
 one device, and scan it with the other. Paired devices can synchronize directly over the same Wi-Fi
-or Ethernet network, either manually or approximately once per hour in the background. See the
-[device synchronization guide](device-synchronization.md) for full instructions.
+or Ethernet network, either manually or approximately once per hour in the background.
+
+**Merged after 1.50.0:** **Copy pairing code** and **Enter pairing code** offer a camera-free path.
+For Waydroid, copy the phone's complete code into Waydroid while the phone's pairing screen stays
+open, then start **Sync now** in Waydroid. The code still expires after five minutes and can be used
+only once. This does not bypass local-network reachability requirements. See the
+[device synchronization guide](device-synchronization.md) for the steps and diagnostic controls.
 
 ## What data is synchronized?
 
@@ -66,6 +75,9 @@ Service support comes from the extractor source integrated into each WizeStream 
 main [README](../README.md#supported-services) for the current list.
 
 ## How do I use Vimeo?
+
+**Merged after 1.50.0:** Vimeo support described here is part of the current source snapshot and
+requires a build containing those changes.
 
 Select Vimeo, then browse **Staff Picks** or choose **Open link** to paste a Vimeo video, creator,
 channel, showcase/album or live-event URL. Android's Share action can also send a supported Vimeo
