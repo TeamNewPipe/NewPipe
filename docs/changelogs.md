@@ -71,6 +71,7 @@ Release history is listed newest first. The number beside each release is its An
 
 ### Profile history synchronization
 
+- Apply incoming watch-history changes using indexed records for the affected videos, and process whole-profile clears in bounded groups while preserving synchronization ordering.
 - Keep watch history, playback progress and history deletions synchronized for every profile after the first exchange, even when the active profile changes while a write is pending.
 - Preserve existing deletion ordering and avoid seeding history from locally unavailable profiles during synchronization.
 

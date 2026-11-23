@@ -91,6 +91,13 @@ data class HistorySyncChangeEntity(
                 HistorySyncRecordEntity.CATEGORY,
                 HistorySyncRecordEntity.RECORD_TYPE
             ]
+        ),
+        Index(
+            value = [
+                HistorySyncRecordEntity.CATEGORY,
+                HistorySyncRecordEntity.PROFILE_ID,
+                HistorySyncRecordEntity.STREAM_KEY
+            ]
         )
     ]
 )
@@ -123,7 +130,10 @@ data class HistorySyncRecordEntity(
     val isDeleted: Boolean,
 
     @ColumnInfo(name = RECORD_JSON)
-    val recordJson: String?
+    val recordJson: String?,
+
+    @ColumnInfo(name = STREAM_KEY)
+    val streamKey: String? = null
 ) {
     companion object {
         const val TABLE_NAME = "history_sync_records"
@@ -136,6 +146,7 @@ data class HistorySyncRecordEntity(
         const val ORIGIN_REVISION = "origin_revision"
         const val IS_DELETED = "is_deleted"
         const val RECORD_JSON = "record_json"
+        const val STREAM_KEY = "stream_key"
     }
 }
 

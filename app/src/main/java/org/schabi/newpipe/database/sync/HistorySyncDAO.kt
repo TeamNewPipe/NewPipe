@@ -95,6 +95,32 @@ abstract class HistorySyncDAO {
     @Query("SELECT * FROM history_sync_records WHERE category = :category AND profile_id = :profileId")
     abstract fun getRecordsForProfile(category: String, profileId: String): List<HistorySyncRecordEntity>
 
+    @Query(
+        """
+        SELECT * FROM history_sync_records
+        WHERE category = 'WATCH' AND profile_id = :profileId AND stream_key IN (:streamKeys)
+        """
+    )
+    abstract fun getWatchRecordsForStreams(profileId: String, streamKeys: List<String>): List<HistorySyncRecordEntity>
+
+    @Query(
+        """
+        SELECT DISTINCT stream_key FROM history_sync_records
+        WHERE category = 'WATCH' AND profile_id = :profileId AND stream_key > :afterKey
+        ORDER BY stream_key ASC LIMIT :limit
+        """
+    )
+    abstract fun getWatchStreamKeys(profileId: String, afterKey: String, limit: Int): List<String>
+
+    @Query(
+        """
+        SELECT EXISTS(SELECT 1 FROM history_sync_records
+        WHERE category = 'WATCH' AND profile_id = :profileId AND stream_key IS NULL
+            AND record_type IN ('WATCH_EVENT', 'PLAYBACK_PROGRESS', 'WATCH_STREAM_TOMBSTONE'))
+        """
+    )
+    abstract fun hasUnindexedWatchStreamRecords(profileId: String): Boolean
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun upsertRecord(record: HistorySyncRecordEntity)
 

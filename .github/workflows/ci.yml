@@ -105,6 +105,14 @@ jobs:
       - name: Verify generated Room schemas match the checked-out commit
         run: python3 scripts/check-room-schemas.py
 
+      - name: Upload generated Room schemas
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: room-schemas
+          path: app/schemas/**
+          if-no-files-found: ignore
+
       - name: Upload lint report when checks fail
         uses: actions/upload-artifact@v7
         if: failure()

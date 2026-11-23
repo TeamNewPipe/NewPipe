@@ -501,17 +501,35 @@ internal class RoomHistorySyncStore internal constructor(
                 val watchProfiles = affectedStreams.mapTo(linkedSetOf()) { it.profileId }
                 watchProfiles += materializeAllWatchProfiles
                 watchProfiles.forEach { profileId ->
-                    // All changes are stored before taking one decoded snapshot per profile.
-                    // A global tombstone reuses the same index when rematerializing every stream.
-                    val snapshot = loadWatchHistorySnapshot(profileId)
-                    val identities = affectedStreams.asSequence()
-                        .filter { it.profileId == profileId }
-                        .mapTo(linkedSetOf()) { it.identity }
-                    if (profileId in materializeAllWatchProfiles) {
-                        identities += snapshot.recordsByStream.keys
+                    if (syncDao.hasUnindexedWatchStreamRecords(profileId)) {
+                        throw HistorySyncException("Stored watch history contains invalid stream metadata")
                     }
-                    identities.forEach { identity ->
-                        materializeWatchStream(profileId, identity, snapshot)
+                    val globalRecords = listOfNotNull(
+                        syncDao.getRecord(category.name, HistoryRecordId.watchAllTombstone(profileId)),
+                        syncDao.getRecord(category.name, HistoryRecordId.playbackAllTombstone(profileId))
+                    )
+                    if (profileId in materializeAllWatchProfiles) {
+                        // Global clears visit every stream, but retain only one bounded key page.
+                        var afterKey = ""
+                        while (true) {
+                            val keys = syncDao.getWatchStreamKeys(profileId, afterKey, WATCH_STREAM_PAGE_SIZE)
+                            if (keys.isEmpty()) break
+                            val snapshot = loadWatchHistorySnapshot(profileId, keys, globalRecords)
+                            snapshot.recordsByStream.keys.forEach { identity ->
+                                materializeWatchStream(profileId, identity, snapshot)
+                            }
+                            afterKey = keys.last()
+                        }
+                    } else {
+                        val identities = affectedStreams.asSequence()
+                            .filter { it.profileId == profileId }
+                            .mapTo(linkedSetOf()) { it.identity }
+                        val snapshot = loadWatchHistorySnapshot(
+                            profileId,
+                            identities.map { HistoryRecordId.progress(profileId, it) },
+                            globalRecords
+                        )
+                        identities.forEach { identity -> materializeWatchStream(profileId, identity, snapshot) }
                     }
                 }
                 materializeSearchProfiles.forEach(::materializeSearchHistory)
@@ -856,8 +874,12 @@ internal class RoomHistorySyncStore internal constructor(
         )
     }
 
-    private fun loadWatchHistorySnapshot(profileId: String): WatchHistorySnapshot {
-        val records = syncDao.getRecordsForProfile(HistorySyncCategory.WATCH.name, profileId)
+    private fun loadWatchHistorySnapshot(
+        profileId: String,
+        streamKeys: List<String>,
+        globalRecords: List<HistorySyncRecordEntity>
+    ): WatchHistorySnapshot {
+        val records = (syncDao.getWatchRecordsForStreams(profileId, streamKeys) + globalRecords)
             .map { DecodedWatchRecord(it, decodeRecord(it)) }
         return WatchHistorySnapshot(
             recordsById = records.associateBy { it.entity.recordId },
@@ -939,7 +961,12 @@ internal class RoomHistorySyncStore internal constructor(
         originRevision = originRevision,
         isDeleted = type == HistoryChangeType.DELETE,
         recordJson = record?.let(HistoryRecordCodec::encode)
-            ?: currentRecord?.recordJson
+            ?: currentRecord?.recordJson,
+        streamKey = if (category == HistorySyncCategory.WATCH) {
+            record?.streamIdentity?.let { HistoryRecordId.progress(profileId, it) } ?: currentRecord?.streamKey
+        } else {
+            null
+        }
     )
 
     private fun decodeRecord(entity: HistorySyncRecordEntity): SyncedHistoryRecord? {
@@ -1030,6 +1057,7 @@ internal class RoomHistorySyncStore internal constructor(
 
     companion object {
         private const val MAX_REMOTE_LAMPORT_ADVANCE = 1_000_000L
+        private const val WATCH_STREAM_PAGE_SIZE = 128
 
         fun get(context: Context): RoomHistorySyncStore {
             val applicationContext = context.applicationContext

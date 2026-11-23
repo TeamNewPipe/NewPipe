@@ -7,6 +7,7 @@ import androidx.room.testing.MigrationTestHelper
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
@@ -19,6 +20,9 @@ import org.schabi.newpipe.database.playlist.model.PlaylistEntity
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.profiles.ProfileManager
+import org.schabi.newpipe.sync.HistoryRecordId
+import org.schabi.newpipe.sync.HistoryStreamIdentity
 
 @RunWith(AndroidJUnit4::class)
 class DatabaseMigrationTest {
@@ -45,6 +49,63 @@ class DatabaseMigrationTest {
         InstrumentationRegistry.getInstrumentation(),
         AppDatabase::class.java
     )
+
+    @Test
+    fun migrate32to33IndexesWatchStreamsAndPreservesLegacyPayloads() {
+        val url = "https://example.com/watch?q=quoted\"&title=日本語"
+        val profile = "11111111-1111-4111-8111-111111111111"
+        val fields = listOf("WATCH_EVENT" to "watchEvent", "PLAYBACK_PROGRESS" to "playbackProgress", "WATCH_STREAM_TOMBSTONE" to "watchStreamTombstone")
+        val payloads = fields.map { (_, field) ->
+            JSONObject().put(field, JSONObject().put("stream", JSONObject().put("serviceId", 0).put("url", url))).toString()
+        } + listOf("{damaged", null, "{\"searchEvent\":{\"query\":\"unchanged\"}}")
+        testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_32).use { database ->
+            payloads.forEachIndexed { index, payload ->
+                database.insert(
+                    "history_sync_records",
+                    SQLiteDatabase.CONFLICT_FAIL,
+                    ContentValues().apply {
+                        put("category", if (index == 5) "SEARCH" else "WATCH")
+                        put("record_id", "record-$index")
+                        put("profile_id", if (index == 0) ProfileManager.DEFAULT_PROFILE_ID else profile)
+                        put(
+                            "record_type",
+                            fields.getOrNull(index)?.first ?: when (index) {
+                                4 -> "WATCH_ALL_TOMBSTONE"
+                                5 -> "SEARCH_EVENT"
+                                else -> "WATCH_EVENT"
+                            }
+                        )
+                        put("lamport_version", 7L)
+                        put("origin_peer_id", "legacy-peer")
+                        put("origin_revision", index + 1L)
+                        put("is_deleted", if (index == 1) 1 else 0)
+                        put("record_json", payload)
+                    }
+                )
+            }
+        }
+        val migrated = testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_33,
+            true,
+            Migrations.MIGRATION_32_33
+        )
+        migrated.query("SELECT profile_id, record_json, stream_key, lamport_version, origin_revision, is_deleted FROM history_sync_records ORDER BY record_id").use { rows ->
+            payloads.forEachIndexed { index, payload ->
+                assertTrue(rows.moveToNext())
+                assertEquals(payload, rows.getString(1))
+                if (index < 3) {
+                    assertEquals(HistoryRecordId.progress(rows.getString(0), HistoryStreamIdentity(0, url)), rows.getString(2))
+                } else {
+                    assertTrue(rows.isNull(2))
+                }
+                assertEquals(7L, rows.getLong(3))
+                assertEquals(index + 1L, rows.getLong(4))
+                assertEquals(if (index == 1) 1 else 0, rows.getInt(5))
+            }
+            assertFalse(rows.moveToNext())
+        }
+    }
 
     @Test
     fun migrate30to31PreservesSubscriptionMetadata() {
@@ -1339,7 +1400,8 @@ class DatabaseMigrationTest {
                 Migrations.MIGRATION_28_29,
                 Migrations.MIGRATION_29_30,
                 Migrations.MIGRATION_30_31,
-                Migrations.MIGRATION_31_32
+                Migrations.MIGRATION_31_32,
+                Migrations.MIGRATION_32_33
             )
             .build()
         testHelper.closeWhenFinished(database)

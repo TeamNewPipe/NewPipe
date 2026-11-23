@@ -52,7 +52,8 @@ object Migrations {
     const val DB_VER_30 = 30
     const val DB_VER_31 = 31
     const val DB_VER_32 = 32
-    const val DB_VER_CURRENT = DB_VER_32
+    const val DB_VER_33 = 33
+    const val DB_VER_CURRENT = DB_VER_33
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -1079,5 +1080,14 @@ object Migrations {
     val MIGRATION_31_32 = Migration(DB_VER_31, DB_VER_32) { db ->
         // Unknown is deliberately NULL; do not infer provider categories from titles or URLs.
         db.execSQL("ALTER TABLE streams ADD COLUMN content_category TEXT")
+    }
+
+    val MIGRATION_32_33 = Migration(DB_VER_32, DB_VER_33) { db ->
+        db.execSQL("ALTER TABLE history_sync_records ADD COLUMN stream_key TEXT")
+        HistorySyncStreamKeyMigration.backfill(db)
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_history_sync_records_category_profile_id_stream_key " +
+                "ON history_sync_records (category, profile_id, stream_key)"
+        )
     }
 }
