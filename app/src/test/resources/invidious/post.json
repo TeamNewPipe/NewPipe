@@ -1,0 +1,13 @@
+{
+  "authorId": "UCAAAAAAAAAAAAAAAAAAAAAA",
+  "singlePost": true,
+  "comments": [
+    {
+      "author": "Post author",
+      "authorId": "UCAAAAAAAAAAAAAAAAAAAAAA",
+      "commentId": "UgkxPostFixture_123",
+      "content": "A representative community post",
+      "replyCount": 3
+    }
+  ]
+}

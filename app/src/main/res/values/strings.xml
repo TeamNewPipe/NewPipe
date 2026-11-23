@@ -1510,6 +1510,8 @@
     <string name="post_comments_count">%1$s comments</string>
     <string name="post_poll_choice">%1$s — %2$s</string>
     <string name="open_original_post">Open original</string>
+    <string name="post_comments_action">Comments</string>
+    <string name="post_comments_title">Post comments</string>
     <string name="unknown_count">—</string>
     <string name="channel_tab_likes">Likes</string>
     <string name="channel_tab_about">About</string>

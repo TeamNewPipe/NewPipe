@@ -22,6 +22,7 @@ import com.google.android.material.button.MaterialButton;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.comments.CommentArchive;
+import org.schabi.newpipe.local.comments.CommentArchiveRequest;
 import org.schabi.newpipe.local.comments.CachedCommentsDialog;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
@@ -231,19 +232,24 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfoItem, Com
 
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
-        final android.content.Context app = requireContext().getApplicationContext();
+        final CommentArchiveRequest archiveRequest =
+                CommentArchiveRequest.capture(requireContext());
         return ExtractorHelper.getMoreCommentItems(serviceId, currentInfo, currentNextPage)
-                .doOnSuccess(page -> CommentArchive.record(
-                        app, serviceId, url, page.getItems(), null))
-                .doFinally(() -> commentSearch.paginationFinished(hasMoreItems()));
+                .doOnSuccess(page -> archiveRequest.record(serviceId, url, page.getItems(), null))
+                .doFinally(() -> {
+                    archiveRequest.close();
+                    commentSearch.paginationFinished(hasMoreItems());
+                });
     }
 
     @Override
     protected Single<CommentsInfo> loadResult(final boolean forceLoad) {
-        final android.content.Context app = requireContext().getApplicationContext();
+        final CommentArchiveRequest archiveRequest =
+                CommentArchiveRequest.capture(requireContext());
         return ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad, sortOrder)
-                .doOnSuccess(info -> CommentArchive.record(
-                        app, serviceId, url, info.getRelatedItems(), null));
+                .doOnSuccess(info -> archiveRequest.record(
+                        serviceId, url, info.getRelatedItems(), null))
+                .doFinally(archiveRequest::close);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

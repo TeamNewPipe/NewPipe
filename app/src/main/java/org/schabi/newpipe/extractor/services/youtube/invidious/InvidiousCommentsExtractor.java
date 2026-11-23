@@ -18,6 +18,7 @@ import org.schabi.newpipe.extractor.localization.DateWrapper;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 
 public final class InvidiousCommentsExtractor extends CommentsExtractor {
     private final InvidiousApi api = new InvidiousApi();
@@ -62,7 +63,16 @@ public final class InvidiousCommentsExtractor extends CommentsExtractor {
     }
 
     private InfoItemsPage<CommentsInfoItem> result(final JsonObject json) {
-        final CommentsInfoItemsCollector collector = new CommentsInfoItemsCollector(getServiceId());
+        return parseComments(json, getServiceId(), api,
+                commentId -> "https://www.youtube.com/watch?v=" + getLinkHandler().getId()
+                        + "&lc=" + InvidiousApi.encode(commentId), this::continuation);
+    }
+
+    static InfoItemsPage<CommentsInfoItem> parseComments(final JsonObject json,
+            final int serviceId, final InvidiousApi api,
+            final Function<String, String> commentUrl,
+            final Function<JsonObject, Page> continuation) {
+        final CommentsInfoItemsCollector collector = new CommentsInfoItemsCollector(serviceId);
         final JsonArray comments = json.getArray("comments", new JsonArray());
         for (final Object item : comments) {
             final JsonObject comment = (JsonObject) item;
@@ -73,8 +83,7 @@ public final class InvidiousCommentsExtractor extends CommentsExtractor {
                 }
                 @Override
                 public String getUrl() {
-                    return "https://www.youtube.com/watch?v=" + getLinkHandler().getId()
-                            + "&lc=" + InvidiousApi.encode(getCommentId());
+                    return commentUrl.apply(getCommentId());
                 }
                 @Override
                 public String getCommentId() {
@@ -122,11 +131,11 @@ public final class InvidiousCommentsExtractor extends CommentsExtractor {
                 }
                 @Override
                 public Page getReplies() {
-                    return continuation(comment.getObject("replies", new JsonObject()));
+                    return continuation.apply(comment.getObject("replies", new JsonObject()));
                 }
             });
         }
-        return new InfoItemsPage<>(collector, continuation(json));
+        return new InfoItemsPage<>(collector, continuation.apply(json));
     }
 
     @Override

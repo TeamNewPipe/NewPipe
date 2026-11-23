@@ -1,0 +1,51 @@
+{
+  "onResponseReceivedEndpoints": [
+    {
+      "appendContinuationItemsAction": {
+        "continuationItems": [
+          {
+            "commentThreadRenderer": {
+              "comment": {
+                "commentRenderer": {
+                  "commentId": "legacy-comment",
+                  "authorText": {
+                    "simpleText": "Legacy author"
+                  },
+                  "authorEndpoint": {
+                    "browseEndpoint": {
+                      "browseId": "UCBBBBBBBBBBBBBBBBBBBBBB"
+                    }
+                  },
+                  "authorThumbnail": {
+                    "thumbnails": []
+                  },
+                  "publishedTimeText": {
+                    "simpleText": "2 days ago"
+                  },
+                  "contentText": {
+                    "simpleText": "A legacy post comment"
+                  },
+                  "voteCount": {
+                    "simpleText": "2"
+                  },
+                  "replyCount": 1
+                }
+              },
+              "replies": {
+                "commentRepliesRenderer": {
+                  "continuations": [
+                    {
+                      "nextContinuationData": {
+                        "continuation": "legacy-replies"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousBackend;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousExtractors;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousStreamExtractor;
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousCommentsExtractor;
+import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousPostCommentsExtractor;
 
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.*;
@@ -34,6 +35,7 @@ import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeChannelExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeChannelTabExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeCommentsExtractor;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubePostCommentsExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeDiagnosticStreamExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeFeedExtractor;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeMixPlaylistExtractor;
@@ -52,6 +54,7 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.kiosk.YoutubeTre
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeChannelLinkHandlerFactory;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeChannelTabLinkHandlerFactory;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeCommentsLinkHandlerFactory;
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubePostCommentsTarget;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeLiveLinkHandlerFactory;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubePlaylistLinkHandlerFactory;
 import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeSearchQueryHandlerFactory;
@@ -310,6 +313,11 @@ public class YoutubeService extends StreamingService {
     @Override
     public CommentsExtractor getCommentsExtractor(final ListLinkHandler urlIdHandler)
             throws ExtractionException {
+        if (YoutubePostCommentsTarget.fromId(urlIdHandler.getId()) != null) {
+            return InvidiousBackend.isEnabled()
+                    ? new InvidiousPostCommentsExtractor(this, urlIdHandler)
+                    : new YoutubePostCommentsExtractor(this, urlIdHandler);
+        }
         if (InvidiousBackend.isEnabled()) {
             return new InvidiousCommentsExtractor(this, urlIdHandler);
         }

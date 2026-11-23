@@ -34,6 +34,12 @@ Release history is listed newest first. The number beside each release is its An
 - Choose which optional player actions are visible, including separate controls for casting to a paired WizeStream device, casting to a TV and playing with Kodi.
 - Keep hidden tools out of portrait, fullscreen, popup and TV controls while preserving feature availability, essential playback controls and the existing portrait action order.
 
+### Community posts
+
+- Open comments and replies from YouTube community-post cards inside WizeStream, including sorting and pagination.
+- Keep post discussions on the selected YouTube or Invidious backend and preserve their identity when opening replies or restoring the screen.
+- Reuse optional saved-comment archives while preventing in-flight requests from writing after profile or privacy settings change.
+
 ### App fonts
 
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.

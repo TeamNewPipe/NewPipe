@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubePostCommentsTarget;
 import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
@@ -252,7 +253,9 @@ public final class TextLinkifier {
                     // add click actions on plain text timestamps only for description of contents,
                     // unneeded for meta-info or other TextViews
                     if (relatedInfoService != null) {
-                        if (relatedStreamUrl != null) {
+                        // Post discussions have a source URL, but no playable timestamp target.
+                        if (relatedStreamUrl != null
+                                && YoutubePostCommentsTarget.fromUrl(relatedStreamUrl) == null) {
                             addClickListenersOnTimestamps(context, textBlockLinked,
                                     relatedInfoService, relatedStreamUrl, disposables);
                         }

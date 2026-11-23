@@ -1,0 +1,23 @@
+{
+  "postId": "UgkxPostFixture_123",
+  "commentCount": 3,
+  "comments": [
+    {
+      "author": "Commenter",
+      "authorId": "UCBBBBBBBBBBBBBBBBBBBBBB",
+      "authorThumbnail": "https://yt3.ggpht.com/comment-avatar=s88",
+      "commentId": "UgzComment_1",
+      "content": "First comment\nWith a second line",
+      "published": 1720000000,
+      "publishedText": "2 days ago",
+      "likeCount": 4,
+      "isPinned": true,
+      "creatorHeart": { "creatorName": "Post author" },
+      "replies": {
+        "replyCount": 2,
+        "continuation": "replies +/= & token"
+      }
+    }
+  ],
+  "continuation": "next +/= & token"
+}

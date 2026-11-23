@@ -371,7 +371,8 @@ public class YoutubeCommentsExtractor extends CommentsExtractor {
         }
     }
 
-    private void collectCommentItem(@Nonnull final JsonArray mutations,
+    /** Shared renderer parsing for video and public post comment continuations. */
+    protected final void collectCommentItem(@Nonnull final JsonArray mutations,
                                     @Nonnull final JsonObject content,
                                     @Nonnull final CommentsInfoItemsCollector collector,
                                     @Nonnull final String videoUrl,

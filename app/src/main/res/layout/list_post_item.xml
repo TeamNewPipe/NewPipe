@@ -149,27 +149,40 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/itemStatsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        tools:text="1.2K likes · 42 comments" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical|end"
         android:orientation="horizontal">
 
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/itemStatsView"
+        <Button
+            android:id="@+id/itemPostCommentsButton"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            tools:text="1.2K likes · 42 comments" />
+            android:minHeight="48dp"
+            android:text="@string/post_comments_action"
+            android:textColor="?attr/colorPrimary"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/itemOpenOriginalButton"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:minHeight="48dp"
             android:text="@string/open_original_post"
             android:textColor="?attr/colorPrimary" />

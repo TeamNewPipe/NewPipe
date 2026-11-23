@@ -1,0 +1,14 @@
+{
+  "postId": "UgkxPostFixture_123",
+  "comments": [
+    {
+      "author": "Reply author",
+      "authorId": "UCDDDDDDDDDDDDDDDDDDDDDD",
+      "authorThumbnail": "/ggpht/reply-avatar",
+      "commentId": "UgzComment_1.Reply_1",
+      "content": "A reply to the first comment",
+      "likeCount": 0
+    }
+  ],
+  "continuation": "more replies +/= & token"
+}

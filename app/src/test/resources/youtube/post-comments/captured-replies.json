@@ -1,0 +1,137 @@
+{
+  "onResponseReceivedEndpoints": [
+    {
+      "appendContinuationItemsAction": {
+        "targetId": "comment-replies-item-UgwG2dw2WEXkYc1-ySF4AaABAg",
+        "continuationItems": [
+          {
+            "commentViewModel": {
+              "commentKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICgoAQ%3D%3D",
+              "toolbarStateKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICwoAQ%3D%3D",
+              "commentId": "UgwG2dw2WEXkYc1-ySF4AaABAg.AdTcU4bY5a_AdTiPtoNhM9",
+              "commentSurfaceKey": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05LzEgTygB"
+            }
+          },
+          {
+            "commentViewModel": {
+              "commentKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICgoAQ%3D%3D",
+              "toolbarStateKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICwoAQ%3D%3D",
+              "commentId": "UgwG2dw2WEXkYc1-ySF4AaABAg.AdTcU4bY5a_AdU6uKDLCpa",
+              "commentSurfaceKey": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhLzEgTygB"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frameworkUpdates": {
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "entityKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICgoAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentEntityPayload": {
+              "key": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICgoAQ%3D%3D",
+              "properties": {
+                "commentId": "UgwG2dw2WEXkYc1-ySF4AaABAg.AdTcU4bY5a_AdTiPtoNhM9",
+                "content": {
+                  "content": "Captured replies comment"
+                },
+                "publishedTime": "15 hours ago",
+                "replyLevel": 1
+              },
+              "author": {
+                "channelId": "UCCCCCCCCCCCCCCCCCCCCCCC",
+                "displayName": "Captured author",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/captured-avatar",
+                "isVerified": false,
+                "isCurrentUser": false,
+                "isCreator": false,
+                "isArtist": false
+              },
+              "toolbar": {
+                "likeCountLiked": "6",
+                "likeCountNotliked": "5",
+                "replyCount": ""
+              }
+            }
+          }
+        },
+        {
+          "entityKey": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05LzEgTygB",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentSurfaceEntityPayload": {
+              "key": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05LzEgTygB",
+              "relativeNestingLevel": 1
+            }
+          }
+        },
+        {
+          "entityKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICwoAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "engagementToolbarStateEntityPayload": {
+              "key": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVGlQdG9OaE05ICwoAQ%3D%3D",
+              "likeState": "TOOLBAR_LIKE_STATE_INDIFFERENT",
+              "heartState": "TOOLBAR_HEART_STATE_UNHEARTED"
+            }
+          }
+        },
+        {
+          "entityKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICgoAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentEntityPayload": {
+              "key": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICgoAQ%3D%3D",
+              "properties": {
+                "commentId": "UgwG2dw2WEXkYc1-ySF4AaABAg.AdTcU4bY5a_AdU6uKDLCpa",
+                "content": {
+                  "content": "Captured replies comment"
+                },
+                "publishedTime": "11 hours ago",
+                "replyLevel": 1
+              },
+              "author": {
+                "channelId": "UCCCCCCCCCCCCCCCCCCCCCCC",
+                "displayName": "Captured author",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/captured-avatar",
+                "isVerified": false,
+                "isCurrentUser": false,
+                "isCreator": false,
+                "isArtist": false
+              },
+              "toolbar": {
+                "likeCountLiked": "5",
+                "likeCountNotliked": "4",
+                "replyCount": ""
+              }
+            }
+          }
+        },
+        {
+          "entityKey": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhLzEgTygB",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentSurfaceEntityPayload": {
+              "key": "EjNVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhLzEgTygB",
+              "relativeNestingLevel": 1
+            }
+          }
+        },
+        {
+          "entityKey": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICwoAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "engagementToolbarStateEntityPayload": {
+              "key": "EjFVZ3dHMmR3MldFWGtZYzEteVNGNEFhQUJBZy5BZFRjVTRiWTVhX0FkVTZ1S0RMQ3BhICwoAQ%3D%3D",
+              "likeState": "TOOLBAR_LIKE_STATE_INDIFFERENT",
+              "heartState": "TOOLBAR_HEART_STATE_UNHEARTED"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "onResponseReceivedEndpoints": [
+    {
+      "appendContinuationItemsAction": {
+        "targetId": "comments-section",
+        "continuationItems": [
+          {
+            "commentThreadRenderer": {
+              "replies": {
+                "commentRepliesRenderer": {
+                  "contents": [
+                    {
+                      "continuationItemRenderer": {
+                        "trigger": "CONTINUATION_TRIGGER_ON_ITEM_SHOWN",
+                        "continuationEndpoint": {
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "sendPost": true,
+                              "apiUrl": "/youtubei/v1/browse"
+                            }
+                          },
+                          "continuationCommand": {
+                            "token": "captured-continuation-6",
+                            "request": "CONTINUATION_REQUEST_TYPE_BROWSE"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "viewReplies": {
+                    "buttonRenderer": {
+                      "text": {
+                        "runs": [
+                          {
+                            "text": "7 replies"
+                          }
+                        ]
+                      },
+                      "icon": {
+                        "iconType": "EXPAND"
+                      },
+                      "iconPosition": "BUTTON_ICON_POSITION_TYPE_LEFT_OF_TEXT"
+                    }
+                  },
+                  "hideReplies": {
+                    "buttonRenderer": {
+                      "text": {
+                        "runs": [
+                          {
+                            "text": "7 replies"
+                          }
+                        ]
+                      },
+                      "icon": {
+                        "iconType": "COLLAPSE"
+                      },
+                      "iconPosition": "BUTTON_ICON_POSITION_TYPE_LEFT_OF_TEXT"
+                    }
+                  },
+                  "targetId": "comment-replies-item-UgyO2ukFw70ZD02E63x4AaABAg"
+                }
+              },
+              "renderingPriority": "RENDERING_PRIORITY_UNKNOWN",
+              "isModeratedElqComment": false,
+              "commentViewModel": {
+                "commentViewModel": {
+                  "commentKey": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAoKAE%3D",
+                  "toolbarStateKey": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAsKAE%3D",
+                  "commentId": "UgyO2ukFw70ZD02E63x4AaABAg",
+                  "commentSurfaceKey": "EhxVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZy8xIE8oAQ%3D%3D"
+                }
+              }
+            }
+          },
+          {
+            "commentThreadRenderer": {
+              "renderingPriority": "RENDERING_PRIORITY_UNKNOWN",
+              "isModeratedElqComment": false,
+              "commentViewModel": {
+                "commentViewModel": {
+                  "commentKey": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAoKAE%3D",
+                  "toolbarStateKey": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAsKAE%3D",
+                  "commentId": "UgzpAYM2Epjaw-SOVdx4AaABAg",
+                  "commentSurfaceKey": "EhxVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZy8xIE8oAQ%3D%3D"
+                }
+              }
+            }
+          },
+          {
+            "continuationItemRenderer": {
+              "trigger": "CONTINUATION_TRIGGER_ON_ITEM_SHOWN",
+              "continuationEndpoint": {
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "sendPost": true,
+                    "apiUrl": "/youtubei/v1/browse"
+                  }
+                },
+                "continuationCommand": {
+                  "token": "captured-continuation-7",
+                  "request": "CONTINUATION_REQUEST_TYPE_BROWSE"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frameworkUpdates": {
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "entityKey": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAoKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentEntityPayload": {
+              "key": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAoKAE%3D",
+              "properties": {
+                "commentId": "UgyO2ukFw70ZD02E63x4AaABAg",
+                "content": {
+                  "content": "Captured next comment"
+                },
+                "publishedTime": "10 hours ago",
+                "replyLevel": 0
+              },
+              "author": {
+                "channelId": "UCCCCCCCCCCCCCCCCCCCCCCC",
+                "displayName": "Captured author",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/captured-avatar",
+                "isVerified": false,
+                "isCurrentUser": false,
+                "isCreator": false,
+                "isArtist": false
+              },
+              "toolbar": {
+                "likeCountLiked": "13",
+                "likeCountNotliked": "12",
+                "replyCount": "7"
+              }
+            }
+          }
+        },
+        {
+          "entityKey": "EhxVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZy8xIE8oAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentSurfaceEntityPayload": {
+              "key": "EhxVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZy8xIE8oAQ%3D%3D",
+              "relativeNestingLevel": 0
+            }
+          }
+        },
+        {
+          "entityKey": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAsKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "engagementToolbarStateEntityPayload": {
+              "key": "EhpVZ3lPMnVrRnc3MFpEMDJFNjN4NEFhQUJBZyAsKAE%3D",
+              "likeState": "TOOLBAR_LIKE_STATE_INDIFFERENT",
+              "heartState": "TOOLBAR_HEART_STATE_UNHEARTED"
+            }
+          }
+        },
+        {
+          "entityKey": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAoKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentEntityPayload": {
+              "key": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAoKAE%3D",
+              "properties": {
+                "commentId": "UgzpAYM2Epjaw-SOVdx4AaABAg",
+                "content": {
+                  "content": "Captured next comment"
+                },
+                "publishedTime": "9 hours ago",
+                "replyLevel": 0
+              },
+              "author": {
+                "channelId": "UCCCCCCCCCCCCCCCCCCCCCCC",
+                "displayName": "Captured author",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/captured-avatar",
+                "isVerified": false,
+                "isCurrentUser": false,
+                "isCreator": false,
+                "isArtist": false
+              },
+              "toolbar": {
+                "likeCountLiked": "1",
+                "likeCountNotliked": " ",
+                "replyCount": ""
+              }
+            }
+          }
+        },
+        {
+          "entityKey": "EhxVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZy8xIE8oAQ%3D%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentSurfaceEntityPayload": {
+              "key": "EhxVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZy8xIE8oAQ%3D%3D",
+              "relativeNestingLevel": 0
+            }
+          }
+        },
+        {
+          "entityKey": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAsKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "engagementToolbarStateEntityPayload": {
+              "key": "EhpVZ3pwQVlNMkVwamF3LVNPVmR4NEFhQUJBZyAsKAE%3D",
+              "likeState": "TOOLBAR_LIKE_STATE_INDIFFERENT",
+              "heartState": "TOOLBAR_HEART_STATE_UNHEARTED"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

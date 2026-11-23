@@ -80,10 +80,12 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubePostCommentsTarget;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentRepliesFragment;
+import org.schabi.newpipe.fragments.list.comments.PostCommentsFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker;
 import org.schabi.newpipe.learning.LearningMode;
@@ -1024,6 +1026,8 @@ public class MainActivity extends AppCompatActivity {
             // and no other CommentRepliesFragments are on top of the back stack
             // to show the top level comments again.
             openDetailFragmentFromCommentReplies(fm, true);
+        } else if (fragment instanceof PostCommentsFragment && fm.getBackStackEntryCount() > 1) {
+            fm.popBackStackImmediate();
         } else if (!NavigationHelper.tryGotoSearchFragment(fm)) {
             // If search fragment wasn't found in the backstack go to the main fragment
             NavigationHelper.gotoMainFragment(fm);
@@ -1678,6 +1682,12 @@ public class MainActivity extends AppCompatActivity {
         // sometimes this function pops the backstack, other times it's handled by the system
         if (popBackStack) {
             fm.popBackStackImmediate();
+        }
+
+        // Post replies return to their standalone discussion, leaving any video where it was.
+        if (rootComment != null
+                && YoutubePostCommentsTarget.fromUrl(rootComment.getUrl()) != null) {
+            return;
         }
 
         // only expand the bottom sheet back if there are no more nested comment replies fragments

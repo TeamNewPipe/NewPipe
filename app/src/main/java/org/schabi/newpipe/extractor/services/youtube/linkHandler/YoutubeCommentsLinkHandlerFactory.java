@@ -22,11 +22,19 @@ public final class YoutubeCommentsLinkHandlerFactory extends ListLinkHandlerFact
 
     @Override
     public String getUrl(final String id) {
+        final YoutubePostCommentsTarget post = YoutubePostCommentsTarget.fromId(id);
+        if (post != null) {
+            return post.getCanonicalUrl();
+        }
         return "https://www.youtube.com/watch?v=" + id;
     }
 
     @Override
     public String getId(final String urlString) throws ParsingException, IllegalArgumentException {
+        final YoutubePostCommentsTarget post = YoutubePostCommentsTarget.fromUrl(urlString);
+        if (post != null) {
+            return post.getHandlerId();
+        }
         // we need the same id, avoids duplicate code
         return YoutubeStreamLinkHandlerFactory.getInstance().getId(urlString);
     }

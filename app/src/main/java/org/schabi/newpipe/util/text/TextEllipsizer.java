@@ -165,10 +165,10 @@ public final class TextEllipsizer {
         disposable.clear();
         TextLinkifier.fromDescription(view, content,
                 HtmlCompat.FROM_HTML_MODE_LEGACY, streamingService, streamUrl, disposable,
-                v -> {
+                v -> TextViewLayoutCompletion.afterLayout(v, disposable, () -> {
                     consumer.accept(v);
                     notifyStateChangeListener(oldState);
-                });
+                }));
 
     }
 

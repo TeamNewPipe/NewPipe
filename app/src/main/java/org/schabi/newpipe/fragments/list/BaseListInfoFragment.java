@@ -82,6 +82,16 @@ public abstract class BaseListInfoFragment<I extends InfoItem, L extends ListInf
     }
 
     @Override
+    public void onDestroyView() {
+        // A view can be removed before the fragment resumes, without an intervening onPause.
+        if (currentWorker != null) {
+            currentWorker.dispose();
+            currentWorker = null;
+        }
+        super.onDestroyView();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         if (currentWorker != null) {

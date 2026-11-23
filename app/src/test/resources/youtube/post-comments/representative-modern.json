@@ -1,0 +1,119 @@
+{
+  "onResponseReceivedEndpoints": [
+    {
+      "reloadContinuationItemsCommand": {
+        "slot": "RELOAD_CONTINUATION_SLOT_HEADER",
+        "continuationItems": [
+          {
+            "commentsHeaderRenderer": {
+              "countText": {
+                "simpleText": "3 Comments"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "reloadContinuationItemsCommand": {
+        "slot": "RELOAD_CONTINUATION_SLOT_BODY",
+        "continuationItems": [
+          {
+            "commentThreadRenderer": {
+              "commentViewModel": {
+                "commentViewModel": {
+                  "commentId": "modern-comment",
+                  "commentKey": "comment-entity",
+                  "toolbarStateKey": "toolbar-entity",
+                  "commentSurfaceKey": "surface-entity"
+                }
+              },
+              "replies": {
+                "commentRepliesRenderer": {
+                  "contents": [
+                    {
+                      "continuationItemRenderer": {
+                        "continuationEndpoint": {
+                          "continuationCommand": {
+                            "token": "replies-first"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "continuationItemRenderer": {
+              "continuationEndpoint": {
+                "continuationCommand": {
+                  "token": "comments-next"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frameworkUpdates": {
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "entityKey": "comment-entity",
+          "payload": {
+            "commentEntityPayload": {
+              "properties": {
+                "commentId": "modern-comment",
+                "content": {
+                  "content": "A public post comment"
+                },
+                "publishedTime": "1 day ago"
+              },
+              "author": {
+                "channelId": "UCBBBBBBBBBBBBBBBBBBBBBB",
+                "displayName": "Fixture author",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/fixture-avatar",
+                "isVerified": true
+              },
+              "toolbar": {
+                "likeCountNotliked": "12",
+                "replyCount": "2"
+              }
+            }
+          }
+        },
+        {
+          "entityKey": "toolbar-entity",
+          "payload": {
+            "engagementToolbarStateEntityPayload": {
+              "heartState": "TOOLBAR_HEART_STATE_HEARTED"
+            }
+          }
+        },
+        {
+          "entityKey": "surface-entity",
+          "payload": {
+            "commentSurfaceEntityPayload": {
+              "imageAttachmentViewModel": {
+                "commentImageAttachmentViewModel": {
+                  "image": {
+                    "sources": [
+                      {
+                        "url": "https://i.ytimg.com/fixture-image",
+                        "width": 640,
+                        "height": 480
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

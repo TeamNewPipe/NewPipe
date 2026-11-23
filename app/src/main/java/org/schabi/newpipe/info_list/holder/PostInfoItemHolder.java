@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.post.PostInfoItem;
 import org.schabi.newpipe.extractor.stream.Description;
+import org.schabi.newpipe.fragments.list.comments.PostCommentsNavigation;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -110,6 +111,8 @@ public final class PostInfoItemHolder extends InfoItemHolder {
 
         openOriginalButton.setOnClickListener(view ->
                 ShareUtils.openUrlInBrowser(itemBuilder.getContext(), post.getUrl()));
+        PostCommentsNavigation.bind(itemView.findViewById(R.id.itemPostCommentsButton),
+                post, itemBuilder.getContext());
         itemView.setOnClickListener(view -> {
             if (hasContent) {
                 textEllipsizer.toggle();

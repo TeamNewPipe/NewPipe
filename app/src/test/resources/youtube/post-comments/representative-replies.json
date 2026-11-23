@@ -1,0 +1,43 @@
+{
+  "continuationContents": {
+    "commentRepliesContinuation": {
+      "contents": [
+        {
+          "commentRenderer": {
+            "commentId": "reply-comment",
+            "authorText": {
+              "simpleText": "Reply author"
+            },
+            "authorEndpoint": {
+              "browseEndpoint": {
+                "browseId": "UCAAAAAAAAAAAAAAAAAAAAAA"
+              }
+            },
+            "authorThumbnail": {
+              "thumbnails": []
+            },
+            "publishedTimeText": {
+              "simpleText": "1 day ago"
+            },
+            "contentText": {
+              "simpleText": "A reply to the public post comment"
+            }
+          }
+        },
+        {
+          "continuationItemRenderer": {
+            "button": {
+              "buttonRenderer": {
+                "command": {
+                  "continuationCommand": {
+                    "token": "replies-next"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -19,7 +19,7 @@ import com.evernote.android.state.State;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.databinding.CommentRepliesHeaderBinding;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.local.comments.CommentArchive;
+import org.schabi.newpipe.local.comments.CommentArchiveRequest;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.stream.Description;
@@ -319,13 +319,15 @@ public final class CommentRepliesFragment
     @Override
     protected Single<ListExtractor.InfoItemsPage<CommentsInfoItem>> loadMoreItemsLogic() {
         // commentsInfoItem.getUrl() should contain the url of the original
-        // ListInfo<CommentsInfoItem>, which should be the stream url
-        final android.content.Context app = requireContext().getApplicationContext();
+        // ListInfo<CommentsInfoItem>, which is the stream or canonical post URL.
+        final CommentArchiveRequest archiveRequest =
+                CommentArchiveRequest.capture(requireContext());
         return ExtractorHelper.getMoreCommentItems(
                 serviceId, commentsInfoItem.getUrl(), currentNextPage)
-                .doOnSuccess(page -> CommentArchive.record(
-                        app, serviceId, commentsInfoItem.getUrl(), page.getItems(),
-                        commentsInfoItem.getCommentId()));
+                .doOnSuccess(page -> archiveRequest.record(
+                        serviceId, commentsInfoItem.getUrl(), page.getItems(),
+                        commentsInfoItem.getCommentId()))
+                .doFinally(archiveRequest::close);
     }
 
 

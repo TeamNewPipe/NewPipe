@@ -118,8 +118,22 @@ object CommentArchive {
         parentId: String?
     ) {
         if (!isEnabled(context) || comments.isEmpty() || url.isBlank()) return
+        recordForProfile(context, ProfileManager.getActiveProfileId(context), serviceId, url, comments, parentId)
+    }
+
+    @JvmStatic
+    @Synchronized
+    fun recordForProfile(
+        context: Context,
+        profileId: String,
+        serviceId: Int,
+        url: String,
+        comments: List<CommentsInfoItem>,
+        parentId: String?
+    ) {
+        if (!isEnabled(context) || comments.isEmpty() || url.isBlank()) return
+        if (ProfileManager.getActiveProfileId(context) != profileId) return
         runCatching {
-            val profileId = ProfileManager.getActiveProfileId(context)
             val fresh = comments.map { item ->
                 CachedComment(
                     id = item.commentId?.takeIf(String::isNotBlank)
