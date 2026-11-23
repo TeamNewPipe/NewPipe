@@ -23,6 +23,12 @@ Release history is listed newest first. The number beside each release is its An
 - Add a Note button tap action setting under Video and audio > Behavior, with an option to add a timestamped note on one tap and open video notes on hold.
 - Keep tap-to-open and hold-to-add as the default, and update note-button accessibility labels and empty-notes guidance to match the available actions.
 
+### Playlist opening category
+
+- Add an Open Playlists in row to both category menus, with Last used as the default or a choice of All, Uncategorized, Learning when enabled, or a specific category.
+- Keep the opening choice on this device for each profile, preserve the current filter when returning or recreating the screen, and fall back to All when a category is removed or unavailable.
+- Preserve playlist membership and saved order when choosing an opening category, and keep assigning playlists separate from the remembered filter.
+
 ### App fonts
 
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.

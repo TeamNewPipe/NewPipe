@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playlist_opening_title">Open Playlists in</string>
+    <string name="playlist_opening_last_used">Last used</string>
+</resources>

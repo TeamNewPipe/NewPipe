@@ -3,6 +3,7 @@ package org.schabi.newpipe.local.bookmark;
 import static org.schabi.newpipe.local.bookmark.MergedPlaylistManager.getMergedOrderedPlaylists;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.InputType;
@@ -104,10 +105,12 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     private String contextualSearchQuery = "";
     private List<BookmarkNote> bookmarkNotes = Collections.emptyList();
     private java.util.Set<String> learningSources = Collections.emptySet();
-    private static final String LEARNING_CATEGORY = "builtin:learning";
+    private static final String LEARNING_CATEGORY = PlaylistOpeningPreferences.LEARNING_CATEGORY;
     private PlaylistCategories categories = new PlaylistCategories();
     @State
     public String selectedCategory = PlaylistCategories.ALL;
+    @State
+    public String categoryProfileId;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -119,24 +122,34 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (activity == null) {
             return;
         }
+        final String restoredProfileId = categoryProfileId;
+        categoryProfileId = ProfileManager.getActiveProfileId(requireContext());
+        if (!categoryProfileId.equals(restoredProfileId)) {
+            itemsListState = null;
+        }
         final AppDatabase database = NewPipeDatabase.getInstance(activity);
-        localPlaylistManager = new LocalPlaylistManager(database,
-                ProfileManager.getActiveProfileId(requireContext()));
-        remotePlaylistManager = new RemotePlaylistManager(database,
-                ProfileManager.getActiveProfileId(requireContext()));
+        localPlaylistManager = new LocalPlaylistManager(database, categoryProfileId);
+        remotePlaylistManager = new RemotePlaylistManager(database, categoryProfileId);
         disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
         debounceSaver = new DebounceSaver(3000, this);
 
         deletedItems = new ArrayList<>();
+        readCategories();
+        selectedCategory = PlaylistOpeningPreferences.resolveInitialCategory(requireContext(),
+                categoryProfileId, categories, restoredProfileId, selectedCategory);
+    }
+
+    private void readCategories() {
+        categories = new PlaylistCategories();
         try {
             final var preferences =
                     PreferenceManager.getDefaultSharedPreferences(requireContext());
-            final String profileId = ProfileManager.getActiveProfileId(requireContext());
-            final String categoryKey = PlaylistCategories.preferenceKey(profileId);
+            final String categoryKey = PlaylistCategories.preferenceKey(categoryProfileId);
             String categoryJson = preferences.getString(categoryKey, null);
-            if (categoryJson == null && ProfileManager.DEFAULT_PROFILE_ID.equals(profileId)) {
+            if (categoryJson == null
+                    && ProfileManager.DEFAULT_PROFILE_ID.equals(categoryProfileId)) {
                 categoryJson = preferences.getString(PlaylistCategories.PREFERENCE_KEY, "");
                 if (categoryJson != null && !categoryJson.isEmpty()) {
                     preferences.edit().putString(categoryKey, categoryJson).apply();
@@ -190,6 +203,33 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         super.onResume();
         if (activity != null) {
             setTitle(activity.getString(R.string.tab_bookmarks));
+            refreshCategories();
+            PlaylistOpeningPreferences.rememberCategory(requireContext(),
+                    categoryProfileId, selectedCategory);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences,
+                                          final String key) {
+        super.onSharedPreferenceChanged(sharedPreferences, key);
+        if (categoryProfileId != null && PlaylistOpeningPreferences.affectsCategories(
+                requireContext(), categoryProfileId, key)) {
+            refreshCategories();
+        }
+    }
+
+    private void refreshCategories() {
+        if (getView() != null && !isPlaylistListFiltered()) {
+            captureCanonicalOrderFromAdapter();
+            saveImmediate();
+        }
+        readCategories();
+        selectedCategory = PlaylistOpeningPreferences.validateSelection(requireContext(),
+                categoryProfileId, categories, selectedCategory);
+        updateCategoryLabel();
+        if (getView() != null) {
+            showFilteredPlaylists();
         }
     }
 
@@ -200,11 +240,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        if (!PlaylistCategories.ALL.equals(selectedCategory)
-                && !PlaylistCategories.UNCATEGORIZED.equals(selectedCategory)
-                && categories.name(selectedCategory) == null) {
-            selectedCategory = PlaylistCategories.ALL;
-        }
+        selectedCategory = PlaylistOpeningPreferences.validateSelection(requireContext(),
+                categoryProfileId, categories, selectedCategory);
         rootView.findViewById(R.id.playlist_category_filter)
                 .setOnClickListener(view -> chooseCategory(null));
         rootView.findViewById(R.id.playlist_category_manage)
@@ -317,7 +354,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                         UserAction.REQUESTED_BOOKMARK, "Loading learning playlists"))));
 
         disposables.add(NewPipeDatabase.getInstance(requireContext()).learningNoteDAO()
-                .bookmarkNotes(ProfileManager.getActiveProfileId(requireContext()))
+                .bookmarkNotes(categoryProfileId)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(notes -> {
                     bookmarkNotes = notes;
@@ -441,7 +478,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
 
         if (separators == null) {
             separators = new org.schabi.newpipe.local.ListSeparators(requireContext(),
-                    ProfileManager.getActiveProfileId(requireContext()), "bookmarks");
+                    categoryProfileId, "bookmarks");
         }
         itemListAdapter.setSeparatorGestures(
                 (from, to) -> {
@@ -1029,16 +1066,22 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             captureCanonicalOrderFromAdapter();
             saveImmediate();
         }
-        selectedCategory = id;
+        selectedCategory = PlaylistOpeningPreferences.validateSelection(requireContext(),
+                categoryProfileId, categories, id);
+        PlaylistOpeningPreferences.rememberCategory(requireContext(),
+                categoryProfileId, selectedCategory);
         updateCategoryLabel();
         showFilteredPlaylists();
     }
 
     private void saveCategories() {
-        final String profileId = ProfileManager.getActiveProfileId(requireContext());
+        // Keep the filter consistent with the adapter until the preference listener refreshes it.
+        // Switching to All first would let that listener capture a filtered subset as full order.
         PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                .putString(PlaylistCategories.preferenceKey(profileId), categories.toJson())
+                .putString(PlaylistCategories.preferenceKey(categoryProfileId), categories.toJson())
                 .apply();
+        selectedCategory = PlaylistOpeningPreferences.validateSelection(requireContext(),
+                categoryProfileId, categories, selectedCategory);
         updateCategoryLabel();
         showFilteredPlaylists();
     }
@@ -1053,7 +1096,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         if (playlist == null) {
             ids.add(PlaylistCategories.ALL);
             labels.add(getString(R.string.playlist_categories_all));
-            if (LearningMode.isEnabled(requireContext())) {
+            if (LearningMode.isEnabled(requireContext(), categoryProfileId)) {
                 ids.add(LEARNING_CATEGORY);
                 labels.add(getString(R.string.learning_for_learning));
             }
@@ -1064,9 +1107,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             ids.add(id);
             labels.add(categories.name(id));
         }
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.playlist_categories)
-                .setItems(labels.toArray(new String[0]), (dialog, which) -> {
+        PlaylistOpeningDialog.categoryMenu(requireContext(), categoryProfileId, categories,
+                labels, playlist == null, which -> {
                     if (playlist == null) {
                         setCategoryFilter(ids.get(which));
                     } else {
@@ -1085,10 +1127,9 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
             saveImmediate();
         }
         final List<String> ids = categories.ids();
-        final String[] names = ids.stream().map(categories::name).toArray(String[]::new);
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.playlist_categories)
-                .setItems(names, (dialog, which) -> {
+        final List<String> names = ids.stream().map(categories::name).collect(Collectors.toList());
+        PlaylistOpeningDialog.categoryMenu(requireContext(), categoryProfileId, categories,
+                names, true, which -> {
                     final String id = ids.get(which);
                     new MaterialAlertDialogBuilder(requireContext())
                             .setTitle(categories.name(id))
@@ -1148,9 +1189,6 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setMessage(R.string.playlist_category_delete_message)
                 .setPositiveButton(R.string.delete, (dialog, which) -> {
                     categories.delete(id);
-                    if (id.equals(selectedCategory)) {
-                        selectedCategory = PlaylistCategories.ALL;
-                    }
                     saveCategories();
                 })
                 .setNegativeButton(R.string.cancel, null).show();
