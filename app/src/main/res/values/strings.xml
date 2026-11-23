@@ -60,7 +60,7 @@
     <string name="learning_note_empty_error">Enter a note</string>
     <string name="learning_note_too_long_error">Notes can contain up to %1$d characters</string>
     <string name="learning_notes_tab_description">Notes</string>
-    <string name="learning_notes_empty">No notes yet. Expand the player controls and tap the pencil button to add a timestamped note.</string>
+    <string name="learning_notes_empty">No notes yet. Use the player’s note button to add a timestamped note or browse video notes. Choose its tap action in Video and audio settings.</string>
     <string name="learning_note_delete_confirm">Delete this note?</string>
     <string name="learning_note_saved">Note saved</string>
     <string name="learning_note_deleted">Note deleted</string>

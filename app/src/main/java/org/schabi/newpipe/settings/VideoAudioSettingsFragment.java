@@ -41,6 +41,8 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResourceRegistry();
 
         org.schabi.newpipe.player.helper.CustomPlaybackControls.bind(this);
+        org.schabi.newpipe.player.ui.PlayerNoteButton.bindPreference(
+                requirePreference(R.string.player_note_button_tap_action_key));
         updateSeekOptions();
         updateResolutionOptions();
         setupEqualizerPreference();

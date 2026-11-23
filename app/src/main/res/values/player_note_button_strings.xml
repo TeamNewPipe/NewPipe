@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="player_note_button_tap_action_key" translatable="false">player_note_button_tap_action</string>
+    <string name="player_note_button_tap_action_title">Note button tap action</string>
+    <string name="player_note_button_open">Open video notes</string>
+    <string name="player_note_button_tap_action_summary">Tap: %1$s. Touch and hold: %2$s.</string>
+
+    <string-array name="player_note_button_tap_action_entries">
+        <item>@string/player_note_button_open</item>
+        <item>@string/learning_note_add</item>
+    </string-array>
+    <string-array name="player_note_button_tap_action_values" translatable="false">
+        <item>open_notes</item>
+        <item>add_note</item>
+    </string-array>
+</resources>

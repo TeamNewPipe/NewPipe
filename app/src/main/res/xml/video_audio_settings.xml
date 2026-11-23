@@ -386,6 +386,15 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false">
 
+        <ListPreference
+            android:defaultValue="open_notes"
+            android:entries="@array/player_note_button_tap_action_entries"
+            android:entryValues="@array/player_note_button_tap_action_values"
+            android:key="@string/player_note_button_tap_action_key"
+            android:title="@string/player_note_button_tap_action_title"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="@string/per_channel_playback_profiles_key"

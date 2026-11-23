@@ -18,6 +18,11 @@ Release history is listed newest first. The number beside each release is its An
 - Keep watch history, playback progress and history deletions synchronized for every profile after the first exchange, even when the active profile changes while a write is pending.
 - Preserve existing deletion ordering and avoid seeding history from locally unavailable profiles during synchronization.
 
+### Video notes
+
+- Add a Note button tap action setting under Video and audio > Behavior, with an option to add a timestamped note on one tap and open video notes on hold.
+- Keep tap-to-open and hold-to-add as the default, and update note-button accessibility labels and empty-notes guidance to match the available actions.
+
 ### App fonts
 
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.

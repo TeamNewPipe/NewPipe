@@ -62,8 +62,24 @@ Background playback is included only when **Count background listening** is enab
 **Settings > Learning Mode**. Normal, unmarked playback remains available as usual but does not
 affect Learning statistics or streaks.
 
-Timestamped notes are available for designated, non-live videos when learning notes are enabled. A
-note records the associated playback position so the video can be reopened at that point.
+## Timestamped video notes
+
+When Learning Mode and timestamped notes are enabled for the current profile, the main player's
+note button is available for non-live videos, including videos not designated as Learning content.
+The detail screen's **Notes** tab remains available for designated Learning content. A note records
+the associated playback position so the video can be reopened at that point.
+
+By default, tap the player's note button to open **Video notes**, or touch and hold it to add a note
+at the current playback position. You can also tap **Add timestamped note** in the notes list; a
+list opened from the player keeps the position at which you opened it.
+
+For one-tap note creation, open **Settings > Video and audio > Behavior > Note button tap action**
+and choose **Add timestamped note**. A tap then opens the note editor, and touching and holding
+opens the notes list. Choose **Open video notes** to restore the default. The setting changes
+the player's button actions without enabling notes for additional content or profiles.
+
+Inside a note, ordinary taps still edit or select text. Touch and hold a timestamp to seek to it,
+or a web link to open it; the player-button setting does not change these deliberate gestures.
 
 ## Learning dashboard
 

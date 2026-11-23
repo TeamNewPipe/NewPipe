@@ -46,7 +46,7 @@
     <string name="learning_note_empty_error">Idatzi ohar bat</string>
     <string name="learning_note_too_long_error">Oharrek gehienez %1$d karaktere izan ditzakete</string>
     <string name="learning_notes_tab_description">Oharrak</string>
-    <string name="learning_notes_empty">Oraindik ez dago oharrik. Zabaldu erreproduzigailuaren kontrolak eta sakatu arkatz-botoia denbora-markadun ohar bat gehitzeko.</string>
+    <string name="learning_notes_empty">Oraindik ez dago oharrik.</string>
     <string name="learning_note_delete_confirm">Ezabatu ohar hau?</string>
     <string name="learning_note_saved">Oharra gordeta</string>
     <string name="learning_note_deleted">Oharra ezabatuta</string>

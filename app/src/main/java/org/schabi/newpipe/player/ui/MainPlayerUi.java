@@ -127,6 +127,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     // fullscreen player
     private ItemTouchHelper itemTouchHelper;
     private final CompositeDisposable learningNoteDisposables = new CompositeDisposable();
+    @Nullable
+    private PlayerNoteButton noteButton;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -227,11 +229,12 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                     ? PlaybackPresentationMode.VIDEO
                     : PlaybackPresentationMode.LISTEN_VISUALIZER);
         });
-        binding.learningNoteButton.setOnClickListener(v -> showVideoNotes());
-        binding.learningNoteButton.setOnLongClickListener(v -> {
-            showLearningNoteDialog();
-            return true;
-        });
+        if (noteButton != null) {
+            noteButton.close();
+        }
+        noteButton = new PlayerNoteButton(binding.learningNoteButton,
+                () -> player.exoPlayerIsNull() ? 0L : player.getExoPlayer().getCurrentPosition(),
+                this::showLearningNoteDialog, this::showVideoNotes);
 
         binding.addToPlaylistButton.setOnClickListener(v ->
                 getParentActivity().map(FragmentActivity::getSupportFragmentManager)
@@ -322,8 +325,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.videoAdjustmentsButton.setOnClickListener(null);
         binding.listenModeButton.setOnClickListener(null);
         binding.addToPlaylistButton.setOnClickListener(null);
-        binding.learningNoteButton.setOnClickListener(null);
-        binding.learningNoteButton.setOnLongClickListener(null);
+        if (noteButton != null) {
+            noteButton.close();
+            noteButton = null;
+        }
         hideSponsorBlockSkipButton();
         clearSponsorBlockSeekBarMarkers();
 
@@ -1571,15 +1576,13 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         return DeviceUtils.isLandscape(getParentContext().orElse(player.getService()));
     }
 
-    private void showLearningNoteDialog() {
+    private void showLearningNoteDialog(final long timestampMillis) {
         player.getCurrentStreamInfo().ifPresent(info -> {
             if (org.schabi.newpipe.util.StreamTypeUtil.isLiveStream(info.getStreamType())) {
                 Toast.makeText(context, R.string.learning_note_live_unavailable,
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-            final long timestampMillis = player.getExoPlayer() == null
-                    ? 0L : player.getExoPlayer().getCurrentPosition();
             getParentActivity().ifPresent(activity -> LearningNoteDialog.showWithSeek(
                     activity,
                     timestampMillis,
@@ -1608,10 +1611,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         });
     }
 
-    private void showVideoNotes() {
+    private void showVideoNotes(final long timestamp) {
         player.getCurrentStreamInfo().ifPresent(info -> {
-            final long timestamp = player.exoPlayerIsNull()
-                    ? 0L : player.getExoPlayer().getCurrentPosition();
             learningNoteDisposables.add(new LearningNoteManager(context).ensureStream(info)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(streamId -> player.getCurrentStreamInfo()
