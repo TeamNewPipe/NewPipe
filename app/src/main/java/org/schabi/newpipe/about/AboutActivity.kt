@@ -21,6 +21,7 @@ import org.schabi.newpipe.databinding.FragmentAboutBinding
 import org.schabi.newpipe.support.CommunityReviews
 import org.schabi.newpipe.support.GitHubStarPromptController
 import org.schabi.newpipe.util.EdgeToEdgeHelper
+import org.schabi.newpipe.util.TextTabLabelBinder
 import org.schabi.newpipe.util.ThemeHelper
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
@@ -47,7 +48,7 @@ class AboutActivity : AppCompatActivity() {
             aboutBinding.aboutTabLayout,
             aboutBinding.aboutViewPager2
         ) { tab, position ->
-            tab.setText(mAboutStateAdapter.getPageTitle(position))
+            TextTabLabelBinder.bind(tab, getString(mAboutStateAdapter.getPageTitle(position)))
         }.attach()
     }
 

@@ -4,6 +4,10 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Channel tabs
+
+- Restore channel and About tab labels after returning from icon-only Home tabs while preserving Home icons and accessibility titles.
+
 ### App updates
 
 - Select the matching ARM or x86_64 release APK for in-app updates, including native x86_64 selection on systems that also support ARM translation.
