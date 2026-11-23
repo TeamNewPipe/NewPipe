@@ -1,10 +1,12 @@
 package org.schabi.newpipe.local.history
 
+import android.content.SharedPreferences
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.schabi.newpipe.R
@@ -21,7 +23,12 @@ class ListFastScroller private constructor(
     private val hideWhileFirstItemVisible: Boolean
 ) : AutoCloseable {
     private val adapter = requireNotNull(list.adapter)
+    private val preferences = PreferenceManager.getDefaultSharedPreferences(list.context.applicationContext)
+    private val visibilityKey = list.context.getString(R.string.show_list_scrollbar_key)
     private var disposed = false
+    private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == null || key == visibilityKey) list.post { update() }
+    }
     private val observer = object : RecyclerView.AdapterDataObserver() {
         override fun onChanged() = update()
         override fun onItemRangeInserted(positionStart: Int, itemCount: Int) = update()
@@ -41,6 +48,7 @@ class ListFastScroller private constructor(
         adapter.registerAdapterDataObserver(observer)
         list.addOnScrollListener(scroll)
         list.addOnLayoutChangeListener(layout)
+        preferences.registerOnSharedPreferenceChangeListener(preferenceListener)
         update()
     }
 
@@ -50,10 +58,15 @@ class ListFastScroller private constructor(
         val position = (list.layoutManager as? LinearLayoutManager)
             ?.findFirstVisibleItemPosition()
             ?.coerceAtLeast(0) ?: 0
-        val visible = shouldShow(count, position, hideWhileFirstItemVisible) &&
+        val enabled = preferences.getBoolean(visibilityKey, true)
+        val visible = enabled && shouldShow(count, position, hideWhileFirstItemVisible) &&
             list.visibility == View.VISIBLE
+        if (!visible) {
+            if (track.isDragging) track.parent?.requestDisallowInterceptTouchEvent(false)
+            track.dismissBubble()
+        }
         track.visibility = if (visible) View.VISIBLE else View.GONE
-        list.isVerticalScrollBarEnabled = !visible
+        list.isVerticalScrollBarEnabled = enabled && !visible && originalScrollBar
         track.setItemCount(count)
         if (!track.isDragging) track.setPosition(position)
     }
@@ -64,6 +77,7 @@ class ListFastScroller private constructor(
         adapter.unregisterAdapterDataObserver(observer)
         list.removeOnScrollListener(scroll)
         list.removeOnLayoutChangeListener(layout)
+        preferences.unregisterOnSharedPreferenceChangeListener(preferenceListener)
         list.isVerticalScrollBarEnabled = originalScrollBar
         track.dismissBubble()
         track.setOnPositionChangedListener(null)

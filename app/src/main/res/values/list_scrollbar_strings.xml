@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="show_list_scrollbar_key" translatable="false">show_list_scrollbar</string>
+    <string name="show_list_scrollbar_title">Show list scrollbar</string>
+    <string name="show_list_scrollbar_summary">Show the side scrollbar in subscriptions, playlists, feeds and comments. Drag its handle to move through long lists.</string>
+</resources>

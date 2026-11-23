@@ -121,6 +121,11 @@ Release history is listed newest first. The number beside each release is its An
 
 - Fix excessive spacing between channel avatars, channel names and video details in What's New, Live and History, including wide windows and right-to-left layouts.
 
+### List scrollbars
+
+- Choose whether to show the side scrollbar on subscriptions, playlists, feeds and comments in Appearance settings.
+- Apply the setting to open lists immediately, while keeping normal touch scrolling and TV navigation available.
+
 ### History loading
 
 - Show the latest history entries sooner while older entries load in the background. Keep full-history search, filters, sorting, date navigation, and playback queues available after loading completes, and preserve the scroll position when the complete list arrives.
