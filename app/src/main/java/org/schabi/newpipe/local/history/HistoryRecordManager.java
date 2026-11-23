@@ -136,7 +136,8 @@ public class HistoryRecordManager {
 
             // Resolve metadata before taking the database write lock.
             return database.runInTransaction(() -> {
-                if (IncognitoMode.isEnabled(sharedPreferences)) {
+                if (IncognitoMode.isEnabled(sharedPreferences)
+                        || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                     return null;
                 }
                 final long streamId = streamTable.upsert(stream);
@@ -186,7 +187,8 @@ public class HistoryRecordManager {
         }
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-                if (IncognitoMode.isEnabled(sharedPreferences)) {
+                if (IncognitoMode.isEnabled(sharedPreferences)
+                        || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                     return null;
                 }
             final long streamId = streamTable.upsert(new StreamEntity(item));
@@ -212,7 +214,8 @@ public class HistoryRecordManager {
 
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-                if (IncognitoMode.isEnabled(sharedPreferences)) {
+                if (IncognitoMode.isEnabled(sharedPreferences)
+                        || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                     return null;
                 }
             final long streamId = streamTable.upsert(new StreamEntity(info, item));
@@ -249,7 +252,8 @@ public class HistoryRecordManager {
         }
         final OffsetDateTime currentTime = OffsetDateTime.now(ZoneOffset.UTC);
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-                if (IncognitoMode.isEnabled(sharedPreferences)) {
+                if (IncognitoMode.isEnabled(sharedPreferences)
+                        || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                     return null;
                 }
             final long streamId = streamTable.upsert(new StreamEntity(item));
@@ -274,6 +278,9 @@ public class HistoryRecordManager {
      */
     public Completable markAsUnwatched(final StreamInfoItem info) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return;
+            }
             final long streamId = streamTable.upsert(new StreamEntity(info));
             recordWatchStreamDelete(streamId);
             streamStateTable.deleteStateForProfile(profileId, streamId);
@@ -285,7 +292,8 @@ public class HistoryRecordManager {
 
     public Completable markLocalMediaAsUnwatched(@NonNull final PlayQueueItem item) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
-            if (!item.isLocalMedia() || IncognitoMode.isEnabled(sharedPreferences)) {
+            if (!item.isLocalMedia() || IncognitoMode.isEnabled(sharedPreferences)
+                    || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                 return;
             }
             final StreamEntity stream = streamTable.getStreamDirect(
@@ -299,6 +307,9 @@ public class HistoryRecordManager {
 
     public Completable deleteStreamHistoryAndState(final long streamId) {
         return Completable.fromAction(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return;
+            }
             recordWatchStreamDelete(streamId);
             streamStateTable.deleteStateForProfile(profileId, streamId);
             streamHistoryTable.deleteStreamHistoryForProfile(profileId, streamId);
@@ -307,6 +318,9 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteWholeStreamHistory() {
         return Single.fromCallable(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return 0;
+            }
             recordWatchAllDelete();
             return streamHistoryTable.deleteAllForProfile(profileId);
         }))
@@ -318,6 +332,9 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteCompleteStreamStateHistory() {
         return Single.fromCallable(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return 0;
+            }
             recordProgressAllDelete();
             return streamStateTable.deleteAllForProfile(profileId);
         }))
@@ -381,7 +398,8 @@ public class HistoryRecordManager {
         );
 
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-                if (IncognitoMode.isEnabled(sharedPreferences)) {
+                if (IncognitoMode.isEnabled(sharedPreferences)
+                        || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                     return null;
                 }
             historySyncRecorder.recordSearchForProfile(
@@ -396,6 +414,9 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteSearchHistory(final String search) {
         return Single.fromCallable(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return 0;
+            }
             historySyncRecorder.recordSearchDeleteForProfile(profileId, search);
             return searchHistoryTable.deleteAllWhereQueryForProfile(profileId, search);
         }))
@@ -404,6 +425,9 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteCompleteSearchHistory() {
         return Single.fromCallable(() -> database.runInTransaction(() -> {
+            if (!HistoryWriteScope.canWrite(recommendationContext, profileId)) {
+                return 0;
+            }
             historySyncRecorder.recordSearchAllDeleteForProfile(profileId);
             return searchHistoryTable.deleteAllForProfile(profileId);
         }))
@@ -462,7 +486,8 @@ public class HistoryRecordManager {
             return Completable.complete();
         }
         return Completable.fromAction(() -> database.runInTransaction(() -> {
-            if (IncognitoMode.isEnabled(sharedPreferences)) {
+            if (IncognitoMode.isEnabled(sharedPreferences)
+                    || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                 return;
             }
             final long streamId = streamTable.upsert(new StreamEntity(info));
@@ -492,7 +517,8 @@ public class HistoryRecordManager {
             return Completable.complete();
         }
         return Completable.fromAction(() -> database.runInTransaction(() -> {
-            if (IncognitoMode.isEnabled(sharedPreferences)) {
+            if (IncognitoMode.isEnabled(sharedPreferences)
+                    || !HistoryWriteScope.canWrite(recommendationContext, profileId)) {
                 return;
             }
             final long streamId = streamTable.upsert(new StreamEntity(item));

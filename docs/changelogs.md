@@ -106,6 +106,7 @@ Release history is listed newest first. The number beside each release is its An
 
 ### Profile deletion
 
+- Ignore delayed history, search and playback-position changes after their local profile is removed, without redirecting pending work when switching profiles.
 - Keep profile removal local to the current device, preserving the profile's history, playback progress, searches, subscriptions, playlists and feed groups on paired devices.
 - Prevent later synchronization from recreating a removed local profile while keeping normal item deletions and pending synchronization changes working.
 

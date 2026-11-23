@@ -24,7 +24,9 @@ import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.extractor.stream.StreamInfo
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
+import org.schabi.newpipe.profiles.ProfileDeletionManager
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.sync.DeviceIdentity
 import org.schabi.newpipe.sync.HistorySyncCategory
@@ -142,14 +144,65 @@ class ProfileHistoryJournalTest {
         }
     }
 
-    private fun synchronize() {
+    @Test
+    fun pendingWritesAndDeletesDoNotRecreateRemovedProfileOrDeleteItsPeerHistory() {
+        val searchKey = context.getString(R.string.enable_search_history_key)
+        val previousSearch = prefs.all[searchKey] as? Boolean
+        prefs.edit().putBoolean(searchKey, true).commit()
+        try {
+            val manager = HistoryRecordManager(context, profileId)
+            val info = stream("removed-profile")
+            val item = StreamInfoItem(0, info.url, "Removed profile", StreamType.VIDEO_STREAM).apply {
+                duration = 600
+                uploaderName = "Journal channel"
+            }
+            manager.onViewed(info).blockingGet()
+            manager.saveStreamState(info, 45_000).blockingAwait()
+            manager.onSearched(0, "kept search").blockingGet()
+            synchronize()
+            synchronize(HistorySyncCategory.SEARCH)
+            val streamId = requireNotNull(phone.streamDAO().getStreamDirect(0, info.url)).uid
+            val watchRevisions = phoneStore.getKnownRevisions(HistorySyncCategory.WATCH)
+            val searchRevisions = phoneStore.getKnownRevisions(HistorySyncCategory.SEARCH)
+            val pending = listOf(
+                manager.onViewed(info).ignoreElement(),
+                manager.saveStreamState(info, 90_000),
+                manager.onSearched(0, "late search").ignoreElement(),
+                manager.markAsWatched(item).ignoreElement(),
+                manager.markAsUnwatched(item),
+                manager.deleteStreamHistoryAndState(streamId),
+                manager.deleteWholeStreamHistory().ignoreElement(),
+                manager.deleteCompleteStreamStateHistory().ignoreElement(),
+                manager.deleteSearchHistory("kept search").ignoreElement(),
+                manager.deleteCompleteSearchHistory().ignoreElement()
+            )
+
+            ProfileDeletionManager.deleteProfile(context, profileId).blockingAwait()
+            pending.forEach { it.blockingAwait() }
+
+            assertNull(ProfileManager.getProfile(context, profileId))
+            assertTrue(phone.streamHistoryDAO().getAllDirectForProfile(profileId).isEmpty())
+            assertTrue(phone.streamStateDAO().getAllDirectForProfile(profileId).isEmpty())
+            assertTrue(phone.searchHistoryDAO().getAllDirectForProfile(profileId).isEmpty())
+            assertEquals(watchRevisions, phoneStore.getKnownRevisions(HistorySyncCategory.WATCH))
+            assertEquals(searchRevisions, phoneStore.getKnownRevisions(HistorySyncCategory.SEARCH))
+            synchronize()
+            synchronize(HistorySyncCategory.SEARCH)
+            assertHistory(tablet, profileId, info, 1, 45_000)
+            assertEquals(listOf("kept search"), tablet.searchHistoryDAO().getAllDirectForProfile(profileId).map { it.search })
+        } finally {
+            restoreBoolean(searchKey, previousSearch)
+        }
+    }
+
+    private fun synchronize(category: HistorySyncCategory = HistorySyncCategory.WATCH) {
         val source = HistorySyncEngine(phoneStore)
         val target = HistorySyncEngine(tabletStore)
         repeat(100) {
-            val request = source.createRequest(tabletStore.localPeerId, HistorySyncCategory.WATCH)
+            val request = source.createRequest(tabletStore.localPeerId, category)
             val response = target.handleRequest(phoneStore.localPeerId, request)
             assertTrue(response.error, response.accepted)
-            source.handleResponse(tabletStore.localPeerId, HistorySyncCategory.WATCH, response)
+            source.handleResponse(tabletStore.localPeerId, category, response)
             if (!request.hasMore && !response.hasMore) return
         }
         throw AssertionError("History synchronization did not converge")
