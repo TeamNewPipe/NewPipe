@@ -4,6 +4,16 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Audio download artwork
+
+- Optionally embed the best available original artwork in new MP3 and M4A downloads, including downloads that do not need conversion.
+- Preserve existing covers and unrelated metadata, retain original image resolution, and keep the audio safe if artwork fetching or writing fails.
+
+### Subscription names
+
+- Add an optional Scroll long subscription names setting in Appearance so names that do not fit can scroll within subscription lists and groups.
+- Keep the option off by default and preserve channel selection, long-press actions and full accessibility labels.
+
 ### Remaining playback time
 
 - Tap the player's total duration to switch to estimated remaining playback time, accounting for playback speed and enabled automatic SponsorBlock skips without counting overlaps twice.

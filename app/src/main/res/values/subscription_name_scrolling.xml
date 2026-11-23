@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scroll_subscription_names_key" translatable="false">scroll_subscription_names</string>
+    <string name="scroll_subscription_names_title">Scroll long subscription names</string>
+    <string name="scroll_subscription_names_summary">Scroll channel names that do not fit in subscription lists and groups.</string>
+    <item name="subscription_name_scrolling_binding" type="id" />
+</resources>

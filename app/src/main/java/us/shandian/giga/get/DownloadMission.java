@@ -46,6 +46,8 @@ public class DownloadMission extends Mission {
     public long duration = -1L;
     public String tags;
     public String thumbnailUrl;
+    public org.schabi.newpipe.download.artwork.DownloadArtworkRequest artworkRequest;
+    public transient volatile boolean deleteFileOnCancel;
 
     static final int BUFFER_SIZE = 64 * 1024;
     static final int BLOCK_SIZE = 512 * 1024;
@@ -441,6 +443,13 @@ public class DownloadMission extends Mission {
             return;
         }
 
+        if (artworkRequest != null && !artworkRequest.completed) {
+            // Persist successful conversion before the separate, recoverable artwork stage.
+            writeThisToFile();
+            threads = new Thread[]{runAsync(1, () -> AudioArtworkFinalizer.finish(this))};
+            return;
+        }
+
 
         // this mission is fully finished
 
@@ -572,6 +581,7 @@ public class DownloadMission extends Mission {
 
     private void pauseThreads() {
         running = false;
+        if (artworkRequest != null) artworkRequest.cancelFetch();
         joinForThreads(-1);
         writeThisToFile();
     }
@@ -582,15 +592,17 @@ public class DownloadMission extends Mission {
      * @param alsoDeleteFile whether the partially downloaded output should also be removed
      * @return whether all requested cleanup operations succeeded
      */
-    public boolean cancel(final boolean alsoDeleteFile) {
+    public synchronized boolean cancel(final boolean alsoDeleteFile) {
         if (deleted) {
             return true;
         }
 
         final boolean postprocessingWasRunning = isPsRunning();
+        deleteFileOnCancel = alsoDeleteFile;
         deleted = true;
         running = false;
         enqueued = false;
+        if (artworkRequest != null) artworkRequest.cancelFetch();
 
         if (init != null) {
             init.interrupt();
@@ -666,7 +678,8 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isFinished() {
-        return current >= urls.length && (psAlgorithm == null || psState == 2);
+        return current >= urls.length && (psAlgorithm == null || psState == 2)
+                && (artworkRequest == null || artworkRequest.completed);
     }
 
     /**
@@ -798,6 +811,7 @@ public class DownloadMission extends Mission {
         Exception exception = null;
 
         try {
+            AudioArtworkFinalizer.captureSourceCover(this);
             psAlgorithm.run(this);
         } catch (Exception err) {
             Log.e(TAG, "Post-processing failed. " + psAlgorithm.toString(), err);

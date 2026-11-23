@@ -441,6 +441,8 @@ public class DownloadManagerService extends Service {
             ps = Postprocessing.getAlgorithm(psName, psArgs, streamInfo);
 
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
+        mission.artworkRequest = org.schabi.newpipe.download.artwork.DownloadArtworkRequest.create(
+                this, kind, storage.getName(), streamInfo);
         if (intent.getBooleanExtra("automatic_download", false)
                 && mManager.hasMissionForSource(streamInfo.getUrl(), kind)) {
             storage.delete();

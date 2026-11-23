@@ -7,6 +7,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.local.subscription.SubscriptionNameScrolling
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.image.CoilHelper
@@ -37,6 +38,7 @@ class ChannelItem(
         val itemThumbnailView = viewHolder.root.findViewById<ImageView>(R.id.itemThumbnailView)
 
         itemTitleView.text = infoItem.name
+        SubscriptionNameScrolling.bind(itemTitleView)
         itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
         if (itemVersion == ItemVersion.NORMAL) {
             itemChannelDescriptionView.text = infoItem.description
@@ -51,6 +53,11 @@ class ChannelItem(
                 true
             }
         }
+    }
+
+    override fun unbind(viewHolder: GroupieViewHolder) {
+        SubscriptionNameScrolling.unbind(viewHolder.root.findViewById(R.id.itemTitleView))
+        super.unbind(viewHolder)
     }
 
     private fun getDetailLine(context: Context): String {

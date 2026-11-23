@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_embed_audio_artwork_title">Embed audio artwork</string>
+    <string name="download_embed_audio_artwork_summary">Include the best available original thumbnail in new MP3 and M4A downloads. Keep existing embedded artwork. Downloading artwork uses additional data and temporary storage.</string>
+</resources>
