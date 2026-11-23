@@ -7,6 +7,7 @@ package org.schabi.newpipe.local.playlist
 import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -31,6 +32,7 @@ import java.util.function.Supplier
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
+import org.schabi.newpipe.databinding.DialogEditTextBinding
 import org.schabi.newpipe.download.BulkDownloadDialog
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -286,10 +288,11 @@ class LocalPlaylistSelectionController(
         menu.add(0, R.id.selection_all, 0, R.string.collection_select_all)
             .setIcon(R.drawable.ic_select_all).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
         menu.add(0, R.id.playlist_selection_remove, 1, R.string.playlist_remove_selected).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
-        menu.add(0, R.id.playlist_selection_move, 2, R.string.subscription_sort_move).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
-        menu.add(0, R.id.selection_playlist, 3, R.string.add_to_playlist)
-        menu.add(0, R.id.selection_enqueue, 4, R.string.enqueue_stream)
-        menu.add(0, R.id.selection_download, 5, R.string.playlist_download_selected)
+        menu.add(0, R.id.playlist_selection_move, 2, R.string.playlist_reorder_selected).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+        menu.add(0, R.id.selection_playlist, 3, R.string.playlist_copy_to_playlist)
+        menu.add(0, R.id.playlist_selection_transfer, 4, R.string.playlist_move_to_playlist)
+        menu.add(0, R.id.selection_enqueue, 5, R.string.enqueue_stream)
+        menu.add(0, R.id.selection_download, 6, R.string.playlist_download_selected)
         return true
     }
 
@@ -314,6 +317,8 @@ class LocalPlaylistSelectionController(
             R.id.playlist_selection_remove -> confirmRemoval(selection)
 
             R.id.playlist_selection_move -> showDestinations(selection)
+
+            R.id.playlist_selection_transfer -> showTransferDestinations(selection)
 
             R.id.selection_enqueue -> {
                 NavigationHelper.enqueueOnPlayer(activity, LocalMediaPlayQueue(selected.map { it.toPlayQueueItem() }, 0))
@@ -375,6 +380,99 @@ class LocalPlaylistSelectionController(
                 val moved = ListSelectionOrder.move(source.size, headings, selection.selectedSavedIndices(), destinations[index].second)
                 commit(moved.itemIndices.map(source::get), moved.labels)
             }.setNegativeButton(R.string.cancel, null).show()
+    }
+
+    private fun showTransferDestinations(selection: PlaylistSelectionSnapshot) {
+        writing = true
+        updateButton()
+        refreshSelection()
+        disposables.add(
+            manager.playlists.firstOrError().observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ playlists ->
+                    writing = false
+                    if (closed || !ensureCurrent()) return@subscribe
+                    refreshSelection()
+                    updateButton()
+                    val destinations = playlists.filter { it.uid != boundPlaylistId }
+                    dialog?.dismiss()
+                    val builder = MaterialAlertDialogBuilder(activity)
+                        .setTitle(R.string.playlist_move_to_playlist)
+                        .setNegativeButton(R.string.cancel, null)
+                        .setNeutralButton(R.string.create_playlist) { _, _ -> showNewTransferPlaylist(selection) }
+                    if (destinations.isEmpty()) {
+                        builder.setMessage(R.string.playlist_transfer_no_destination)
+                    } else {
+                        builder.setItems(destinations.map { it.orderingName.orEmpty() }.toTypedArray()) { _, index ->
+                            moveToPlaylist(selection, PlaylistTransferDestination.Existing(destinations[index].uid))
+                        }
+                    }
+                    dialog = builder.show()
+                }, { error ->
+                    writing = false
+                    if (!closed) {
+                        finishMode()
+                        updateButton()
+                        ErrorUtil.showUiErrorSnackbar(fragment, "Loading destination playlists", error)
+                    }
+                })
+        )
+    }
+
+    private fun showNewTransferPlaylist(selection: PlaylistSelectionSnapshot) {
+        if (!ensureCurrent()) return
+        val binding = DialogEditTextBinding.inflate(LayoutInflater.from(activity))
+        binding.dialogEditText.setHint(R.string.name)
+        binding.dialogEditText.setSingleLine()
+        val nameDialog = MaterialAlertDialogBuilder(activity)
+            .setTitle(R.string.create_playlist)
+            .setView(binding.root)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.subscription_sort_move, null)
+            .create()
+        dialog = nameDialog
+        nameDialog.setOnShowListener {
+            nameDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                val name = binding.dialogEditText.text.toString().trim()
+                if (name.isEmpty()) {
+                    binding.dialogEditText.error = activity.getString(R.string.playlist_transfer_name_required)
+                } else {
+                    nameDialog.dismiss()
+                    moveToPlaylist(selection, PlaylistTransferDestination.Create(name))
+                }
+            }
+        }
+        nameDialog.show()
+    }
+
+    private fun moveToPlaylist(selection: PlaylistSelectionSnapshot, destination: PlaylistTransferDestination) {
+        if (writing || !ensureCurrent()) return
+        val sourceIndices = java.util.IdentityHashMap<PlaylistStreamEntry, Int>()
+        source.forEachIndexed { index, entry -> sourceIndices[entry] = index }
+        val selected = selection.selectedInDisplayOrder().map { entry -> checkNotNull(sourceIndices[entry]) }
+        val selectedSet = selected.toSet()
+        val replacement = selection.remainingSavedOrder()
+        var item = 0
+        val removedRows = (0 until source.size + headings.size).filter { row -> row !in headings && item++ in selectedSet }
+        val nextHeadings = headings.mapKeys { (row, _) -> row - removedRows.count { it < row } }
+        writing = true
+        updateButton()
+        refreshSelection()
+        disposables.add(
+            store.moveToPlaylist(profileId, boundPlaylistId, source, selected, destination, separators, headings, nextHeadings)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ accepted ->
+                    if (closed) return@subscribe
+                    if (!accepted) changed()
+                    finishCommit(accepted, replacement)
+                }, { error ->
+                    writing = false
+                    if (!closed) {
+                        finishMode()
+                        updateButton()
+                        ErrorUtil.showUiErrorSnackbar(fragment, "Moving selected playlist items", error)
+                    }
+                })
+        )
     }
 
     private fun commit(replacement: List<PlaylistStreamEntry>, nextHeadings: Map<Int, String>) {

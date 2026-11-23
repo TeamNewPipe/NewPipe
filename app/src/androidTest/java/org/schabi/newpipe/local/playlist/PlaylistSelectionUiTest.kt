@@ -150,7 +150,7 @@ class PlaylistSelectionUiTest {
             chooseAction(R.id.selection_all, R.string.collection_select_all)
             assertSelectionCount(3)
             savePreview("playlist-selection-filtered")
-            chooseAction(R.id.playlist_selection_move, R.string.subscription_sort_move)
+            chooseAction(R.id.playlist_selection_move, R.string.playlist_reorder_selected)
             onView(withText(R.string.collection_move_end)).inRoot(isDialog()).perform(click())
             val moved = listOf(originalIds[1], originalIds[4], originalIds[0], originalIds[2], originalIds[3])
             waitFor { persistedIds() == moved && !selecting(scenario, fragment) }
@@ -169,6 +169,37 @@ class PlaylistSelectionUiTest {
     }
 
     @Test
+    fun movingFilteredRowsToAnotherPlaylistKeepsHiddenRowsAndCancellingDoesNotWrite() {
+        LocalPlaylistManager(database, profile).createPlaylist("Move destination", listOf(remote("target", "Existing destination entry"))).blockingGet()
+        val destinationId = database.playlistDAO().getAllDirectForProfile(profile).single { it.name == "Move destination" }.uid
+        fun destinationIds() = database.playlistStreamDAO().getQuickAddEntries(destinationId).map { it.streamUid }
+        val before = destinationIds()
+        withPlaylist(LocalPlaylistSortMode.REVERSE_PLAYLIST_ORDER) { scenario, fragment ->
+            scenario.onActivity { fragment.setContextualSearchQuery("Match") }
+            waitFor { rowCount(scenario, fragment) == 3 }
+            onView(withId(R.id.collection_select_move)).perform(click())
+            waitFor { selecting(scenario, fragment) }
+            tapRow(scenario, fragment, 0)
+            tapRow(scenario, fragment, 1)
+            chooseAction(R.id.playlist_selection_transfer, R.string.playlist_move_to_playlist)
+            onView(withId(android.R.id.button2)).inRoot(isDialog()).perform(click())
+            assertEquals(originalIds, persistedIds())
+            assertEquals(before, destinationIds())
+            assertTrue(selecting(scenario, fragment))
+
+            chooseAction(R.id.playlist_selection_transfer, R.string.playlist_move_to_playlist)
+            onView(withText("Move destination")).inRoot(isDialog()).perform(click())
+            val remaining = listOf(originalIds[0], originalIds[1], originalIds[4])
+            val transferred = before + listOf(originalIds[3], originalIds[2])
+            waitFor { persistedIds() == remaining && destinationIds() == transferred && !selecting(scenario, fragment) }
+            assertEquals("Only the selected duplicate occurrence should move", 1, persistedIds().count { it == originalIds[0] })
+            scenario.onActivity { fragment.setContextualSearchQuery("") }
+            waitFor { rowCount(scenario, fragment) == remaining.size }
+            assertEquals("Hidden rows must retain their saved order", remaining, persistedIds())
+        }
+    }
+
+    @Test
     fun changingSearchEndsSelectionAndLocalMediaKeepsQueueAndPlaylistActions() {
         withPlaylist { scenario, fragment ->
             onView(withId(R.id.collection_select_move)).perform(click())
@@ -182,7 +213,7 @@ class PlaylistSelectionUiTest {
             tapRow(scenario, fragment, 0)
             openSelectionOverflow()
             assertMenuEnabled(R.string.enqueue_stream, true)
-            assertMenuEnabled(R.string.add_to_playlist, true)
+            assertMenuEnabled(R.string.playlist_copy_to_playlist, true)
             assertMenuEnabled(R.string.playlist_download_selected, false)
             savePreview("playlist-selection-local-media")
             pressBack()

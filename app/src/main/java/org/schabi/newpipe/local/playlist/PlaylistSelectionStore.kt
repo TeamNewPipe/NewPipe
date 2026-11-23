@@ -55,6 +55,77 @@ class PlaylistSelectionStore(private val database: AppDatabase, private val acti
         }.subscribeOn(Schedulers.io())
     }
 
+    /** Move exact occurrences and append them in the selected display order in one transaction. */
+    fun moveToPlaylist(
+        profileId: String,
+        playlistId: Long,
+        savedOrder: List<PlaylistStreamEntry>,
+        selectedIndices: List<Int>,
+        destination: PlaylistTransferDestination,
+        separators: ListSeparators,
+        expectedHeadings: Map<Int, String>,
+        replacementHeadings: Map<Int, String>
+    ): Single<Boolean> {
+        val source = savedOrder.toList()
+        val selected = selectedIndices.toList()
+        require(selected.isNotEmpty() && selected.distinct().size == selected.size)
+        require(selected.all { it in source.indices })
+        val expected = source.map { it.streamId }
+        val moving = selected.map(expected::get)
+        val selectedSet = selected.toSet()
+        val remaining = expected.filterIndexed { index, _ -> index !in selectedSet }
+        val oldHeadings = expectedHeadings.toMap()
+        val newHeadings = replacementHeadings.toMap()
+        val target = when (destination) {
+            is PlaylistTransferDestination.Existing -> destination
+            is PlaylistTransferDestination.Create -> destination.copy(name = destination.name.trim()).also { require(it.name.isNotEmpty()) }
+        }
+        return Single.fromCallable {
+            separators.commitSelection(source, oldHeadings, newHeadings) {
+                database.runInTransaction(
+                    Callable {
+                        if (activeProfileId() != profileId) return@Callable false
+                        val playlists = database.playlistDAO()
+                        val streams = database.playlistStreamDAO()
+                        val from = playlists.getPlaylistDirectForProfile(profileId, playlistId) ?: return@Callable false
+                        if (streams.getQuickAddEntries(playlistId).map { it.streamUid } != expected) return@Callable false
+                        val to = when (target) {
+                            is PlaylistTransferDestination.Existing -> {
+                                if (target.playlistId == playlistId) return@Callable false
+                                playlists.getPlaylistDirectForProfile(profileId, target.playlistId) ?: return@Callable false
+                            }
+
+                            is PlaylistTransferDestination.Create -> PlaylistEntity(
+                                name = target.name,
+                                isThumbnailPermanent = false,
+                                thumbnailStreamId = moving.first(),
+                                displayIndex = -1,
+                                profileId = profileId
+                            )
+                        }
+                        val maximumIndex = if (target is PlaylistTransferDestination.Create) -1 else streams.getMaximumIndexDirect(to.uid)
+                        val firstTargetStream = if (target is PlaylistTransferDestination.Create) null else streams.getFirstStreamIdDirect(to.uid)
+                        if (maximumIndex.toLong() + moving.size > Int.MAX_VALUE) return@Callable false
+                        if (target is PlaylistTransferDestination.Create) to.uid = playlists.insert(to)
+                        // Any insertion failure rolls back both playlists, including a new target.
+                        check(streams.insertAllForProfile(profileId, to.uid, moving.mapIndexed { index, id -> PlaylistStreamEntity(to.uid, id, maximumIndex + 1 + index) }).size == moving.size)
+                        streams.deleteBatchForProfile(profileId, playlistId)
+                        check(streams.insertAllForProfile(profileId, playlistId, remaining.mapIndexed { index, id -> PlaylistStreamEntity(playlistId, id, index) }).size == remaining.size)
+                        if (!from.isThumbnailPermanent) {
+                            from.thumbnailStreamId = remaining.firstOrNull() ?: PlaylistEntity.DEFAULT_THUMBNAIL_ID
+                            playlists.updateForProfile(profileId, from)
+                        }
+                        if (!to.isThumbnailPermanent) {
+                            to.thumbnailStreamId = firstTargetStream ?: moving.first()
+                            playlists.updateForProfile(profileId, to)
+                        }
+                        true
+                    }
+                )
+            }
+        }.subscribeOn(Schedulers.io())
+    }
+
     private fun replaceNow(profileId: String, playlistId: Long, expected: List<Long>, replacement: List<Long>): Boolean = database.runInTransaction(
         Callable {
             val streams = database.playlistStreamDAO()

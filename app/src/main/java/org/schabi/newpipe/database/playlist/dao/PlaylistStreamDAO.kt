@@ -95,6 +95,9 @@ interface PlaylistStreamDAO : BasicDAO<PlaylistStreamEntity> {
     )
     fun getMaximumIndexDirect(playlistId: Long): Int
 
+    @Query("SELECT stream_id FROM playlist_stream_join WHERE playlist_id = :playlistId ORDER BY join_index LIMIT 1")
+    fun getFirstStreamIdDirect(playlistId: Long): Long?
+
     @Query(
         """
         SELECT CASE

@@ -2,6 +2,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <item name="playlist_selection_remove" type="id" />
     <item name="playlist_selection_move" type="id" />
+    <item name="playlist_selection_transfer" type="id" />
+    <string name="playlist_reorder_selected">Reorder selected</string>
+    <string name="playlist_copy_to_playlist">Copy to playlist</string>
+    <string name="playlist_move_to_playlist">Move to playlist</string>
+    <string name="playlist_transfer_no_destination">Create a playlist to move the selected items into it.</string>
+    <string name="playlist_transfer_name_required">Enter a playlist name</string>
     <string name="playlist_select_items">Select items</string>
     <string name="playlist_remove_selected">Remove selected</string>
     <string name="playlist_selection_remove_confirm">Remove</string>
