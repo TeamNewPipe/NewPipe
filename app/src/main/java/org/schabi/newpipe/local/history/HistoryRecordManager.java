@@ -562,42 +562,30 @@ public class HistoryRecordManager {
         }).subscribeOn(Schedulers.io());
     }
 
-    private boolean shouldSyncWatchHistory() {
-        return ProfileManager.DEFAULT_PROFILE_ID.equals(profileId);
-    }
-
     private void recordWatchEvent(final long streamId,
                                   final long watchedAtEpochMillis,
                                   final long repeatCount) {
-        if (shouldSyncWatchHistory()) {
-            historySyncRecorder.recordWatchEvent(streamId, watchedAtEpochMillis, repeatCount);
-        }
+        historySyncRecorder.recordWatchEventForProfile(
+                profileId, streamId, watchedAtEpochMillis, repeatCount);
     }
 
     private void recordProgress(final long streamId,
                                 final long progressMillis,
                                 final long updatedAtEpochMillis) {
-        if (shouldSyncWatchHistory()) {
-            historySyncRecorder.recordProgress(streamId, progressMillis, updatedAtEpochMillis);
-        }
+        historySyncRecorder.recordProgressForProfile(
+                profileId, streamId, progressMillis, updatedAtEpochMillis);
     }
 
     private void recordWatchStreamDelete(final long streamId) {
-        if (shouldSyncWatchHistory()) {
-            historySyncRecorder.recordWatchStreamDelete(streamId);
-        }
+        historySyncRecorder.recordWatchStreamDeleteForProfile(profileId, streamId);
     }
 
     private void recordWatchAllDelete() {
-        if (shouldSyncWatchHistory()) {
-            historySyncRecorder.recordWatchAllDelete();
-        }
+        historySyncRecorder.recordWatchAllDeleteForProfile(profileId);
     }
 
     private void recordProgressAllDelete() {
-        if (shouldSyncWatchHistory()) {
-            historySyncRecorder.recordProgressAllDelete();
-        }
+        historySyncRecorder.recordProgressAllDeleteForProfile(profileId);
     }
 
     ///////////////////////////////////////////////////////

@@ -13,6 +13,11 @@ Release history is listed newest first. The number beside each release is its An
 
 - Keep the optional second caption track coordinated with primary-language changes, restore it when switching between the main and popup player, and apply the session subtitle timing adjustment to both tracks.
 
+### Profile history synchronization
+
+- Keep watch history, playback progress and history deletions synchronized for every profile after the first exchange, even when the active profile changes while a write is pending.
+- Preserve existing deletion ordering and avoid seeding history from locally unavailable profiles during synchronization.
+
 ### App fonts
 
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.

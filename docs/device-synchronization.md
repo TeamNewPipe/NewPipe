@@ -68,7 +68,17 @@ Profiles use stable local UUIDs during device synchronization, so Personal, Work
 and other containers remain distinct even when they contain the same channel, playlist, or video.
 The **Default** profile keeps its existing synchronization identity for compatibility.
 
-Search history, Learning Notes, home tabs, content filters, blocked-content rules, channel playback
+Watch and search history operations retain the profile that started them, including when the
+active profile changes before a pending write finishes. Later views, progress changes and explicit
+history deletions are synchronized after the initial exchange as well.
+
+Older builds could miss non-Default history changes after the first exchange. Updating fixes
+future writes but cannot establish the order of those missed changes against deletions or
+progress recorded on another device. Synchronization therefore preserves existing journal
+ordering rather than replaying ambiguous old rows as new actions. Missing local rows alone
+do not prove a deletion.
+
+Learning Notes, home tabs, content filters, blocked-content rules, channel playback
 profiles, allowlisted settings, and completed-download metadata remain app-wide rather than
 profile-scoped.
 

@@ -561,6 +561,7 @@ internal class RoomHistorySyncStore internal constructor(
         }
         localProfiles
             .filterNot(initializedProfiles::contains)
+            .filter(canMaterializeProfile)
             .forEach(::initializeWatchHistory)
     }
 

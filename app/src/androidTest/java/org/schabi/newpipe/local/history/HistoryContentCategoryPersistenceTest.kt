@@ -28,7 +28,7 @@ class HistoryContentCategoryPersistenceTest {
     private lateinit var watchHistoryKey: String
     private lateinit var database: AppDatabase
     private lateinit var records: HistoryRecordManager
-    private val profileId = "history-content-category-profile"
+    private val profileId = "22222222-2222-4222-8222-222222222222"
 
     @Before
     fun setUp() {
