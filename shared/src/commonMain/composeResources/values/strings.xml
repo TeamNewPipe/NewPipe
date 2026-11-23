@@ -118,6 +118,9 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="permission_display_over_apps">Give permission to display over other apps</string>
+    <string name="permission_display_over_apps_message">In order to use the Popup Player, please select %1$s in the following Android settings menu and enable %2$s.</string>
+    <string name="permission_display_over_apps_permission_name">“Allow display over other apps”</string>
     <string name="start_main_player_fullscreen_title">Start main player in fullscreen</string>
     <string name="start_main_player_fullscreen_summary">Do not start videos in the mini player, but turn to fullscreen mode directly, if auto rotation is locked. You can still access the mini player by exiting fullscreen</string>
     <string name="autoplay_title">Autoplay</string>
