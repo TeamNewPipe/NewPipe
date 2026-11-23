@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="subscription_channels_edit">Edit subscriptions</string>
+    <string name="subscription_channels_search">Search subscriptions</string>
+    <string name="subscription_channels_expand">Expand subscriptions</string>
+    <string name="subscription_channels_collapse">Collapse subscriptions</string>
+</resources>

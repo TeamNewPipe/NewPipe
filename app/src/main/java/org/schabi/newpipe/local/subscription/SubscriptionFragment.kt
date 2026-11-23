@@ -53,9 +53,9 @@ import org.schabi.newpipe.local.subscription.item.FeedGroupCarouselItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupImportGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupImportItem
 import org.schabi.newpipe.local.subscription.item.GroupsHeader
-import org.schabi.newpipe.local.subscription.item.Header
 import org.schabi.newpipe.local.subscription.item.ImportSubscriptionsHintPlaceholderItem
 import org.schabi.newpipe.local.subscription.item.SearchNoResultsPlaceholderItem
+import org.schabi.newpipe.local.subscription.item.SubscriptionChannelsHeader
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.GridLayoutManagerHelper
 import org.schabi.newpipe.util.NavigationHelper
@@ -83,6 +83,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private lateinit var feedGroupsSection: Section
     private var feedGroupsCollapsed = false
     private val subscriptionsSection = Section()
+    private lateinit var subscriptionsHeader: SubscriptionChannelsHeader
+    private lateinit var subscriptionsContainer: SubscriptionChannelsSection
     private var contextualSearchQuery = ""
     private var sortingEnabled = false
     private var sortController: SubscriptionSortController? = null
@@ -363,17 +365,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             restoreScroll(savedInstanceState)
         }
         updateUnsubscribeAction()
-        binding.subscriptionEditToggle.setOnClickListener { toggleSorting() }
-        binding.subscriptionEditToggle.setText(if (sortingEnabled) R.string.playlist_edit_done else R.string.playlist_edit_mode)
         countDisposable = subscriptionManager.subscriptions()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ channels ->
-                _binding?.subscriptionTotalCount?.text = resources.getQuantityString(
-                    R.plurals.subscription_total_count,
-                    channels.size,
-                    channels.size
-                )
+                subscriptionsHeader.count = channels.size
+                subscriptionsHeader.notifyChanged()
+                updateSortingHeader()
             }, { error ->
                 org.schabi.newpipe.error.ErrorUtil.showSnackbar(this, ErrorInfo(error, UserAction.SOMETHING_ELSE, "Counting subscriptions"))
             })
@@ -390,6 +388,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         sortController?.setEnabled(sortingEnabled)
         updateSortingVisibility()
         if (sortingEnabled) sortController?.scrollTo(anchor) else restoreBrowseScroll(anchor)
+        if (sortingEnabled) binding.subscriptionSortHeader.channelsHeaderEdit.requestFocus()
         activity.invalidateOptionsMenu()
     }
 
@@ -418,10 +417,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     }
 
     private fun updateSortingVisibility() {
-        binding.subscriptionEditToggle.setText(if (sortingEnabled) R.string.playlist_edit_done else R.string.playlist_edit_mode)
+        updateSortingHeader()
         binding.itemsList.animate().cancel()
         binding.itemsList.alpha = 1f
         binding.itemsList.visibility = if (sortingEnabled) View.GONE else View.VISIBLE
+    }
+
+    private fun updateSortingHeader() {
+        if (::subscriptionsHeader.isInitialized && _binding != null) {
+            subscriptionsHeader.bindControls(binding.subscriptionSortHeader, editing = true)
+        }
     }
 
     private fun applySubscriptionLayout() {
@@ -512,16 +517,27 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         subscriptionsSection.setPlaceholder(ImportSubscriptionsHintPlaceholderItem())
         subscriptionsSection.setHideWhenEmpty(true)
 
-        groupAdapter.add(
-            Section(
-                Header(getString(R.string.tab_subscriptions)),
-                listOf(subscriptionsSection)
-            )
+        subscriptionsHeader = SubscriptionChannelsHeader(
+            onEditClicked = ::toggleSorting,
+            onSearchClicked = ::showChannelSearch,
+            onToggleCollapsedClicked = { subscriptionsContainer.toggleCollapsed() }
         )
+        subscriptionsContainer = SubscriptionChannelsSection(
+            requireContext(),
+            activeProfileId,
+            subscriptionsHeader,
+            subscriptionsSection
+        )
+        subscriptionsContainer.revealSearchResults(contextualSearchQuery)
+        groupAdapter.add(subscriptionsContainer)
+        updateSortingHeader()
     }
 
     override fun setContextualSearchQuery(query: String) {
         contextualSearchQuery = ContextualSearchHelper.normalizeQuery(query)
+        if (::subscriptionsContainer.isInitialized) {
+            subscriptionsContainer.revealSearchResults(contextualSearchQuery)
+        }
         subscriptionsSection.setPlaceholder(
             if (ContextualSearchHelper.isActive(contextualSearchQuery)) {
                 SearchNoResultsPlaceholderItem()
@@ -536,23 +552,31 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     }
 
     private fun showGroupSearch() {
+        showSearchDialog(R.string.subscription_groups_search) { query ->
+            if (feedGroupsCollapsed && query.isNotBlank()) toggleGroupsCollapsed()
+            setContextualSearchQuery(query)
+        }
+    }
+
+    private fun showChannelSearch() {
+        showSearchDialog(R.string.subscription_channels_search, ::setContextualSearchQuery)
+    }
+
+    private fun showSearchDialog(@StringRes title: Int, onSearch: (String) -> Unit) {
         val input = android.widget.EditText(requireContext()).apply {
             setSingleLine(true)
-            hint = getString(R.string.subscription_groups_search)
+            hint = getString(title)
             setText(contextualSearchQuery)
             setSelection(text.length)
         }
         com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.subscription_groups_search)
+            .setTitle(title)
             .setView(input)
             .setPositiveButton(R.string.search) { _, _ ->
-                if (feedGroupsCollapsed && input.text?.isNotBlank() == true) {
-                    toggleGroupsCollapsed()
-                }
-                setContextualSearchQuery(input.text?.toString().orEmpty())
+                onSearch(input.text?.toString().orEmpty())
             }
             .setNeutralButton(R.string.subscription_groups_clear_search) { _, _ ->
-                setContextualSearchQuery("")
+                onSearch("")
             }
             .setNegativeButton(R.string.cancel, null)
             .show()

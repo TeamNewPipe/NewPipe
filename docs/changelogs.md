@@ -36,6 +36,12 @@ Release history is listed newest first. The number beside each release is its An
 - Add an optional Scroll long subscription names setting in Appearance so names that do not fit can scroll within subscription lists and groups.
 - Keep the option off by default and preserve channel selection, long-press actions and full accessibility labels.
 
+### Subscription section controls
+
+- Put a compact subscription count, pencil edit action, search and independent expand/collapse controls beside the Subscriptions heading below channel groups.
+- Remember channel-list visibility per profile, reveal search results when searching, and keep an accessible Done action while editing subscriptions.
+- Let header actions wrap below long or enlarged labels so phone and TV controls stay usable.
+
 ### Remaining playback time
 
 - Tap the player's total duration to switch to estimated remaining playback time, accounting for playback speed and enabled automatic SponsorBlock skips without counting overlaps twice.
