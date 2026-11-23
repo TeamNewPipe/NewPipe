@@ -20,6 +20,7 @@ internal object SubtitleTimingDialog {
             if (!player.exoPlayerIsNull()) {
                 // Re-read cues at the current position, including when playback is paused.
                 player.exoPlayer.seekTo(player.exoPlayer.currentPosition)
+                player.triggerProgressUpdate()
             }
         }
         value.text = anchor.context.getString(R.string.subtitle_timing_value, player.subtitleTiming.offsetMs)

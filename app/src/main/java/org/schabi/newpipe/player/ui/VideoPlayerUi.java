@@ -1433,7 +1433,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         captionPopupMenu.setOnDismissListener(this);
         PlaybackLanguageMenu.captions(context, captionPopupMenu.getMenu(), POPUP_MENU_ID_CAPTION,
                 availableLanguages, showAll, binding.captionTextView, player,
-                player::setCaptionPreference,
+                dualCaptionController::onPrimaryCaptionSelected,
                 () -> binding.captionTextView.post(() -> {
                     buildCaptionMenu(availableLanguages, true);
                     showPopupMenu(captionPopupMenu, binding.captionTextView);
@@ -1673,6 +1673,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void onTextTracksChanged(@NonNull final Tracks currentTracks) {
         super.onTextTracksChanged(currentTracks);
+        dualCaptionController.onPrimaryCaptionChanged();
         updateQualityLabel(currentTracks);
 
         final boolean trackTypeTextSupported = !currentTracks.containsType(C.TRACK_TYPE_TEXT)

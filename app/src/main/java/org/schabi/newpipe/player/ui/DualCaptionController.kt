@@ -36,14 +36,26 @@ import org.schabi.newpipe.player.helper.PlayerHelper
  * The primary cue view moves to the top only when a usable secondary track is loaded.
  */
 @UnstableApi
-class DualCaptionController(
+class DualCaptionController internal constructor(
     private val player: Player,
     private val content: RelativeLayout,
-    private val primary: SubtitleView
+    private val primary: SubtitleView,
+    private val scope: CoroutineScope,
+    loadSubtitle: (suspend (SubtitlesStream) -> Subtitle)?
 ) {
+    constructor(player: Player, content: RelativeLayout, primary: SubtitleView) : this(
+        player,
+        content,
+        primary,
+        CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate),
+        null
+    )
+
     private val context: Context = content.context
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private val subtitleLoader: suspend (SubtitlesStream) -> Subtitle = loadSubtitle ?: { stream ->
+        withContext(Dispatchers.IO) { load(stream) }
+    }
     private val secondary = SubtitleView(context).apply {
         setFractionalTextSize(
             SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * PlayerHelper.getCaptionScale(context)
@@ -54,6 +66,7 @@ class DualCaptionController(
         importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
     }
     private var streamInfo: StreamInfo? = null
+    private var requestedStream: SubtitlesStream? = null
     private var subtitle: Subtitle? = null
     private var request: Job? = null
     private var epoch = 0
@@ -70,6 +83,10 @@ class DualCaptionController(
             )
         )
         secondary.setCues(emptyList())
+        // MAIN/POPUP replacement can reuse the engine and its current metadata without another
+        // metadata event. Restore the secondary track when the new UI attaches to that item.
+        player.currentStreamInfo.ifPresent(::onMetadata)
+        if (!player.exoPlayerIsNull()) renderPrimary(player.exoPlayer.currentCues.cues)
     }
 
     fun onMetadata(info: StreamInfo) {
@@ -83,6 +100,7 @@ class DualCaptionController(
         request?.cancel()
         request = null
         streamInfo = null
+        requestedStream = null
         subtitle = null
         latestPrimary = emptyList()
         secondary.setCues(emptyList())
@@ -108,38 +126,54 @@ class DualCaptionController(
         MaterialAlertDialogBuilder(context)
             .setTitle(R.string.dual_captions_title)
             .setSingleChoiceItems(labels.toTypedArray(), selected + 1) { dialog, index ->
-                prefs.edit().putString(
-                    PREF_LANGUAGE,
-                    if (index == 0) null else options[index - 1].languageTag
-                ).apply()
-                loadSelected()
+                selectLanguage(if (index == 0) null else options[index - 1].languageTag)
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
     }
 
-    private fun loadSelected() {
+    internal fun selectLanguage(language: String?) {
+        prefs.edit().putString(PREF_LANGUAGE, language).apply()
+        loadSelected(reload = true)
+    }
+
+    fun onPrimaryCaptionChanged() {
+        loadSelected()
+    }
+
+    fun onPrimaryCaptionSelected(language: String?) {
+        player.setCaptionPreference(language)
+        onPrimaryCaptionChanged()
+    }
+
+    private fun loadSelected(reload: Boolean = false) {
+        val info = streamInfo ?: return
+        val preferred = prefs.getString(PREF_LANGUAGE, null)
+        val candidate = preferred?.let { DualCaptionSelection.select(info.subtitles.orEmpty(), it) }
+            ?.takeUnless { stream ->
+                val primaryLanguage = player.captionPreference ?: return@takeUnless false
+                primaryLanguage.equals(stream.languageTag, ignoreCase = true) ||
+                    PlayerHelper.captionLanguageStemOf(primaryLanguage).equals(
+                        PlayerHelper.captionLanguageStemOf(PlayerHelper.captionLanguageOf(context, stream)),
+                        ignoreCase = true
+                    )
+            }
+        // Track callbacks also arrive for video/audio adaptation. Keep a loaded or pending
+        // secondary track until its effective selection changes instead of downloading it again.
+        if (!reload && candidate === requestedStream) return
         epoch++
         val generation = epoch
         request?.cancel()
+        request = null
+        requestedStream = candidate
         subtitle = null
         secondary.setCues(emptyList())
         renderPrimary(latestPrimary)
-        val info = streamInfo ?: return
-        val preferred = prefs.getString(PREF_LANGUAGE, null) ?: return
-        val candidate = DualCaptionSelection.select(info.subtitles.orEmpty(), preferred) ?: return
-        // Do not render the same language twice when the primary track is explicitly selected.
-        val currentPrimary = player.captionPreference.orEmpty()
-        if (
-            currentPrimary == candidate.languageTag ||
-            currentPrimary == PlayerHelper.captionLanguageOf(context, candidate)
-        ) {
-            return
-        }
+        if (candidate == null) return
         request = scope.launch {
             try {
-                val parsed = withContext(Dispatchers.IO) { load(candidate) }
+                val parsed = subtitleLoader(candidate)
                 if (generation == epoch) {
                     subtitle = parsed
                     renderPrimary(latestPrimary)
@@ -154,6 +188,8 @@ class DualCaptionController(
                 throw e
             } catch (e: Exception) {
                 Log.w(TAG, "Could not load secondary subtitle track", e)
+            } finally {
+                if (generation == epoch) request = null
             }
         }
     }
@@ -175,7 +211,7 @@ class DualCaptionController(
 
     fun onProgress(positionMs: Int) {
         val active = subtitle ?: return
-        val timeUs = positionMs.toLong().coerceAtLeast(0L) * 1_000L
+        val timeUs = player.subtitleTiming.shift(positionMs.toLong().coerceAtLeast(0L) * 1_000L)
         secondary.setCues(active.getCues(timeUs))
     }
 

@@ -14,6 +14,8 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.android.material.button.MaterialButton
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit.SECONDS
 import java.util.concurrent.atomic.AtomicBoolean
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -35,17 +37,26 @@ class LocalLikesViewTest {
     private val context: Context = ApplicationProvider.getApplicationContext()
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val profileId = ProfileManager.getActiveProfileId(context)
-    private val database = TestDatabase.createReplacingNewPipeDatabase()
+    private val queryExecutor = Executors.newSingleThreadExecutor()
+    private val database = TestDatabase.createReplacingNewPipeDatabase(queryExecutor)
 
     @After
     fun removeTestPlaylist() {
-        val id = (preferences.all[LikedVideosStore.preferenceKey(profileId)] as? Number)?.toLong()
-        if (id != null) database.playlistDAO().deletePlaylistForProfile(profileId, id)
-        preferences.edit()
-            .remove(LikedVideosStore.preferenceKey(profileId))
-            .remove(context.getString(R.string.show_local_like_controls_key))
-            .commit()
-        NewPipeDatabase.close()
+        try {
+            val id = (preferences.all[LikedVideosStore.preferenceKey(profileId)] as? Number)?.toLong()
+            if (id != null) database.playlistDAO().deletePlaylistForProfile(profileId, id)
+            preferences.edit()
+                .remove(LikedVideosStore.preferenceKey(profileId))
+                .remove(context.getString(R.string.show_local_like_controls_key))
+                .commit()
+            // ActivityScenario has detached the controls and disposed their observations, but
+            // queued Room queries can still be unwinding after that cancellation.
+            queryExecutor.submit {}.get(10, SECONDS)
+        } finally {
+            NewPipeDatabase.close()
+            queryExecutor.shutdown()
+            assertTrue("Room test executor did not stop", queryExecutor.awaitTermination(10, SECONDS))
+        }
     }
 
     @Test
