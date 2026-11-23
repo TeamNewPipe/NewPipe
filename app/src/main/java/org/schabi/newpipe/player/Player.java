@@ -201,6 +201,12 @@ public final class Player implements PlaybackListener, Listener {
     private MediaItemTag currentMetadata;
     @Nullable
     private Bitmap currentThumbnail;
+    /**
+     * Stream URL that {@link #currentThumbnail} was loaded for.
+     * Cleared with the bitmap so a later track cannot publish the previous cover.
+     */
+    @Nullable
+    private String currentThumbnailStreamUrl;
     @Nullable
     private coil3.request.Disposable thumbnailDisposable;
 
@@ -888,7 +894,8 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
     //region Thumbnail loading
 
-    private void loadCurrentThumbnail(final List<Image> thumbnails) {
+    private void loadCurrentThumbnail(@NonNull final List<Image> thumbnails,
+                                      @Nullable final String streamUrl) {
         if (DEBUG) {
             Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with thumbnails = ["
                     + thumbnails.size() + "]");
@@ -901,7 +908,7 @@ public final class Player implements PlaybackListener, Listener {
 
         // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
         // session metadata while the new thumbnail is being loaded by Coil.
-        onThumbnailLoaded(null);
+        onThumbnailLoaded(null, null);
         if (thumbnails.isEmpty()) {
             return;
         }
@@ -912,7 +919,7 @@ public final class Player implements PlaybackListener, Listener {
             public void onError(@Nullable final coil3.Image error) {
                 Log.e(TAG, "Thumbnail - onError() called");
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(null);
+                onThumbnailLoaded(null, null);
             }
 
             @Override
@@ -928,7 +935,7 @@ public final class Player implements PlaybackListener, Listener {
                     Log.d(TAG, "Thumbnail - onSuccess() called with: drawable = [" + result + "]");
                 }
                 // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(toBitmap(result));
+                onThumbnailLoaded(toBitmap(result), streamUrl);
             }
         };
         thumbnailDisposable = CoilHelper.INSTANCE
@@ -936,7 +943,11 @@ public final class Player implements PlaybackListener, Listener {
     }
 
 
-    private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
+    private void onThumbnailLoaded(@Nullable final Bitmap bitmap,
+                                   @Nullable final String streamUrl) {
+        // Remember which stream owns the bitmap. A cleared bitmap must not stay associated with
+        // the previous URL, or the next track would publish that cover under its own media id.
+        currentThumbnailStreamUrl = bitmap == null ? null : streamUrl;
         // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
         // thumbnail loading code, this would be skipped only when both bitmaps are `null`, since
         // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
@@ -1702,7 +1713,7 @@ public final class Player implements PlaybackListener, Listener {
 
             if (removeThumbnailBeforeSync) {
                 // unset the current (now outdated) thumbnail to ensure it is not used during sync
-                onThumbnailLoaded(null);
+                onThumbnailLoaded(null, null);
             }
 
             // sync the player index with the queue index, and seek to the correct position
@@ -1923,7 +1934,7 @@ public final class Player implements PlaybackListener, Listener {
 
         maybeAutoQueueNextStream(info);
 
-        loadCurrentThumbnail(info.getThumbnails());
+        loadCurrentThumbnail(info.getThumbnails(), info.getUrl());
         registerStreamViewed();
 
         notifyMetadataUpdateToListeners();
@@ -1967,6 +1978,14 @@ public final class Player implements PlaybackListener, Listener {
     @Nullable
     public Bitmap getThumbnail() {
         return currentThumbnail;
+    }
+
+    /**
+     * @return stream URL {@link #getThumbnail()} belongs to, or null when none is loaded.
+     */
+    @Nullable
+    public String getThumbnailStreamUrl() {
+        return currentThumbnailStreamUrl;
     }
     //endregion
 
