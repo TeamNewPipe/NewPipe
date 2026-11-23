@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Embedded local chapters
+
+- Read supported embedded chapter markers from local MP3 and MP4/M4A files, including precise timestamps and Unicode titles.
+- Use embedded markers when saved download chapters are unavailable, while preserving ordinary playback for files with unsupported or damaged chapter metadata.
+
 ### Offline chapters and transcripts
 
 - Keep chapter metadata with new downloads, preserve precise chapter timestamps, and remap chapters to selected-range exports.

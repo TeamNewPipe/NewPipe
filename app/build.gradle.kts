@@ -188,6 +188,9 @@ wire {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    // The full multi-SDK Robolectric suite outgrows Gradle's default 512 MiB test-worker heap.
+    // This worker has its own heap, separate from the Gradle daemon's memory configuration.
+    maxHeapSize = "1g"
     // Robolectric resolves Android framework jars at test runtime, outside Gradle's
     // dependency resolver. Maven Central's shared CI IPs can be rate-limited;
     // use the public Google-hosted Maven Central mirror only on GitHub Actions.

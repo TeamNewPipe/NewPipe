@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="embedded_chapter_fallback_title">Chapter %1$d</string>
+</resources>

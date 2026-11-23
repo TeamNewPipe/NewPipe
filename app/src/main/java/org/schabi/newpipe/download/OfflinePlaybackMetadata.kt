@@ -194,7 +194,10 @@ object OfflinePlaybackMetadata {
     @WorkerThread
     @JvmStatic
     @JvmOverloads
-    fun resolve(context: Context, uri: String, knownMission: FinishedMission? = null, knownMissions: List<FinishedMission>? = null): ResolvedOfflineMedia {
+    fun resolve(context: Context, uri: String, knownMission: FinishedMission? = null, knownMissions: List<FinishedMission>? = null): ResolvedOfflineMedia = resolveSaved(context, uri, knownMission, knownMissions).withEmbeddedChapters(context, uri)
+
+    @WorkerThread
+    private fun resolveSaved(context: Context, uri: String, knownMission: FinishedMission?, knownMissions: List<FinishedMission>?): ResolvedOfflineMedia {
         val file = identity(context, uri) ?: return ResolvedOfflineMedia("", emptyList(), emptyList(), null)
         val saved = read(context, uri, file)
         if (hasRejectedRecord(context, uri, file, saved)) return ResolvedOfflineMedia(file.signature, emptyList(), emptyList(), null, staleDownload = true)
