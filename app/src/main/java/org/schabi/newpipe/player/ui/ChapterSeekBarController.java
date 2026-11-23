@@ -47,7 +47,7 @@ final class ChapterSeekBarController {
                              final boolean allowHaptics) {
         int chapterIndex = -1;
         for (int i = 0; i < chapters.size(); i++) {
-            if (chapters.get(i).getStartTimeSeconds() * 1000L > progress) {
+            if (org.schabi.newpipe.download.ChapterTimes.startMillis(chapters.get(i)) > progress) {
                 break;
             }
             chapterIndex = i;

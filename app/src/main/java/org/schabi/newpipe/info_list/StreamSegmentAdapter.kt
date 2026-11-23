@@ -4,6 +4,7 @@ import android.util.Log
 import com.xwray.groupie.GroupieAdapter
 import kotlin.math.max
 import org.schabi.newpipe.extractor.stream.StreamInfo
+import org.schabi.newpipe.extractor.stream.StreamSegment
 
 /**
  * Custom RecyclerView.Adapter/GroupieAdapter for [StreamSegmentItem] for handling selection state.
@@ -18,10 +19,12 @@ class StreamSegmentAdapter(
     /**
      * Returns `true` if the provided [StreamInfo] contains segments, `false` otherwise.
      */
-    fun setItems(info: StreamInfo): Boolean {
-        if (info.streamSegments.isNotEmpty()) {
-            clear()
-            addAll(info.streamSegments.map { StreamSegmentItem(it, listener) })
+    fun setItems(info: StreamInfo): Boolean = setItems(info.streamSegments)
+
+    fun setItems(chapters: List<StreamSegment>): Boolean {
+        clear()
+        if (chapters.isNotEmpty()) {
+            addAll(chapters.map { StreamSegmentItem(it, listener) })
             return true
         }
         return false

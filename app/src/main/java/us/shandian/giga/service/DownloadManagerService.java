@@ -476,6 +476,9 @@ public class DownloadManagerService extends Service {
                     + "wizestream-segments=" + psArgs[0];
         }
         mission.nearLength = nearLength;
+        mission.offlineMetadata = org.schabi.newpipe.download.OfflinePlaybackMetadata.capture(
+                this, streamInfo, kind, mission.source,
+                Postprocessing.ALGORITHM_SEGMENTS.equals(psName) ? psArgs[0] : null);
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
 
         if (ps != null)

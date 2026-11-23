@@ -17,8 +17,12 @@ enum class PlayerIntentType {
  * A timestamp on the given was clicked and we should switch the playing stream to it.
  */
 @Parcelize
-data class TimestampChangeData(
+data class TimestampChangeData @JvmOverloads constructor(
     val serviceId: Int,
     val url: String,
-    val seconds: Int
+    val seconds: Int,
+    val localUri: String? = null,
+    val localIdentity: String? = null,
+    val profileId: String? = null,
+    val positionMillis: Long? = null
 ) : Parcelable

@@ -430,6 +430,7 @@ public class MediaSourceManager {
                             .orElseGet(() -> FailedMediaSource.of(stream,
                                     new MediaSourceResolutionException(
                                             "Unable to resolve direct media"))))
+                    .subscribeOn(Schedulers.io())
                     .onErrorReturn(throwable -> FailedMediaSource.of(stream,
                             new MediaSourceResolutionException(
                                     "Unable to open direct media: " + throwable.getMessage())));

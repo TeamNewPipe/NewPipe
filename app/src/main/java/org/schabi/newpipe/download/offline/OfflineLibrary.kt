@@ -125,6 +125,7 @@ object OfflineLibrary {
                 if (entry.item.id !in currentCandidates) return@synchronized
                 if (deleteFile(manager, entry.mission, entry.item.bytes)) {
                     OfflineSponsorBlockStore.remove(context, current.getString("uri"))
+                    org.schabi.newpipe.download.OfflinePlaybackMetadata.remove(context, current.getString("uri"))
                     prefs(context).edit().remove("file:${entry.item.id}").apply()
                     deleted++
                 }

@@ -120,7 +120,7 @@ class WavySeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val gapWidth = 2 * density
         if (trackWidth > 0f) {
             chapterSegments.forEach { chapter ->
-                val startMillis = chapter.startTimeSeconds * 1000L
+                val startMillis = org.schabi.newpipe.download.ChapterTimes.startMillis(chapter)
                 if (startMillis > 0 && startMillis < durationMillis) {
                     val x = trackLeft + trackWidth * startMillis / durationMillis
                     canvas.drawRect(

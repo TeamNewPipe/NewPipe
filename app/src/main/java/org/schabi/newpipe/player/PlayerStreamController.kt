@@ -136,8 +136,10 @@ internal class PlayerStreamController(
             }
         }
         if (!item.isLocalMedia) return null
-        return dataSource.progressiveMediaSourceFactory
-            .createMediaSource(LocalMediaItemTag.of(item).asMediaItem())
+        val offline = org.schabi.newpipe.download.OfflinePlaybackMetadata.resolve(context, item.url)
+        val media = dataSource.progressiveMediaSourceFactory
+            .createMediaSource(LocalMediaItemTag.of(item, offline.chapters).asMediaItem())
+        return org.schabi.newpipe.player.resolver.OfflineSubtitleSources.merge(context, media, offline.subtitles)
     }
 
     fun sourceOfDownloaded(item: PlayQueueItem): MediaSource? {
@@ -152,8 +154,11 @@ internal class PlayerStreamController(
         return downloadedSource(info)
     }
 
-    private fun downloadedSource(info: org.schabi.newpipe.download.DownloadedStreamInfo): MediaSource = dataSource.progressiveMediaSourceFactory
-        .createMediaSource(org.schabi.newpipe.player.mediaitem.StreamInfoTag.of(info).asMediaItem().buildUpon().setUri(info.copyUri).build())
+    private fun downloadedSource(info: org.schabi.newpipe.download.DownloadedStreamInfo): MediaSource {
+        val media = dataSource.progressiveMediaSourceFactory
+            .createMediaSource(org.schabi.newpipe.player.mediaitem.StreamInfoTag.of(info).asMediaItem().buildUpon().setUri(info.copyUri).build())
+        return org.schabi.newpipe.player.resolver.OfflineSubtitleSources.merge(context, media, info.subtitles)
+    }
 
     fun disablePreloadingOfCurrentTrack() {
         player.getLoadControllerForLifecycle()?.disablePreloadingOfCurrentTrack()

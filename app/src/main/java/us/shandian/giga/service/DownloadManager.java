@@ -312,6 +312,8 @@ public class DownloadManager {
             if (alsoDeleteFile && mission.storage != null) {
                 org.schabi.newpipe.download.OfflineSponsorBlockStore.remove(appContext,
                         mission.storage.getUri().toString());
+                org.schabi.newpipe.download.OfflinePlaybackMetadata.remove(appContext,
+                        mission.storage.getUri().toString());
             }
             if (mission instanceof DownloadMission) {
                 mMissionsPending.remove(mission);

@@ -1186,7 +1186,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         super.onMetadataChanged(tag);
         binding.sponsorBlockContributeButton.setVisibility(View.GONE);
         videoSurface.selectItem(tag.getServiceId() + ":" + tag.getStreamUrl(), false);
-        chapterController.clear(binding);
+        chapterController.setChapters(binding, tag.getStreamSegments());
         danmakuController.reset();
         replayHeatmapController.clear();
         dualCaptionController.clear();

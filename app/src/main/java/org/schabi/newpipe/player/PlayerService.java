@@ -206,9 +206,12 @@ public final class PlayerService extends MediaLibraryService {
             return START_NOT_STICKY;
         }
 
-        final PlayerType oldPlayerType = player.getPlayerType();
-        player.handleIntent(intent);
-        player.handleIntentPost(oldPlayerType);
+        final Player intentPlayer = player;
+        final PlayerType oldPlayerType = intentPlayer.getPlayerType();
+        intentPlayer.handleIntent(intent);
+        if (player == intentPlayer) {
+            intentPlayer.handleIntentPost(oldPlayerType);
+        }
         return START_NOT_STICKY;
     }
 

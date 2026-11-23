@@ -20,6 +20,8 @@ class StreamSegmentItem(
 
     var isSelected = false
 
+    val startMillis: Long get() = org.schabi.newpipe.download.ChapterTimes.startMillis(item)
+
     override fun bind(viewBinding: ItemStreamSegmentBinding, position: Int) {
         CoilHelper.loadThumbnail(viewBinding.previewImage, item.previewUrl)
         viewBinding.textViewTitle.text = item.title

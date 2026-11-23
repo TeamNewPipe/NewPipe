@@ -114,7 +114,10 @@ public final class NavigationHelper {
                                                   @NonNull final TimestampChangeData data) {
         return new Intent(context, PlayerService.class)
                 .putExtra(Player.PLAYER_INTENT_TYPE, PlayerIntentType.TimestampChange)
-                .putExtra(Player.PLAYER_INTENT_DATA, data);
+                .putExtra(Player.PLAYER_INTENT_DATA, data)
+                .putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA,
+                        data.getLocalUri() != null
+                                || data.getServiceId() == PlayQueueItem.LOCAL_SERVICE_ID);
     }
 
     @NonNull

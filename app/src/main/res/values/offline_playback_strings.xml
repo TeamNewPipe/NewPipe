@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="offline_media_part">Part %1$d</string>
+    <string name="previous_chapter">Previous chapter</string>
+    <string name="next_chapter">Next chapter</string>
+</resources>

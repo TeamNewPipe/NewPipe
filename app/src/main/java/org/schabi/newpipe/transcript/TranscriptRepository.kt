@@ -5,6 +5,8 @@
 
 package org.schabi.newpipe.transcript
 
+import android.content.Context
+import android.net.Uri
 import androidx.media3.common.Format
 import androidx.media3.extractor.text.DefaultSubtitleParserFactory
 import androidx.media3.extractor.text.SubtitleParser
@@ -14,6 +16,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import okhttp3.Request
 import org.schabi.newpipe.DownloaderImpl
+import org.schabi.newpipe.download.OfflinePlaybackMetadata
 import org.schabi.newpipe.extractor.stream.DeliveryMethod
 import org.schabi.newpipe.extractor.stream.SubtitlesStream
 
@@ -27,9 +30,18 @@ internal object TranscriptRepository {
     fun supports(track: SubtitlesStream): Boolean = track.format?.mimeType in supported &&
         track.deliveryMethod != DeliveryMethod.TORRENT && track.content.isNotBlank()
 
-    fun load(track: SubtitlesStream): Single<List<TranscriptLine>> = Single.create<List<TranscriptLine>> { emitter ->
+    fun load(context: Context, track: SubtitlesStream, expectedIdentity: String? = null): Single<List<TranscriptLine>> = Single.create<List<TranscriptLine>> { emitter ->
         try {
-            val bytes = if (track.isUrl) {
+            val uri = if (track.isUrl) Uri.parse(track.content) else null
+            val local = uri?.scheme == "file" || uri?.scheme == "content"
+            val bytes = if (local) {
+                require(expectedIdentity != null && OfflinePlaybackMetadata.identity(context, track.content)?.signature == expectedIdentity) { "Caption file changed" }
+                context.contentResolver.openInputStream(uri!!)?.use { input ->
+                    emitter.setCancellable(input::close)
+                    readBounded(input)
+                } ?: error("Caption file is unavailable")
+            } else if (track.isUrl) {
+                require(uri?.scheme == "https" || uri?.scheme == "http") { "Unsupported caption URI" }
                 val request = Request.Builder().url(track.content).build()
                 val call = DownloaderImpl.getInstance().client.newCall(request)
                 emitter.setCancellable(call::cancel)
@@ -43,6 +55,7 @@ internal object TranscriptRepository {
                 require(track.content.length <= MAX_BYTES)
                 track.content.toByteArray(Charsets.UTF_8).also { require(it.size <= MAX_BYTES) }
             }
+            if (local) require(OfflinePlaybackMetadata.identity(context, track.content)?.signature == expectedIdentity) { "Caption file changed" }
             if (!emitter.isDisposed) emitter.onSuccess(parse(bytes, checkNotNull(track.format).mimeType))
         } catch (error: Exception) {
             emitter.tryOnError(error)
@@ -53,6 +66,7 @@ internal object TranscriptRepository {
         val output = ByteArrayOutputStream()
         val buffer = ByteArray(8192)
         while (true) {
+            check(!Thread.currentThread().isInterrupted) { "Caption loading cancelled" }
             val count = input.read(buffer)
             if (count < 0) break
             require(output.size() + count <= MAX_BYTES) { "Caption file is too large" }

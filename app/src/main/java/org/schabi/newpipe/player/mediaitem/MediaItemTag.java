@@ -9,9 +9,11 @@ import androidx.media3.common.Player;
 
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamSegment;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,6 +56,12 @@ public interface MediaItemTag {
     @NonNull
     default Optional<StreamInfo> getMaybeStreamInfo() {
         return Optional.empty();
+    }
+
+    @NonNull
+    default List<StreamSegment> getStreamSegments() {
+        return getMaybeStreamInfo().map(StreamInfo::getStreamSegments)
+                .orElse(Collections.emptyList());
     }
 
     @NonNull

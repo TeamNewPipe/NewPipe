@@ -64,7 +64,8 @@ object DownloadedAvailabilityIndex {
         }
         worker.execute {
             val fresh = runCatching {
-                FinishedMissionStore(app).use { store ->
+                val store = FinishedMissionStore(app)
+                try {
                     store.loadFinishedMissions().asSequence().mapNotNull { mission ->
                         val source = mission.source.orEmpty()
                         val available = runCatching {
@@ -83,6 +84,8 @@ object DownloadedAvailabilityIndex {
                         }.getOrNull() ?: return@mapNotNull null
                         identity(serviceId, source)
                     }.toSet()
+                } finally {
+                    store.close()
                 }
             }.getOrDefault(emptySet())
             mainHandler.post {

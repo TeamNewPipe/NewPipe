@@ -39,8 +39,11 @@ internal object DownloadPlayback {
 
     @WorkerThread
     fun find(context: Context, storageUri: String): FinishedMission? = runCatching {
-        FinishedMissionStore(context).use { store ->
+        val store = FinishedMissionStore(context)
+        try {
             store.findByStorageUri(storageUri) ?: findMediaStoreAlias(context, store, Uri.parse(storageUri))
+        } finally {
+            store.close()
         }
     }.getOrNull()
 

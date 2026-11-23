@@ -123,6 +123,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     private StreamSegmentAdapter segmentAdapter;
     private boolean isQueueVisible = false;
     private boolean areSegmentsVisible = false;
+    @Nullable
+    private ChapterNavigationControls chapterNavigation;
 
     // fullscreen player
     private ItemTouchHelper itemTouchHelper;
@@ -368,6 +370,10 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
     @Override
     public void destroy() {
+        if (chapterNavigation != null) {
+            chapterNavigation.clear();
+            chapterNavigation = null;
+        }
         ambientMode.clear();
         binding.getRoot().configure(false, 60_000);
         getParentActivity().ifPresent(FullscreenCommentsSidebar::hide);
@@ -604,6 +610,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         if (areSegmentsVisible) {
             segmentAdapter.selectSegmentAt(getNearestStreamSegmentPosition(currentProgress));
+            if (chapterNavigation != null) {
+                chapterNavigation.update(currentChapterSegments(), currentProgress);
+            }
         }
         if (isQueueVisible) {
             updateQueueTime(currentProgress);
@@ -704,10 +713,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         }
 
         final boolean showQueue = !playQueue.getStreams().isEmpty();
-        final boolean showSegment = !player.getCurrentStreamInfo()
-                .map(StreamInfo::getStreamSegments)
-                .map(List::isEmpty)
-                .orElse(/*no stream info=*/true);
+        final boolean showSegment = !currentChapterSegments().isEmpty();
 
         binding.queueButton.setVisibility(showQueue ? View.VISIBLE : View.GONE);
         binding.queueButton.setAlpha(showQueue ? 1.0f : 0.0f);
@@ -865,16 +871,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.openInBrowser.setVisibility(View.VISIBLE);
         showHideKodiButton();
         updateLearningNoteButtonVisibility(info);
-        if (areSegmentsVisible) {
-            if (segmentAdapter.setItems(info)) {
-                final int adapterPosition = getNearestStreamSegmentPosition(
-                        player.getExoPlayer().getCurrentPosition());
-                segmentAdapter.selectSegmentAt(adapterPosition);
-                binding.itemsList.scrollToPosition(adapterPosition);
-            } else {
-                closeItemsList();
-            }
-        }
+        showOrHideButtons();
+        refreshChapterPanel(info.getStreamSegments());
     }
 
     @Override
@@ -886,6 +884,26 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.openInBrowser.setVisibility(View.GONE);
         binding.playWithKodi.setVisibility(View.GONE);
         binding.learningNoteButton.setVisibility(View.GONE);
+        showOrHideButtons();
+        refreshChapterPanel(tag.getStreamSegments());
+    }
+
+    private void refreshChapterPanel(final List<StreamSegment> chapters) {
+        if (!areSegmentsVisible) {
+            return;
+        }
+        if (!segmentAdapter.setItems(chapters)) {
+            closeItemsList();
+            return;
+        }
+        final long position = player.exoPlayerIsNull()
+                ? 0 : player.getExoPlayer().getCurrentPosition();
+        final int adapterPosition = getNearestStreamSegmentPosition(position);
+        segmentAdapter.selectSegmentAt(adapterPosition);
+        binding.itemsList.scrollToPosition(adapterPosition);
+        if (chapterNavigation != null) {
+            chapterNavigation.update(chapters, position);
+        }
     }
 
     @Override
@@ -895,6 +913,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private void onQueueClicked() {
+        if (chapterNavigation != null) {
+            chapterNavigation.hide();
+        }
         isQueueVisible = true;
         areSegmentsVisible = false;
         ChapterPanelLayout.apply(binding.itemsListPanel, binding.playerVideoContent.getWidth(),
@@ -948,6 +969,14 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         hideSystemUIIfNeeded();
         buildSegments();
+        if (chapterNavigation == null) {
+            chapterNavigation = new ChapterNavigationControls(binding);
+        }
+        chapterNavigation.show(currentChapterSegments(),
+                player.getExoPlayer().getCurrentPosition(), position -> {
+                    player.seekTo(position);
+                    player.triggerProgressUpdate();
+                });
 
         binding.itemsListHeaderTitle.setVisibility(View.VISIBLE);
         binding.itemsListHeaderDuration.setVisibility(View.GONE);
@@ -976,7 +1005,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             itemTouchHelper.attachToRecyclerView(null);
         }
 
-        player.getCurrentStreamInfo().ifPresent(segmentAdapter::setItems);
+        segmentAdapter.setItems(currentChapterSegments());
 
         binding.shuffleButton.setVisibility(View.GONE);
         binding.repeatButton.setVisibility(View.GONE);
@@ -985,6 +1014,9 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     public void closeItemsList() {
+        if (chapterNavigation != null) {
+            chapterNavigation.hide();
+        }
         if (isQueueVisible || areSegmentsVisible) {
             isQueueVisible = false;
             areSegmentsVisible = false;
@@ -1025,7 +1057,7 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
             @Override
             public void onItemClick(@NonNull final StreamSegmentItem item, final int seconds) {
                 segmentAdapter.selectSegment(item);
-                player.seekTo(seconds * 1000L);
+                player.seekTo(item.getStartMillis());
                 player.triggerProgressUpdate();
             }
 
@@ -1049,18 +1081,21 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
     }
 
     private int getNearestStreamSegmentPosition(final long playbackPosition) {
-        final List<StreamSegment> segments = player.getCurrentStreamInfo()
-                .map(StreamInfo::getStreamSegments)
-                .orElse(Collections.emptyList());
+        final List<StreamSegment> segments = currentChapterSegments();
 
         int nearestPosition = 0;
         for (final var segment : segments) {
-            if (segment.getStartTimeSeconds() * 1000L > playbackPosition) {
+            if (org.schabi.newpipe.download.ChapterTimes.startMillis(segment) > playbackPosition) {
                 break;
             }
             nearestPosition++;
         }
         return Math.max(0, nearestPosition - 1);
+    }
+
+    private List<StreamSegment> currentChapterSegments() {
+        final MediaItemTag metadata = player.getCurrentMetadata();
+        return metadata == null ? Collections.emptyList() : metadata.getStreamSegments();
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {

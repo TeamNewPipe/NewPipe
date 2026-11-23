@@ -4,6 +4,12 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Offline chapters and transcripts
+
+- Keep chapter metadata with new downloads, preserve precise chapter timestamps, and remap chapters to selected-range exports.
+- Play recorded companion captions offline and open searchable local transcripts with timestamp navigation, including when playback has not started yet.
+- Add previous and next chapter controls and reject stale media or caption associations when downloaded files are replaced or edited.
+
 ### Previous playback
 
 - Return to the previous video with its queue, shuffle order and playback position using the new Return to previous playback action in video details and player controls.

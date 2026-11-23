@@ -47,6 +47,7 @@ public class DownloadMission extends Mission {
     public String tags;
     public String thumbnailUrl;
     public org.schabi.newpipe.download.artwork.DownloadArtworkRequest artworkRequest;
+    public org.schabi.newpipe.download.OfflineDownloadMetadata offlineMetadata;
     public transient volatile boolean deleteFileOnCancel;
 
     static final int BUFFER_SIZE = 64 * 1024;
@@ -453,6 +454,15 @@ public class DownloadMission extends Mission {
 
         // this mission is fully finished
 
+        if (offlineMetadata != null && !offlineMetadata.saved) {
+            // Persist optional chapter/transcript metadata once the audio artwork stage completes.
+            writeThisToFile();
+            org.schabi.newpipe.download.OfflinePlaybackMetadata.completed(this);
+        }
+        if (isCancellationRequested()) {
+            return;
+        }
+
         unknownLength = false;
         enqueued = false;
         running = false;
@@ -679,7 +689,8 @@ public class DownloadMission extends Mission {
      */
     public boolean isFinished() {
         return current >= urls.length && (psAlgorithm == null || psState == 2)
-                && (artworkRequest == null || artworkRequest.completed);
+                && (artworkRequest == null || artworkRequest.completed)
+                && (offlineMetadata == null || offlineMetadata.saved);
     }
 
     /**
