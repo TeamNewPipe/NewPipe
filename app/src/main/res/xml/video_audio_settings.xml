@@ -13,6 +13,13 @@
         app:useSimpleSummaryProvider="true" />
 
     <Preference
+        android:key="@string/visible_player_actions_key"
+        android:title="@string/visible_player_actions_title"
+        android:summary="@string/visible_player_actions_summary"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="false" />
+
+    <Preference
         android:key="@string/portrait_player_actions_key"
         android:title="@string/portrait_player_actions_title"
         android:summary="@string/portrait_player_actions_summary"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="visible_player_actions_key" translatable="false">player_hidden_actions</string>
+    <string name="visible_player_actions_title">Visible player actions</string>
+    <string name="visible_player_actions_summary">Show or hide optional tools, including Cast and Kodi, in all player layouts and video details. Playback, exit and Unlock controls stay available.</string>
+    <string name="visible_player_actions_reset">Show all tools</string>
+</resources>

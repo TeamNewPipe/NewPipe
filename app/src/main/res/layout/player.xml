@@ -427,7 +427,7 @@
                             android:gravity="top"
                             android:orientation="horizontal">
 
-                            <org.schabi.newpipe.views.NewPipeTextView
+                            <org.schabi.newpipe.player.ui.PlayerActionTextView
                                 android:id="@+id/resizeTextView"
                                 android:contentDescription="@string/player_resize_help"
                                 android:layout_width="wrap_content"
@@ -444,7 +444,7 @@
                                 tools:ignore="HardcodedText,RtlHardcoded"
                                 tools:text="FIT" />
 
-                            <org.schabi.newpipe.views.NewPipeTextView
+                            <org.schabi.newpipe.player.ui.PlayerActionTextView
                                 android:id="@+id/projectionButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -460,7 +460,7 @@
                                 android:textSize="@dimen/player_main_controls_text_size"
                                 android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/danmakuToggle"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -481,7 +481,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
-                                <androidx.appcompat.widget.AppCompatImageButton
+                                <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                     android:id="@+id/captionTextView"
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
@@ -509,7 +509,7 @@
                                 android:textColor="@color/white"
                                 android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/playWithKodi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -525,7 +525,7 @@
                                 app:tint="@color/white"
                                 tools:ignore="RtlHardcoded" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/castToPairedDevice"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -537,7 +537,7 @@
                                 android:src="@drawable/ic_cast"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/openInBrowser"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -553,7 +553,7 @@
                                 app:tint="@color/white"
                                 tools:ignore="RtlHardcoded" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/share"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -569,7 +569,7 @@
                                 app:tint="@color/white"
                                 tools:ignore="RtlHardcoded" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/playbackInformationButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -580,7 +580,7 @@
                                 android:src="@drawable/ic_info_outline"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/seekHistoryBack"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -591,7 +591,7 @@
                                 android:src="@drawable/ic_seek_back"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/seekHistoryForward"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -602,7 +602,7 @@
                                 android:src="@drawable/ic_seek_forward"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/nextReplayPeak"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -616,7 +616,7 @@
                                 android:visibility="gone"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/sleepTimerButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -630,7 +630,7 @@
                                 android:src="@drawable/ic_sleep_timer"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/sponsorBlockContributeButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -642,7 +642,7 @@
                                 android:visibility="gone"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/equalizerButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -655,7 +655,7 @@
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_equalizer"
                                 app:tint="@color/white" />
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/volumeBoostButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -669,7 +669,7 @@
                                 android:src="@drawable/ic_volume_up"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/videoAdjustmentsButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -683,7 +683,7 @@
                                 android:src="@drawable/ic_video_adjustments"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/touchLockButton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -708,7 +708,7 @@
                                 android:src="@drawable/ic_waveform"
                                 app:tint="@color/white" />
 
-                            <androidx.appcompat.widget.AppCompatImageButton
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/switchMute"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"

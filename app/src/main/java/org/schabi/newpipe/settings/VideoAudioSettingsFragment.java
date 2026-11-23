@@ -51,6 +51,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
                     org.schabi.newpipe.settings.VisualDanmakuPreviewDialog.show(requireContext());
                     return true;
                 });
+        org.schabi.newpipe.player.ui.PlayerActionVisibilityDialog.bind(this);
         requirePreference(R.string.portrait_player_actions_key)
                 .setOnPreferenceClickListener(preference -> {
                     org.schabi.newpipe.player.ui.PortraitPlayerActionsDialog.show(requireContext());

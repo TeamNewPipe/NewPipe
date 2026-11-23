@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.AttributeSet
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -12,7 +11,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.player.OptionalPlaybackFeatures
 import org.schabi.newpipe.player.Player
 
-class ABRepeatButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatTextView(context, attrs) {
+class ABRepeatButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : PlayerActionTextView(context, attrs) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
     private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == null || key == OptionalPlaybackFeatures.AB_REPEAT_KEY) updateEnabled()

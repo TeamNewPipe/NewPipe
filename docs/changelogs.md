@@ -29,6 +29,11 @@ Release history is listed newest first. The number beside each release is its An
 - Keep the opening choice on this device for each profile, preserve the current filter when returning or recreating the screen, and fall back to All when a category is removed or unavailable.
 - Preserve playlist membership and saved order when choosing an opening category, and keep assigning playlists separate from the remembered filter.
 
+### Player actions
+
+- Choose which optional player actions are visible, including separate controls for casting to a paired WizeStream device, casting to a TV and playing with Kodi.
+- Keep hidden tools out of portrait, fullscreen, popup and TV controls while preserving feature availability, essential playback controls and the existing portrait action order.
+
 ### App fonts
 
 - Add an App font selector with System default, Sans serif, Serif and Monospace choices and a preview in Appearance settings.
