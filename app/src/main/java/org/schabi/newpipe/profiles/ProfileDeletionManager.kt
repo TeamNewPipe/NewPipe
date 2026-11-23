@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.learning.LearningReminders
 import org.schabi.newpipe.local.bookmark.PlaylistCategories
-import org.schabi.newpipe.sync.HistorySyncRecorder
 
 object ProfileDeletionManager {
     // Delete only data that has become profile-scoped so later phases can extend cleanup safely.
@@ -23,12 +22,6 @@ object ProfileDeletionManager {
         return Completable.fromAction {
             val finishDeletion = checkNotNull(ProfileManager.prepareProfileDeletion(appContext, profileId))
 
-            runCatching {
-                val historySyncRecorder = HistorySyncRecorder.get(appContext)
-                historySyncRecorder.recordWatchAllDeleteForProfile(profileId)
-                historySyncRecorder.recordProgressAllDeleteForProfile(profileId)
-                historySyncRecorder.recordSearchAllDeleteForProfile(profileId)
-            }
             // Delete optional archive data before mutating the Room profile tables.
             org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(appContext, profileId)
             val database = NewPipeDatabase.getInstance(appContext)
@@ -42,6 +35,12 @@ object ProfileDeletionManager {
                 database.learningSessionDAO().deleteAllForProfile(profileId)
                 database.feedGroupDAO().deleteAllForProfile(profileId)
                 database.subscriptionDAO().deleteAllForProfile(profileId)
+                // A profile removal is local, unlike deleting its individual records. Keep the
+                // journals intact and publish the durable profile tombstone before another Room
+                // transaction can mistake the missing rows for deletions to send to a peer.
+                check(finishDeletion()) {
+                    "Profile metadata no longer exists"
+                }
             }
             PreferenceManager.getDefaultSharedPreferences(appContext)
                 .edit()
@@ -49,9 +48,6 @@ object ProfileDeletionManager {
                 .apply()
             org.schabi.newpipe.local.tv.TvPlaylistStore(appContext, profileId).delete()
             database.streamDAO().deleteOrphans()
-            check(finishDeletion()) {
-                "Profile metadata no longer exists"
-            }
             LearningReminders.cancelNotification(appContext, profileId)
             LearningReminders.initialize(appContext)
         }.subscribeOn(Schedulers.io())

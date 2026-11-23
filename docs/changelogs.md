@@ -22,6 +22,11 @@ Release history is listed newest first. The number beside each release is its An
 
 - Make optional Device Sync performance diagnostics available in Device synchronization settings on release builds, keeping them off by default.
 
+### Profile deletion
+
+- Keep profile removal local to the current device, preserving the profile's history, playback progress, searches, subscriptions, playlists and feed groups on paired devices.
+- Prevent later synchronization from recreating a removed local profile while keeping normal item deletions and pending synchronization changes working.
+
 ### Replay heatmap
 
 - Add an optional Most replayed graph for supported YouTube videos using replay data from the existing metadata request.

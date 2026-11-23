@@ -56,6 +56,7 @@ internal class RoomSubscriptionSyncStore internal constructor(
         database.runInTransaction {
             val subscriptions = subscriptionDao
                 .getAllDirect()
+                .filter { canMaterializeProfile(it.profileId) }
                 .filter(::isSynchronizable)
             val liveRecords = subscriptions.associateBy { subscription ->
                 SubscriptionRecordId.from(
@@ -88,6 +89,8 @@ internal class RoomSubscriptionSyncStore internal constructor(
 
             syncRecords.values
                 .filterNot(SubscriptionSyncRecordEntity::isDeleted)
+                // Missing rows from a locally removed profile are not remote unsubscribe actions.
+                .filter { canMaterializeProfile(it.profileId) }
                 .filterNot { record -> liveRecords.containsKey(record.recordId) }
                 .forEach { record ->
                     recordLocalDeleteInTransaction(

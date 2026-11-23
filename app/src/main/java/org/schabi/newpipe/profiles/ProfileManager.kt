@@ -205,7 +205,16 @@ object ProfileManager {
     internal fun prepareProfileDeletion(context: Context, profileId: String): (() -> Boolean)? = synchronized(lock) {
         if (!canDeleteProfile(context, profileId)) return null
         val appContext = context.applicationContext
-        return@synchronized { synchronized(lock) { deleteProfileMetadata(appContext, profileId) } }
+        return@synchronized {
+            // Archive readers take their own monitor before consulting ProfileManager. Never
+            // hold the profile lock while waiting for those monitors during deletion.
+            org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(appContext, profileId)
+            org.schabi.newpipe.local.comments.CommentArchive.forgetProfile(appContext, profileId)
+            org.schabi.newpipe.player.LiveChatRecorder.forgetProfile(appContext, profileId)
+            val deleted = synchronized(lock) { deleteProfileMetadata(appContext, profileId) }
+            if (deleted) clearDeletedProfilePreferences(appContext, profileId)
+            deleted
+        }
     }
 
     private fun deleteProfileMetadata(context: Context, profileId: String): Boolean {
@@ -216,11 +225,6 @@ object ProfileManager {
             return false
         }
 
-        // Clean the separate feed archive before committing profile deletion metadata.
-        // If disk cleanup fails, do not silently orphan the user's archived feed data.
-        org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(context, profileId)
-        org.schabi.newpipe.local.comments.CommentArchive.forgetProfile(context, profileId)
-        org.schabi.newpipe.player.LiveChatRecorder.forgetProfile(context, profileId)
         val tombstones = syncTombstones(prefs).toMutableSet().apply { add(profileId) }
         val editor = prefs.edit()
             .putStringSet(PROFILE_IDS_KEY, ids)
@@ -235,7 +239,13 @@ object ProfileManager {
         if (prefs.getString(ACTIVE_PROFILE_ID_PREFERENCE_KEY, DEFAULT_PROFILE_ID) == profileId) {
             editor.putString(ACTIVE_PROFILE_ID_PREFERENCE_KEY, fallbackId(prefs))
         }
-        editor.apply()
+        // ProfileDeletionManager holds the Room cleanup transaction until this suppression is
+        // durable, so a restart cannot export the removed rows as remote deletions.
+        check(editor.commit()) { "Unable to save local profile deletion" }
+        return true
+    }
+
+    private fun clearDeletedProfilePreferences(context: Context, profileId: String) {
         org.schabi.newpipe.local.feed.FeedSeenStore.forgetProfile(context, profileId)
         KidsMode.forgetProfile(context, profileId)
         org.schabi.newpipe.local.playlist.LocalPlaylistSortPreferences.clearProfile(context, profileId)
@@ -245,7 +255,6 @@ object ProfileManager {
         localRecommendations.all.keys.filter { it.startsWith("$profileId:") }.forEach(localEditor::remove)
         localEditor.apply()
         org.schabi.newpipe.download.offline.OfflineLibrary.forgetProfile(context, profileId)
-        return true
     }
 
     @JvmStatic

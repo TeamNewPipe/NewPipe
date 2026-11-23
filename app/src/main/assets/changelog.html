@@ -143,6 +143,11 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <ul>
 <li>Make optional Device Sync performance diagnostics available in Device synchronization settings on release builds, keeping them off by default.</li>
 </ul>
+<h3>Profile deletion</h3>
+<ul>
+<li>Keep profile removal local to the current device, preserving the profile&#x27;s history, playback progress, searches, subscriptions, playlists and feed groups on paired devices.</li>
+<li>Prevent later synchronization from recreating a removed local profile while keeping normal item deletions and pending synchronization changes working.</li>
+</ul>
 <h3>Replay heatmap</h3>
 <ul>
 <li>Add an optional Most replayed graph for supported YouTube videos using replay data from the existing metadata request.</li>

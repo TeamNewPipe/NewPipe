@@ -29,6 +29,7 @@ internal class FeedGroupSyncAdapter(
             .associateBy { it.profileId to it.uid }
         val snapshot = feedGroupDao
             .getAllDirect()
+            .filter { canMaterializeProfile(it.profileId) }
             .map { group ->
                 FeedGroupSnapshot(
                     uid = group.uid,
@@ -55,6 +56,7 @@ internal class FeedGroupSyncAdapter(
 
     override fun reconcile(bootstrap: Boolean) {
         val groups = feedGroupDao.getAllDirect()
+            .filter { canMaterializeProfile(it.profileId) }
         if (groups.size > MAX_FEED_GROUPS) {
             throw StructuredPreferenceSyncException(
                 "There are too many feed groups to synchronize"
@@ -109,6 +111,10 @@ internal class FeedGroupSyncAdapter(
             category,
             StructuredPreferenceRecordType.FEED_GROUP
         ).filterNot(StructuredPreferenceSyncRecordEntity::isDeleted)
+            .filter {
+                val group = requireNotNull(recordRepository.decodeRecord(it).feedGroup)
+                canMaterializeProfile(group.profileId)
+            }
             .filterNot { it.recordId in desiredGroupIds }
             .forEach(recordRepository::saveLocalDelete)
 
@@ -155,6 +161,10 @@ internal class FeedGroupSyncAdapter(
             category,
             StructuredPreferenceRecordType.FEED_GROUP_MEMBERSHIP
         ).filterNot(StructuredPreferenceSyncRecordEntity::isDeleted)
+            .filter {
+                val membership = requireNotNull(recordRepository.decodeRecord(it).feedGroupMembership)
+                canMaterializeProfile(membership.profileId)
+            }
             .filterNot { it.recordId in desiredMemberships }
             .forEach(recordRepository::saveLocalDelete)
 

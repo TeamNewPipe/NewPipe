@@ -51,17 +51,22 @@ internal class RoomPlaylistSyncStore internal constructor(
     override fun reconcileLocalPlaylists() {
         database.runInTransaction {
             val localPlaylists = playlistDao.getAllDirect()
+                .filter { canMaterializeProfile(it.profileId) }
             val localPlaylistIds = localPlaylists.mapTo(hashSetOf(), PlaylistEntity::uid)
             localPlaylists.forEach(::reconcileLocalPlaylist)
 
             syncDao.getAllLocalMappings()
                 .filterNot { it.playlistUid in localPlaylistIds }
                 .forEach { mapping ->
-                    deleteLocalPlaylistRecords(mapping.playlistRecordId)
+                    val record = syncDao.getRecord(mapping.playlistRecordId)
+                    if (record != null && canMaterializeProfile(record.profileId)) {
+                        deleteLocalPlaylistRecords(mapping.playlistRecordId)
+                    }
                 }
 
             val remotePlaylists =
                 remotePlaylistDao.getAllDirect()
+                    .filter { canMaterializeProfile(it.profileId) }
                     .filter { playlist ->
                         playlist.serviceId >= 0 &&
                             !playlist.url.isNullOrBlank() &&
@@ -91,6 +96,7 @@ internal class RoomPlaylistSyncStore internal constructor(
 
             syncDao.getRecordsByType(PlaylistRecordType.REMOTE_PLAYLIST.name)
                 .filterNot(PlaylistSyncRecordEntity::isDeleted)
+                .filter { canMaterializeProfile(it.profileId) }
                 .filterNot { it.recordId in liveRemoteIds }
                 .forEach { record ->
                     saveLocalDelete(record, decodeRecord(record))
