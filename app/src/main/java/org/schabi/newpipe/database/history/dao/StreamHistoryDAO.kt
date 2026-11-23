@@ -10,6 +10,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import java.time.OffsetDateTime
 import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity
@@ -159,29 +160,52 @@ abstract class StreamHistoryDAO : BasicDAO<StreamHistoryEntity> {
     )
     abstract fun getStatistics(): Flowable<MutableList<StreamStatisticsEntry>>
 
+    /** Keep the state index usable on older SQLite versions that cannot flatten LEFT JOIN subqueries. */
     @RewriteQueriesToDropUnusedColumns
     @Query(
         """
-        SELECT * FROM streams
-        INNER JOIN (
+        SELECT streams.*, history.stream_id, history.latestAccess, history.watchCount,
+            COALESCE(state.progress_time, 0) AS progress_time
+        FROM (
             SELECT stream_id, MAX(access_date) AS latestAccess, SUM(repeat_count) AS watchCount
             FROM stream_history
             WHERE profile_id = :profileId
             GROUP BY stream_id
-        )
-        ON uid = stream_id
-        LEFT JOIN (
-            SELECT stream_id AS stream_id_alias, progress_time
-            FROM stream_state
-            WHERE profile_id = :profileId
-        )
-        ON uid = stream_id_alias
-        ORDER BY latestAccess DESC
+        ) AS history
+        INNER JOIN streams ON streams.uid = history.stream_id
+        LEFT JOIN stream_state AS state
+            ON state.stream_id = streams.uid AND state.profile_id = :profileId
+        ORDER BY latestAccess DESC, history.stream_id ASC
         """
     )
     abstract fun getStatisticsForProfile(
         profileId: String
     ): Flowable<MutableList<StreamStatisticsEntry>>
+
+    /** Bound the aggregate before hydrating stream metadata and playback positions. */
+    @RewriteQueriesToDropUnusedColumns
+    @Query(
+        """
+        SELECT streams.*, recent.stream_id, recent.latestAccess, recent.watchCount,
+            COALESCE(state.progress_time, 0) AS progress_time
+        FROM (
+            SELECT stream_id, MAX(access_date) AS latestAccess, SUM(repeat_count) AS watchCount
+            FROM stream_history
+            WHERE profile_id = :profileId
+            GROUP BY stream_id
+            ORDER BY latestAccess DESC, stream_id ASC
+            LIMIT :limit
+        ) AS recent
+        INNER JOIN streams ON streams.uid = recent.stream_id
+        LEFT JOIN stream_state AS state
+            ON state.stream_id = streams.uid AND state.profile_id = :profileId
+        ORDER BY latestAccess DESC, recent.stream_id ASC
+        """
+    )
+    abstract fun getRecentStatisticsForProfile(
+        profileId: String,
+        limit: Int
+    ): Single<List<StreamStatisticsEntry>>
 
     @Query(
         """

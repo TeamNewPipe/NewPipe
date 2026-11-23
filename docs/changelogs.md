@@ -22,6 +22,11 @@ Release history is listed newest first. The number beside each release is its An
 
 - Fix excessive spacing between channel avatars, channel names and video details in What's New, Live and History, including wide windows and right-to-left layouts.
 
+### History loading
+
+- Show the latest history entries sooner while older entries load in the background. Keep full-history search, filters, sorting, date navigation, and playback queues available after loading completes, and preserve the scroll position when the complete list arrives.
+- Keep large history loads efficient on older Android versions when joining saved playback positions.
+
 ### Vimeo
 
 - Add Vimeo public videos and shared unlisted links with native playback and available captions, plus paginated public creator/channel uploads and Staff Picks.

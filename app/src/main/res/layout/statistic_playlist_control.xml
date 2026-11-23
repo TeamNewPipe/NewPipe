@@ -44,4 +44,18 @@
         android:id="@+id/playlist_control"
         layout="@layout/playlist_control" />
 
+    <org.schabi.newpipe.views.NewPipeTextView
+        android:id="@+id/history_loading_older"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:accessibilityLiveRegion="polite"
+        android:text="@string/history_loading_older"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
+
 </LinearLayout>

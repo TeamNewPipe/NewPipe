@@ -154,7 +154,30 @@ class LearningRemindersTest {
         return streamId
     }
 
-    private fun notificationCount(profile: String) = notifications.activeNotifications.count { it.tag?.endsWith(profile) == true }
+    private fun notificationCount(profile: String): Int {
+        val deadline = SystemClock.uptimeMillis() + 5_000
+        while (true) {
+            try {
+                return notifications.activeNotifications.count { it.tag?.endsWith(profile) == true }
+            } catch (error: NullPointerException) {
+                val origin = error.stackTrace.firstOrNull()
+                if (
+                    Build.VERSION.SDK_INT != Build.VERSION_CODES.M ||
+                    origin?.className != NotificationManager::class.java.name ||
+                    origin?.methodName != "getActiveNotifications"
+                ) {
+                    throw error
+                }
+                // Android 6 reads the notification count before locking its list. Concurrent
+                // cancellation can fail the Binder reply and cause this framework NPE. Require
+                // a successful snapshot; an unreadable notification list must never mean zero.
+                if (SystemClock.uptimeMillis() >= deadline) {
+                    throw AssertionError("Android 6 could not return an active notification snapshot", error)
+                }
+                SystemClock.sleep(50)
+            }
+        }
+    }
 
     private fun awaitDashboard(scenario: ActivityScenario<MainActivity>, profile: String) {
         awaitCondition {

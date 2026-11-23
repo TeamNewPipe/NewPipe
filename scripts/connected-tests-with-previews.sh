@@ -15,7 +15,7 @@ collect_previews() {
 # Keep the test command's exit status while collecting previews on both success and failure.
 trap collect_previews EXIT
 # Stream progress before a disconnected emulator can make its saved logs unavailable.
-adb logcat -v threadtime -s TestRunner AndroidRuntime &
+adb logcat -v threadtime -s TestRunner AndroidRuntime HistoryLoadingBenchmark &
 LOGCAT_PID=$!
 # Leave time for logs and reports before the enclosing 30-minute CI job expires.
 timeout --signal=TERM --kill-after=30s 20m "$ROOT_DIR/scripts/build.sh" connected "$@"

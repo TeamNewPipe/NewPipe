@@ -70,6 +70,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -95,8 +96,12 @@ public class StatisticsPlaylistFragment
     @State
     long historyDateTo = Long.MAX_VALUE;
     private StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
-    private List<StreamStatisticsEntry> completeHistory = Collections.emptyList();
+    private HistoryLoadSnapshot historySnapshot =
+            new HistoryLoadSnapshot(Collections.emptyList(), false);
     private List<StreamStatisticsEntry> displayedHistory = Collections.emptyList();
+    private boolean displayedHistoryComplete;
+    private long historyLoadGeneration;
+    private PendingPlayback pendingPlayback;
     private String contextualSearchQuery = "";
     private boolean dateFastScrollEnabled;
     @State
@@ -115,7 +120,7 @@ public class StatisticsPlaylistFragment
     private HistoryRecordManager recordManager;
 
     @NonNull
-    private static HistoryViewData processHistory(
+    private static HistoryLoadSnapshot processHistory(
             @NonNull final List<StreamStatisticsEntry> completeHistory,
             @NonNull final String selectedStreamFilters,
             @NonNull final String contextualSearchQuery,
@@ -127,7 +132,7 @@ public class StatisticsPlaylistFragment
                 || !normalizedQuery.isEmpty();
         if (!hasFilters && sortMode == StatisticSortMode.LAST_PLAYED
                 && dateFrom == Long.MIN_VALUE && dateTo == Long.MAX_VALUE) {
-            return new HistoryViewData(completeHistory);
+            return new HistoryLoadSnapshot(completeHistory, true);
         }
         final List<StreamStatisticsEntry> filteredHistory = new ArrayList<>();
         final StreamFilterSelection selection = StreamFilterSelection.parse(selectedStreamFilters);
@@ -150,7 +155,8 @@ public class StatisticsPlaylistFragment
             filteredHistory.add(item);
         }
 
-        return new HistoryViewData(HistoryViewOptions.sort(filteredHistory, sortMode.name()));
+        return new HistoryLoadSnapshot(
+                HistoryViewOptions.sort(filteredHistory, sortMode.name()), true);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -215,7 +221,7 @@ public class StatisticsPlaylistFragment
         StreamFilterControls.bind(contentBinding.streamFilterChips, selectedStreamFilters,
                 true, true, true, true, selection -> {
                     selectedStreamFilters = selection;
-                    showFilteredHistory();
+                    onHistoryViewChanged();
                 });
         if (!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
@@ -273,15 +279,13 @@ public class StatisticsPlaylistFragment
                     final StreamEntity item =
                             ((StreamStatisticsEntry) selectedItem).getStreamEntity();
                     if (item.isRadio()) {
-                        NavigationHelper.playOnBackgroundPlayer(requireContext(),
-                                getPlayQueueStartingAt((StreamStatisticsEntry) selectedItem),
-                                false);
+                        playHistoryItem(((StreamStatisticsEntry) selectedItem).getStreamId(),
+                                true, false);
                         return;
                     }
                     if (item.isLocalMedia()) {
-                        NavigationHelper.playOnMainPlayer(requireContext(),
-                                getPlayQueueStartingAt((StreamStatisticsEntry) selectedItem),
-                                false);
+                        playHistoryItem(((StreamStatisticsEntry) selectedItem).getStreamId(),
+                                false, false);
                         return;
                     }
                     NavigationHelper.openVideoDetailFragment(requireContext(), getFM(),
@@ -306,7 +310,7 @@ public class StatisticsPlaylistFragment
             historyDateFrom = Long.MIN_VALUE;
             historyDateTo = Long.MAX_VALUE;
             requireActivity().invalidateOptionsMenu();
-            showFilteredHistory();
+            onHistoryViewChanged();
         } else if (item.getItemId() == R.id.action_history_clear) {
             HistorySettingsFragment
                     .openDeleteWatchHistoryDialog(requireContext(), recordManager, disposables);
@@ -323,9 +327,13 @@ public class StatisticsPlaylistFragment
     @Override
     public void startLoading(final boolean forceLoad) {
         super.startLoading(forceLoad);
-        recordManager.getStreamStatistics()
+        getHistoryForDisplay(canShowHistoryPreview())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getHistoryObserver());
+                .subscribe(getHistoryObserver(historyLoadGeneration));
+    }
+
+    protected Flowable<HistoryLoadSnapshot> getHistoryForDisplay(final boolean showPreview) {
+        return recordManager.getStreamStatisticsForDisplay(showPreview);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -334,12 +342,15 @@ public class StatisticsPlaylistFragment
 
     @Override
     public void onPause() {
+        pendingPlayback = null;
         super.onPause();
         itemsListState = Objects.requireNonNull(itemsList.getLayoutManager()).onSaveInstanceState();
     }
 
     @Override
     public void onDestroyView() {
+        historyLoadGeneration++;
+        pendingPlayback = null;
         if (itemsList != null && historyScrollListener != null) {
             itemsList.removeOnScrollListener(historyScrollListener);
         }
@@ -364,8 +375,9 @@ public class StatisticsPlaylistFragment
         contentBinding = null;
         headerBinding = null;
         playlistControlBinding = null;
-        completeHistory = Collections.emptyList();
+        historySnapshot = new HistoryLoadSnapshot(Collections.emptyList(), false);
         displayedHistory = Collections.emptyList();
+        displayedHistoryComplete = false;
         dateFastScrollEnabled = false;
 
         if (databaseSubscription != null) {
@@ -385,10 +397,14 @@ public class StatisticsPlaylistFragment
     // Statistics Loader
     ///////////////////////////////////////////////////////////////////////////
 
-    private Subscriber<List<StreamStatisticsEntry>> getHistoryObserver() {
-        return new Subscriber<List<StreamStatisticsEntry>>() {
+    private Subscriber<HistoryLoadSnapshot> getHistoryObserver(final long generation) {
+        return new Subscriber<HistoryLoadSnapshot>() {
             @Override
             public void onSubscribe(final Subscription s) {
+                if (generation != historyLoadGeneration) {
+                    s.cancel();
+                    return;
+                }
                 showLoading();
 
                 if (databaseSubscription != null) {
@@ -399,8 +415,18 @@ public class StatisticsPlaylistFragment
             }
 
             @Override
-            public void onNext(final List<StreamStatisticsEntry> streams) {
-                handleResult(streams);
+            public void onNext(final HistoryLoadSnapshot snapshot) {
+                if (generation != historyLoadGeneration || itemListAdapter == null) {
+                    return;
+                }
+                if (snapshot.isComplete()) {
+                    handleResult(snapshot.getEntries());
+                } else if (!historySnapshot.isComplete()) {
+                    historySnapshot = snapshot;
+                    if (canShowHistoryPreview() && !snapshot.getEntries().isEmpty()) {
+                        applyProcessedHistory(snapshot);
+                    }
+                }
                 if (databaseSubscription != null) {
                     databaseSubscription.request(1);
                 }
@@ -408,8 +434,9 @@ public class StatisticsPlaylistFragment
 
             @Override
             public void onError(final Throwable exception) {
-                showError(
-                        new ErrorInfo(exception, UserAction.SOMETHING_ELSE, "History Statistics"));
+                if (generation == historyLoadGeneration) {
+                    showHistoryError(exception);
+                }
             }
 
             @Override
@@ -420,8 +447,18 @@ public class StatisticsPlaylistFragment
 
     @Override
     public void handleResult(@NonNull final List<StreamStatisticsEntry> result) {
-        super.handleResult(result);
-        completeHistory = result;
+        historySnapshot = new HistoryLoadSnapshot(result, true);
+        showFilteredHistory();
+    }
+
+    private boolean canShowHistoryPreview() {
+        return itemsListState == null && selectedStreamFilters.isEmpty()
+                && contextualSearchQuery.isEmpty() && sortMode == StatisticSortMode.LAST_PLAYED
+                && historyDateFrom == Long.MIN_VALUE && historyDateTo == Long.MAX_VALUE;
+    }
+
+    private void onHistoryViewChanged() {
+        pendingPlayback = null;
         showFilteredHistory();
     }
 
@@ -438,55 +475,110 @@ public class StatisticsPlaylistFragment
             historyProcessingDisposable.dispose();
         }
 
-        final List<StreamStatisticsEntry> historySnapshot = completeHistory;
+        // A bounded preview must never produce incomplete search results or date/sort ranges.
+        if (!historySnapshot.isComplete()) {
+            if (!canShowHistoryPreview()) {
+                showLoading();
+            }
+            return;
+        }
+        if (!displayedHistoryComplete && !canShowHistoryPreview()) {
+            showLoading();
+        }
+
+        final List<StreamStatisticsEntry> entries = historySnapshot.getEntries();
         final String filterSnapshot = selectedStreamFilters;
         final String querySnapshot = contextualSearchQuery;
         final StatisticSortMode sortModeSnapshot = sortMode;
         final long dateFrom = historyDateFrom;
         final long dateTo = historyDateTo;
+        final long generation = historyLoadGeneration;
 
         historyProcessingDisposable = Single.fromCallable(() -> processHistory(
-                        historySnapshot, filterSnapshot, querySnapshot, sortModeSnapshot,
+                        entries, filterSnapshot, querySnapshot, sortModeSnapshot,
                         dateFrom, dateTo))
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::applyProcessedHistory,
-                        throwable -> showError(new ErrorInfo(throwable,
-                                UserAction.SOMETHING_ELSE, "Processing history")));
+                .subscribe(processed -> {
+                    if (generation == historyLoadGeneration) {
+                        applyProcessedHistory(processed);
+                    }
+                }, this::showHistoryError);
     }
 
-    private void applyProcessedHistory(@NonNull final HistoryViewData historyViewData) {
+    private void applyProcessedHistory(@NonNull final HistoryLoadSnapshot processed) {
         if (itemListAdapter == null || contentBinding == null) {
             return;
         }
 
+        final HistoryScrollAnchor anchor = !displayedHistoryComplete && canShowHistoryPreview()
+                ? captureHistoryScrollAnchor() : null;
         itemListAdapter.clearStreamItemList();
-        displayedHistory = historyViewData.entries;
+        displayedHistory = processed.getEntries();
+        displayedHistoryComplete = processed.isComplete();
+        updateHistoryLoadControls();
 
         if (displayedHistory.isEmpty()) {
             updateDateNavigation();
             showEmptyState();
+            pendingPlayback = null;
             return;
         }
 
         itemListAdapter.addItems(displayedHistory);
-        if (itemsListState != null && itemsList.getLayoutManager() != null) {
+        if (displayedHistoryComplete && itemsListState != null
+                && itemsList.getLayoutManager() != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
+        } else if (anchor != null) {
+            restoreHistoryScrollAnchor(anchor);
         }
 
-        PlayButtonHelper.initPlaylistControlClickListener(activity, playlistControlBinding, this);
+        if (displayedHistoryComplete) {
+            PlayButtonHelper.initPlaylistControlClickListener(
+                    activity, playlistControlBinding, this);
+        }
         headerBinding.sortButton.setOnClickListener(view -> showSortPicker());
         updateSortHeader();
 
         updateDateNavigation();
         hideLoading();
+        if (displayedHistoryComplete && pendingPlayback != null) {
+            final PendingPlayback playback = pendingPlayback;
+            pendingPlayback = null;
+            if (isResumed()) {
+                playHistoryItem(playback.streamId, playback.background, playback.resume);
+            }
+        }
+    }
+
+    private void updateHistoryLoadControls() {
+        playlistControlBinding.getRoot().setVisibility(View.VISIBLE);
+        playlistControlBinding.getRoot().setAlpha(displayedHistoryComplete ? 1.0f : 0.5f);
+        playlistControlBinding.playlistCtrlPlayAllButton.setEnabled(displayedHistoryComplete);
+        playlistControlBinding.playlistCtrlPlayBgButton.setEnabled(displayedHistoryComplete);
+        playlistControlBinding.playlistCtrlPlayPopupButton.setEnabled(displayedHistoryComplete);
+        headerBinding.historyLoadingOlder.setVisibility(
+                displayedHistoryComplete ? View.GONE : View.VISIBLE);
+    }
+
+    private void showHistoryError(final Throwable error) {
+        pendingPlayback = null;
+        if (historyProcessingDisposable != null) {
+            historyProcessingDisposable.dispose();
+        }
+        displayedHistoryComplete = false;
+        if (headerBinding != null) {
+            updateHistoryLoadControls();
+            headerBinding.historyLoadingOlder.setVisibility(View.GONE);
+        }
+        showError(new ErrorInfo(error, UserAction.SOMETHING_ELSE, "History Statistics"));
     }
 
     @Override
     public void setContextualSearchQuery(@NonNull final String query) {
         contextualSearchQuery = ContextualSearchHelper.normalizeQuery(query);
-        showFilteredHistory();
+        onHistoryViewChanged();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -495,9 +587,23 @@ public class StatisticsPlaylistFragment
 
     @Override
     protected void resetFragment() {
+        historyLoadGeneration++;
+        pendingPlayback = null;
+        if (historyProcessingDisposable != null) {
+            historyProcessingDisposable.dispose();
+            historyProcessingDisposable = null;
+        }
+        historySnapshot = new HistoryLoadSnapshot(Collections.emptyList(), false);
+        displayedHistory = Collections.emptyList();
+        displayedHistoryComplete = false;
         super.resetFragment();
         if (databaseSubscription != null) {
             databaseSubscription.cancel();
+        }
+        databaseSubscription = null;
+        if (headerBinding != null) {
+            updateHistoryLoadControls();
+            hideDateNavigation();
         }
     }
 
@@ -520,7 +626,7 @@ public class StatisticsPlaylistFragment
                     historySortMode = sortMode.name();
                     updateSortHeader();
                     hideDateNavigation();
-                    showFilteredHistory();
+                    onHistoryViewChanged();
                     dialog.dismiss();
                 })
                 .setNegativeButton(R.string.cancel, null)
@@ -574,7 +680,7 @@ public class StatisticsPlaylistFragment
             historyDateFrom = utcMillisToDate(range.first).toEpochDay();
             historyDateTo = utcMillisToDate(range.second).toEpochDay();
             requireActivity().invalidateOptionsMenu();
-            showFilteredHistory();
+            onHistoryViewChanged();
         });
         picker.show(getParentFragmentManager(), DATE_RANGE_PICKER_TAG);
     }
@@ -597,7 +703,8 @@ public class StatisticsPlaylistFragment
             return;
         }
 
-        final boolean chronological = sortMode == StatisticSortMode.LAST_PLAYED
+        final boolean chronological = displayedHistoryComplete
+                && sortMode == StatisticSortMode.LAST_PLAYED
                 && displayedHistory.size() > 1;
         contentBinding.historyDateJumpButton.setVisibility(
                 chronological ? View.VISIBLE : View.GONE);
@@ -725,7 +832,8 @@ public class StatisticsPlaylistFragment
     }
 
     private void showDatePicker() {
-        if (sortMode != StatisticSortMode.LAST_PLAYED || displayedHistory.isEmpty()
+        if (!displayedHistoryComplete || sortMode != StatisticSortMode.LAST_PLAYED
+                || displayedHistory.isEmpty()
                 || getParentFragmentManager().findFragmentByTag(DATE_PICKER_TAG) != null) {
             return;
         }
@@ -792,8 +900,35 @@ public class StatisticsPlaylistFragment
                 .toLocalDate();
     }
 
-    private PlayQueue getPlayQueueStartingAt(final StreamStatisticsEntry infoItem) {
-        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+    private int findHistoryItem(final long streamId) {
+        for (int i = 0; i < displayedHistory.size(); i++) {
+            if (displayedHistory.get(i).getStreamId() == streamId) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @VisibleForTesting
+    void playHistoryItem(final long streamId, final boolean background, final boolean resume) {
+        if (!displayedHistoryComplete) {
+            pendingPlayback = new PendingPlayback(streamId, background, resume);
+            return;
+        }
+        final int index = findHistoryItem(streamId);
+        if (index < 0) {
+            return; // The entry may have been removed while the complete history was loading.
+        }
+        startHistoryPlayback(getPlayQueue(index), background, resume);
+    }
+
+    protected void startHistoryPlayback(final PlayQueue queue, final boolean background,
+                                        final boolean resume) {
+        if (background) {
+            NavigationHelper.playOnBackgroundPlayer(requireContext(), queue, resume);
+        } else {
+            NavigationHelper.playOnMainPlayer(requireContext(), queue, resume);
+        }
     }
 
     private void showInfoItemDialog(final StreamStatisticsEntry item) {
@@ -807,14 +942,11 @@ public class StatisticsPlaylistFragment
                     .setTitle(item.getStreamEntity().getTitle())
                     .setItems(actions, (dialog, which) -> {
                         if (which == 0 && item.getStreamEntity().isRadio()) {
-                            NavigationHelper.playOnBackgroundPlayer(requireContext(),
-                                    getPlayQueueStartingAt(item), false);
+                            playHistoryItem(item.getStreamId(), true, false);
                         } else if (which == 0) {
-                            NavigationHelper.playOnMainPlayer(requireContext(),
-                                    getPlayQueueStartingAt(item), false);
+                            playHistoryItem(item.getStreamId(), false, false);
                         } else if (which == 1) {
-                            NavigationHelper.playOnBackgroundPlayer(requireContext(),
-                                    getPlayQueueStartingAt(item), true);
+                            playHistoryItem(item.getStreamId(), true, true);
                         } else if (which == 2) {
                             confirmDeleteEntry(item);
                         }
@@ -879,7 +1011,7 @@ public class StatisticsPlaylistFragment
     }
 
     private PlayQueue getPlayQueue(final int index) {
-        if (itemListAdapter == null) {
+        if (itemListAdapter == null || !displayedHistoryComplete) {
             return new SinglePlayQueue(Collections.emptyList(), 0);
         }
 
@@ -893,11 +1025,50 @@ public class StatisticsPlaylistFragment
         return new LocalMediaPlayQueue(queueItems, index);
     }
 
-    private static final class HistoryViewData {
-        private final List<StreamStatisticsEntry> entries;
+    private static final class PendingPlayback {
+        private final long streamId;
+        private final boolean background;
+        private final boolean resume;
 
-        private HistoryViewData(@NonNull final List<StreamStatisticsEntry> entries) {
-            this.entries = entries;
+        private PendingPlayback(final long streamId, final boolean background,
+                                final boolean resume) {
+            this.streamId = streamId;
+            this.background = background;
+            this.resume = resume;
+        }
+    }
+
+    @Nullable
+    private HistoryScrollAnchor captureHistoryScrollAnchor() {
+        if (!(itemsList.getLayoutManager() instanceof LinearLayoutManager)) {
+            return null;
+        }
+        final LinearLayoutManager layout = (LinearLayoutManager) itemsList.getLayoutManager();
+        final int position = layout.findFirstVisibleItemPosition();
+        final int index = itemListAdapter.getItemIndex(position);
+        final View view = layout.findViewByPosition(position);
+        if (index < 0 || index >= displayedHistory.size() || view == null) {
+            return null;
+        }
+        return new HistoryScrollAnchor(displayedHistory.get(index).getStreamId(),
+                layout.getDecoratedTop(view) - itemsList.getPaddingTop());
+    }
+
+    private void restoreHistoryScrollAnchor(final HistoryScrollAnchor anchor) {
+        final int index = findHistoryItem(anchor.streamId);
+        if (index >= 0 && itemsList.getLayoutManager() instanceof LinearLayoutManager) {
+            ((LinearLayoutManager) itemsList.getLayoutManager()).scrollToPositionWithOffset(
+                    itemListAdapter.getAdapterPositionForItemIndex(index), anchor.offset);
+        }
+    }
+
+    private static final class HistoryScrollAnchor {
+        private final long streamId;
+        private final int offset;
+
+        private HistoryScrollAnchor(final long streamId, final int offset) {
+            this.streamId = streamId;
+            this.offset = offset;
         }
     }
 

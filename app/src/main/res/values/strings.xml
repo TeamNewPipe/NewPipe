@@ -899,6 +899,7 @@
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
     <string name="history_jump_to_date">Jump to date</string>
+    <string name="history_loading_older">Loading older history…</string>
     <string name="history_date_fast_scroll">Scroll through history by date</string>
     <string name="history_date_fast_scroll_description">History date: %1$s</string>
     <!-- Content -->

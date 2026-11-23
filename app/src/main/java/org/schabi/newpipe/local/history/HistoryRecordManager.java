@@ -64,6 +64,8 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HistoryRecordManager {
+    public static final int INITIAL_HISTORY_SIZE = 100;
+
     private final AppDatabase database;
     private final StreamDAO streamTable;
     private final StreamHistoryDAO streamHistoryTable;
@@ -333,6 +335,20 @@ public class HistoryRecordManager {
     public Flowable<List<StreamStatisticsEntry>> getStreamStatistics() {
         return streamHistoryTable.getStatisticsForProfile(profileId)
                 .subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<HistoryLoadSnapshot> getStreamStatisticsForDisplay(
+            final boolean showInitialPreview) {
+        final Flowable<HistoryLoadSnapshot> complete = getStreamStatistics()
+                .map(entries -> new HistoryLoadSnapshot(entries, true));
+        if (!showInitialPreview) {
+            return complete;
+        }
+        return streamHistoryTable.getRecentStatisticsForProfile(profileId, INITIAL_HISTORY_SIZE)
+                .subscribeOn(Schedulers.io())
+                .map(entries -> new HistoryLoadSnapshot(entries, false))
+                .toFlowable()
+                .concatWith(complete);
     }
 
     private boolean isStreamHistoryEnabled() {
