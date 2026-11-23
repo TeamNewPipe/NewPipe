@@ -5,16 +5,12 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import androidx.media3.common.Format
 import androidx.media3.common.text.Cue
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.extractor.text.DefaultSubtitleParserFactory
 import androidx.media3.extractor.text.Subtitle
 import androidx.media3.ui.SubtitleView
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import java.io.ByteArrayOutputStream
-import java.io.IOException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,10 +18,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.Request
-import org.schabi.newpipe.DownloaderImpl
+import kotlinx.coroutines.rx3.await
 import org.schabi.newpipe.R
+import org.schabi.newpipe.download.DownloadedStreamInfo
 import org.schabi.newpipe.extractor.stream.StreamInfo
 import org.schabi.newpipe.extractor.stream.SubtitlesStream
 import org.schabi.newpipe.player.Player
@@ -53,9 +48,7 @@ class DualCaptionController internal constructor(
 
     private val context: Context = content.context
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    private val subtitleLoader: suspend (SubtitlesStream) -> Subtitle = loadSubtitle ?: { stream ->
-        withContext(Dispatchers.IO) { load(stream) }
-    }
+    private val subtitleLoader = loadSubtitle
     private val secondary = SubtitleView(context).apply {
         setFractionalTextSize(
             SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * PlayerHelper.getCaptionScale(context)
@@ -171,9 +164,11 @@ class DualCaptionController internal constructor(
         secondary.setCues(emptyList())
         renderPrimary(latestPrimary)
         if (candidate == null) return
+        val identity = (info as? DownloadedStreamInfo)?.captionIdentities?.get(candidate.content)
         request = scope.launch {
             try {
-                val parsed = subtitleLoader(candidate)
+                val parsed = subtitleLoader?.invoke(candidate)
+                    ?: SecondaryCaptionLoader.load(context, candidate, identity).await()
                 if (generation == epoch) {
                     subtitle = parsed
                     renderPrimary(latestPrimary)
@@ -215,50 +210,9 @@ class DualCaptionController internal constructor(
         secondary.setCues(active.getCues(timeUs))
     }
 
-    private fun load(stream: SubtitlesStream): Subtitle {
-        val mime = stream.format?.mimeType ?: throw IOException("Unsupported subtitle format")
-        val format = Format.Builder()
-            .setSampleMimeType(mime)
-            .setLanguage(stream.languageTag)
-            .build()
-        val factory = DefaultSubtitleParserFactory()
-        if (!factory.supportsFormat(format)) {
-            throw IOException("Unsupported subtitle format: $mime")
-        }
-        val bytes = if (!stream.isUrl) {
-            stream.content.toByteArray(Charsets.UTF_8)
-        } else {
-            val request = Request.Builder().url(stream.content).build()
-            DownloaderImpl.getInstance().client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) {
-                    throw IOException("Subtitle HTTP ${response.code}")
-                }
-                val input = response.body?.byteStream() ?: throw IOException("Empty subtitle")
-                input.use { streamIn ->
-                    val out = ByteArrayOutputStream()
-                    val buffer = ByteArray(8192)
-                    while (true) {
-                        val read = streamIn.read(buffer)
-                        if (read < 0) break
-                        if (out.size() + read > MAX_BYTES) {
-                            throw IOException("Subtitle too large")
-                        }
-                        out.write(buffer, 0, read)
-                    }
-                    out.toByteArray()
-                }
-            }
-        }
-        if (bytes.size > MAX_BYTES) {
-            throw IOException("Subtitle too large")
-        }
-        return factory.create(format).parseToLegacySubtitle(bytes, 0, bytes.size)
-    }
-
     private companion object {
         const val TAG = "DualCaptionController"
         const val PREF_LANGUAGE = "dual_captions_secondary_language"
-        const val MAX_BYTES = 4 * 1024 * 1024
     }
 }
 

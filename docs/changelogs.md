@@ -67,6 +67,7 @@ Release history is listed newest first. The number beside each release is its An
 ### Captions
 
 - Keep the optional second caption track coordinated with primary-language changes, restore it when switching between the main and popup player, and apply the session subtitle timing adjustment to both tracks.
+- Read secondary captions from verified downloaded files without a network fallback, reject replaced caption files, and cancel pending caption reads when the player changes or closes.
 
 ### Profile history synchronization
 

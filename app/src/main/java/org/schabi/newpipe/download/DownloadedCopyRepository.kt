@@ -25,6 +25,8 @@ import us.shandian.giga.get.sqlite.FinishedMissionStore
 /** Keeps the service URL as identity while using a verified local file as the media source. */
 class DownloadedStreamInfo(val copyUri: String, service: Int, sourceUrl: String, title: String) : StreamInfo(service, sourceUrl, sourceUrl, title) {
     var localIdentity: String = ""
+    var captionIdentities: Map<String, String> = emptyMap()
+        internal set
 }
 
 object DownloadedCopyRepository {
@@ -89,6 +91,7 @@ object DownloadedCopyRepository {
         val offline = OfflinePlaybackMetadata.resolve(context, uri, mission, finished)
         if (offline.staleDownload || offline.sourceInfo?.let { it.serviceId != service || !sameSource(service, url, it.url) } == true) return@runCatching null
         info.localIdentity = offline.identity
+        info.captionIdentities = offline.captionIdentities.toMap()
         info.streamSegments = offline.chapters
         val description = DownloadPlayback.description(mission).ifBlank {
             context.getString(R.string.playing_downloaded_copy)
