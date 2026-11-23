@@ -60,17 +60,11 @@ jobs:
   build-and-test-jvm:
     runs-on: ubuntu-24.04
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 2
-
-      - name: Create and checkout branch
-        if: github.event_name == 'pull_request'
-        env:
-          BRANCH: ${{ github.head_ref }}
-        run: git checkout -B "$BRANCH"
 
       - name: Set up JDK
         uses: actions/setup-java@v5
@@ -99,8 +93,8 @@ jobs:
       - name: Verify bundled changelog
         run: python3 scripts/generate-changelog.py --check
 
-      - name: Test changelog validation
-        run: python3 -B -m unittest discover -s scripts/tests -p 'test_generate_changelog.py' -v
+      - name: Test build validation scripts
+        run: python3 -B -m unittest discover -s scripts/tests -p 'test_*.py' -v
 
       - name: Build debug APK and run JVM tests
         run: >-
@@ -108,28 +102,8 @@ jobs:
           --max-workers=2
           '-Dorg.gradle.jvmargs=-Xmx4096M --add-opens jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED'
 
-      - name: Commit generated Room schema
-        if: success() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          BRANCH: ${{ github.head_ref }}
-        run: |
-          DB_VERSION="$(grep -E 'const val DB_VER_CURRENT = DB_VER_[0-9]+'             app/src/main/java/org/schabi/newpipe/database/Migrations.kt             | sed -E 's/.*DB_VER_([0-9]+).*/\1/')"
-          SCHEMA_DIR="app/schemas/org.schabi.newpipe.database.AppDatabase"
-          SCHEMA="$SCHEMA_DIR/$DB_VERSION.json"
-          TEMP_SCHEMA="$RUNNER_TEMP/$DB_VERSION.json"
-          if [ -n "$DB_VERSION" ] && [ -f "$SCHEMA" ]; then
-            cp "$SCHEMA" "$TEMP_SCHEMA"
-            git fetch origin "$BRANCH"
-            git checkout -B "$BRANCH" "origin/$BRANCH"
-            cp "$TEMP_SCHEMA" "$SCHEMA"
-            if [ -n "$(git status --porcelain -- "$SCHEMA")" ]; then
-              git config user.name "github-actions[bot]"
-              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-              git add "$SCHEMA"
-              git commit -m "Add Room schema $DB_VERSION"
-              git push origin HEAD:"$BRANCH"
-            fi
-          fi
+      - name: Verify generated Room schemas match the checked-out commit
+        run: python3 scripts/check-room-schemas.py
 
       - name: Upload lint report when checks fail
         uses: actions/upload-artifact@v7

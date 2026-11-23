@@ -97,6 +97,26 @@ Run style checks:
 scripts/build.sh checkstyle
 ```
 
+## CI source and schema checks
+
+The shared build entry points disable automatic Kotlin formatting, including for instrumented
+tests. Style checks still run, so CI tests the checked-out Kotlin source and reports formatting
+errors without rewriting it.
+
+After the debug build, CI checks every generated JSON file under `app/schemas` against the exact
+checked-out commit:
+
+```bash
+python3 scripts/check-room-schemas.py
+```
+
+The check fails if the current database version has no schema, a committed schema is missing or
+changed, or a generated schema has not been committed. It includes untracked and ignored JSON
+files. Generate schemas with `scripts/build.sh debug`, review them, and commit them alongside the
+database changes. A schema-version change must also increase the app version, as checked by
+`scripts/check-database-version-bump.py`. CI validates schemas without changing branches or
+creating commits.
+
 ## Versioning and release tags
 
 Stable WizeStream releases use semantic versions in `MAJOR.MINOR.PATCH` form. Update the three
@@ -137,6 +157,7 @@ Every published WizeStream APK must be built from the exact commit referenced by
 That commit includes the integrated extractor source under `app/src/main/java`. An APK must not be
 replaced with one built from a newer untagged commit; publish a new version and tag instead.
 
-Pull-request CI builds the release APK twice and fails when the SHA-256 hashes differ. The release
+Pull-request CI builds the release APK twice and fails when the SHA-256 hashes differ. Build-tool
+changes also run this check in stacked pull requests targeting `feature-*` or `fix-*` branches. The release
 workflow applies the same check to both the signed ARM and x86_64 APKs before either asset can be
 published.

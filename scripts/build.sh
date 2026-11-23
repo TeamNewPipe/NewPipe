@@ -26,7 +26,7 @@ case "$MODE" in
         exec ./gradlew runCheckstyle --stacktrace -DskipFormatKtlint "$@"
         ;;
     connected)
-        exec ./gradlew connectedCheck --stacktrace "$@"
+        exec ./gradlew connectedCheck --stacktrace -DskipFormatKtlint "$@"
         ;;
     *)
         echo "Usage: $0 {debug|release|nightly|checkstyle|connected} [extra Gradle arguments]" >&2
