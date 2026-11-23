@@ -75,6 +75,7 @@ class LocalMediaBrowserViewModel(application: Application) : AndroidViewModel(ap
     }
 
     fun refresh() {
+        LocalMediaMetadataLoader.invalidateCache()
         val current = mutableState.value ?: LocalMediaBrowserState()
         val location = current.location
         if (location == null) {

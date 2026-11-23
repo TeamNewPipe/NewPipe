@@ -47,6 +47,7 @@ class LocalMediaViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun load(access: LocalMediaAccess, force: Boolean = false) {
+        if (force) LocalMediaMetadataLoader.invalidateCache()
         if (!access.hasAnyAccess) {
             currentAccess = access
             mutableState.value = LocalMediaLibraryState(isLoading = false)

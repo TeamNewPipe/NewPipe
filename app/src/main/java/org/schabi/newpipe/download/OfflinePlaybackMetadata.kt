@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 package org.schabi.newpipe.download
 
+import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.os.ParcelFileDescriptor
@@ -92,10 +93,13 @@ object OfflinePlaybackMetadata {
     }
 
     @WorkerThread
-    internal fun identity(context: Context, uri: String): OfflineFileIdentity? = runCatching {
+    internal fun identity(context: Context, uri: String): OfflineFileIdentity? = identity(context.contentResolver, uri)
+
+    @WorkerThread
+    internal fun identity(resolver: ContentResolver, uri: String): OfflineFileIdentity? = runCatching {
         val parsed = Uri.parse(uri)
         if (parsed.scheme != "file" && parsed.scheme != "content") return null
-        context.contentResolver.openAssetFileDescriptor(parsed, "r")?.use { asset ->
+        resolver.openAssetFileDescriptor(parsed, "r")?.use { asset ->
             val stat = Os.fstat(asset.fileDescriptor)
             val length = asset.declaredLength.takeIf { it >= 0 } ?: (stat.st_size - asset.startOffset)
             if (length <= 0) return null

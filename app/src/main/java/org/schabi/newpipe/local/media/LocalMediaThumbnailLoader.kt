@@ -24,6 +24,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicLong
 import org.schabi.newpipe.App
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -52,9 +53,27 @@ object LocalMediaThumbnailLoader {
     }
     private val playerExecutor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
-    private val cache by lazy {
+    private val cacheLock = Any()
+    private val cacheGeneration = AtomicLong()
+    private val cacheStorage = lazy {
         object : LruCache<String, Bitmap>(DevicePerformance.localThumbnailCacheBytes(App.instance)) {
             override fun sizeOf(key: String, value: Bitmap): Int = value.allocationByteCount
+        }
+    }
+    private val cache by cacheStorage
+
+    internal fun invalidateCache() = synchronized(cacheLock) {
+        cacheGeneration.incrementAndGet()
+        if (cacheStorage.isInitialized()) cache.evictAll()
+    }
+
+    private fun cached(key: String, generation: Long): Bitmap? = synchronized(cacheLock) {
+        if (generation == cacheGeneration.get()) cache[key] else null
+    }
+
+    private fun cache(key: String, bitmap: Bitmap, generation: Long) {
+        synchronized(cacheLock) {
+            if (generation == cacheGeneration.get()) cache.put(key, bitmap)
         }
     }
 
@@ -106,23 +125,27 @@ object LocalMediaThumbnailLoader {
         context: Context,
         item: PlayQueueItem,
         callback: BitmapCallback
-    ): Future<*> = playerExecutor.submit {
-        val bitmap = if (ImageStrategy.shouldLoadImages()) {
-            loadBitmap(
-                context.applicationContext,
-                item.url,
-                item.localMediaId,
-                item.streamType == StreamType.VIDEO_STREAM,
-                item.mimeType,
-                item.localThumbnailUrl
-            )
-        } else {
-            null
-        }
-        if (!Thread.currentThread().isInterrupted) {
-            mainHandler.post { callback.onLoaded(bitmap) }
-        }
-    }
+    ): Future<*> = loadLocalMediaWithRefresh(
+        playerExecutor,
+        { mainHandler.post(it) },
+        cacheGeneration::get,
+        { generation ->
+            if (ImageStrategy.shouldLoadImages()) {
+                loadBitmap(
+                    context.applicationContext,
+                    item.url,
+                    item.localMediaId,
+                    item.streamType == StreamType.VIDEO_STREAM,
+                    item.mimeType,
+                    item.localThumbnailUrl,
+                    generation
+                )
+            } else {
+                null
+            }
+        },
+        callback::onLoaded
+    )
 
     @Synchronized
     fun audioPlaceholderBitmap(context: Context): Bitmap? {
@@ -159,11 +182,12 @@ object LocalMediaThumbnailLoader {
             }
         )
         val requestKey = "$isVideo:$contentUri"
+        val generation = cacheGeneration.get()
         target.tag = requestKey
 
         if (!ImageStrategy.shouldLoadImages()) return
 
-        cache[requestKey]?.let {
+        cached(requestKey, generation)?.let {
             target.setImageBitmap(it)
             return
         }
@@ -176,11 +200,11 @@ object LocalMediaThumbnailLoader {
                 mediaStoreId,
                 isVideo,
                 mimeType,
-                thumbnailUri
+                thumbnailUri,
+                generation
             )
-            if (bitmap != null) cache.put(requestKey, bitmap)
             mainHandler.post {
-                if (target.tag == requestKey && bitmap != null) target.setImageBitmap(bitmap)
+                if (generation == cacheGeneration.get() && target.tag == requestKey && bitmap != null) target.setImageBitmap(bitmap)
             }
         }
     }
@@ -198,10 +222,12 @@ object LocalMediaThumbnailLoader {
         mediaStoreId: Long,
         isVideo: Boolean,
         mimeType: String?,
-        thumbnailUri: String?
+        thumbnailUri: String?,
+        generation: Long
     ): Bitmap? {
+        if (generation != cacheGeneration.get()) return null
         val requestKey = "$isVideo:$contentUri"
-        cache[requestKey]?.let { return it }
+        cached(requestKey, generation)?.let { return it }
         val artwork = thumbnailUri
             ?.takeIf { it.startsWith("https://") || it.startsWith("http://") }
             ?.let { CoilHelper.loadCachedThumbnailBlocking(context, it, ARTWORK_MAX_DIMENSION) }
@@ -212,7 +238,7 @@ object LocalMediaThumbnailLoader {
             loadEmbeddedArtwork(resolver, contentUri, mimeType)
                 ?: loadArtworkUri(resolver, thumbnailUri)
         }
-        if (bitmap != null) cache.put(requestKey, bitmap)
+        if (bitmap != null) cache(requestKey, bitmap, generation)
         return bitmap
     }
 

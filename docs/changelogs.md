@@ -29,6 +29,7 @@ Release history is listed newest first. The number beside each release is its An
 
 - Optionally embed the best available original artwork in new MP3 and M4A downloads, including downloads that do not need conversion.
 - Preserve existing covers and unrelated metadata, retain original image resolution, and keep the audio safe if artwork fetching or writing fails.
+- Reduce memory retained by local cover-art metadata, preserve original artwork, and refresh cached tags and thumbnails after local media changes or rescans without dropping pending player loads.
 
 ### Subscription names
 

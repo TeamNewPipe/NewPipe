@@ -16,11 +16,11 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 import java.util.Base64
-import java.util.LinkedHashMap
 import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import org.schabi.newpipe.download.DownloadPlayback
+import org.schabi.newpipe.download.OfflinePlaybackMetadata
 import org.schabi.newpipe.player.playqueue.PlayQueueItem
 
 data class LocalMediaEmbeddedMetadata(
@@ -31,20 +31,16 @@ data class LocalMediaEmbeddedMetadata(
     val artwork: ByteArray? = null
 )
 
-/** Resolves embedded metadata for local media and caches the result by content URI. */
+/** Resolves original embedded metadata with bounded retention and file-change checks. */
 object LocalMediaMetadataLoader {
-    private const val CACHE_ENTRY_COUNT = 128
-
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
-    private val cache = object : LinkedHashMap<String, LocalMediaEmbeddedMetadata>(
-        CACHE_ENTRY_COUNT,
-        0.75f,
-        true
-    ) {
-        override fun removeEldestEntry(
-            eldest: MutableMap.MutableEntry<String, LocalMediaEmbeddedMetadata>?
-        ): Boolean = size > CACHE_ENTRY_COUNT
+    private val cache = LocalMediaMetadataCache()
+
+    /** Provider changes and rescans also invalidate already decoded thumbnail copies. */
+    internal fun invalidateCache() {
+        cache.clear()
+        LocalMediaThumbnailLoader.invalidateCache()
     }
 
     fun interface MetadataCallback {
@@ -56,26 +52,29 @@ object LocalMediaMetadataLoader {
         context: Context,
         item: PlayQueueItem,
         callback: MetadataCallback
-    ): Future<*> = executor.submit {
-        val metadata = readCached(
-            context.applicationContext.contentResolver,
-            item.url,
-            item.mimeType
-        )
-        val download = DownloadPlayback.find(context.applicationContext, item.url)
-        val resolved = if (download == null) {
-            metadata
-        } else {
-            metadata.copy(
-                title = download.title?.takeIf { it.isNotBlank() } ?: metadata.title,
-                artist = download.uploader?.takeIf { it.isNotBlank() } ?: metadata.artist,
-                durationSeconds = download.duration.takeIf { it > 0 } ?: metadata.durationSeconds
+    ): Future<*> = loadLocalMediaWithRefresh(
+        executor,
+        { mainHandler.post(it) },
+        cache::generation,
+        {
+            val metadata = readCached(
+                context.applicationContext.contentResolver,
+                item.url,
+                item.mimeType
             )
-        }
-        if (!Thread.currentThread().isInterrupted) {
-            mainHandler.post { callback.onLoaded(resolved) }
-        }
-    }
+            val download = DownloadPlayback.find(context.applicationContext, item.url)
+            if (download == null) {
+                metadata
+            } else {
+                metadata.copy(
+                    title = download.title?.takeIf { it.isNotBlank() } ?: metadata.title,
+                    artist = download.uploader?.takeIf { it.isNotBlank() } ?: metadata.artist,
+                    durationSeconds = download.duration.takeIf { it > 0 } ?: metadata.durationSeconds
+                )
+            }
+        },
+        callback::onLoaded
+    )
 
     /**
      * Reads metadata synchronously for callers that are already running on a worker thread.
@@ -87,10 +86,21 @@ object LocalMediaMetadataLoader {
         contentUri: String,
         mimeType: String?
     ): LocalMediaEmbeddedMetadata {
-        synchronized(cache) { cache[contentUri] }?.let { return it }
-        return read(resolver, contentUri, mimeType).also { resolved ->
-            synchronized(cache) { cache[contentUri] = resolved }
+        val generation = cache.generation()
+        repeat(2) {
+            val before = OfflinePlaybackMetadata.identity(resolver, contentUri)?.signature
+            cache.get(contentUri, before)?.let { return it }
+            val resolved = read(resolver, contentUri, mimeType)
+            // Providers without a stable, seekable identity remain readable, but are not cached.
+            if (before == null) return resolved
+            val after = OfflinePlaybackMetadata.identity(resolver, contentUri)?.signature
+            if (before == after) {
+                cache.put(contentUri, before, resolved, generation)
+                return resolved
+            }
         }
+        // A file changing throughout the bounded retry must not publish mixed/stale metadata.
+        return LocalMediaEmbeddedMetadata()
     }
 
     @WorkerThread
