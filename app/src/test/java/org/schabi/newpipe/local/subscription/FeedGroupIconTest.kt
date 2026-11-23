@@ -6,6 +6,17 @@ import org.junit.Test
 
 class FeedGroupIconTest {
     @Test
+    fun `New group icons preserve existing persisted icon ids`() {
+        assertEquals(FeedGroupIcon.ALL, FeedGroupIcon.fromId(0))
+        assertEquals(FeedGroupIcon.WHATS_NEW, FeedGroupIcon.fromId(38))
+        assertEquals(FeedGroupIcon.HISTORY, FeedGroupIcon.fromId(39))
+        assertEquals(FeedGroupIcon.DOCUMENTS, FeedGroupIcon.fromId(54))
+        for (icon in FeedGroupIcon.entries) {
+            assertEquals(icon, FeedGroupIcon.fromDrawableResource(icon.drawableResource))
+        }
+    }
+
+    @Test
     fun `No gaps and repeated ids`() {
         val usedIds = HashSet<Int>()
 

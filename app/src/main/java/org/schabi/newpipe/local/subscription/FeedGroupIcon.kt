@@ -52,7 +52,23 @@ enum class FeedGroupIcon(
     STAR(35, R.drawable.ic_stars),
     SUN(36, R.drawable.ic_wb_sunny),
     RSS(37, R.drawable.ic_rss_feed),
-    WHATS_NEW(38, R.drawable.ic_subscriptions);
+    WHATS_NEW(38, R.drawable.ic_subscriptions),
+    HISTORY(39, R.drawable.ic_history),
+    BOOKS(40, R.drawable.ic_menu_book),
+    LANGUAGES(41, R.drawable.ic_language),
+    HOME(42, R.drawable.ic_home),
+    PODCASTS(43, R.drawable.ic_podcasts),
+    LIVE(44, R.drawable.ic_live_tv),
+    CALENDAR(45, R.drawable.ic_calendar_month),
+    DEVICES(46, R.drawable.ic_devices),
+    CLOUD(47, R.drawable.ic_cloud),
+    EQUALIZER(48, R.drawable.ic_equalizer),
+    DISCUSSIONS(49, R.drawable.ic_comment),
+    PLAYLISTS(50, R.drawable.ic_playlist_play),
+    NOTES(51, R.drawable.ic_video_note),
+    PRODUCTIVITY(52, R.drawable.ic_checklist),
+    APPS(53, R.drawable.ic_apps),
+    DOCUMENTS(54, R.drawable.ic_description);
 
     @DrawableRes
     fun getDrawableRes(): Int {

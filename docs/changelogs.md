@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Subscription group icons
+
+- Add 16 more channel-group icons while preserving existing saved icon choices.
+- Keep icon IDs compatible across backups, profile data and device synchronization.
+
 ### Embedded local chapters
 
 - Read supported embedded chapter markers from local MP3 and MP4/M4A files, including precise timestamps and Unicode titles.
