@@ -230,6 +230,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSpeed.setOnClickListener(makeOnClickListener(this::onPlaybackSpeedClicked));
         binding.playbackSeekBar.setOnSeekBarChangeListener(this);
         SeekHistoryUi.bind(binding, player);
+        PreviousPlaybackUi.bind(binding, player);
         binding.captionTextView.setOnClickListener(makeOnClickListener(this::onCaptionClicked));
         binding.captionTextView.setOnLongClickListener(view -> {
             dualCaptionController.showLanguagePicker();
@@ -325,6 +326,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackSpeed.setOnClickListener(null);
         binding.playbackSeekBar.setOnSeekBarChangeListener(null);
         SeekHistoryUi.clear(binding);
+        PreviousPlaybackUi.clear(binding);
         binding.captionTextView.setOnClickListener(null);
         binding.captionTextView.setOnLongClickListener(null);
         binding.resizeTextView.setOnClickListener(null);

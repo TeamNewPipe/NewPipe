@@ -378,6 +378,18 @@ public final class PlayerHolder {
                 }
 
                 @Override
+                public boolean canReturnToPreviousPlayback() {
+                    return listener != null && listener.canReturnToPreviousPlayback();
+                }
+
+                @Override
+                public void onReturnToPreviousPlayback() {
+                    if (listener != null) {
+                        listener.onReturnToPreviousPlayback();
+                    }
+                }
+
+                @Override
                 public void onPlayerError(final PlaybackException error,
                                           final boolean isCatchableException) {
                     if (listener != null) {

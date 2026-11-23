@@ -603,6 +603,19 @@
                                 app:tint="@color/white" />
 
                             <org.schabi.newpipe.player.ui.PlayerActionImageButton
+                                android:id="@+id/previousPlayback"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/return_to_previous_playback"
+                                android:focusable="true"
+                                android:padding="@dimen/player_main_icon_buttons_padding"
+                                android:src="@drawable/ic_settings_backup_restore"
+                                android:visibility="gone"
+                                app:tint="@color/white" />
+
+                            <org.schabi.newpipe.player.ui.PlayerActionImageButton
                                 android:id="@+id/nextReplayPeak"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"

@@ -9,6 +9,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -103,14 +104,14 @@ public final class AiSListContentHelper {
         return hidden;
     }
 
-    public static void showPlaybackWarning(@NonNull final Context context,
+    public static AlertDialog showPlaybackWarning(@NonNull final Context context,
                                            @Nullable final String channelUrl,
                                            @Nullable final String channelName,
                                            @NonNull final Runnable playAnyway) {
         final String displayName = channelName == null || channelName.trim().isEmpty()
                 ? context.getString(R.string.aislist_warnlist_channel_fallback)
                 : channelName;
-        new MaterialAlertDialogBuilder(context)
+        return new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.aislist_possible_ai_title)
                 .setMessage(context.getString(
                         R.string.aislist_warnlist_playback_message,

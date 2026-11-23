@@ -29,6 +29,7 @@ object PlayerActionVisibility {
         Action("info", R.string.playback_information, R.id.playbackInformationButton),
         Action("seek_back", R.string.seek_history_back, R.id.seekHistoryBack),
         Action("seek_forward", R.string.seek_history_forward, R.id.seekHistoryForward),
+        Action("previous_playback", R.string.return_to_previous_playback, R.id.previousPlayback, R.id.detail_previous_playback),
         Action("replay_peak", R.string.next_replay_peak, R.id.nextReplayPeak),
         Action("sleep", R.string.sleep_timer, R.id.sleepTimerButton),
         Action("sponsor", R.string.sb_contribute_title, R.id.sponsorBlockContributeButton),

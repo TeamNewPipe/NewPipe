@@ -206,13 +206,34 @@
 
                     </FrameLayout>
 
+                    <org.schabi.newpipe.player.ui.PlayerActionTextView
+                        android:id="@+id/detail_previous_playback"
+                        style="@style/VideoDetailActionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detail_title_root_layout"
+                        android:minHeight="48dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:contentDescription="@string/return_to_previous_playback"
+                        android:drawableStart="@drawable/ic_settings_backup_restore"
+                        android:drawablePadding="12dp"
+                        android:focusable="true"
+                        android:foreground="@drawable/tv_focus_ring"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        android:text="@string/return_to_previous_playback"
+                        android:textSize="@dimen/detail_control_text_size"
+                        android:visibility="gone" />
+
                     <!-- LOADING INDICATOR-->
                     <ProgressBar
                         android:id="@+id/loading_progress_bar"
                         style="@style/Widget.AppCompat.ProgressBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/detail_title_root_layout"
+                        android:layout_below="@id/detail_previous_playback"
                         android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                         android:indeterminate="true"
                         android:visibility="gone"
@@ -224,7 +245,7 @@
                         layout="@layout/error_panel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/detail_title_root_layout"
+                        android:layout_below="@id/detail_previous_playback"
                         android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                         android:visibility="gone"
                         tools:visibility="gone" />
@@ -234,7 +255,7 @@
                         android:id="@+id/detail_content_root_hiding"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@+id/detail_title_root_layout"
+                        android:layout_below="@id/detail_previous_playback"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
                         android:visibility="gone"

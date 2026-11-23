@@ -43,6 +43,18 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onMoreOptionsLongClicked();
 
+    /**
+     * Provides availability for the explicit return action.
+     * @return whether an independent previous playback can be restored
+     */
+    default boolean canReturnToPreviousPlayback() {
+        return false;
+    }
+
+    /** Explicit navigation action; Android Back continues to collapse the player. */
+    default void onReturnToPreviousPlayback() {
+    }
+
     void onPlayerError(PlaybackException error, boolean isCatchableException);
 
     void hideSystemUiIfNeeded();

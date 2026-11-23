@@ -43,6 +43,7 @@ final class PlayerNavigationButtons {
                 ? R.string.player_seek_forward : R.string.next_stream));
     }
     static void updateVisibility(final Player player, final PlayerBinding binding) {
+        PreviousPlaybackUi.update(binding, player);
         final var playQueue = player.getPlayQueue();
         if (playQueue == null) {
             return;

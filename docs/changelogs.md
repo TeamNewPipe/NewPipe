@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Previous playback
+
+- Return to the previous video with its queue, shuffle order and playback position using the new Return to previous playback action in video details and player controls.
+- Keep the saved play/pause state when returning, including with autoplay disabled, and clear this temporary navigation history when the playback session or privacy scope changes.
+
 ### Audio download artwork
 
 - Optionally embed the best available original artwork in new MP3 and M4A downloads, including downloads that do not need conversion.

@@ -56,6 +56,7 @@ import androidx.core.view.OneShotPreDrawListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -118,6 +119,8 @@ import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.PlayerType;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
+import org.schabi.newpipe.player.history.PreviousPlayback;
+import org.schabi.newpipe.player.history.PreviousPlaybackViewModel;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.helper.PlayerRotationMode;
 import org.schabi.newpipe.player.helper.PlayerHolder;
@@ -132,6 +135,7 @@ import org.schabi.newpipe.player.ui.FullscreenOrientationPolicy;
 import org.schabi.newpipe.player.ui.CollapsedResumeOrientationPolicy;
 import org.schabi.newpipe.player.ui.FullscreenOrientationPreference;
 import org.schabi.newpipe.player.ui.MainPlayerUi;
+import org.schabi.newpipe.player.ui.PreviousPlaybackUi;
 import org.schabi.newpipe.player.ui.StartFullscreenRequest;
 import org.schabi.newpipe.player.ui.TvFullscreenFocusGuard;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
@@ -333,6 +337,7 @@ public final class VideoDetailFragment
     @Nullable
     private PlayerService playerService;
     private Player player;
+    private PreviousPlaybackViewModel previousPlayback;
     private final PlayerHolder playerHolder = PlayerHolder.getInstance();
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -351,6 +356,10 @@ public final class VideoDetailFragment
             return;
         }
         player = connectedPlayer;
+        if (previousPlayback != null) {
+            previousPlayback.bindPlayer(player);
+        }
+        updatePreviousPlaybackActions();
         updateCommentsMiniPlayerAction();
         // Direct popup/long-press playback may never open a VideoDetailFragment for this item.
         updateCollapsedPlayerMetadata(null, player.getPlayQueue());
@@ -418,6 +427,8 @@ public final class VideoDetailFragment
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        previousPlayback = new ViewModelProvider(this).get(PreviousPlaybackViewModel.class);
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         showComments = prefs.getBoolean(getString(R.string.show_comments_key), true);
@@ -1231,6 +1242,10 @@ public final class VideoDetailFragment
                         : View.GONE
         );
         binding.detailControlsCast.setVisibility(View.GONE);
+        PreviousPlaybackUi.bindDetails(binding, this);
+        previousPlayback.getAvailable().observe(getViewLifecycleOwner(),
+                available -> updatePreviousPlaybackActions());
+        updatePreviousPlaybackActions();
         binding.detailControlsCrashThePlayer.setVisibility(
                 DEBUG && PreferenceManager.getDefaultSharedPreferences(getContext())
                         .getBoolean(getString(R.string.show_crash_the_player_key), false)
@@ -1363,6 +1378,60 @@ public final class VideoDetailFragment
         }
     }
 
+    @Override
+    public boolean canReturnToPreviousPlayback() {
+        return previousPlayback != null && previousPlayback.canReturn();
+    }
+
+    @Override
+    public void onReturnToPreviousPlayback() {
+        if (previousPlayback == null || binding == null) {
+            return;
+        }
+        final PreviousPlayback previous = previousPlayback.takePrevious();
+        if (previous == null) {
+            return;
+        }
+        final PlayQueue queue = previous.getQueue();
+        final PlayQueueItem item = Objects.requireNonNull(queue.getItem());
+        // Start through the normal detail/content checks. openMainPlayer restores the captured
+        // play/pause state after loading, even when ordinary detail autoplay is disabled.
+        setAutoPlay(true);
+        hideMainPlayerOnLoadingNewStream();
+        setInitialData(item.getServiceId(), item.getUrl(), item.getTitle(), queue);
+        updateBottomSheetState(BottomSheetBehavior.STATE_EXPANDED);
+        if (currentLocalItem != null) {
+            prepareAndHandleLocalMedia(currentLocalItem, true);
+            openVideoPlayer(false);
+        } else {
+            startLoading(false, true);
+        }
+    }
+
+    private void updatePreviousPlaybackActions() {
+        if (previousPlayback == null) {
+            return;
+        }
+        if (binding != null) {
+            PreviousPlaybackUi.updateDetails(binding, this);
+        }
+        if (player != null) {
+            player.UIs().get(VideoPlayerUi.class)
+                    .ifPresent(ui -> PreviousPlaybackUi.update(ui.getBinding(), player));
+        }
+    }
+
+    private void cancelPreviousPlaybackRestore() {
+        if (previousPlayback != null) {
+            previousPlayback.cancelRestoration();
+        }
+    }
+
+    private boolean isRestoringPreviousPlayback() {
+        return previousPlayback != null && playQueue != null
+                && previousPlayback.restorationFor(playQueue) != null;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Info loading and handling
     //////////////////////////////////////////////////////////////////////////*/
@@ -1389,6 +1458,9 @@ public final class VideoDetailFragment
                                    @Nullable final String newUrl,
                                    @NonNull final String newTitle,
                                    @Nullable final PlayQueue newQueue) {
+        if (previousPlayback != null) {
+            previousPlayback.beforeSelection(player, newServiceId, newUrl);
+        }
         if (isPlayerAvailable() && newQueue != null && playQueue != null
                 && playQueue.getItem() != null && !playQueue.getItem().getUrl().equals(newUrl)) {
             // Preloading can be disabled since playback is surely being replaced.
@@ -1665,6 +1737,7 @@ public final class VideoDetailFragment
                             result.getAgeLimit(),
                             prefs.getBoolean(
                                     getString(R.string.show_age_restricted_content), false))) {
+                        cancelPreviousPlaybackRestore();
                         hideAgeRestrictedContent();
                     } else {
                         handleResult(result);
@@ -1679,11 +1752,15 @@ public final class VideoDetailFragment
                             }
                         }
 
-                        if (!result.isUpcoming() && (isAutoplayEnabled() || forceFullscreen)) {
+                        if (!result.isUpcoming() && (isAutoplayEnabled() || forceFullscreen
+                                || isRestoringPreviousPlayback())) {
                             openVideoPlayerAutoFullscreen();
+                        } else if (result.isUpcoming()) {
+                            cancelPreviousPlaybackRestore();
                         }
                     }
                 }, throwable -> {
+                    cancelPreviousPlaybackRestore();
                     if (throwable instanceof LiveNotStartException
                             || throwable instanceof VideoNotReleaseException) {
                         showLiveNotStartedDialog();
@@ -1707,6 +1784,7 @@ public final class VideoDetailFragment
         if (!UpcomingPlayback.shouldBlock(currentInfo)) {
             return false;
         }
+        cancelPreviousPlaybackRestore();
         showUpcomingPlaybackDialog();
         return true;
     }
@@ -2023,7 +2101,7 @@ public final class VideoDetailFragment
         }
 
         final String bypassUrl = currentInfo.getUrl();
-        AiSListContentHelper.showPlaybackWarning(
+        final AlertDialog warning = AiSListContentHelper.showPlaybackWarning(
                 requireContext(),
                 currentInfo.getUploaderUrl(),
                 currentInfo.getUploaderName(),
@@ -2031,6 +2109,11 @@ public final class VideoDetailFragment
                     aiWarningBypassedUrl = bypassUrl;
                     onContinue.run();
                 });
+        warning.setOnDismissListener(dialog -> {
+            if (!Objects.equals(aiWarningBypassedUrl, bypassUrl)) {
+                cancelPreviousPlaybackRestore();
+            }
+        });
         return true;
     }
 
@@ -2050,7 +2133,8 @@ public final class VideoDetailFragment
             return;
         }
 
-        if (PreferenceManager.getDefaultSharedPreferences(activity)
+        if (!isRestoringPreviousPlayback()
+                && PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             showExternalVideoPlaybackDialog();
         } else {
@@ -2118,11 +2202,22 @@ public final class VideoDetailFragment
         tryAddVideoPlayerView();
 
         final Context context = requireContext();
-        final Intent playerIntent =
-                NavigationHelper.getPlayerIntent(context, PlayerService.class, queue,
-                                PlayerIntentType.AllOthers)
-                        .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
-                        .putExtra(Player.RESUME_PLAYBACK, true);
+        final PreviousPlayback restoring = previousPlayback == null
+                ? null : previousPlayback.restorationFor(queue);
+        final Intent playerIntent;
+        if (restoring != null) {
+            autoPlayEnabled = restoring.getPlayWhenReady();
+            playerIntent = restoring.playerIntent(context);
+            if (playerIntent == null) {
+                cancelPreviousPlaybackRestore();
+                return;
+            }
+        } else {
+            playerIntent = NavigationHelper.getPlayerIntent(context, PlayerService.class, queue,
+                            PlayerIntentType.AllOthers)
+                    .putExtra(Player.PLAY_WHEN_READY, autoPlayEnabled)
+                    .putExtra(Player.RESUME_PLAYBACK, true);
+        }
         ContextCompat.startForegroundService(activity, playerIntent);
     }
 
@@ -2615,6 +2710,9 @@ public final class VideoDetailFragment
         if (playerDismissed) {
             return true;
         }
+        if (previousPlayback != null && !previousPlayback.acceptsQueue(queue)) {
+            return true;
+        }
         if (pendingLearningQueue == null) {
             return false;
         }
@@ -3102,12 +3200,16 @@ public final class VideoDetailFragment
     @Override
     public void onViewCreated() {
         tryAddVideoPlayerView();
+        updatePreviousPlaybackActions();
     }
 
     @Override
     public void onQueueUpdate(final PlayQueue queue) {
         if (isStaleLearningQueue(queue)) {
             return;
+        }
+        if (previousPlayback != null) {
+            previousPlayback.bindQueue(queue, player);
         }
         pendingLearningQueue = null;
         playQueue = queue;
@@ -3793,7 +3895,9 @@ public final class VideoDetailFragment
     private void showClearingQueueConfirmation(final Runnable onAllow) {
         new AlertDialog.Builder(activity)
                 .setTitle(R.string.clear_queue_confirmation_description)
-                .setNegativeButton(R.string.cancel, null)
+                .setNegativeButton(R.string.cancel,
+                        (dialog, which) -> cancelPreviousPlaybackRestore())
+                .setOnCancelListener(dialog -> cancelPreviousPlaybackRestore())
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     onAllow.run();
                     dialog.dismiss();
@@ -3890,6 +3994,9 @@ public final class VideoDetailFragment
      * */
     private void cleanUp() {
         playerDismissed = true;
+        if (previousPlayback != null) {
+            previousPlayback.clear();
+        }
         // New beginning
         stack.clear();
         if (currentWorker != null) {
