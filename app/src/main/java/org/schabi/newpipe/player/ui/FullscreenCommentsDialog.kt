@@ -2,7 +2,6 @@ package org.schabi.newpipe.player.ui
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -32,7 +32,10 @@ import org.schabi.newpipe.util.DeviceUtils
 class FullscreenCommentsDialog : DialogFragment() {
     private var videoContent: View? = null
     private var originalEndMargin = 0
+    private var originalBottomMargin = 0
     private var ratioOverride: Float? = null
+    private var heightRatioOverride: Float? = null
+    private var bottomPanel = false
     private var observedRoot: View? = null
     private var backStackListener: FragmentManager.OnBackStackChangedListener? = null
     private val layoutListener = ViewTreeObserver.OnGlobalLayoutListener { updateViewport() }
@@ -41,11 +44,26 @@ class FullscreenCommentsDialog : DialogFragment() {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_TITLE, 0)
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        ratioOverride = if (prefs.contains(WIDTH_RATIO_KEY)) {
+        ratioOverride = if (savedInstanceState?.containsKey(WIDTH_RATIO_KEY) == true) {
+            savedInstanceState.getFloat(WIDTH_RATIO_KEY)
+        } else if (prefs.contains(WIDTH_RATIO_KEY)) {
             prefs.getFloat(WIDTH_RATIO_KEY, 0.4f)
         } else {
             null
         }
+        heightRatioOverride = if (savedInstanceState?.containsKey(HEIGHT_RATIO_KEY) == true) {
+            savedInstanceState.getFloat(HEIGHT_RATIO_KEY)
+        } else if (prefs.contains(HEIGHT_RATIO_KEY)) {
+            prefs.getFloat(HEIGHT_RATIO_KEY, 0.45f)
+        } else {
+            null
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        ratioOverride?.let { outState.putFloat(WIDTH_RATIO_KEY, it) }
+        heightRatioOverride?.let { outState.putFloat(HEIGHT_RATIO_KEY, it) }
+        super.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View = inflater.inflate(R.layout.fullscreen_comments_sidebar, container, false)
@@ -56,37 +74,47 @@ class FullscreenCommentsDialog : DialogFragment() {
         view.findViewById<View>(R.id.fullscreenCommentsClose).setOnClickListener { dismiss() }
         val handle = view.findViewById<View>(R.id.fullscreenCommentsResizeHandle)
         var startX = 0f
-        var startWidth = 0
+        var startY = 0f
+        var startSize = 0
+        var resizingBottom = false
         handle.setOnTouchListener { target, event ->
             when (event.actionMasked) {
                 MotionEvent.ACTION_DOWN -> {
                     startX = event.rawX
-                    startWidth = dialog?.window?.attributes?.width ?: 0
+                    startY = event.rawY
+                    resizingBottom = bottomPanel
+                    startSize = dialog?.window?.attributes?.let { if (resizingBottom) it.height else it.width } ?: 0
                     true
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    val available = (activity?.findViewById<View>(R.id.playerVideoContent)?.parent as? View)?.width ?: 0
-                    if (available > 0 && startWidth > 0) {
-                        val delta = if (target.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+                    val parent = activity?.findViewById<View>(R.id.playerVideoContent)?.parent as? View
+                    val available = (if (resizingBottom) parent?.height else parent?.width) ?: 0
+                    if (resizingBottom != bottomPanel) return@setOnTouchListener true
+                    if (available > 0 && startSize > 0) {
+                        val delta = if (resizingBottom) {
+                            startY - event.rawY
+                        } else if (target.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
                             event.rawX - startX
                         } else {
                             startX - event.rawX
                         }
-                        val resized = FullscreenCommentsSizing.clampWidth(
-                            (startWidth + delta).toInt(),
-                            available
-                        )
-                        ratioOverride = resized.toFloat() / available
+                        val requestedRatio = (startSize + delta) / available
+                        if (resizingBottom) {
+                            heightRatioOverride = FullscreenCommentsSizing.height(available, minimumVideoHeight(), requestedRatio).toFloat() / available
+                        } else {
+                            ratioOverride = FullscreenCommentsSizing.clampWidth((startSize + delta).toInt(), available).toFloat() / available
+                        }
                         updateViewport()
                     }
                     true
                 }
 
                 MotionEvent.ACTION_UP -> {
-                    ratioOverride?.let { ratio ->
+                    val ratio = if (resizingBottom) heightRatioOverride else ratioOverride
+                    ratio?.let {
                         PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                            .putFloat(WIDTH_RATIO_KEY, ratio)
+                            .putFloat(if (resizingBottom) HEIGHT_RATIO_KEY else WIDTH_RATIO_KEY, it)
                             .apply()
                     }
                     target.performClick()
@@ -133,7 +161,13 @@ class FullscreenCommentsDialog : DialogFragment() {
         dialog?.window?.let { window ->
             window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-            window.setGravity(Gravity.END)
+            // Keep keyboard/Back focus in this panel, while exposed mobile playback remains
+            // touchable. TV retains its established modal D-pad focus and Back contract.
+            if (DeviceUtils.isTv(requireContext())) {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
+            } else {
+                window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
+            }
             WindowCompat.setDecorFitsSystemWindows(window, false)
             WindowCompat.getInsetsController(window, window.decorView).apply {
                 systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
@@ -158,17 +192,25 @@ class FullscreenCommentsDialog : DialogFragment() {
         if (dialog?.isShowing != true) return
         val window = dialog?.window ?: return
         val content = activity?.findViewById<View>(R.id.playerVideoContent) ?: return
-        val available = (content.parent as? View)?.width ?: return
-        if (available <= 0) return
-        val desired = (TvPlayerFocusPolicy.commentsWidthDp(DeviceUtils.isTv(requireContext())) * resources.displayMetrics.density).toInt()
-        val width = FullscreenCommentsSizing.width(available, desired, ratioOverride)
-        if (window.attributes.width != width || window.attributes.height != ViewGroup.LayoutParams.MATCH_PARENT) {
-            window.setLayout(width, ViewGroup.LayoutParams.MATCH_PARENT)
+        val parent = content.parent as? View ?: return
+        val available = parent.width
+        if (available <= 0 || parent.height <= 0) return
+        val tv = DeviceUtils.isTv(requireContext())
+        val density = resources.displayMetrics.density
+        bottomPanel = FullscreenCommentsSizing.useBottomPanel(available, parent.height, density, tv)
+        val desired = (TvPlayerFocusPolicy.commentsWidthDp(tv) * density).toInt()
+        val width = if (bottomPanel) available else FullscreenCommentsSizing.width(available, desired, ratioOverride)
+        val height = if (bottomPanel) FullscreenCommentsSizing.height(parent.height, minimumVideoHeight(), heightRatioOverride) else ViewGroup.LayoutParams.MATCH_PARENT
+        val gravity = if (bottomPanel) Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL else Gravity.END
+        if (window.attributes.gravity != gravity) window.setGravity(gravity)
+        if (window.attributes.width != width || window.attributes.height != height) {
+            window.setLayout(width, height)
         }
+        updateResizeHandle()
         val isLandscapeOverlay = LiveChatLandscapeOverlay.shouldOverlay(
             requireArguments().getBoolean(CHAT),
-            resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
-            DeviceUtils.isTv(requireContext()),
+            parent.width > parent.height,
+            tv,
             PreferenceManager.getDefaultSharedPreferences(requireContext()).getBoolean(
                 getString(R.string.live_chat_landscape_overlay_key),
                 true
@@ -183,18 +225,60 @@ class FullscreenCommentsDialog : DialogFragment() {
             restoreViewport()
             videoContent = content
             originalEndMargin = (content.layoutParams as ViewGroup.MarginLayoutParams).marginEnd
+            originalBottomMargin = (content.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin
         }
         val params = content.layoutParams as ViewGroup.MarginLayoutParams
-        if (params.marginEnd != originalEndMargin + width) {
-            params.marginEnd = originalEndMargin + width
+        val end = originalEndMargin + if (bottomPanel) 0 else width
+        val bottom = originalBottomMargin + if (bottomPanel) height else 0
+        if (params.marginEnd != end || params.bottomMargin != bottom) {
+            params.marginEnd = end
+            params.bottomMargin = bottom
             content.layoutParams = params
         }
     }
+
+    private fun minimumVideoHeight(): Int {
+        val controls = activity?.findViewById<View>(R.id.bottom_player_controls_panel)
+        return maxOf(dp(240), (controls?.height ?: 0) + dp(24))
+    }
+
+    private fun updateResizeHandle() {
+        val root = view ?: return
+        val handle = root.findViewById<View>(R.id.fullscreenCommentsResizeHandle)
+        val params = handle.layoutParams as FrameLayout.LayoutParams
+        val width = if (bottomPanel) ViewGroup.LayoutParams.MATCH_PARENT else dp(24)
+        val height = if (bottomPanel) dp(24) else ViewGroup.LayoutParams.MATCH_PARENT
+        val gravity = if (bottomPanel) Gravity.TOP else Gravity.START
+        if (params.width != width || params.height != height || params.gravity != gravity) {
+            params.width = width
+            params.height = height
+            params.gravity = gravity
+            handle.layoutParams = params
+        }
+        val marker = root.findViewById<View>(R.id.fullscreenCommentsResizeMarker)
+        val markerParams = marker.layoutParams
+        val markerWidth = dp(if (bottomPanel) 56 else 3)
+        val markerHeight = dp(if (bottomPanel) 3 else 56)
+        if (markerParams.width != markerWidth || markerParams.height != markerHeight) {
+            markerParams.width = markerWidth
+            markerParams.height = markerHeight
+            marker.layoutParams = markerParams
+        }
+        val body = root.findViewById<View>(R.id.fullscreenCommentsBody)
+        val start = if (bottomPanel) 0 else dp(24)
+        val top = if (bottomPanel) dp(24) else 0
+        if (body.paddingStart != start || body.paddingTop != top) {
+            body.setPaddingRelative(start, top, 0, 0)
+        }
+    }
+
+    private fun dp(value: Int): Int = (value * resources.displayMetrics.density + 0.5f).toInt()
 
     private fun restoreViewport() {
         videoContent?.let { content ->
             val params = content.layoutParams as ViewGroup.MarginLayoutParams
             params.marginEnd = originalEndMargin
+            params.bottomMargin = originalBottomMargin
             content.layoutParams = params
         }
         videoContent = null
@@ -224,6 +308,7 @@ class FullscreenCommentsDialog : DialogFragment() {
         private const val URL = "url"
         private const val TITLE = "title"
         private const val WIDTH_RATIO_KEY = "fullscreen_comments_width_ratio"
+        private const val HEIGHT_RATIO_KEY = "fullscreen_comments_height_ratio"
 
         fun newInstance(serviceId: Int, url: String, title: String, liveChat: Boolean = false) = FullscreenCommentsDialog().apply {
             arguments = Bundle().apply {

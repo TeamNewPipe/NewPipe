@@ -10,18 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/comment_sort"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
         app:singleSelection="true"
+        app:singleLine="true"
         app:selectionRequired="true">
         <com.google.android.material.chip.Chip
             android:id="@+id/comments_top"
@@ -64,8 +69,14 @@
                 app:srcCompat="@drawable/ic_expand_more"
                 app:tint="?attr/colorOnSurface" />
         </LinearLayout>
-        <LinearLayout
+        </HorizontalScrollView>
+        <HorizontalScrollView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
@@ -91,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/comments_date_relative" />
         </LinearLayout>
+        </HorizontalScrollView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/comments_search_field"

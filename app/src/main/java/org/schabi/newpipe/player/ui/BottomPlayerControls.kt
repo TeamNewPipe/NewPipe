@@ -24,7 +24,6 @@ class BottomPlayerControls(private val binding: PlayerBinding) {
     private var metadataParams: ViewGroup.LayoutParams? = null
     private var moreVisibility = View.VISIBLE
     private var secondaryVisibility = View.INVISIBLE
-    private var secondaryAlpha = 1f
     private var seekUp = View.NO_ID
     private var seekDown = View.NO_ID
     private var focusStates = emptyList<FocusState>()
@@ -69,6 +68,7 @@ class BottomPlayerControls(private val binding: PlayerBinding) {
             active.layoutParams = params
         }
         binding.moreOptionsButton.visibility = View.GONE
+        settleSecondaryAnimation()
         binding.secondaryControls.visibility = View.VISIBLE
         binding.secondaryControls.alpha = 1f
         binding.bottomControls.setPadding(0, 0, 0, 0)
@@ -102,7 +102,9 @@ class BottomPlayerControls(private val binding: PlayerBinding) {
         metadataParams = binding.metadataControls.layoutParams
         moreVisibility = binding.moreOptionsButton.visibility
         secondaryVisibility = binding.secondaryControls.visibility
-        secondaryAlpha = binding.secondaryControls.alpha
+        // A closing More animation leaves a negative translation, and its end callback can
+        // hide the row after it has moved. The bottom panel owns a settled, visible row.
+        settleSecondaryAnimation()
         seekUp = binding.playbackSeekBar.nextFocusUpId
         seekDown = binding.playbackSeekBar.nextFocusDownId
         focusStates = (descendants(binding.primaryControls) + descendants(binding.secondaryControls) + binding.screenRotationButton).map {
@@ -177,8 +179,12 @@ class BottomPlayerControls(private val binding: PlayerBinding) {
         binding.metadataControls.layoutParams = metadataParams
         binding.titleTextView.setPresentationScale(1.0f)
         binding.moreOptionsButton.visibility = moreVisibility
+        settleSecondaryAnimation()
         binding.secondaryControls.visibility = secondaryVisibility
-        binding.secondaryControls.alpha = secondaryAlpha
+        binding.secondaryControls.alpha = if (secondaryVisibility == View.VISIBLE) 1f else 0f
+        // An interrupted transition is restored in its visible state, never half faded.
+        binding.moreOptionsButton.animate().setListener(null).cancel()
+        binding.moreOptionsButton.rotation = if (secondaryVisibility == View.VISIBLE) 180f else 0f
         binding.playbackSeekBar.nextFocusUpId = seekUp
         binding.playbackSeekBar.nextFocusDownId = seekDown
         focusStates.forEach {
@@ -191,6 +197,15 @@ class BottomPlayerControls(private val binding: PlayerBinding) {
         buttonStates = emptyList()
         focusStates = emptyList()
         focused?.requestFocus()
+    }
+
+    private fun settleSecondaryAnimation() {
+        binding.secondaryControls.apply {
+            // Remove the listener first: cancel also dispatches onAnimationEnd on Android.
+            animate().setListener(null).cancel()
+            clearAnimation()
+            translationY = 0f
+        }
     }
 
     private fun rowParams() = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)

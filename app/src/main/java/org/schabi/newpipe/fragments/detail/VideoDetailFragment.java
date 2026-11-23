@@ -2503,8 +2503,8 @@ public final class VideoDetailFragment
         final int collapseMode = usePinnedMode
                 ? PINNED_PLAYER_COLLAPSE_MODE : LEGACY_PLAYER_COLLAPSE_MODE;
         final int scrollFlags;
-        if (isFullscreen() && DeviceUtils.isTv(requireContext())) {
-            // D-pad focus must not scroll the fullscreen video out of the viewport.
+        if (isFullscreen()) {
+            // Neither touch scrolling nor D-pad focus may move fullscreen playback away.
             scrollFlags = 0;
         } else {
             scrollFlags = usePinnedMode
@@ -3360,7 +3360,7 @@ public final class VideoDetailFragment
             tvFullscreenFocusGuard = new TvFullscreenFocusGuard(binding);
         }
         tvFullscreenFocusGuard.update(fullscreen, DeviceUtils.isTv(requireContext()));
-        if (fullscreen && DeviceUtils.isTv(requireContext())) {
+        if (fullscreen) {
             binding.appBarLayout.setExpanded(true, false);
         }
         if (fullscreen) {

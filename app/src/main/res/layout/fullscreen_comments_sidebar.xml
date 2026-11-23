@@ -6,6 +6,7 @@
     android:background="?attr/colorSurface">
 
     <LinearLayout
+        android:id="@+id/fullscreenCommentsBody"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -66,6 +67,7 @@
         android:focusable="true">
 
         <View
+            android:id="@+id/fullscreenCommentsResizeMarker"
             android:layout_width="3dp"
             android:layout_height="56dp"
             android:layout_gravity="center"

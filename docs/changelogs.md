@@ -4,6 +4,16 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Fullscreen comments and chat
+
+- Keep portrait fullscreen comments readable in a full-width panel below the video, with resizable space for playback and complete scrollable filter labels.
+- Keep exposed mobile playback controls usable while comments, replies or live chat are open, preserve TV remote focus, and restore the video viewport when the panel closes.
+- Prevent ordinary detail scrolling from moving fullscreen phone video out of view.
+
+### Fullscreen controls
+
+- Keep fullscreen bottom player actions clear of the seekbar after opening or closing More controls, including interrupted animations and repeated layout changes.
+
 ### Channel tabs
 
 - Restore channel and About tab labels after returning from icon-only Home tabs while preserving Home icons and accessibility titles.
