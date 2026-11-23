@@ -1,11 +1,11 @@
 package org.schabi.newpipe.update
 
+import android.os.Build
 import com.grack.nanojson.JsonArray
 import com.grack.nanojson.JsonObject
 import com.grack.nanojson.JsonParser
 import java.time.Instant
 import java.time.format.DateTimeParseException
-import java.util.Locale
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.DownloaderImpl
 
@@ -39,14 +39,14 @@ object WizeStreamUpdateRepository {
 
     fun fetchReleases(): List<Release> {
         val json = DownloaderImpl.getInstance().get(RELEASES_URL).responseBody()
-        return parseReleases(json)
+        return parseReleases(json, Build.SUPPORTED_ABIS.toList())
     }
 
-    fun parseReleases(json: String): List<Release> {
+    fun parseReleases(json: String, supportedAbis: List<String>): List<Release> {
         val array = JsonParser.array().from(json)
         return array
             .filterIsInstance<JsonObject>()
-            .map(::parseReleaseObject)
+            .map { parseReleaseObject(it, supportedAbis) }
             .filter { !it.draft && it.version.isNotBlank() }
     }
 
@@ -113,16 +113,17 @@ object WizeStreamUpdateRepository {
         }
     }
 
-    private fun parseReleaseObject(json: JsonObject): Release {
+    private fun parseReleaseObject(json: JsonObject, supportedAbis: List<String>): Release {
         val tagName = json.getString("tag_name", "") ?: ""
         val name = json.getString("name", "") ?: ""
+        val version = tagName.ifBlank { name }
         val htmlUrl = json.getString("html_url", "") ?: ""
         val body = json.getString("body", "") ?: ""
         val publishedAt = json.getString("published_at", "") ?: ""
         val assets = json.getArray("assets", JsonArray()) ?: JsonArray()
-        val apkAsset = findApkAsset(assets)
+        val apkAsset = findApkAsset(assets, version, supportedAbis)
         return Release(
-            version = tagName.ifBlank { name },
+            version = version,
             title = name.ifBlank { tagName },
             htmlUrl = htmlUrl,
             body = body,
@@ -138,12 +139,26 @@ object WizeStreamUpdateRepository {
         )
     }
 
-    private fun findApkAsset(assets: JsonArray): JsonObject? {
+    private fun findApkAsset(
+        assets: JsonArray,
+        version: String,
+        supportedAbis: List<String>
+    ): JsonObject? {
+        // x86_64 systems can also advertise translated ARM ABIs. Keep updates native,
+        // leaving the release-page fallback available if that build is missing.
+        val suffix = when {
+            "x86_64" in supportedAbis -> "_x86_64"
+            "arm64-v8a" in supportedAbis || "armeabi-v7a" in supportedAbis -> ""
+            else -> return null
+        }
+        val releaseVersion = version.trim().removePrefix("v").removePrefix("V")
+        // The unsuffixed asset is the ARM build, including older single-APK releases.
+        // Unknown names do not establish compatibility and must not become updates.
+        val expectedName = "wizestream_v$releaseVersion$suffix.apk"
         return assets
             .filterIsInstance<JsonObject>()
             .firstOrNull { asset ->
-                val name = asset.getString("name", "")?.lowercase(Locale.ROOT) ?: ""
-                name.endsWith(".apk")
+                asset.getString("name", "")?.equals(expectedName, ignoreCase = true) == true
             }
     }
 

@@ -152,7 +152,8 @@ class WizeStreamUpdateRepositoryTest {
     @Test
     fun parseReleasesReadsGitHubSha256Digest() {
         val releases = WizeStreamUpdateRepository.parseReleases(
-            releaseJson("sha256:${"ab".repeat(32)}")
+            releaseJson("sha256:${"ab".repeat(32)}"),
+            listOf("arm64-v8a")
         )
 
         assertEquals("ab".repeat(32), releases.single().apkSha256)
@@ -162,10 +163,12 @@ class WizeStreamUpdateRepositoryTest {
     @Test
     fun parseReleasesRejectsUnsupportedOrMalformedDigest() {
         val unsupported = WizeStreamUpdateRepository.parseReleases(
-            releaseJson("sha512:${"ab".repeat(64)}")
+            releaseJson("sha512:${"ab".repeat(64)}"),
+            listOf("armeabi-v7a")
         )
         val malformed = WizeStreamUpdateRepository.parseReleases(
-            releaseJson("sha256:not-a-checksum")
+            releaseJson("sha256:not-a-checksum"),
+            listOf("arm64-v8a")
         )
 
         assertNull(unsupported.single().apkSha256)
