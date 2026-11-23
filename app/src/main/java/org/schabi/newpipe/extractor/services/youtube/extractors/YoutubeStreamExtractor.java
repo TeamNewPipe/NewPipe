@@ -1493,8 +1493,9 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             }
 
         if (playerResponse == null) {
-            throw new ContentNotSupportedException("YouTube returned SABR-only streaming data without usable stream URLs. "
-                    + "Try logging in to get HLS fallback streams.");
+            throw new ContentNotSupportedException(
+                    "YouTube did not return usable playback data. "
+                    + "Try again later or check for a WizeStream update.");
         }
 
         final JsonObject playabilityStatus = playerResponse.getObject("playabilityStatus");
@@ -1514,7 +1515,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                 && getHlsManifestUrlFromStreamingData().isEmpty()) {
             throw new ContentNotSupportedException(
                     "YouTube returned SABR-only streaming data without usable stream URLs. "
-                    + "Try logging in to get HLS fallback streams.");
+                    + "This stream is not supported by this WizeStream build.");
         }
     }
 
