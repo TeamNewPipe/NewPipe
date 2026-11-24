@@ -1,8 +1,11 @@
 package org.schabi.newpipe.local.subscription.item
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
@@ -15,7 +18,8 @@ class ChannelItem(
     private val infoItem: ChannelInfoItem,
     private val subscriptionId: Long = -1L,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
-    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null,
+    val isSelected: Boolean = false
 ) : Item<GroupieViewHolder>() {
     override fun getId(): Long = if (subscriptionId == -1L) super.getId() else subscriptionId
 
@@ -40,6 +44,18 @@ class ChannelItem(
         }
 
         CoilHelper.loadAvatar(itemThumbnailView, infoItem.thumbnails)
+
+        if (isSelected) {
+            val context = viewHolder.root.context
+            val checkmarkDrawable = ContextCompat.getDrawable(context, R.drawable.ic_done)
+                ?.mutate()
+            checkmarkDrawable?.let {
+                DrawableCompat.setTint(it, Color.WHITE)
+            }
+            itemThumbnailView.foreground = checkmarkDrawable
+        } else {
+            itemThumbnailView.foreground = null
+        }
 
         gesturesListener?.run {
             viewHolder.root.setOnClickListener { selected(infoItem) }
