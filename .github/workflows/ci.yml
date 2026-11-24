@@ -179,6 +179,15 @@ jobs:
           - api-level: 35
             target: default
             arch: x86_64
+          # Reproduce playback-information bounds and scrolling on Android 17 (#1707).
+          - api-level: '37.0'
+            target: default
+            arch: x86_64
+            # Android 17 phone images require at least 4 GB of RAM.
+            ram-size: 4096M
+            avd-cache-version: v2
+            pre-emulator-launch-script: grep -Fx 'target=android-37.0' "$ANDROID_AVD_HOME/test.ini"
+            test-options: -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.player.info.PlaybackInformationViewTest
     permissions:
       contents: read
     steps:
@@ -197,6 +206,20 @@ jobs:
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0" "build-tools;36.1.0"
 
+      # Older runner tools misread minor-versioned images as android-0, which
+      # disables required graphics features and crashes Android 17 snapshots.
+      - name: Install pinned Android 17 command-line tools
+        if: matrix.api-level == '37.0'
+        run: |
+          API37_TOOLS_ARCHIVE="$RUNNER_TEMP/android-cmdline-tools-22.zip"
+          curl --fail --location --retry 3 --output "$API37_TOOLS_ARCHIVE" \
+            https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
+          echo "040d3996a65543d22ec4bf73e4c37aa37a8d4af4  $API37_TOOLS_ARCHIVE" | sha1sum --check
+          unzip -q "$API37_TOOLS_ARCHIVE" -d "$RUNNER_TEMP/android-cmdline-tools-22"
+          mv "$ANDROID_HOME/cmdline-tools/latest" "$RUNNER_TEMP/android-cmdline-tools-runner"
+          mv "$RUNNER_TEMP/android-cmdline-tools-22/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --version | grep -Fx '22.0'
+
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -213,7 +236,7 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-${{ runner.os }}-${{ matrix.api-level }}-${{ matrix.target }}-${{ matrix.arch }}-v1
+          key: avd-${{ runner.os }}-${{ matrix.api-level }}-${{ matrix.target }}-${{ matrix.arch }}-${{ matrix.avd-cache-version || 'v1' }}
 
       - name: Generate Android emulator snapshot
         if: steps.avd-cache.outputs.cache-hit != 'true'
@@ -222,6 +245,8 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
+          ram-size: ${{ matrix.ram-size }}
+          pre-emulator-launch-script: ${{ matrix.pre-emulator-launch-script }}
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -233,6 +258,8 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
+          ram-size: ${{ matrix.ram-size }}
+          pre-emulator-launch-script: ${{ matrix.pre-emulator-launch-script }}
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none ${{ matrix.extra-emulator-options }}
           script: bash scripts/connected-tests-with-previews.sh ${{ matrix.test-options }}

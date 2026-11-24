@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.info
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -96,9 +97,26 @@ class PlaybackInformationView @JvmOverloads constructor(context: Context, attrs:
         if (information != null) restart()
     }
 
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        val handled = super.dispatchTouchEvent(event)
+        if (handled && event.actionMasked == MotionEvent.ACTION_DOWN) {
+            // Claim the gesture before its first move can drag the player sheet or app bar.
+            parent?.requestDisallowInterceptTouchEvent(true)
+        } else if (!handled || event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
+            parent?.requestDisallowInterceptTouchEvent(false)
+        }
+        return handled
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val available = (parent as? View)?.height?.takeIf { it > 0 } ?: MeasureSpec.getSize(heightMeasureSpec)
-        val maximum = minOf((320 * resources.displayMetrics.density).toInt(), (available * 0.65f).toInt())
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(maximum.coerceAtLeast(1), MeasureSpec.AT_MOST))
+        val maximum = (320 * resources.displayMetrics.density).toInt()
+        // The incoming bound already accounts for margins and the player's current size.
+        // A parent's laid-out height may still describe the previous orientation.
+        val boundedHeight = when (MeasureSpec.getMode(heightMeasureSpec)) {
+            MeasureSpec.EXACTLY -> heightMeasureSpec
+            MeasureSpec.AT_MOST -> MeasureSpec.makeMeasureSpec(minOf(maximum, MeasureSpec.getSize(heightMeasureSpec)), MeasureSpec.AT_MOST)
+            else -> MeasureSpec.makeMeasureSpec(maximum, MeasureSpec.AT_MOST)
+        }
+        super.onMeasure(widthMeasureSpec, boundedHeight)
     }
 }
