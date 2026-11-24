@@ -160,18 +160,45 @@
                 android:text="@string/feed_show_watched" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
-    <HorizontalScrollView
+    <org.schabi.newpipe.views.CompactPlaylistControlsLayout
+        android:id="@+id/stream_filter_downloaded_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingEnd="12dp"
-        android:scrollbars="none">
-        <com.google.android.material.chip.Chip
-            android:id="@+id/filter_downloaded"
-            style="@style/Widget.Material3.Chip.Filter"
+        android:gravity="center_vertical">
+        <HorizontalScrollView
+            android:id="@+id/filter_downloaded_scroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="12dp"
+            android:scrollbars="none">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_downloaded"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:checkable="true"
+                android:text="@string/filter_downloaded_only" />
+        </HorizontalScrollView>
+        <LinearLayout
+            android:id="@+id/local_playlist_edit_controls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:checkable="true"
-            android:text="@string/filter_downloaded_only" />
-    </HorizontalScrollView>
+            android:layout_gravity="end"
+            android:layout_marginEnd="4dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playlist_edit_toggle"
+                style="@style/Widget.WizeStream.CompactPlaylistAction"
+                android:contentDescription="@string/playlist_edit_mode"
+                app:srcCompat="@drawable/ic_edit" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/collection_select_move"
+                style="@style/Widget.WizeStream.CompactPlaylistAction"
+                android:contentDescription="@string/playlist_select_items"
+                app:srcCompat="@drawable/ic_checklist" />
+        </LinearLayout>
+    </org.schabi.newpipe.views.CompactPlaylistControlsLayout>
 </LinearLayout>

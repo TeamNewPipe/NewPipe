@@ -122,7 +122,7 @@ class PlaylistSelectionUiTest {
     fun selectItemsIsAvailableOutsideEditAndRemovesOnlyTheConfirmedDuplicateOccurrence() {
         withPlaylist { scenario, fragment ->
             scenario.onActivity { assertFalse(fragment.editMode) }
-            onView(withId(R.id.collection_select_move)).check(matches(withText(R.string.playlist_select_items))).check(matches(isDisplayed())).perform(click())
+            onView(withId(R.id.collection_select_move)).check(matches(withContentDescription(R.string.playlist_select_items))).check(matches(isDisplayed())).perform(click())
             waitFor { selecting(scenario, fragment) }
             tapRow(scenario, fragment, 2)
             assertSelectionCount(1)

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="show_voice_search_button_key" translatable="false">show_voice_search_button</string>
+    <string name="show_voice_search_button_title">Show voice search button</string>
+    <string name="show_voice_search_button_summary">Show the microphone beside the search field</string>
+
+    <string name="toolbar_title_alignment_key" translatable="false">toolbar_title_alignment</string>
+    <string name="toolbar_title_alignment_title">Toolbar title alignment</string>
+    <string name="toolbar_title_alignment_start">Start</string>
+    <string name="toolbar_title_alignment_center">Center</string>
+    <string-array name="toolbar_title_alignment_entries">
+        <item>@string/toolbar_title_alignment_start</item>
+        <item>@string/toolbar_title_alignment_center</item>
+    </string-array>
+    <string-array name="toolbar_title_alignment_values" translatable="false">
+        <item>start</item>
+        <item>center</item>
+    </string-array>
+    <item name="toolbar_custom_title" type="id" />
+
+    <string name="show_subscription_import_shortcut_key" translatable="false">show_subscription_import_shortcut</string>
+    <string name="show_subscription_import_shortcut_title">Show subscription Import shortcut</string>
+    <string name="show_subscription_import_shortcut_summary">Show Import beside channel groups in Subscriptions</string>
+</resources>

@@ -312,7 +312,6 @@
                             android:id="@+id/queueButton"
                             android:layout_width="48dp"
                             android:nextFocusDown="@id/playPauseButton"
-                            android:nextFocusRight="@id/commentsButton"
                             android:layout_height="48dp"
                             android:layout_marginEnd="8dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
@@ -333,8 +332,6 @@
                             android:id="@+id/commentsButton"
                             android:layout_width="48dp"
                             android:nextFocusDown="@id/playPauseButton"
-                            android:nextFocusLeft="@id/queueButton"
-                            android:nextFocusRight="@id/learningNoteButton"
                             android:layout_height="48dp"
                             android:layout_marginEnd="8dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
@@ -352,8 +349,6 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:nextFocusDown="@id/playPauseButton"
-                            android:nextFocusLeft="@id/commentsButton"
-                            android:nextFocusRight="@id/segmentsButton"
                             android:layout_marginEnd="8dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
@@ -369,8 +364,6 @@
                             android:id="@+id/segmentsButton"
                             android:layout_width="48dp"
                             android:nextFocusDown="@id/playPauseButton"
-                            android:nextFocusLeft="@id/learningNoteButton"
-                            android:nextFocusRight="@id/moreOptionsButton"
                             android:layout_height="48dp"
                             android:layout_marginEnd="8dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
@@ -391,7 +384,6 @@
                             android:id="@+id/moreOptionsButton"
                             android:layout_width="48dp"
                             android:nextFocusDown="@id/playPauseButton"
-                            android:nextFocusLeft="@id/segmentsButton"
                             android:layout_height="48dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
@@ -835,12 +827,14 @@
 
                 </LinearLayout>
 
+                <!-- Playback time and its chapter/segment overlays advance left to right. -->
                 <LinearLayout
                     android:id="@+id/bottomControls"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:gravity="center"
+                    android:layoutDirection="ltr"
                     android:minHeight="48dp"
                     android:orientation="horizontal"
                     android:paddingLeft="@dimen/player_main_controls_padding"
@@ -955,10 +949,12 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <!-- Match the physical rewind/forward gesture directions in every locale. -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:layoutDirection="ltr"
                 android:orientation="horizontal"
                 android:weightSum="5.5">
 
@@ -1045,10 +1041,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:contentDescription="@string/notification_action_repeat"
@@ -1064,7 +1058,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/repeatButton"
+                    android:layout_toEndOf="@id/repeatButton"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:contentDescription="@string/notification_action_shuffle"
@@ -1091,7 +1085,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/itemsListClose"
+                    android:layout_toStartOf="@+id/itemsListClose"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:contentDescription="@string/add_to_playlist"
@@ -1161,7 +1155,7 @@
                 android:layout_gravity="center"
                 tools:ignore="RtlHardcoded">
 
-                <RelativeLayout
+                <FrameLayout
                     android:id="@+id/volumeRelativeLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1182,13 +1176,13 @@
                         android:id="@+id/volumeImageView"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
                         app:tint="@color/white"
                         tools:ignore="ContentDescription"
                         tools:src="@drawable/ic_volume_up" />
-                </RelativeLayout>
+                </FrameLayout>
 
-                <RelativeLayout
+                <FrameLayout
                     android:id="@+id/brightnessRelativeLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1209,11 +1203,11 @@
                         android:id="@+id/brightnessImageView"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
                         app:tint="@color/white"
                         tools:ignore="ContentDescription"
                         tools:src="@drawable/ic_brightness_high" />
-                </RelativeLayout>
+                </FrameLayout>
 
                 <org.schabi.newpipe.views.NewPipeTextView
                     android:id="@+id/swipeSeekDisplay"

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.subscription
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -92,6 +93,16 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private var pendingBrowseAnchor: SubscriptionScrollAnchor? = null
     private var countDisposable: io.reactivex.rxjava3.disposables.Disposable? = null
     private var fastScroller: ListFastScroller? = null
+    private var interfacePreferences: SharedPreferences? = null
+    private var importShortcutKey: String? = null
+    private val interfacePreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == null || key == importShortcutKey) {
+            val currentBinding = _binding ?: return@OnSharedPreferenceChangeListener
+            currentBinding.itemsList.post {
+                if (_binding === currentBinding) updateImportShortcutVisibility()
+            }
+        }
+    }
 
     @State
     @JvmField
@@ -133,6 +144,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     }
 
     override fun onDestroyView() {
+        interfacePreferences?.unregisterOnSharedPreferenceChangeListener(interfacePreferenceListener)
+        interfacePreferences = null
+        importShortcutKey = null
         channelActions.close()
         bulkActions.close()
         groupActions.close()
@@ -357,6 +371,10 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         }
 
         setupInitialLayout()
+        importShortcutKey = getString(R.string.show_subscription_import_shortcut_key)
+        interfacePreferences = PreferenceManager.getDefaultSharedPreferences(requireContext()).also {
+            it.registerOnSharedPreferenceChangeListener(interfacePreferenceListener)
+        }
         sortController = SubscriptionSortController(requireContext(), activeProfileId, binding, savedInstanceState) {
             updateUnsubscribeAction()
         }.apply {
@@ -658,8 +676,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             feedGroupsCarouselState = null
         }
 
-        binding.itemsList.post {
-            if (context == null) {
+        val currentBinding = binding
+        currentBinding.itemsList.post {
+            if (_binding !== currentBinding || context == null) {
                 // since this part was posted to the next UI cycle, the fragment might have been
                 // removed in the meantime
                 return@post
@@ -676,15 +695,29 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
                 clear()
                 if (listViewMode) {
                     add(FeedGroupAddNewItem())
-                    add(FeedGroupImportItem())
+                    if (showImportShortcut()) add(FeedGroupImportItem())
                     add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 } else {
                     add(FeedGroupAddNewGridItem())
-                    add(FeedGroupImportGridItem())
+                    if (showImportShortcut()) add(FeedGroupImportGridItem())
                     add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 }
                 addAll(groups)
             }
+        }
+    }
+
+    private fun showImportShortcut(): Boolean = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        .getBoolean(getString(R.string.show_subscription_import_shortcut_key), true)
+
+    private fun updateImportShortcutVisibility() {
+        if (!::carouselAdapter.isInitialized || carouselAdapter.itemCount == 0) return
+        val existing = (0 until carouselAdapter.itemCount).map(carouselAdapter::getItem)
+            .firstOrNull { it is FeedGroupImportItem || it is FeedGroupImportGridItem }
+        if (!showImportShortcut()) {
+            existing?.let(carouselAdapter::remove)
+        } else if (existing == null) {
+            carouselAdapter.add(1, if (feedGroupsCarousel.listViewMode) FeedGroupImportItem() else FeedGroupImportGridItem())
         }
     }
 

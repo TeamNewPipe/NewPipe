@@ -7,7 +7,7 @@
     android:background="?attr/colorSurface"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <org.schabi.newpipe.views.InterfaceToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -31,7 +31,7 @@
             android:visibility="gone"
             tools:visibility="gone" />
 
-    </com.google.android.material.appbar.MaterialToolbar>
+    </org.schabi.newpipe.views.InterfaceToolbar>
 
     <TextView
         android:id="@+id/incognito_status"

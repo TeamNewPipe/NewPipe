@@ -46,6 +46,7 @@ import org.schabi.newpipe.learning.LearningMode;
 import org.schabi.newpipe.learning.LearningPlaylistMarker;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.local.playlist.PlaylistCompactControls;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -246,8 +247,7 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
                 .setOnClickListener(view -> chooseCategory(null));
         rootView.findViewById(R.id.playlist_category_manage)
                 .setOnClickListener(view -> manageCategories());
-        ((android.widget.TextView) rootView.findViewById(R.id.playlist_edit_toggle))
-                .setText(editMode ? R.string.playlist_edit_done : R.string.playlist_edit_mode);
+        PlaylistCompactControls.update(rootView, editMode);
         rootView.findViewById(R.id.playlist_edit_toggle).setOnClickListener(view -> {
             editMode = !editMode;
             updateEditMode();
@@ -715,11 +715,8 @@ public final class BookmarkFragment extends BaseLocalListFragment<List<PlaylistL
         }
         final View root = getView();
         if (root != null) {
-            root.findViewById(R.id.collection_select_move)
-                    .setVisibility(editMode ? View.VISIBLE : View.GONE);
             root.findViewById(R.id.collection_select_move).setEnabled(!isPlaylistListFiltered());
-            ((android.widget.TextView) root.findViewById(R.id.playlist_edit_toggle))
-                    .setText(editMode ? R.string.playlist_edit_done : R.string.playlist_edit_mode);
+            PlaylistCompactControls.update(root, editMode);
         }
         if (itemListAdapter != null) {
             itemListAdapter.setItemHandleEnabled(editMode && !isPlaylistListFiltered());

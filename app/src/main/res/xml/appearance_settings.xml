@@ -220,6 +220,32 @@
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
 
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_voice_search_button_key"
+        android:title="@string/show_voice_search_button_title"
+        android:summary="@string/show_voice_search_button_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <ListPreference
+        android:defaultValue="start"
+        android:entries="@array/toolbar_title_alignment_entries"
+        android:entryValues="@array/toolbar_title_alignment_values"
+        android:key="@string/toolbar_title_alignment_key"
+        android:title="@string/toolbar_title_alignment_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="@string/show_subscription_import_shortcut_key"
+        android:title="@string/show_subscription_import_shortcut_title"
+        android:summary="@string/show_subscription_import_shortcut_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
     <ListPreference
         android:defaultValue="100"
         android:entries="@array/media_text_size_description"

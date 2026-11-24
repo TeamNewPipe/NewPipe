@@ -361,11 +361,6 @@ public class SearchFragment extends BaseListFragment<SearchInfo, ListExtractor.I
                 !musicFilters.isEmpty());
         searchFilter.setVisibility(hasFilters && !showMusicFilterChips
                 ? View.VISIBLE : View.GONE);
-        final ViewGroup.MarginLayoutParams layoutParams =
-                (ViewGroup.MarginLayoutParams) searchEditText.getLayoutParams();
-        layoutParams.rightMargin = DeviceUtils.dpToPx(
-                hasFilters && !showMusicFilterChips ? 144 : 96, requireContext());
-        searchEditText.setLayoutParams(layoutParams);
         updateMusicFilterChips(showMusicFilterChips ? musicFilters : Collections.emptyList());
     }
 

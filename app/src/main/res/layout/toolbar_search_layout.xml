@@ -14,94 +14,92 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/search_toolbar_field_background" />
 
-    <org.schabi.newpipe.views.NewPipeEditText
-        android:id="@+id/toolbar_search_edit_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="144dp"
-        android:layout_marginBottom="4dp"
-        android:background="@null"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:hint="@string/search"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textColor="?attr/colorOnSurface"
-        android:textColorHint="?attr/colorOnSurfaceVariant"
-        android:imeOptions="actionSearch|flagNoFullscreen"
-        android:inputType="textFilter|textNoSuggestions"
-        android:maxLines="1"
-        android:nextFocusDown="@+id/suggestions_list"
-        android:theme="@style/ToolbarSearchInputTheme"
-        tools:ignore="RtlHardcoded" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@+id/toolbar_search_filter"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="96dp"
-        android:contentDescription="@string/search_filters"
-        android:focusable="true"
-        tools:ignore="RtlHardcoded">
+        <org.schabi.newpipe.views.NewPipeEditText
+            android:id="@+id/toolbar_search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/search"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:imeOptions="actionSearch|flagNoFullscreen"
+            android:inputType="textFilter|textNoSuggestions"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/suggestions_list"
+            android:theme="@style/ToolbarSearchInputTheme" />
 
-        <View
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+        <FrameLayout
+            android:id="@+id/toolbar_search_filter"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/search_filters"
+            android:focusable="true"
+            android:visibility="gone">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:contentDescription="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_filter_list"
+            <View
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_filter_list"
+                app:tint="?attr/colorOnSurfaceVariant" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/toolbar_search_voice"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/voice_search"
+            android:focusable="true"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_mic"
             app:tint="?attr/colorOnSurfaceVariant" />
-    </FrameLayout>
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/toolbar_search_voice"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/voice_search"
-        android:focusable="true"
-        android:padding="12dp"
-        app:srcCompat="@drawable/ic_mic"
-        app:tint="?attr/colorOnSurfaceVariant"
-        tools:ignore="RtlHardcoded" />
+        <FrameLayout
+            android:id="@+id/toolbar_search_clear"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/clear"
+            android:focusable="true">
 
-    <FrameLayout
-        android:id="@+id/toolbar_search_clear"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="right|center_vertical"
-        android:contentDescription="@string/clear"
-        android:focusable="true"
-        tools:ignore="RtlHardcoded">
+            <View
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
-        <View
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless" />
-
-        <ImageView
-            android:id="@+id/toolbar_search_clear_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/search"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_close"
-            app:tint="?attr/colorOnSurfaceVariant"
-            tools:ignore="RtlHardcoded" />
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/toolbar_search_clear_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/search"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_close"
+                app:tint="?attr/colorOnSurfaceVariant" />
+        </FrameLayout>
+    </LinearLayout>
 
 </FrameLayout>

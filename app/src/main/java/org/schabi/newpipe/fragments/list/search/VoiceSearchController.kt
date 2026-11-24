@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.search
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.speech.RecognizerIntent
 import android.view.View
 import android.widget.EditText
@@ -11,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.TooltipCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.preference.PreferenceManager
 import java.util.function.Consumer
 import org.schabi.newpipe.R
 import org.schabi.newpipe.util.DeviceUtils
@@ -23,6 +25,11 @@ class VoiceSearchController(
 ) {
     private var button: View? = null
     private var input: EditText? = null
+    private var preferences: SharedPreferences? = null
+    private var visibilityKey: String? = null
+    private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == null || key == visibilityKey) updateVisibility()
+    }
     private var pendingQuery: String? = null
     private val launcher = fragment.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         pendingQuery = recognizedQuery(result.resultCode, result.data)
@@ -64,12 +71,26 @@ class VoiceSearchController(
                 }
             }
         }
+        visibilityKey = toolbar.context.getString(R.string.show_voice_search_button_key)
+        preferences = PreferenceManager.getDefaultSharedPreferences(toolbar.context).also {
+            it.registerOnSharedPreferenceChangeListener(preferenceListener)
+        }
+        updateVisibility()
     }
 
     fun unbind() {
+        preferences?.unregisterOnSharedPreferenceChangeListener(preferenceListener)
+        preferences = null
+        visibilityKey = null
         button?.setOnClickListener(null)
+        button?.visibility = View.GONE
         button = null
         input = null
+    }
+
+    private fun updateVisibility() {
+        val key = visibilityKey ?: return
+        button?.visibility = if (preferences?.getBoolean(key, true) != false) View.VISIBLE else View.GONE
     }
 
     private fun showUnavailable() {

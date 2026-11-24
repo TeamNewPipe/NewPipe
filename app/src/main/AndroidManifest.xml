@@ -57,6 +57,7 @@
         android:logo="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
         android:resizeableActivity="true"
+        android:supportsRtl="true"
         android:theme="@style/OpeningTheme"
         tools:ignore="AllowBackup">
 

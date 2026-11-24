@@ -21,7 +21,7 @@ internal class FeedGroupSelector(
     private val selectedId: () -> Long,
     private val onSelected: (Long, String) -> Unit
 ) {
-    private val button = LayoutInflater.from(context).inflate(R.layout.feed_group_toolbar, null)
+    private val button = createToolbarView(context)
     private val label = button.findViewById<TextView>(R.id.feed_group_toolbar_label)
     private var groups = emptyList<FeedGroupEntity>()
     private var dialog: androidx.appcompat.app.AlertDialog? = null
@@ -87,6 +87,11 @@ internal class FeedGroupSelector(
     }
 
     companion object {
+        internal fun createToolbarView(context: Context) = LayoutInflater.from(context)
+            .inflate(R.layout.feed_group_toolbar, null).apply {
+                setTag(R.id.toolbar_custom_title, true)
+            }
+
         @JvmStatic
         fun updateSearchVisibility(actionBar: ActionBar, searching: Boolean) {
             val hasSelector = actionBar.customView?.id == R.id.feed_group_toolbar

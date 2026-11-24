@@ -341,21 +341,21 @@
                         </LinearLayout>
 
                         <!-- VIEW COUNT & INLINE LOCAL/PUBLIC LIKES -->
-                        <RelativeLayout
+                        <LinearLayout
                             android:id="@+id/details_panel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:paddingLeft="6dp"
-                            android:paddingRight="6dp"
-                            android:minHeight="48dp">
+                            android:gravity="center_horizontal"
+                            android:minHeight="48dp"
+                            android:orientation="vertical"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp">
 
                             <org.schabi.newpipe.views.MediaTextView
                                 android:id="@+id/detail_view_count_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerHorizontal="true"
                                 android:layout_marginTop="6dp"
                                 android:layout_marginBottom="6dp"
                                 android:lines="1"
@@ -372,8 +372,6 @@
                                 android:id="@+id/detail_likes_row"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/detail_view_count_view"
-                                android:layout_centerHorizontal="true"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
 
@@ -439,7 +437,7 @@
                                     android:visibility="gone"
                                     tools:visibility="visible" />
                             </LinearLayout>
-                        </RelativeLayout>
+                        </LinearLayout>
                     </RelativeLayout>
 
                     <!-- CONTROLS -->

@@ -21,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start|center_vertical"
             android:text="@string/tab_subscriptions"
             android:textColor="?attr/colorPrimary"
             android:textSize="16sp"

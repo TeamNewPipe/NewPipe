@@ -175,11 +175,11 @@ jobs:
             # The API 28 quick-boot snapshot can lose package/activity services after resuming.
             extra-emulator-options: -no-snapshot-load
             # Exercise the legacy copy-toast path on the Android version reported in #522.
-            test-options: -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.local.feed.quickadd.QuickAddStoreTest,org.schabi.newpipe.local.feed.preview.FeedPreviewControllerTest,org.schabi.newpipe.player.info.PlaybackInformationViewTest,org.schabi.newpipe.util.LegacyTextSelectionThemeTest,org.schabi.newpipe.sync.ProfileSyncIdentityCompatibilityTest,org.schabi.newpipe.player.video.VideoAdjustmentLifecycleTest,org.schabi.newpipe.player.video.VideoAdjustmentPlaybackTest,org.schabi.newpipe.player.pip.NativePipPlaybackTest,org.schabi.newpipe.player.ui.TvFullscreenFocusGuardTest,org.schabi.newpipe.player.gesture.PendingPlayerDragDispatchTest
+            test-options: -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.local.feed.quickadd.QuickAddStoreTest,org.schabi.newpipe.local.feed.preview.FeedPreviewControllerTest,org.schabi.newpipe.player.info.PlaybackInformationViewTest,org.schabi.newpipe.util.LegacyTextSelectionThemeTest,org.schabi.newpipe.sync.ProfileSyncIdentityCompatibilityTest,org.schabi.newpipe.player.video.VideoAdjustmentLifecycleTest,org.schabi.newpipe.player.video.VideoAdjustmentPlaybackTest,org.schabi.newpipe.player.pip.NativePipPlaybackTest,org.schabi.newpipe.player.ui.TvFullscreenFocusGuardTest,org.schabi.newpipe.player.gesture.PendingPlayerDragDispatchTest,org.schabi.newpipe.local.subscription.SubscriptionChannelsHeaderLayoutTest,org.schabi.newpipe.local.playlist.PlaylistCompactControlsLayoutTest,org.schabi.newpipe.settings.InterfacePreferencesTest,org.schabi.newpipe.local.subscription.SubscriptionImportShortcutTest,org.schabi.newpipe.local.subscription.SubscriptionNameScrollingTest,org.schabi.newpipe.player.ui.ChapterNavigationControlsTest
           - api-level: 35
             target: default
             arch: x86_64
-          # Reproduce playback-information bounds and scrolling on Android 17 (#1707).
+          # Cover playback bounds, RTL layouts and interface preferences on Android 17.
           - api-level: '37.0'
             target: default
             arch: x86_64
@@ -187,7 +187,7 @@ jobs:
             ram-size: 4096M
             avd-cache-version: v2
             pre-emulator-launch-script: grep -Fx 'target=android-37.0' "$ANDROID_AVD_HOME/test.ini"
-            test-options: -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.player.info.PlaybackInformationViewTest
+            test-options: -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.player.info.PlaybackInformationViewTest,org.schabi.newpipe.local.subscription.SubscriptionChannelsHeaderLayoutTest,org.schabi.newpipe.local.playlist.PlaylistCompactControlsLayoutTest,org.schabi.newpipe.settings.InterfacePreferencesTest,org.schabi.newpipe.local.subscription.SubscriptionImportShortcutTest,org.schabi.newpipe.local.subscription.SubscriptionNameScrollingTest,org.schabi.newpipe.player.ui.ChapterNavigationControlsTest
     permissions:
       contents: read
     steps:

@@ -1,64 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.schabi.newpipe.local.subscription.SubscriptionHeaderLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
-    <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/header_title"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:ellipsize="end"
-        android:gravity="start|center_vertical"
-        android:maxLines="2"
-        android:minHeight="24dp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:text="Header" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
 
-    <ImageButton
-        android:id="@+id/header_search"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/subscription_groups_search"
-        android:padding="8dp"
-        android:src="@drawable/ic_search"
-        app:tint="?attr/colorOnSurfaceVariant" />
+        <org.schabi.newpipe.views.NewPipeTextView
+            android:id="@+id/header_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Header" />
 
-    <ImageButton
-        android:id="@+id/header_toggle_collapse"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/subscription_groups_collapse"
-        android:padding="8dp"
-        android:src="@drawable/ic_arrow_drop_up"
-        app:tint="?attr/colorOnSurfaceVariant" />
+    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/header_toggle_view_mode"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/list_view_mode"
-        android:padding="8dp"
-        android:tint="?attr/colorOnSurfaceVariant"
-        tools:src="@drawable/ic_apps" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/header_sort"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/sort"
-        android:padding="8dp"
-        android:src="@drawable/ic_sort"
-        android:tint="?attr/colorOnSurfaceVariant" />
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/header_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/subscription_groups_search"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_search"
+            app:tint="?attr/colorOnSurfaceVariant" />
+
+        <ImageButton
+            android:id="@+id/header_toggle_collapse"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/subscription_groups_collapse"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_drop_up"
+            app:tint="?attr/colorOnSurfaceVariant" />
+
+        <ImageButton
+            android:id="@+id/header_toggle_view_mode"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/list_view_mode"
+            android:focusable="true"
+            android:padding="8dp"
+            android:tint="?attr/colorOnSurfaceVariant"
+            tools:src="@drawable/ic_apps" />
+
+        <ImageButton
+            android:id="@+id/header_sort"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/sort"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_sort"
+            android:tint="?attr/colorOnSurfaceVariant" />
+    </LinearLayout>
+</org.schabi.newpipe.local.subscription.SubscriptionHeaderLayout>

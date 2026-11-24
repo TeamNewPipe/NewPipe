@@ -120,7 +120,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected String playlistSortName = "PLAYLIST_ORDER";
 
     private LocalPlaylistHeaderBinding headerBinding;
-    private android.widget.TextView editToggle;
+    private View editToggle;
     private View selectMove;
     private PlaylistControlBinding playlistControlBinding;
 
@@ -235,7 +235,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         });
 
-        requireView().findViewById(R.id.local_playlist_edit_controls).setVisibility(View.VISIBLE);
         editToggle = requireView().findViewById(R.id.playlist_edit_toggle);
         selectMove = requireView().findViewById(R.id.collection_select_move);
         headerBinding.playlistTitleView.setOnClickListener(view -> createRenameDialog());
@@ -1116,9 +1115,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void updateEditMode() {
         if (selectMove != null) {
-            selectMove.setVisibility(View.VISIBLE);
-            editToggle.setText(
-                    editMode ? R.string.playlist_edit_done : R.string.playlist_edit_mode);
+            PlaylistCompactControls.update(requireView(), editMode);
         }
         if (itemListAdapter != null) {
             itemListAdapter.setItemHandleEnabled(editMode

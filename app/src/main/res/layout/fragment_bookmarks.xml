@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface">
 
-    <LinearLayout
+    <org.schabi.newpipe.views.CompactPlaylistControlsLayout
         android:id="@+id/playlist_category_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,37 +24,40 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="start|center_vertical"
-            android:maxLines="1"
+            android:maxLines="2"
+            android:minHeight="48dp"
             android:text="@string/playlist_categories_all"
             app:icon="@drawable/ic_arrow_drop_down"
             app:iconGravity="end" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/playlist_category_manage"
-            style="@style/Widget.Material3.Button.TextButton"
+        <LinearLayout
+            android:id="@+id/playlist_category_actions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/playlist_categories" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/playlist_edit_toggle"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/playlist_edit_mode" />
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/collection_select_move"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_category_controls"
-        android:text="@string/collection_select_move"
-        android:visibility="gone" />
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playlist_category_manage"
+                style="@style/Widget.WizeStream.CompactPlaylistAction"
+                android:contentDescription="@string/playlist_manage_categories"
+                app:srcCompat="@drawable/ic_category" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/playlist_edit_toggle"
+                style="@style/Widget.WizeStream.CompactPlaylistAction"
+                android:contentDescription="@string/playlist_edit_mode"
+                app:srcCompat="@drawable/ic_edit" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/collection_select_move"
+                style="@style/Widget.WizeStream.CompactPlaylistAction"
+                android:contentDescription="@string/collection_select_move"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_checklist" />
+        </LinearLayout>
+    </org.schabi.newpipe.views.CompactPlaylistControlsLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_list"
-        android:layout_below="@id/collection_select_move"
+        android:layout_below="@id/playlist_category_controls"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"

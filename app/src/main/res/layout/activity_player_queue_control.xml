@@ -112,10 +112,12 @@
             tools:text="Duis posuere arcu condimentum lobortis mattis." />
     </LinearLayout>
 
+    <!-- Playback time advances left to right, matching the rewind/forward controls. -->
     <LinearLayout
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layoutDirection="ltr"
         android:orientation="horizontal"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"

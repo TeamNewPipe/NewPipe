@@ -15,12 +15,10 @@
         android:layout_width="@dimen/video_item_search_thumbnail_image_width"
         android:layout_height="@dimen/video_item_search_thumbnail_image_height"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+        android:layout_marginEnd="@dimen/video_item_search_image_right_margin"
         android:scaleType="fitStart"
-        android:src="@drawable/placeholder_thumbnail_playlist"
-        tools:ignore="RtlHardcoded" />
+        android:src="@drawable/placeholder_thumbnail_playlist" />
 
     <org.schabi.newpipe.views.NewPipeTextView
         android:id="@+id/itemStreamCountView"
@@ -46,13 +44,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/video_item_search_title_text_size"
-        tools:ignore="RtlHardcoded"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <org.schabi.newpipe.views.MediaTextView
@@ -61,12 +58,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitleView"
-        android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
         android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="@dimen/video_item_search_uploader_text_size"
-        tools:ignore="RtlHardcoded"
         tools:text="Uploader" />
 
 </RelativeLayout>

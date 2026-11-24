@@ -350,20 +350,20 @@
                             </LinearLayout>
 
                             <!-- VIEW & THUMBS -->
-                            <RelativeLayout
+                            <LinearLayout
                                 android:id="@+id/details_panel"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:paddingLeft="6dp"
-                                android:paddingRight="6dp">
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingStart="6dp"
+                                android:paddingEnd="6dp">
 
                                 <org.schabi.newpipe.views.MediaTextView
                                     android:id="@+id/detail_view_count_view"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
                                     android:layout_marginTop="6dp"
                                     android:layout_marginBottom="6dp"
                                     android:lines="1"
@@ -373,69 +373,63 @@
                                     app:mediaTextRole="videoMetadata"
                                     tools:text="2,816,821,505 views" />
 
-                                <ImageView
-                                    android:id="@+id/detail_thumbs_up_img_view"
-                                    android:layout_width="@dimen/video_item_detail_like_image_width"
-                                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                                    android:layout_below="@id/detail_view_count_view"
-                                    android:contentDescription="@string/detail_likes_img_view_description"
-                                    android:src="@drawable/ic_thumb_up" />
-
-                                <org.schabi.newpipe.views.NewPipeTextView
-                                    android:id="@+id/detail_thumbs_up_count_view"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                                    android:layout_below="@id/detail_view_count_view"
-                                    android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-                                    android:layout_toRightOf="@id/detail_thumbs_up_img_view"
+                                    android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
-                                    android:lines="1"
-                                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                                    android:textSize="@dimen/video_item_detail_likes_text_size"
-                                    tools:ignore="RtlHardcoded"
-                                    tools:text="12M" />
+                                    android:orientation="horizontal">
 
-                                <ImageView
-                                    android:id="@+id/detail_thumbs_down_img_view"
-                                    android:layout_width="@dimen/video_item_detail_like_image_width"
-                                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                                    android:layout_below="@id/detail_view_count_view"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_toRightOf="@id/detail_thumbs_up_count_view"
-                                    android:contentDescription="@string/detail_dislikes_img_view_description"
-                                    android:src="@drawable/ic_thumb_down"
-                                    tools:ignore="RtlHardcoded" />
+                                    <ImageView
+                                        android:id="@+id/detail_thumbs_up_img_view"
+                                        android:layout_width="@dimen/video_item_detail_like_image_width"
+                                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                                        android:contentDescription="@string/detail_likes_img_view_description"
+                                        android:src="@drawable/ic_thumb_up" />
 
-                                <org.schabi.newpipe.views.NewPipeTextView
-                                    android:id="@+id/detail_thumbs_down_count_view"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                                    android:layout_below="@id/detail_view_count_view"
-                                    android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-                                    android:layout_toRightOf="@id/detail_thumbs_down_img_view"
-                                    android:gravity="center_vertical"
-                                    android:lines="1"
-                                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                                    android:textSize="@dimen/video_item_detail_likes_text_size"
-                                    tools:ignore="RtlHardcoded"
-                                    tools:text="10K" />
+                                    <org.schabi.newpipe.views.NewPipeTextView
+                                        android:id="@+id/detail_thumbs_up_count_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                                        android:layout_marginStart="@dimen/video_item_detail_like_margin"
+                                        android:gravity="center_vertical"
+                                        android:lines="1"
+                                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                                        android:textSize="@dimen/video_item_detail_likes_text_size"
+                                        tools:text="12M" />
 
-                                <org.schabi.newpipe.views.NewPipeTextView
-                                    android:id="@+id/detail_thumbs_disabled_view"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                                    android:layout_below="@id/detail_view_count_view"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_toRightOf="@id/detail_thumbs_down_img_view"
-                                    android:gravity="center_vertical"
-                                    android:text="@string/disabled"
-                                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                                    android:textSize="@dimen/video_item_detail_likes_text_size"
-                                    android:textStyle="bold"
-                                    android:visibility="gone"
-                                    tools:ignore="RtlHardcoded"
-                                    tools:visibility="visible" />
-                            </RelativeLayout>
+                                    <ImageView
+                                        android:id="@+id/detail_thumbs_down_img_view"
+                                        android:layout_width="@dimen/video_item_detail_like_image_width"
+                                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                                        android:layout_marginStart="12dp"
+                                        android:contentDescription="@string/detail_dislikes_img_view_description"
+                                        android:src="@drawable/ic_thumb_down" />
+
+                                    <org.schabi.newpipe.views.NewPipeTextView
+                                        android:id="@+id/detail_thumbs_down_count_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                                        android:layout_marginStart="@dimen/video_item_detail_like_margin"
+                                        android:gravity="center_vertical"
+                                        android:lines="1"
+                                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                                        android:textSize="@dimen/video_item_detail_likes_text_size"
+                                        tools:text="10K" />
+
+                                    <org.schabi.newpipe.views.NewPipeTextView
+                                        android:id="@+id/detail_thumbs_disabled_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                                        android:layout_marginStart="12dp"
+                                        android:gravity="center_vertical"
+                                        android:text="@string/disabled"
+                                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                                        android:textSize="@dimen/video_item_detail_likes_text_size"
+                                        android:textStyle="bold"
+                                        android:visibility="gone"
+                                        tools:visibility="visible" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </RelativeLayout>
 
                         <org.schabi.newpipe.local.playlist.LocalLikesView

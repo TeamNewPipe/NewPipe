@@ -317,11 +317,6 @@ public class SettingsActivity extends AppCompatActivity implements
         searchEditText.setText(searchText);
         searchContainer.findViewById(R.id.toolbar_search_filter)
                 .setVisibility(View.GONE);
-        // Reuse the shared toolbar without the video filter.
-        final android.view.ViewGroup.MarginLayoutParams params =
-                (android.view.ViewGroup.MarginLayoutParams) searchEditText.getLayoutParams();
-        params.rightMargin = (int) (48 * getResources().getDisplayMetrics().density);
-        searchEditText.setLayoutParams(params);
         searchContainer.findViewById(R.id.toolbar_search_clear)
                 .setOnClickListener(view -> searchEditText.setText(""));
         searchEditText.setOnEditorActionListener((view, actionId, event) -> {
