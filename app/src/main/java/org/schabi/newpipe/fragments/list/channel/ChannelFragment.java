@@ -41,6 +41,7 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotSupportedException;
+import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.detail.TabAdapter;
@@ -101,6 +102,8 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
     protected String url;
     @State
     protected String selectedChannelVideoSort;
+    @State
+    protected String selectedChannelLiveSort;
     @State
     protected String channelSearchQuery = "";
     @State
@@ -928,11 +931,7 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
                         && (!org.schabi.newpipe.extractor.linkhandler.ChannelTabs.SEARCH.equals(tab)
                         || KidsMode.isSearchAllowed(context, serviceId))) {
                     final ChannelTabFragment channelTabFragment =
-                            ChannelTabFragment.getInstance(
-                                    serviceId,
-                                    linkHandler,
-                                    name,
-                                    selectedChannelVideoSort);
+                            createChannelTabFragment(linkHandler);
                     channelTabFragment.useAsFrontPage(useAsFrontPage);
                     channelTabFragment.setContextualSearchQuery(channelSearchQuery);
                     tabAdapter.addFragment(channelTabFragment,
@@ -978,8 +977,22 @@ public class ChannelFragment extends BaseStateFragment<ChannelInfo>
         }
     }
 
-    void setSelectedChannelVideoSort(@NonNull final String selectedSort) {
-        selectedChannelVideoSort = selectedSort;
+    @NonNull
+    ChannelTabFragment createChannelTabFragment(@NonNull final ListLinkHandler linkHandler) {
+        final String tab = ChannelTabHelper.getTabName(linkHandler);
+        final String selectedSort = ChannelTabs.LIVESTREAMS.equals(tab)
+                ? selectedChannelLiveSort
+                : ChannelTabs.VIDEOS.equals(tab) ? selectedChannelVideoSort : null;
+        return ChannelTabFragment.getInstance(serviceId, linkHandler, name, selectedSort);
+    }
+
+    void setSelectedChannelSort(@Nullable final String tab,
+                                @NonNull final String selectedSort) {
+        if (ChannelTabs.LIVESTREAMS.equals(tab)) {
+            selectedChannelLiveSort = selectedSort;
+        } else if (ChannelTabs.VIDEOS.equals(tab)) {
+            selectedChannelVideoSort = selectedSort;
+        }
     }
 
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.search.filter.Filter;
@@ -18,11 +19,11 @@ public class ChannelTabSortHelperTest {
     private static final String CHANNEL_ID = "channel/UC123";
 
     @Test
-    public void exposesAdvertisedSortFiltersOnlyForTheVideosTab() {
+    public void exposesVideoSortFiltersButNotShorts() {
         final List<FilterItem> videoFilters = ChannelTabSortHelper.getAvailableSortFilters(
-                factory(), handler(ChannelTabs.VIDEOS, null));
+                ServiceList.YouTube.getServiceId(), factory(), handler(ChannelTabs.VIDEOS, null));
         final List<FilterItem> shortsFilters = ChannelTabSortHelper.getAvailableSortFilters(
-                factory(), handler(ChannelTabs.SHORTS, null));
+                ServiceList.YouTube.getServiceId(), factory(), handler(ChannelTabs.SHORTS, null));
 
         assertEquals(
                 List.of("latest", "popular", "oldest"),
@@ -34,7 +35,8 @@ public class ChannelTabSortHelperTest {
     public void defaultsToTheFirstAdvertisedSortFilter() {
         final ListLinkHandler handler = handler(ChannelTabs.VIDEOS, null);
         final List<FilterItem> filters =
-                ChannelTabSortHelper.getAvailableSortFilters(factory(), handler);
+                ChannelTabSortHelper.getAvailableSortFilters(
+                        ServiceList.YouTube.getServiceId(), factory(), handler);
 
         assertEquals(0, ChannelTabSortHelper.getSelectedSortFilterIndex(handler, filters));
     }
@@ -43,7 +45,8 @@ public class ChannelTabSortHelperTest {
     public void rebuildsTheHandlerWithTheSelectedServerSideOrder() throws Exception {
         final ListLinkHandler handler = handler(ChannelTabs.VIDEOS, null);
         final List<FilterItem> filters =
-                ChannelTabSortHelper.getAvailableSortFilters(factory(), handler);
+                ChannelTabSortHelper.getAvailableSortFilters(
+                        ServiceList.YouTube.getServiceId(), factory(), handler);
 
         final ListLinkHandler sorted =
                 ChannelTabSortHelper.withSortFilter(factory(), handler, filters.get(1));

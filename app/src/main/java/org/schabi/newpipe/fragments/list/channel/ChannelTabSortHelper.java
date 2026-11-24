@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.channel;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
@@ -10,6 +11,7 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.search.filter.Filter;
 import org.schabi.newpipe.extractor.search.filter.FilterGroup;
 import org.schabi.newpipe.extractor.search.filter.FilterItem;
+import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeChannelTabLinkHandlerFactory;
 import org.schabi.newpipe.util.ChannelTabHelper;
 
 import java.util.ArrayList;
@@ -22,10 +24,15 @@ final class ChannelTabSortHelper {
 
     @NonNull
     static List<FilterItem> getAvailableSortFilters(
+            final int serviceId,
             @Nullable final ListLinkHandlerFactory factory,
             @NonNull final ListLinkHandler tabHandler) {
+        final String tabName = ChannelTabHelper.getTabName(tabHandler);
+        final boolean youtubeLive = serviceId == ServiceList.YouTube.getServiceId()
+                && factory instanceof YoutubeChannelTabLinkHandlerFactory
+                && ChannelTabs.LIVESTREAMS.equals(tabName);
         if (factory == null
-                || !ChannelTabs.VIDEOS.equals(ChannelTabHelper.getTabName(tabHandler))) {
+                || (!ChannelTabs.VIDEOS.equals(tabName) && !youtubeLive)) {
             return Collections.emptyList();
         }
 

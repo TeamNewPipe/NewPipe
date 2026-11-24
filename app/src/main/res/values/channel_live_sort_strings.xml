@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="channel_live_sort_content_description">Sort live streams: %1$s</string>
+</resources>

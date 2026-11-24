@@ -25,6 +25,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelTabInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.linkhandler.ChannelTabs;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.extractor.search.filter.FilterItem;
@@ -159,7 +160,7 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                     NewPipe.getService(serviceId).getChannelTabLHFactory();
             availableChannelVideoSortFilters =
                     ChannelTabSortHelper.getAvailableSortFilters(
-                            channelTabLinkHandlerFactory, tabHandler);
+                            serviceId, channelTabLinkHandlerFactory, tabHandler);
             if (availableChannelVideoSortFilters.size() <= 1) {
                 return;
             }
@@ -219,8 +220,8 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
             selectedChannelVideoSort = selectedFilter.getName();
             final Fragment parent = getParentFragment();
             if (parent instanceof ChannelFragment) {
-                ((ChannelFragment) parent).setSelectedChannelVideoSort(
-                        selectedChannelVideoSort);
+                ((ChannelFragment) parent).setSelectedChannelSort(
+                        ChannelTabHelper.getTabName(tabHandler), selectedChannelVideoSort);
             }
             updateChannelVideoSortButton();
             currentNextPage = null;
@@ -247,7 +248,9 @@ public class ChannelTabFragment extends BaseListInfoFragment<InfoItem, ChannelTa
                 requireContext());
         binding.channelVideoSortButton.setText(label);
         binding.channelVideoSortButton.setContentDescription(
-                getString(R.string.channel_video_sort_content_description, label));
+                getString(ChannelTabs.LIVESTREAMS.equals(ChannelTabHelper.getTabName(tabHandler))
+                        ? R.string.channel_live_sort_content_description
+                        : R.string.channel_video_sort_content_description, label));
     }
 
     @Override
