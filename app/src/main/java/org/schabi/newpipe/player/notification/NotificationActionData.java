@@ -145,7 +145,12 @@ public final class NotificationActionData {
                 }
 
             case NotificationConstants.REPEAT:
-                if (player.getRepeatMode() == REPEAT_MODE_ALL) {
+                if (player.isStopAfterCurrentSong()) {
+                    return new NotificationActionData(ACTION_REPEAT,
+                            ctx.getString(R.string.notification_action_stop_after_current),
+                            com.google.android.exoplayer2.ext.mediasession.R.drawable
+                                    .exo_media_action_repeat_one);
+                } else if (player.getRepeatMode() == REPEAT_MODE_ALL) {
                     return new NotificationActionData(ACTION_REPEAT,
                             ctx.getString(com.google.android.exoplayer2.ui.R.string
                                     .exo_controls_repeat_all_description),
