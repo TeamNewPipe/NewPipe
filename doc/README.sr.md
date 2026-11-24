@@ -25,10 +25,10 @@
 *Прочитајте овај документ на другим језицима: [Deutsch](/doc/README.de.md),
 [English](/doc/README.md), [Español](/doc/README.es.md), [Français](/doc/README.fr.md),
 [हिन्दी](/doc/README.hi.md), [Italiano](/doc/README.it.md), [한국어](/doc/README.ko.md), [Português
-Brasil](/doc/README.pt_BR.md), [Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md),
-[日本語](/doc/README.ja.md), [Română](/doc/README.ro.md), [Soomaali](/doc/README.so.md),
-[Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md), [অসমীয়া](/doc/README.asm.md),
-[Српски](/doc/README.sr.md) , [العربية](/doc/README.ar.md)*
+Brasil](/doc/README.pt_BR.md), [Português Portugal](/doc/README.pt_PT.md), [Polski](/doc/README.pl.md),
+[ਪੰਜਾਬੀ ](/doc/README.pa.md), [日本語](/doc/README.ja.md), [Română](/doc/README.ro.md),
+[Soomaali](/doc/README.so.md), [Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md),
+[অসমীয়া](/doc/README.asm.md), [Српски](/doc/README.sr.md) , [العربية](/doc/README.ar.md)*
 
 > [!warning]\
 > <b>ОВА АПЛИКАЦИЈА ЈЕ У БЕТА ВЕРЗИЈИ, ТАКО ДА МОЖЕТЕ НАИЋИ НА ГРЕШКЕ. АКО НАИЂЕТЕ, НАПИШИТЕ
