@@ -326,6 +326,8 @@
     <string name="any_network">Any network</string>
     <string name="channels">Channels</string>
     <string name="notifications_disabled">Notifications are disabled</string>
+    <string name="toggle_all">Toggle all</string>
+    <string name="channel_notifications_description">Select the channels for which you want to receive notifications about new streams</string>
 
     <!-- Player notification -->
     <string name="notification_scale_to_square_image_title">Crop thumbnail to 1:1 aspect ratio</string>

@@ -58,7 +58,7 @@ You'll see *exactly* what is sent, be able to add **your comments**, and then se
 ### Creating a Pull Request (PR)
 
 * Make changes on a **separate branch** with a meaningful name, not on the _master_ branch or the _dev_ branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request (PR) on GitHub against the `dev` branch.
-* Please **test** (compile and run) your code before submitting changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
+* You **must** ensure your code compiles before submitting changes! Please also provide explanation of how your code has been tested, and ideally write tests for any new code that is added. Untested code will **not** be merged!
 * Filling in the **PR template** is mandatory. Ignoring the template or removing it can get your PR closed without further explanation.
 * Respond if someone requests changes or otherwise raises issues about your PRs.
 * Try to figure out yourself why builds on our CI fail.
@@ -72,8 +72,7 @@ NewPipe is developed using [Android Studio](https://developer.android.com/studio
 - Clone the NewPipe repository with `git clone https://github.com/TeamNewPipe/NewPipe.git` (or use the link from your own fork, if you want to open a PR).
 - Open the folder you just cloned with Android Studio.
 - Build and run it just like you would do with any other app, with the green triangle in the top bar.
-
-You may find [SonarLint](https://www.sonarlint.org/intellij)'s **inspections** useful in helping you to write good code and prevent bugs.
+- Install the [SonarLint](https://www.sonarsource.com/products/sonarqube/ide/features/jetbrains/) plugin. You may find its **inspections** useful in helping you to write good code and prevent bugs. The inspections are also run when submitting a PR, so you can fix issues before the maintainers have to point them out.
 
 ### checkStyle setup
 

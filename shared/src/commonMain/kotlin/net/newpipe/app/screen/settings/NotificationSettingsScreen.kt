@@ -93,6 +93,7 @@ fun NotificationSettingsScreen(
         isPlayerNotificationExempt = notificationActions.isPlayerNotificationExempt,
         channelNotificationCount = channelNotificationCount,
         onOpenPlayerNotificationSettings = { navigator.navigateTo(Destination.PlayerNotificationSettings) },
+        onOpenChannelNotificationSettings = { navigator.navigateTo(Destination.ChannelNotificationSettings) },
         onNewStreamsNotificationsEnabledChange = viewModel::setNewStreamsNotificationsEnabled,
         onCheckIntervalChange = viewModel::setCheckInterval,
         onRequiredNetworkChange = viewModel::setRequiredNetwork,
@@ -110,6 +111,7 @@ fun NotificationSettingsScreenContent(
     isPlayerNotificationExempt: Boolean = false,
     channelNotificationCount: ChannelNotificationCount? = null,
     onOpenPlayerNotificationSettings: () -> Unit = {},
+    onOpenChannelNotificationSettings: () -> Unit = {},
     onNewStreamsNotificationsEnabledChange: (Boolean) -> Unit = {},
     onCheckIntervalChange: (String) -> Unit = {},
     onRequiredNetworkChange: (String) -> Unit = {},
@@ -192,11 +194,11 @@ fun NotificationSettingsScreenContent(
                 onValueSelected = onRequiredNetworkChange,
                 enabled = newStreamsOptionsEnabled
             )
-            // TODO: open the channel notification modes screen once it is migrated
             PreferenceRow(
                 title = stringResource(Res.string.channels),
                 summary = channelNotificationCount?.let { count -> "${count.notified}/${count.total}" },
-                enabled = newStreamsOptionsEnabled
+                enabled = newStreamsOptionsEnabled,
+                onClick = onOpenChannelNotificationSettings
             )
         }
     }
