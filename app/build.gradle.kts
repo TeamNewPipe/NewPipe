@@ -111,6 +111,10 @@ configure<ApplicationExtension> {
         abortOnError = false
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     compileOptions {
         // Flag to enable support for the new language APIs
         isCoreLibraryDesugaringEnabled = true

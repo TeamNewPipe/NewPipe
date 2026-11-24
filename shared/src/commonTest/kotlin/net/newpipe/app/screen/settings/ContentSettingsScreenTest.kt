@@ -20,6 +20,7 @@ import net.newpipe.app.extensions.withKoin
 import net.newpipe.app.preferences.ContentPreferences.IMAGE_QUALITY_HIGH
 import net.newpipe.app.screen.settings.model.ChannelTab
 import newpipe.shared.generated.resources.Res
+import newpipe.shared.generated.resources.blocked_channels
 import newpipe.shared.generated.resources.channel_tab_videos
 import newpipe.shared.generated.resources.content
 import newpipe.shared.generated.resources.content_language_title
@@ -40,6 +41,19 @@ class ContentSettingsScreenTest {
             onContent = {
                 onNodeWithText(getString(Res.string.content)).assertIsDisplayed()
                 onNodeWithText(getString(Res.string.content_language_title)).assertIsDisplayed()
+            }
+        )
+    }
+
+    @Test
+    fun blockedChannelsRowOpensSettings() = runComposeUiTest {
+        var opened = false
+        withKoin(
+            modules = listOf(settingsModule()),
+            content = { ContentSettingsScreenContent(onOpenBlockedChannelsSettings = { opened = true }) },
+            onContent = {
+                onNodeWithText(getString(Res.string.blocked_channels)).performScrollTo().performClick()
+                assertTrue(opened)
             }
         )
     }
