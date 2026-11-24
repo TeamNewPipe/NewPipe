@@ -283,7 +283,7 @@
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下，您可以自由地再散佈及／或修改它；授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否要同時匯入設定？</string>
     <string name="privacy_policy_title">NewPipe 的隱私政策</string>
-    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。 \nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
+    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您同意此程式不會收集任何資料。\nNewPipe 的隱私權政策詳細說明了當您發送錯誤回報時，什麼資料會被傳送及儲存。</string>
     <string name="read_privacy_policy">閱讀隱私政策</string>
     <string name="start_accept_privacy_policy">為配合歐洲通用資料保護條例 ( GDPR ) ，我們在此請您注意 NewPipe 的隱私政策。請務必仔細閱讀。 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
@@ -319,7 +319,7 @@
     <string name="updates_setting_description">當有新版本可用時顯示通知以告知應用程式更新</string>
     <string name="list_view_mode">清單檢視模式</string>
     <string name="list">清單</string>
-    <string name="grid">網格</string>
+    <string name="grid">表格</string>
     <string name="auto">自動</string>
     <string name="app_update_available_notification_title">有可用的 NewPipe 更新！</string>
     <string name="missions_header_finished">已完成</string>
@@ -541,10 +541,10 @@
     <string name="featured">精選</string>
     <string name="recaptcha_solve">解決</string>
     <string name="download_has_started">下載已經開始</string>
-    <string name="select_night_theme_toast">您可以在下方選取您最愛的夜間佈景主題</string>
+    <string name="select_night_theme_toast">你可以在下方選擇你喜歡的深色主題</string>
     <string name="night_theme_summary">選取您最愛的夜間佈景主題 ─ %s</string>
-    <string name="auto_device_theme_title">自動 (裝置佈景主題)</string>
-    <string name="night_theme_title">深色主題</string>
+    <string name="auto_device_theme_title">自動（裝置佈景主題）</string>
+    <string name="night_theme_title">夜間佈景主題</string>
     <string name="show_channel_details">顯示頻道詳細資訊</string>
     <string name="disable_media_tunneling_summary">如果您遇到黑畫面或影片播放停頓的現象，請停用媒體隧道。</string>
     <string name="disable_media_tunneling_title">停用媒體隧道</string>
@@ -572,9 +572,9 @@
     <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
     <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
-    <string name="off">關閉</string>
-    <string name="on">開啟</string>
-    <string name="tablet_mode_title">平板電腦模式</string>
+    <string name="off">關</string>
+    <string name="on">開</string>
+    <string name="tablet_mode_title">平板模式</string>
     <string name="comments_are_disabled">留言已停用</string>
     <string name="dont_show">不要顯示</string>
     <string name="low_quality_smaller">低品質 (較小)</string>
@@ -695,8 +695,8 @@
     <string name="settings_category_exoplayer_summary">管理一些 ExoPlayer 設定。這些變更需要重新啟動播放程式才會生效</string>
     <string name="use_exoplayer_decoder_fallback_summary">若您有解碼器初始化的問題，請啟用此選項，若主要的解碼器初始化失敗，其將會汰退至較低優先度的解碼器。這可能會導致播放效能比使用主要解碼器時差</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">此解決方法是在發生表面變動時釋放並重新確認視訊編解碼器，而非直接將表面設定為編解碼器。ExoPlayer 已在部份有問題的裝置上使用了此設定，此設定僅對 Android 6 或更新版本有效。 \n \n啟用此選項可以避免在切換目前視訊播放程式或切換到全螢幕時出現播放錯誤</string>
-    <string name="main_tabs_position_summary">將主分頁選擇器移動至底部</string>
-    <string name="main_tabs_position_title">主分頁位置</string>
+    <string name="main_tabs_position_summary">將主分頁選擇器移至底部</string>
+    <string name="main_tabs_position_title">主分頁位子</string>
     <string name="audio_track_name">%1$s %2$s</string>
     <string name="disable_media_tunneling_automatic_info">因為您的裝置型號已知不支援媒體隧道，因此已預設停用。</string>
     <string name="no_streams">無串流</string>
@@ -789,7 +789,6 @@
     <string name="youtube_player_http_403">播放時收到來自伺服器的 HTTP 錯誤 403，可能因 IP 封鎖或串流網址去混淆化問題所致</string>
     <string name="sign_in_confirm_not_bot_error">%1$s 拒絕提供資料，要求登入以確認請求者並非機器人。\n\n您的 IP 位址可能已被 %1$s 暫時封鎖，您可稍候片刻或切換至其他 IP 位址（例如開啟/關閉 VPN，或從 Wi-Fi 切換至行動數據）。\n\n更多資訊請參見<a href="%2$s">此 FAQ 條目</a>。</string>
     <string name="unsupported_content_in_country">此內容目前無法於您所選的國家/地區提供。\n\n請至「設定」→「內容」→「預設內容國家」變更您的選擇。</string>
-
     <string name="kao_dialog_more_info">詳細資訊</string>
     <string name="kao_solution">解決方案</string>
     <plurals name="export_subscriptions">
@@ -811,4 +810,5 @@
     <string name="api23_requirement_dialog_message">不幸的是，NewPipe 依賴的一些函式庫已停止支援 Android 5.0 和 5.1。因此，下一個版本的 NewPipe 將只能在 Android 6 或更高版本的裝置上運作，非常遺憾。更多資訊請參閱部落格文章。</string>
     <string name="channel_tab_podcasts">Podcast</string>
     <string name="channel_tab_courses">課程</string>
+    <string name="kao_dialog_warning">Google 已開始實施一項新的 Android 開發者驗證要求，這使得在巴西、印尼、新加坡與泰國安裝 NewPipe 變得更加困難，且預計將於2027年在全球全面推行。\n\n除非相關要求有所變更，否則在不久的將來，NewPipe 可能變得更難甚至無法安裝在經過認證的 Android 裝置上。</string>
 </resources>

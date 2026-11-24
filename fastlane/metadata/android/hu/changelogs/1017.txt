@@ -1,0 +1,5 @@
+Ez a gyorsjavító frissítés a Bandcamp és a SoundCloud közelmúltban felmerült problémáit orvosolja
+
+[SoundCloud] Javítva a hangfolyamok kinyerésének hibája az AAC 96 kbps-os hangfolyamok támogatásának hozzáadásával
+[Bandcamp] Kliensellenőrzés megkerülése
+[Bandcamp] Javítva a keresés működése nem angol nyelvű tartalmi nyelv használata esetén

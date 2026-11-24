@@ -221,4 +221,7 @@
     <string name="downloads_storage_ask_summary">Вам буде запропоновано вибрати місце для збереження кожного завантаження.\nУвімкніть системний вибір папки (SAF), якщо хочете завантажувати файли на зовнішню SD-карту.</string>
     <string name="no_appropriate_file_manager_message">Для цієї дії не знайдено відповідного файлового менеджера.\nВстановіть файловий менеджер або спробуйте вимкнути «%1$s» у налаштуваннях завантажень.</string>
     <string name="no_appropriate_file_manager_message_android_10">Для цієї дії не знайдено відповідного файлового менеджера.\nВстановіть файловий менеджер, сумісний із Storage Access Framework.</string>
+    <string name="app_language_title">Мова застосунку</string>
+    <string name="systems_language">Мова системи</string>
+    <string name="content_language_title">Типова мова матеріалів</string>
 </resources>

@@ -89,7 +89,7 @@
     <string name="use_external_video_player_summary">Audio non disponibile per alcune risoluzioni</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="default_popup_resolution_title">Risoluzione predefinita lettore popup</string>
+    <string name="default_popup_resolution_title">Risoluzione predefinita dei popup</string>
     <string name="show_higher_resolutions_title">Mostra risoluzioni più elevate</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi possono riprodurre video 2K/4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
@@ -292,13 +292,13 @@
     <string name="app_license">NewPipe è software libre copyleft: puoi utilizzare, studiare, condividere e migliorare a volontà il suo codice sorgente. Nello specifico è possibile ridistribuirlo e/o modificarlo in base ai termini della GNU General Public License come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza sia (a vostra scelta) qualsiasi versione successiva.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
     <string name="privacy_policy_title">Politica di riservatezza di NewPipe</string>
-    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso. \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
+    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso. \nL\'informativa sulla privacy di NewPipe spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi la politica di riservatezza</string>
     <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), richiamiamo la vostra attenzione sull\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente. \nDeve essere accettata per poter inviare la segnalazione.</string>
     <string name="accept">Accetto</string>
     <string name="decline">Rifiuto</string>
     <string name="limit_data_usage_none_description">Nessun limite</string>
-    <string name="limit_mobile_data_usage_title">Limita risoluzione su reti mobili</string>
+    <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si usano i dati mobili</string>
     <string name="skip_silence_checkbox">Avanzamento veloce durante il silenzio</string>
     <string name="playback_step">Passo</string>
     <string name="playback_reset">Reset</string>
@@ -703,7 +703,7 @@
     <string name="none">Nessuno</string>
     <string name="right_gesture_control_summary">Scegli il gesto per la metà destra del riproduttore</string>
     <string name="progressive_load_interval_summary">Modifica la dimensione dell\'intervallo da caricare (attualmente %s). Un valore basso può velocizzare il caricamento iniziale del video</string>
-    <string name="prefer_original_audio_title">Preferisci audio originale</string>
+    <string name="prefer_original_audio_title">Preferisci l\'audio originale</string>
     <string name="prefer_original_audio_summary">Seleziona la traccia audio originale indipendentemente dalla lingua</string>
     <string name="prefer_descriptive_audio_title">Preferisci audio descrittivo</string>
     <string name="prefer_descriptive_audio_summary">Se disponibile, seleziona una traccia audio con descrizioni per ipovedenti</string>
@@ -817,7 +817,6 @@
     <string name="youtube_player_http_403">Errore HTTP 403 ricevuto dal server durante la riproduzione, probabilmente causato da un divieto dell\'IP o problemi di de-offuscamento dell\'URL in streaming</string>
     <string name="sign_in_confirm_not_bot_error">%1$s ha rifiutato di fornire i dati, chiedendo un accesso per confermare che il richiedente non sia un bot.\n\nIl tuo IP potrebbe essere stato temporaneamente vietato da %1$s, puoi aspettare un po\' di tempo o passare ad un IP diverso (ad esempio accendendo/spegnendo una VPN, o passando dal WiFi ai dati mobili).\n\nLeggi <a href="%2$s">questa voce nelle FAQ</a> per maggiori informazioni.</string>
     <string name="unsupported_content_in_country">Questo contenuto non è disponibile per il Paese dei contenuti attualmente selezionato.\n\nModifica la selezione da \"Impostazioni &gt; Contenuti &gt; Paese dei contenuti predefinito\".</string>
-
     <string name="kao_dialog_more_info">Dettagli</string>
     <string name="kao_solution">Soluzione</string>
     <plurals name="export_subscriptions">
@@ -845,4 +844,5 @@
     <string name="api23_requirement_dialog_blogpost">Post del blog</string>
     <string name="channel_tab_podcasts">Podcast</string>
     <string name="channel_tab_courses">Corsi</string>
+    <string name="kao_dialog_warning">Google ha iniziato a forzare un nuovo requisito di verifica degli sviluppatori su Android che rende più difficile installare NewPipe in Brasile, Indonesia, Singapore e Thailandia, con un lancio globale previsto per il 2027.\n\nA meno che i requisiti non siano cambiati, NewPipe potrebbe diventare più difficile o impossibile da installare su dispositivi Android certificati nel prossimo futuro.</string>
 </resources>

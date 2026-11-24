@@ -81,7 +81,7 @@
     <string name="select_a_channel">کەناڵێک دیار بکە</string>
     <string name="downloads_storage_ask_title">پرس بکرێت لەکوێ داببەزێنرێت</string>
     <string name="copyright" formatted="true">© %1$s لەلایەن %2$s لەژێر %3$s</string>
-    <string name="title_licenses">مۆڵەتنامەی لایەنی-سێیەم</string>
+    <string name="title_licenses">مۆڵەتەکانی لایەنی سێیەم</string>
     <string name="app_license_title">مۆڵەتنامەی نیوپایپ</string>
     <string name="show_hold_to_append_title">پیشاندانی ڕێنمایی ”داگرتن تا پاشکۆ”</string>
     <string name="msg_threads">دابەشکراوەکان</string>
@@ -259,7 +259,6 @@
     <string name="contribution_title">بەشداریکردن</string>
     <string name="dismiss">پشتگوێخستن</string>
     <string name="downloads_title">دابه‌زاندنه‌كان</string>
-    <string name="contribution_encouragement">هەرکاتێك بیرۆکەیەکت هەبوو وەک ; وەرگێڕان، گۆڕینی دیزاین ، سڕینەوەی کۆد ،یان هەر گۆڕانکارییەکی دیكه‌ ئەوا یارمەتییەکەت لەسەرچاوانمانە. ئێمە هەمیشە دەمانەوێ به‌رنامه‌كه‌ زیاتر بەرەوپێشه‌وه‌ ببەین!</string>
     <string name="playlist_add_stream_success">خشته‌لێدان كرا</string>
     <string name="show_age_restricted_content_title">پیشاندانی سنوری تەمەن بۆ بابەت</string>
     <string name="no_comments">لێدوان نییە</string>
@@ -313,7 +312,6 @@
     <string name="delete_playlist_prompt">ئەم خشتەلێدانه‌ بسڕدرێتەوە؟</string>
     <string name="mute">بێدەنگکردن</string>
     <string name="website_encouragement">سەردانی ماڵپەڕی نیوپایپ بکە بۆ زانیاری و هەواڵی نوێ.</string>
-    <string name="app_description">به‌رنامه‌یه‌كی خۆڕایی و کێشکەم بۆ پەخش لەسەر ئەندرۆید.</string>
     <string name="content_not_available">بابەت به‌رده‌ست نییە</string>
     <string name="peertube_instance_url_help">ئەو دۆخانە بدۆزەرەوە کە لەگەڵ خۆتدا دەگونجێن لە %s</string>
     <string name="file">فایل</string>
@@ -395,7 +393,7 @@
     <string name="always_ask_open_action">هه‌رده‌م بپرسە</string>
     <string name="enable_watch_history_summary">هێشتنەوەی تراکی ڤیدیۆ سەیرکراوەکان</string>
     <string name="use_external_audio_player_title">به‌كارهێنانی لێدەری ده‌نگی ده‌ره‌كی</string>
-    <string name="view_on_github">بینین لە GitHub</string>
+    <string name="view_on_github">لە گیتهەب بیبینە</string>
     <string name="what_device_headline">زانیاری:</string>
     <string name="no_player_found_toast">هیچ لێدەرێکی ڤیدیۆیی نەدۆزرایەوە (دەتوانیت لێدەری VLC دامەزرێنیت) .</string>
     <string name="player_unrecoverable_failure">كێشه‌ی نەگێڕانەوەی لێده‌ر ڕوویدا</string>
@@ -456,11 +454,10 @@
     <string name="enable_queue_limit_desc">لەیەک کاتدا تەنیا یەک بابەت دادەبەزێنرێت</string>
     <string name="restore_defaults_confirmation">دەتەوێت بگەڕێنرێتەوە بۆ شێوازی بنەڕەتی؟</string>
     <string name="pause_downloads">وەستاندنی دابەزاندنەکان</string>
-    <string name="tab_about">دەربارە و پرسیارەکان</string>
+    <string name="tab_about">دەربارە و پرسیارە دوپاتکراوەکان</string>
     <string name="show_comments_title">پیشاندانی لێدوانەکان</string>
     <string name="start_accept_privacy_policy">بۆ جێبەجێکردنی فرمانەکان لەگەڵ یاسای پاراستنی داتای گشتی ئەوروپیدا (GDPR) , ئێمە سەرنجت ڕادەکێشین بۆ سیاسەتە تایبەتییەکانی نیوپایپ. تکایە بەئاگادارییەوە بیخوێنەره‌وە. \nپێویستە په‌سه‌ندی بکەیت بۆ ناردنی سکاڵاکانت.</string>
     <string name="content_not_supported">ئەم بابەتە هێشتا پشتگیری نەکراوە لەلایەن نیوپایپەوە. \n \nخوازیارین کە بتوانین لە وەشانەکانی داهاتوودا پشتگیری بکەین.</string>
-    <string name="donation_title">بەخشین</string>
     <string name="no_one_listening">كه‌س گوێبیستی نییه‌</string>
     <string name="search_history_deleted">مێژووی گەڕانەکانت سڕانەوە</string>
     <string name="video">ڤیدیۆ</string>

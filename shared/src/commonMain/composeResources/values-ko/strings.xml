@@ -144,4 +144,8 @@
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">이 해결 방법은 인터페이스가 변경될 때 인터페이스를 코덱으로 직접 설정하는 대신 비디오 코덱을 해제하고 다시 인스턴스화합니다. 이 문제가 있는 일부 기기에서 ExoPlayer가 이미 사용 중인 이 설정은 안드로이드 6 이상에서만 적용 \n \n이 옵션을 활성화하면 현재 동영상 플레이어를 전환하거나 전체 화면으로 전환할 때 재생 오류를 방지할 수 있음</string>
     <string name="auto_queue_summary">관련 스트림을 추가하여 (미반복) 재생 대기열의 끝을 이어가기</string>
     <string name="seek_duration_title">빨리감기/되감기 탐색 간격</string>
+    <string name="leakcanary">디버그 설정</string>
+    <string name="enable_leak_canary_summary">메모리 누수 모니터링 과정에서 힙 덤프를 생성하면 앱이 일시적으로 응답하지 않을 수 있습니다</string>
+    <string name="leak_canary_not_available">LeakCanary를 사용할 수 없음</string>
+    <string name="show_memory_leaks">메모리 누수 보기</string>
 </resources>

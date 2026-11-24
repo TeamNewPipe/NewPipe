@@ -1,0 +1,5 @@
+Bandcamp와 SoundCloud 관련 최근 문제를 해결한 핫픽스 업데이트입니다.
+
+[SoundCloud] aac_96k 오디오 스트림을 지원해 스트림 내보내기가 불가능하던 오류 수정
+[Bandcamp] 클라이언트 인증 우회
+[Bandcamp] 영어가 아닌 콘텐츠 검색 관련 수정

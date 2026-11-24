@@ -1,0 +1,9 @@
+Kapitoly na posuvníku videopřehrávače
+[YouTube] Podpora pro záložky „Podcasty“ a „Kurzy“
+Vylepšen vzhled názvů položek v nabídce vyhledávání
+Zobrazení úplných názvů titulků, pokud je služba poskytuje
+Různé opravy přehrávače, včetně potlačení zvuku, černých obrazovek a otevírání odkazů s časovými značkami
+[YouTube] Drobné opravy a údržba
+Mnoho interních vylepšení a oprav chyb
+
+Děkujeme studentům softwarového inženýrství z ANU, kteří se v rámci svého úkolu v oblasti OSS podíleli na vývoji NewPipe!

@@ -1,0 +1,9 @@
+Capitole în bara de derulare a playerului
+[YouTube] Suport pentru filele „Podcasturi” și „Cursuri”
+Titluri îmbunătățite în meniul de căutare
+Numele complete ale subtitrărilor, când sunt disponibile
+Remedieri pentru player: reducerea volumului, ecrane negre și linkuri cu marcaje temporale
+[YouTube] Remedieri minore
+
+Îmbunătățiri interne și remedieri de erori
+Mulțumim studenților ANU la inginerie software pentru contribuțiile la NewPipe!

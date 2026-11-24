@@ -1,0 +1,5 @@
+Toto je rychlá aktualizace, která řeší nedávné problémy se službami Bandcamp a SoundCloud.
+
+[SoundCloud] Opravena chyba, kvůli které nebylo možné extrahovat audio streamy, a to přidáním podpory pro audio streamy ve formátu aac_96k
+[Bandcamp] Obcházení ověřování klienta
+[Bandcamp] Opraveno vyhledávání při použití jiného jazyka obsahu než angličtiny

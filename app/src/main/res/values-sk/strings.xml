@@ -496,7 +496,7 @@
     <string name="show_original_time_ago_title">Zobrazovať pôvodný čas</string>
     <string name="infinite_videos">∞ videí</string>
     <string name="more_than_100_videos">100+ videí</string>
-    <string name="artists">Umelci</string>
+    <string name="artists">Interpreti</string>
     <string name="songs">Skladby</string>
     <string name="albums">Albumy</string>
     <string name="restricted_video">Vekovo obmedzené video. \n \nPre zobrazenie videa povoľte \"%1$s\" v nastaveniach.</string>
@@ -568,9 +568,9 @@
     <string name="crash_the_app">Vynútiť zastavenie</string>
     <string name="restricted_video_no_stream">Toto video je vekovo obmedzené. \nNewPipe ho nemôže prehrať z dôvodu nových pravidiel služby YouTube pre videá s vekovým obmedzením.</string>
     <string name="download_has_started">Sťahovanie začalo</string>
-    <string name="select_night_theme_toast">Dolu si môžete vybrať svoju obľúbenú nočnú tému</string>
+    <string name="select_night_theme_toast">Svoju obľúbenú nočnú tému si môžete vybrať nižšie</string>
     <string name="night_theme_summary">Vyberte si svoju obľúbenú nočnú tému — %s</string>
-    <string name="auto_device_theme_title">Automatická (téma zariadenia)</string>
+    <string name="auto_device_theme_title">Automaticky (téma zariadenia)</string>
     <string name="radio">Rádio</string>
     <string name="featured">Najlepšie</string>
     <string name="show_channel_details">Zobraziť podrobnosti kanála</string>
@@ -831,7 +831,6 @@
     <string name="youtube_player_http_403">Chyba HTTP 403 prijatá zo servera počas prehrávania, pravdepodobne spôsobená zákazom IP adresy alebo problémami s deobfuskáciou streamingovej URL adresy</string>
     <string name="sign_in_confirm_not_bot_error">%1$s odmietol poskytnúť údaje, žiada o prihlásenie na potvrdenie, že žiadateľ nie je bot.\n\nVaša IP adresa mohla byť dočasne zakázaná %1$s, môžete nejaký čas počkať alebo prejsť na inú IP adresu (napríklad zapnutím/vypnutím VPN alebo prepnutím z WiFi na mobilné dáta).\n\nPozrite si <a href="%2$s">túto časť FAQ</a> pre viac informácií.</string>
     <string name="unsupported_content_in_country">Tento obsah nie je dostupný pre aktuálne zvolenú krajinu obsahu.\n\nZmeňte výber v ponuke \"Nastavenia &gt; Obsah &gt; Predvolená krajina obsahu\".</string>
-
     <string name="kao_dialog_more_info">Podrobnosti</string>
     <string name="kao_solution">Riešenie</string>
     <plurals name="export_subscriptions">
@@ -862,4 +861,5 @@
     <string name="api23_requirement_dialog_blogpost">Blogový príspevok</string>
     <string name="channel_tab_podcasts">Podcasty</string>
     <string name="channel_tab_courses">Kurzy</string>
+    <string name="kao_dialog_warning">Spoločnosť Google začala uplatňovať novú požiadavku na overovanie vývojárov pre systém Android, v dôsledku čoho je inštalácia aplikácie NewPipe v Brazílii, Indonézii, Singapure a Thajsku zložitejšia; celosvetové zavedenie tejto požiadavky je naplánované na rok 2027.\n\nAk sa tieto požiadavky nezmenia, inštalácia aplikácie NewPipe na certifikovaných zariadeniach s operačným systémom Android môže byť v blízkej budúcnosti zložitejšia alebo dokonca nemožná.</string>
 </resources>

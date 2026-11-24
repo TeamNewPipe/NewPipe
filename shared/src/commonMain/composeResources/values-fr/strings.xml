@@ -63,4 +63,6 @@
     <string name="card">Carte</string>
     <string name="cancel">Annuler</string>
     <string name="delete_view_history_alert">Supprimer tout l'historique de mes favoris ?</string>
+    <string name="image_quality_title">Qualité d'image</string>
+    <string name="channel_tab_videos">Vidéos</string>
 </resources>

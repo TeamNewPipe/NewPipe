@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    </resources>
+    <string name="title_activity_about">دەربارەی NewPipe</string>
+    <string name="title_licenses">مۆڵەتەکانی لایەنی سێیەم</string>
+    <string name="tab_about">دەربارە و پرسیارە دوپاتکراوەکان</string>
+    <string name="tab_licenses">مۆڵەتەکان</string>
+    <string name="contribution_title">بەشداریکردن</string>
+    <string name="view_on_github">لە گیتهەب بیبینە</string>
+</resources>
