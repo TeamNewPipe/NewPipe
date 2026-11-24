@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -128,17 +129,17 @@ public class PlaylistFragment extends BaseListInfoFragment<StreamInfoItem, Playl
 
     @Override
     protected Supplier<View> getListHeaderSupplier() {
-        headerBinding = PlaylistHeaderBinding
-                .inflate(activity.getLayoutInflater(), itemsList, false);
-        playlistControlBinding = headerBinding.playlistControl;
-
-        return headerBinding::getRoot;
+        return null;
     }
 
     @Override
     protected void initViews(final View rootView, final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
+        final FrameLayout headerContainer = rootView.findViewById(R.id.playlist_header_container);
+        headerBinding = PlaylistHeaderBinding.inflate(
+                activity.getLayoutInflater(), headerContainer, true);
+        playlistControlBinding = headerBinding.playlistControl;
         // Is mini variant still relevant?
         // Only the remote playlist screen uses it now
         infoListAdapter.setUseMiniVariant(true);
