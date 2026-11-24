@@ -4,6 +4,8 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.51.0 (`1051000`)
+
 ### Subscription group icons
 
 - Add 16 more channel-group icons while preserving existing saved icon choices.
