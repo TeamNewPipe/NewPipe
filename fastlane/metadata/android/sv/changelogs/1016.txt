@@ -1,0 +1,9 @@
+Visa kapitel i videospelarens sökfält
+[YouTube] Lägg till stöd för flikarna "Podcasts" och "Courses"
+Förbättra utseendet på sökmenytitlar
+Visa fullständiga undertexter när de tillhandahålls av tjänsten
+Olika spelarfixar, inklusive ljuddämpning, svarta skärmar och att öppna länkar med tidsstämplar
+[YouTube] Mindre fixar och renoveringar
+Många interna förbättringar och buggfixar
+
+Tack till årets ANU-studenter inom programvaruteknik som bidrog till NewPipe som en del av deras OSS-uppgift!

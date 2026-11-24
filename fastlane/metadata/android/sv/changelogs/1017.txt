@@ -1,0 +1,5 @@
+Detta är en snabbkorrigering som åtgärdar nyligen uppkomna problem med Bandcamp och SoundCloud.
+
+[SoundCloud] Åtgärdat problem där strömmar inte kunde hämtas; stöd för ljudströmmar i formatet aac_96k har lagts till
+[Bandcamp] Förbigår klientverifiering
+[Bandcamp] Åtgärdat sökfunktionen vid användning av ett annat innehållsspråk än engelska

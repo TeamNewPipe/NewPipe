@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">Esitamise ajal lisas server andmevoogu HTTP oleku 403 ning tavaliselt tähendab see, et sinu seadme IP-aadress on keelatud või voogedastuse võrguaadressi hägustamisvastastes meetmetes on viga</string>
     <string name="unsupported_content_in_country">See sisu pole saadaval hetkel kehtvas riigis.\n\nRiiki saad muuta: Seadistused &gt; Sisu &gt; Sisu vaikimisi riik.</string>
     <string name="sign_in_confirm_not_bot_error">%1$s keeldus andmete edastamisest ning eeldab sisselogimist tuvastamaks, et tegemist pole robotiga.\n\nLisaks võib olla juhtunud, et %1$s on lisanud sinu seadme ip-aadressi ajutisse keelunimekirja. Sa võid oodata natuke aega või vahetada võrguühendus viisi (näiteks lülitades VPN sisse/välja või kasutades WiFi asemel mobiilset internetiühendust).\n\nLisateavet leiad <a href="%2$s">siit korduva kippumate küsimuste</a> alajaotusest.</string>
-
     <string name="kao_dialog_more_info">Üksikasjad</string>
     <string name="kao_solution">Lahendus</string>
     <plurals name="export_subscriptions">
@@ -828,4 +827,5 @@
     <string name="api23_requirement_dialog_blogpost">Postitus meie ajaveebis</string>
     <string name="channel_tab_podcasts">Taskuhäälingud</string>
     <string name="channel_tab_courses">Kursused</string>
+    <string name="kao_dialog_warning">Google on hakanud rakendama uut Androidi arendajate kinnitamise nõuet, mis raskendab NewPipe\'i paigaldamist Brasiilias, Indoneesias, Singapuris ja Tais ning ülemaailmne kasutuselevõtt on kavandatud 2027. aastaks.\n\nKui nõudeid ei muudeta, võib NewPipeii paigaldamine sertifitseeritud Android-seadmetesse lähitulevikus muutuda raskemaks või võimatuks.</string>
 </resources>

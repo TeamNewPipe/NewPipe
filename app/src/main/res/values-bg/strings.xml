@@ -355,7 +355,7 @@
     <string name="notification_action_3_title">Четвърто действие</string>
     <string name="seek_duration_title">Стъпка на превъртане</string>
     <string name="mark_as_watched">Маркирай като гледан</string>
-    <string name="notification_action_1_title">Второ действие</string>
+    <string name="notification_action_1_title">Втори бутон за действие</string>
     <string name="notification_action_0_title">Първо действие</string>
     <string name="notification_action_2_title">Трето действие</string>
     <string name="notification_action_4_title">Пето действие</string>
@@ -584,7 +584,7 @@
     <string name="open_play_queue">Отваряне на опашка</string>
     <string name="duration">Времетраене</string>
     <string name="more_options">Повече настройки</string>
-    <string name="image_quality_title">Качество на изображенията</string>
+    <string name="image_quality_title">Качество на изображението</string>
     <string name="question_mark">\?</string>
     <string name="share_playlist">Сподели плейлиста</string>
     <plurals name="replies">
@@ -803,7 +803,6 @@
     <string name="youtube_player_http_403">HTTP грешка 403, получена от сървъра по време на възпроизвеждане, вероятно причинена от забрана на IP адреса или проблеми с деобфускацията на URL адреси за стрийминг</string>
     <string name="sign_in_confirm_not_bot_error">%1$s отказа да предостави данни, като поиска вход, за да потвърди, че заявителят не е бот.\n\nВашият IP адрес може да е временно забранен от %1$s. Можете да изчакате известно време или да превключите към друг IP адрес (например като включите/изключите VPN или като превключите от WiFi към мобилни данни).\n\nМоля, вижте <a href="%2$s">тази статия с ЧЗВ</a> за повече информация.</string>
     <string name="unsupported_content_in_country">Това съдържание не е налично за текущо избраната държава на съдържанието.\n\nПроменете избора си от \"Настройки &gt; Съдържание &gt; Държава на съдържанието по подразбиране\".</string>
-
     <string name="kao_dialog_more_info">Детайли</string>
     <string name="kao_solution">Решение</string>
     <plurals name="export_subscriptions">
@@ -828,4 +827,5 @@
     <string name="api23_requirement_dialog_blogpost">Публикация в блога</string>
     <string name="channel_tab_podcasts">Подкасти</string>
     <string name="channel_tab_courses">Курсове</string>
+    <string name="kao_dialog_warning">Google започна да прилага ново изискване за проверка от разработчици на Android, което затруднява инсталирането на NewPipe в Бразилия, Индонезия, Сингапур и Тайланд, като глобалното му внедряване е планирано за 2027 г..\n\nОсвен ако изискванията не бъдат променени, инсталирането на NewPipe на сертифицирани Android устройства може да стане по-трудно или невъзможно в близко бъдеще.</string>
 </resources>

@@ -32,7 +32,7 @@
     <string name="download_dialog_title">Завантажити</string>
     <string name="show_next_and_similar_title">Показувати «Наступне» і «Схожі» відео</string>
     <string name="unsupported_url">URL не підтримується</string>
-    <string name="content_language_title">Переважна мова вмісту</string>
+    <string name="content_language_title">Типова мова матеріалів</string>
     <string name="settings_category_video_audio_title">Відео та аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
@@ -427,8 +427,8 @@
     <string name="clear_download_history">Очистити історію завантажень</string>
     <string name="delete_downloaded_files">Видалити завантажені файли</string>
     <string name="permission_display_over_apps">Потрібен дозвіл показувати поверх інших застосунків</string>
-    <string name="app_language_title">Мова</string>
-    <string name="systems_language">Мова телефону</string>
+    <string name="app_language_title">Мова застосунку</string>
+    <string name="systems_language">Мова системи</string>
     <string name="subtitle_activity_recaptcha">Після завершення натисніть «Готово»</string>
     <string name="done">Готово</string>
     <string name="feed_create_new_group_button_title">Нова</string>

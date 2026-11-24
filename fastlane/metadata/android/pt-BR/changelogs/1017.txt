@@ -1,0 +1,5 @@
+Esta é uma atualização de correção que resolve problemas recentes com o Bandcamp e o SoundCloud.
+
+[SoundCloud] Corrigida a impossibilidade de extrair streams, adicionando suporte para streams de áudio aac_96k
+[Bandcamp] Ignora a verificação do cliente
+[Bandcamp] Corrigida a pesquisa ao usar um idioma de conteúdo diferente do inglês

@@ -243,7 +243,7 @@
     <string name="app_update_notification_channel_description">آگاهی‌ها برای نگارش‌های جدید نیوپایپ</string>
     <string name="restore_defaults">بازنشانی پیش‌فرض‌ها</string>
     <string name="restore_defaults_confirmation">می‌خواهید پیش‌فرض‌ها را بازنشانی کنید؟</string>
-    <string name="updates_setting_title">به‌روزرسانی‌ها</string>
+    <string name="updates_setting_title">به‌روز رسانی‌ها</string>
     <string name="list_view_mode">حالت نمایش سیاهه</string>
     <string name="list">سیاهه</string>
     <string name="grid">شبکه</string>
@@ -610,7 +610,7 @@
     <string name="processing_may_take_a_moment">در حال پردازش… ممکن است کمی طول بکشد</string>
     <string name="check_for_updates">بررسی به‌روز رسانی‌ها</string>
     <string name="manual_update_description">بررسی دستی برای نگارش‌های جدید</string>
-    <string name="checking_updates_toast">بررسی کردن به‌روز رسانی‌ها…</string>
+    <string name="checking_updates_toast">بررسی کردن برای به‌روز رسانی…</string>
     <string name="feed_new_items">موارد خوراک جدید</string>
     <string name="crash_the_player">فروپاشی پخش‌کننده</string>
     <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
