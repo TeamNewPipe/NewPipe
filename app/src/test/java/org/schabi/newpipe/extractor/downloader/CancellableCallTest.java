@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.downloader;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -70,6 +71,43 @@ public class CancellableCallTest {
             throw new AssertionError("Expected interruption");
         } catch (final InterruptedException expected) {
             assertFalse(call.isFinished());
+        } finally {
+            Thread.interrupted();
+        }
+    }
+
+    @Test
+    public void pipePipeAwaitAliasObservesTheSameCompletion() throws Exception {
+        final CancellableCall call = new CancellableCall(mock(Call.class));
+        assertFalse(call.await(0, TimeUnit.NANOSECONDS));
+        call.setFinished();
+        assertTrue(call.await(0, TimeUnit.NANOSECONDS));
+        assertTrue(call.awaitFinished(0, TimeUnit.NANOSECONDS));
+    }
+
+    @Test
+    public void completedDurationRemainsFixedAcrossRepeatedCompletion() throws Exception {
+        final CancellableCall call = new CancellableCall(mock(Call.class));
+        final long elapsed = call.getElapsedTimeMillis();
+        assertTrue(elapsed >= 0);
+        call.setFinished();
+        final long completed = call.getElapsedTimeMillis();
+        assertTrue(completed >= elapsed);
+        Thread.sleep(20);
+        call.setFinished();
+        assertEquals(completed, call.getElapsedTimeMillis());
+    }
+
+    @Test
+    public void pipePipeAwaitHonorsInterruptionEvenAfterCompletion() throws Exception {
+        final CancellableCall call = new CancellableCall(mock(Call.class));
+        call.setFinished();
+        Thread.currentThread().interrupt();
+        try {
+            call.await(0, TimeUnit.NANOSECONDS);
+            throw new AssertionError("Expected interruption");
+        } catch (final InterruptedException expected) {
+            assertTrue(call.isFinished());
         } finally {
             Thread.interrupted();
         }

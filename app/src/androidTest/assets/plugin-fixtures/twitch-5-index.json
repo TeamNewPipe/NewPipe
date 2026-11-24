@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    {
+      "apiVersion": "1.0",
+      "package": "twitch-5.ppp",
+      "sha256": "3b48b2fd3c773c36f1f3ab7ae4e18af0eb92cd3975f004ba074120b1e4f4228a",
+      "signature": "nZvsM0SSVwS9wdF+S5bEZxX5I44Z3sR2q3FyKbRz9HblG0cbqBW4sVKwPKlnoFX0KfMpvt4IBLnSznPIc3krCA==",
+      "nsfw": false,
+      "pluginId": "mohr.jonas.twitch",
+      "author": "Jonas Mohr",
+      "name": "Twitch",
+      "description": "Provides access to Twitch, the well-known streaming service",
+      "publicKey": "BHXTB1DqhMt9/MVbz63M5/YPOkEtuDPh72ueB4DqUsc=",
+      "versionName": "1.2.1",
+      "versionCode": 5
+    }
+  ],
+  "name": "My PipePipe Plugins",
+  "formatVersion": 1
+}

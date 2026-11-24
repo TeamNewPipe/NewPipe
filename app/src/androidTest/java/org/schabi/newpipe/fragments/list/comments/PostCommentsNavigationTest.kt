@@ -266,7 +266,7 @@ class PostCommentsNavigationTest {
     private fun cacheComments() {
         val first = CommentsInfoItem(0, POST_URL, "Parent").apply {
             commentId = "parent"
-            commentText = "A needle in the post discussion"
+            setCommentText("A needle in the post discussion")
             uploaderName = "Comment author"
             uploaderUrl = ""
             uploaderAvatarUrl = ""
@@ -277,7 +277,7 @@ class PostCommentsNavigationTest {
         }
         val second = CommentsInfoItem(0, POST_URL, "Second").apply {
             commentId = "second"
-            commentText = "Another post comment"
+            setCommentText("Another post comment")
             uploaderName = "Second author"
             uploaderUrl = ""
             uploaderAvatarUrl = ""

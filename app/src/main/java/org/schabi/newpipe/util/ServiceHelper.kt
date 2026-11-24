@@ -6,8 +6,10 @@
 package org.schabi.newpipe.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.grack.nanojson.JsonParser
@@ -20,6 +22,7 @@ import org.schabi.newpipe.extractor.StreamingService
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance
 import org.schabi.newpipe.extractor.sponsorblock.SponsorBlockApiSettings
 import org.schabi.newpipe.ktx.getStringSafe
+import org.schabi.newpipe.plugin.PluginManager
 import org.schabi.newpipe.settings.sponsorblock.SponsorBlockCategoryConfig
 import org.schabi.newpipe.settings.sponsorblock.SponsorBlockCategoryRepository
 
@@ -49,8 +52,19 @@ object ServiceHelper {
             8 -> R.drawable.ic_placeholder_rumble
             ServiceList.Odysee.serviceId -> R.drawable.ic_placeholder_odysee
             ServiceList.Vimeo.serviceId -> R.drawable.ic_placeholder_vimeo
-            else -> R.drawable.ic_circle
+            else -> R.drawable.ic_extension
         }
+    }
+
+    @JvmStatic
+    fun getIconDrawable(context: Context, serviceId: Int): Drawable? = PluginManager.getIcon(context, serviceId)
+        ?: AppCompatResources.getDrawable(context, getIcon(serviceId))
+
+    @JvmStatic
+    fun getSelectedServiceIconDrawable(context: Context): Drawable? = if (isYoutubeMusicMode(context)) {
+        AppCompatResources.getDrawable(context, R.drawable.ic_music_note)
+    } else {
+        getIconDrawable(context, getSelectedServiceId(context))
     }
 
     @JvmStatic
@@ -238,6 +252,12 @@ object ServiceHelper {
 
     @JvmStatic
     fun getCacheExpirationMillis(serviceId: Int): Long {
+        if (serviceId >= ServiceList.FIRST_DYNAMIC_PLUGIN_ID) {
+            return ServiceList.getById(serviceId)?.let { service ->
+                runCatching { service.infoCacheExpirationMillis.coerceAtLeast(0L) }
+                    .getOrDefault(TimeUnit.MINUTES.toMillis(5))
+            } ?: 0L
+        }
         return when (serviceId) {
             ServiceList.SoundCloud.serviceId ->
                 TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES)

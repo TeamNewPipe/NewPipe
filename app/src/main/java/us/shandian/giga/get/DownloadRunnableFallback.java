@@ -61,12 +61,11 @@ public class DownloadRunnableFallback extends Thread {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
 
             int mId = 1;
-            mConn = mMission.openConnection(false, rangeStart, -1);
-
             if (mRetryCount == 0 && rangeStart == -1) {
                 // workaround: bypass android connection pool
-                mConn.setRequestProperty("Range", "bytes=0-");
+                rangeStart = 0;
             }
+            mConn = mMission.openConnection(false, rangeStart, -1);
 
             mMission.establishConnection(mId, mConn);
 

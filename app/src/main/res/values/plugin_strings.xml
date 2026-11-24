@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plugin UI adapted from PipePipeClient 43ef494c1a1792a774c223e1982ff1e794c49017; GPL-3.0-or-later. -->
+<resources>
+    <string name="plugin_state_failed">Could not read plugin installation state: %s. Installed packages have been preserved.</string>
+    <string name="plugin_host_pipepipe">PipePipe plugin</string>
+    <string name="plugin_host_other">%s plugin</string>
+    <string name="plugin_host_wizestream">WizeStream plugin</string>
+    <string name="plugins">Plugins</string>
+    <string name="plugins_enable_title">Allow plugins</string>
+    <string name="plugins_enable_summary">Install service plugins from repositories you choose</string>
+    <string name="plugins_warning_title">Enable plugins?</string>
+    <string name="plugins_warning_message">Plugins are executable code downloaded from repositories you add. They run with WizeStream’s permissions and can access its data, including saved logins. WizeStream and your app store do not review third-party plugins.\n\nOnly install plugins from publishers you trust.</string>
+    <string name="plugins_warning_accept">Enable</string>
+    <string name="plugins_repositories">Repositories</string>
+    <string name="plugins_add_repository">Add repository</string>
+    <string name="plugins_repository_url_hint">Repository URL (index.json)</string>
+    <string name="plugins_repository_https_only">Only HTTPS repositories are supported</string>
+    <string name="plugins_remove_repository">Remove repository</string>
+    <string name="plugins_no_repositories">No repositories. Add one to browse plugins.</string>
+    <string name="plugins_installed">Installed</string>
+    <string name="plugins_available">Available</string>
+    <string name="plugins_none_installed">No plugins installed</string>
+    <string name="plugin_update">Update</string>
+    <string name="plugin_uninstall">Uninstall</string>
+    <string name="plugin_installing">Installing %s…</string>
+    <string name="plugin_install_failed">Could not install %1$s: %2$s</string>
+    <string name="plugin_repository_failed">Could not load %1$s: %2$s</string>
+    <string name="plugin_restart_required">Restart WizeStream to apply plugin changes</string>
+    <string name="plugin_restart">Restart</string>
+    <string name="plugin_status_loaded">Version %s</string>
+    <string name="plugin_status_pending">Version %s, active after restart</string>
+    <string name="plugin_status_error">Version %1$s, failed to load: %2$s</string>
+    <string name="plugin_incompatible">This plugin requires a different or newer plugin API</string>
+    <string name="plugin_key_changed">The publisher key differs from the key trusted on first installation. This package cannot replace that plugin.</string>
+    <string name="plugin_settings_title">%s settings</string>
+    <string name="plugin_uninstall_confirm">Uninstall %s? Your subscriptions and history for it are kept.</string>
+    <string name="plugin_install_from">Install %1$s from %2$s?</string>
+    <string name="plugin_author">by %s</string>
+    <string name="plugins_add_awesome_repository">Add awesome-pipepipe-plugins</string>
+    <string name="plugins_add_awesome_repository_summary">Community-curated plugin repository</string>
+    <string name="plugins_show_nsfw_title">Show NSFW plugins</string>
+    <string name="plugins_show_nsfw_summary">List plugins marked as NSFW in the available plugins</string>
+    <string name="plugin_installed_other_publisher">A plugin with this identity is already installed from another publisher.</string>
+    <string name="plugins_title">Plugins</string>
+    <string name="plugins_summary">Install and manage compatible service plugins</string>
+    <string name="plugins_enabled_key" translatable="false">plugins_enabled</string>
+    <string name="plugins_show_nsfw_key" translatable="false">plugins_show_nsfw</string>
+    <string name="plugin_already_builtin">%s is already built into WizeStream</string>
+    <string name="plugins_android_version">Compatible plugins require Android 7 or newer. Built-in services remain available on this device.</string>
+    <string name="plugins_parent_access">Parent access is required to manage plugins</string>
+    <string name="plugins_safe_mode">Plugins were skipped during crash recovery. Restart normally to enable them.</string>
+    <string name="plugins_refresh">Refresh repositories</string>
+    <string name="plugins_loading">Loading plugins…</string>
+    <string name="plugins_none_available">No additional plugins found in these repositories</string>
+    <string name="plugin_profile_settings">These settings and credentials apply to the current profile.</string>
+    <string name="plugin_login_cookies">Login cookies</string>
+    <string name="plugin_login_cookies_summary">Optional. Paste the cookie header for %1$s, including %2$s. Credentials are stored only for this profile.</string>
+    <string name="plugin_credentials_saved">Credentials saved for this profile</string>
+    <string name="plugin_clear_credentials">Clear login cookies</string>
+    <string name="plugin_credentials_restart">Restart WizeStream to apply the changed login credentials</string>
+    <string name="plugin_cookie_invalid">The cookie header must include %s and cannot contain line breaks</string>
+    <string name="plugin_settings_unavailable">Restart WizeStream to load this plugin before changing its settings</string>
+</resources>

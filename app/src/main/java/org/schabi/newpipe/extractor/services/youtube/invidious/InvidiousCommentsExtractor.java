@@ -90,7 +90,7 @@ public final class InvidiousCommentsExtractor extends CommentsExtractor {
                     return comment.getString("commentId", "");
                 }
                 @Override
-                public String getCommentText() {
+                public String getCommentTextContent() {
                     return comment.getString("content", "");
                 }
                 @Override

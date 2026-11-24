@@ -1302,7 +1302,7 @@ public class MainFragment extends BaseFragment
         @NonNull
         @VisibleForTesting
         static ClassLoader resolveStateClassLoader(@Nullable final ClassLoader loader) {
-            return loader != null ? loader : Fragment.class.getClassLoader();
+            return org.schabi.newpipe.util.PluginStateClassLoader.withPlugins(loader);
         }
 
         @VisibleForTesting

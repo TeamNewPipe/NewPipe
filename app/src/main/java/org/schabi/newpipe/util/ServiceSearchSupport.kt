@@ -9,7 +9,7 @@ import org.schabi.newpipe.extractor.linkhandler.SearchQueryHandlerFactory
 /** A missing search factory is a service capability, not an empty search result. */
 object ServiceSearchSupport {
     @JvmStatic
-    fun supportsSearch(serviceId: Int): Boolean = NewPipe.getService(serviceId).searchQHFactory != null
+    fun supportsSearch(serviceId: Int): Boolean = ServiceList.all().firstOrNull { it.serviceId == serviceId }?.searchQHFactory != null
 
     /** Keep configurable search discoverable even before its API access is ready. */
     @JvmStatic

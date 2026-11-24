@@ -20,15 +20,31 @@ package org.schabi.newpipe.extractor.exceptions;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ReCaptchaException extends ExtractionException {
+public class ReCaptchaException extends AntiBotException {
     private final String url;
+    private final String challengeUrl;
 
-    public ReCaptchaException(final String message, final String url) {
-        super(message);
+    public ReCaptchaException(final int serviceId, final String message, final String url,
+                              final String challengeUrl) {
+        super(serviceId, message, url, null);
         this.url = url;
+        this.challengeUrl = challengeUrl;
     }
 
+    public ReCaptchaException(final int serviceId, final String message, final String url) {
+        this(serviceId, message, url, url);
+    }
+
+    public ReCaptchaException(final String message, final String url) {
+        this(-1, message, url);
+    }
+
+    @Override
     public String getUrl() {
         return url;
+    }
+
+    public String getChallengeUrl() {
+        return challengeUrl == null ? url : challengeUrl;
     }
 }

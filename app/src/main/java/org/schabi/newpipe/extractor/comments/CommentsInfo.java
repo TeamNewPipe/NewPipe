@@ -96,7 +96,7 @@ public final class CommentsInfo extends ListInfo<CommentsInfoItem> {
             final StreamingService service,
             final String url,
             final Page page) throws IOException, ExtractionException {
-        return service.getCommentsExtractor(url).getPage(page);
+        return ExtractorHelper.getMoreItems(service.getCommentsExtractor(url), page);
     }
 
     private transient CommentsExtractor commentsExtractor;

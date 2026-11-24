@@ -173,7 +173,7 @@ class LiveChatFragment : Fragment() {
             val author = message.name.orEmpty().trim()
             val text = message.commentText.orEmpty().trim()
             val comment = CommentsInfoItem(message.serviceId, message.url.orEmpty(), text).apply {
-                commentText = text
+                setCommentText(text)
                 uploaderName = author
                 likeCount = CommentsInfoItem.NO_LIKE_COUNT
             }

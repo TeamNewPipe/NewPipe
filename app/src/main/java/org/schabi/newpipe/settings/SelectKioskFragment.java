@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,8 +92,7 @@ public class SelectKioskFragment extends DialogFragment {
                     final String name = String.format(getString(R.string.service_kiosk_string),
                             service.getServiceInfo().getName(),
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
-                    kioskList.add(new Entry(ServiceHelper.getIcon(service.getServiceId()),
-                            service.getServiceId(), kioskId, name));
+                    kioskList.add(new Entry(service.getServiceId(), kioskId, name));
                 }
             }
         }
@@ -114,18 +112,17 @@ public class SelectKioskFragment extends DialogFragment {
             final Entry entry = kioskList.get(position);
             holder.titleView.setText(entry.kioskName);
             holder.thumbnailView
-                    .setImageDrawable(AppCompatResources.getDrawable(requireContext(), entry.icon));
+                    .setImageDrawable(ServiceHelper.getIconDrawable(requireContext(),
+                            entry.serviceId));
             holder.view.setOnClickListener(view -> clickedItem(entry));
         }
 
         class Entry {
-            final int icon;
             final int serviceId;
             final String kioskId;
             final String kioskName;
 
-            Entry(final int i, final int si, final String ki, final String kn) {
-                icon = i;
+            Entry(final int si, final String ki, final String kn) {
                 serviceId = si;
                 kioskId = ki;
                 kioskName = kn;

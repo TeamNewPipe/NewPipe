@@ -216,6 +216,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            savedInstanceState.setClassLoader(
+                    org.schabi.newpipe.plugin.PluginManager.getHostAndPluginsClassLoader());
+        }
         if (DEBUG) {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
@@ -240,6 +244,9 @@ public class MainActivity extends AppCompatActivity {
 
         LearningReminders.selectProfile(this, getIntent());
         super.onCreate(savedInstanceState);
+        if (org.schabi.newpipe.util.PluginProfileSession.restartIfChanged(this)) {
+            return;
+        }
         EdgeToEdgeHelper.enable(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPrefEditor = sharedPreferences.edit();
@@ -665,6 +672,10 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(this, getString(R.string.profile_switched,
                                     ProfileManager.getDisplayName(this, profile)),
                                     Toast.LENGTH_SHORT).show();
+                            if (org.schabi.newpipe.util.PluginProfileSession
+                                    .restartIfChanged(this)) {
+                                return;
+                            }
                             activeProfileId = profile.getId();
                             mainBinding.getRoot().closeDrawer(GravityCompat.START, false);
                             ActivityCompat.recreate(this);
@@ -727,7 +738,7 @@ public class MainActivity extends AppCompatActivity {
 
             final MenuItem menuItem = drawerLayoutBinding.navigation.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
-                    .setIcon(ServiceHelper.getIcon(s.getServiceId()));
+                    .setIcon(ServiceHelper.getIconDrawable(this, s.getServiceId()));
 
             // peertube specifics
             if (s.getServiceId() == 3) {
@@ -807,6 +818,9 @@ public class MainActivity extends AppCompatActivity {
         // Change the date format to match the selected language on resume
         Localization.initPrettyTime(Localization.resolvePrettyTime());
         super.onResume();
+        if (org.schabi.newpipe.util.PluginProfileSession.restartIfChanged(this)) {
+            return;
+        }
         applyLargeScreenChrome();
         LearningReminders.initialize(this);
 
@@ -827,8 +841,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             final String selectedServiceName = ServiceHelper.getSelectedServiceName(this);
             drawerHeaderBinding.drawerHeaderServiceView.setText(selectedServiceName);
-            drawerHeaderBinding.drawerHeaderServiceIcon.setImageResource(
-                    ServiceHelper.getSelectedServiceIcon(this));
+            drawerHeaderBinding.drawerHeaderServiceIcon.setImageDrawable(
+                    ServiceHelper.getSelectedServiceIconDrawable(this));
 
             drawerHeaderBinding.drawerHeaderServiceView.post(() -> drawerHeaderBinding
                     .drawerHeaderServiceView.setSelected(true));
@@ -1473,6 +1487,9 @@ public class MainActivity extends AppCompatActivity {
 
             if (intent.hasExtra(LearningReminders.EXTRA_PROFILE_ID)) {
                 if (!LearningReminders.selectProfile(this, intent)) {
+                    return;
+                }
+                if (org.schabi.newpipe.util.PluginProfileSession.restartIfChanged(this)) {
                     return;
                 }
                 if (!Objects.equals(activeProfileId, ProfileManager.getActiveProfileId(this))) {

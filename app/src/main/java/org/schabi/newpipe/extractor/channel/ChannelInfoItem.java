@@ -2,6 +2,8 @@ package org.schabi.newpipe.extractor.channel;
 
 import org.schabi.newpipe.extractor.InfoItem;
 
+import javax.annotation.Nullable;
+
 /*
  * Created by Christian Schabesberger on 11.02.17.
  *
@@ -23,8 +25,11 @@ import org.schabi.newpipe.extractor.InfoItem;
  */
 
 public class ChannelInfoItem extends InfoItem {
+    private static final long serialVersionUID = 444064663111604366L;
 
     private String description;
+    @Nullable
+    private String uploaderId;
     private long subscriberCount = -1;
     private long streamCount = -1;
     private boolean verified = false;
@@ -39,6 +44,15 @@ public class ChannelInfoItem extends InfoItem {
 
     public void setDescription(final String description) {
         this.description = description;
+    }
+
+    @Nullable
+    public String getUploaderId() {
+        return uploaderId;
+    }
+
+    public void setUploaderId(@Nullable final String uploaderId) {
+        this.uploaderId = uploaderId;
     }
 
     public long getSubscriberCount() {

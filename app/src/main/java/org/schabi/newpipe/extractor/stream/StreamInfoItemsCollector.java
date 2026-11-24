@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor.stream;
 
+import org.schabi.newpipe.extractor.plugin.PluginExtractorAdapters;
+
 import org.schabi.newpipe.extractor.InfoItemsCollector;
 import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -39,7 +41,8 @@ public class StreamInfoItemsCollector
     }
 
     @Override
-    public StreamInfoItem extract(final StreamInfoItemExtractor extractor) throws ParsingException {
+    public StreamInfoItem extract(final StreamInfoItemExtractor input) throws ParsingException {
+        final StreamInfoItemExtractor extractor = PluginExtractorAdapters.stream(input);
         if (extractor.isAd()) {
             throw new FoundAdException("Found ad");
         }
@@ -60,6 +63,11 @@ public class StreamInfoItemsCollector
         }
         try {
             resultItem.setUploaderName(extractor.getUploaderName());
+        } catch (final Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.setUploaderId(extractor.getUploaderId());
         } catch (final Exception e) {
             addError(e);
         }

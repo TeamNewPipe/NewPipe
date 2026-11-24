@@ -7,6 +7,9 @@ import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import java.util.List;
 
 public abstract class ListInfo<T extends InfoItem> extends Info {
+    // Computed from the pre-plugin class: retain existing serialized search/playlist/channel data.
+    private static final long serialVersionUID = 5235255403652571931L;
+    private int filteredCount;
     private List<T> relatedItems;
     private Page nextPage = null;
     private final List<FilterItem> contentFilters;
@@ -30,6 +33,14 @@ public abstract class ListInfo<T extends InfoItem> extends Info {
         super(serviceId, listUrlIdHandler, name);
         this.contentFilters = listUrlIdHandler.getContentFilters();
         this.sortFilter = listUrlIdHandler.getSortFilter();
+    }
+
+    public int getFilteredCount() {
+        return filteredCount;
+    }
+
+    public void setFilteredCount(final int filteredCount) {
+        this.filteredCount = filteredCount;
     }
 
     public List<T> getRelatedItems() {

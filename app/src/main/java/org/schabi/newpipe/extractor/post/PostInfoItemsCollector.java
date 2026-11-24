@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor.post;
 
+import org.schabi.newpipe.extractor.plugin.PluginExtractorAdapters;
+
 import org.schabi.newpipe.extractor.InfoItemsCollector;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
@@ -10,7 +12,8 @@ public final class PostInfoItemsCollector
     }
 
     @Override
-    public PostInfoItem extract(final PostInfoItemExtractor extractor) throws ParsingException {
+    public PostInfoItem extract(final PostInfoItemExtractor input) throws ParsingException {
+        final PostInfoItemExtractor extractor = PluginExtractorAdapters.post(input);
         final PostInfoItem item = new PostInfoItem(
                 getServiceId(), extractor.getUrl(), extractor.getName());
 

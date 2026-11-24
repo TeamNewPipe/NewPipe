@@ -246,6 +246,7 @@ object ProfileManager {
     }
 
     private fun clearDeletedProfilePreferences(context: Context, profileId: String) {
+        org.schabi.newpipe.plugin.AndroidPluginPreferences.forgetProfile(context, profileId)
         org.schabi.newpipe.local.feed.FeedSeenStore.forgetProfile(context, profileId)
         KidsMode.forgetProfile(context, profileId)
         org.schabi.newpipe.local.playlist.LocalPlaylistSortPreferences.clearProfile(context, profileId)

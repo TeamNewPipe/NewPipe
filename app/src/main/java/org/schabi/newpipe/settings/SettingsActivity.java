@@ -70,6 +70,8 @@ public class SettingsActivity extends AppCompatActivity implements
             "org.schabi.newpipe.settings.OPEN_UPDATE_SETTINGS";
     public static final String EXTRA_OPEN_PROFILES_SETTINGS =
             "org.schabi.newpipe.settings.OPEN_PROFILES_SETTINGS";
+    public static final String EXTRA_OPEN_PLUGIN_SETTINGS =
+            "org.schabi.newpipe.settings.OPEN_PLUGIN_SETTINGS";
     private static final String SEARCH_TEXT = "settings_search_text";
     private static final String TWO_PANE = "settings_two_pane";
     private AppBarLayout settingsAppBar;
@@ -146,6 +148,8 @@ public class SettingsActivity extends AppCompatActivity implements
                 initial = new UpdateSettingsFragment();
             } else if (getIntent().getBooleanExtra(EXTRA_OPEN_PROFILES_SETTINGS, false)) {
                 initial = new ProfilesSettingsFragment();
+            } else if (getIntent().getBooleanExtra(EXTRA_OPEN_PLUGIN_SETTINGS, false)) {
+                initial = new PluginSettingsFragment();
             } else {
                 initial = VimeoSettingsFragment.initialOrDefault(getIntent(),
                         twoPane ? new VideoAudioSettingsFragment() : new MainSettingsFragment());
@@ -161,6 +165,12 @@ public class SettingsActivity extends AppCompatActivity implements
         if (DeviceUtils.isTv(this)) {
             FocusOverlayView.setupFocusObserver(this);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        org.schabi.newpipe.util.PluginProfileSession.restartIfChanged(this);
     }
 
     @Override

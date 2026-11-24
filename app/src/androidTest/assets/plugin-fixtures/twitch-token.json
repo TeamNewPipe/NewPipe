@@ -1,0 +1,11 @@
+{
+  "data": {
+    "streamPlaybackAccessToken": {
+      "signature": "fixture-signature",
+      "value": "fixture-token"
+    }
+  },
+  "extensions": {
+    "durationMilliseconds": 1
+  }
+}

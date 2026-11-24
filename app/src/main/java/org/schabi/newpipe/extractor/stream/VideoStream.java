@@ -25,8 +25,11 @@ import org.schabi.newpipe.extractor.services.youtube.ItagItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.Serializable;
 
 public final class VideoStream extends Stream {
+    private static final long serialVersionUID = 7658657907775256506L;
+
     public static final String RESOLUTION_UNKNOWN = "";
 
     /** @deprecated Use {@link #getResolution()} instead. */
@@ -58,7 +61,6 @@ public final class VideoStream extends Stream {
     /**
      * Class to build {@link VideoStream} objects.
      */
-    @SuppressWarnings("checkstyle:hiddenField")
     public static final class Builder {
         private String id;
         private String content;
@@ -88,6 +90,13 @@ public final class VideoStream extends Stream {
         private String audioTrackName;
         @Nullable
         private String audioLocale;
+        private long availableAt = AVAILABLE_AT_UNKNOWN;
+        @Nullable
+        private Serializable deliveryMethodInfo;
+        @Nullable
+        private java.util.Map<String, String> requestHeaders;
+        @Nullable
+        private Boolean cacheable;
 
         /**
          * Create a new {@link Builder} instance with its default values.
@@ -304,6 +313,27 @@ public final class VideoStream extends Stream {
             return this;
         }
 
+        public Builder setAvailableAt(final long availableAt) {
+            this.availableAt = availableAt;
+            return this;
+        }
+
+        public Builder setRequestHeaders(@Nullable final java.util.Map<String, String> headers) {
+            this.requestHeaders = headers;
+            return this;
+        }
+
+        /** @see Stream#getCacheable() */
+        public Builder setCacheable(@Nullable final Boolean cacheable) {
+            this.cacheable = cacheable;
+            return this;
+        }
+
+        public Builder setDeliveryMethodInfo(@Nullable final Serializable deliveryMethodInfo) {
+            this.deliveryMethodInfo = deliveryMethodInfo;
+            return this;
+        }
+
         /**
          * Build a {@link VideoStream} using the builder's current values.
          *
@@ -350,9 +380,13 @@ public final class VideoStream extends Stream {
                                 + "get it).");
             }
 
-            return new VideoStream(id, content, isUrl, mediaFormat, deliveryMethod, resolution, codec,
+            final VideoStream stream = new VideoStream(id, content, isUrl, mediaFormat, deliveryMethod, resolution, codec,
                     bitrate, initStart, initEnd, indexStart, indexEnd, width, height, fps,
-                    isVideoOnly, manifestUrl, itagItem, audioTrackId, audioTrackName, audioLocale);
+                    isVideoOnly, manifestUrl, itagItem, audioTrackId, audioTrackName, audioLocale,
+                    availableAt, deliveryMethodInfo);
+            stream.setRequestHeaders(requestHeaders);
+            stream.setCacheable(cacheable);
+            return stream;
         }
     }
 
@@ -373,7 +407,6 @@ public final class VideoStream extends Stream {
      * @param manifestUrl    the URL of the manifest this stream comes from (if applicable,
      *                       otherwise null)
      */
-    @SuppressWarnings("checkstyle:ParameterNumber")
     private VideoStream(@Nonnull final String id,
                         @Nonnull final String content,
                         final boolean isUrl,
@@ -394,8 +427,11 @@ public final class VideoStream extends Stream {
                         @Nullable final ItagItem itagItem,
                         @Nullable final String audioTrackId,
                         @Nullable final String audioTrackName,
-                        @Nullable final String audioLocale) {
-        super(id, content, isUrl, format, deliveryMethod, manifestUrl);
+                        @Nullable final String audioLocale,
+                        final long availableAt,
+                        @Nullable final Serializable deliveryMethodInfo) {
+        super(id, content, isUrl, format, deliveryMethod, manifestUrl, availableAt,
+                deliveryMethodInfo);
         if (itagItem != null) {
             this.itagItem = itagItem;
             this.itag = itagItem.id;

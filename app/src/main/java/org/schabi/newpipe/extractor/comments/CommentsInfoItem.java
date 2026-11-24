@@ -4,6 +4,7 @@ import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.localization.DateWrapper;
+import org.schabi.newpipe.extractor.stream.Description;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -12,10 +13,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class CommentsInfoItem extends InfoItem {
+    // Preserve comments serialized before the shared plugin API returned Description.
+    private static final long serialVersionUID = 5981935524260474052L;
 
     private String commentId;
     private String commentText;
+    // Zero is the default when reading older objects and denotes plain text.
+    private int commentTextType = Description.PLAIN_TEXT;
     private String uploaderName;
+    @Nullable
+    private String uploaderId;
     private String uploaderAvatarUrl;
     private String uploaderUrl;
     private boolean uploaderVerified;
@@ -50,12 +57,27 @@ public class CommentsInfoItem extends InfoItem {
         this.commentId = commentId;
     }
 
-    public String getCommentText() {
+    @Nonnull
+    public Description getCommentText() {
+        return new Description(commentText,
+                commentTextType == 0 ? Description.PLAIN_TEXT : commentTextType);
+    }
+
+    /** Raw content bridge for text-only WizeStream consumers and older built-in parsers. */
+    public String getCommentTextContent() {
         return commentText;
     }
 
     public void setCommentText(final String commentText) {
         this.commentText = commentText;
+        this.commentTextType = Description.PLAIN_TEXT;
+    }
+
+    public void setCommentText(@Nullable final Description commentText) {
+        if (commentText != null) {
+            this.commentText = commentText.getContent();
+            this.commentTextType = commentText.getType();
+        }
     }
 
     public String getUploaderName() {
@@ -64,6 +86,15 @@ public class CommentsInfoItem extends InfoItem {
 
     public void setUploaderName(final String uploaderName) {
         this.uploaderName = uploaderName;
+    }
+
+    @Nullable
+    public String getUploaderId() {
+        return uploaderId;
+    }
+
+    public void setUploaderId(@Nullable final String uploaderId) {
+        this.uploaderId = uploaderId;
     }
 
     public String getUploaderAvatarUrl() {

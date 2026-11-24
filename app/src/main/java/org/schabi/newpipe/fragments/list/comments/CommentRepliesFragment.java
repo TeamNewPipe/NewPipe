@@ -1,6 +1,6 @@
 package org.schabi.newpipe.fragments.list.comments;
 
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
+import static org.schabi.newpipe.extractor.ServiceList.getById;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -164,7 +164,7 @@ public final class CommentRepliesFragment
         translatedHeaderComment = null;
         showingTranslatedHeaderComment = false;
 
-        final String originalText = item.getCommentText();
+        final String originalText = item.getCommentTextContent();
         binding.translateButton.setVisibility(View.GONE);
         binding.translateButton.setEnabled(false);
         binding.translateButton.setText(R.string.comment_translate);
@@ -202,7 +202,8 @@ public final class CommentRepliesFragment
                     binding,
                     item,
                     showingTranslatedHeaderComment
-                            ? translatedHeaderComment : item.getCommentText());
+                            ? new Description(translatedHeaderComment, Description.PLAIN_TEXT)
+                            : item.getCommentText());
             binding.translateButton.setText(showingTranslatedHeaderComment
                     ? R.string.comment_show_original : R.string.comment_show_translation);
             return;
@@ -213,7 +214,7 @@ public final class CommentRepliesFragment
         final int generation = headerTranslationGeneration;
         CommentTranslationProvider.translate(
                 requireContext(),
-                item.getCommentText(),
+                item.getCommentTextContent(),
                 new CommentTranslationProvider.Callback() {
                     @Override
                     public void onSuccess(@NonNull final String translatedText) {
@@ -249,14 +250,20 @@ public final class CommentRepliesFragment
     private void showHeaderCommentText(@NonNull final CommentRepliesHeaderBinding binding,
                                        @NonNull final CommentsInfoItem item,
                                        final String text) {
+        showHeaderCommentText(binding, item, new Description(text, Description.PLAIN_TEXT));
+    }
+
+    private void showHeaderCommentText(@NonNull final CommentRepliesHeaderBinding binding,
+                                       @NonNull final CommentsInfoItem item,
+                                       final Description description) {
         // Cancel a previous linkification before switching between translated and original text.
         // This prevents a late asynchronous result from restoring stale text.
         disposables.clear();
         TextLinkifier.fromDescription(
                 binding.commentContent,
-                new Description(text, Description.PLAIN_TEXT),
+                description,
                 HtmlCompat.FROM_HTML_MODE_LEGACY,
-                getServiceById(item.getServiceId()),
+                getById(item.getServiceId()),
                 item.getUrl(),
                 disposables,
                 null);

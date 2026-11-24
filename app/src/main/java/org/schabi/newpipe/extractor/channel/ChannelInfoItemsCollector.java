@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor.channel;
 
+import org.schabi.newpipe.extractor.plugin.PluginExtractorAdapters;
+
 import org.schabi.newpipe.extractor.InfoItemsCollector;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
@@ -30,12 +32,18 @@ public final class ChannelInfoItemsCollector
     }
 
     @Override
-    public ChannelInfoItem extract(final ChannelInfoItemExtractor extractor)
+    public ChannelInfoItem extract(final ChannelInfoItemExtractor input)
             throws ParsingException {
+        final ChannelInfoItemExtractor extractor = PluginExtractorAdapters.channel(input);
         final ChannelInfoItem resultItem = new ChannelInfoItem(
                 getServiceId(), extractor.getUrl(), extractor.getName());
 
         // optional information
+        try {
+            resultItem.setUploaderId(extractor.getUploaderId());
+        } catch (final Exception e) {
+            addError(e);
+        }
         try {
             resultItem.setSubscriberCount(extractor.getSubscriberCount());
         } catch (final Exception e) {

@@ -5,6 +5,7 @@ import org.schabi.newpipe.extractor.InfoItemExtractor;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.localization.DateWrapper;
+import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeCommentsInfoItemExtractor;
 import org.schabi.newpipe.extractor.stream.StreamExtractor;
 import org.schabi.newpipe.extractor.utils.Utils;
@@ -48,7 +49,12 @@ public interface CommentsInfoItemExtractor extends InfoItemExtractor {
     /**
      * The text of the comment
      */
-    default String getCommentText() throws ParsingException {
+    default Description getCommentText() throws ParsingException {
+        return new Description(getCommentTextContent(), Description.PLAIN_TEXT);
+    }
+
+    /** Keeps existing plain-text provider parsing separate from the shared Description API. */
+    default String getCommentTextContent() throws ParsingException {
         return Utils.EMPTY_STRING;
     }
 
@@ -81,6 +87,11 @@ public interface CommentsInfoItemExtractor extends InfoItemExtractor {
 
     default String getUploaderName() throws ParsingException {
         return Utils.EMPTY_STRING;
+    }
+
+    @Nullable
+    default String getUploaderId() throws ParsingException {
+        return null;
     }
 
     default String getUploaderAvatarUrl() throws ParsingException {

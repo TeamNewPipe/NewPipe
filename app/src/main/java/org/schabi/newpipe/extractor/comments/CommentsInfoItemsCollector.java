@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor.comments;
 
+import org.schabi.newpipe.extractor.plugin.PluginExtractorAdapters;
+
 import org.schabi.newpipe.extractor.InfoItemsCollector;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
@@ -14,8 +16,9 @@ public final class CommentsInfoItemsCollector
     }
 
     @Override
-    public CommentsInfoItem extract(final CommentsInfoItemExtractor extractor)
+    public CommentsInfoItem extract(final CommentsInfoItemExtractor input)
             throws ParsingException {
+        final CommentsInfoItemExtractor extractor = PluginExtractorAdapters.comments(input);
         final CommentsInfoItem resultItem = new CommentsInfoItem(
                 getServiceId(), extractor.getUrl(), extractor.getName());
 
@@ -32,6 +35,11 @@ public final class CommentsInfoItemsCollector
         }
         try {
             resultItem.setUploaderName(extractor.getUploaderName());
+        } catch (final Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.setUploaderId(extractor.getUploaderId());
         } catch (final Exception e) {
             addError(e);
         }

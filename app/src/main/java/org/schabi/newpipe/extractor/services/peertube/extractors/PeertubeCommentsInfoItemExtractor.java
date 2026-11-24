@@ -54,7 +54,7 @@ public class PeertubeCommentsInfoItemExtractor implements CommentsInfoItemExtrac
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         final String htmlText = JsonUtils.getString(item, "text");
         try {
             final Document doc = Jsoup.parse(htmlText);

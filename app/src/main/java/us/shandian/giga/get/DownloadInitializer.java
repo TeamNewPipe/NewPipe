@@ -54,7 +54,7 @@ public class DownloadInitializer extends Thread {
                     long lowestSize = Long.MAX_VALUE;
 
                     for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
-                        mConn = mMission.openConnection(mMission.urls[i], true, 0, 0);
+                        mConn = mMission.openConnection(i, true, 0, 0);
                         mMission.establishConnection(mId, mConn);
                         dispose();
 

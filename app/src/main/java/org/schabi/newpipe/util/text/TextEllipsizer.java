@@ -74,7 +74,7 @@ public final class TextEllipsizer {
         this.streamUrl = streamUrl;
     }
 
-    public void setStreamingService(@NonNull final StreamingService streamingService) {
+    public void setStreamingService(@Nullable final StreamingService streamingService) {
         this.streamingService = streamingService;
     }
 

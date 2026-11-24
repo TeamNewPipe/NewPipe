@@ -1,0 +1,86 @@
+{
+  "data": {
+    "searchFor": {
+      "channels": {
+        "edges": [
+          {
+            "item": {
+              "displayName": "Fixture channel",
+              "login": "fixture",
+              "id": "42",
+              "description": "Offline compatibility fixture",
+              "profileImageURL": "https://images.example.invalid/avatar.png",
+              "roles": {
+                "isPartner": true
+              },
+              "followers": {
+                "totalCount": 123
+              },
+              "stream": {}
+            }
+          },
+          {
+            "item": {
+              "displayName": "Fixture streamer",
+              "login": "fixture",
+              "id": "42",
+              "description": "Offline compatibility fixture",
+              "profileImageURL": "https://images.example.invalid/avatar.png",
+              "roles": {
+                "isPartner": true
+              },
+              "followers": {
+                "totalCount": 123
+              },
+              "stream": {
+                "viewersCount": 456,
+                "previewImageURL": "https://images.example.invalid/live.png",
+                "game": {
+                  "name": "Fixture category",
+                  "id": "7"
+                }
+              },
+              "broadcastSettings": {
+                "title": "Fixture live lesson"
+              }
+            }
+          }
+        ]
+      },
+      "games": {
+        "edges": [
+          {
+            "item": {
+              "displayName": "Fixture category",
+              "slug": "fixture-category",
+              "id": "7",
+              "boxArtURL": "https://images.example.invalid/category.png"
+            }
+          }
+        ]
+      },
+      "videos": {
+        "edges": [
+          {
+            "item": {
+              "title": "Fixture recording",
+              "id": "9001",
+              "owner": {
+                "displayName": "Fixture streamer",
+                "login": "fixture",
+                "id": "42"
+              },
+              "viewCount": 25,
+              "lengthSeconds": 600,
+              "previewThumbnailURL": "https://images.example.invalid/vod.png",
+              "createdAt": "2026-11-01T10:00:00Z"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "durationMilliseconds": 1
+  }
+}

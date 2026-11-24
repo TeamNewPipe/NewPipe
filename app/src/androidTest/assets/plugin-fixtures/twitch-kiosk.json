@@ -1,0 +1,25 @@
+{
+  "data": {
+    "streams": {
+      "edges": [
+        {
+          "node": {
+            "id": "42",
+            "title": "Fixture live lesson",
+            "viewersCount": 456,
+            "broadcaster": {
+              "displayName": "Fixture streamer",
+              "login": "fixture"
+            },
+            "game": {
+              "name": "Fixture category"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "durationMilliseconds": 1
+  }
+}

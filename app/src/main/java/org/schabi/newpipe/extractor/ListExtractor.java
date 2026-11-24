@@ -51,12 +51,14 @@ public abstract class ListExtractor<R extends InfoItem> extends Extractor {
         InfoItemsPage<StreamInfoItem> currentPage = (InfoItemsPage<StreamInfoItem>) getInitialPage();
         ArrayList<StreamInfoItem> itemArrayList = new ArrayList<>(currentPage.getItems());
         ArrayList<Throwable> errors = new ArrayList<>(currentPage.getErrors());
+        int filteredCount = currentPage.getFilteredCount();
         while (currentPage.hasNextPage()){
             currentPage = (InfoItemsPage<StreamInfoItem>) getPage(currentPage.getNextPage());
             itemArrayList.addAll(currentPage.getItems());
             errors.addAll(currentPage.getErrors());
+            filteredCount += currentPage.getFilteredCount();
         }
-        return new InfoItemsPage<>(itemArrayList, null, errors);
+        return new InfoItemsPage<>(itemArrayList, null, errors, filteredCount);
     }
 
     /**
@@ -115,17 +117,31 @@ public abstract class ListExtractor<R extends InfoItem> extends Extractor {
          * Errors that happened during the extraction
          */
         private final List<Throwable> errors;
+        private final int filteredCount;
 
         public InfoItemsPage(final InfoItemsCollector<T, ?> collector, final Page nextPage) {
-            this(collector.getItems(), nextPage, collector.getErrors());
+            this(collector.getItems(), nextPage, collector.getErrors(), collector.getFilteredCount());
         }
 
         public InfoItemsPage(final List<T> itemsList,
                              Page nextPage,
                              final List<Throwable> errors) {
+            this(itemsList, nextPage, errors, 0);
+        }
+
+        public InfoItemsPage(final List<T> itemsList,
+                             final Page nextPage,
+                             final List<Throwable> errors,
+                             final int filteredCount) {
             this.itemsList = itemsList;
+            // Preserve WizeStream's existing continuation semantics, including empty pages.
             this.nextPage = nextPage;
             this.errors = errors;
+            this.filteredCount = filteredCount;
+        }
+
+        public int getFilteredCount() {
+            return filteredCount;
         }
 
         public boolean hasNextPage() {

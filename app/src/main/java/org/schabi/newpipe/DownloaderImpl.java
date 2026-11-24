@@ -15,11 +15,15 @@ import org.schabi.newpipe.extractor.downloader.CancellableCall;
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
+import org.schabi.newpipe.extractor.downloader.StreamingResponse;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.plugin.PluginDownloaderAdapters;
+import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.extractor.services.bilibili.BilibiliService;
 import org.schabi.newpipe.util.InfoCache;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -210,9 +214,68 @@ public final class DownloaderImpl extends Downloader {
     }
 
     @Override
-    public CancellableCall executeAsync(@NonNull final Request request,
-                                        final AsyncCallback callback)
+    public StreamingResponse getStreaming(final String url,
+                                           @Nullable final Map<String, List<String>> headers,
+                                           @Nullable final Localization localization)
             throws IOException, ReCaptchaException {
+        return executeStreaming(Request.newBuilder().get(url).headers(headers)
+                .localization(localization).build(), client);
+    }
+
+    @Override
+    public StreamingResponse getStreaming(final String url,
+                                           @Nullable final Map<String, List<String>> headers,
+                                           @Nullable final Localization localization,
+                                           final long timeoutMs)
+            throws IOException, ReCaptchaException {
+        final long boundedTimeoutMs = Math.max(1, timeoutMs);
+        final OkHttpClient requestClient = client.newBuilder()
+                .callTimeout(boundedTimeoutMs, TimeUnit.MILLISECONDS)
+                .connectTimeout(boundedTimeoutMs, TimeUnit.MILLISECONDS)
+                .readTimeout(boundedTimeoutMs, TimeUnit.MILLISECONDS)
+                .build();
+        return executeStreaming(Request.newBuilder().get(url).headers(headers)
+                .localization(localization).build(), requestClient);
+    }
+
+    @Override
+    public StreamingResponse postStreaming(final String url,
+                                            @Nullable final Map<String, List<String>> headers,
+                                            @Nullable final byte[] dataToSend,
+                                            @Nullable final Localization localization)
+            throws IOException, ReCaptchaException {
+        return executeStreaming(Request.newBuilder().post(url, dataToSend).headers(headers)
+                .localization(localization).build(), client);
+    }
+
+    /**
+     * Shares the normal request/cookie policy while leaving body consumption to the caller.
+     *
+     * @param request the request to execute
+     * @param requestClient the client supplying timeouts and connection policy
+     * @return a response whose stream must be closed by the caller
+     */
+    private StreamingResponse executeStreaming(@NonNull final Request request,
+                                                @NonNull final OkHttpClient requestClient)
+            throws IOException, ReCaptchaException {
+        final okhttp3.Response response = requestClient.newCall(buildRequest(request)).execute();
+        try {
+            checkResponseCode(response, request.url());
+        } catch (final ReCaptchaException error) {
+            response.close();
+            throw error;
+        }
+        final ResponseBody body = response.body();
+        // Closing the returned stream closes OkHttp's body/source and releases its connection.
+        return new StreamingResponse(response.code(), response.headers().toMultimap(),
+                body == null ? new ByteArrayInputStream(new byte[0]) : body.byteStream());
+    }
+
+    @Override
+    public CancellableCall executeAsync(@NonNull final Request request,
+                                        final AsyncCallback input)
+            throws IOException, ReCaptchaException {
+        final AsyncCallback callback = PluginDownloaderAdapters.asyncCallback(input);
         final Call call = client.newCall(buildRequest(request));
         final CancellableCall cancellableCall = new CancellableCall(call);
         call.enqueue(new Callback() {
@@ -302,9 +365,7 @@ public final class DownloaderImpl extends Downloader {
     private static Response buildExtractorResponse(@NonNull final okhttp3.Response response,
                                                    @NonNull final String originalUrl)
             throws IOException, ReCaptchaException {
-        if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested", originalUrl);
-        }
+        checkResponseCode(response, originalUrl);
 
         byte[] responseBodyBytes = new byte[0];
         String responseBodyToReturn = null;
@@ -323,6 +384,14 @@ public final class DownloaderImpl extends Downloader {
                 responseBodyToReturn,
                 responseBodyBytes,
                 latestUrl);
+    }
+
+    private static void checkResponseCode(@NonNull final okhttp3.Response response,
+                                           @NonNull final String originalUrl)
+            throws ReCaptchaException {
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested", originalUrl);
+        }
     }
 
     @NonNull

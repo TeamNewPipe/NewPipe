@@ -44,6 +44,14 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        final ClassLoader loader =
+                org.schabi.newpipe.plugin.PluginManager.getHostAndPluginsClassLoader();
+        if (savedInstanceState != null) {
+            savedInstanceState.setClassLoader(loader);
+        }
+        if (getArguments() != null) {
+            getArguments().setClassLoader(loader);
+        }
         if (DEBUG) {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");

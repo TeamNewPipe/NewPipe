@@ -29,6 +29,8 @@ import javax.annotation.Nullable;
  * Info object for previews of unopened videos, eg search results, related videos
  */
 public class StreamInfoItem extends InfoItem {
+    private static final long serialVersionUID = 3952272970319787469L;
+
     private String albumUrl;
 
     public String getAlbumUrl() {
@@ -42,6 +44,8 @@ public class StreamInfoItem extends InfoItem {
     private final StreamType streamType;
 
     private String uploaderName;
+    @Nullable
+    private String uploaderId;
     private String shortDescription;
     private String textualUploadDate;
     @Nullable
@@ -75,6 +79,15 @@ public class StreamInfoItem extends InfoItem {
 
     public void setUploaderName(final String uploaderName) {
         this.uploaderName = uploaderName;
+    }
+
+    @Nullable
+    public String getUploaderId() {
+        return uploaderId;
+    }
+
+    public void setUploaderId(@Nullable final String uploaderId) {
+        this.uploaderId = uploaderId;
     }
 
     public long getViewCount() {

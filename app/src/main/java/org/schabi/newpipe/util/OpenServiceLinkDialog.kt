@@ -19,7 +19,8 @@ class OpenServiceLinkDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val serviceId = requireArguments().getInt(SERVICE_ID)
-        val service = NewPipe.getService(serviceId)
+        val service = ServiceList.all().firstOrNull { it.serviceId == serviceId }
+            ?: return MissingServiceHelper.createDialog(this)
         val content = layoutInflater.inflate(R.layout.dialog_edit_text, null)
         val editText = content.findViewById<EditText>(R.id.dialogEditText).apply {
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI
@@ -72,6 +73,7 @@ class OpenServiceLinkDialog : DialogFragment() {
 
         @JvmStatic
         fun showIfSearchUnsupported(manager: FragmentManager, serviceId: Int, query: String): Boolean {
+            if (MissingServiceHelper.showIfMissing(manager, serviceId)) return true
             if (VimeoSearchSetupDialog.showIfRequired(manager, serviceId, query)) return true
             if (ServiceSearchSupport.supportsSearch(serviceId)) return false
             showForService(manager, serviceId, query)
@@ -79,6 +81,7 @@ class OpenServiceLinkDialog : DialogFragment() {
         }
 
         fun showForService(manager: FragmentManager, serviceId: Int, query: String) {
+            if (MissingServiceHelper.showIfMissing(manager, serviceId)) return
             if (!manager.isStateSaved && manager.findFragmentByTag(TAG) == null) {
                 OpenServiceLinkDialog().apply {
                     arguments = Bundle().apply {

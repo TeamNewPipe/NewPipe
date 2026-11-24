@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.localization.Localization;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -100,6 +101,34 @@ public abstract class Downloader {
     }
 
     /**
+     * PipePipe-compatible streaming GET. Implementations can override this to avoid buffering;
+     * the fallback keeps existing downloader subclasses source and binary compatible.
+     * The caller must close the returned response.
+     */
+    public StreamingResponse getStreaming(final String url,
+                                          @Nullable final Map<String, List<String>> headers,
+                                          @Nullable final Localization localization)
+            throws IOException, ReCaptchaException {
+        final Response response = get(url, headers, localization);
+        final byte[] raw = response.rawResponseBody() == null
+                ? new byte[0] : response.rawResponseBody();
+        return new StreamingResponse(response.responseCode(), response.responseHeaders(),
+                new ByteArrayInputStream(raw));
+    }
+
+    /**
+     * Streaming GET with a caller-supplied deadline. Implementations supporting per-call timeouts
+     * should override this; the compatibility fallback retains the regular behavior.
+     */
+    public StreamingResponse getStreaming(final String url,
+                                          @Nullable final Map<String, List<String>> headers,
+                                          @Nullable final Localization localization,
+                                          final long timeoutMs)
+            throws IOException, ReCaptchaException {
+        return getStreaming(url, headers, localization);
+    }
+
+    /**
      * Do a HEAD request.
      *
      * @param url the URL that is pointing to the wanted resource
@@ -163,6 +192,22 @@ public abstract class Downloader {
                 .headers(headers)
                 .localization(localization)
                 .build());
+    }
+
+    /**
+     * PipePipe-compatible streaming POST. The default wraps the buffered response for existing
+     * downloader subclasses; HTTP implementations should stream the body. The caller closes it.
+     */
+    public StreamingResponse postStreaming(final String url,
+                                           @Nullable final Map<String, List<String>> headers,
+                                           @Nullable final byte[] dataToSend,
+                                           @Nullable final Localization localization)
+            throws IOException, ReCaptchaException {
+        final Response response = post(url, headers, dataToSend, localization);
+        final byte[] raw = response.rawResponseBody() == null
+                ? new byte[0] : response.rawResponseBody();
+        return new StreamingResponse(response.responseCode(), response.responseHeaders(),
+                new ByteArrayInputStream(raw));
     }
 
     public CancellableCall postAsync(final String url,

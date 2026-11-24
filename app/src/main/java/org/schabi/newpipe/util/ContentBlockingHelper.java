@@ -491,7 +491,7 @@ public final class ContentBlockingHelper {
             if (item instanceof CommentsInfoItem) {
                 final CommentsInfoItem comment = (CommentsInfoItem) item;
                 return commentFilters.isBlocked(comment)
-                        || containsKeyword(comment.getName(), comment.getCommentText());
+                        || containsKeyword(comment.getName(), comment.getCommentTextContent());
             }
             if (item instanceof StreamInfoItem) {
                 final StreamInfoItem stream = (StreamInfoItem) item;

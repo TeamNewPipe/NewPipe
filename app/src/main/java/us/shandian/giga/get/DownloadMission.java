@@ -150,6 +150,10 @@ public class DownloadMission extends Mission {
      */
     public MissionRecoveryInfo[] recoveryInfo;
 
+    /** Nullable for missions serialized before providers supplied media request headers. */
+    @Nullable
+    public java.util.ArrayList<java.util.HashMap<String, String>> resourceRequestHeaders;
+
     private transient int finishCount;
     public transient volatile boolean running;
     public boolean enqueued;
@@ -234,9 +238,28 @@ public class DownloadMission extends Mission {
         return openConnection(urls[current], headRequest, rangeStart, rangeEnd);
     }
 
+    HttpURLConnection openConnection(int resource, boolean headRequest, long rangeStart,
+                                     long rangeEnd) throws IOException {
+        return openConnection(urls[resource], headRequest, rangeStart, rangeEnd, null,
+                DownloadRequestHeaders.at(this, resource));
+    }
+
     HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart, long rangeEnd) throws IOException {
+        return openConnection(url, headRequest, rangeStart, rangeEnd, null);
+    }
+
+    HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart,
+                                     long rangeEnd, String validateCondition) throws IOException {
+        return openConnection(url, headRequest, rangeStart, rangeEnd, validateCondition,
+                DownloadRequestHeaders.at(this, current));
+    }
+
+    private HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart,
+                                             long rangeEnd, String validateCondition,
+                                             java.util.Map<String, String> requestHeaders) throws IOException {
         final URL source = new URL(url);
         URL target = source;
+        final boolean manualRedirects = InvidiousBackend.isEnabled() || !requestHeaders.isEmpty();
         final boolean invidiousDownload = InvidiousBackend.isEnabled() && this.source != null
                 && InvidiousBackend.isYoutubeHost(java.net.URI.create(this.source).getHost());
         for (int redirects = 0; redirects <= 20; redirects++) {
@@ -248,16 +271,20 @@ public class DownloadMission extends Mission {
                 }
             }
             HttpURLConnection conn = AppProxySelector.openConnection(target);
-            conn.setInstanceFollowRedirects(!InvidiousBackend.isEnabled());
+            conn.setInstanceFollowRedirects(!manualRedirects);
             conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
             conn.setRequestProperty("Accept", "*/*");
             conn.setRequestProperty("Accept-Encoding", "*");
+            for (final java.util.Map.Entry<String, String> header : requestHeaders.entrySet()) {
+                conn.setRequestProperty(header.getKey(), header.getValue());
+            }
 
             if (headRequest) conn.setRequestMethod("HEAD");
+            if (validateCondition != null) conn.setRequestProperty("If-Range", validateCondition);
 
             // BUG workaround: switching between networks can freeze the download forever
             conn.setConnectTimeout(30000);
-            if (InvidiousBackend.isEnabled()) conn.setReadTimeout(30000);
+            if (manualRedirects) conn.setReadTimeout(30000);
 
             if (rangeStart >= 0) {
                 String req = "bytes=" + rangeStart + "-";
@@ -266,16 +293,29 @@ public class DownloadMission extends Mission {
                 conn.setRequestProperty("Range", req);
             }
 
-            if (!InvidiousBackend.isEnabled()) {
+            if (!manualRedirects) {
                 return conn;
             }
-            final int code = conn.getResponseCode();
-            final String location = conn.getHeaderField("Location");
+            final int code;
+            final String location;
+            try {
+                code = conn.getResponseCode();
+                location = conn.getHeaderField("Location");
+            } catch (IOException | RuntimeException failure) {
+                conn.disconnect();
+                throw failure;
+            }
             if (location == null || !(code == 301 || code == 302 || code == 303 || code == 307 || code == 308)) {
                 return conn;
             }
             conn.disconnect();
-            target = new URL(target, location);
+            final URL redirected = new URL(target, location);
+            if (!"https".equalsIgnoreCase(redirected.getProtocol())
+                    && !"http".equalsIgnoreCase(redirected.getProtocol())) {
+                throw new IOException("Unsupported download redirect protocol");
+            }
+            requestHeaders = DownloadRequestHeaders.afterRedirect(requestHeaders, target, redirected);
+            target = redirected;
             try {
                 InvidiousBackend.checkRedirect(
                         source.toURI(), target.toURI());
@@ -296,7 +336,7 @@ public class DownloadMission extends Mission {
         int statusCode = conn.getResponseCode();
 
         if (DEBUG) {
-            Log.d(TAG, threadId + ":[request]  Range=" + conn.getRequestProperty("Range"));
+            Log.d(TAG, threadId + ":[request] Method=" + conn.getRequestMethod());
             Log.d(TAG, threadId + ":[response] Code=" + statusCode);
             Log.d(TAG, threadId + ":[response] Content-Length=" + conn.getContentLength());
             Log.d(TAG, threadId + ":[response] Content-Range=" + conn.getHeaderField("Content-Range"));

@@ -137,9 +137,9 @@ object CommentArchive {
             val fresh = comments.map { item ->
                 CachedComment(
                     id = item.commentId?.takeIf(String::isNotBlank)
-                        ?: hash("${item.uploaderName}:${item.commentText}:${item.textualUploadDate}"),
+                        ?: hash("${item.uploaderName}:${item.commentTextContent}:${item.textualUploadDate}"),
                     author = item.uploaderName.orEmpty().take(160),
-                    body = item.commentText.orEmpty().take(MAX_ITEM_TEXT_LENGTH),
+                    body = item.commentTextContent.orEmpty().take(MAX_ITEM_TEXT_LENGTH),
                     date = item.uploadDate?.offsetDateTime()?.toString()
                         ?: item.textualUploadDate.orEmpty().take(80),
                     parentId = parentId

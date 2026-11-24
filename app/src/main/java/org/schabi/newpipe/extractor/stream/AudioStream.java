@@ -23,12 +23,15 @@ package org.schabi.newpipe.extractor.stream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.services.youtube.ItagItem;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class AudioStream extends Stream {
+    private static final long serialVersionUID = -5432602896957400844L;
+
     public static final int UNKNOWN_BITRATE = -1;
 
     private final int averageBitrate;
@@ -79,6 +82,13 @@ public final class AudioStream extends Stream {
         private String audioLocale;
         @Nullable
         private AudioTrackType audioTrackType;
+        private long availableAt = AVAILABLE_AT_UNKNOWN;
+        @Nullable
+        private Serializable deliveryMethodInfo;
+        @Nullable
+        private java.util.Map<String, String> requestHeaders;
+        @Nullable
+        private Boolean cacheable;
         /**
          * Create a new {@link Builder} instance with its default values.
          */
@@ -267,6 +277,26 @@ public final class AudioStream extends Stream {
             return this;
         }
 
+        public Builder setAvailableAt(final long availableAt) {
+            this.availableAt = availableAt;
+            return this;
+        }
+
+        public Builder setRequestHeaders(@Nullable final java.util.Map<String, String> headers) {
+            this.requestHeaders = headers;
+            return this;
+        }
+
+        public Builder setCacheable(@Nullable final Boolean cacheable) {
+            this.cacheable = cacheable;
+            return this;
+        }
+
+        public Builder setDeliveryMethodInfo(@Nullable final Serializable deliveryMethodInfo) {
+            this.deliveryMethodInfo = deliveryMethodInfo;
+            return this;
+        }
+
         /**
          * Build an {@link AudioStream} using the builder's current values.
          *
@@ -299,9 +329,14 @@ public final class AudioStream extends Stream {
                                 + "not allowed. Pass a valid one instead with setDeliveryMethod.");
             }
 
-            return new AudioStream(id, content, isUrl, mediaFormat, deliveryMethod, averageBitrate, codec,
+            final AudioStream stream = new AudioStream(id, content, isUrl, mediaFormat,
+                    deliveryMethod, averageBitrate, codec,
                     bitrate, initStart, initEnd, indexStart, indexEnd, manifestUrl, itagItem,
-                    quality, audioTrackId, audioTrackName, audioLocale, audioTrackType);
+                    quality, audioTrackId, audioTrackName, audioLocale, audioTrackType,
+                    availableAt, deliveryMethodInfo);
+            stream.setRequestHeaders(requestHeaders);
+            stream.setCacheable(cacheable);
+            return stream;
         }
     }
 
@@ -342,8 +377,11 @@ public final class AudioStream extends Stream {
                         @Nullable final String audioTrackId,
                         @Nullable final String audioTrackName,
                         @Nullable final String audioLocale,
-                        @Nullable final AudioTrackType audioTrackType) {
-        super(id, content, isUrl, format, deliveryMethod, manifestUrl);
+                        @Nullable final AudioTrackType audioTrackType,
+                        final long availableAt,
+                        @Nullable final Serializable deliveryMethodInfo) {
+        super(id, content, isUrl, format, deliveryMethod, manifestUrl, availableAt,
+                deliveryMethodInfo);
         if (itagItem != null) {
             this.itagItem = itagItem;
             this.itag = itagItem.id;

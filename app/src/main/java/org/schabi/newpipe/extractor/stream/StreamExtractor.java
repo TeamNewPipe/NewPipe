@@ -354,6 +354,12 @@ public abstract class StreamExtractor extends Extractor {
         return "";
     }
 
+    /** Headers required for HLS/DASH manifests and their segments. */
+    @Nullable
+    public Map<String, String> getManifestRequestHeaders() throws ParsingException {
+        return null;
+    }
+
     /**
      * This should return a list of available {@link AudioStream}s.
      * You can also return null or an empty list, however be aware that if you don't return anything
@@ -666,6 +672,11 @@ public abstract class StreamExtractor extends Extractor {
     }
 
     public boolean isSupportRelatedItems() throws ParsingException {
+        return true;
+    }
+
+    /** Hint used before the provider's bullet comments or live chat have been requested. */
+    public boolean isSupportBulletComments() throws ParsingException {
         return true;
     }
 

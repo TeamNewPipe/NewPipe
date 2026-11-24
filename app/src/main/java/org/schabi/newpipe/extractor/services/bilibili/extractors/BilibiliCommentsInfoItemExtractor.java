@@ -53,7 +53,7 @@ public class BilibiliCommentsInfoItemExtractor implements CommentsInfoItemExtrac
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         String result = StringEscapeUtils.unescapeHtml4((data.getObject("content").getString("message")));
         try {
             if (result.endsWith("...") && data.getObject("content").getObject("jump_url") != null && data.getObject("content").getObject("jump_url").keySet().size() > 0) {

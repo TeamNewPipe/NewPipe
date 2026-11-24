@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.linkhandler.SearchQueryHandler;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -98,6 +99,8 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
     @Override
     public final InfoItemsPage<InfoItem> getInitialPage() throws IOException, ExtractionException {
         InfoItemsPage<InfoItem> currentPageResult = getInitialPageInternal();
+        final List<Throwable> errors = new ArrayList<>(currentPageResult.getErrors());
+        int filteredCount = currentPageResult.getFilteredCount();
         int attempts = 0;
 
         while (attempts < MAX_SEQUENTIAL_EMPTY_PAGE_FETCHES) {
@@ -105,15 +108,18 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
                 final MultiInfoItemsCollector collector = new MultiInfoItemsCollector(getServiceId());
                 collector.addAll(currentPageResult.getItems());
                 collector.applyBlocking(getService().getFilterConfig());
+                filteredCount += collector.getFilteredCount();
 
                 // If we have items after filtering, we are done. Return this page.
                 if (!collector.getItems().isEmpty()) {
-                    return new InfoItemsPage<>(collector, currentPageResult.getNextPage());
+                    return new InfoItemsPage<>(collector.getItems(), currentPageResult.getNextPage(),
+                            errors, filteredCount);
                 }
             } else {
                 // If no filtering is configured, and the page has items, we are done.
                 if (!currentPageResult.getItems().isEmpty()) {
-                    return currentPageResult;
+                    return new InfoItemsPage<>(currentPageResult.getItems(),
+                            currentPageResult.getNextPage(), errors, filteredCount);
                 }
             }
 
@@ -123,6 +129,8 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
                 attempts++;
                 // Fetch the next page to continue the loop
                 currentPageResult = getPageInternal(currentPageResult.getNextPage());
+                errors.addAll(currentPageResult.getErrors());
+                filteredCount += currentPageResult.getFilteredCount();
             } else {
                 // No more pages, break the loop
                 break;
@@ -131,7 +139,7 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
 
         // If we exit the loop, it means we tried enough times or there are no more pages.
         // Return an empty page with no "next page" marker.
-        return InfoItemsPage.emptyPage();
+        return new InfoItemsPage<>(Collections.emptyList(), null, errors, filteredCount);
     }
 
     @Override
@@ -142,6 +150,8 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
 
         // The logic is nearly identical to getInitialPage, but starts with a given page
         InfoItemsPage<InfoItem> currentPageResult = getPageInternal(page);
+        final List<Throwable> errors = new ArrayList<>(currentPageResult.getErrors());
+        int filteredCount = currentPageResult.getFilteredCount();
         int attempts = 0;
 
         // We start with 1 attempt since the first getPageInternal is one try
@@ -150,21 +160,25 @@ public abstract class SearchExtractor extends ListExtractor<InfoItem> {
             collector.addAll(currentPageResult.getItems());
             if (getService().getFilterTypes().contains("search_result")) {
                 collector.applyBlocking(getService().getFilterConfig());
+                filteredCount += collector.getFilteredCount();
             }
 
             if (!collector.getItems().isEmpty()) {
-                return new InfoItemsPage<>(collector, currentPageResult.getNextPage());
+                return new InfoItemsPage<>(collector.getItems(), currentPageResult.getNextPage(),
+                            errors, filteredCount);
             }
 
             if (currentPageResult.hasNextPage()) {
                 attempts++;
                 currentPageResult = getPageInternal(currentPageResult.getNextPage());
+                errors.addAll(currentPageResult.getErrors());
+                filteredCount += currentPageResult.getFilteredCount();
             } else {
                 break;
             }
         }
 
-        return InfoItemsPage.emptyPage();
+        return new InfoItemsPage<>(Collections.emptyList(), null, errors, filteredCount);
     }
 
 }

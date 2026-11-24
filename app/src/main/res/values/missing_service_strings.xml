@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="missing_service_title">Service unavailable</string>
+    <string name="missing_service_message">The plugin for this item is disabled, missing, or could not be loaded. Your subscriptions, playlists, and history are kept. Open Plugins settings to enable or reinstall the service.</string>
+    <string name="missing_service_open_plugins">Open Plugins</string>
+</resources>

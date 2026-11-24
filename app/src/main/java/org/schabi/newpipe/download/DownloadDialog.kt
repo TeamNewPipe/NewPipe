@@ -813,13 +813,17 @@ class DownloadDialog() :
             if (selectedSegments.isNotEmpty() && request.kind != 's') Postprocessing.ALGORITHM_SEGMENTS else request.postprocessingName,
             if (selectedSegments.isNotEmpty() && request.kind != 's') arrayOf(selectedSegments, request.postprocessingName.orEmpty()) + request.postprocessingArguments.orEmpty() else request.postprocessingArguments,
             request.nearLength,
-            request.recoveryInfo
+            request.recoveryInfo,
+            null,
+            null,
+            request.requestHeaders
         )
 
         companion?.let { (file, caption) ->
             DownloadManagerService.startMission(
                 dialogContext, caption.urls, file, caption.kind, caption.threads, streamInfo,
-                caption.postprocessingName, caption.postprocessingArguments, caption.nearLength, caption.recoveryInfo
+                caption.postprocessingName, caption.postprocessingArguments, caption.nearLength, caption.recoveryInfo,
+                null, null, caption.requestHeaders
             )
         }
 

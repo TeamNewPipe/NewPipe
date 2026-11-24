@@ -53,7 +53,7 @@ object KioskTranslator {
             "trending_movies_and_shows" -> R.drawable.ic_movie
             "trending_podcasts_episodes" -> R.drawable.ic_podcasts
             "youtube_shorts" -> R.drawable.ic_smart_display
-            else -> 0
+            else -> R.drawable.ic_public
         }
     }
 }

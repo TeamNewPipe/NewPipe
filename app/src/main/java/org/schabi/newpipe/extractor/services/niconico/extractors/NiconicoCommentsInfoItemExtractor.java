@@ -51,7 +51,7 @@ public class NiconicoCommentsInfoItemExtractor implements CommentsInfoItemExtrac
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         final Duration diff = getDuration();
         @SuppressWarnings("DefaultLocale") final String hms = String.format("%02d:%02d",
                 diff.toMinutes(),

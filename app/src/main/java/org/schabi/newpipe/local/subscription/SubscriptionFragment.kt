@@ -279,7 +279,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             addMenuItemToSubmenu(importSubMenu, service.serviceInfo.name) {
                 onImportFromServiceSelected(service.serviceId)
             }
-                .setIcon(ServiceHelper.getIcon(service.serviceId))
+                .setIcon(ServiceHelper.getIconDrawable(requireContext(), service.serviceId))
         }
 
         // -- Export --

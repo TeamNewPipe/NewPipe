@@ -1,0 +1,7 @@
+.gradle/
+.kotlin/
+build/
+local.properties
+signing-key.pk8
+public-key.der
+*.ppp

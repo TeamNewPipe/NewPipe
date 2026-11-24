@@ -176,7 +176,7 @@ public class YoutubeCommentsInfoItemExtractor implements CommentsInfoItemExtract
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         try {
             final JsonObject contentText = JsonUtils.getObject(commentRenderer, "contentText");
             if (contentText.isEmpty()) {

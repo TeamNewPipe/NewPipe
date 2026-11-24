@@ -33,7 +33,7 @@ class CommentSearchController {
     }
     fun matches(): List<CommentsInfoItem> = loaded.filter {
         (!pinnedOnly || it.isPinned) &&
-            ContextualSearchHelper.matches(query, it.commentText, it.uploaderName)
+            ContextualSearchHelper.matches(query, it.commentTextContent, it.uploaderName)
     }
 
     fun bind(view: View, changed: Runnable, loadMore: Runnable) {

@@ -1,0 +1,27 @@
+{
+  "data": {
+    "sideNav": {
+      "sections": {
+        "edges": [
+          {
+            "node": {
+              "content": {
+                "edges": []
+              }
+            }
+          },
+          {
+            "node": {
+              "content": {
+                "edges": []
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "durationMilliseconds": 1
+  }
+}

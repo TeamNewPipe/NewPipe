@@ -1,0 +1,49 @@
+[
+  {
+    "data": {
+      "user": {
+        "displayName": "Fixture channel",
+        "login": "fixture",
+        "id": "42",
+        "description": "Offline compatibility fixture",
+        "profileImageURL": "https://images.example.invalid/avatar.png",
+        "roles": {
+          "isPartner": true
+        },
+        "followers": {
+          "totalCount": 123
+        },
+        "stream": {}
+      }
+    },
+    "extensions": {
+      "durationMilliseconds": 1
+    }
+  },
+  {
+    "data": {
+      "user": {
+        "followers": {
+          "totalCount": 123
+        }
+      }
+    },
+    "extensions": {
+      "durationMilliseconds": 1
+    }
+  },
+  {
+    "data": {
+      "userOrError": {
+        "bannerImageURL": "https://images.example.invalid/banner.png",
+        "profileImageURL": "https://images.example.invalid/avatar.png",
+        "stream": {
+          "id": "42"
+        }
+      }
+    },
+    "extensions": {
+      "durationMilliseconds": 1
+    }
+  }
+]

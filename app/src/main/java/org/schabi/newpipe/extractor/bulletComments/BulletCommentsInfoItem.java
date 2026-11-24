@@ -7,6 +7,9 @@ import org.schabi.newpipe.extractor.InfoItem;
 import javax.annotation.Nonnull;
 
 public class BulletCommentsInfoItem extends InfoItem implements Comparable<BulletCommentsInfoItem> {
+    // Original Android descriptor uses j$.time.Duration after core-library desugaring.
+    private static final long serialVersionUID = 7010924713763063802L;
+
     @Override
     public int compareTo(@Nonnull BulletCommentsInfoItem bulletCommentsInfoItem) {
         return this.duration.compareTo(bulletCommentsInfoItem.duration);
@@ -26,7 +29,11 @@ public class BulletCommentsInfoItem extends InfoItem implements Comparable<Bulle
     /* It really should be named as timePosition or some other thing*/
     private Duration duration;
     private int lastingTime;
+    private long pinnedTimeMillis;
     private boolean isLive;
+    private String authorName;
+    private String authorAvatarUrl;
+    private String amountText;
 
     public BulletCommentsInfoItem(final int serviceId, final String url, final String name) {
         super(InfoType.COMMENT, serviceId, url, name);
@@ -38,6 +45,30 @@ public class BulletCommentsInfoItem extends InfoItem implements Comparable<Bulle
 
     public void setCommentText(final String commentText) {
         this.commentText = commentText;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(final String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getAuthorAvatarUrl() {
+        return authorAvatarUrl;
+    }
+
+    public void setAuthorAvatarUrl(final String authorAvatarUrl) {
+        this.authorAvatarUrl = authorAvatarUrl;
+    }
+
+    public String getAmountText() {
+        return amountText;
+    }
+
+    public void setAmountText(final String amountText) {
+        this.amountText = amountText;
     }
 
     public int getArgbColor() {
@@ -78,6 +109,14 @@ public class BulletCommentsInfoItem extends InfoItem implements Comparable<Bulle
 
     public void setLastingTime(int lastingTime) {
         this.lastingTime = lastingTime;
+    }
+
+    public long getPinnedTimeMillis() {
+        return pinnedTimeMillis;
+    }
+
+    public void setPinnedTimeMillis(final long pinnedTimeMillis) {
+        this.pinnedTimeMillis = pinnedTimeMillis;
     }
 
     public boolean isLive() {

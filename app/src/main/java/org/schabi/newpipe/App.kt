@@ -38,6 +38,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader
 import org.schabi.newpipe.ktx.hasAssignableCause
 import org.schabi.newpipe.network.AppProxySelector
 import org.schabi.newpipe.network.LegacyTlsCompat
+import org.schabi.newpipe.plugin.PluginManager
 import org.schabi.newpipe.settings.NewPipeSettings
 import org.schabi.newpipe.sync.DeviceSyncBackgroundScheduler
 import org.schabi.newpipe.sync.DeviceSyncManager
@@ -136,6 +137,9 @@ open class App :
             Localization.getPreferredLocalization(this),
             Localization.getPreferredContentCountry(this)
         )
+        // Register installed services before restoring state or scheduling provider work.
+        // Recovery mode leaves external code unloaded so plugin settings remain reachable.
+        PluginManager.loadInstalledPlugins(this, safeModeActive)
         Localization.initPrettyTime(Localization.resolvePrettyTime())
 
         BridgeStateSaverInitializer.init(this)

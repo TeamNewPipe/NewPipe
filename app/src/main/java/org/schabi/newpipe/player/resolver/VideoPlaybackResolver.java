@@ -238,7 +238,9 @@ public class VideoPlaybackResolver implements PlaybackResolver {
             for (final SubtitlesStream subtitle : subtitlesStreams) {
                 final MediaSource textSource = SubtitlePlaybackSource.create(
                         subtitle, PlayerHelper.captionLanguageOf(context, subtitle),
-                        info.getServiceId() == ServiceList.YouTube.getServiceId()
+                        info.getServiceId() >= ServiceList.FIRST_DYNAMIC_PLUGIN_ID
+                                ? PluginPlaybackSources.subtitleFactory(dataSource, subtitle)
+                                : info.getServiceId() == ServiceList.YouTube.getServiceId()
                                 && InvidiousBackend.isEnabled()
                                 ? dataSource.getSingleSampleMediaSourceFactory(true)
                                 : dataSource.getSingleSampleMediaSourceFactory());

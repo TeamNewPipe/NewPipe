@@ -1,0 +1,17 @@
+{
+  "data": {
+    "user": {
+      "displayName": "Fixture streamer",
+      "login": "fixture",
+      "id": "42",
+      "stream": {
+        "title": "Fixture live lesson",
+        "viewersCount": 456,
+        "createdAt": "2026-11-01T10:00:00Z"
+      }
+    }
+  },
+  "extensions": {
+    "durationMilliseconds": 1
+  }
+}

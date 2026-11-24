@@ -22,6 +22,7 @@ import androidx.media3.datasource.DefaultHttpDataSource;
 import androidx.media3.datasource.HttpDataSource;
 import androidx.media3.datasource.TransferListener;
 import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor;
+import androidx.media3.datasource.cache.CacheKeyFactory;
 import androidx.media3.datasource.cache.SimpleCache;
 
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousBackend;
@@ -186,6 +187,27 @@ public class PlayerDataSource {
 
 
     //region Generic media source factories
+    /**
+     * Creates a separate HTTP factory and profile cache namespace for a plugin source.
+     *
+     * @param headers request headers for this source
+     * @param cacheable whether the source may use the current profile's media cache
+     * @return a data source factory with the requested headers and cache policy
+     */
+    public DataSource.Factory getPluginDataSourceFactory(final Map<String, String> headers,
+                                                         final boolean cacheable) {
+        final HttpDataSource.Factory httpFactory = getGenericHttpDataSourceFactory()
+                .setDefaultRequestProperties(headers);
+        if (!cacheable) {
+            return new DefaultDataSource.Factory(context, httpFactory)
+                    .setTransferListener(transferListener);
+        }
+        final String prefix = "plugin:"
+                + org.schabi.newpipe.profiles.ProfileManager.getActiveProfileId(context) + ":";
+        return new CacheFactory(context, transferListener, cache, httpFactory,
+                dataSpec -> prefix + CacheKeyFactory.DEFAULT.buildCacheKey(dataSpec));
+    }
+
     public HlsMediaSource.Factory getHlsMediaSourceFactory(
             @Nullable final NonUriHlsDataSourceFactory.Builder hlsDataSourceFactoryBuilder) {
         return getHlsMediaSourceFactory(hlsDataSourceFactoryBuilder, false);

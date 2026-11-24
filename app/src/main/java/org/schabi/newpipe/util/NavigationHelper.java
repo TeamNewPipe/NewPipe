@@ -431,6 +431,9 @@ public final class NavigationHelper {
 
     public static void openSearchFragment(final FragmentManager fragmentManager,
                                           final int serviceId, final String searchString) {
+        if (MissingServiceHelper.showIfMissing(fragmentManager, serviceId)) {
+            return;
+        }
         if (!KidsMode.isSearchAllowed(App.getInstance(), serviceId)) {
             android.widget.Toast.makeText(App.getInstance().getApplicationContext(),
                     R.string.kids_mode_search_disabled,
@@ -450,6 +453,10 @@ public final class NavigationHelper {
     public static void openSavedSearchFeed(
             final FragmentManager fragmentManager,
             @NonNull final SavedSearchFeedEntity savedSearchFeed) {
+        if (MissingServiceHelper.showIfMissing(
+                fragmentManager, savedSearchFeed.getServiceId())) {
+            return;
+        }
         if (!KidsMode.isSearchAllowed(App.getInstance(), savedSearchFeed.getServiceId())) {
             android.widget.Toast.makeText(App.getInstance().getApplicationContext(),
                     R.string.kids_mode_search_disabled,
@@ -494,6 +501,9 @@ public final class NavigationHelper {
                                                @NonNull final String title,
                                                @Nullable final PlayQueue playQueue,
                                                final boolean switchingPlayers) {
+        if (MissingServiceHelper.showIfMissing(fragmentManager, serviceId)) {
+            return;
+        }
 
         final boolean autoPlay;
         @Nullable final PlayerType playerType = PlayerHolder.getInstance().getType();
@@ -559,6 +569,9 @@ public final class NavigationHelper {
     public static void openChannelFragment(final FragmentManager fragmentManager,
                                            final int serviceId, final String url,
                                            @NonNull final String name) {
+        if (MissingServiceHelper.showIfMissing(fragmentManager, serviceId)) {
+            return;
+        }
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
@@ -597,6 +610,10 @@ public final class NavigationHelper {
 
     public static void openCommentRepliesFragment(@NonNull final FragmentActivity activity,
                                                   @NonNull final CommentsInfoItem comment) {
+        if (MissingServiceHelper.showIfMissing(
+                activity.getSupportFragmentManager(), comment.getServiceId())) {
+            return;
+        }
         if (org.schabi.newpipe.player.ui.FullscreenCommentsSidebar.showReplies(activity, comment)) {
             return;
         }
@@ -646,6 +663,9 @@ public final class NavigationHelper {
     public static void openPlaylistFragment(final FragmentManager fragmentManager,
                                             final int serviceId, final String url,
                                             @NonNull final String name) {
+        if (MissingServiceHelper.showIfMissing(fragmentManager, serviceId)) {
+            return;
+        }
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
@@ -719,6 +739,9 @@ public final class NavigationHelper {
 
     public static void openKioskFragment(final FragmentManager fragmentManager, final int serviceId,
                                          final String kioskId) throws ExtractionException {
+        if (MissingServiceHelper.showIfMissing(fragmentManager, serviceId)) {
+            return;
+        }
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
                 .addToBackStack(null)

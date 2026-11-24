@@ -5,6 +5,7 @@
 
 import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.tasks.testing.Test
+import org.gradle.jvm.toolchain.JavaToolchainService
 
 plugins {
     alias(libs.plugins.android.application)
@@ -30,6 +31,11 @@ val hasReleaseSigningConfig = listOf(
     releaseKeyAlias,
     releaseKeyPassword
 ).all { !it.isNullOrBlank() }
+
+// Isolated, debug-key-signed instrumentation variant with production R8/L8 behavior.
+// It is only created when explicitly requested by the plugin compatibility workflow.
+val pluginCompatibilityTest = providers.gradleProperty("pluginCompatibilityTest")
+    .map(String::toBoolean).getOrElse(false)
 
 val releaseAbi = providers.gradleProperty("releaseAbi").orElse("arm").get()
 val releaseAbiFilters = when (releaseAbi) {
@@ -123,6 +129,21 @@ configure<ApplicationExtension> {
                 "proguard-rules.pro"
             )
         }
+
+        if (pluginCompatibilityTest) {
+            create("pluginCompatibility") {
+                initWith(getByName("release"))
+                applicationIdSuffix = ".plugincompat"
+                signingConfig = signingConfigs.getByName("debug")
+                matchingFallbacks += "release"
+                proguardFile("plugin-compatibility-test.pro")
+                testProguardFile("plugin-compatibility-android-test.pro")
+            }
+        }
+    }
+
+    if (pluginCompatibilityTest) {
+        testBuildType = "pluginCompatibility"
     }
 
     lint {
@@ -141,6 +162,11 @@ configure<ApplicationExtension> {
     sourceSets {
         getByName("androidTest") {
             assets.directories += "$projectDir/schemas"
+            assets.directories += "$buildDir/generated/plugin-test-assets"
+        }
+        if (pluginCompatibilityTest) {
+            // Common Android test sources reference these theme fixtures during compilation.
+            getByName("pluginCompatibility").res.srcDir("src/debug/res")
         }
     }
 
@@ -180,6 +206,9 @@ ksp {
 tasks.matching { it.name == "kspReleaseKotlin" }.configureEach {
     mustRunAfter("kspDebugKotlin")
 }
+tasks.matching { it.name == "kspPluginCompatibilityKotlin" }.configureEach {
+    mustRunAfter("kspDebugKotlin", "kspReleaseKotlin")
+}
 
 wire {
     java {
@@ -201,6 +230,60 @@ tasks.withType<Test>().configureEach {
             "https://maven-central.storage-download.googleapis.com/maven2/"
         )
     }
+}
+
+// L8 otherwise retains only desugared Java APIs reached by the app itself. Plugins
+// are compiled separately and may use the rest of the same public j$ runtime.
+tasks.withType<com.android.build.gradle.internal.tasks.L8DexDesugarLibTask>().configureEach {
+    keepRulesConfigurations.add("-keep class j$.** { *; }")
+}
+
+// API-24 plugin DEX uses platform stream/function descriptors that the API-23 host's
+// desugared runtime does not have. Ship the matching official runtime as an isolated asset.
+val pluginRuntimeLibraries by configurations.creating {
+    isCanBeConsumed = false
+    isTransitive = false
+}
+val pluginRuntimeConfiguration by configurations.creating {
+    isCanBeConsumed = false
+    isTransitive = false
+}
+val pluginRuntimeJavaLauncher = extensions.getByType<JavaToolchainService>().launcherFor {
+    languageVersion.set(JavaLanguageVersion.of(21))
+}
+dependencies {
+    pluginRuntimeLibraries("com.android.tools:desugar_jdk_libs:${libs.versions.desugar.get()}")
+    pluginRuntimeConfiguration("com.android.tools:desugar_jdk_libs_configuration:${libs.versions.desugar.get()}")
+}
+val generatePluginRuntime = tasks.register<GeneratePluginRuntime>("generatePluginRuntime") {
+    group = "plugin development"
+    description = "Builds the official API-24 desugared runtime for external plugins"
+    runtimeLibraries.from(pluginRuntimeLibraries)
+    runtimeConfiguration.from(pluginRuntimeConfiguration)
+    androidLibraries.from(androidComponents.sdkComponents.bootClasspath)
+    compilerJar.set(androidComponents.sdkComponents.sdkDirectory.map { it.file("build-tools/36.1.0/lib/d8.jar") })
+    javaLauncher.set(pluginRuntimeJavaLauncher)
+    runtimeVersion.set(libs.versions.desugar)
+    outputDirectory.set(layout.buildDirectory.dir("generated/plugin-runtime-assets"))
+}
+androidComponents.onVariants { variant ->
+    variant.sources.assets?.addGeneratedSourceDirectory(generatePluginRuntime, GeneratePluginRuntime::outputDirectory)
+}
+
+// A compile-only SDK for the standalone template. Providers remain in the host APK;
+// third-party packages must not bundle another copy of these classes.
+tasks.register<Jar>("pluginSdkJar") {
+    group = "plugin development"
+    description = "Exports WizeStream and PipePipe-compatible plugin API classes"
+    dependsOn("compileDebugKotlin", "compileDebugJavaWithJavac")
+    archiveFileName.set("wizestream-plugin-api.jar")
+    destinationDirectory.set(layout.buildDirectory.dir("outputs/plugin-sdk"))
+    from(tasks.named<JavaCompile>("compileDebugJavaWithJavac").flatMap { it.destinationDirectory })
+    from(tasks.named("compileDebugKotlin"))
+    include("org/schabi/newpipe/extractor/**")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
 }
 
 // Custom dependency configuration for ktlint
@@ -279,7 +362,8 @@ dependencies {
     implementation(libs.newpipe.filepicker)
 
     // Integrated extractor sources
-    implementation("org.apache.commons:commons-lang3:3.8.1")
+    // Shared with externally compiled PipePipe API 1.x plugins.
+    implementation("org.apache.commons:commons-lang3:3.20.0")
     implementation("org.bouncycastle:bcprov-jdk18on:1.85")
     implementation("org.brotli:dec:0.1.1")
     implementation("org.java-websocket:Java-WebSocket:1.4.1")

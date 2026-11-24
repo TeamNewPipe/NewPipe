@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
+import static org.schabi.newpipe.extractor.ServiceList.getById;
 
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -93,7 +93,7 @@ public final class PostInfoItemHolder extends InfoItemHolder {
         final boolean hasContent = !TextUtils.isEmpty(post.getContent());
         contentView.setVisibility(hasContent ? View.VISIBLE : View.GONE);
         if (hasContent) {
-            textEllipsizer.setStreamingService(getServiceById(post.getServiceId()));
+            textEllipsizer.setStreamingService(getById(post.getServiceId()));
             textEllipsizer.setStreamUrl(post.getUrl());
             textEllipsizer.setContent(new Description(post.getContent(), Description.PLAIN_TEXT));
             textEllipsizer.ellipsize();

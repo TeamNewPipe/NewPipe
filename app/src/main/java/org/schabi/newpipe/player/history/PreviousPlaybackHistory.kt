@@ -10,7 +10,6 @@ import android.content.Intent
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.io.OutputStream
 import org.schabi.newpipe.player.Player
@@ -19,6 +18,7 @@ import org.schabi.newpipe.player.PlayerService
 import org.schabi.newpipe.player.playqueue.PlayQueue
 import org.schabi.newpipe.player.recovery.QueueRecovery
 import org.schabi.newpipe.util.NavigationHelper
+import org.schabi.newpipe.util.PluginObjectInputStream
 import org.schabi.newpipe.util.SerializedCache
 
 /** An explicit navigation action restores this queue, including its pending resume position. */
@@ -95,7 +95,7 @@ internal class PreviousPlaybackHistory {
         val entry = entries.removeLastOrNull() ?: return null
         bytesRetained -= entry.bytes.size
         return try {
-            val queue = ObjectInputStream(ByteArrayInputStream(entry.bytes)).use {
+            val queue = PluginObjectInputStream(ByteArrayInputStream(entry.bytes)).use {
                 it.readObject() as PlayQueue
             }
             queue.setRecovery(queue.index, entry.position)

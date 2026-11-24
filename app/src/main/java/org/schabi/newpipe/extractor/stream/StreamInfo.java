@@ -25,6 +25,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
@@ -52,6 +53,8 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
  * Info object for opened contents, i.e. the content ready to play.
  */
 public class StreamInfo extends Info {
+    private static final long serialVersionUID = -150285387809501941L;
+
 
     public StreamInfo() {
         super(-1, "", "", "", "");
@@ -186,6 +189,12 @@ public class StreamInfo extends Info {
             streamInfo.setHlsUrl(extractor.getHlsUrl());
         } catch (final Exception e) {
             streamInfo.addError(new ExtractionException("Couldn't get HLS manifest", e));
+        }
+
+        try {
+            streamInfo.setManifestRequestHeaders(extractor.getManifestRequestHeaders());
+        } catch (final Exception e) {
+            streamInfo.addError(new ExtractionException("Couldn't get manifest request headers", e));
         }
 
         /* Load and extract audio */
@@ -433,6 +442,11 @@ public class StreamInfo extends Info {
             streamInfo.addError(e);
         }
         try {
+            streamInfo.setSupportBulletComments(extractor.isSupportBulletComments());
+        } catch (final Exception e) {
+            streamInfo.addError(e);
+        }
+        try {
             streamInfo.setSupportRelatedItems(extractor.isSupportRelatedItems());
         } catch (final Exception e) {
             streamInfo.addError(e);
@@ -510,6 +524,8 @@ public class StreamInfo extends Info {
 
     private String dashMpdUrl = "";
     private String hlsUrl = "";
+    @Nullable
+    private Map<String, String> manifestRequestHeaders;
     private List<InfoItem> relatedItems = new ArrayList<>();
 
     private long startPosition = 0;
@@ -526,6 +542,8 @@ public class StreamInfo extends Info {
     private List<ReplayHeatmapSample> replayHeatmap = Collections.emptyList();
     private List<MetaInfo> metaInfo = new ArrayList<>();
     private boolean supportComments;
+    // Null when reading a saved result from before providers could disable live comments.
+    private Boolean supportBulletComments = true;
     private boolean supportRelatedItems;
     private boolean isRoundPlayStream;
     private long startAt = -1;
@@ -814,6 +832,17 @@ public class StreamInfo extends Info {
         this.hlsUrl = hlsUrl == null ? "" : hlsUrl;
     }
 
+    /** @see StreamExtractor#getManifestRequestHeaders() */
+    @Nullable
+    public Map<String, String> getManifestRequestHeaders() {
+        return manifestRequestHeaders;
+    }
+
+    public void setManifestRequestHeaders(@Nullable final Map<String, String> headers) {
+        this.manifestRequestHeaders = headers == null || headers.isEmpty()
+                ? null : Collections.unmodifiableMap(new java.util.LinkedHashMap<>(headers));
+    }
+
     public List<InfoItem> getRelatedItems() {
         return relatedItems;
     }
@@ -950,6 +979,14 @@ public class StreamInfo extends Info {
 
     public void setSupportComments(boolean supportComments) {
         this.supportComments = supportComments;
+    }
+
+    public boolean isSupportBulletComments() {
+        return supportBulletComments == null || supportBulletComments;
+    }
+
+    public void setSupportBulletComments(final boolean supportBulletComments) {
+        this.supportBulletComments = supportBulletComments;
     }
 
     public boolean isSupportRelatedItems() {

@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.stream.DeliveryMethod.PROGRESSIVE_HTTP
 import org.schabi.newpipe.extractor.stream.Stream
 import org.schabi.newpipe.extractor.stream.SubtitlesStream
 import org.schabi.newpipe.extractor.stream.VideoStream
+import us.shandian.giga.get.DownloadRequestHeaders
 import us.shandian.giga.get.MissionRecoveryInfo
 import us.shandian.giga.postprocessing.Postprocessing
 
@@ -21,7 +22,8 @@ internal class DownloadMissionRequest(
     val postprocessingName: String?,
     val postprocessingArguments: Array<String>?,
     val nearLength: Long,
-    val recoveryInfo: ArrayList<MissionRecoveryInfo>
+    val recoveryInfo: ArrayList<MissionRecoveryInfo>,
+    val requestHeaders: ArrayList<HashMap<String, String>>? = null
 )
 
 /** Builds downloader inputs from the streams selected in the download dialog. */
@@ -116,7 +118,8 @@ internal object DownloadMissionRequestFactory {
             recoveryInfo = arrayListOf(
                 MissionRecoveryInfo(selectedStream),
                 MissionRecoveryInfo(secondaryStream)
-            )
+            ),
+            requestHeaders = DownloadRequestHeaders.capture(selectedStream, secondaryStream)
         )
     }
 
@@ -158,7 +161,8 @@ internal object DownloadMissionRequestFactory {
             postprocessingName = postprocessingName,
             postprocessingArguments = postprocessingArguments,
             nearLength = 0,
-            recoveryInfo = arrayListOf(MissionRecoveryInfo(recoveryStream))
+            recoveryInfo = arrayListOf(MissionRecoveryInfo(recoveryStream)),
+            requestHeaders = DownloadRequestHeaders.capture(recoveryStream)
         )
     }
 }

@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#unreleased">Unreleased</a></li>
 <li><a href="#release-1051000">WizeStream 1.51.0 (2026-11-24)</a></li>
 <li><a href="#release-1050000">WizeStream 1.50.0 (2026-11-22)</a></li>
 <li><a href="#release-1049001">WizeStream 1.49.1 (2026-11-21)</a></li>
@@ -122,6 +123,18 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="unreleased">
+<h2>Unreleased</h2>
+<div class="release-notes">
+<h3>Service plugins</h3>
+<ul>
+<li>Install compatible PipePipe plugins and WizeStream-specific service plugins from HTTPS JSON repositories in Settings → Plugins.</li>
+<li>Verify signed packages and updates, reject duplicate built-in providers, and keep existing service IDs and saved data intact.</li>
+<li>Keep plugin preferences and optional login cookies separate for each profile, with restart-based installation and profile changes.</li>
+<li>Add a WizeStream plugin SDK and signed-package template for independent plugin authors. Plugins require Android 7 or newer; the app continues to support Android 6.</li>
+</ul>
+</div>
+</section>
 <section id="release-1051000" data-version="1.51.0" data-version-code="1051000">
 <h2>WizeStream 1.51.0 (<time datetime="2026-11-24">2026-11-24</time>)</h2>
 <div class="release-notes">

@@ -30,7 +30,7 @@ public class BitchuteCommentsInfoItemExtractor implements CommentsInfoItemExtrac
     }
 
     @Override
-    public String getCommentText() {
+    public String getCommentTextContent() {
         return json.getString("content");
     }
 

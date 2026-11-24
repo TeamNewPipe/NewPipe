@@ -27,6 +27,7 @@ import org.schabi.newpipe.extractor.exceptions.PrivateContentException
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.exceptions.ServiceTemporaryBlockedException
 import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
+import org.schabi.newpipe.extractor.exceptions.WebViewUnavailableException
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
 import org.schabi.newpipe.extractor.services.youtube.invidious.InvidiousApiException
 import org.schabi.newpipe.ktx.isNetworkRelated
@@ -81,7 +82,7 @@ class ErrorInfo private constructor(
         getMessage(throwable, userAction, serviceId),
         isReportable(throwable),
         isRetryable(throwable),
-        (throwable as? ReCaptchaException)?.url,
+        (throwable as? ReCaptchaException)?.challengeUrl,
         openInBrowserUrl
     )
 
@@ -100,7 +101,7 @@ class ErrorInfo private constructor(
         getMessage(throwables.firstOrNull(), userAction, serviceId),
         throwables.any(::isReportable),
         throwables.isEmpty() || throwables.any(::isRetryable),
-        throwables.firstNotNullOfOrNull { it as? ReCaptchaException }?.url,
+        throwables.firstNotNullOfOrNull { it as? ReCaptchaException }?.challengeUrl,
         openInBrowserUrl
     )
 
@@ -278,6 +279,10 @@ class ErrorInfo private constructor(
                         getServiceName(serviceId)
                     )
 
+                // A solvable challenge is also an anti-bot block, but has a dedicated action.
+                throwable is ReCaptchaException ->
+                    ErrorMessage(R.string.recaptcha_request_toast)
+
                 throwable is AntiBotException || isSignInBotCheckException(throwable) ->
                     ErrorMessage(
                         R.string.sign_in_confirm_not_bot_error,
@@ -294,10 +299,6 @@ class ErrorInfo private constructor(
                 // other extractor exceptions
                 throwable is ContentNotSupportedException ->
                     ErrorMessage(R.string.content_not_supported)
-
-                // ReCaptchas will be handled in a special way anyway
-                throwable is ReCaptchaException ->
-                    ErrorMessage(R.string.recaptcha_request_toast)
 
                 // test this at the end as many exceptions could be a subclass of IOException
                 throwable != null && throwable.isNetworkRelated ->
@@ -354,6 +355,8 @@ class ErrorInfo private constructor(
                 // Anti-bot blocks are service/network conditions, not app defects.
                 is AntiBotException -> false
 
+                is WebViewUnavailableException -> false
+
                 // happens often when there is no internet connection; we don't use
                 // `throwable.isNetworkRelated` since any `IOException` would make that function
                 // return true, but not all `IOException`s are network related
@@ -374,6 +377,8 @@ class ErrorInfo private constructor(
 
                 // we know the content is not supported, retrying won't help
                 is ContentNotSupportedException -> false
+
+                is WebViewUnavailableException -> throwable.isRetryable()
 
                 // by default (including if throwable is null), enable retrying (though the retry
                 // button will be shown only if a way to perform the retry is implemented)

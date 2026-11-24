@@ -73,7 +73,7 @@ class InvidiousPostCommentsExtractorTest {
         val comment = page.items.single()
         assertEquals(postUrl, comment.url)
         assertEquals("UgzComment_1", comment.commentId)
-        assertEquals("First comment\nWith a second line", comment.commentText)
+        assertEquals("First comment\nWith a second line", comment.commentTextContent)
         assertEquals("Commenter", comment.uploaderName)
         assertEquals("https://www.youtube.com/channel/UCBBBBBBBBBBBBBBBBBBBBBB", comment.uploaderUrl)
         assertEquals("$base/ggpht/comment-avatar=s88", comment.uploaderAvatarUrl)

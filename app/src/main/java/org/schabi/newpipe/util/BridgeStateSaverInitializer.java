@@ -33,6 +33,10 @@ public final class BridgeStateSaverInitializer {
                 public void restoreInstanceState(
                     @NonNull final Object target,
                     @Nullable final Bundle state) {
+                    if (state != null) {
+                        state.setClassLoader(PluginStateClassLoader.withPlugins(
+                                state.getClassLoader()));
+                    }
                     StateSaver.restoreInstanceState(target, state);
                 }
             },

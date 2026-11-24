@@ -10,6 +10,8 @@ import androidx.annotation.DrawableRes
 import androidx.core.widget.ImageViewCompat
 import coil3.executeBlocking
 import coil3.imageLoader
+import coil3.network.NetworkHeaders
+import coil3.network.httpHeaders
 import coil3.request.CachePolicy
 import coil3.request.Disposable
 import coil3.request.ImageRequest
@@ -31,7 +33,9 @@ import kotlin.math.min
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
+import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.ktx.scale
+import org.schabi.newpipe.profiles.ProfileManager
 
 object CoilHelper {
     private val TAG = CoilHelper::class.java.simpleName
@@ -302,6 +306,20 @@ object CoilHelper {
         // `shouldLoadImages` in case the URL was chosen with `imageListToDbUrl` (which is the case
         // for URLs stored in the database)
         val takenUrl = url?.takeIf { it.isNotEmpty() && ImageStrategy.shouldLoadImages() }
+        val pluginHeaders = takenUrl?.let { imageUrl ->
+            ServiceList.all().asSequence()
+                .filter { it.serviceId >= ServiceList.FIRST_DYNAMIC_PLUGIN_ID }
+                .mapNotNull { service ->
+                    runCatching { service.getImageRequestHeaders(imageUrl) }
+                        .getOrNull()?.takeIf { it.isNotEmpty() }
+                }.firstOrNull()
+        }
+        // Authenticated plugin artwork must not reuse another profile's cached response.
+        val cacheUrl = if (pluginHeaders != null) {
+            "plugin:${ProfileManager.getActiveProfileId(context)}:$takenUrl"
+        } else {
+            takenUrl
+        }
 
         // Android 10 detail panels use a software layer to prevent text flicker. Any image
         // loaded here can later be reused in that panel, so its cached bitmap must be drawable
@@ -313,9 +331,14 @@ object CoilHelper {
             .allowHardware(!softwareImages)
             .data(takenUrl)
             .error(placeholderResId)
-            .memoryCacheKey(takenUrl?.let { if (softwareImages) "wizestream-software-backdrop:$it" else it })
-            .diskCacheKey(takenUrl)
+            .memoryCacheKey(cacheUrl?.let { if (softwareImages) "wizestream-software-backdrop:$it" else it })
+            .diskCacheKey(cacheUrl)
             .apply {
+                if (pluginHeaders != null) {
+                    val headers = NetworkHeaders.Builder()
+                    pluginHeaders.forEach { (name, value) -> headers.set(name, value) }
+                    httpHeaders(headers.build())
+                }
                 if (takenUrl != null || showPlaceholderWhileLoading) {
                     placeholder(placeholderResId)
                 }

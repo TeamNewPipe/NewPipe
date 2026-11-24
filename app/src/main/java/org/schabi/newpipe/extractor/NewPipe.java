@@ -45,6 +45,7 @@ public final class NewPipe {
     private static Downloader downloader;
     private static Localization preferredLocalization;
     private static ContentCountry preferredContentCountry;
+    private static volatile WebViewAvailabilityChecker webViewAvailabilityChecker;
 
     private NewPipe() {
 
@@ -159,6 +160,18 @@ public final class NewPipe {
 
     public static void setPreferredContentCountry(final ContentCountry preferredContentCountry) {
         NewPipe.preferredContentCountry = preferredContentCountry;
+    }
+
+    public static void setWebViewAvailabilityChecker(
+            @Nullable final WebViewAvailabilityChecker checker) {
+        webViewAvailabilityChecker = checker;
+    }
+
+    public static void checkWebViewAvailable() throws ExtractionException {
+        final WebViewAvailabilityChecker checker = webViewAvailabilityChecker;
+        if (checker != null) {
+            checker.checkWebViewAvailable();
+        }
     }
 
     public static void trustEveryone() {

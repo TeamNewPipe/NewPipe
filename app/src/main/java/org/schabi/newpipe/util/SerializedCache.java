@@ -10,7 +10,6 @@ import org.schabi.newpipe.MainActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.UUID;
@@ -103,7 +102,7 @@ public final class SerializedCache {
             objectOutput.writeObject(item);
             objectOutput.flush();
         }
-        final Object clone = new ObjectInputStream(
+        final Object clone = new PluginObjectInputStream(
                 new ByteArrayInputStream(bytesOutput.toByteArray())).readObject();
         return type.cast(clone);
     }

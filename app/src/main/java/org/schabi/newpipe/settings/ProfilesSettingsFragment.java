@@ -108,6 +108,9 @@ public final class ProfilesSettingsFragment extends BasePreferenceFragment {
             if (!ProfileManager.setActiveProfile(requireContext(), profileId)) {
                 return false;
             }
+            if (org.schabi.newpipe.util.PluginProfileSession.restartIfChanged(requireActivity())) {
+                return true;
+            }
             refreshPreferences();
             final ProfileRecord active = ProfileManager.getActiveProfile(requireContext());
             Toast.makeText(
@@ -199,6 +202,10 @@ public final class ProfilesSettingsFragment extends BasePreferenceFragment {
                         return;
                     }
                     dialog.dismiss();
+                    if (org.schabi.newpipe.util.PluginProfileSession
+                            .restartIfChanged(requireActivity())) {
+                        return;
+                    }
                     refreshPreferences();
                     Toast.makeText(
                             requireContext(),
@@ -260,6 +267,10 @@ public final class ProfilesSettingsFragment extends BasePreferenceFragment {
                                         .subscribe(
                                                 () -> {
                                                     if (!isAdded()) {
+                                                        return;
+                                                    }
+                                                    if (org.schabi.newpipe.util.PluginProfileSession
+                                                            .restartIfChanged(requireActivity())) {
                                                         return;
                                                     }
                                                     refreshPreferences();

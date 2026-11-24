@@ -18,7 +18,7 @@ public class BandcampCommentsInfoItemExtractor implements CommentsInfoItemExtrac
 
     @Override
     public String getName() throws ParsingException {
-        return getCommentText();
+        return getCommentTextContent();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BandcampCommentsInfoItemExtractor implements CommentsInfoItemExtrac
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         return writing.getElementsByClass("text").stream()
                 .filter(Objects::nonNull)
                 .map(Element::ownText)

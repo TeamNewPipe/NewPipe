@@ -26,6 +26,21 @@ public interface BulletCommentsInfoItemExtractor extends InfoItemExtractor {
         return Utils.EMPTY_STRING;
     }
 
+    /** Author name, or null when it is not provided. */
+    default String getAuthorName() throws ParsingException {
+        return null;
+    }
+
+    /** Author avatar, when the provider includes one for this comment. */
+    default String getAuthorAvatarUrl() throws ParsingException {
+        return null;
+    }
+
+    /** Paid amount for a super chat, or null for ordinary comments. */
+    default String getAmountText() throws ParsingException {
+        return null;
+    }
+
     /**
      * Returns ARGB32 int. White: 0xFFFFFFFF.
      * @return ARGB32 int. White: 0xFFFFFFFF.
@@ -44,6 +59,11 @@ public interface BulletCommentsInfoItemExtractor extends InfoItemExtractor {
 
     default int getLastingTime() {
         return -1;
+    }
+
+    /** How long a paid comment stays pinned; zero means no separate pin duration. */
+    default long getPinnedTimeMillis() {
+        return 0;
     }
 
     default boolean isLive() throws ParsingException {

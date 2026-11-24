@@ -66,7 +66,7 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                                   final Stream stream,
                                                   final boolean resolutionOrBitrateUnknown) {
         // stream info service id
-        final StringBuilder cacheKey = new StringBuilder(info.getServiceId());
+        final StringBuilder cacheKey = new StringBuilder().append(info.getServiceId());
 
         // stream info id
         cacheKey.append(" ");
@@ -224,6 +224,9 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
         }
 
         try {
+            if (info.getServiceId() >= ServiceList.FIRST_DYNAMIC_PLUGIN_ID) {
+                return PluginPlaybackSources.buildLive(dataSource, info, preferHls);
+            }
             final StreamInfoTag tag = StreamInfoTag.of(info);
             if (dataSource.isNormalLive(info.getUrl()) && !info.getHlsUrl().isEmpty()) {
                 return buildLiveMediaSource(dataSource, info.getHlsUrl(), C.CONTENT_TYPE_HLS, tag);
@@ -334,6 +337,9 @@ public interface PlaybackResolver extends Resolver<StreamInfo, MediaSource> {
                                         final StreamInfo streamInfo,
                                         final String cacheKey,
                                         final MediaItemTag metadata) throws ResolverException {
+        if (streamInfo.getServiceId() >= ServiceList.FIRST_DYNAMIC_PLUGIN_ID) {
+            return PluginPlaybackSources.build(dataSource, stream, cacheKey, metadata);
+        }
         if (streamInfo.getService() == ServiceList.YouTube
                 && !InvidiousBackend.isEnabled()) {
             return createYoutubeMediaSource(stream, streamInfo, dataSource, cacheKey, metadata);

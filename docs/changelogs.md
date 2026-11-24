@@ -4,6 +4,13 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Service plugins
+
+- Install compatible PipePipe plugins and WizeStream-specific service plugins from HTTPS JSON repositories in Settings → Plugins.
+- Verify signed packages and updates, reject duplicate built-in providers, and keep existing service IDs and saved data intact.
+- Keep plugin preferences and optional login cookies separate for each profile, with restart-based installation and profile changes.
+- Add a WizeStream plugin SDK and signed-package template for independent plugin authors. Plugins require Android 7 or newer; the app continues to support Android 6.
+
 ## WizeStream 1.51.0 (`1051000`)
 
 ### Subscription group icons

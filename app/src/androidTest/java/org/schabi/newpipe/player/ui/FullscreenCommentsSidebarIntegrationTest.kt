@@ -319,7 +319,7 @@ class FullscreenCommentsSidebarIntegrationTest {
     private fun cacheComments(): CommentsInfoItem {
         val comment = CommentsInfoItem(0, URL, "Test comment").apply {
             commentId = "sidebar-comment"
-            commentText = "The video should remain fullscreen while these comments are open."
+            setCommentText("The video should remain fullscreen while these comments are open.")
             uploaderName = "WizeStream tester"
             uploaderUrl = ""
             uploaderAvatarUrl = ""

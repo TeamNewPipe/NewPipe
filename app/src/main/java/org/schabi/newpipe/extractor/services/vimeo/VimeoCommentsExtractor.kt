@@ -84,7 +84,7 @@ class VimeoCommentsExtractor(service: StreamingService, handler: ListLinkHandler
 
         override fun getCommentId(): String = identity
 
-        override fun getCommentText(): String = text
+        override fun getCommentTextContent(): String = text
 
         override fun getUploaderName(): String = (author?.get("name") as? String).orEmpty()
 

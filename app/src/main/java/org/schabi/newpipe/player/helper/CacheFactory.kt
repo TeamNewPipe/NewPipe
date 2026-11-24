@@ -7,13 +7,15 @@ import androidx.media3.datasource.FileDataSource
 import androidx.media3.datasource.TransferListener
 import androidx.media3.datasource.cache.CacheDataSink
 import androidx.media3.datasource.cache.CacheDataSource
+import androidx.media3.datasource.cache.CacheKeyFactory
 import androidx.media3.datasource.cache.SimpleCache
 
-class CacheFactory(
+class CacheFactory @JvmOverloads constructor(
     private val context: Context,
     private val transferListener: TransferListener?,
     private val cache: SimpleCache,
-    private val upstreamDataSourceFactory: DataSource.Factory
+    private val upstreamDataSourceFactory: DataSource.Factory,
+    private val cacheKeyFactory: CacheKeyFactory = CacheKeyFactory.DEFAULT
 ) : DataSource.Factory {
     override fun createDataSource(): DataSource {
         val dataSource = DefaultDataSource.Factory(context, upstreamDataSourceFactory)
@@ -28,7 +30,8 @@ class CacheFactory(
             fileSource,
             dataSink,
             CACHE_FLAGS,
-            null
+            null,
+            cacheKeyFactory
         )
     }
 

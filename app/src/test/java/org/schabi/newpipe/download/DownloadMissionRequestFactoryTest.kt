@@ -20,6 +20,22 @@ import us.shandian.giga.postprocessing.Postprocessing
 
 class DownloadMissionRequestFactoryTest {
     @Test
+    fun `selected video and audio keep separate header snapshots`() {
+        val video = video(MediaFormat.MPEG_4, "video").apply { requestHeaders = mapOf("Authorization" to "video") }
+        val audio = audio(MediaFormat.M4A, "audio").apply { requestHeaders = mapOf("Authorization" to "audio") }
+        val request = DownloadMissionRequestFactory.forVideo(video, audio, 100, 50, 3)
+        video.requestHeaders = mapOf("Authorization" to "changed")
+        assertEquals(listOf("video", "audio"), request.requestHeaders!!.map { it["Authorization"] })
+    }
+
+    @Test
+    fun `muxed audio downloads preserve original source headers`() {
+        val fallback = video(MediaFormat.MPEG_4, "fallback").apply { requestHeaders = mapOf("Referer" to "https://source.example/") }
+        val request = DownloadMissionRequestFactory.forAudio(audio(MediaFormat.M4A, "fallback"), fallback, false, 192, 3)
+        assertEquals("https://source.example/", request.requestHeaders!!.single()["Referer"])
+    }
+
+    @Test
     fun `MP3 audio request enables transcoding`() {
         val request = DownloadMissionRequestFactory.forAudio(
             selectedStream = audio(MediaFormat.M4A, "audio"),

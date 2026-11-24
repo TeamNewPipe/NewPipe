@@ -992,6 +992,13 @@ definitions under `app/src/main/proto` and tests under `app/src/test/java`. They
 tested as part of the application module, so app and service changes are committed and built
 together in one repository.
 
+### Service plugins
+
+See the [plugin guide](docs/plugins.md) for installing compatible service plugins, the separate
+native WizeStream API, profile behavior, and publishing a signed repository. The
+[Kotlin plugin template](plugin-template/README.md) builds a native package against the exported
+extractor SDK; built-in services retain their existing identities.
+
 ---
 
 ## Upstream NewPipe

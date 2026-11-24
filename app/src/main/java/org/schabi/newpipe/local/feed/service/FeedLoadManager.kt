@@ -32,11 +32,13 @@ import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.FeedScope
 import org.schabi.newpipe.local.feed.archive.withFeedArchive
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.plugin.PluginManager
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.util.ChannelTabHelper
 import org.schabi.newpipe.util.ExtractorHelper.getChannelInfo
 import org.schabi.newpipe.util.ExtractorHelper.getChannelTab
 import org.schabi.newpipe.util.ExtractorHelper.getMoreChannelTabItems
+import org.schabi.newpipe.util.SavedServicePolicy
 
 class FeedLoadManager @JvmOverloads constructor(
     private val context: Context,
@@ -124,7 +126,18 @@ class FeedLoadManager @JvmOverloads constructor(
 
         return outdatedSubscriptions
             .take(1)
-            .map { subscriptions -> subscriptions.filter { onlySubscriptions == null || it.uid in onlySubscriptions } }
+            .map { subscriptions ->
+                val availableServices = ServiceList.all().mapTo(mutableSetOf()) { it.serviceId }
+                subscriptions.filter {
+                    (onlySubscriptions == null || it.uid in onlySubscriptions) &&
+                        SavedServicePolicy.canRefresh(
+                            it.serviceId,
+                            availableServices,
+                            PluginManager.loadedProfileId,
+                            profileId
+                        )
+                }
+            }
             .doOnNext {
                 currentProgress.set(0)
                 maxProgress.set(it.size)

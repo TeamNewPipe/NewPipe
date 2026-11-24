@@ -44,6 +44,11 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        // Shared GitHub runner IPs can hit Maven Central's rate limit before compilation.
+        // Use the same public Central mirror as the CI Robolectric SDK downloads.
+        if (System.getenv("GITHUB_ACTIONS") == "true") {
+            maven(url = "https://maven-central.storage-download.googleapis.com/maven2/")
+        }
         mavenCentral()
         maven(url = "https://dl.cloudsmith.io/public/consensys/maven/maven/")
         maven(url = "https://dl.cloudsmith.io/public/libp2p/jvm-libp2p/maven/")

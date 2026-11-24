@@ -131,3 +131,16 @@
 
 # See https://github.com/TeamNewPipe/NewPipe/issues/13508
 -keep class org.ocpsoft.prettytime.i18n.Resources* { *; }
+
+# External service packages link against these public APIs at runtime. Their callers
+# are absent from the app's R8 input, so retain the complete published plugin surface.
+-keep class org.schabi.newpipe.extractor.** { *; }
+-keep interface org.schabi.newpipe.extractor.** { *; }
+-keep class com.grack.nanojson.** { *; }
+-keep class org.jsoup.** { *; }
+-dontwarn org.jsoup.**
+-keep class org.apache.commons.lang3.** { *; }
+-dontwarn org.apache.commons.lang3.**
+# The WizeStream native template also compiles against the host Kotlin standard library.
+-keep class kotlin.** { *; }
+-keep interface kotlin.** { *; }

@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import static org.schabi.newpipe.util.ServiceHelper.getServiceById;
+import static org.schabi.newpipe.extractor.ServiceList.getById;
 import static org.schabi.newpipe.util.text.TouchUtils.getOffsetForHorizontalLine;
 
 import android.text.Spanned;
@@ -140,7 +140,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         setupTranslation(item);
 
         // setup comment content and click listeners to expand/ellipsize it
-        textEllipsizer.setStreamingService(getServiceById(item.getServiceId()));
+        textEllipsizer.setStreamingService(getById(item.getServiceId()));
         textEllipsizer.setStreamUrl(item.getUrl());
         showCommentText(item.getCommentText());
         bindCommentPictures(item);
@@ -230,7 +230,7 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     private void setupTranslation(@NonNull final CommentsInfoItem item) {
         translationGeneration++;
         boundComment = item;
-        originalCommentText = item.getCommentText();
+        originalCommentText = item.getCommentTextContent();
         translatedCommentText = null;
         showingTranslatedComment = false;
 
@@ -264,7 +264,8 @@ public class CommentInfoItemHolder extends InfoItemHolder {
         if (translatedCommentText != null) {
             showingTranslatedComment = !showingTranslatedComment;
             showCommentText(showingTranslatedComment
-                    ? translatedCommentText : originalCommentText);
+                    ? new Description(translatedCommentText, Description.PLAIN_TEXT)
+                    : item.getCommentText());
             translateButton.setText(showingTranslatedComment
                     ? R.string.comment_show_original : R.string.comment_show_translation);
             return;
@@ -308,7 +309,11 @@ public class CommentInfoItemHolder extends InfoItemHolder {
     }
 
     private void showCommentText(final String text) {
-        textEllipsizer.setContent(new Description(text, Description.PLAIN_TEXT));
+        showCommentText(new Description(text, Description.PLAIN_TEXT));
+    }
+
+    private void showCommentText(final Description description) {
+        textEllipsizer.setContent(description);
         textEllipsizer.ellipsize();
     }
 

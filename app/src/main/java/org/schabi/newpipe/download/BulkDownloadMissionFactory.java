@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import us.shandian.giga.get.MissionRecoveryInfo;
+import us.shandian.giga.get.DownloadRequestHeaders;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 
@@ -82,7 +83,11 @@ final class BulkDownloadMissionFactory {
 
         DownloadManagerService.startMission(context, urls, storage, selection.kind, threads,
                 info, selection.postprocessingName, selection.postprocessingArguments,
-                0, recoveryInfo, automaticWifiOnly, automaticProfile);
+                0, recoveryInfo, automaticWifiOnly, automaticProfile,
+                selection.secondaryStream == null
+                        ? DownloadRequestHeaders.capture(selection.primaryStream)
+                        : DownloadRequestHeaders.capture(selection.primaryStream,
+                                selection.secondaryStream));
     }
 
     @NonNull

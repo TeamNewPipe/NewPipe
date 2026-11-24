@@ -376,7 +376,7 @@ public class InvidiousExtractionTest {
         comments.fetchPage();
         assertTrue(requests.get(requests.size() - 1).contains("sort_by=new"));
         final var comment = comments.getInitialPage().getItems().get(0);
-        assertEquals("Hello", comment.getCommentText());
+        assertEquals("Hello", comment.getCommentTextContent());
         assertEquals(1, comment.getReplyCount());
         assertEquals(1, comments.getPage(comment.getReplies()).getItems().size());
         responseBody = "{\"suggestions\":[\"video one\",\"video two\"]}";

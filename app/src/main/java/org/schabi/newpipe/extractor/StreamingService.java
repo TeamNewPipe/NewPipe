@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.search.filter.FilterItem;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelTabExtractor;
 import org.schabi.newpipe.extractor.comments.CommentsExtractor;
+import org.schabi.newpipe.extractor.comments.CommentsFilterConfig;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.feed.FeedExtractor;
@@ -104,6 +105,9 @@ public abstract class StreamingService {
     private Boolean proxyEnabled = false;
     private Set<String> cookieFunctions = null;
     private String audioLanguage = "original";
+    private String autoTranslatedSubtitlesLanguage = "en";
+    private boolean showAutoTranslatedSubtitles = false;
+    private CommentsFilterConfig commentsFilterConfig = null;
 
     public Set<String> filterTypes = new HashSet<>();
     public InfoItemsCollector.FilterConfig filterConfig = null;
@@ -147,6 +151,20 @@ public abstract class StreamingService {
     }
 
     public abstract String getBaseUrl();
+
+    /** Cache lifetime requested by a provider, in milliseconds. */
+    public long getInfoCacheExpirationMillis() {
+        return 60 * 60 * 1000L;
+    }
+
+    /**
+     * Headers required by this provider for an image URL, or null for unrelated images.
+     * Implementations must be cheap and must not perform network requests.
+     */
+    @Nullable
+    public Map<String, String> getImageRequestHeaders(final String imageUrl) {
+        return null;
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Url Id handler
@@ -536,6 +554,31 @@ public abstract class StreamingService {
 
     public void setAudioLanguage(String audioLanguage) {
         this.audioLanguage = audioLanguage;
+    }
+
+    public String getAutoTranslatedSubtitlesLanguage() {
+        return autoTranslatedSubtitlesLanguage;
+    }
+
+    public void setAutoTranslatedSubtitlesLanguage(final String language) {
+        this.autoTranslatedSubtitlesLanguage = language;
+    }
+
+    public boolean getShowAutoTranslatedSubtitles() {
+        return showAutoTranslatedSubtitles;
+    }
+
+    public void setShowAutoTranslatedSubtitles(final boolean show) {
+        this.showAutoTranslatedSubtitles = show;
+    }
+
+    @Nullable
+    public CommentsFilterConfig getCommentsFilterConfig() {
+        return commentsFilterConfig;
+    }
+
+    public void setCommentsFilterConfig(@Nullable final CommentsFilterConfig config) {
+        this.commentsFilterConfig = config;
     }
 
     public Set<String> getFilterTypes() {

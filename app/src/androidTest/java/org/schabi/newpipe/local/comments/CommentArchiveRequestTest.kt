@@ -124,7 +124,7 @@ class CommentArchiveRequestTest {
 
     private fun comment(id: String) = CommentsInfoItem(0, POST_URL, id).apply {
         commentId = id
-        commentText = "Viewed post comment $id"
+        setCommentText("Viewed post comment $id")
         uploaderName = "Comment tester"
         textualUploadDate = "today"
     }

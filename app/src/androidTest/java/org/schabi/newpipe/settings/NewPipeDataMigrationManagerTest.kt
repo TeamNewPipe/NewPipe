@@ -643,6 +643,53 @@ class NewPipeDataMigrationManagerTest {
     }
 
     @Test
+    fun unavailablePluginRecordsArePreservedInTheirImportedProfile() {
+        val pluginServiceId = 1_234_567
+        val profileId = "22222222-2222-2222-2222-222222222222"
+        assertTrue(org.schabi.newpipe.extractor.ServiceList.all().none { it.serviceId == pluginServiceId })
+        SQLiteDatabase.openDatabase(
+            sourcePath.toString(),
+            null,
+            SQLiteDatabase.OPEN_READWRITE
+        ).use { source ->
+            source.execSQL("UPDATE streams SET service_id = ?", arrayOf(pluginServiceId))
+            source.execSQL("UPDATE subscriptions SET service_id = ?", arrayOf(pluginServiceId))
+            source.execSQL("UPDATE search_history SET service_id = ?", arrayOf(pluginServiceId))
+        }
+        val manager = NewPipeDataMigrationManager(context)
+        val selection = NewPipeDataMigrationManager.Selection(
+            importHistory = true,
+            importPlaylists = true,
+            importSubscriptions = true
+        )
+
+        val result = manager.importData(sourcePath, selection, targetProfileId = profileId)
+
+        val database = NewPipeDatabase.getInstance(context)
+        assertEquals(2, result.subscriptions)
+        assertEquals(2, result.searchHistoryItems)
+        assertEquals(1, result.historyItems)
+        assertEquals(1, result.playlistItems)
+        assertEquals(
+            setOf(pluginServiceId),
+            database.subscriptionDAO()
+                .getAllDirectForProfile(profileId).map { it.serviceId }.toSet()
+        )
+        assertEquals(
+            setOf(pluginServiceId),
+            database.searchHistoryDAO()
+                .getAllDirectForProfile(profileId).map { it.serviceId }.toSet()
+        )
+        assertEquals(pluginServiceId, database.streamDAO().getAll().blockingFirst().single().serviceId)
+        assertTrue(database.subscriptionDAO().getAllDirectForProfile(ProfileManager.DEFAULT_PROFILE_ID).isEmpty())
+        assertTrue(database.searchHistoryDAO().getAllDirectForProfile(ProfileManager.DEFAULT_PROFILE_ID).isEmpty())
+        val repeated = manager.importData(sourcePath, selection, targetProfileId = profileId)
+        assertEquals(0, repeated.subscriptions)
+        assertEquals(0, repeated.searchHistoryItems)
+        assertEquals(2, database.subscriptionDAO().getAllDirectForProfile(profileId).size)
+    }
+
+    @Test
     fun searchOnlyBackupCanBeInspectedAndImported() {
         SQLiteDatabase.openDatabase(
             sourcePath.toString(),

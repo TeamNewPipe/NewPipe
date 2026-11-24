@@ -20,7 +20,7 @@ public final class CommentFilterRules {
     }
 
     public boolean isBlocked(final CommentsInfoItem comment) {
-        final String text = normalize(comment.getCommentText());
+        final String text = normalize(comment.getCommentTextContent());
         return keywords.stream().anyMatch(text::contains)
                 || authors.contains(normalize(comment.getUploaderName()))
                 || comment.getLikeCount() >= 0 && comment.getLikeCount() < minimumLikes;

@@ -26,6 +26,7 @@ import org.schabi.newpipe.local.subscription.SubscriptionManager
 import org.schabi.newpipe.profiles.ProfileManager
 import org.schabi.newpipe.streams.io.SharpInputStream
 import org.schabi.newpipe.streams.io.StoredFileHelper
+import org.schabi.newpipe.util.SavedServicePolicy
 
 class SubscriptionImportWorker(
     appContext: Context,
@@ -212,7 +213,7 @@ class SubscriptionImportWorker(
             supportedServiceIds: Set<Int>
         ): List<SubscriptionEntity> = subscriptions.mapNotNull { subscription ->
             val url = subscription.url.trim()
-            if (subscription.serviceId !in supportedServiceIds || url.isEmpty()) {
+            if (!SavedServicePolicy.canPreserve(subscription.serviceId, supportedServiceIds) || url.isEmpty()) {
                 null
             } else {
                 SubscriptionEntity(

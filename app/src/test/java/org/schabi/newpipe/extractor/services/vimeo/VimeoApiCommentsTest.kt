@@ -43,7 +43,7 @@ class VimeoApiCommentsTest : VimeoApiExtractorTestSupport() {
         val comment = first.items.first()
         assertEquals("300101", comment.commentId)
         assertEquals("https://vimeo.com/100101", comment.url)
-        assertEquals("A thoughtful film. The scene at 1:20 is memorable.", comment.commentText)
+        assertEquals("A thoughtful film. The scene at 1:20 is memorable.", comment.commentTextContent)
         assertEquals("Example filmmaker", comment.uploaderName)
         assertEquals("https://vimeo.com/examplefilmmaker", comment.uploaderUrl)
         assertEquals(OffsetDateTime.parse("2026-01-03T13:45:00Z"), requireNotNull(comment.uploadDate).offsetDateTime())

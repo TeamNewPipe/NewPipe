@@ -52,6 +52,7 @@ import org.schabi.newpipe.util.image.ImageStrategy;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,6 +84,7 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
     private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
     private static final String EXTRA_RECOVERY_INFO = "DownloadManagerService.extra.recoveryInfo";
+    private static final String EXTRA_REQUEST_HEADERS = "DownloadManagerService.extra.requestHeaders";
     private static final String EXTRA_STREAM_INFO = "DownloadManagerService.extra.streamInfo";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
@@ -392,6 +394,16 @@ public class DownloadManagerService extends Service {
                                     String[] psArgs, long nearLength,
                                     ArrayList<MissionRecoveryInfo> recoveryInfo,
                                     Boolean automaticWifiOnly, String automaticProfile) {
+        startMission(context, urls, storage, kind, threads, streamInfo, psName, psArgs,
+                nearLength, recoveryInfo, automaticWifiOnly, automaticProfile, null);
+    }
+
+    public static void startMission(Context context, String[] urls, StoredFileHelper storage,
+                                    char kind, int threads, StreamInfo streamInfo, String psName,
+                                    String[] psArgs, long nearLength,
+                                    ArrayList<MissionRecoveryInfo> recoveryInfo,
+                                    Boolean automaticWifiOnly, String automaticProfile,
+                                    ArrayList<HashMap<String, String>> requestHeaders) {
         final Intent intent = new Intent(context, DownloadManagerService.class)
                 .setAction(Intent.ACTION_RUN)
                 .putExtra("automatic_download", automaticWifiOnly != null)
@@ -404,6 +416,8 @@ public class DownloadManagerService extends Service {
                 .putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs)
                 .putExtra(EXTRA_NEAR_LENGTH, nearLength)
                 .putExtra(EXTRA_RECOVERY_INFO, recoveryInfo)
+                .putExtra(EXTRA_REQUEST_HEADERS,
+                        us.shandian.giga.get.DownloadRequestHeaders.copy(requestHeaders))
                 .putExtra(EXTRA_PARENT_PATH, storage.getParentUri())
                 .putExtra(EXTRA_PATH, storage.getUri())
                 .putExtra(EXTRA_STORAGE_TAG, storage.getTag())
@@ -480,6 +494,8 @@ public class DownloadManagerService extends Service {
                 this, streamInfo, kind, mission.source,
                 Postprocessing.ALGORITHM_SEGMENTS.equals(psName) ? psArgs[0] : null);
         mission.recoveryInfo = recovery.toArray(new MissionRecoveryInfo[0]);
+        mission.resourceRequestHeaders = us.shandian.giga.get.DownloadRequestHeaders.fromSerialized(
+                intent.getSerializableExtra(EXTRA_REQUEST_HEADERS));
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));

@@ -6,7 +6,9 @@ import org.schabi.newpipe.extractor.services.youtube.ItagItem;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
@@ -14,8 +16,11 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
  * Abstract class which represents streams in the extractor.
  */
 public abstract class Stream implements Serializable {
+    private static final long serialVersionUID = -4537218748438632119L;
+
     public static final int FORMAT_ID_UNKNOWN = -1;
     public static final String ID_UNKNOWN = " ";
+    public static final long AVAILABLE_AT_UNKNOWN = -1;
 
     /**
      * An integer to represent that the itag ID returned is not available (only for YouTube; this
@@ -33,6 +38,12 @@ public abstract class Stream implements Serializable {
     private final boolean isUrl;
     private final DeliveryMethod deliveryMethod;
     @Nullable private final String manifestUrl;
+    private final long availableAt;
+    // Older serialized streams have no availability metadata and default this to false.
+    private boolean hasAvailabilityMetadata = true;
+    @Nullable private final Serializable deliveryMethodInfo;
+    @Nullable private LinkedHashMap<String, String> requestHeaders;
+    @Nullable private Boolean cacheable;
 
     /**
      * Instantiates a new {@code Stream} object.
@@ -53,12 +64,35 @@ public abstract class Stream implements Serializable {
                   @Nullable final MediaFormat format,
                   final DeliveryMethod deliveryMethod,
                   @Nullable final String manifestUrl) {
+        this(id, content, isUrl, format, deliveryMethod, manifestUrl, AVAILABLE_AT_UNKNOWN, null);
+    }
+
+    protected Stream(final String id,
+                     final String content,
+                     final boolean isUrl,
+                     @Nullable final MediaFormat format,
+                     final DeliveryMethod deliveryMethod,
+                     @Nullable final String manifestUrl,
+                     final long availableAt) {
+        this(id, content, isUrl, format, deliveryMethod, manifestUrl, availableAt, null);
+    }
+
+    protected Stream(final String id,
+                     final String content,
+                     final boolean isUrl,
+                     @Nullable final MediaFormat format,
+                     final DeliveryMethod deliveryMethod,
+                     @Nullable final String manifestUrl,
+                     final long availableAt,
+                     @Nullable final Serializable deliveryMethodInfo) {
         this.id = id;
         this.content = content;
         this.isUrl = isUrl;
         this.mediaFormat = format;
         this.deliveryMethod = deliveryMethod;
         this.manifestUrl = manifestUrl;
+        this.availableAt = availableAt;
+        this.deliveryMethodInfo = deliveryMethodInfo;
     }
 
     /**
@@ -118,6 +152,39 @@ public abstract class Stream implements Serializable {
      */
     public String getId() {
         return id;
+    }
+
+    /**
+     * HTTP headers the player must send when fetching this stream (e.g. {@code Referer},
+     * {@code User-Agent}), or {@code null} if none are required. Sent on every media request
+     * of the stream, on top of (and overriding) the headers the client uses for its service.
+     *
+     * @return an unmodifiable view of the headers, or {@code null}
+     */
+    @Nullable
+    public Map<String, String> getRequestHeaders() {
+        return requestHeaders == null ? null : java.util.Collections.unmodifiableMap(requestHeaders);
+    }
+
+    public void setRequestHeaders(@Nullable final Map<String, String> headers) {
+        this.requestHeaders = headers == null || headers.isEmpty()
+                ? null : new LinkedHashMap<>(headers);
+    }
+
+    /**
+     * Whether the player may keep this stream in its media cache, or {@code null} to let the
+     * client decide from the delivery method. Declare {@code false} for content that must not
+     * be reused, e.g. URLs whose response changes over time.
+     *
+     * @return the declared cache policy, or {@code null}
+     */
+    @Nullable
+    public Boolean getCacheable() {
+        return cacheable;
+    }
+
+    public void setCacheable(@Nullable final Boolean cacheable) {
+        this.cacheable = cacheable;
     }
 
     /**
@@ -192,6 +259,18 @@ public abstract class Stream implements Serializable {
     @Nullable
     public String getManifestUrl() {
         return manifestUrl;
+    }
+
+    public long getAvailableAt() {
+        return hasAvailabilityMetadata ? availableAt : AVAILABLE_AT_UNKNOWN;
+    }
+
+    /**
+     * Optional protocol-specific metadata needed to consume non-URL delivery methods.
+     */
+    @Nullable
+    public Serializable getDeliveryMethodInfo() {
+        return deliveryMethodInfo;
     }
 
     /**

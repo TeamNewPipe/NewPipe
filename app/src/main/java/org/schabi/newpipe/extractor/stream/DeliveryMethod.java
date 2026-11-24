@@ -49,5 +49,11 @@ public enum DeliveryMethod {
      * </a> and <a href="https://www.bittorrent.org">Bitorrent's website</a> for more information
      * about the BitTorrent protocol
      */
-    TORRENT
+    TORRENT,
+
+    /**
+     * Server-side adaptive bitrate delivery. The plugin API preserves this identifier;
+     * players must explicitly support the protocol before using a stream that declares it.
+     */
+    SABR
 }

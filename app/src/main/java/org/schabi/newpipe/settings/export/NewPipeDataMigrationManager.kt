@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import org.schabi.newpipe.profiles.ProfileManager
+import org.schabi.newpipe.util.SavedServicePolicy
 
 class NewPipeDataMigrationManager(private val context: Context) {
     enum class SourceApp {
@@ -171,7 +172,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
                         while (cursor.moveToNext()) {
                             val serviceId = cursor.long("service_id")?.toInt()
                             val url = cursor.string("url")?.trim().orEmpty()
-                            if (serviceId == null || serviceId !in supportedServiceIds ||
+                            if (serviceId == null || !SavedServicePolicy.canPreserve(serviceId, supportedServiceIds) ||
                                 url.isEmpty()
                             ) {
                                 skippedItems++
@@ -322,7 +323,7 @@ class NewPipeDataMigrationManager(private val context: Context) {
                             val serviceId = cursor.getInt(1)
                             val search = cursor.getString(2)
                             val timestamp = runCatching { createdAt.toOffsetDateTime() }.getOrNull()
-                            if (createdAt <= 0 || serviceId !in validServices ||
+                            if (createdAt <= 0 || !SavedServicePolicy.canPreserve(serviceId, validServices) ||
                                 search.isNullOrBlank() || timestamp == null
                             ) {
                                 skippedItems++

@@ -57,7 +57,7 @@ class CommentSearchControllerTest {
     }
 
     private fun comment(text: String, author: String) = CommentsInfoItem(0, "https://example.org/$author", text).apply {
-        commentText = text
+        setCommentText(text)
         uploaderName = author
     }
 }

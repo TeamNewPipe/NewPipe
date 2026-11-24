@@ -43,7 +43,7 @@ public class RumbleCommentsInfoItemExtractor implements CommentsInfoItemExtracto
     }
 
     @Override
-    public String getCommentText() {
+    public String getCommentTextContent() {
         return element.selectFirst("p.comment-text").wholeText();
     }
 

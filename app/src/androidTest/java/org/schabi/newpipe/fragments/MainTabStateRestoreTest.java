@@ -21,21 +21,23 @@ import java.util.List;
 
 public class MainTabStateRestoreTest {
     @Test
-    public void fallsBackToFragmentClassLoaderForRestoredState() throws Exception {
+    public void fallsBackToHostAndPluginClassLoaderForRestoredState() throws Exception {
         final ClassLoader stateLoader =
                 MainFragment.SelectedTabsPagerAdapter.resolveStateClassLoader(null);
 
-        assertSame(Fragment.class.getClassLoader(), stateLoader);
+        assertSame(org.schabi.newpipe.plugin.PluginManager.getHostAndPluginsClassLoader(),
+                stateLoader);
         assertSame(Fragment.SavedState.class,
                 Class.forName(Fragment.SavedState.class.getName(), false, stateLoader));
     }
 
     @Test
-    public void preservesProvidedClassLoaderForRestoredState() {
+    public void preservesProvidedClassResolutionForRestoredState() throws Exception {
         final ClassLoader providedLoader = getClass().getClassLoader();
-
-        assertSame(providedLoader,
-                MainFragment.SelectedTabsPagerAdapter.resolveStateClassLoader(providedLoader));
+        final ClassLoader stateLoader =
+                MainFragment.SelectedTabsPagerAdapter.resolveStateClassLoader(providedLoader);
+        assertSame(providedLoader, stateLoader.getParent());
+        assertSame(getClass(), Class.forName(getClass().getName(), false, stateLoader));
     }
 
     @Test

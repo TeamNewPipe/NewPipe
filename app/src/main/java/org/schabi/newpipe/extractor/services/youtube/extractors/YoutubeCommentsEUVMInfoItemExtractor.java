@@ -107,7 +107,7 @@ class YoutubeCommentsEUVMInfoItemExtractor implements CommentsInfoItemExtractor 
     }
 
     @Override
-    public String getCommentText() throws ParsingException {
+    public String getCommentTextContent() throws ParsingException {
         // Comments' text work in the same way as an attributed video description
         return HtmlParser.htmlToString(new Description(
                 attributedDescriptionToHtml(commentEntityPayload.getObject(PROPERTIES)

@@ -75,6 +75,11 @@ public interface StreamInfoItemExtractor extends InfoItemExtractor {
      */
     String getUploaderName() throws ParsingException;
 
+    @Nullable
+    default String getUploaderId() throws ParsingException {
+        return null;
+    }
+
     default String getUploaderUrl() throws ParsingException {
         return "";
     }

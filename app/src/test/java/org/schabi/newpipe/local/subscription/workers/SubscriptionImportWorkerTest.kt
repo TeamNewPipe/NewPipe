@@ -118,6 +118,22 @@ class SubscriptionImportWorkerTest {
     }
 
     @Test
+    fun `plugin subscriptions survive export and import before the plugin is installed`() {
+        val pluginId = 1_234_567
+        val original = listOf(SubscriptionItem(pluginId, "https://example.com/channel", "Course"))
+        val output = java.io.ByteArrayOutputStream()
+        ImportExportJsonHelper.writeTo(original, output)
+        val imported = ImportExportJsonHelper.readFrom(output.toByteArray().inputStream())
+
+        val entities = SubscriptionImportWorker.prepareSubscriptionEntities(imported, setOf(0, 10))
+
+        assertEquals(1, entities.size)
+        assertEquals(pluginId, entities.single().serviceId)
+        assertEquals(original.single().url, entities.single().url)
+        assertEquals("Course", entities.single().name)
+    }
+
+    @Test
     fun `Provider content type must be preserved`() {
         assertResolvedContentType("application/json", "application/json")
     }

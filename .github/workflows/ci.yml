@@ -98,7 +98,7 @@ jobs:
 
       - name: Build debug APK and run JVM tests
         run: >-
-          ./gradlew assembleDebug lintDebug testDebugUnitTest --stacktrace -DskipFormatKtlint
+          ./gradlew assembleDebug lintDebug testDebugUnitTest :app:pluginSdkJar --stacktrace -DskipFormatKtlint
           --max-workers=2
           '-Dorg.gradle.jvmargs=-Xmx4096M --add-opens jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED'
 
@@ -142,6 +142,21 @@ jobs:
         with:
           name: wizestream-debug-apk
           path: app/build/outputs/apk/debug/*.apk
+
+      - name: Build the documented WizeStream plugin template
+        run: ./gradlew -p plugin-template generateSigningKey repositoryIndex --stacktrace --max-workers=2
+
+      - name: Upload plugin SDK
+        uses: actions/upload-artifact@v7
+        with:
+          name: wizestream-plugin-sdk
+          path: app/build/outputs/plugin-sdk/wizestream-plugin-api.jar
+
+      - name: Upload native plugin test package
+        uses: actions/upload-artifact@v7
+        with:
+          name: native-plugin-test-package
+          path: plugin-template/build/repo/*
 
   test-android:
     runs-on: ubuntu-24.04
@@ -188,6 +203,9 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+      - name: Prepare pinned external plugin test fixtures
+        run: python3 scripts/prepare-plugin-test-fixtures.py
+
       - name: Cache Android emulator
         id: avd-cache
         uses: actions/cache@v5
@@ -233,3 +251,76 @@ jobs:
         with:
           name: android-test-report-api${{ matrix.api-level }}
           path: app/build/reports/androidTests/connected/**
+
+  test-plugin-compatibility:
+    needs: build-and-test-jvm
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [24, 35]
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21.0.12+8.0.LTS
+          distribution: temurin
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Install Android SDK platform and build tools
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.0" "build-tools;36.1.0"
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Prepare pinned external plugin test fixtures
+        run: python3 scripts/prepare-plugin-test-fixtures.py
+
+      - name: Download native plugin built from the documented template
+        uses: actions/download-artifact@v8
+        with:
+          name: native-plugin-test-package
+          path: app/build/generated/native-plugin-package
+
+      - name: Prepare native plugin test assets
+        run: |
+          cp app/build/generated/native-plugin-package/wizestream-example-1.ppp app/build/generated/plugin-test-assets/native-example.ppp
+          cp app/build/generated/native-plugin-package/index.json app/build/generated/plugin-test-assets/native-index.json
+
+      - name: Test external packages against the minified host
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: default
+          arch: x86_64
+          force-avd-creation: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: >-
+            ./gradlew connectedPluginCompatibilityAndroidTest
+            -PpluginCompatibilityTest=true -PreleaseAbi=x86_64
+            -Pandroid.testInstrumentationRunnerArguments.class=org.schabi.newpipe.plugin.PipePipePackageCompatibilityTest
+            -Pandroid.testInstrumentationRunnerArguments.requireNativePluginFixture=true
+            --stacktrace --max-workers=2
+            '-Dorg.gradle.jvmargs=-Xmx4096M --add-opens jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED'
+
+      - name: Upload plugin compatibility reports
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: plugin-compatibility-api${{ matrix.api-level }}
+          path: |
+            app/build/reports/androidTests/connected/**
+            app/build/outputs/androidTest-results/connected/**
+          if-no-files-found: ignore

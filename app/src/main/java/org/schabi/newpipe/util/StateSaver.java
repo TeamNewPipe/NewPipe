@@ -129,7 +129,7 @@ public final class StateSaver {
             }
 
             try (FileInputStream fileInputStream = new FileInputStream(file);
-                 ObjectInputStream inputStream = new ObjectInputStream(fileInputStream)) {
+                 ObjectInputStream inputStream = new PluginObjectInputStream(fileInputStream)) {
                 //noinspection unchecked
                 savedObjects = (Queue<Object>) inputStream.readObject();
             }
