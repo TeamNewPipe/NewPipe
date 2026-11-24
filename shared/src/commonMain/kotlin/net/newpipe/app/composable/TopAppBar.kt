@@ -22,6 +22,7 @@ import net.newpipe.app.theme.currentServiceTopAppBarColors
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.ic_arrow_back
 import newpipe.shared.generated.resources.navigate_back
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -37,7 +38,7 @@ import org.jetbrains.compose.resources.stringResource
 fun TopAppBar(
     modifier: Modifier = Modifier,
     title: String? = null,
-    navigationIcon: Painter = painterResource(Res.drawable.ic_arrow_back),
+    navigationIcon: DrawableResource = Res.drawable.ic_arrow_back,
     onNavigateUp: (() -> Unit)? = null,
     colors: TopAppBarColors = currentServiceTopAppBarColors(),
     actions: @Composable (RowScope.() -> Unit) = {}
@@ -50,7 +51,7 @@ fun TopAppBar(
             if (onNavigateUp != null) {
                 IconButton(onClick = onNavigateUp) {
                     Icon(
-                        painter = navigationIcon,
+                        painter = painterResource(navigationIcon),
                         contentDescription = stringResource(Res.string.navigate_back)
                     )
                 }

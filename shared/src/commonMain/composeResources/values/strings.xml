@@ -383,4 +383,27 @@
     <string name="no_valid_zip_file">No valid ZIP file</string>
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
 
+    <!-- Panic Settings -->
+    <string name="panic_settings">Panic button settings</string>
+    <string name="panic_settings_category">Panic button</string>
+    <string name="panic_app_setting_title">Panic button app</string>
+    <string name="panic_app_setting_summary">No app has been set yet.</string>
+    <string name="panic_app_setting_none">None</string>
+    <string name="panic_app_dialog_title">Confirm panic app change</string>
+    <string name="panic_app_dialog_message">Are you sure that you want to allow %1$s to trigger destructive panic button actions?</string>
+    <string name="panic_app_unknown_app">an unknown app</string>
+    <string name="allow">Allow</string>
+    <string name="panic_settings_summary">Actions to be taken in case of emergency</string>
+    <string name="panic_exit_app_title">Exit app</string>
+    <string name="panic_exit_app_summary">NewPipe will be closed</string>
+    <string name="panic_remove_from_recent_title">Remove from recent apps</string>
+    <string name="panic_remove_from_recent_summary">NewPipe will be removed from your app launcher's recent apps if supported</string>
+    <string name="panic_destructive_actions_title">Destructive actions</string>
+    <string name="panic_destructive_actions_summary">Actions that will permanently alter or delete data need to be registered through the panic app first.\nMake sure to backup your app data frequently to a safe place!</string>
+    <string name="panic_clear_app_database_title">Clear app database</string>
+    <string name="panic_clear_app_database_summary">This will clear the app's database. All data except the settings will be lost.</string>
+    <string name="panic_clear_search_history_title">Clear search history</string>
+    <string name="panic_clear_search_history_summary">This will clear the app's search history</string>
+    <string name="panic_clear_watch_history_title">Clear watch history</string>
+    <string name="panic_clear_watch_history_summary">This will clear the app's watch history</string>
 </resources>

@@ -500,6 +500,12 @@
     <string name="crash_the_app">Crash the app</string>
     <string name="show_error_snackbar">Show an error snackbar</string>
     <string name="create_error_notification">Create an error notification</string>
+    <!-- Panic Settings -->
+    <string name="panic_settings_category">Panic button</string>
+    <string name="panic_app_unknown_app">an unknown app</string>
+    <string name="panic_app_dialog_title">Confirm panic app change</string>
+    <string name="panic_app_dialog_message">Are you sure that you want to allow %1$s to trigger destructive panic button actions?</string>
+    <string name="panic_app_dialog_positive_button">Yes, allow</string>
     <!-- Subscriptions import/export -->
     <plurals name="export_subscriptions">
         <item quantity="one">Exporting %d subscription…</item>

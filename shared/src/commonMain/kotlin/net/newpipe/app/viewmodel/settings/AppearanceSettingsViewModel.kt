@@ -16,7 +16,7 @@ import org.koin.core.annotation.KoinViewModel
 @KoinViewModel
 class AppearanceSettingsViewModel(
     private val settings: Settings,
-    private val appearanceActions: AppearanceActions,
+    private val appearanceActions: AppearanceActions
 ) : ViewModel() {
 
     val theme: StateFlow<String>

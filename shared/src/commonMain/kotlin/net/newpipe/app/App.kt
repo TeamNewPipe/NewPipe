@@ -26,13 +26,7 @@ fun App(
     onCloseRequest: () -> Unit,
     withKoin: @Composable () -> Unit = {}
 ) {
-    KoinApplication(
-        configuration = koinConfiguration<KoinApp>(
-            appDeclaration = {
-                modules(navModule())
-            }
-        )
-    ) {
+    AppKoinContext {
         AppTheme {
             NavDisplay(
                 startDestination = startDestination,
@@ -41,4 +35,16 @@ fun App(
             withKoin()
         }
     }
+}
+
+@Composable
+fun AppKoinContext(content: @Composable () -> Unit) {
+    KoinApplication(
+        configuration = koinConfiguration<KoinApp>(
+            appDeclaration = {
+                modules(navModule())
+            }
+        ),
+        content = content
+    )
 }

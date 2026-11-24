@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @SuppressWarnings("ConstantConditions")
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    public static final String EXTRA_REMOVE_FROM_RECENT_APPS_AND_EXIT =
+            "REMOVE_FROM_RECENT_APPS_AND_EXIT";
 
     private ActivityMainBinding mainBinding;
     private DrawerHeaderBinding drawerHeaderBinding;
@@ -144,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate() called with: "
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
+
+        maybeRemoveAppFromRecentsAndExit();
 
         Localization.migrateAppLanguageSettingIfNecessary(getApplicationContext());
         ThemeHelper.setDayNightMode(this);
@@ -781,6 +785,24 @@ public class MainActivity extends AppCompatActivity {
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Remove NewPipe's MainActivity from the launcher's recent apps and exit if the activity was
+     * launched with {@link #EXTRA_REMOVE_FROM_RECENT_APPS_AND_EXIT}.
+     */
+    private void maybeRemoveAppFromRecentsAndExit() {
+        final Intent intent = getIntent();
+        if (intent == null) {
+            return;
+        }
+        if (intent.hasExtra(EXTRA_REMOVE_FROM_RECENT_APPS_AND_EXIT)) {
+            if (DEBUG) {
+                Log.d(TAG, "maybeRemoveAppFromRecentsAndExit() called");
+            }
+            finishAndRemoveTask();
+            System.exit(0);
+        }
+    }
 
     private void updateDrawerNavigation() {
         if (getSupportActionBar() == null) {

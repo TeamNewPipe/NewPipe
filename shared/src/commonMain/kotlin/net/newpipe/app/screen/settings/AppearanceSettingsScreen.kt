@@ -5,6 +5,7 @@
 
 package net.newpipe.app.screen.settings
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +16,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -32,8 +32,8 @@ import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.AppearanceActions
-import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.preferences.AppearancePreferences
+import net.newpipe.app.preview.ThemePreviewProvider
 import net.newpipe.app.viewmodel.settings.AppearanceSettingsViewModel
 import newpipe.shared.generated.resources.Res
 import newpipe.shared.generated.resources.auto
