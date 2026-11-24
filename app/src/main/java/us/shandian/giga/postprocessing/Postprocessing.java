@@ -1,15 +1,28 @@
 package us.shandian.giga.postprocessing;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.DownloaderImpl;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.streams.io.SharpStream;
+import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.image.ImageStrategy;
+import org.schabi.newpipe.util.image.PreferredImageQuality;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.io.ChunkFileInputStream;
@@ -24,6 +37,8 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 public abstract class Postprocessing implements Serializable {
 
     static transient final byte OK_RESULT = ERROR_NOTHING;
+
+    private static final long MAX_COVER_ART_BYTES = 8L * 1024 * 1024; // 8 MiB
 
     public transient static final String ALGORITHM_TTML_CONVERTER = "ttml";
     public transient static final String ALGORITHM_WEBM_MUXER = "webm";
@@ -239,6 +254,62 @@ public abstract class Postprocessing implements Serializable {
         }
 
         return args[index];
+    }
+
+    /**
+     * Downloads the best available thumbnail for {@link #streamInfo} to embed as cover art.
+     * Skipped if mobile data usage is limited and the network is currently metered.
+     *
+     * @return the cover art bytes, or an empty array if none could be obtained
+     */
+    byte[] fetchCoverArt() {
+        if (streamInfo == null || isMobileDataLimited()) {
+            return new byte[0];
+        }
+
+        try {
+            final String url = ImageStrategy.choosePreferredImage(
+                    streamInfo.getThumbnails(), PreferredImageQuality.HIGH);
+            if (url == null) {
+                return new byte[0];
+            }
+
+            final Request request = new Request.Builder().url(url).build();
+
+            try (final Response response = DownloaderImpl.getInstance().getClient()
+                    .newCall(request).execute()) {
+                final ResponseBody body = response.body();
+                if (!response.isSuccessful() || body == null) {
+                    return new byte[0];
+                }
+
+                if (body.contentLength() > MAX_COVER_ART_BYTES) {
+                    return new byte[0];
+                }
+
+                final byte[] cover = body.bytes();
+                return cover.length > MAX_COVER_ART_BYTES ? new byte[0] : cover;
+            }
+        } catch (final IOException e) {
+            Log.w(getClass().getSimpleName(), "Failed to fetch cover art", e);
+            return new byte[0];
+        }
+    }
+
+    private boolean isMobileDataLimited() {
+        final Context context = App.getInstance();
+
+        if (!ListHelper.isMeteredNetwork(context)) {
+            return false;
+        }
+
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        final String defValue = context.getString(R.string.limit_data_usage_none_key);
+        final String value = preferences.getString(
+                context.getString(R.string.limit_mobile_data_usage_key), defValue);
+
+        return !defValue.equals(value);
     }
 
     @NonNull
