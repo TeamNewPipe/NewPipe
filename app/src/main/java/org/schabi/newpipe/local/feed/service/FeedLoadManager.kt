@@ -121,7 +121,12 @@ class FeedLoadManager(private val context: Context) {
                 if (subscriptionEntity.serviceId == ServiceList.YouTube.serviceId) {
                     val previousCount = youtubeExtractionCount.getAndIncrement()
                     if (previousCount != 0 && previousCount % BATCH_SIZE == 0) {
-                        Thread.sleep(DELAY_BETWEEN_BATCHES_MILLIS.random())
+                        var remaining = DELAY_BETWEEN_BATCHES_MILLIS.random()
+                        while (remaining > 0 && !cancelSignal.get()) {
+                            val step = minOf(remaining, CANCEL_POLL_INTERVAL_MILLIS)
+                            Thread.sleep(step)
+                            remaining -= step
+                        }
                     }
                 }
             }
@@ -143,14 +148,22 @@ class FeedLoadManager(private val context: Context) {
     }
 
     fun cancel() {
-        cancelSignal.set(true)
+        if (cancelSignal.compareAndSet(false, true)) {
+            AndroidSchedulers.mainThread().scheduleDirect {
+                if (currentProgress.get() != -1 || maxProgress.get() != -1) {
+                    notificationUpdater.onNext(context.getString(R.string.feed_cancelling_loading))
+                    broadcastProgress()
+                }
+            }
+        }
     }
 
     private fun broadcastProgress() {
         FeedEventManager.postEvent(
             FeedEventManager.Event.ProgressEvent(
                 currentProgress.get(),
-                maxProgress.get()
+                maxProgress.get(),
+                isCancelling = cancelSignal.get()
             )
         )
     }
@@ -265,7 +278,12 @@ class FeedLoadManager(private val context: Context) {
      * Remove streams from the database which are not linked / used by any table.
      */
     private fun postProcessFeed() = Completable.fromRunnable {
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
+        FeedEventManager.postEvent(
+            FeedEventManager.Event.ProgressEvent(
+                progressMessage = R.string.feed_processing_message,
+                isCancelling = cancelSignal.get()
+            )
+        )
         feedDatabaseManager.removeOrphansOrOlderStreams()
 
         FeedEventManager.postEvent(FeedEventManager.Event.SuccessResultEvent(feedResultsHolder.itemsErrors))
@@ -273,14 +291,27 @@ class FeedLoadManager(private val context: Context) {
         currentProgress.set(-1)
         maxProgress.set(-1)
 
-        notificationUpdater.onNext(context.getString(R.string.feed_processing_message))
-        FeedEventManager.postEvent(FeedEventManager.Event.ProgressEvent(R.string.feed_processing_message))
+        val message = context.getString(
+            if (cancelSignal.get()) R.string.feed_cancelling_loading else R.string.feed_processing_message
+        )
+        notificationUpdater.onNext(message)
+        FeedEventManager.postEvent(
+            FeedEventManager.Event.ProgressEvent(
+                progressMessage = R.string.feed_processing_message,
+                isCancelling = cancelSignal.get()
+            )
+        )
     }.subscribeOn(Schedulers.io())
 
     private inner class NotificationConsumer : Consumer<Notification<FeedUpdateInfo>> {
         override fun accept(item: Notification<FeedUpdateInfo>) {
             currentProgress.incrementAndGet()
-            notificationUpdater.onNext(item.value?.name.orEmpty())
+            val description = if (cancelSignal.get()) {
+                context.getString(R.string.feed_cancelling_loading)
+            } else {
+                item.value?.name.orEmpty()
+            }
+            notificationUpdater.onNext(description)
 
             broadcastProgress()
         }
@@ -366,6 +397,7 @@ class FeedLoadManager(private val context: Context) {
          * being rate limited
          */
         private val DELAY_BETWEEN_BATCHES_MILLIS = (6000L..12000L)
+        private const val CANCEL_POLL_INTERVAL_MILLIS = 100L
 
         /**
          * Number of items to buffer to mass-insert in the database.
