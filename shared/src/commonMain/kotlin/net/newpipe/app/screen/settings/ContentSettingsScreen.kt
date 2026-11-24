@@ -34,6 +34,7 @@ import net.newpipe.app.composable.PreferenceCategoryTitle
 import net.newpipe.app.composable.PreferenceRow
 import net.newpipe.app.composable.SwitchPreference
 import net.newpipe.app.composable.TopAppBar
+import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.ContentActions
 import net.newpipe.app.preferences.ContentPreferences.DEFAULT_FEED_UPDATE_THRESHOLD
@@ -183,6 +184,7 @@ fun ContentSettingsScreen(
         onFeedUseDedicatedFetchMethodChange = viewModel::setFeedUseDedicatedFetchMethod,
         onFeedFetchChannelTabsChange = viewModel::setFeedFetchChannelTabs,
         onImageCacheWipedShown = viewModel::onImageCacheWipedShown,
+        onOpenPeertubeInstances = { navigator.navigateTo(Destination.PeertubeInstanceSettings) },
         onNavigateUp = { navigator.navigateUp() }
     )
 }
@@ -224,6 +226,7 @@ fun ContentSettingsScreenContent(
     onFeedUseDedicatedFetchMethodChange: (Boolean) -> Unit = {},
     onFeedFetchChannelTabsChange: (Set<String>) -> Unit = {},
     onImageCacheWipedShown: () -> Unit = {},
+    onOpenPeertubeInstances: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
@@ -338,10 +341,10 @@ fun ContentSettingsScreenContent(
                 selectedValues = channelTabs,
                 onValuesSelected = onChannelTabsChange
             )
-            // TODO: open the PeerTube instances screen once it is migrated
             PreferenceRow(
                 title = stringResource(Res.string.peertube_instance_url_title),
-                summary = stringResource(Res.string.peertube_instance_url_summary)
+                summary = stringResource(Res.string.peertube_instance_url_summary),
+                onClick = onOpenPeertubeInstances
             )
             SwitchPreference(
                 title = stringResource(Res.string.show_age_restricted_content_title),

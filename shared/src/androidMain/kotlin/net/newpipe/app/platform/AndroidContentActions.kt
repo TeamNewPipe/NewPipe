@@ -15,6 +15,7 @@ import android.provider.Settings as AndroidSettings
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import co.touchlab.kermit.Logger
+import net.newpipe.app.model.PeertubeInstance
 import net.newpipe.app.preferences.ContentPreferences
 import org.koin.core.annotation.Singleton
 
@@ -65,6 +66,12 @@ class AndroidContentActions(private val context: Context) : ContentActions {
 
     override fun applyContentLocalization() {
         host?.applyContentLocalization()
+    }
+
+    override suspend fun fetchPeertubeInstanceName(url: String): String? = host?.fetchPeertubeInstanceName(url)
+
+    override fun applyPeertubeInstance(instance: PeertubeInstance) {
+        host?.applyPeertubeInstance(instance.url, instance.name)
     }
 
     private fun loadHost(context: Context): ContentHost? = runCatching {

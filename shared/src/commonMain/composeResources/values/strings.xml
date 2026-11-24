@@ -263,6 +263,14 @@
     <string name="show_channel_tabs_summary">What tabs are shown on the channel pages</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
+    <string name="peertube_instance_url_help">Find the instances you like on %1$s</string>
+    <string name="peertube_instance_add_title">Add instance</string>
+    <string name="peertube_instance_add_help">Enter instance URL</string>
+    <string name="peertube_instance_add_fail">Could not validate instance</string>
+    <string name="peertube_instance_add_https_only">Only HTTPS URLs are supported</string>
+    <string name="peertube_instance_add_exists">Instance already exists</string>
+    <string name="restore_defaults">Restore defaults</string>
+    <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
     <string name="show_age_restricted_content_title">Show age restricted content</string>
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (like 18+)</string>
     <string name="youtube_restricted_mode_enabled_title">Turn on YouTube's "Restricted Mode"</string>

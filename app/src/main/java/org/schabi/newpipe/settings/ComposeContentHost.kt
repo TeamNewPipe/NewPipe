@@ -7,9 +7,13 @@ package org.schabi.newpipe.settings
 
 import android.content.Context
 import coil3.SingletonImageLoader
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import net.newpipe.app.platform.ContentHost
 import org.schabi.newpipe.DownloaderImpl
 import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance
 import org.schabi.newpipe.player.helper.PlayerHelper
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.image.ImageStrategy
@@ -32,5 +36,13 @@ class ComposeContentHost(private val context: Context) : ContentHost {
             Localization.getPreferredContentCountry(context)
         )
         PlayerHelper.resetFormat()
+    }
+
+    override suspend fun fetchPeertubeInstanceName(url: String): String? = withContext(Dispatchers.IO) {
+        runCatching { PeertubeInstance(url).apply { fetchInstanceMetaData() }.name }.getOrNull()
+    }
+
+    override fun applyPeertubeInstance(url: String, name: String) {
+        ServiceList.PeerTube.instance = PeertubeInstance(url, name)
     }
 }
