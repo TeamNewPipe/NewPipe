@@ -82,6 +82,8 @@ object PluginExtractorAdapters {
 
         override fun isShortFormContent(): Boolean = readDefault(delegate, "isShortFormContent", { delegate.isShortFormContent() }, { super<StreamInfoItemExtractor>.isShortFormContent() })
 
+        override fun getUpcomingStatus(): Boolean? = readDefault(delegate, "getUpcomingStatus", { delegate.getUpcomingStatus() }, { super<StreamInfoItemExtractor>.getUpcomingStatus() })
+
         override fun requiresMembership(): Boolean = readDefault(delegate, "requiresMembership", { delegate.requiresMembership() }, { super<StreamInfoItemExtractor>.requiresMembership() })
 
         override fun getContentAvailability(): ContentAvailability = readDefault(delegate, "getContentAvailability", { delegate.getContentAvailability() }, { super<StreamInfoItemExtractor>.getContentAvailability() })

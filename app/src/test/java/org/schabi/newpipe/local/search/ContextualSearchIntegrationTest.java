@@ -105,7 +105,7 @@ public class ContextualSearchIntegrationTest {
     @Test
     public void downloadsSearchIsBufferedFilteredAndRefreshSafe() throws Exception {
         final String mainFragment = read("org/schabi/newpipe/fragments/MainFragment.java");
-        assertTrue(mainFragment.contains("searchItem.setVisible(!contextualSearchOpen)"));
+        assertTrue(mainFragment.contains("searchItem.setVisible(isConfiguredSearchAvailable()"));
         assertFalse(mainFragment.contains("isCurrentDownloadsTab()"));
 
         assertSourceContains("org/schabi/newpipe/download/DownloadsTabFragment.java",

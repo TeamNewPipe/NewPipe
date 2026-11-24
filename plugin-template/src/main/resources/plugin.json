@@ -5,7 +5,7 @@
   "versionName": "1.0.0",
   "host": "wizestream",
   "apiVersion": "2.0",
-  "minHostVersionCode": 1051000,
+  "minHostVersionCode": 1052000,
   "minAndroidSdk": 24,
   "requiredCapabilities": ["profile-preferences"],
   "author": "Your name",

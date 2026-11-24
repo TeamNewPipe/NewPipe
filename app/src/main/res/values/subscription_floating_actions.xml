@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="subscription_actions_style_key" translatable="false">subscription_actions_style</string>
+    <string name="subscription_actions_style_title">Subscriptions actions</string>
+    <string name="subscription_actions_style_summary">Choose where New group and the main Search action appear</string>
+    <string name="subscription_actions_style_classic">Classic</string>
+    <string name="subscription_actions_style_floating">Floating</string>
+    <string-array name="subscription_actions_style_entries">
+        <item>@string/subscription_actions_style_classic</item>
+        <item>@string/subscription_actions_style_floating</item>
+    </string-array>
+    <string-array name="subscription_actions_style_values" translatable="false">
+        <item>classic</item>
+        <item>floating</item>
+    </string-array>
+    <dimen name="subscription_floating_action_size">48dp</dimen>
+</resources>

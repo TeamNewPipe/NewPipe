@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -95,5 +96,45 @@
         android:layout_height="4dp"
         android:layout_alignParentTop="true"
         android:background="?attr/toolbar_shadow" />
+
+    <LinearLayout
+        android:id="@+id/subscription_floating_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/subscription_floating_create"
+            android:layout_width="@dimen/subscription_floating_action_size"
+            android:layout_height="@dimen/subscription_floating_action_size"
+            android:contentDescription="@string/feed_group_dialog_create_title"
+            android:focusable="true"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="?attr/colorPrimary"
+            app:ensureMinTouchTargetSize="true"
+            app:fabCustomSize="@dimen/subscription_floating_action_size"
+            app:tint="?attr/colorOnPrimary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/subscription_floating_search"
+            android:layout_width="@dimen/subscription_floating_action_size"
+            android:layout_height="@dimen/subscription_floating_action_size"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@string/search"
+            android:focusable="true"
+            android:src="@drawable/ic_search"
+            app:backgroundTint="?attr/colorSecondaryContainer"
+            app:ensureMinTouchTargetSize="true"
+            app:fabCustomSize="@dimen/subscription_floating_action_size"
+            app:tint="?attr/colorOnSecondaryContainer" />
+    </LinearLayout>
 
 </RelativeLayout>

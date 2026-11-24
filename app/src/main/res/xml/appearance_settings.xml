@@ -306,6 +306,45 @@
         app:iconSpaceReserved="false" />
 
     <ListPreference
+        android:defaultValue="classic"
+        android:entries="@array/bottom_navigation_style_entries"
+        android:entryValues="@array/bottom_navigation_style_values"
+        android:key="@string/bottom_navigation_style_key"
+        android:title="@string/bottom_navigation_style_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
+    <androidx.preference.SeekBarPreference
+        android:defaultValue="8"
+        android:key="@string/floating_navigation_spacing_key"
+        android:max="24"
+        android:summary="@string/floating_navigation_spacing_summary"
+        android:title="@string/floating_navigation_spacing_title"
+        app:min="0"
+        app:seekBarIncrement="2"
+        app:showSeekBarValue="true"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/floating_navigation_spacing_reset_key"
+        android:persistent="false"
+        android:title="@string/floating_navigation_spacing_reset_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <ListPreference
+        android:defaultValue="classic"
+        android:entries="@array/subscription_actions_style_entries"
+        android:entryValues="@array/subscription_actions_style_values"
+        android:key="@string/subscription_actions_style_key"
+        android:title="@string/subscription_actions_style_title"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
         android:defaultValue="@string/tablet_navigation_position_default_value"
         android:entries="@array/tablet_navigation_position_description"
         android:entryValues="@array/tablet_navigation_position_values"

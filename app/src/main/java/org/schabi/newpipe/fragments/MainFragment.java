@@ -60,6 +60,8 @@ import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.search.ContextualSearchHelper;
 import org.schabi.newpipe.local.search.ContextualSearchable;
+import org.schabi.newpipe.local.subscription.SubscriptionActionsHost;
+import org.schabi.newpipe.local.subscription.SubscriptionNavigationActions;
 import org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior;
 import org.schabi.newpipe.settings.tabs.HomeNavigationMode;
 import org.schabi.newpipe.settings.tabs.HomeNavigationModeResolver;
@@ -78,6 +80,7 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ServiceSearchSupport;
 import org.schabi.newpipe.util.VimeoSearchSetupDialog;
 import org.schabi.newpipe.views.ScrollableTabLayout;
+import org.schabi.newpipe.views.MainNavigationGeometry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +88,7 @@ import java.util.List;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MainFragment extends BaseFragment
-        implements TabLayout.OnTabSelectedListener, BackPressable {
+        implements TabLayout.OnTabSelectedListener, BackPressable, SubscriptionActionsHost {
     private static final int BOTTOM_NAVIGATION_MAX_ITEM_COUNT = 5;
     private static final int NAVIGATION_RAIL_MAX_ITEM_COUNT = 7;
     private static final int BOTTOM_NAVIGATION_ITEM_ID_BASE = 10_000;
@@ -367,6 +370,7 @@ public class MainFragment extends BaseFragment
                     + "menu = [" + menu + "], inflater = [" + inflater + "]");
         }
         inflater.inflate(R.menu.menu_main_fragment, menu);
+        notifyCurrentSubscriptionActions();
 
         final MenuItem searchItem = menu.findItem(R.id.action_search);
         if (searchItem != null) {
@@ -374,11 +378,8 @@ public class MainFragment extends BaseFragment
                     getCurrentContextualSearchable() != null);
             ServiceSearchSupport.configureAction(searchItem,
                     ServiceHelper.getSelectedServiceId(requireContext()), localSearch);
-            searchItem.setVisible(!contextualSearchOpen);
-            if (!localSearch && !KidsMode.isSearchAllowed(requireContext(),
-                    ServiceHelper.getSelectedServiceId(requireContext()))) {
-                searchItem.setVisible(false);
-            }
+            searchItem.setVisible(isConfiguredSearchAvailable()
+                    && !hasFloatingSubscriptionSearch());
         }
 
         updateContextualSearchToolbar(false);
@@ -392,20 +393,90 @@ public class MainFragment extends BaseFragment
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            final ContextualSearchable searchable = getCurrentContextualSearchable();
-            if (shouldUseContextualSearch(prefersGlobalSearch(), searchable != null)) {
-                openContextualSearch(searchable);
-                return true;
-            }
-            try {
-                NavigationHelper.openSearchFragment(getFM(),
-                        ServiceHelper.getSelectedServiceId(activity), "");
-            } catch (final Exception e) {
-                ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
-            }
+            performConfiguredSearchAction();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void performConfiguredSearchAction() {
+        if (!isConfiguredSearchAvailable()) {
+            return;
+        }
+        final ContextualSearchable searchable = getCurrentContextualSearchable();
+        if (shouldUseContextualSearch(prefersGlobalSearch(), searchable != null)) {
+            openContextualSearch(searchable);
+            return;
+        }
+        try {
+            NavigationHelper.openSearchFragment(getFM(),
+                    ServiceHelper.getSelectedServiceId(activity), "");
+        } catch (final Exception e) {
+            ErrorUtil.showUiErrorSnackbar(this, "Opening search fragment", e);
+        }
+    }
+
+    @NonNull
+    @Override
+    public String getConfiguredSearchLabel() {
+        return getString(configuredActionUsesSearch() ? R.string.search : R.string.open_link);
+    }
+
+    @Override
+    public int getConfiguredSearchIcon() {
+        return configuredActionUsesSearch() ? R.drawable.ic_search : R.drawable.ic_link;
+    }
+
+    private boolean configuredActionUsesSearch() {
+        return shouldUseContextualSearch(prefersGlobalSearch(),
+                getCurrentContextualSearchable() != null)
+                || ServiceSearchSupport.canOpenSearch(
+                ServiceHelper.getSelectedServiceId(requireContext()));
+    }
+
+    @Override
+    public boolean isConfiguredSearchAvailable() {
+        return binding != null && isAdded() && !contextualSearchOpen
+                && (shouldUseContextualSearch(prefersGlobalSearch(),
+                getCurrentContextualSearchable() != null)
+                || KidsMode.isSearchAllowed(requireContext(),
+                ServiceHelper.getSelectedServiceId(requireContext())));
+    }
+
+    @Override
+    public boolean isContextualSearchOpen() {
+        return contextualSearchOpen;
+    }
+
+    @Override
+    public void notifySubscriptionActionsChanged() {
+        if (binding != null && isAdded()) {
+            notifyCurrentSubscriptionActions();
+            requireActivity().invalidateOptionsMenu();
+        }
+    }
+
+    private void notifyCurrentSubscriptionActions() {
+        if (pagerAdapter != null
+                && pagerAdapter.getPrimaryFragment()
+                instanceof SubscriptionNavigationActions actions) {
+            actions.onMainNavigationActionsChanged();
+        }
+    }
+
+    private boolean hasFloatingSubscriptionSearch() {
+        return pagerAdapter != null
+                && pagerAdapter.getPrimaryFragment()
+                instanceof SubscriptionNavigationActions actions
+                && actions.usesFloatingSearchAction();
+    }
+
+    public void onBottomNavigationGeometryChanged() {
+        if (binding != null && isAdded()) {
+            updateMainNavigationMode();
+            notifyCurrentSubscriptionActions();
+        }
     }
 
     private boolean prefersGlobalSearch() {
@@ -738,6 +809,7 @@ public class MainFragment extends BaseFragment
                     .updateSearchVisibility(actionBar, contextualSearchOpen);
         }
         setActivityContextualSearchToolbarActive(contextualSearchOpen);
+        notifyCurrentSubscriptionActions();
         if (!contextualSearchOpen || tabsList.isEmpty()) {
             return;
         }
@@ -987,8 +1059,8 @@ public class MainFragment extends BaseFragment
         pagerParams.removeRule(ABOVE);
         pagerParams.bottomMargin = 0;
         if (showBottomNavigation && !navigationRail) {
-            pagerParams.bottomMargin = getResources()
-                    .getDimensionPixelSize(R.dimen.main_bottom_navigation_height);
+            pagerParams.bottomMargin = MainNavigationGeometry
+                    .occupiedBottomHeight(bottomNavigation);
         } else if (showTabLayout) {
             pagerParams.addRule(bottom ? ABOVE : BELOW, R.id.main_tab_layout);
         }
@@ -1020,8 +1092,8 @@ public class MainFragment extends BaseFragment
         } else {
             fabParams.addRule(ALIGN_PARENT_BOTTOM);
             if (showBottomNavigation && !isNavigationRail()) {
-                contextualSearchFabBaseBottomMargin += getResources()
-                        .getDimensionPixelSize(R.dimen.main_bottom_navigation_height);
+                contextualSearchFabBaseBottomMargin += MainNavigationGeometry
+                        .occupiedBottomHeight(bottomNavigation);
             }
         }
         updateGlobalSearchFabBottomMargin();
@@ -1069,10 +1141,8 @@ public class MainFragment extends BaseFragment
             if (isNavigationRail()) {
                 bottomNavigation.setTranslationX(-getNavigationRailWidth(bottomNavigation));
             } else {
-                bottomNavigation.setTranslationY(bottomNavigation.getHeight() > 0
-                        ? bottomNavigation.getHeight()
-                        : getResources()
-                        .getDimensionPixelSize(R.dimen.main_bottom_navigation_height));
+                bottomNavigation.setTranslationY(MainNavigationGeometry
+                        .occupiedBottomHeight(bottomNavigation));
             }
             bottomNavigation.setVisibility(View.INVISIBLE);
         } else {
@@ -1230,8 +1300,17 @@ public class MainFragment extends BaseFragment
         @Override
         public void setPrimaryItem(@NonNull final ViewGroup container, final int position,
                                    @NonNull final Object object) {
+            final Fragment previous = primaryFragment;
             super.setPrimaryItem(container, position, object);
             primaryFragment = (Fragment) object;
+            if (previous != primaryFragment) {
+                if (previous instanceof SubscriptionNavigationActions actions) {
+                    actions.onMainNavigationActionsChanged();
+                }
+                if (primaryFragment instanceof SubscriptionNavigationActions actions) {
+                    actions.onMainNavigationActionsChanged();
+                }
+            }
         }
 
         @Nullable

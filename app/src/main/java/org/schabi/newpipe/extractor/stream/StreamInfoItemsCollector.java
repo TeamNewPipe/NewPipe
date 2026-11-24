@@ -126,6 +126,11 @@ public class StreamInfoItemsCollector
         } catch (final Exception e) {
             addError(e);
         }
+        try {
+            resultItem.setUpcomingStatus(extractor.getUpcomingStatus());
+        } catch (final Exception e) {
+            addError(e);
+        }
 
         return resultItem;
     }

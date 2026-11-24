@@ -51,6 +51,65 @@ class DatabaseMigrationTest {
     )
 
     @Test
+    fun migrate33to34PreservesStreamsAndHistoryWithoutGuessingUpcomingStatus() {
+        testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_33).use { database ->
+            for ((index, date) in listOf<Long?>(null, 0L, 4_102_444_800_000L).withIndex()) {
+                database.insert(
+                    "streams",
+                    SQLiteDatabase.CONFLICT_FAIL,
+                    ContentValues().apply {
+                        put("uid", index + 1L)
+                        put("service_id", DEFAULT_SERVICE_ID)
+                        put("url", "https://example.com/stream-$index")
+                        put("title", DEFAULT_TITLE)
+                        put("stream_type", DEFAULT_TYPE.name)
+                        put("duration", DEFAULT_DURATION)
+                        put("uploader", DEFAULT_UPLOADER_NAME)
+                        put("upload_date", date)
+                        put("content_category", "COURSES")
+                    }
+                )
+            }
+            database.execSQL("INSERT INTO stream_history (stream_id, access_date, repeat_count, profile_id) VALUES (1, 123456789, 3, 'profile-a')")
+        }
+        val migrated = testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_34,
+            true,
+            Migrations.MIGRATION_33_34
+        )
+        migrated.query("SELECT uid, title, duration, content_category, upcoming_status FROM streams ORDER BY uid").use { cursor ->
+            for (id in 1L..3L) {
+                assertTrue(cursor.moveToNext())
+                assertEquals(id, cursor.getLong(0))
+                assertEquals(DEFAULT_TITLE, cursor.getString(1))
+                assertEquals(DEFAULT_DURATION, cursor.getLong(2))
+                assertEquals("COURSES", cursor.getString(3))
+                assertTrue(cursor.isNull(4))
+            }
+            assertFalse(cursor.moveToNext())
+        }
+        migrated.query("SELECT stream_id, access_date, repeat_count, profile_id FROM stream_history").use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals(1L, cursor.getLong(0))
+            assertEquals(123456789L, cursor.getLong(1))
+            assertEquals(3L, cursor.getLong(2))
+            assertEquals("profile-a", cursor.getString(3))
+            assertFalse(cursor.moveToNext())
+        }
+        migrated.execSQL("UPDATE streams SET upcoming_status = 1 WHERE uid = 1")
+        migrated.execSQL("UPDATE streams SET upcoming_status = 0 WHERE uid = 2")
+        migrated.query("SELECT upcoming_status FROM streams ORDER BY uid").use { cursor ->
+            assertTrue(cursor.moveToNext())
+            assertEquals(1, cursor.getInt(0))
+            assertTrue(cursor.moveToNext())
+            assertEquals(0, cursor.getInt(0))
+            assertTrue(cursor.moveToNext())
+            assertTrue(cursor.isNull(0))
+        }
+    }
+
+    @Test
     fun migrate32to33IndexesWatchStreamsAndPreservesLegacyPayloads() {
         val url = "https://example.com/watch?q=quoted\"&title=日本語"
         val profile = "11111111-1111-4111-8111-111111111111"
@@ -1401,7 +1460,8 @@ class DatabaseMigrationTest {
                 Migrations.MIGRATION_29_30,
                 Migrations.MIGRATION_30_31,
                 Migrations.MIGRATION_31_32,
-                Migrations.MIGRATION_32_33
+                Migrations.MIGRATION_32_33,
+                Migrations.MIGRATION_33_34
             )
             .build()
         testHelper.closeWhenFinished(database)

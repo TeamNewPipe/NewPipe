@@ -24,6 +24,7 @@ import com.google.android.material.navigationrail.NavigationRailView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.util.DeviceUtils;
+import org.schabi.newpipe.views.MainNavigationGeometry;
 
 import java.util.List;
 
@@ -476,13 +477,7 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior<FrameLayout> 
     }
 
     private static int getBottomNavigationHeight(@NonNull final View view) {
-        if (view instanceof NavigationRailView) {
-            return 0;
-        }
-        return view.getHeight() > 0
-                ? view.getHeight()
-                : view.getResources()
-                .getDimensionPixelSize(R.dimen.main_bottom_navigation_height);
+        return MainNavigationGeometry.occupiedBottomHeight(view);
     }
 
     private static int getNavigationRailWidth(@NonNull final View view) {

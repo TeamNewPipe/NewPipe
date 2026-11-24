@@ -27,6 +27,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResourceRegistry();
         org.schabi.newpipe.settings.appearance.LauncherIcons.bind(this);
         org.schabi.newpipe.settings.appearance.AppFontSettings.bind(this);
+        org.schabi.newpipe.settings.appearance.NavigationAppearanceSettings.bind(this);
 
         final String themeKey = getString(R.string.theme_key);
         final ListPreference themes = findPreference(themeKey);

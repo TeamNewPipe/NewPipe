@@ -42,6 +42,15 @@ public interface StreamInfoItemExtractor extends InfoItemExtractor {
     StreamType getStreamType() throws ParsingException;
 
     /**
+     * Whether the provider identifies this item as scheduled and not yet available.
+     * Return null when the source does not expose enough information to determine its state.
+     */
+    @Nullable
+    default Boolean getUpcomingStatus() throws ParsingException {
+        return null;
+    }
+
+    /**
      * Check if the stream is an ad.
      *
      * @return {@code true} if the stream is an ad.

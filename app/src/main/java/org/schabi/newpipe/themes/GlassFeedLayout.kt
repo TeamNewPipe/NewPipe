@@ -12,6 +12,7 @@ import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.databinding.FragmentFeedBinding
 import org.schabi.newpipe.util.DeviceUtils
+import org.schabi.newpipe.views.MainNavigationGeometry
 
 /** Lets the selected home feed use the space behind the phone's navigation bars. */
 internal class GlassFeedLayout private constructor(
@@ -53,7 +54,7 @@ internal class GlassFeedLayout private constructor(
         if (contentParams.topMargin > 0) topMargin = contentParams.topMargin
         if (pagerParams.bottomMargin > 0) bottomMargin = pagerParams.bottomMargin
         if (active && contentParams.topMargin == 0 && pagerParams.bottomMargin == 0 &&
-            appliedTop == toolbar.height && appliedBottom == nav.height
+            appliedTop == toolbar.height && appliedBottom == MainNavigationGeometry.occupiedBottomHeight(nav)
         ) {
             return true
         }
@@ -63,7 +64,7 @@ internal class GlassFeedLayout private constructor(
         holder.layoutParams = contentParams
         pager.layoutParams = pagerParams
         toolbar.isClickable = true
-        updateInsets(toolbar.height, nav.height)
+        updateInsets(toolbar.height, MainNavigationGeometry.occupiedBottomHeight(nav))
         return false
     }
 

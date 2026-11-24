@@ -91,7 +91,10 @@ data class StreamEntity(
     var isShortFormContent: Boolean = false,
 
     @ColumnInfo(name = STREAM_CONTENT_CATEGORY)
-    var contentCategory: String? = null
+    var contentCategory: String? = null,
+
+    @ColumnInfo(name = STREAM_UPCOMING_STATUS)
+    var upcomingStatus: Boolean? = null
 ) : Serializable {
     @Ignore
     constructor(item: StreamInfoItem) : this(
@@ -106,7 +109,8 @@ data class StreamEntity(
         ),
         requiresMembership = item.requiresMembership(),
         isShortFormContent = item.isShortFormContent,
-        contentCategory = if (!item.albumUrl.isNullOrBlank()) "TRACKS" else null
+        contentCategory = if (!item.albumUrl.isNullOrBlank()) "TRACKS" else null,
+        upcomingStatus = item.upcomingStatus
     )
 
     @Ignore
@@ -122,7 +126,8 @@ data class StreamEntity(
         ),
         requiresMembership = info.requiresMembership(),
         isShortFormContent = info.isShortFormContent,
-        contentCategory = org.schabi.newpipe.util.HistoryContentCategory.fromProvider(info.category)
+        contentCategory = org.schabi.newpipe.util.HistoryContentCategory.fromProvider(info.category),
+        upcomingStatus = info.upcomingStatus
     )
 
     @Ignore
@@ -186,6 +191,7 @@ data class StreamEntity(
         }
         item.setRequiresMembership(requiresMembership)
         item.setShortFormContent(isShortFormContent)
+        item.upcomingStatus = upcomingStatus
 
         return item
     }
@@ -235,6 +241,7 @@ data class StreamEntity(
         const val STREAM_THUMBNAIL_URL = "thumbnail_url"
         const val STREAM_IS_SHORT_FORM_CONTENT = "is_short_form_content"
         const val STREAM_CONTENT_CATEGORY = "content_category"
+        const val STREAM_UPCOMING_STATUS = "upcoming_status"
 
         const val SOURCE_TYPE_REMOTE = "REMOTE"
         const val SOURCE_TYPE_LOCAL = "LOCAL"

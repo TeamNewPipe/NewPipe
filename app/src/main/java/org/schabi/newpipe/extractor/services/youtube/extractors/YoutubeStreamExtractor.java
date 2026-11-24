@@ -1740,6 +1740,11 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         return upcoming;
     }
 
+    @Override
+    public Boolean getUpcomingStatus() {
+        return upcoming;
+    }
+
     /**
      * Fetch the Android VR API and assign the streaming data to the androidStreamingData JSON
      * object.

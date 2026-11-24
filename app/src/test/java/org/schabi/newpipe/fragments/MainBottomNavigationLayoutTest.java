@@ -47,7 +47,7 @@ public class MainBottomNavigationLayoutTest {
         assertTrue(layout.contains(
                 "com.google.android.material.navigationrail.NavigationRailView"));
         assertTrue(layout.contains(
-                "com.google.android.material.bottomnavigation.BottomNavigationView"));
+                "org.schabi.newpipe.views.FloatingBottomNavigationView"));
         assertTrue(layout.contains("android:id=\"@+id/main_navigation_rail\""));
         assertTrue(layout.contains("android:id=\"@+id/main_bottom_navigation\""));
         assertFalse(layout.contains(

@@ -53,7 +53,8 @@ object Migrations {
     const val DB_VER_31 = 31
     const val DB_VER_32 = 32
     const val DB_VER_33 = 33
-    const val DB_VER_CURRENT = DB_VER_33
+    const val DB_VER_34 = 34
+    const val DB_VER_CURRENT = DB_VER_34
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -1089,5 +1090,10 @@ object Migrations {
             "CREATE INDEX IF NOT EXISTS index_history_sync_records_category_profile_id_stream_key " +
                 "ON history_sync_records (category, profile_id, stream_key)"
         )
+    }
+
+    val MIGRATION_33_34 = Migration(DB_VER_33, DB_VER_34) { db ->
+        // Legacy dates cannot prove whether a delayed broadcast has started. Keep them unknown.
+        db.execSQL("ALTER TABLE streams ADD COLUMN upcoming_status INTEGER")
     }
 }

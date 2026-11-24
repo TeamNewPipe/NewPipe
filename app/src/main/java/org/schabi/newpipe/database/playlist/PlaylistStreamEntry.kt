@@ -45,6 +45,7 @@ data class PlaylistStreamEntry(
             duration = streamEntity.duration
             uploaderName = streamEntity.uploader
             uploaderUrl = streamEntity.uploaderUrl
+            upcomingStatus = streamEntity.upcomingStatus
             ExtractorImageCompat.setThumbnailImages(
                 this,
                 ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)

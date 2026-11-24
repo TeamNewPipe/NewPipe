@@ -6,8 +6,8 @@ contract. Each repository entry points to a signed `.ppp` archive containing the
 compiled code. JSON supplies metadata and configuration; website-specific extraction is
 implemented in that code.
 
-This guide describes the plugin implementation in this source branch. Check the release
-notes for availability in a published APK.
+Plugin support requires WizeStream **1.52.0 or newer**. External plugins require Android
+**7/API 24 or newer**; built-in services remain available on Android 6.
 
 ## Install and manage plugins
 
@@ -185,7 +185,7 @@ Its core fields are:
   "versionName": "1.0.0",
   "host": "wizestream",
   "apiVersion": "2.0",
-  "minHostVersionCode": 1051000,
+  "minHostVersionCode": 1052000,
   "minAndroidSdk": 24,
   "requiredCapabilities": ["profile-preferences"],
   "author": "Your name",
@@ -193,9 +193,9 @@ Its core fields are:
 }
 ```
 
-`minHostVersionCode` in the sample identifies the development baseline. Before publishing,
-set it to the first released WizeStream version that actually contains the API you need.
-Version code alone does not add plugin support to an older APK.
+The sample's `minHostVersionCode: 1052000` requires WizeStream **1.52.0 or newer**, the first
+release with native plugin support. Raise this minimum if your plugin uses host APIs added
+in a later release.
 
 `requiredCapabilities` lets a plugin reject a host that lacks a facility it relies on. Native
 API 2.0 currently advertises `profile-preferences`. Unknown required capabilities, a higher

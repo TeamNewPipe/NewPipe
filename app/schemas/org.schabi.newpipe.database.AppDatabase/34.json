@@ -1,0 +1,2562 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 34,
+    "identityHash": "0d69a645a4ba6996d48a87516c9eba36",
+    "entities": [
+      {
+        "tableName": "subscriptions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT, `name` TEXT, `avatar_url` TEXT, `subscriber_count` INTEGER, `description` TEXT, `notification_mode` INTEGER NOT NULL, `notification_keywords` TEXT NOT NULL DEFAULT '', `youtube_mode_mask` INTEGER NOT NULL DEFAULT 1, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `handle` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "avatarUrl",
+            "columnName": "avatar_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "subscriberCount",
+            "columnName": "subscriber_count",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "notificationMode",
+            "columnName": "notification_mode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notificationKeywords",
+            "columnName": "notification_keywords",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          },
+          {
+            "fieldPath": "youtubeModeMask",
+            "columnName": "youtube_mode_mask",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "handle",
+            "columnName": "handle",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_subscriptions_profile_id_service_id_url",
+            "unique": true,
+            "columnNames": [
+              "profile_id",
+              "service_id",
+              "url"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_subscriptions_profile_id_service_id_url` ON `${TABLE_NAME}` (`profile_id`, `service_id`, `url`)"
+          }
+        ]
+      },
+      {
+        "tableName": "search_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`creation_date` INTEGER, `service_id` INTEGER NOT NULL, `search` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000')",
+        "fields": [
+          {
+            "fieldPath": "creationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "search",
+            "columnName": "search",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_search_history_profile_id_search",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "search"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_search_history_profile_id_search` ON `${TABLE_NAME}` (`profile_id`, `search`)"
+          }
+        ]
+      },
+      {
+        "tableName": "streams",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `stream_type` TEXT NOT NULL, `duration` INTEGER NOT NULL, `uploader` TEXT NOT NULL, `uploader_url` TEXT, `thumbnail_url` TEXT, `view_count` INTEGER, `textual_upload_date` TEXT, `upload_date` INTEGER, `is_upload_date_approximation` INTEGER, `uploader_avatar_url` TEXT, `requires_membership` INTEGER NOT NULL DEFAULT 0, `source_type` TEXT NOT NULL DEFAULT 'REMOTE', `mime_type` TEXT, `local_media_id` INTEGER, `local_album` TEXT, `local_folder` TEXT, `is_short_form_content` INTEGER NOT NULL DEFAULT 0, `content_category` TEXT, `upcoming_status` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamType",
+            "columnName": "stream_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uploader",
+            "columnName": "uploader",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uploaderUrl",
+            "columnName": "uploader_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "thumbnailUrl",
+            "columnName": "thumbnail_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "viewCount",
+            "columnName": "view_count",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "textualUploadDate",
+            "columnName": "textual_upload_date",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "uploadDate",
+            "columnName": "upload_date",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isUploadDateApproximation",
+            "columnName": "is_upload_date_approximation",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "uploaderAvatarUrl",
+            "columnName": "uploader_avatar_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "requiresMembership",
+            "columnName": "requires_membership",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "sourceType",
+            "columnName": "source_type",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'REMOTE'"
+          },
+          {
+            "fieldPath": "mimeType",
+            "columnName": "mime_type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "localMediaId",
+            "columnName": "local_media_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "localAlbum",
+            "columnName": "local_album",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "localFolder",
+            "columnName": "local_folder",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isShortFormContent",
+            "columnName": "is_short_form_content",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "contentCategory",
+            "columnName": "content_category",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "upcomingStatus",
+            "columnName": "upcoming_status",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_streams_service_id_url",
+            "unique": true,
+            "columnNames": [
+              "service_id",
+              "url"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_streams_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
+          }
+        ]
+      },
+      {
+        "tableName": "stream_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, `repeat_count` INTEGER NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', PRIMARY KEY(`profile_id`, `stream_id`, `access_date`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "streamUid",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accessDate",
+            "columnName": "access_date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "repeatCount",
+            "columnName": "repeat_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "profile_id",
+            "stream_id",
+            "access_date"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_stream_history_stream_id",
+            "unique": false,
+            "columnNames": [
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stream_history_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+          },
+          {
+            "name": "index_stream_history_profile_id_stream_id",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stream_history_profile_id_stream_id` ON `${TABLE_NAME}` (`profile_id`, `stream_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "stream_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `progress_time` INTEGER NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', PRIMARY KEY(`profile_id`, `stream_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "streamUid",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progressMillis",
+            "columnName": "progress_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "profile_id",
+            "stream_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_stream_state_stream_id",
+            "unique": false,
+            "columnNames": [
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stream_state_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "playlists",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `is_thumbnail_permanent` INTEGER NOT NULL, `thumbnail_stream_id` INTEGER NOT NULL, `display_index` INTEGER NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000')",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isThumbnailPermanent",
+            "columnName": "is_thumbnail_permanent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "thumbnailStreamId",
+            "columnName": "thumbnail_stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayIndex",
+            "columnName": "display_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlists_profile_id_display_index",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "display_index"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlists_profile_id_display_index` ON `${TABLE_NAME}` (`profile_id`, `display_index`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_stream_join",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_id` INTEGER NOT NULL, `stream_id` INTEGER NOT NULL, `join_index` INTEGER NOT NULL, PRIMARY KEY(`playlist_id`, `join_index`), FOREIGN KEY(`playlist_id`) REFERENCES `playlists`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "playlistUid",
+            "columnName": "playlist_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamUid",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "index",
+            "columnName": "join_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playlist_id",
+            "join_index"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_stream_join_playlist_id_join_index",
+            "unique": true,
+            "columnNames": [
+              "playlist_id",
+              "join_index"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_playlist_stream_join_playlist_id_join_index` ON `${TABLE_NAME}` (`playlist_id`, `join_index`)"
+          },
+          {
+            "name": "index_playlist_stream_join_stream_id",
+            "unique": false,
+            "columnNames": [
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_stream_join_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "playlists",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "playlist_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          },
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "remote_playlists",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `name` TEXT, `url` TEXT, `thumbnail_url` TEXT, `uploader` TEXT, `display_index` INTEGER NOT NULL, `stream_count` INTEGER, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000')",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orderingName",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "thumbnailUrl",
+            "columnName": "thumbnail_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "uploader",
+            "columnName": "uploader",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "displayIndex",
+            "columnName": "display_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamCount",
+            "columnName": "stream_count",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_remote_playlists_profile_id_service_id_url",
+            "unique": true,
+            "columnNames": [
+              "profile_id",
+              "service_id",
+              "url"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_remote_playlists_profile_id_service_id_url` ON `${TABLE_NAME}` (`profile_id`, `service_id`, `url`)"
+          },
+          {
+            "name": "index_remote_playlists_profile_id_display_index",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "display_index"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_remote_playlists_profile_id_display_index` ON `${TABLE_NAME}` (`profile_id`, `display_index`)"
+          }
+        ]
+      },
+      {
+        "tableName": "feed",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stream_id` INTEGER NOT NULL, `subscription_id` INTEGER NOT NULL, `youtube_mode_mask` INTEGER NOT NULL DEFAULT 1, `first_discovered_at` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`stream_id`, `subscription_id`, `youtube_mode_mask`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subscriptionId",
+            "columnName": "subscription_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "youtubeModeMask",
+            "columnName": "youtube_mode_mask",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "firstDiscoveredAt",
+            "columnName": "first_discovered_at",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "stream_id",
+            "subscription_id",
+            "youtube_mode_mask"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_feed_subscription_id",
+            "unique": false,
+            "columnNames": [
+              "subscription_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          },
+          {
+            "table": "subscriptions",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "subscription_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "feed_group",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `icon_id` INTEGER NOT NULL, `sort_order` INTEGER NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000')",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_feed_group_profile_id_sort_order",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "sort_order"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_profile_id_sort_order` ON `${TABLE_NAME}` (`profile_id`, `sort_order`)"
+          }
+        ]
+      },
+      {
+        "tableName": "feed_group_subscription_join",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`group_id` INTEGER NOT NULL, `subscription_id` INTEGER NOT NULL, PRIMARY KEY(`group_id`, `subscription_id`), FOREIGN KEY(`group_id`) REFERENCES `feed_group`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "feedGroupId",
+            "columnName": "group_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subscriptionId",
+            "columnName": "subscription_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "group_id",
+            "subscription_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_feed_group_subscription_join_subscription_id",
+            "unique": false,
+            "columnNames": [
+              "subscription_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_feed_group_subscription_join_subscription_id` ON `${TABLE_NAME}` (`subscription_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "feed_group",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "group_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          },
+          {
+            "table": "subscriptions",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "subscription_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "feed_last_updated",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subscription_id` INTEGER NOT NULL, `youtube_mode_mask` INTEGER NOT NULL DEFAULT 1, `last_updated` INTEGER, PRIMARY KEY(`subscription_id`, `youtube_mode_mask`), FOREIGN KEY(`subscription_id`) REFERENCES `subscriptions`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "subscriptionId",
+            "columnName": "subscription_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "youtubeModeMask",
+            "columnName": "youtube_mode_mask",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "last_updated",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "subscription_id",
+            "youtube_mode_mask"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "subscriptions",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "subscription_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "saved_search_feed",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `service_id` INTEGER NOT NULL, `query` TEXT NOT NULL, `content_filter` TEXT NOT NULL, `sort_filter` TEXT NOT NULL, `sort_order` INTEGER NOT NULL, `last_refresh` INTEGER, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000')",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "query",
+            "columnName": "query",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contentFilter",
+            "columnName": "content_filter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortFilter",
+            "columnName": "sort_filter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastRefresh",
+            "columnName": "last_refresh",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_saved_search_feed_profile_id_sort_order",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "sort_order"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_saved_search_feed_profile_id_sort_order` ON `${TABLE_NAME}` (`profile_id`, `sort_order`)"
+          },
+          {
+            "name": "index_saved_search_feed_profile_id_service_id_query_content_filter_sort_filter",
+            "unique": true,
+            "columnNames": [
+              "profile_id",
+              "service_id",
+              "query",
+              "content_filter",
+              "sort_filter"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_saved_search_feed_profile_id_service_id_query_content_filter_sort_filter` ON `${TABLE_NAME}` (`profile_id`, `service_id`, `query`, `content_filter`, `sort_filter`)"
+          }
+        ]
+      },
+      {
+        "tableName": "saved_search_feed_stream",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`feed_id` INTEGER NOT NULL, `stream_id` INTEGER NOT NULL, `position` INTEGER NOT NULL, PRIMARY KEY(`feed_id`, `stream_id`), FOREIGN KEY(`feed_id`) REFERENCES `saved_search_feed`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "feedId",
+            "columnName": "feed_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "feed_id",
+            "stream_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_saved_search_feed_stream_stream_id",
+            "unique": false,
+            "columnNames": [
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_saved_search_feed_stream_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+          },
+          {
+            "name": "index_saved_search_feed_stream_feed_id_position",
+            "unique": true,
+            "columnNames": [
+              "feed_id",
+              "position"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_saved_search_feed_stream_feed_id_position` ON `${TABLE_NAME}` (`feed_id`, `position`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "saved_search_feed",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "feed_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          },
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "subscription_sync_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `lamport_version` INTEGER NOT NULL, `record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `change_type` TEXT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `name` TEXT, `avatar_url` TEXT, `subscriber_count` INTEGER, `description` TEXT, `youtube_mode_mask` INTEGER, `notification_mode` INTEGER, `notification_keywords` TEXT, PRIMARY KEY(`origin_peer_id`, `origin_revision`))",
+        "fields": [
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "changeType",
+            "columnName": "change_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "avatarUrl",
+            "columnName": "avatar_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "subscriberCount",
+            "columnName": "subscriber_count",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "youtubeModeMask",
+            "columnName": "youtube_mode_mask",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notificationMode",
+            "columnName": "notification_mode",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notificationKeywords",
+            "columnName": "notification_keywords",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "origin_peer_id",
+            "origin_revision"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_subscription_sync_changes_record_id",
+            "unique": false,
+            "columnNames": [
+              "record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_subscription_sync_changes_record_id` ON `${TABLE_NAME}` (`record_id`)"
+          },
+          {
+            "name": "index_subscription_sync_changes_lamport_version_origin_peer_id_origin_revision",
+            "unique": false,
+            "columnNames": [
+              "lamport_version",
+              "origin_peer_id",
+              "origin_revision"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_subscription_sync_changes_lamport_version_origin_peer_id_origin_revision` ON `${TABLE_NAME}` (`lamport_version`, `origin_peer_id`, `origin_revision`)"
+          }
+        ]
+      },
+      {
+        "tableName": "subscription_sync_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `service_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `lamport_version` INTEGER NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `is_deleted` INTEGER NOT NULL, `youtube_mode_mask` INTEGER NOT NULL DEFAULT 1, `notification_mode` INTEGER, `notification_keywords` TEXT, PRIMARY KEY(`record_id`))",
+        "fields": [
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDeleted",
+            "columnName": "is_deleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "youtubeModeMask",
+            "columnName": "youtube_mode_mask",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "notificationMode",
+            "columnName": "notification_mode",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notificationKeywords",
+            "columnName": "notification_keywords",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_subscription_sync_records_profile_id_service_id_url",
+            "unique": true,
+            "columnNames": [
+              "profile_id",
+              "service_id",
+              "url"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_subscription_sync_records_profile_id_service_id_url` ON `${TABLE_NAME}` (`profile_id`, `service_id`, `url`)"
+          }
+        ]
+      },
+      {
+        "tableName": "subscription_sync_origin_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`origin_peer_id` TEXT NOT NULL, `contiguous_revision` INTEGER NOT NULL, PRIMARY KEY(`origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contiguousRevision",
+            "columnName": "contiguous_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "origin_peer_id"
+          ]
+        }
+      },
+      {
+        "tableName": "subscription_sync_peer_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`peer_id` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `acknowledged_revision` INTEGER NOT NULL, PRIMARY KEY(`peer_id`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "peerId",
+            "columnName": "peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acknowledgedRevision",
+            "columnName": "acknowledged_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "peer_id",
+            "origin_peer_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_subscription_sync_peer_state_origin_peer_id",
+            "unique": false,
+            "columnNames": [
+              "origin_peer_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_subscription_sync_peer_state_origin_peer_id` ON `${TABLE_NAME}` (`origin_peer_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_sync_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `lamport_version` INTEGER NOT NULL, `record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `record_type` TEXT NOT NULL, `parent_record_id` TEXT, `change_type` TEXT NOT NULL, `record_json` TEXT, PRIMARY KEY(`origin_peer_id`, `origin_revision`))",
+        "fields": [
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentRecordId",
+            "columnName": "parent_record_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "changeType",
+            "columnName": "change_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "origin_peer_id",
+            "origin_revision"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_sync_changes_record_id",
+            "unique": false,
+            "columnNames": [
+              "record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_changes_record_id` ON `${TABLE_NAME}` (`record_id`)"
+          },
+          {
+            "name": "index_playlist_sync_changes_parent_record_id",
+            "unique": false,
+            "columnNames": [
+              "parent_record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_changes_parent_record_id` ON `${TABLE_NAME}` (`parent_record_id`)"
+          },
+          {
+            "name": "index_playlist_sync_changes_lamport_version_origin_peer_id_origin_revision",
+            "unique": false,
+            "columnNames": [
+              "lamport_version",
+              "origin_peer_id",
+              "origin_revision"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_changes_lamport_version_origin_peer_id_origin_revision` ON `${TABLE_NAME}` (`lamport_version`, `origin_peer_id`, `origin_revision`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_sync_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `record_type` TEXT NOT NULL, `parent_record_id` TEXT, `lamport_version` INTEGER NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `is_deleted` INTEGER NOT NULL, `record_json` TEXT, PRIMARY KEY(`record_id`))",
+        "fields": [
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentRecordId",
+            "columnName": "parent_record_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDeleted",
+            "columnName": "is_deleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_sync_records_parent_record_id",
+            "unique": false,
+            "columnNames": [
+              "parent_record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_records_parent_record_id` ON `${TABLE_NAME}` (`parent_record_id`)"
+          },
+          {
+            "name": "index_playlist_sync_records_record_type",
+            "unique": false,
+            "columnNames": [
+              "record_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_records_record_type` ON `${TABLE_NAME}` (`record_type`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_sync_origin_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`origin_peer_id` TEXT NOT NULL, `contiguous_revision` INTEGER NOT NULL, PRIMARY KEY(`origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contiguousRevision",
+            "columnName": "contiguous_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "origin_peer_id"
+          ]
+        }
+      },
+      {
+        "tableName": "playlist_sync_peer_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`peer_id` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `acknowledged_revision` INTEGER NOT NULL, PRIMARY KEY(`peer_id`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "peerId",
+            "columnName": "peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acknowledgedRevision",
+            "columnName": "acknowledged_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "peer_id",
+            "origin_peer_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_sync_peer_state_origin_peer_id",
+            "unique": false,
+            "columnNames": [
+              "origin_peer_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_sync_peer_state_origin_peer_id` ON `${TABLE_NAME}` (`origin_peer_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_sync_local_map",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playlist_record_id` TEXT NOT NULL, `playlist_uid` INTEGER NOT NULL, PRIMARY KEY(`playlist_record_id`))",
+        "fields": [
+          {
+            "fieldPath": "playlistRecordId",
+            "columnName": "playlist_record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playlistUid",
+            "columnName": "playlist_uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "playlist_record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_sync_local_map_playlist_uid",
+            "unique": true,
+            "columnNames": [
+              "playlist_uid"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_playlist_sync_local_map_playlist_uid` ON `${TABLE_NAME}` (`playlist_uid`)"
+          }
+        ]
+      },
+      {
+        "tableName": "history_sync_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `lamport_version` INTEGER NOT NULL, `record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `record_type` TEXT NOT NULL, `change_type` TEXT NOT NULL, `record_json` TEXT, PRIMARY KEY(`category`, `origin_peer_id`, `origin_revision`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeType",
+            "columnName": "change_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "origin_peer_id",
+            "origin_revision"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_history_sync_changes_category_record_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_sync_changes_category_record_id` ON `${TABLE_NAME}` (`category`, `record_id`)"
+          },
+          {
+            "name": "index_history_sync_changes_category_lamport_version_origin_peer_id_origin_revision",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "lamport_version",
+              "origin_peer_id",
+              "origin_revision"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_sync_changes_category_lamport_version_origin_peer_id_origin_revision` ON `${TABLE_NAME}` (`category`, `lamport_version`, `origin_peer_id`, `origin_revision`)"
+          }
+        ]
+      },
+      {
+        "tableName": "history_sync_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `record_id` TEXT NOT NULL, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', `record_type` TEXT NOT NULL, `lamport_version` INTEGER NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `is_deleted` INTEGER NOT NULL, `record_json` TEXT, `stream_key` TEXT, PRIMARY KEY(`category`, `record_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDeleted",
+            "columnName": "is_deleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "streamKey",
+            "columnName": "stream_key",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_history_sync_records_category_record_type",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "record_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_sync_records_category_record_type` ON `${TABLE_NAME}` (`category`, `record_type`)"
+          },
+          {
+            "name": "index_history_sync_records_category_profile_id_stream_key",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "profile_id",
+              "stream_key"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_sync_records_category_profile_id_stream_key` ON `${TABLE_NAME}` (`category`, `profile_id`, `stream_key`)"
+          }
+        ]
+      },
+      {
+        "tableName": "history_sync_origin_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `contiguous_revision` INTEGER NOT NULL, PRIMARY KEY(`category`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contiguousRevision",
+            "columnName": "contiguous_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "origin_peer_id"
+          ]
+        }
+      },
+      {
+        "tableName": "history_sync_peer_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `peer_id` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `acknowledged_revision` INTEGER NOT NULL, PRIMARY KEY(`category`, `peer_id`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "peerId",
+            "columnName": "peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acknowledgedRevision",
+            "columnName": "acknowledged_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "peer_id",
+            "origin_peer_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_history_sync_peer_state_category_origin_peer_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "origin_peer_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_history_sync_peer_state_category_origin_peer_id` ON `${TABLE_NAME}` (`category`, `origin_peer_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "structured_preference_sync_changes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `lamport_version` INTEGER NOT NULL, `record_id` TEXT NOT NULL, `record_type` TEXT NOT NULL, `parent_record_id` TEXT, `change_type` TEXT NOT NULL, `record_json` TEXT NOT NULL, PRIMARY KEY(`category`, `origin_peer_id`, `origin_revision`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentRecordId",
+            "columnName": "parent_record_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "changeType",
+            "columnName": "change_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "origin_peer_id",
+            "origin_revision"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_structured_preference_sync_changes_category_record_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_changes_category_record_id` ON `${TABLE_NAME}` (`category`, `record_id`)"
+          },
+          {
+            "name": "index_structured_preference_sync_changes_category_parent_record_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "parent_record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_changes_category_parent_record_id` ON `${TABLE_NAME}` (`category`, `parent_record_id`)"
+          },
+          {
+            "name": "index_structured_preference_sync_changes_category_lamport_version_origin_peer_id_origin_revision",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "lamport_version",
+              "origin_peer_id",
+              "origin_revision"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_changes_category_lamport_version_origin_peer_id_origin_revision` ON `${TABLE_NAME}` (`category`, `lamport_version`, `origin_peer_id`, `origin_revision`)"
+          }
+        ]
+      },
+      {
+        "tableName": "structured_preference_sync_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `record_id` TEXT NOT NULL, `record_type` TEXT NOT NULL, `parent_record_id` TEXT, `lamport_version` INTEGER NOT NULL, `origin_peer_id` TEXT NOT NULL, `origin_revision` INTEGER NOT NULL, `is_deleted` INTEGER NOT NULL, `record_json` TEXT NOT NULL, PRIMARY KEY(`category`, `record_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordType",
+            "columnName": "record_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentRecordId",
+            "columnName": "parent_record_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lamportVersion",
+            "columnName": "lamport_version",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originRevision",
+            "columnName": "origin_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDeleted",
+            "columnName": "is_deleted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordJson",
+            "columnName": "record_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_structured_preference_sync_records_category_record_type",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "record_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_records_category_record_type` ON `${TABLE_NAME}` (`category`, `record_type`)"
+          },
+          {
+            "name": "index_structured_preference_sync_records_category_parent_record_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "parent_record_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_records_category_parent_record_id` ON `${TABLE_NAME}` (`category`, `parent_record_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "structured_preference_sync_origin_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `contiguous_revision` INTEGER NOT NULL, PRIMARY KEY(`category`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contiguousRevision",
+            "columnName": "contiguous_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "origin_peer_id"
+          ]
+        }
+      },
+      {
+        "tableName": "structured_preference_sync_peer_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `peer_id` TEXT NOT NULL, `origin_peer_id` TEXT NOT NULL, `acknowledged_revision` INTEGER NOT NULL, PRIMARY KEY(`category`, `peer_id`, `origin_peer_id`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "peerId",
+            "columnName": "peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originPeerId",
+            "columnName": "origin_peer_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acknowledgedRevision",
+            "columnName": "acknowledged_revision",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category",
+            "peer_id",
+            "origin_peer_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_structured_preference_sync_peer_state_category_origin_peer_id",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "origin_peer_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_structured_preference_sync_peer_state_category_origin_peer_id` ON `${TABLE_NAME}` (`category`, `origin_peer_id`)"
+          }
+        ]
+      },
+      {
+        "tableName": "structured_preference_sync_feed_group_map",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`group_record_id` TEXT NOT NULL, `group_uid` INTEGER NOT NULL, PRIMARY KEY(`group_record_id`))",
+        "fields": [
+          {
+            "fieldPath": "groupRecordId",
+            "columnName": "group_record_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "groupUid",
+            "columnName": "group_uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "group_record_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_structured_preference_sync_feed_group_map_group_uid",
+            "unique": true,
+            "columnNames": [
+              "group_uid"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_structured_preference_sync_feed_group_map_group_uid` ON `${TABLE_NAME}` (`group_uid`)"
+          }
+        ]
+      },
+      {
+        "tableName": "structured_preference_sync_local_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`category` TEXT NOT NULL, `snapshot_hash` TEXT NOT NULL, PRIMARY KEY(`category`))",
+        "fields": [
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snapshotHash",
+            "columnName": "snapshot_hash",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "category"
+          ]
+        }
+      },
+      {
+        "tableName": "learning_notes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`note_id` TEXT NOT NULL, `stream_id` INTEGER NOT NULL, `timestamp_ms` INTEGER NOT NULL, `note_text` TEXT NOT NULL, `created_at` INTEGER NOT NULL, `updated_at` INTEGER NOT NULL, PRIMARY KEY(`note_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "noteId",
+            "columnName": "note_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestampMillis",
+            "columnName": "timestamp_ms",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "noteText",
+            "columnName": "note_text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtEpochMillis",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAtEpochMillis",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "note_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_learning_notes_stream_id_timestamp_ms",
+            "unique": false,
+            "columnNames": [
+              "stream_id",
+              "timestamp_ms"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_notes_stream_id_timestamp_ms` ON `${TABLE_NAME}` (`stream_id`, `timestamp_ms`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "learning_sessions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`session_id` TEXT NOT NULL, `stream_id` INTEGER NOT NULL, `started_at` INTEGER NOT NULL, `ended_at` INTEGER NOT NULL, `watched_duration_ms` INTEGER NOT NULL, `local_date` TEXT NOT NULL, `background_playback` INTEGER NOT NULL, `is_designated` INTEGER NOT NULL DEFAULT 0, `profile_id` TEXT NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', PRIMARY KEY(`session_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "sessionId",
+            "columnName": "session_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startedAtEpochMillis",
+            "columnName": "started_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAtEpochMillis",
+            "columnName": "ended_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "watchedDurationMillis",
+            "columnName": "watched_duration_ms",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localDate",
+            "columnName": "local_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "backgroundPlayback",
+            "columnName": "background_playback",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "designatedLearningContent",
+            "columnName": "is_designated",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "profileId",
+            "columnName": "profile_id",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'00000000-0000-0000-0000-000000000000'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "session_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_learning_sessions_stream_id_started_at",
+            "unique": false,
+            "columnNames": [
+              "stream_id",
+              "started_at"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_sessions_stream_id_started_at` ON `${TABLE_NAME}` (`stream_id`, `started_at`)"
+          },
+          {
+            "name": "index_learning_sessions_local_date",
+            "unique": false,
+            "columnNames": [
+              "local_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_sessions_local_date` ON `${TABLE_NAME}` (`local_date`)"
+          },
+          {
+            "name": "index_learning_sessions_profile_id_local_date",
+            "unique": false,
+            "columnNames": [
+              "profile_id",
+              "local_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_sessions_profile_id_local_date` ON `${TABLE_NAME}` (`profile_id`, `local_date`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "learning_content_sources",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`source_id` TEXT NOT NULL, `source_type` TEXT NOT NULL, `local_playlist_id` INTEGER, `service_id` INTEGER, `url` TEXT, `title` TEXT, `thumbnail_url` TEXT, `created_at` INTEGER NOT NULL, PRIMARY KEY(`source_id`), FOREIGN KEY(`local_playlist_id`) REFERENCES `playlists`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "sourceId",
+            "columnName": "source_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceType",
+            "columnName": "source_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localPlaylistId",
+            "columnName": "local_playlist_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "serviceId",
+            "columnName": "service_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "thumbnailUrl",
+            "columnName": "thumbnail_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "source_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_learning_content_sources_local_playlist_id",
+            "unique": false,
+            "columnNames": [
+              "local_playlist_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_content_sources_local_playlist_id` ON `${TABLE_NAME}` (`local_playlist_id`)"
+          },
+          {
+            "name": "index_learning_content_sources_source_type",
+            "unique": false,
+            "columnNames": [
+              "source_type"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_content_sources_source_type` ON `${TABLE_NAME}` (`source_type`)"
+          },
+          {
+            "name": "index_learning_content_sources_service_id_url",
+            "unique": false,
+            "columnNames": [
+              "service_id",
+              "url"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_content_sources_service_id_url` ON `${TABLE_NAME}` (`service_id`, `url`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "playlists",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "local_playlist_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "learning_content_streams",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`source_id` TEXT NOT NULL, `stream_id` INTEGER NOT NULL, PRIMARY KEY(`source_id`, `stream_id`), FOREIGN KEY(`source_id`) REFERENCES `learning_content_sources`(`source_id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "sourceId",
+            "columnName": "source_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "source_id",
+            "stream_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_learning_content_streams_stream_id",
+            "unique": false,
+            "columnNames": [
+              "stream_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_learning_content_streams_stream_id` ON `${TABLE_NAME}` (`stream_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "learning_content_sources",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "source_id"
+            ],
+            "referencedColumns": [
+              "source_id"
+            ]
+          },
+          {
+            "table": "streams",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "stream_id"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0d69a645a4ba6996d48a87516c9eba36')"
+    ]
+  }
+}

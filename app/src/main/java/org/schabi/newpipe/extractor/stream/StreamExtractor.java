@@ -691,6 +691,14 @@ public abstract class StreamExtractor extends Extractor {
         return false;
     }
 
+    /**
+     * Provider-reported schedule state. Older providers only report a positive upcoming flag.
+     */
+    @Nullable
+    public Boolean getUpcomingStatus() {
+        return isUpcoming() ? true : null;
+    }
+
     /*Live start time in millisecond. Just use if current status can't be fetched from the segment*/
     public long getStartAt() throws ParsingException {
         return -1;

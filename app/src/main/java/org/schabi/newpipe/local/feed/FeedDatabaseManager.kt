@@ -212,7 +212,7 @@ class FeedDatabaseManager @JvmOverloads constructor(
             val uploadDate = stream.uploadDate
 
             when {
-                uploadDate == null && stream.streamType == StreamType.LIVE_STREAM -> stream
+                uploadDate == null && (stream.streamType == StreamType.LIVE_STREAM || stream.upcomingStatus == true) -> stream
                 uploadDate != null && uploadDate.offsetDateTime() >= oldestAllowedDate -> stream
                 else -> null
             }

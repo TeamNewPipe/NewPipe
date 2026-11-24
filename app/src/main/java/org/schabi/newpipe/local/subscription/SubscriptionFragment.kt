@@ -63,7 +63,7 @@ import org.schabi.newpipe.util.NavigationHelper
 import org.schabi.newpipe.util.OnClickGesture
 import org.schabi.newpipe.util.ServiceHelper
 
-class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualSearchable {
+class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualSearchable, SubscriptionNavigationActions {
     private var _binding: FragmentSubscriptionBinding? = null
     private val binding get() = _binding!!
 
@@ -93,13 +93,21 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private var pendingBrowseAnchor: SubscriptionScrollAnchor? = null
     private var countDisposable: io.reactivex.rxjava3.disposables.Disposable? = null
     private var fastScroller: ListFastScroller? = null
+    private var floatingActions: SubscriptionFloatingActions? = null
     private var interfacePreferences: SharedPreferences? = null
     private var importShortcutKey: String? = null
+    private var actionsStyleKey: String? = null
     private val interfacePreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-        if (key == null || key == importShortcutKey) {
+        if (key == null || key == importShortcutKey || key == actionsStyleKey ||
+            key == context?.getString(R.string.search_button_behavior_key)
+        ) {
             val currentBinding = _binding ?: return@OnSharedPreferenceChangeListener
             currentBinding.itemsList.post {
-                if (_binding === currentBinding) updateImportShortcutVisibility()
+                if (_binding === currentBinding && context != null) {
+                    updateGroupShortcuts()
+                    updateFloatingActions()
+                    actionsHost()?.notifySubscriptionActionsChanged()
+                }
             }
         }
     }
@@ -137,8 +145,15 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         return inflater.inflate(R.layout.fragment_subscription, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateFloatingActions()
+        actionsHost()?.notifySubscriptionActionsChanged()
+    }
+
     override fun onPause() {
         super.onPause()
+        updateFloatingActions(active = false)
         itemsListState = binding.itemsList.layoutManager?.onSaveInstanceState()
         feedGroupsCarouselState = feedGroupsCarousel.onSaveInstanceState()
     }
@@ -147,6 +162,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         interfacePreferences?.unregisterOnSharedPreferenceChangeListener(interfacePreferenceListener)
         interfacePreferences = null
         importShortcutKey = null
+        actionsStyleKey = null
+        floatingActions?.dispose()
+        floatingActions = null
         channelActions.close()
         bulkActions.close()
         groupActions.close()
@@ -346,6 +364,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     override fun initViews(rootView: View, savedInstanceState: Bundle?) {
         super.initViews(rootView, savedInstanceState)
         _binding = FragmentSubscriptionBinding.bind(rootView)
+        floatingActions = SubscriptionFloatingActions(
+            binding,
+            createGroup = { if (isResumed && !sortingEnabled) showCreateGroupDialog() },
+            search = { actionsHost()?.performConfiguredSearchAction() },
+            onSearchVisibilityChanged = { actionsHost()?.notifySubscriptionActionsChanged() }
+        )
         sortingEnabled = savedInstanceState?.getString("subscription_sort_profile") == activeProfileId &&
             savedInstanceState?.getBoolean("subscription_sort_enabled") == true
 
@@ -372,6 +396,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
 
         setupInitialLayout()
         importShortcutKey = getString(R.string.show_subscription_import_shortcut_key)
+        actionsStyleKey = getString(R.string.subscription_actions_style_key)
         interfacePreferences = PreferenceManager.getDefaultSharedPreferences(requireContext()).also {
             it.registerOnSharedPreferenceChangeListener(interfacePreferenceListener)
         }
@@ -439,6 +464,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         binding.itemsList.animate().cancel()
         binding.itemsList.alpha = 1f
         binding.itemsList.visibility = if (sortingEnabled) View.GONE else View.VISIBLE
+        updateFloatingActions()
     }
 
     private fun updateSortingHeader() {
@@ -481,11 +507,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
                     is FeedGroupCardGridItem ->
                         NavigationHelper.openFeedFragment(fm, item.groupId, item.name)
 
-                    is FeedGroupAddNewItem ->
-                        FeedGroupDialog.newInstance().show(fm, null)
-
-                    is FeedGroupAddNewGridItem ->
-                        FeedGroupDialog.newInstance().show(fm, null)
+                    is FeedGroupAddNewItem, is FeedGroupAddNewGridItem -> showCreateGroupDialog()
 
                     is FeedGroupImportItem, is FeedGroupImportGridItem ->
                         importExportHelper.onImportPreviousSelected()
@@ -600,6 +622,31 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             .show()
     }
 
+    private fun showCreateGroupDialog() {
+        FeedGroupDialog.newInstance().show(fm, null)
+    }
+
+    private fun actionsHost(): SubscriptionActionsHost? = parentFragment as? SubscriptionActionsHost
+
+    private fun floatingActionsEnabled(): Boolean = actionsHost() != null && SubscriptionFloatingActions.enabled(requireContext())
+
+    override fun onMainNavigationActionsChanged() {
+        updateFloatingActions()
+    }
+
+    override fun usesFloatingSearchAction(): Boolean = isResumed && floatingActions?.searchIsVisible == true
+
+    private fun updateFloatingActions(active: Boolean = isResumed) {
+        val current = floatingActions ?: return
+        val host = actionsHost()
+        current.update(
+            showActions = active && floatingActionsEnabled() && !sortingEnabled && host?.isContextualSearchOpen() != true,
+            searchAvailable = host?.isConfiguredSearchAvailable() == true,
+            searchLabel = host?.getConfiguredSearchLabel() ?: getString(R.string.search),
+            searchIcon = host?.getConfiguredSearchIcon() ?: R.drawable.ic_search
+        )
+    }
+
     private fun toggleListViewMode() {
         viewModel.setListViewMode(!viewModel.getListViewMode())
     }
@@ -694,31 +741,27 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             carouselAdapter.apply {
                 clear()
                 if (listViewMode) {
-                    add(FeedGroupAddNewItem())
-                    if (showImportShortcut()) add(FeedGroupImportItem())
                     add(FeedGroupCardItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 } else {
-                    add(FeedGroupAddNewGridItem())
-                    if (showImportShortcut()) add(FeedGroupImportGridItem())
                     add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 }
                 addAll(groups)
             }
+            updateGroupShortcuts()
         }
     }
 
     private fun showImportShortcut(): Boolean = PreferenceManager.getDefaultSharedPreferences(requireContext())
         .getBoolean(getString(R.string.show_subscription_import_shortcut_key), true)
 
-    private fun updateImportShortcutVisibility() {
+    private fun updateGroupShortcuts() {
         if (!::carouselAdapter.isInitialized || carouselAdapter.itemCount == 0) return
-        val existing = (0 until carouselAdapter.itemCount).map(carouselAdapter::getItem)
-            .firstOrNull { it is FeedGroupImportItem || it is FeedGroupImportGridItem }
-        if (!showImportShortcut()) {
-            existing?.let(carouselAdapter::remove)
-        } else if (existing == null) {
-            carouselAdapter.add(1, if (feedGroupsCarousel.listViewMode) FeedGroupImportItem() else FeedGroupImportGridItem())
-        }
+        SubscriptionGroupShortcuts.update(
+            carouselAdapter,
+            listMode = feedGroupsCarousel.listViewMode,
+            showCreate = !floatingActionsEnabled(),
+            showImport = showImportShortcut()
+        )
     }
 
     // /////////////////////////////////////////////////////////////////////////

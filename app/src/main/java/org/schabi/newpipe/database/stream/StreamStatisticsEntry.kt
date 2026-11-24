@@ -56,6 +56,7 @@ data class StreamStatisticsEntry(
                 DateWrapper(it, streamEntity.isUploadDateApproximation ?: false)
             }
             setShortFormContent(streamEntity.isShortFormContent)
+            upcomingStatus = streamEntity.upcomingStatus
             ExtractorImageCompat.setThumbnailImages(
                 this,
                 ImageStrategy.dbUrlToImageList(streamEntity.thumbnailUrl)

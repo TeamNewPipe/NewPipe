@@ -5,6 +5,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamStateEntity
@@ -75,6 +77,43 @@ class StreamListFilterTest {
         assertTrue(StreamListFilter.matches(StreamListFilter.UPCOMING, upcoming, null))
         assertFalse(StreamListFilter.matches(StreamListFilter.LIVE, upcoming, null))
         assertEquals(StreamListFilter.UPCOMING, StreamListFilter.categoryOf(upcoming, now))
+    }
+
+    @Test
+    fun `explicit status handles delayed and undated events and overrides stale future dates`() {
+        val now = OffsetDateTime.parse("2026-09-08T12:00:00Z")
+        for (date in listOf(null, now.minusHours(2), now.plusHours(2))) {
+            val scheduled = stream().apply {
+                upcomingStatus = true
+                uploadDate = date?.let { DateWrapper(it) }
+            }
+            assertEquals(StreamListFilter.UPCOMING, StreamListFilter.categoryOf(scheduled, now))
+        }
+        for (type in listOf(StreamType.LIVE_STREAM, StreamType.VIDEO_STREAM, StreamType.POST_LIVE_STREAM)) {
+            val available = stream(type = type).apply {
+                upcomingStatus = false
+                uploadDate = DateWrapper(now.plusHours(2))
+            }
+            val expected = if (type == StreamType.LIVE_STREAM) StreamListFilter.LIVE else StreamListFilter.VIDEOS
+            assertEquals(expected, StreamListFilter.categoryOf(available, now))
+            available.upcomingStatus = null
+            assertEquals(StreamListFilter.UPCOMING, StreamListFilter.categoryOf(available, now))
+        }
+    }
+
+    @Test
+    fun `entity and local item conversions preserve nullable provider status`() {
+        val date = OffsetDateTime.parse("2026-09-08T12:00:00Z")
+        for (status in listOf(true, false, null)) {
+            val entity = StreamEntity(stream().apply { upcomingStatus = status })
+            val restored = listOf(
+                entity.toStreamInfoItem(),
+                StreamStatisticsEntry(entity, 0, 1, date, 1).toStreamInfoItem(),
+                StreamHistoryEntry(entity, 1, date, 1).toStreamInfoItem(),
+                PlaylistStreamEntry(entity, 0, 1, 0).toStreamInfoItem()
+            )
+            restored.forEach { assertEquals(status, it.upcomingStatus) }
+        }
     }
 
     @Test

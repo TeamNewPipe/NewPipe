@@ -19,7 +19,8 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
-<li><a href="#unreleased">Unreleased</a></li>
+<li><a href="#release-1052001">WizeStream 1.52.1 (2026-11-24)</a></li>
+<li><a href="#release-1052000">WizeStream 1.52.0 (2026-11-24)</a></li>
 <li><a href="#release-1051000">WizeStream 1.51.0 (2026-11-24)</a></li>
 <li><a href="#release-1050000">WizeStream 1.50.0 (2026-11-22)</a></li>
 <li><a href="#release-1049001">WizeStream 1.49.1 (2026-11-21)</a></li>
@@ -123,9 +124,30 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
-<section id="unreleased">
-<h2>Unreleased</h2>
+<section id="release-1052001" data-version="1.52.1" data-version-code="1052001">
+<h2>WizeStream 1.52.1 (<time datetime="2026-11-24">2026-11-24</time>)</h2>
 <div class="release-notes">
+<h3>Upcoming visibility</h3>
+<ul>
+<li>Keep scheduled YouTube broadcasts in Upcoming while they are still waiting, including delayed events and cards without a start time.</li>
+<li>Preserve confirmed upcoming status in saved feeds and update it when a broadcast starts or becomes a recording.</li>
+<li>Apply the Upcoming visibility choice consistently while preserving explicit filter selections.</li>
+</ul>
+<h3>Subscription editing</h3>
+<ul>
+<li>Let subscription editing controls scroll with the channels so complete rows remain reachable above the mini-player, including short landscape windows.</li>
+<li>Preserve channel selection, reordering and scroll position when moving between browsing and editing.</li>
+</ul>
+</div>
+</section>
+<section id="release-1052000" data-version="1.52.0" data-version-code="1052000">
+<h2>WizeStream 1.52.0 (<time datetime="2026-11-24">2026-11-24</time>)</h2>
+<div class="release-notes">
+<h3>Floating navigation</h3>
+<ul>
+<li>Add optional floating bottom navigation with adjustable spacing and a reset in Appearance settings; Classic remains the default.</li>
+<li>Offer an independent floating New group and Search layout for Subscriptions, using the configured search action and hiding the buttons while the keyboard is open.</li>
+</ul>
 <h3>Service plugins</h3>
 <ul>
 <li>Use the WizeStream Plugins catalog by default instead of the former PipePipe built-in catalog, while preserving installed plugins and added repositories.</li>
@@ -133,6 +155,24 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li>Verify signed packages and updates, reject duplicate built-in providers, and keep existing service IDs and saved data intact.</li>
 <li>Keep plugin preferences and optional login cookies separate for each profile, with restart-based installation and profile changes.</li>
 <li>Add a WizeStream plugin SDK and signed-package template for independent plugin authors. Plugins require Android 7 or newer; the app continues to support Android 6.</li>
+</ul>
+<h3>Local recommendations</h3>
+<ul>
+<li>Refresh local recommendations on demand from the recommendations screen.</li>
+</ul>
+<h3>YouTube Live tabs</h3>
+<ul>
+<li>Add sorting to YouTube channel Live tabs and keep Live and Videos sort choices separate when switching tabs.</li>
+</ul>
+<h3>Interface controls</h3>
+<ul>
+<li>Improve right-to-left layouts and compact playlist and subscription controls, including long labels and larger text.</li>
+<li>Add Appearance options for toolbar title alignment, voice search button visibility, and the subscription Import shortcut.</li>
+</ul>
+<h3>Playback information</h3>
+<ul>
+<li>Keep the playback information panel within the available space after player size or orientation changes.</li>
+<li>Let the panel scroll without dragging the player sheet or app bar.</li>
 </ul>
 </div>
 </section>

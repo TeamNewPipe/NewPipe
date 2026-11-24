@@ -267,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
         applyLargeScreenChrome();
         setContentView(mainBinding.getRoot());
         org.schabi.newpipe.themes.ThemeChrome.apply(mainBinding);
+        mainBinding.mainBottomNavigation.setOnOccupiedHeightChanged(
+                this::onMainNavigationGeometryChanged);
         EdgeToEdgeHelper.applyMainActivitySystemBarInsets(
                 mainBinding.getRoot(),
                 mainBinding.mainSafeContent,
@@ -1360,10 +1362,24 @@ public class MainActivity extends AppCompatActivity {
     private void applySearchNavigationContentInsets(final boolean navigationRail) {
         final int startInset = navigationRail ? getMainNavigationRailWidth() : 0;
         final int bottomInset = navigationRail
-                ? 0 : getResources().getDimensionPixelSize(R.dimen.main_bottom_navigation_height);
+                ? 0 : org.schabi.newpipe.views.MainNavigationGeometry
+                .occupiedBottomHeight(mainBinding.mainBottomNavigation);
         setSearchNavigationStartMargin(mainBinding.fragmentHolder, startInset);
         setSearchNavigationStartMargin(mainBinding.toolbarLayout.getRoot(), startInset);
         setSearchNavigationBottomMargin(mainBinding.fragmentHolder, bottomInset);
+    }
+
+    private void onMainNavigationGeometryChanged() {
+        final Fragment current = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_holder);
+        if (current instanceof MainFragment mainFragment) {
+            mainFragment.onBottomNavigationGeometryChanged();
+        }
+        if (searchNavigationActive) {
+            applySearchNavigationContentInsets(
+                    Boolean.TRUE.equals(mainBinding.mainNavigationRail.getTag()));
+        }
+        notifySearchNavigationVisibilityChanged();
     }
 
     private void resetSearchNavigationContentInsets() {

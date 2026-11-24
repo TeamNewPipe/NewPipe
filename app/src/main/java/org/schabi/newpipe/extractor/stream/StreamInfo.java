@@ -258,6 +258,11 @@ public class StreamInfo extends Info {
         // so the frontend can afterwards check where errors happened.
 
         try {
+            streamInfo.setUpcomingStatus(extractor.getUpcomingStatus());
+        } catch (final Exception e) {
+            streamInfo.addError(e);
+        }
+        try {
             streamInfo.setSpherical(extractor.isSpherical());
         } catch (final Exception e) {
             streamInfo.addError(e);
@@ -553,6 +558,8 @@ public class StreamInfo extends Info {
     private boolean fetchSponsorBlockFinished = false;
     private boolean membersOnly = false;
     private boolean upcoming = false;
+    @Nullable
+    private Boolean upcomingStatus;
 
     /**
      * Preview frames, e.g. for the storyboard / seekbar thumbnail preview
@@ -565,6 +572,18 @@ public class StreamInfo extends Info {
 
     public void setUpcoming(final boolean upcoming) {
         this.upcoming = upcoming;
+    }
+
+    /**
+     * Nullable status preserves unknown states from older providers and saved stream details.
+     */
+    @Nullable
+    public Boolean getUpcomingStatus() {
+        return upcomingStatus != null ? upcomingStatus : (upcoming ? true : null);
+    }
+
+    public void setUpcomingStatus(@Nullable final Boolean upcomingStatus) {
+        this.upcomingStatus = upcomingStatus;
     }
 
     /**

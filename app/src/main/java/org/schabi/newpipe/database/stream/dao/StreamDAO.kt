@@ -92,7 +92,7 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         """
         SELECT uid, stream_type, textual_upload_date, upload_date,
         is_upload_date_approximation, duration, uploader_avatar_url, is_short_form_content,
-        content_category
+        content_category, upcoming_status
         FROM streams WHERE url = :url AND service_id = :serviceId
         """
     )
@@ -172,6 +172,16 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             newerStream.contentCategory = existentMinimalStream.contentCategory
         }
 
+        // Sparse endpoints cannot report schedule state. Keep earlier provider status unless
+        // this response explicitly updates it or identifies a completed broadcast. LIVE alone
+        // also represents scheduled streams in older providers, so it is not proof of a start.
+        if (newerStream.upcomingStatus == null) {
+            newerStream.upcomingStatus = when (newerStream.streamType) {
+                StreamType.POST_LIVE_STREAM, StreamType.POST_LIVE_AUDIO_STREAM -> false
+                else -> existentMinimalStream.upcomingStatus
+            }
+        }
+
         // Some endpoints cannot identify Shorts reliably. Once an extractor has positively
         // identified an item as short-form content, do not erase that information on refresh.
         newerStream.isShortFormContent =
@@ -238,6 +248,9 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
         var isShortFormContent: Boolean = false,
 
         @ColumnInfo(name = StreamEntity.STREAM_CONTENT_CATEGORY)
-        var contentCategory: String? = null
+        var contentCategory: String? = null,
+
+        @ColumnInfo(name = StreamEntity.STREAM_UPCOMING_STATUS)
+        var upcomingStatus: Boolean? = null
     )
 }

@@ -88,6 +88,18 @@ class StreamFilterSelectionTest {
     }
 
     @Test
+    fun upcomingVisibilityAppliesToProviderStatusAndExplicitSelectionStillOverridesDefaults() {
+        val scheduled = stream().apply { upcomingStatus = true }
+        val defaults = setOf(StreamListFilter.VIDEOS, StreamListFilter.LIVE, StreamListFilter.SHORTS)
+        val progress = StreamStateEntity(1, 120_000)
+        assertFalse(StreamFilterSelection.parse("").matchesVisible(scheduled, null, defaults, true, true))
+        assertTrue(StreamFilterSelection.parse("UPCOMING").matchesVisible(scheduled, null, defaults, true, true))
+        assertFalse(StreamFilterSelection.parse("VIDEOS").matchesVisible(scheduled, null, defaults, true, true))
+        assertFalse(StreamFilterSelection.parse("UPCOMING,UNWATCHED").matchesVisible(scheduled, progress, defaults, true, true))
+        assertTrue(StreamFilterSelection.parse("UPCOMING,PARTIALLY_WATCHED").matchesVisible(scheduled, progress, defaults, true, true))
+    }
+
+    @Test
     fun downloadedIsIndependentOfWatchStatusAndContentTypes() {
         val selection = StreamFilterSelection.parse("VIDEOS,UNWATCHED,DOWNLOADED")
         assertTrue(selection.downloadedOnly)

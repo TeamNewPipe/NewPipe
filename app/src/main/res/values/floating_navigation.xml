@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bottom_navigation_style_key" translatable="false">bottom_navigation_style</string>
+    <string name="bottom_navigation_style_title">Bottom navigation style</string>
+    <string name="bottom_navigation_style_classic">Classic</string>
+    <string name="bottom_navigation_style_floating">Floating</string>
+    <string-array name="bottom_navigation_style_entries">
+        <item>@string/bottom_navigation_style_classic</item>
+        <item>@string/bottom_navigation_style_floating</item>
+    </string-array>
+    <string-array name="bottom_navigation_style_values" translatable="false">
+        <item>classic</item>
+        <item>floating</item>
+    </string-array>
+    <string name="floating_navigation_spacing_key" translatable="false">floating_navigation_spacing</string>
+    <string name="floating_navigation_spacing_title">Floating bar spacing</string>
+    <string name="floating_navigation_spacing_summary">Extra space above system navigation, in dp. Default: 8.</string>
+    <string name="floating_navigation_spacing_reset_key" translatable="false">floating_navigation_spacing_reset</string>
+    <string name="floating_navigation_spacing_reset_title">Reset floating bar spacing</string>
+</resources>

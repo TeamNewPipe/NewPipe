@@ -280,6 +280,8 @@ class VimeoStreamExtractor(service: StreamingService, linkHandler: LinkHandler) 
 
     override fun isUpcoming(): Boolean = upcoming
 
+    override fun getUpcomingStatus(): Boolean = upcoming
+
     override fun getVideoStreams(): List<VideoStream> {
         val (url, delivery) = if (hls.isNotEmpty()) hls to DeliveryMethod.HLS else dash to DeliveryMethod.DASH
         if (url.isEmpty()) return progressive

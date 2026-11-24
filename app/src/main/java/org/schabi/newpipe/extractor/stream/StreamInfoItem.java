@@ -60,6 +60,8 @@ public class StreamInfoItem extends InfoItem {
     private long startAt = -1;
     private boolean shortFormContent = false;
     private boolean requiresMembership = false;
+    @Nullable
+    private Boolean upcomingStatus;
 
     public StreamInfoItem(final int serviceId,
                           final String url,
@@ -171,6 +173,19 @@ public class StreamInfoItem extends InfoItem {
 
     public void setRequiresMembership(final boolean requiresMembership) {
         this.requiresMembership = requiresMembership;
+    }
+
+    /**
+     * Provider-reported scheduled status, or null when the list source cannot determine it.
+     * A scheduled start time alone does not tell whether a delayed broadcast has started.
+     */
+    @Nullable
+    public Boolean getUpcomingStatus() {
+        return upcomingStatus;
+    }
+
+    public void setUpcomingStatus(@Nullable final Boolean upcomingStatus) {
+        this.upcomingStatus = upcomingStatus;
     }
 
     @Override

@@ -85,7 +85,7 @@ enum class StreamListFilter(@IdRes val chipId: Int) {
             now: OffsetDateTime = OffsetDateTime.now(),
             includeAudio: Boolean = false
         ): StreamListFilter = when {
-            stream.uploadDate?.offsetDateTime()?.isAfter(now) == true -> UPCOMING
+            stream.upcomingStatus ?: (stream.uploadDate?.offsetDateTime()?.isAfter(now) == true) -> UPCOMING
             StreamTypeUtil.isLiveStream(stream.streamType) -> LIVE
             isShort(stream) -> SHORTS
             includeAudio && stream.streamType == StreamType.AUDIO_STREAM -> AUDIO

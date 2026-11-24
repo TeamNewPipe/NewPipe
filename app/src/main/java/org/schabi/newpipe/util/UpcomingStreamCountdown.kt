@@ -24,6 +24,7 @@ object UpcomingStreamCountdown {
     }
 
     internal fun futureStartMillis(stream: StreamInfoItem, nowMillis: Long): Long? {
+        if (stream.upcomingStatus == false) return null
         val start = stream.startAt.takeIf { it > 0 }?.let {
             if (it < 10_000_000_000L) it * 1_000L else it
         } ?: stream.uploadDate?.offsetDateTime()?.toInstant()?.toEpochMilli()

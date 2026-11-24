@@ -127,6 +127,12 @@ public class YoutubeLockupStreamInfoItemExtractor implements StreamInfoItemExtra
         return cachedStreamType;
     }
 
+    @Nullable
+    @Override
+    public Boolean getUpcomingStatus() throws ParsingException {
+        return YoutubeUpcomingMetadata.status(lockupViewModel, getStreamType());
+    }
+
     private boolean isLiveBadge(@Nonnull final JsonObject badgeViewModel) {
         final String badgeStyle = badgeViewModel.getString("badgeStyle", "");
         if (badgeStyle.toUpperCase(Locale.ROOT).contains("LIVE")) {

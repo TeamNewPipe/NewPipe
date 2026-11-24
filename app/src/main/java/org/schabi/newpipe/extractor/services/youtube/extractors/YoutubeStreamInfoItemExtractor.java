@@ -156,6 +156,12 @@ public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
         return cachedStreamType;
     }
 
+    @Nullable
+    @Override
+    public Boolean getUpcomingStatus() {
+        return YoutubeUpcomingMetadata.status(videoInfo, getStreamType());
+    }
+
     @Override
     public boolean isAd() throws ParsingException {
         return isPremium() || getName().equals("[Private video]")

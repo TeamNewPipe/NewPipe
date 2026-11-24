@@ -16,6 +16,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class VideoDetailNavigationResourcesTest {
     private static final String BOTTOM_NAVIGATION_VIEW =
             "com.google.android.material.bottomnavigation.BottomNavigationView";
+    private static final String MAIN_BOTTOM_NAVIGATION_VIEW =
+            "org.schabi.newpipe.views.FloatingBottomNavigationView";
     private static final String NAVIGATION_RAIL_VIEW =
             "com.google.android.material.navigationrail.NavigationRailView";
     private static final String TAB_LAYOUT = "com.google.android.material.tabs.TabLayout";
@@ -68,7 +70,7 @@ public class VideoDetailNavigationResourcesTest {
     @Test
     public void mainNavigationUsesTheCompactIndicator() throws Exception {
         final Document document = parse("layout/activity_main.xml");
-        final var navigationViews = document.getElementsByTagName(BOTTOM_NAVIGATION_VIEW);
+        final var navigationViews = document.getElementsByTagName(MAIN_BOTTOM_NAVIGATION_VIEW);
         assertEquals(1, navigationViews.getLength());
 
         final var navigation = (Element) navigationViews.item(0);
@@ -86,7 +88,7 @@ public class VideoDetailNavigationResourcesTest {
                 rail.getAttribute("app:itemActiveIndicatorStyle"));
 
         final var largeBottomNavigation =
-                largeDocument.getElementsByTagName(BOTTOM_NAVIGATION_VIEW);
+                largeDocument.getElementsByTagName(MAIN_BOTTOM_NAVIGATION_VIEW);
         assertEquals(1, largeBottomNavigation.getLength());
         assertEquals("@+id/main_bottom_navigation",
                 ((Element) largeBottomNavigation.item(0)).getAttribute("android:id"));

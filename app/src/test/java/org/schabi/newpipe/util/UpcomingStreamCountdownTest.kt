@@ -44,4 +44,21 @@ class UpcomingStreamCountdownTest {
         item.startAt = now / 1000 - 3600
         assertNull(UpcomingStreamCountdown.futureStartMillis(item, now))
     }
+
+    @Test
+    fun confirmedAvailableItemsDoNotShowStaleScheduledCountdowns() {
+        val now = 1_700_000_000_000L
+        val item = live().apply {
+            startAt = now + 3600_000L
+            uploadDate = DateWrapper(OffsetDateTime.ofInstant(Instant.ofEpochMilli(startAt), ZoneOffset.UTC))
+            upcomingStatus = false
+        }
+        assertNull(UpcomingStreamCountdown.futureStartMillis(item, now))
+        item.startAt = -1
+        assertNull(UpcomingStreamCountdown.futureStartMillis(item, now))
+        item.upcomingStatus = null
+        assertEquals(now + 3600_000L, UpcomingStreamCountdown.futureStartMillis(item, now))
+        item.upcomingStatus = true
+        assertEquals(now + 3600_000L, UpcomingStreamCountdown.futureStartMillis(item, now))
+    }
 }

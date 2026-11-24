@@ -64,9 +64,9 @@ Use `-PpluginSigningKey=/private/path/key.pk8` and
 5. Test on the minimum Android version and against a release build of the host before publishing.
 
 The manifest keeps `host: "wizestream"`, `apiVersion: "2.0"`, and `minAndroidSdk: 24`.
-Its current `minHostVersionCode: 1051000` identifies the development baseline; replace it
-with the first published WizeStream version that contains the API your plugin needs.
-An earlier build does not gain a plugin runtime merely because its version code matches.
+Its `minHostVersionCode: 1052000` requires WizeStream **1.52.0 or newer**, the first release
+with native plugin support. Raise this minimum if your plugin uses host APIs added in a
+later release.
 
 Native plugin DEX uses `pluginMinSdk=23` and the host's `desugar_jdk_libs_configuration_nio`
 profile. This matches WizeStream's compiled SDK interfaces and date/time APIs. It is separate

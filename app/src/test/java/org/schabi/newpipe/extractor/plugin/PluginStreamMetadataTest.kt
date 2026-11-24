@@ -33,6 +33,7 @@ class PluginStreamMetadataTest {
         assertEquals(90L, info.duration)
         assertTrue(info.isSpherical)
         assertTrue(info.isUpcoming)
+        assertEquals(true, info.upcomingStatus)
         assertTrue(info.isSupportBulletComments)
         assertNull(info.manifestRequestHeaders)
         val audio = info.audioStreams.single()

@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import org.schabi.newpipe.player.gesture.CustomBottomSheetBehavior;
+import org.schabi.newpipe.views.FloatingBottomNavigationView;
 
 /** Shared edge-to-edge setup and system-bar inset handling for app activities. */
 public final class EdgeToEdgeHelper {
@@ -170,6 +171,11 @@ public final class EdgeToEdgeHelper {
                                                final int initialRight,
                                                final int initialBottom,
                                                @NonNull final Insets safeInsets) {
+        if (navigation instanceof FloatingBottomNavigationView floatingNavigation) {
+            floatingNavigation.applySystemInsets(initialLeft, initialTop,
+                    initialRight, initialBottom, safeInsets);
+            return;
+        }
         final ViewGroup.MarginLayoutParams params =
                 (ViewGroup.MarginLayoutParams) navigation.getLayoutParams();
         params.setMargins(

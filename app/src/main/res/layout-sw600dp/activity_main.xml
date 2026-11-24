@@ -43,7 +43,7 @@
             android:background="?attr/main_navigation_background_color"
             android:importantForAccessibility="no" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <org.schabi.newpipe.views.FloatingBottomNavigationView
             android:id="@+id/main_bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_bottom_navigation_height"
