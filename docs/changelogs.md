@@ -6,6 +6,7 @@ Release history is listed newest first. The number beside each release is its An
 
 ### Service plugins
 
+- Use the WizeStream Plugins catalog by default instead of the former PipePipe built-in catalog, while preserving installed plugins and added repositories.
 - Install compatible PipePipe plugins and WizeStream-specific service plugins from HTTPS JSON repositories in Settings → Plugins.
 - Verify signed packages and updates, reject duplicate built-in providers, and keep existing service IDs and saved data intact.
 - Keep plugin preferences and optional login cookies separate for each profile, with restart-based installation and profile changes.

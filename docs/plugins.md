@@ -14,11 +14,24 @@ notes for availability in a published APK.
 1. Open **Settings → Plugins** and enable **Allow plugins**.
 2. Read the explanation of executable plugins and enable the feature if you trust the publishers
    whose code you intend to install.
-3. Add an HTTPS URL pointing to a repository's `index.json`, or use the community-repository shortcut.
+3. Browse the included **WizeStream Plugins** catalog. Use **Add repository** for another
+   publisher's HTTPS `index.json`, or use the optional community-repository shortcut.
 4. Choose an available plugin, confirm its repository, and install it.
 5. Restart WizeStream when prompted. The service becomes available through normal service selection.
 
-An example publisher repository for Twitch is:
+The default catalog is maintained in
+[WizeStream-Plugins](https://github.com/wizdom13/WizeStream-Plugins). Its JSON URL is:
+
+```text
+https://raw.githubusercontent.com/wizdom13/WizeStream-Plugins/main/index.json
+```
+
+This replaces the former PipePipe built-in catalog. The default is supplied by the app;
+updating WizeStream changes it without reinstalling plugins or changing their publisher pins.
+On an earlier build that already supports plugins, add the JSON URL with **Add repository**.
+Use the raw JSON URL, not GitHub's `blob/main/index.json` page, which returns HTML.
+
+An optional publisher repository for Twitch is:
 
 ```text
 https://github.com/MohrJonas/TwitchPipePipePlugin/releases/download/repo/index.json
@@ -26,19 +39,19 @@ https://github.com/MohrJonas/TwitchPipePipePlugin/releases/download/repo/index.j
 
 The [publisher repository](https://github.com/MohrJonas/TwitchPipePipePlugin) and
 [community catalog](https://github.com/InfinityLoop1308/awesome-pipepipe-plugins) are maintained
-outside WizeStream. Adding a repository is an explicit user action; WizeStream does not
+outside WizeStream. Adding an extra repository is an explicit user action; WizeStream does not
 silently subscribe to a publisher because a saved playlist references its service.
 
-The included official PipePipe catalog lists several services that WizeStream already provides.
-Those entries display **already built into WizeStream** and cannot be installed as replacements.
+Catalog entries for services that WizeStream already provides display
+**already built into WizeStream** and cannot be installed as replacements.
 YouTube, SoundCloud, media.ccc.de, PeerTube, Bandcamp, BiliBili, NicoNico, BitChute, Rumble,
 Odysee, and Vimeo keep their existing built-in identities.
 
 The **Installed** section provides settings, updates, and uninstall actions. **Refresh repositories**
-reloads available versions. Where multiple explicitly added repositories list the same plugin and
+reloads available versions. Where multiple configured repositories list the same plugin and
 publisher, WizeStream displays the highest compatible version once. Repository order resolves equal
 version numbers. A newer version with an unsupported API or Android requirement does not hide an
-older compatible version.
+older compatible version. The WizeStream catalog participates in the same selection rules.
 
 Installation, updates, disabling, and uninstalling take effect after a process restart.
 Saved subscriptions, history, and playlists are preserved when a plugin is unavailable.
@@ -138,7 +151,11 @@ Use an actual packaged plugin test instead of assuming a shared package name pro
 ## Build a native WizeStream plugin
 
 The [`plugin-template`](../plugin-template/README.md) directory is an independent Gradle project
-written in Kotlin. Build the host SDK once, then build and sign the sample from the repository root:
+written in Kotlin. The standalone
+[WizeStream-Plugin-Template](https://github.com/wizdom13/WizeStream-Plugin-Template)
+repository provides instructions for a separate checkout, including Windows PowerShell.
+To use the bundled template, build the host SDK once, then build and sign the sample from the
+WizeStream repository root:
 
 ```sh
 ./gradlew :app:pluginSdkJar

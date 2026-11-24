@@ -56,7 +56,7 @@ object PluginManager {
     private val validPluginId = Regex("[A-Za-z0-9][A-Za-z0-9_.-]{0,199}")
 
     const val BUILTIN_REPOSITORY =
-        "https://github.com/InfinityLoop1308/PipePipe-builtin-plugins/releases/download/repo/index.json"
+        "https://raw.githubusercontent.com/wizdom13/WizeStream-Plugins/main/index.json"
     const val AWESOME_REPOSITORY =
         "https://raw.githubusercontent.com/InfinityLoop1308/awesome-pipepipe-plugins/main/index.json"
 
