@@ -100,6 +100,11 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.recommendations_menu, menu)
+        menu.findItem(R.id.action_refresh_recommendations).setOnMenuItemClickListener {
+            reloadContent()
+            true
+        }
         menu.add(R.string.recent_actions_title).setOnMenuItemClickListener {
             RecentActionsDialog.show(this)
             true
@@ -127,7 +132,8 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
             LocalRecommendations.configurationToken(context),
             preferences.getString("$profile:model", null)
         )
-        if (!forceLoad && (loadedRevision == revision || loadingRevision == revision)) return
+        // A matching cached result must not leave a different profile's request in flight.
+        if (!forceLoad && (loadingRevision == revision || loadingRevision == null && loadedRevision == revision)) return
 
         val request = ++loadingRequest
         loadingDisposable?.dispose()
@@ -161,7 +167,10 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
                 },
                 { error ->
                     Log.e("RecommendationsFragment", "Unable to load local recommendations", error)
-                    if (request == loadingRequest && view != null && isAdded) {
+                    if (request == loadingRequest && view != null && isAdded &&
+                        profile == ProfileManager.getActiveProfileId(app) &&
+                        serviceId == ServiceHelper.getSelectedServiceId(app)
+                    ) {
                         loadingRevision = null
                         loadingDisposable = null
                         loadedRevision = null
@@ -252,9 +261,10 @@ class RecommendationsFragment : BaseListFragment<List<StreamInfoItem>, Void?>() 
     }
 
     private fun updateInterests() {
-        val group = interestGroup ?: return
         val interests = visibleInterests
-        if (selectedInterest !in interests) selectedInterest = null
+        // A restored selection can only be checked once the first local snapshot is loaded.
+        if (loadedRevision != null && selectedInterest !in interests) selectedInterest = null
+        val group = interestGroup ?: return
         group.removeAllViews()
         interests.forEach { interest ->
             val chip = layoutInflater.inflate(

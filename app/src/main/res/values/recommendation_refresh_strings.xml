@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="local_recommendations_refresh">Refresh recommendations</string>
+</resources>
