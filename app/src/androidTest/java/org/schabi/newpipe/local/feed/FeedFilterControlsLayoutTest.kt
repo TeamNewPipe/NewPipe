@@ -17,10 +17,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuItemImpl
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.children
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onData
@@ -63,14 +65,30 @@ class FeedFilterControlsLayoutTest {
     private val context = instrumentation.targetContext
 
     @Test
-    fun contentWatchAndDownloadRowsRemainInsideTheCompleteHeader() {
+    fun contentAndCombinedWatchDownloadRowsRemainInsideTheCompleteHeader() {
         instrumentation.runOnMainSync {
             cases().forEach { case ->
                 val fixture = createFeed(case)
                 measure(fixture)
                 assertFilterRowsFit(fixture)
-                if (case.name == "phone" || case.name == "rtl-large") {
-                    savePreview(fixture, case.name)
+                savePreview(fixture, case.name)
+            }
+        }
+    }
+
+    @Test
+    fun restoredWatchAndDownloadedSelectionsRemainVisibleThroughTheSharedScrollRow() {
+        instrumentation.runOnMainSync {
+            cases().forEach { case ->
+                for (downloaded in listOf(false, true)) {
+                    val selection = if (downloaded) "UPCOMING,WATCHED,DOWNLOADED" else "UPCOMING,WATCHED"
+                    val fixture = createFeed(case, selection)
+                    measure(fixture)
+                    val filters = fixture.binding.streamFilterChips
+                    assertFilterRowsFit(fixture)
+                    assertChipRevealed(filters.streamFilterScroll, filters.filterUpcoming)
+                    assertChipRevealed(filters.watchFilterScroll, if (downloaded) filters.filterDownloaded else filters.filterWatched)
+                    if (downloaded) savePreview(fixture, "${case.name}-downloaded")
                 }
             }
         }
@@ -101,7 +119,7 @@ class FeedFilterControlsLayoutTest {
                 assertTextFits(binding.loadingProgressText)
                 assertTextFits(binding.loadingChannelText)
                 assertTrue("The refresh row must keep its 48dp target", binding.feedControlsRow.height >= dp(binding.root.context, 48))
-                assertTrue("Refresh must release the space used by the three filter rows", binding.feedControlsRow.height < filtersHeight)
+                assertTrue("Refresh must release the space used by the two filter rows", binding.feedControlsRow.height < filtersHeight)
                 assertEquals(
                     "Refresh should only reserve space for its visible controls",
                     maxOf(dp(binding.root.context, 48), binding.refreshProgressContainer.height, binding.cancelRefreshButton.height),
@@ -270,7 +288,7 @@ class FeedFilterControlsLayoutTest {
         }
     }
 
-    private fun createFeed(case: Case): Fixture {
+    private fun createFeed(case: Case, selection: String = ""): Fixture {
         val configuration = Configuration(context.resources.configuration).apply {
             val locale = Locale.forLanguageTag(case.language)
             setLocale(locale)
@@ -296,7 +314,7 @@ class FeedFilterControlsLayoutTest {
         binding.refreshText.text = "Feed last updated: moments ago"
         binding.refreshSubtitleText.visibility = View.GONE
         binding.itemsList.visibility = View.VISIBLE
-        StreamFilterControls.bind(binding.streamFilterChips, "", true) { }
+        StreamFilterControls.bind(binding.streamFilterChips, selection, true) { }
         binding.streamFilterChips.filterAll.setText(R.string.filter_all_visible)
         binding.streamFilterChips.filterWatchAll.setText(R.string.filter_all_visible)
         return Fixture(binding, dp(palette, case.widthDp), dp(palette, case.heightDp))
@@ -305,7 +323,8 @@ class FeedFilterControlsLayoutTest {
     private fun assertFilterRowsFit(fixture: Fixture) {
         val binding = fixture.binding
         val filters = binding.streamFilterChips
-        val rows = listOf(filters.streamFilterScroll, filters.watchFilterScroll, filters.filterDownloaded.parent as View)
+        val rows = listOf(filters.streamFilterScroll, filters.streamFilterDownloadedControls)
+        assertEquals("Shared filters must use two rows", 2, filters.root.childCount)
         rows.forEach { row ->
             assertEquals(View.VISIBLE, row.visibility)
             assertTrue("Each filter row must have a visible height", row.height > 0)
@@ -314,12 +333,42 @@ class FeedFilterControlsLayoutTest {
         }
         val rectangles = rows.map { bounds(binding.feedControlsRow, it) }
         rectangles.zipWithNext().forEach { (above, below) ->
-            assertTrue("Content, watch status and downloaded filters must occupy separate rows", above.bottom <= below.top)
+            assertTrue("Content and watch/download filters must occupy separate rows", above.bottom <= below.top)
         }
-        listOf(filters.filterAll, filters.filterWatchAll, filters.filterDownloaded).forEach(::assertTextFits)
+        assertEquals("Downloaded must be a sibling of the watch group", filters.watchFilterChipGroup.parent, filters.filterDownloaded.parent)
+        val watch = bounds(filters.watchFilterScroll, filters.watchFilterChipGroup)
+        val downloaded = bounds(filters.watchFilterScroll, filters.filterDownloaded)
+        assertTrue("Watch status and Downloaded must share the second row", watch.top < downloaded.bottom && downloaded.top < watch.bottom)
+        assertTrue(
+            "Downloaded must follow the watch choices in the layout direction",
+            if (filters.root.layoutDirection == View.LAYOUT_DIRECTION_RTL) downloaded.right <= watch.left else watch.right <= downloaded.left
+        )
+        listOf(filters.streamFilterScroll, filters.watchFilterScroll).forEach { scroll ->
+            assertFalse("Filter rows must not fade their outer chips", scroll.isHorizontalFadingEdgeEnabled)
+        }
+        val chips = filters.streamFilterChipGroup.children + filters.watchFilterChipGroup.children + sequenceOf(filters.filterDownloaded)
+        val minimum = dp(binding.root.context, 48)
+        chips.filter { it.visibility == View.VISIBLE }.forEach { chip ->
+            assertTrue("Every chip must retain a 48dp touch target", chip.width >= minimum && chip.height >= minimum)
+            assertTextFits(chip as TextView)
+        }
         assertContained(binding.feedHeader, binding.feedControlsRow)
         assertContained(binding.root, binding.feedHeader)
         assertTrue("Feed content must start below the complete header", binding.swipeRefreshLayout.top >= binding.feedHeader.bottom)
+    }
+
+    private fun assertChipRevealed(scroll: HorizontalScrollView, chip: View) {
+        val rectangle = bounds(scroll, chip)
+        val viewport = Rect(scroll.scrollX + scroll.paddingLeft, 0, scroll.scrollX + scroll.width - scroll.paddingRight, scroll.height)
+        if (rectangle.width() <= viewport.width()) {
+            assertTrue("The restored chip must be visible: $rectangle in $viewport", viewport.contains(rectangle))
+        } else {
+            assertEquals(
+                "An oversized chip must reveal the start of its label",
+                if (scroll.layoutDirection == View.LAYOUT_DIRECTION_RTL) viewport.right else viewport.left,
+                if (scroll.layoutDirection == View.LAYOUT_DIRECTION_RTL) rectangle.right else rectangle.left
+            )
+        }
     }
 
     private fun assertTextFits(view: TextView) {
@@ -357,6 +406,7 @@ class FeedFilterControlsLayoutTest {
     }
 
     private fun cases() = listOf(
+        Case("narrow", 280),
         Case("phone", 360),
         Case("phone-large", 360, fontScale = 2f),
         Case("wide", 960, heightDp = 640, fontScale = 1.3f),

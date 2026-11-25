@@ -10,9 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:fadingEdgeLength="16dp"
         android:paddingEnd="12dp"
-        android:requiresFadingEdge="horizontal"
         android:scrollbars="none">
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/stream_filter_chip_group"
@@ -23,28 +21,28 @@
             app:singleSelection="false">
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="@string/all" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_live"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="@string/channel_tab_livestreams" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_videos"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="@string/videos_string" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_audio"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -52,7 +50,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_live_audio"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -60,7 +58,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_post_live_video"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -68,7 +66,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_post_live_audio"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -76,7 +74,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_tracks"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -84,7 +82,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_podcasts"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -92,7 +90,7 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_courses"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
@@ -100,64 +98,18 @@
                 android:visibility="gone" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_shorts"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="@string/channel_tab_shorts" />
             <com.google.android.material.chip.Chip
                 android:id="@+id/filter_upcoming"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.WizeStream.StreamFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="@string/feed_show_upcoming" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-    <HorizontalScrollView
-        android:id="@+id/watch_filter_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:fadingEdgeLength="16dp"
-        android:paddingEnd="12dp"
-        android:requiresFadingEdge="horizontal"
-        android:scrollbars="none">
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/watch_filter_chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            app:singleLine="true"
-            app:singleSelection="false">
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_watch_all"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/all" />
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_unwatched"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/filter_unwatched" />
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_partially_watched"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/filter_in_progress" />
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_watched"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:text="@string/feed_show_watched" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
     <org.schabi.newpipe.views.CompactPlaylistControlsLayout
@@ -166,20 +118,63 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
         <HorizontalScrollView
-            android:id="@+id/filter_downloaded_scroll"
+            android:id="@+id/watch_filter_scroll"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clipToPadding="false"
             android:paddingEnd="12dp"
             android:scrollbars="none">
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_downloaded"
-                style="@style/Widget.Material3.Chip.Filter"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:checkable="true"
-                android:text="@string/filter_downloaded_only" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/watch_filter_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleLine="true"
+                    app:singleSelection="false">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/filter_watch_all"
+                        style="@style/Widget.WizeStream.StreamFilterChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="@string/all" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/filter_unwatched"
+                        style="@style/Widget.WizeStream.StreamFilterChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="@string/filter_unwatched" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/filter_partially_watched"
+                        style="@style/Widget.WizeStream.StreamFilterChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="@string/filter_in_progress" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/filter_watched"
+                        style="@style/Widget.WizeStream.StreamFilterChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="@string/feed_show_watched" />
+                </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/filter_downloaded"
+                    style="@style/Widget.WizeStream.StreamFilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checkable="true"
+                    android:text="@string/filter_downloaded_only" />
+            </LinearLayout>
         </HorizontalScrollView>
         <LinearLayout
             android:id="@+id/local_playlist_edit_controls"

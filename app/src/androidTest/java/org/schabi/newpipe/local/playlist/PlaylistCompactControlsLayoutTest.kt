@@ -49,7 +49,9 @@ class PlaylistCompactControlsLayoutTest {
                 val labelText = label.text.toString()
                 val ids = listOf(R.id.playlist_edit_toggle, R.id.collection_select_move) +
                     if (local) emptyList() else listOf(R.id.playlist_category_manage)
-                for (width in listOf(320, 600, 320)) {
+                // Large fonts now apply to all watch choices as well as the Downloaded label.
+                val wideWidth = if (local) 1200 else 600
+                for (width in listOf(320, 600, 1200, 320)) {
                     measure(root, width)
                     val metrics = "layout=$layoutId rtl=$rtl scale=$scale width=$width"
                     assertEquals(metrics, configuration.layoutDirection, root.layoutDirection)
@@ -62,7 +64,7 @@ class PlaylistCompactControlsLayoutTest {
                     }
                     if (width == 320 && scale == 2f) {
                         assertEquals("Large labels need the available width: $metrics", LinearLayout.VERTICAL, row.orientation)
-                    } else if (width == 600) {
+                    } else if (width >= wideWidth) {
                         assertEquals("Wide windows should reuse one row: $metrics", LinearLayout.HORIZONTAL, row.orientation)
                     }
                     val controls = root.findViewById<View>(if (local) R.id.playlist_controls else R.id.playlist_category_controls)
@@ -81,8 +83,11 @@ class PlaylistCompactControlsLayoutTest {
         assertEquals(if (rtl) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR, filters.root.layoutDirection)
         assertEquals(View.GONE, filters.localPlaylistEditControls.visibility)
         assertEquals(LinearLayout.HORIZONTAL, filters.streamFilterDownloadedControls.orientation)
-        assertEquals(filters.filterDownloadedScroll.height, filters.streamFilterDownloadedControls.height)
-        assertEquals(filters.streamFilterDownloadedControls.width, filters.filterDownloadedScroll.width)
+        assertEquals(filters.watchFilterScroll.height, filters.streamFilterDownloadedControls.height)
+        assertEquals(filters.streamFilterDownloadedControls.width, filters.watchFilterScroll.width)
+        assertEquals(filters.watchFilterChipGroup.parent, filters.filterDownloaded.parent)
+        assertFalse(filters.streamFilterScroll.isHorizontalFadingEdgeEnabled)
+        assertFalse(filters.watchFilterScroll.isHorizontalFadingEdgeEnabled)
     }
 
     private fun assertRow(row: CompactPlaylistControlsLayout, buttons: List<View>, rtl: Boolean, metrics: String) {
