@@ -459,11 +459,9 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             FeedLoadService.cancel(requireContext())
         }
         feedBinding.swipeRefreshLayout.setOnChildScrollUpCallback { _, _ ->
-            FeedPullRefreshPolicy.shouldBlockGesture(
-                feedHeaderExpanded,
-                feedBinding.itemsList.canScrollVertically(-1),
-                parentFragment != null
-            )
+            // Restored app-bar position must not change the gesture between Home and
+            // feeds opened from Subscriptions. Only content above the viewport blocks it.
+            feedBinding.itemsList.canScrollVertically(-1)
         }
         feedBinding.newItemsLoadedButton.setOnClickListener {
             scrollToTop()
