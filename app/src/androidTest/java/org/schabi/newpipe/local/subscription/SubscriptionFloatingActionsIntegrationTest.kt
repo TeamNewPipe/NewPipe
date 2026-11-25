@@ -58,8 +58,9 @@ class SubscriptionFloatingActionsIntegrationTest {
     fun setUp() {
         val profile = ProfileManager.getActiveProfileId(context)
         collapseKey = SubscriptionGroupsCollapse.key(profile)
-        previous = preferences.all.filterKeys { it in listOf(styleKey, importKey, collapseKey) }
-        preferences.edit().remove(styleKey).remove(importKey).putBoolean(collapseKey, false).commit()
+        previous = preferences.all.filterKeys { it in listOf(styleKey, importKey, collapseKey, SubscriptionGroupViewPreferences.KEY) }
+        preferences.edit().remove(styleKey).remove(importKey).remove(SubscriptionGroupViewPreferences.KEY)
+            .putBoolean(collapseKey, false).commit()
         previousDatabase = databaseField.get(null)
         database = TestDatabase.createReplacingNewPipeDatabase()
         database.feedGroupDAO().insert(FeedGroupEntity(uid = 0, name = "Keep this group", icon = FeedGroupIcon.EDUCATION, profileId = profile))
@@ -68,6 +69,7 @@ class SubscriptionFloatingActionsIntegrationTest {
     @After
     fun tearDown() {
         val editor = preferences.edit().remove(styleKey).remove(importKey).remove(collapseKey)
+            .remove(SubscriptionGroupViewPreferences.KEY)
         previous.forEach { (key, value) ->
             when (value) {
                 is Boolean -> editor.putBoolean(key, value)

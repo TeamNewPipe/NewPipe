@@ -46,8 +46,9 @@ class SubscriptionImportShortcutTest {
     fun setUp() {
         val profileId = ProfileManager.getActiveProfileId(context)
         collapseKey = SubscriptionGroupsCollapse.key(profileId)
-        previous = preferences.all.filterKeys { it == shortcutKey || it == collapseKey }
-        preferences.edit().remove(shortcutKey).putBoolean(collapseKey, false).commit()
+        previous = preferences.all.filterKeys { it in listOf(shortcutKey, collapseKey, SubscriptionGroupViewPreferences.KEY) }
+        preferences.edit().remove(shortcutKey).remove(SubscriptionGroupViewPreferences.KEY)
+            .putBoolean(collapseKey, false).commit()
         previousDatabase = databaseField.get(null)
         database = TestDatabase.createReplacingNewPipeDatabase()
         database.feedGroupDAO().insert(
@@ -58,6 +59,7 @@ class SubscriptionImportShortcutTest {
     @After
     fun tearDown() {
         val editor = preferences.edit().remove(shortcutKey).remove(collapseKey)
+            .remove(SubscriptionGroupViewPreferences.KEY)
         previous.forEach { (key, value) -> if (value is Boolean) editor.putBoolean(key, value) }
         try {
             assertTrue(editor.commit())

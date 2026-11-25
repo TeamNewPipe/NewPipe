@@ -42,12 +42,15 @@ class SubscriptionProfileRefreshTest {
     private lateinit var studyProfileId: String
     private lateinit var previousProfileId: String
     private var previousService: String? = null
+    private var previousGroupListViewMode: Boolean? = null
 
     @Before
     fun setUp() {
         database = TestDatabase.createReplacingNewPipeDatabase()
         previousProfileId = ProfileManager.getActiveProfileId(context)
         previousService = preferences.getString(context.getString(R.string.current_service_key), null)
+        previousGroupListViewMode = SubscriptionGroupViewPreferences.getListViewMode(context)
+        preferences.edit().remove(SubscriptionGroupViewPreferences.KEY).commit()
         studyProfileId = requireNotNull(
             ProfileManager.createProfile(context, "Study ${UUID.randomUUID().toString().take(8)}")
         ).id
@@ -60,7 +63,11 @@ class SubscriptionProfileRefreshTest {
         instrumentation.runOnMainSync { viewModelStore.clear() }
         ProfileManager.deleteProfile(context, studyProfileId)
         ProfileManager.setActiveProfile(context, previousProfileId)
-        preferences.edit().putString(context.getString(R.string.current_service_key), previousService).commit()
+        val editor = preferences.edit()
+            .putString(context.getString(R.string.current_service_key), previousService)
+            .remove(SubscriptionGroupViewPreferences.KEY)
+        previousGroupListViewMode?.let { editor.putBoolean(SubscriptionGroupViewPreferences.KEY, it) }
+        editor.commit()
         database.close()
     }
 

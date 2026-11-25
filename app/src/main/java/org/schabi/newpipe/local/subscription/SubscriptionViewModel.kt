@@ -33,7 +33,8 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
 
     // true -> list view, false -> grid view
     private val listViewMode = BehaviorProcessor.createDefault(
-        !shouldUseGridForSubscription(application)
+        SubscriptionGroupViewPreferences.getListViewMode(application)
+            ?: !shouldUseGridForSubscription(application)
     )
     private val listViewModeFlowable = listViewMode.distinctUntilChanged()
 
@@ -140,6 +141,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun setListViewMode(newListViewMode: Boolean) {
+        SubscriptionGroupViewPreferences.setListViewMode(getApplication(), newListViewMode)
         listViewMode.onNext(newListViewMode)
     }
 
