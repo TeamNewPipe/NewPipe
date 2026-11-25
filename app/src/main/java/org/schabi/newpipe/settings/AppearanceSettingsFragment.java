@@ -16,6 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.appearance.CustomThemeColor;
+import org.schabi.newpipe.themes.CustomAccentColors;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -88,11 +89,8 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
             editText.setSingleLine(true);
             editText.setSelectAllOnFocus(true);
         });
-        customThemeColor.setSummaryProvider(preference -> {
-            final String normalized = CustomThemeColor.normalize(
-                    ((EditTextPreference) preference).getText());
-            return normalized == null ? getString(R.string.custom_theme_color_summary) : normalized;
-        });
+        customThemeColor.setSummaryProvider(preference -> CustomAccentColors.summary(
+                requireContext(), ((EditTextPreference) preference).getText()));
         customThemeColor.setVisible("custom".equals(startThemeColorKey));
         customThemeColor.setOnPreferenceChangeListener((preference, newValue) -> {
             final String normalized = CustomThemeColor.normalize(newValue.toString());

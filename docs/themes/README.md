@@ -1,8 +1,10 @@
 # Creating WizeStream theme packs
 
-Theme packs are portable, **data-only JSON files**. Version 1 provides palette recipes.
+Theme packs are portable, **data-only JSON files**. Version 1 provides named palette recipes.
 Version 2 adds glass surfaces, native listening-player templates and embedded PNG
-skins/artwork/icons. Both versions can be imported; older v1-only apps reject v2.
+skins/artwork/icons. Version 3 adds custom `#RRGGBB` palette seeds in the existing accent
+fields and retains the v2 extensions. All three versions can be imported. Older apps
+reject versions they do not support instead of silently discarding custom colors.
 Version 2 packs require WizeStream 1.35.0 or later. Use version 1 palette recipes
 when sharing packs with older app versions.
 
@@ -24,7 +26,9 @@ This is the extension foundation for #1105 and #1130, not an arbitrary layout en
    retain its previous pack until recreated.
 
 **Export current theme** includes all embedded assets and overrides. Without an active
-pack it exports a v1 recipe for the regular appearance settings. **Restore previous
+pack it exports a v1 recipe for regular named appearance settings, or a v3 recipe
+containing the exact custom color. Importing that v3 recipe does not depend on the
+recipient's saved custom color. **Restore previous
 appearance** removes the active pack and restores those settings; applying a pack
 never overwrites them. A malformed restored pack falls back to regular appearance.
 
@@ -69,23 +73,24 @@ Do not simply change the version while keeping extension fields: it will be reje
 Unknown and duplicate keys are rejected at every nesting level. Fields marked optional
 can be omitted, but cannot be `null`. JSON comments, trailing commas and trailing data
 are not supported. Numbers must be integer literals: `2`, not `2.0`, `2e0` or `"2"`.
-Arrays and booleans are not part of this format. Key spelling is case-sensitive.
+Arrays are not part of this format. Boolean values are accepted only for fields that
+explicitly allow them, such as `glass.scrollUnderBars`. Key spelling is case-sensitive.
 
 | Field | Required | Value / default |
 | --- | --- | --- |
 | `format` | Yes | Exact string `wizestream-theme` |
-| `version` | Yes | Integer `1` or `2` |
+| `version` | Yes | Integer `1`, `2` or `3` |
 | `name` | Yes | Nonblank display name, 1–80 UTF-16 code units |
 | `author` | Yes | Nonblank creator name, 1–80 UTF-16 code units |
 | `mode` | No | `system` (default), `light`, `dark`, `black`, `eye_comfort` |
 | `night` | No | `dark` (default) or `black`; used by `system` at night |
-| `lightAccent` | No | Palette name; default `wizestream` |
-| `darkAccent` | No | Palette name; default `wizestream` |
-| `glass` | v2 only, optional | Object described below |
-| `skin` | v2 only, optional | Asset ID used behind main navigation surfaces |
-| `player` | v2 only, optional | Native listening template and asset references |
-| `icons` | v2 only, optional | Supported player icon slots → asset IDs |
-| `assets` | v2 only, optional | Asset IDs → canonical base64 PNG strings |
+| `lightAccent` | No | Palette name or v3 `#RRGGBB` seed; default `wizestream` |
+| `darkAccent` | No | Palette name or v3 `#RRGGBB` seed; default `wizestream` |
+| `glass` | v2/v3 only, optional | Object described below |
+| `skin` | v2/v3 only, optional | Asset ID used behind main navigation surfaces |
+| `player` | v2/v3 only, optional | Native listening template and asset references |
+| `icons` | v2/v3 only, optional | Supported player icon slots → asset IDs |
+| `assets` | v2/v3 only, optional | Asset IDs → canonical base64 PNG strings |
 
 Names/authors cannot contain control characters or Unicode bidirectional embedding,
 override or isolate controls (U+202A–U+202E, U+2066–U+2069). Emoji count as UTF-16
@@ -93,9 +98,22 @@ code units, so some occupy two. Keep attribution/license information on your dow
 page; there is no arbitrary metadata field in the file.
 
 Accent names: `wizestream`, `neutral`, `green`, `blue`, `cyan`, `purple`, `yellow`,
-`orange`, `pink`, `red`, `follow_system`. Hex colors are not supported. Semantic colors
-come from tested native palettes. `follow_system` uses Material dynamic colors on
-supported devices; otherwise native fallback colors apply. Eye Comfort retains its
+`orange`, `pink`, `red`, `follow_system`. Version 3 also accepts exactly six hexadecimal
+digits prefixed by `#`, for example `"lightAccent": "#0061A4"`; letter case is normalized.
+Keep version 1 or 2 for packs that use only named accents. V1/v2 packs with HEX values
+and the preference-only name `custom` are rejected.
+
+A custom color is a **Material palette seed**, not an exact override for every control.
+Light and dark modes derive readable tonal roles from that seed, so dark red accents
+can be lighter than the entered color. Activities, player controls and import previews
+use the same seed. Generated palettes require Android 12 or newer with Material dynamic
+color support. Older or unsupported devices use the closest built-in accent palette,
+with native light/dark contrast and black surfaces; Appearance settings explain this
+fallback. The original HEX seed remains saved and exported unchanged. The same fallback
+is used if Android cannot install a generated palette.
+
+Named accents continue to use the existing native palettes. `follow_system` uses Material
+dynamic colors on supported devices; otherwise native fallback colors apply. Eye Comfort retains its
 warm palette rather than applying accent overrides. Black mode retains black surfaces.
 `night` has no effect when `mode` is fixed to another appearance.
 
@@ -191,7 +209,7 @@ static PNG from your editor; animation metadata has no supported meaning.
 | Limit | Value |
 | --- | --- |
 | v1 complete UTF-8 file | 16 KiB (16,384 bytes) |
-| v2 complete UTF-8 file | 512 KiB (524,288 bytes), including JSON and base64 |
+| v2/v3 complete UTF-8 file | 512 KiB (524,288 bytes), including JSON and base64 |
 | Asset count | At most 6 distinct IDs |
 | Individual decoded PNG file | At most 96 KiB (98,304 bytes) |
 | Asset dimensions | Each side 1–1024 pixels |

@@ -67,13 +67,15 @@ object ThemePacks {
         val mode = prefs.getString(context.getString(R.string.theme_key), "auto_device_theme")!!
         val night = prefs.getString(context.getString(R.string.night_theme_key), "dark_theme")!!
         val accent = ThemeHelper.getThemeColorPreference(context)
+        val customSeed = CustomAccentColors.value(context)
         return ThemePack(
             "My WizeStream theme",
             "Theme creator",
             if (mode == "auto_device_theme") "system" else mode.removeSuffix("_theme"),
             night.removeSuffix("_theme"),
-            accent,
-            accent
+            customSeed ?: accent,
+            customSeed ?: accent,
+            version = if (customSeed == null) 1 else 3
         ).let { ThemePack.parse(it.encode()) }
     }
 }

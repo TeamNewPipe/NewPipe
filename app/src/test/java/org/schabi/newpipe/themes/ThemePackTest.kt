@@ -45,7 +45,7 @@ class ThemePackTest {
     @Test
     fun rejectsUnsupportedUnsafeAndMalformedInput() {
         listOf(
-            minimal.replace("\"version\":1", "\"version\":3"),
+            minimal.replace("\"version\":1", "\"version\":4"),
             minimal.replace("\"version\":1", "\"version\":\"1\""),
             minimal.replace("\"version\":1", "\"version\":1.0"),
             minimal.replace("\"Test\"", "null"),

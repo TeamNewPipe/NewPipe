@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "WizeStream theme packs v1 and v2",
+  "title": "WizeStream theme packs v1, v2 and v3",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -17,7 +17,8 @@
       "type": "integer",
       "enum": [
         1,
-        2
+        2,
+        3
       ]
     },
     "name": {
@@ -50,34 +51,30 @@
       "default": "dark"
     },
     "lightAccent": {
-      "enum": [
-        "wizestream",
-        "neutral",
-        "green",
-        "blue",
-        "cyan",
-        "purple",
-        "yellow",
-        "orange",
-        "pink",
-        "red",
-        "follow_system"
+      "anyOf": [
+        {
+          "$ref": "#/$defs/namedAccent"
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "minLength": 7,
+          "maxLength": 7
+        }
       ],
       "default": "wizestream"
     },
     "darkAccent": {
-      "enum": [
-        "wizestream",
-        "neutral",
-        "green",
-        "blue",
-        "cyan",
-        "purple",
-        "yellow",
-        "orange",
-        "pink",
-        "red",
-        "follow_system"
+      "anyOf": [
+        {
+          "$ref": "#/$defs/namedAccent"
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "minLength": 7,
+          "maxLength": 7
+        }
       ],
       "default": "wizestream"
     },
@@ -106,6 +103,10 @@
           "minimum": 0,
           "maximum": 32,
           "default": 16
+        },
+        "scrollUnderBars": {
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -230,7 +231,46 @@
           ]
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "enum": [
+              1,
+              2
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "lightAccent": {
+            "$ref": "#/$defs/namedAccent"
+          },
+          "darkAccent": {
+            "$ref": "#/$defs/namedAccent"
+          }
+        }
+      }
     }
   ],
-  "$comment": "App additionally enforces literal integers, duplicate-key rejection, UTF-8 byte limits, label UTF-16 length, PNG decoding/dimensions/pixel budgets and existing asset references."
+  "$comment": "App additionally enforces literal integers, duplicate-key rejection, UTF-8 byte limits, label UTF-16 length, PNG decoding/dimensions/pixel budgets and existing asset references.",
+  "$defs": {
+    "namedAccent": {
+      "enum": [
+        "wizestream",
+        "neutral",
+        "green",
+        "blue",
+        "cyan",
+        "purple",
+        "yellow",
+        "orange",
+        "pink",
+        "red",
+        "follow_system"
+      ]
+    }
+  }
 }

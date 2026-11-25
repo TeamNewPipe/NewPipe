@@ -7,6 +7,7 @@ import java.io.StringReader
 import java.nio.ByteBuffer
 import java.nio.charset.CodingErrorAction
 import org.json.JSONObject
+import org.schabi.newpipe.settings.appearance.CustomThemeColor
 
 /** Versioned, data-only theme recipe. No resource paths, URLs, or executable content. */
 data class ThemePack(
@@ -24,8 +25,9 @@ data class ThemePack(
     val assets: Map<String, ThemeAsset> = emptyMap()
 ) {
     fun encode(): String = JSONObject().apply {
-        require(version == 2 || (glass == null && player == ThemePlayer() && skin == null && icons.isEmpty() && assets.isEmpty())) {
-            "Extensions require version 2"
+        require(version in 1..3) { "Unsupported version" }
+        require(version >= 2 || (glass == null && player == ThemePlayer() && skin == null && icons.isEmpty() && assets.isEmpty())) {
+            "Extensions require version 2 or later"
         }
         put("format", "wizestream-theme")
         put("version", version)
@@ -33,9 +35,9 @@ data class ThemePack(
         put("author", author)
         put("mode", mode)
         put("night", night)
-        put("lightAccent", lightAccent)
-        put("darkAccent", darkAccent)
-        if (version == 2) {
+        put("lightAccent", normalizeAccent(lightAccent, version))
+        put("darkAccent", normalizeAccent(darkAccent, version))
+        if (version >= 2) {
             glass?.let {
                 put(
                     "glass",
@@ -91,8 +93,8 @@ data class ThemePack(
             }
             require(json.keys().asSequence().all { it in fields }) { "Unknown field" }
             require(json.get("format") == "wizestream-theme") { "Unsupported format" }
-            val version = json.get("version")
-            require(version == 1 || version == 2) { "Unsupported version" }
+            val version = json.get("version") as? Int ?: error("Expected integer version")
+            require(version in 1..3) { "Unsupported version" }
             if (version == 1) {
                 require(text.toByteArray(Charsets.UTF_8).size <= 16 * 1024)
                 require(listOf("glass", "player", "skin", "icons", "assets").none(json::has))
@@ -108,14 +110,21 @@ data class ThemePack(
             }
             val mode = string("mode", "system").also { require(it in setOf("system", "light", "dark", "black", "eye_comfort")) }
             val night = string("night", "dark").also { require(it in setOf("dark", "black")) }
-            val light = string("lightAccent", "wizestream").also { require(it in accents) }
-            val dark = string("darkAccent", "wizestream").also { require(it in accents) }
+            val light = normalizeAccent(string("lightAccent", "wizestream"), version)
+            val dark = normalizeAccent(string("darkAccent", "wizestream"), version)
             val extensions = ThemeExtensions.parse(json)
             return ThemePack(
-                label("name"), label("author"), mode, night, light, dark, version as Int,
+                label("name"), label("author"), mode, night, light, dark, version,
                 extensions.glass, extensions.player, extensions.skin, extensions.icons, extensions.assets
             ).also { require(it.encode().toByteArray(Charsets.UTF_8).size <= if (version == 1) 16 * 1024 else MAX_BYTES) }
         }
+
+        private fun normalizeAccent(value: String, version: Int): String {
+            if (value in accents) return value
+            require(version >= 3 && value.length == 7) { "Custom accent seeds require version 3" }
+            return requireNotNull(CustomThemeColor.normalize(value)) { "Expected a six-digit #RRGGBB accent seed" }
+        }
+
         private fun readObject(reader: JsonReader, depth: Int): JSONObject {
             require(depth <= 2) { "Theme nesting is too deep" }
             val result = JSONObject()

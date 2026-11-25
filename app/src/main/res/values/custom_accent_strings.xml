@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="custom_theme_color_seed_summary">%1$s\nUsed as a Material palette seed. Dark themes may use a lighter accent.</string>
+    <string name="custom_theme_color_fallback_summary">%1$s\nThis device uses the closest built-in accent. Your exact color is kept for export and supported devices.</string>
+</resources>

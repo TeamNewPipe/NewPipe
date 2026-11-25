@@ -12,6 +12,12 @@ Release history is listed newest first. The number beside each release is its An
 
 - Keep channel sorting and pagination results visible when YouTube sends a separate filter-header update alongside the video list.
 
+### Custom colors and theme packs
+
+- Apply custom accent seeds consistently to the app and player, refresh seekbar colors after HEX edits,
+  and preserve exact custom colors in version 3 theme exports. Older Android devices use the closest
+  built-in accent when generated palettes are unavailable.
+
 ## WizeStream 1.52.2 (`1052002`)
 
 ### Subscription editing and groups

@@ -18,6 +18,7 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.color.DynamicColors;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.themes.CustomAccentColors;
 import org.schabi.newpipe.util.ThemeHelper;
 
 /** Owns the seek-bar palette for a video UI, including service-hosted popup playback. */
@@ -52,7 +53,11 @@ public final class PlayerUiTheme implements AutoCloseable {
                 | (light ? Configuration.UI_MODE_NIGHT_NO : Configuration.UI_MODE_NIGHT_YES);
         Context themed = new ContextThemeWrapper(context.createConfigurationContext(configuration),
                 ThemeHelper.getThemeForService(context, -1));
-        if (ThemeHelper.isFollowSystemThemeColor(context)) {
+        final Integer customColor = ThemeHelper.getCustomThemeColor(context);
+        if (customColor != null && !ThemeHelper.isEyeComfortSelected(context)) {
+            themed = CustomAccentColors.wrap(themed, customColor, light,
+                    ThemeHelper.isBlackThemeSelected(context));
+        } else if (ThemeHelper.isFollowSystemThemeColor(context)) {
             final int overlay = light
                     ? com.google.android.material.R.style.ThemeOverlay_Material3_DynamicColors_Light
                     : com.google.android.material.R.style.ThemeOverlay_Material3_DynamicColors_Dark;
@@ -133,7 +138,8 @@ public final class PlayerUiTheme implements AutoCloseable {
         if (key == null || key.equals(org.schabi.newpipe.themes.ThemePacks.KEY)
                 || key.equals(context.getString(R.string.theme_key))
                 || key.equals(context.getString(R.string.night_theme_key))
-                || key.equals(context.getString(R.string.theme_color_key))) {
+                || key.equals(context.getString(R.string.theme_color_key))
+                || key.equals(context.getString(R.string.custom_theme_color_key))) {
             handler.removeCallbacksAndMessages(null);
             handler.post(this::refresh);
         }

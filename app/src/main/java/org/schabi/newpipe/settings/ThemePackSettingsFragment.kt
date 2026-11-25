@@ -17,6 +17,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.schabi.newpipe.R
+import org.schabi.newpipe.settings.appearance.CustomThemeColor
+import org.schabi.newpipe.themes.CustomAccentColors
 import org.schabi.newpipe.themes.ThemeDraftStore
 import org.schabi.newpipe.themes.ThemePack
 import org.schabi.newpipe.themes.ThemePacks
@@ -172,7 +174,10 @@ class ThemePackSettingsFragment : BasePreferenceFragment() {
             var palette: android.content.Context = ContextThemeWrapper(context.createConfigurationContext(config), style)
             val accent = if (light) pack.lightAccent else pack.darkAccent
             if (mode != "eye_comfort") {
-                if (accent == "follow_system") {
+                val customSeed = CustomThemeColor.normalize(accent)
+                if (customSeed != null) {
+                    palette = CustomAccentColors.wrap(palette, CustomThemeColor.parse(customSeed), light, mode == "black")
+                } else if (accent == "follow_system") {
                     palette = DynamicColors.wrapContextIfAvailable(palette)
                     if (mode == "black") palette.theme.applyStyle(R.style.ThemeOverlay_wizestream_BlackSurfaces, true)
                 } else {
@@ -200,7 +205,7 @@ class ThemePackSettingsFragment : BasePreferenceFragment() {
                     setBackgroundColor(ThemeHelper.resolveColorFromAttr(palette, com.google.android.material.R.attr.colorPrimaryContainer))
                 }
             )
-            if (pack.version == 2) {
+            if (pack.version >= 2) {
                 val sample = org.schabi.newpipe.themes.ThemePlayerView(palette).apply { this.pack = pack }
                 val frame = android.widget.FrameLayout(palette)
                 frame.addView(sample, android.widget.FrameLayout.LayoutParams(-1, (220 * resources.displayMetrics.density).toInt()))

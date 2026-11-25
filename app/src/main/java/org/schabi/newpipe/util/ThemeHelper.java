@@ -19,14 +19,13 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.color.DynamicColors;
-import com.google.android.material.color.DynamicColorsOptions;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.info_list.ItemViewMode;
-import org.schabi.newpipe.settings.appearance.CustomThemeColor;
+import org.schabi.newpipe.themes.CustomAccentColors;
 import org.schabi.newpipe.themes.ThemePacks;
 
 import java.util.Locale;
@@ -50,12 +49,8 @@ public final class ThemeHelper {
             return;
         }
         final Integer customColor = getCustomThemeColor(context);
-        if (customColor != null && context instanceof Activity) {
-            final DynamicColorsOptions options = new DynamicColorsOptions.Builder()
-                    .setContentBasedSource(customColor)
-                    .build();
-            DynamicColors.applyToActivityIfAvailable((Activity) context, options);
-            applyBlackSurfaceOverlay(context);
+        if (customColor != null) {
+            CustomAccentColors.apply(context, customColor);
         } else if (shouldApplyDynamicColors(context)) {
             DynamicColors.applyToActivityIfAvailable((Activity) context);
             applyBlackSurfaceOverlay(context);
@@ -86,14 +81,7 @@ public final class ThemeHelper {
 
     @Nullable
     public static Integer getCustomThemeColor(final Context context) {
-        if (!"custom".equals(normalizeThemeColorValue(getThemeColorPreference(context)))) {
-            return null;
-        }
-        final String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                context.getString(R.string.custom_theme_color_key),
-                context.getString(R.string.custom_theme_color_default));
-        final String normalized = CustomThemeColor.normalize(value);
-        return normalized == null ? null : CustomThemeColor.parse(normalized);
+        return CustomAccentColors.seed(context);
     }
 
     private static void applyBlackSurfaceOverlay(final Context context) {

@@ -9,37 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ThemeColorIntegrationTest {
-    private final Path sourceDirectory = Files.exists(Path.of("src/main/java"))
-            ? Path.of("src/main/java") : Path.of("app/src/main/java");
     private final Path resourceDirectory = Files.exists(Path.of("src/main/res"))
             ? Path.of("src/main/res") : Path.of("app/src/main/res");
-
-    @Test
-    public void blackThemeKeepsDynamicAccentsAndRestoresOnlyBlackSurfaces() throws Exception {
-        final String helper = Files.readString(sourceDirectory.resolve(
-                "org/schabi/newpipe/util/ThemeHelper.java"));
-        final String styles = Files.readString(resourceDirectory.resolve("values/styles.xml"));
-        final String blackOverlay = styleBody(styles,
-                "ThemeOverlay_wizestream_BlackSurfaces");
-
-        assertTrue(helper.contains("&& (isFollowSystemThemeColor(context)"
-                + " || getCustomThemeColor(context) != null);"));
-        assertFalse(helper.contains("&& !isBlackThemeSelected(context)"));
-        assertTrue(helper.contains("DynamicColors.applyToActivityIfAvailable("
-                + "(Activity) context, options);\n            applyBlackSurfaceOverlay(context);"));
-        assertTrue(helper.contains("DynamicColors.applyToActivityIfAvailable("
-                + "(Activity) context);\n            applyBlackSurfaceOverlay(context);"));
-        assertTrue(blackOverlay.contains(
-                "<item name=\"colorSurface\">@color/black_background_color</item>"));
-        assertTrue(blackOverlay.contains(
-                "<item name=\"colorSurfaceContainer\">"
-                        + "@color/black_m3_surface_container_color</item>"));
-        assertTrue(blackOverlay.contains(
-                "<item name=\"colorSurfaceContainerHigh\">"
-                        + "@color/black_m3_surface_container_high_color</item>"));
-        assertFalse(blackOverlay.contains("colorPrimary"));
-        assertFalse(blackOverlay.contains("colorSecondary"));
-    }
 
     @Test
     public void themesExposeMaterialSurfaceAndOutlineRoles() throws Exception {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Embed a PNG in a v2 WizeStream recipe; app import performs full validation."""
+"""Embed a PNG in a v2/v3 WizeStream recipe; app import performs full validation."""
 import base64
 import json
 import re
@@ -16,8 +16,9 @@ if not data.startswith(b"\x89PNG\r\n\x1a\n") or len(data) > 96 * 1024:
     raise SystemExit("Use a PNG no larger than 96 KiB")
 path = Path(recipe_path)
 recipe = json.loads(path.read_text(encoding="utf-8"))
-if recipe.get("format") != "wizestream-theme" or recipe.get("version") != 2:
-    raise SystemExit("Use a version 2 WizeStream recipe")
+version = recipe.get("version")
+if recipe.get("format") != "wizestream-theme" or type(version) is not int or version not in (2, 3):
+    raise SystemExit("Use a version 2 or 3 WizeStream recipe")
 assets = recipe.setdefault("assets", {})
 assets[asset_id] = base64.b64encode(data).decode("ascii")
 if len(assets) > 6:
