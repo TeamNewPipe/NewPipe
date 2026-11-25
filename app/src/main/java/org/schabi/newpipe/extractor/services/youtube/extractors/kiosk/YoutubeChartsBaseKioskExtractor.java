@@ -120,19 +120,7 @@ abstract class YoutubeChartsBaseKioskExtractor extends KioskExtractor<StreamInfo
     @Nonnull
     @Override
     public InfoItemsPage<StreamInfoItem> getInitialPage() throws ParsingException {
-        final JsonArray videos = browseResponse.getObject("contents")
-                .getObject("sectionListRenderer")
-                .getArray("contents")
-                .getObject(0)
-                .getObject("musicAnalyticsSectionRenderer")
-                .getObject("content")
-                .getArray("videos")
-                .getObject(0)
-                .getArray("videoViews");
-
-        if (videos.isEmpty()) {
-            throw new ParsingException("Could not get videos from YouTube Charts");
-        }
+        final JsonArray videos = extractChartVideos(browseResponse);
 
         final StreamInfoItemsCollector collector = new StreamInfoItemsCollector(getServiceId());
         videos.stream()
@@ -140,6 +128,23 @@ abstract class YoutubeChartsBaseKioskExtractor extends KioskExtractor<StreamInfo
                 .map(JsonObject.class::cast)
                 .forEachOrdered(video -> collector.commit(new ChartsVideoInfoItemExtractor(video)));
         return new InfoItemsPage<>(collector, null);
+    }
+
+    static JsonArray extractChartVideos(final JsonObject response) {
+        final JsonArray result = new JsonArray();
+        response.getObject("contents")
+                .getObject("sectionListRenderer")
+                .getArray("contents")
+                .getObject(0)
+                .getObject("musicAnalyticsSectionRenderer")
+                .getObject("content")
+                .getArray("videos")
+                .stream()
+                .filter(JsonObject.class::isInstance)
+                .map(JsonObject.class::cast)
+                .map(group -> group.getArray("videoViews"))
+                .forEach(result::addAll);
+        return result;
     }
 
     @Override

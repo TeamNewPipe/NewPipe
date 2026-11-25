@@ -41,6 +41,21 @@ class YoutubeChartsBaseKioskExtractorTest {
                 .getString("gl"));
     }
 
+    @Test
+    void chartParserAggregatesLaterGroupsAndAllowsEmptyResults() throws Exception {
+        final JsonObject response = JsonParser.object().from(
+                "{\"contents\":{\"sectionListRenderer\":{\"contents\":["
+                        + "{\"musicAnalyticsSectionRenderer\":{\"content\":{\"videos\":["
+                        + "{\"videoViews\":[]},{\"videoViews\":[{\"id\":\"video-1\"}]}"
+                        + "]}}}]}}}");
+        final var videos = YoutubeChartsBaseKioskExtractor.extractChartVideos(response);
+
+        assertEquals(1, videos.size());
+        assertEquals("video-1", videos.getObject(0).getString("id"));
+        assertTrue(YoutubeChartsBaseKioskExtractor.extractChartVideos(
+                JsonParser.object().from("{}")).isEmpty());
+    }
+
     private static JsonObject requestFor(final String chartType) throws Exception {
         final byte[] body = YoutubeChartsBaseKioskExtractor.buildRequestBody(
                 Localization.DEFAULT, new ContentCountry("AE"), chartType);
