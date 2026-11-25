@@ -11,6 +11,7 @@ Website source and its build instructions live in [web/](../web/README.md).
 - [Device synchronization](device-synchronization.md)
 - [Learning Mode](learning-mode.md)
 - [Nightly builds](nightly-builds.md)
+- [Service plugins: installation, compatibility and native API 2.0](plugins.md)
 - [Launcher icons and TV banners](launcher-icons.md)
 
 ## Imports and playback integrations

@@ -5,12 +5,11 @@ devices. It does not require a platform login or a WizeStream cloud account.
 
 ## Build availability
 
-The latest release checked for this guide is **WizeStream 1.50.0 (22 November 2026)**. It supports
-QR pairing and Device Sync. The current `pipe` source also includes changes merged after that
-release: manual code entry, pairing/setup log events, the performance-diagnostics switch in
-release-build sync settings, ongoing non-Default profile history fixes, and local-only profile
-removal. Those additions require a build containing the corresponding changes; merging them does
-not put them in the 1.50.0 APK. See the [changelog](changelogs.md).
+This guide was checked against **WizeStream 1.52.2 (25 November 2026)** at
+[`983d8acb`](https://github.com/wizdom13/WizeStream/tree/983d8acb0cdd934a2a0fbe747020bb988b2b52b0).
+That release includes QR and manual code pairing, pairing/setup log events, the optional
+performance-diagnostics switch in release-build settings, subsequent non-Default profile history
+updates, and local-only profile removal. See the [changelog](changelogs.md) for release history.
 
 ## Pair two devices
 
@@ -30,7 +29,7 @@ between the two device identities; later synchronization does not require a new 
 
 ### Pair without a camera
 
-**Merged after 1.50.0:** use the same one-time code through the manual controls when a camera is
+Use the same one-time code through the manual controls when a camera is
 unavailable or scanning is impractical.
 
 1. On the first device, open **Show pairing code**, choose **Copy pairing code**, and keep that
@@ -61,15 +60,13 @@ access option enabled; Android's **Block connections without VPN** can still blo
 Do not expose the synchronization listener to the public internet as a workaround.
 
 Open **Settings > Device synchronization > Synchronization log** on both devices after a failed
-attempt. In builds containing the post-1.50.0 pairing change, logs can distinguish a failed setup,
-an unreachable device and a data-exchange failure. Setup records use safe failure categories and
-omit invitation codes, tokens and network addresses.
+attempt. Logs can distinguish a failed setup, an unreachable device and a data-exchange failure.
+Setup records use safe failure categories and omit invitation codes, tokens and network addresses.
 
 **Device Sync performance diagnostics** is off by default. Its switch is directly below
-**Synchronization log** in current source; this release-build settings placement was merged after
-1.50.0. When enabled, it adds elapsed stage timings and total app-process CPU time to local sync
-logs, without recording media or history contents. These measurements help investigate slow or
-failed attempts; they are not a repair action.
+**Synchronization log** in the reviewed release. When enabled, it adds elapsed stage timings and
+total app-process CPU time to local sync logs, without recording media or history contents. These
+measurements help investigate slow or failed attempts; they are not a repair action.
 
 For a report, record each app version, Android version, device or Waydroid environment, which
 device initiated the attempt, and the corresponding logs from both sides. Review copied logs
@@ -146,9 +143,9 @@ Watch and search history operations retain the profile that started them, includ
 active profile changes before a pending write finishes. Later views, progress changes and explicit
 history deletions are synchronized after the initial exchange as well.
 
-Builds before the post-1.50.0 profile-history fix could miss non-Default history changes after the
-first exchange. A build containing the fix journals future writes but cannot establish the order
-of those missed changes against deletions or progress recorded on another device. Synchronization
+Older builds could miss non-Default history changes after the first exchange. The reviewed
+release journals future writes but cannot establish the order of those missed changes against
+deletions or progress recorded on another device. Synchronization
 therefore preserves existing journal ordering rather than replaying ambiguous old rows as new
 actions. Missing local rows alone do not prove a deletion.
 
@@ -159,10 +156,10 @@ profile-scoped.
 AiSList synchronization exchanges only the user's enable/behavior choices. Each device downloads
 and caches the upstream AiSList data independently.
 
-In current source, deleting a non-Default profile is a local action. This behavior was merged after
-1.50.0. WizeStream tombstones that profile ID on the device so a paired peer cannot silently
-recreate it there. Profile-owned data already synchronized to another device is not remotely
-deleted merely because the profile was removed locally.
+Deleting a non-Default profile is a local action in the reviewed release. WizeStream tombstones
+that profile ID on the device so a paired peer cannot silently recreate it there. Profile-owned
+data already synchronized to another device is not remotely deleted merely because the profile
+was removed locally.
 
 Synchronization merges supported records from both devices. It is not a
 one-way replacement or a full-device backup. Keep using

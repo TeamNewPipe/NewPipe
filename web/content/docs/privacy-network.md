@@ -12,6 +12,7 @@ Incognito is not a VPN. Your media service, proxy, receiver or network provider 
 | --- | --- |
 | Normal streaming | Requests to the chosen service and its media hosts, with normal connection information. |
 | Optional Vimeo API features | Search keywords or public video/showcase identifiers, plus your configured public-only API token sent to Vimeo's API over HTTPS. |
+| Optional service plugins | Repository and package requests to the configured HTTPS publishers; service requests made by the installed plugin. |
 | Update checks | Requests to the WizeStream GitHub Releases API when checks are enabled or requested. |
 | SponsorBlock playback | Supported public video lookups to the selected community service. |
 | SponsorBlock contributions | The public submission/vote and a private persistent contribution ID, after explicit opt-in. |
@@ -33,6 +34,12 @@ Global Vimeo video search and public comments/replies can use a token you supply
 
 The token is encrypted with Android Keystore and stored only on that device, outside preferences, backups and Device Sync. Removing it disables the optional API features; ordinary public video, showcase and event playback continues without it. This integration does not sign in to a Vimeo account or request private account data.
 
+## Optional service plugins
+
+Service plugins are disabled until you enable them in **Settings → Plugins**. Installed packages execute in the app process with its permissions. Signature verification and a pinned publisher key protect package integrity and update identity; they do not isolate untrusted code from the app.
+
+Plugin packages, repository addresses and publisher pins stay on the device. Supported plugin preferences and optional login cookies are separated by profile, and switching profiles restarts the process when plugins are loaded. Backups and Device Sync do not transfer plugin packages or configuration; a restored enable switch does not install code. See [service plugins](services-discovery.html#add-a-service-plugin).
+
 ## Proxy connections
 
 Open **Settings → Proxy** to configure HTTP or SOCKS5 with optional authentication. Supported new remote browsing, image, playback, download, update and community-service connections use the selected proxy configuration.
@@ -51,7 +58,7 @@ Direct YouTube requests remain blocked in Invidious mode until an explicit direc
 
 ## Sync and backups
 
-Device Sync uses encrypted peer-to-peer connections after one-time pairing. The reviewed 1.50.0 release uses QR scanning; current source after that release also supports copying and entering the same code manually. Search history is excluded unless enabled on both devices. Actual downloaded media files are not transferred.
+Device Sync uses encrypted peer-to-peer connections after one-time pairing. The reviewed release supports QR scanning or copying and entering the same code manually. Search history is excluded unless enabled on both devices. Actual downloaded media files are not transferred.
 
 Portable backups can contain personal library information even when the app uses no cloud account. Share those files intentionally and review them before sending them to anyone. Proxy credentials, Vimeo API tokens and private SponsorBlock contribution identity are not normal backup/sync content.
 

@@ -9,6 +9,10 @@ Subscriptions are stored locally in WizeStream. Following a channel does not sub
 
 Subscriptions and feed groups are scoped to the active local profile. Grouping is useful within a profile; separate profiles also isolate library data such as history and playlists. See [profiles and synchronization](profiles-sync.html).
 
+The Subscriptions heading has a compact count, pencil edit action, search and separate expand/collapse control. Channel groups remember their Grid/List choice. Optional floating New group and Search buttons can be enabled in Appearance; they hide while editing or while the keyboard is open.
+
+In 1.52.2, editing controls scroll with the channel list so the final row can remain above the mini-player, including in short landscape windows. Channel order and the visible channel anchor are preserved when switching between browsing and editing.
+
 ## Understand the feed scope
 
 The What’s New toolbar can change the selected channel group and service scope. Switching groups uses cached feed data rather than automatically requesting every channel again. A publication-date cutoff and content/watch-state filters can further narrow the displayed results.
@@ -22,11 +26,13 @@ The What’s New toolbar can change the selected channel group and service scope
 | Date cutoff | Is the upload older than the selected cutoff? |
 | Blocking | Is a video, channel, keyword or membership rule hiding it? |
 
+Content-type choices occupy the first filter row; watch status and the independent **Downloaded** filter share the second. **Upcoming** covers scheduled broadcasts still waiting to start. Saved visibility defaults and the publication-date cutoff are available through **Feed options**.
+
 Feeds are not unlimited historical archives. A refresh can improve freshness without guaranteeing that every older channel upload is collected.
 
 ## Refresh and notifications
 
-Refresh manually when you want to check for new content. Progressive refresh can show updates as they arrive instead of waiting for every channel to finish. **Refresh all now** bypasses the ordinary refresh threshold.
+Pull down at the top of a feed to refresh, whether it is opened from Home or Subscriptions and whether its header is expanded or collapsed. If you enable floating refresh controls, the floating **Refresh/Cancel** button is the alternative to the pull gesture. Progressive refresh can show updates as they arrive instead of waiting for every channel to finish. **Refresh all now** bypasses the ordinary refresh threshold.
 
 Channel notification settings can control frequency, network conditions and title keywords. Android can delay scheduled background work, particularly when the app is battery-restricted or the device is offline. A permission or scheduling limit is different from unsubscribing.
 
@@ -34,7 +40,7 @@ Channel notification settings can control frequency, network conditions and titl
 
 Local playlists belong to your WizeStream library. Remote bookmarks point to service-hosted playlists; those playlists can change independently. Categories, named separators and bulk actions help organize larger collections.
 
-Use Edit mode for multi-selection and bulk actions. Where enabled, swipe-to-remove in a local playlist’s Edit mode offers Undo. Review the selected scope before a bulk move or unsubscribe action.
+Use **Select items** for local-playlist multi-selection, including outside Edit mode. **Copy to playlist** keeps the source entries; **Move to playlist** transfers selected occurrences, including duplicates, while preserving hidden entries and saved order. **Reorder selected** is separate. Where enabled, swipe-to-remove in Edit mode offers Undo. Review the selected scope before a bulk move or unsubscribe action.
 
 ## Smart playlists and saved searches
 

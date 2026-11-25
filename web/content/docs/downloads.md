@@ -23,11 +23,11 @@ Companion caption behavior applies to full downloads rather than segment downloa
 
 ## Chapters, transcripts and audio artwork in newer builds
 
-**Merged after 1.50.0:** new downloads retain available chapter metadata, including precise timestamps and chapters remapped to a selected-range export. Recorded companion captions can play offline and open a searchable local transcript with timestamp navigation. This depends on the chapter/caption information actually saved with the download; older downloads may not have it.
+New downloads retain available chapter metadata, including precise timestamps and chapters remapped to a selected-range export. Recorded companion captions can play offline and open a searchable local transcript with timestamp navigation. This depends on the chapter/caption information actually saved with the download; older downloads may not have it.
 
 Current source also reads supported embedded chapters from local MP3 and MP4/M4A files when saved download chapters are unavailable. Unsupported or damaged chapter metadata does not add chapters, and replaced or edited files can invalidate saved associations.
 
-The optional **Embed audio artwork** download setting is off by default. In builds containing this post-1.50.0 change, new MP3 and M4A downloads can keep the best available original artwork while preserving existing covers. Artwork fetching uses additional data and temporary storage; missing or failed artwork does not make the audio unusable.
+The optional **Embed audio artwork** download setting is off by default. New MP3 and M4A downloads can keep the best available original artwork while preserving existing covers. Artwork fetching uses additional data and temporary storage; missing or failed artwork does not make the audio unusable.
 
 ## Batch downloads
 

@@ -1,8 +1,8 @@
 # WizeStream FAQ
 
-This FAQ describes the current `pipe` source. The latest release checked is
-**WizeStream 1.50.0 (22 November 2026)**; features marked as merged after that release need a build
-containing the change. See the [changelog](changelogs.md) for version-specific availability.
+This FAQ was reviewed against **WizeStream 1.52.2 (25 November 2026)** and `pipe` at
+[`983d8acb`](https://github.com/wizdom13/WizeStream/tree/983d8acb0cdd934a2a0fbe747020bb988b2b52b0),
+the commit tagged for that release. See the [changelog](changelogs.md) for version-specific availability.
 
 ## What is WizeStream?
 
@@ -47,7 +47,7 @@ Open **Settings > Device synchronization** on two WizeStream devices, show the o
 one device, and scan it with the other. Paired devices can synchronize directly over the same Wi-Fi
 or Ethernet network, either manually or approximately once per hour in the background.
 
-**Merged after 1.50.0:** **Copy pairing code** and **Enter pairing code** offer a camera-free path.
+**Copy pairing code** and **Enter pairing code** offer a camera-free path.
 For Waydroid, copy the phone's complete code into Waydroid while the phone's pairing screen stays
 open, then start **Sync now** in Waydroid. The code still expires after five minutes and can be used
 only once. This does not bypass local-network reachability requirements. See the
@@ -74,10 +74,21 @@ Use the same source from which you installed it whenever possible. IzzyOnDroid u
 Service support comes from the extractor source integrated into each WizeStream build. See the
 main [README](../README.md#supported-services) for the current list.
 
+## Can I add a service plugin?
+
+Since 1.52.0, **Settings > Plugins** supports signed native WizeStream API 2.0 packages and
+compatible PipePipe API 1.0/1.1 packages. External plugins need Android 7/API 24 or newer;
+WizeStream and its built-in services still support Android 6/API 23. Enable plugins only for
+publishers you trust: their code runs in the app process with its permissions.
+
+The WizeStream Plugins catalog is included by default. Packages and repositories belong to the
+device; plugin preferences and optional login cookies are separated by profile. Backups and
+Device Sync do not transfer plugin packages or configuration. See the [plugin guide](plugins.md)
+for installation, restarts, compatibility and the native Kotlin template.
+
 ## How do I use Vimeo?
 
-**Merged after 1.50.0:** Vimeo support described here is part of the current source snapshot and
-requires a build containing those changes.
+The Vimeo features described here are included in the reviewed **1.52.2** release.
 
 Select Vimeo, then browse **Staff Picks** or choose **Open link** to paste a Vimeo video, creator,
 channel, showcase/album or live-event URL. Android's Share action can also send a supported Vimeo

@@ -32,17 +32,19 @@ Open the caption menu to select a track. **Subtitle timing** adjusts a caption t
 
 The offset is session-only and clears when the caption track changes. It does not rewrite a downloaded subtitle file or change the source video.
 
-**Available in 1.50.0:** an optional second caption track can display another available language alongside the primary captions. Current source after 1.50.0 improves coordination when the primary language changes, restores the second track across main/popup player switches and applies the session timing adjustment to both tracks.
+An optional second caption track can display another available language alongside the primary captions. The reviewed 1.52.2 release coordinates primary-language changes, restores captions across main/popup player switches and applies the session timing adjustment to both tracks. It also fixes the second-language picker and schedules short secondary cues at their boundaries, including after seeking or changing speed.
+
+Verified downloaded companion captions can supply the second track offline. A missing or replaced caption file is rejected without falling back to a network request. See [downloads and offline playback](downloads.html).
 
 ## A–B repeat
 
-Enable A–B repeat under **Settings → Video and audio**. Its enable switch is **off by default** and is available since 1.42.0, including 1.50.0. Set A at the start of the passage and B at its end; B must be at least half a second after A.
+Enable A–B repeat under **Settings → Video and audio**. Its enable switch is **off by default** and is available since 1.42.0, including 1.52.2. Set A at the start of the passage and B at its end; B must be at least half a second after A.
 
 The selected passage repeats during non-live playback. Clear the range when you want normal playback again. The range is temporary, not a saved playlist or an export.
 
 ## 360° video
 
-The player supports automatic projection detection and manual equirectangular viewing. First enable the optional 360° setting in Video and audio. This switch is off by default and is available since 1.42.0, including 1.50.0; the underlying projection controls first appeared in 1.41.0.
+The player supports automatic projection detection and manual equirectangular viewing. First enable the optional 360° setting in Video and audio. This switch is off by default and is available since 1.42.0, including 1.52.2; the underlying projection controls first appeared in 1.41.0.
 
 Use **360° → Video projection** to choose Automatic, Flat or a manual projection. Drag to look around, enable optional motion tracking if desired, and use Recenter to restore the forward view. TV and keyboard panning are also supported. A flat video does not become a genuine spherical recording when forced into a 360° projection.
 
@@ -58,8 +60,8 @@ Full live rewind is limited by the DVR history a broadcaster supplies. A broadca
 
 The sleep timer supports presets, custom durations, end-of-video or end-of-queue behavior, with an optional fade. Queue recovery can preserve loaded queue entries for later recovery when its setting and watch history are enabled. Incognito queues are excluded; recovery is not a permanent backup.
 
-## Newer playback navigation
+## Previous playback and remaining time
 
-**Merged after 1.50.0:** **Return to previous playback** restores the previous video with its queue, shuffle order, position and saved play/pause state. This is temporary navigation history: it clears when the playback session or privacy scope changes.
+**Return to previous playback** restores the previous video with its queue, shuffle order, position and saved play/pause state. This is temporary navigation history: it clears when the playback session or privacy scope changes.
 
-In the same source snapshot, tapping the total duration switches to estimated remaining playback time. The estimate accounts for speed and enabled automatic SponsorBlock skips. It is unavailable for live playback, casting or an active A–B repeat range. These controls require a build containing the post-1.50.0 changes.
+Tapping the total duration switches to estimated remaining playback time. The estimate accounts for speed and enabled automatic SponsorBlock skips. It is unavailable for live playback, casting or an active A–B repeat range.

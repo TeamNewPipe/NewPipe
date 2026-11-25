@@ -10,7 +10,7 @@ For supported newly completed full downloads, available SponsorBlock segment dat
 
 ## Full-video sponsorship disclosures
 
-**Available since 1.42.0, including 1.50.0:** optional full-video sponsorship labels describe fully sponsored videos, exclusive/subsidized access and unpaid/self-promotion.
+**Available since 1.42.0, including 1.52.2:** optional full-video sponsorship labels describe fully sponsored videos, exclusive/subsidized access and unpaid/self-promotion.
 
 These labels are separate from Members only and AI/content-origin disclosures. They describe community-supplied sponsorship information, not a guarantee about the creator or video.
 
@@ -18,7 +18,7 @@ These labels are separate from Members only and AI/content-origin disclosures. T
 
 ## Enable contribution tools deliberately
 
-**Available since 1.42.0, including 1.50.0:** submissions and voting require a separate opt-in.
+**Available since 1.42.0, including 1.52.2:** submissions and voting require a separate opt-in.
 
 1. Open SponsorBlock settings and enable **Enable contribution tools**.
 2. Read the contribution privacy notice before confirming.

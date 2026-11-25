@@ -19,7 +19,7 @@ Do not assume a black screen proves a decoder failure, or that every error is ca
 
 The broadcaster can change manifests, revoke URLs, reduce DVR availability or finish the stream. Full live rewind depends on the history actually exposed by that broadcast.
 
-When reporting, say whether you were at the live edge or rewound, whether audio continued, and whether the broadcast had ended. Use a public stream URL and a fresh log from the failing build. The reviewed 1.50.0 release includes several live and playback recovery improvements, but that does not guarantee every source or device failure is resolved. Check the release notes for your actual build.
+When reporting, say whether you were at the live edge or rewound, whether audio continued, and whether the broadcast had ended. Use a public stream URL and a fresh log from the failing build. The reviewed 1.52.2 release includes several live and playback recovery improvements, but that does not guarantee every source or device failure is resolved. Check the release notes for your actual build.
 
 ## A subscription upload is missing
 
@@ -37,7 +37,7 @@ Inspect a scheduled download window, charging requirement or unmetered-network c
 
 For Device Sync and casting, check that both devices can reach each other on the same local network. Guest-network isolation, VPN routing and firewalls can interfere. Use a fresh pairing code and inspect battery restrictions for background sync.
 
-**Merged after 1.50.0:** manual **Copy pairing code** and **Enter pairing code** controls avoid the camera requirement. For Waydroid, copy the phone's code into Waydroid and start **Sync now** there. Routing and firewall requirements still apply. The [profiles and synchronization guide](profiles-sync.html) explains the steps, release-build diagnostic setting and logs to collect from both devices.
+Manual **Copy pairing code** and **Enter pairing code** controls avoid the camera requirement. For Waydroid, copy the phone's code into Waydroid and start **Sync now** there. Routing and firewall requirements still apply. The [profiles and synchronization guide](profiles-sync.html) explains the steps, release-build diagnostic setting and logs to collect from both devices.
 
 ## Home closes or reports out-of-memory
 

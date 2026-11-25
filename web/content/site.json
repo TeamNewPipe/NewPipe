@@ -1,15 +1,15 @@
 {
   "name": "WizeStream",
-  "release": "1.50.0",
-  "releaseDate": "2026-11-22",
-  "reviewed": "2026-11-23",
-  "sourceCommit": "fb0a89a2eb4b71e3318fa60717e0bb7098200e0d",
+  "release": "1.52.2",
+  "releaseDate": "2026-11-25",
+  "reviewed": "2026-11-25",
+  "sourceCommit": "983d8acb0cdd934a2a0fbe747020bb988b2b52b0",
   "repository": "https://github.com/wizdom13/WizeStream",
   "projects": [
     {
       "key": "wizestream",
       "name": "WizeStream",
-      "version": "1.50.0 + merged changes",
+      "version": "1.52.2",
       "url": "https://github.com/wizdom13/WizeStream",
       "status": "Active"
     },
@@ -79,9 +79,9 @@
       "feature": "Streaming services",
       "cells": {
         "wizestream": {
-          "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de, Bilibili, Niconico, Rumble, BitChute; experimental Odysee; Vimeo after 1.50.0",
+          "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de, Bilibili, Niconico, Rumble, BitChute; experimental Odysee; Vimeo",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "YouTube/Music, SoundCloud, PeerTube, Bandcamp, media.ccc.de",
@@ -358,9 +358,9 @@
       "feature": "Captions and chapters",
       "cells": {
         "wizestream": {
-          "text": "Captions, second track and searchable transcripts; offline chapters after 1.50.0",
+          "text": "Captions, second track and searchable transcripts; offline chapters",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "Captions and chapter divisions",
@@ -730,9 +730,9 @@
       "feature": "Cross-device synchronization",
       "cells": {
         "wizestream": {
-          "text": "Encrypted peer-to-peer Device Sync; manual pairing after 1.50.0",
+          "text": "Encrypted peer-to-peer Device Sync; QR/manual pairing",
           "level": "yes",
-          "next": true
+          "next": false
         },
         "newpipe": {
           "text": "Manual backup transfer; live sync not verified",
@@ -1355,6 +1355,6 @@
     }
   ],
   "baseUrl": "https://wizestream.org/",
-  "releaseCommit": "88b40eb8c0c6bef1a29befe46f63916fa8885e5b",
+  "releaseCommit": "983d8acb0cdd934a2a0fbe747020bb988b2b52b0",
   "comparisonReviewed": "2026-11-13"
 }

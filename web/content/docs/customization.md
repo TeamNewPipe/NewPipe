@@ -12,6 +12,8 @@ Theme packs offer a portable appearance configuration. For their format, import 
 
 Choose the home sections you actually use and set a preferred main tab. Bottom navigation supports up to five main sections; larger collections can use a scrollable tab layout. Labels can remain visible, appear only for the active destination, or be hidden.
 
+The reviewed release also offers optional **Floating** bottom navigation with adjustable spacing and a reset; **Classic** remains the default. Subscriptions has an independent option for floating New group and Search actions.
+
 Optional service sections in the drawer and global-search behavior can reduce the number of steps to reach a favorite source. Tablet navigation can use an appropriate rail or bottom arrangement.
 
 ## Make lists comfortable

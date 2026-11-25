@@ -6,8 +6,12 @@ contract. Each repository entry points to a signed `.ppp` archive containing the
 compiled code. JSON supplies metadata and configuration; website-specific extraction is
 implemented in that code.
 
-Plugin support requires WizeStream **1.52.0 or newer**. External plugins require Android
-**7/API 24 or newer**; built-in services remain available on Android 6.
+Plugin support requires WizeStream **1.52.0 or newer** and is included in the reviewed
+[**1.52.2 release**](https://github.com/wizdom13/WizeStream/releases/tag/v1.52.2).
+This guide was checked against its source commit
+[`983d8acb`](https://github.com/wizdom13/WizeStream/tree/983d8acb0cdd934a2a0fbe747020bb988b2b52b0)
+on 25 November 2026. External plugins require Android **7/API 24 or newer**; the app and
+built-in services remain available on Android **6/API 23**.
 
 ## Install and manage plugins
 

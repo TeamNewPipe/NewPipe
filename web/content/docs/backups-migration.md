@@ -31,7 +31,7 @@ The import accepts JSON up to 16 MiB, not arbitrary ZIP archives or SQLite datab
 
 ## FreeTube subscriptions and playlists
 
-**Available since 1.42.0, including 1.50.0:** use **FreeTube import and export** under Backup and restore.
+**Available since 1.42.0, including 1.52.2:** use **FreeTube import and export** under Backup and restore.
 
 Choose a modern newline-delimited `.db` export or supported older JSON file. Review the preview, select subscriptions/groups or playlists, and confirm the target profile. FreeTube profiles become subscription groups in that WizeStream profile.
 

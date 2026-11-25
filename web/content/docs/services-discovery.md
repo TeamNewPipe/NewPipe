@@ -13,7 +13,7 @@ WizeStream integrates extractor source directly into the Android app. Services p
 | Bilibili and Niconico | Integrated service support; details vary by source. |
 | BitChute and Rumble | Integrated browsing and playback support. |
 | Odysee | Experimental support; expect limitations. |
-| Vimeo | Merged after 1.50.0: public videos, shared unlisted links, creator/channel uploads, Staff Picks, showcases and live events. Optional API search and public comments. |
+| Vimeo | Public videos, shared unlisted links, creator/channel uploads, Staff Picks, showcases and live events. Optional API search and public comments. |
 
 Live Radio and Live TV use separate station/channel directories and imported stream lists. They do not turn every directory item into a supported social-platform subscription. See [live media and local files](live-media.html).
 
@@ -21,7 +21,7 @@ Live Radio and Live TV use separate station/channel directories and imported str
 
 Select the service before searching. Use its available content, date, duration, feature and sorting filters. YouTube Music has its own filter context. Supported presets can preserve repeatable search choices for a profile and service.
 
-**Vimeo requires a build containing the changes merged after 1.50.0.** Use **Open link** to paste or share a video, creator, channel, showcase/album or event URL, or browse **Staff Picks**. Keep the full URL for an unlisted video, including its access hash. Public creator/channel uploads support pagination. Public showcases open as complete playlists, including legacy album and custom showcase links. Event links follow the broadcast or recording selected by Vimeo, with a waiting state for upcoming events. Videos use the native player when Vimeo provides unencrypted streams, with captions when available; downloads require a progressive video file.
+**These Vimeo features are included in the reviewed 1.52.2 release.** Use **Open link** to paste or share a video, creator, channel, showcase/album or event URL, or browse **Staff Picks**. Keep the full URL for an unlisted video, including its access hash. Public creator/channel uploads support pagination. Public showcases open as complete playlists, including legacy album and custom showcase links. Event links follow the broadcast or recording selected by Vimeo, with a waiting state for upcoming events. Videos use the native player when Vimeo provides unencrypted streams, with captions when available; downloads require a progressive video file.
 
 Global keyword search and reading public video comments/replies require an optional **public-only Vimeo API token**. Follow [Vimeo's official instructions](https://help.vimeo.com/hc/en-us/articles/12427789081745-How-to-generate-a-personal-access-token) to create your own API app and generate an **Unauthenticated** token, then verify it under **Settings > Content > Vimeo > Set public API token**. WizeStream accepts only the public scope, stores the token encrypted on the device, and excludes it from backups and Device Sync. Search uses relevance order; comments use Vimeo's chronological order. Removing the token disables these API features. Public playback, showcases and events do not require a token. If a large showcase's public embed omits members, configured API access can load the remaining pages; partial lists are never labeled complete.
 
@@ -32,6 +32,16 @@ Vimeo's regional restrictions and API quotas still apply. Account sign-in inside
 YouTube searches can use custom or relative upload-date ranges, duration limits and supported deeper collection. Larger searches can take longer and still depend on the service’s returned results; they are not a complete database query over every upload.
 
 The microphone button delegates recognition to an installed speech-recognition application. WizeStream requests offline recognition, but the provider determines whether it can work locally and may use its own servers. No Google account or bundled speech SDK is required by WizeStream.
+
+## Add a service plugin
+
+Since 1.52.0, **Settings → Plugins** can install signed service packages from the included [WizeStream Plugins catalog](https://github.com/wizdom13/WizeStream-Plugins) or another HTTPS JSON repository. Enable **Allow plugins**, choose a publisher you trust, install the package and restart when prompted. A plugin cannot replace a service already built into WizeStream.
+
+Native WizeStream plugins use **API 2.0**; compatible PipePipe packages use **API 1.0 or 1.1**. External plugins require **Android 7/API 24** or newer even though the app and built-in services support **Android 6/API 23**. A package can require a newer Android version or host release.
+
+Packages and repositories belong to the device. Plugin settings and optional login cookies are separated by profile, and profile changes restart the process when plugins are loaded. Packages, repositories, publisher pins and plugin configuration are not transferred by backups or Device Sync. Reinstall and configure the same plugin on another device to use restored service records.
+
+Plugins execute inside the app with its permissions; a valid package signature identifies the publisher and verifies the downloaded bytes, but does not sandbox the code. Read the [plugin installation and authoring guide](https://github.com/wizdom13/WizeStream/blob/pipe/docs/plugins.md) for trust, update and compatibility rules. The [native Kotlin template](https://github.com/wizdom13/WizeStream-Plugin-Template) is available to service authors.
 
 ## Explore a channel
 

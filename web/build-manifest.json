@@ -28,11 +28,11 @@
     "screenshots.html",
     "reviews/index.php"
   ],
-  "sourceCommit": "fb0a89a2eb4b71e3318fa60717e0bb7098200e0d",
-  "reviewed": "2026-11-23",
-  "release": "1.50.0",
-  "releaseDate": "2026-11-22",
-  "releaseCommit": "88b40eb8c0c6bef1a29befe46f63916fa8885e5b",
+  "sourceCommit": "983d8acb0cdd934a2a0fbe747020bb988b2b52b0",
+  "reviewed": "2026-11-25",
+  "release": "1.52.2",
+  "releaseDate": "2026-11-25",
+  "releaseCommit": "983d8acb0cdd934a2a0fbe747020bb988b2b52b0",
   "comparisonReviewed": "2026-11-13",
   "baseUrl": "https://wizestream.org/"
 }

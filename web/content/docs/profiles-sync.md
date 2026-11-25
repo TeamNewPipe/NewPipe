@@ -18,7 +18,7 @@ The pairing code expires after five minutes and is single-use. Successful pairin
 
 ## Pair without a camera, including Waydroid
 
-**Merged after 1.50.0:** current source adds **Copy pairing code** and **Enter pairing code**. These controls are not in the reviewed 1.50.0 release.
+The reviewed release offers **Copy pairing code** and **Enter pairing code** alongside QR scanning.
 
 1. On the first device, choose **Show pairing code**, then **Copy pairing code**. Keep its pairing screen open.
 2. Transfer the complete code privately to the second device. Share it only with the device you intend to trust.
@@ -40,7 +40,7 @@ For a phone and Waydroid, copy the phone's code into Waydroid and start **Sync n
 
 AiSList synchronization transfers your selected behavior, not a shared copy of its upstream data. Each device downloads its own cache when that feature is enabled.
 
-**Merged after 1.50.0:** profile-history changes keep subsequent watch/progress changes and explicit deletions attached to the profile that initiated them. They do not reconstruct the ordering of missed events from older builds. Updating both devices helps avoid differing behavior, but this change does not establish that every synchronization failure is resolved.
+Profile-history updates keep subsequent watch/progress changes and explicit deletions attached to the profile that initiated them. They do not reconstruct the ordering of missed events from older builds. Updating both devices helps avoid differing behavior, but this change does not establish that every synchronization failure is resolved.
 
 ## Background behavior
 
@@ -52,15 +52,15 @@ While automatic synchronization is enabled and a trusted device remains paired, 
 
 Synchronization merges supported records. It is not a one-way replacement or a full backup. Stable profile identifiers help prevent similarly named profiles from silently merging into each other.
 
-**Merged after 1.50.0:** deleting a non-default profile is a local action. It does not remotely delete every record already synchronized to another device. A local tombstone prevents that same profile identity from silently reappearing on the deleting device.
+Deleting a non-default profile is a local action. It does not remotely delete every record already synchronized to another device. A local tombstone prevents that same profile identity from silently reappearing on the deleting device.
 
 ## Diagnose an unsuccessful attempt
 
 Open **Settings → Device synchronization → Synchronization log** on both devices after reproducing the problem. Note both app versions, Android/device details, which device initiated the attempt, and the results on each side. Successful pairing alone does not prove that every data category exchanged successfully.
 
-Current source adds pairing and listener-start events with safe failure categories. These setup records omit invitation codes, tokens and network addresses. If the code expired or was incomplete, copy a new one while keeping the first device's pairing screen open; check both devices' clocks if prompted.
+The synchronization log includes pairing and listener-start events with safe failure categories. These setup records omit invitation codes, tokens and network addresses. If the code expired or was incomplete, copy a new one while keeping the first device's pairing screen open; check both devices' clocks if prompted.
 
-**Merged after 1.50.0:** **Device Sync performance diagnostics** is available directly below **Synchronization log** in the release-build settings screen. It is off by default. When enabled, it adds local stage timings and total app-process CPU time without recording media or history contents. This supplies evidence about slow or failed attempts; it does not change network routing or repair missing data.
+**Device Sync performance diagnostics** is available directly below **Synchronization log** in the release-build settings screen. It is off by default. When enabled, it adds local stage timings and total app-process CPU time without recording media or history contents. This supplies evidence about slow or failed attempts; it does not change network routing or repair missing data.
 
 ## Kids Mode and Incognito
 

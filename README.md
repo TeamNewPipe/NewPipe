@@ -129,12 +129,13 @@ This README describes the current `pipe` branch; recently merged features may ar
 release. See the [release history](docs/changelogs.md) and [published releases](https://github.com/wizdom13/WizeStream/releases)
 for version-specific availability.
 
-The latest release checked for this documentation is **WizeStream 1.50.0 (22 November 2026)**.
-The source review covers merged `pipe` changes through
-[`fb0a89a2`](https://github.com/wizdom13/WizeStream/tree/fb0a89a2eb4b71e3318fa60717e0bb7098200e0d)
-(23 November 2026), including changes not yet in that release. Open pull requests are not part of
-this snapshot. See the [release availability page](https://wizestream.org/releases.html) for the
-distinction between the reviewed release and newer source features.
+The latest release checked for this documentation is
+[**WizeStream 1.52.2 (25 November 2026)**](https://github.com/wizdom13/WizeStream/releases/tag/v1.52.2).
+The source review covers `pipe` at
+[`983d8acb`](https://github.com/wizdom13/WizeStream/tree/983d8acb0cdd934a2a0fbe747020bb988b2b52b0)
+(25 November 2026), the same commit as the `v1.52.2` release tag. Features in this reviewed snapshot
+are included in that release; later commits and open pull requests are outside the snapshot.
+See the [release availability page](https://wizestream.org/releases.html) for version-specific details.
 
 ---
 
@@ -737,7 +738,7 @@ data migration, and synchronization details.
 
 ### Sync highlights
 
-- Encrypted peer-to-peer pairing between trusted WizeStream devices using a one-time code, with QR scanning and a manual entry option in current source
+- Encrypted peer-to-peer pairing between trusted WizeStream devices using a one-time code, with QR scanning or manual code entry
 - Manual synchronization and automatic background synchronization over Wi-Fi or Ethernet, with
   an optional charging-only constraint for scheduled attempts
 - Synchronization of local profile identities plus profile-scoped subscriptions, feed groups,
@@ -782,7 +783,7 @@ requiring a platform account or a WizeStream cloud account.
 Open **Settings > Device synchronization** on both devices. One device displays a one-time QR code
 and the other scans it. The pairing code expires after five minutes and can be used only once.
 
-**Merged after 1.50.0:** builds containing the manual pairing change also offer **Copy pairing code**
+**Available in the reviewed 1.52.2 release:** use **Copy pairing code**
 on the first device and **Enter pairing code** on the second. Keep the first device's pairing screen
 open and paste the complete code within five minutes. For Waydroid, copy the phone's code into
 Waydroid and start **Sync now** there. This avoids needing a camera; both devices still need a
@@ -994,10 +995,17 @@ together in one repository.
 
 ### Service plugins
 
-See the [plugin guide](docs/plugins.md) for installing compatible service plugins, the separate
-native WizeStream API, profile behavior, and publishing a signed repository. The
-[Kotlin plugin template](plugin-template/README.md) builds a native package against the exported
-extractor SDK; built-in services retain their existing identities.
+Since WizeStream 1.52.0, **Settings → Plugins** can install signed service packages from the
+[WizeStream Plugins catalog](https://github.com/wizdom13/WizeStream-Plugins) or another HTTPS JSON
+repository. WizeStream supports native **API 2.0** plugins and compatible PipePipe **API 1.0/1.1**
+packages. External plugins require **Android 7/API 24**; the app and built-in services still support
+**Android 6/API 23**.
+
+See the [plugin guide](docs/plugins.md) for installation, publisher trust, profile-specific settings,
+and signing. Packages, repositories, publisher pins and plugin configuration remain on the device
+and are not transferred by backups or Device Sync. The [Kotlin plugin template](plugin-template/README.md)
+builds a native package against the exported extractor SDK; built-in services retain their existing
+identities and cannot be replaced by a plugin.
 
 ---
 
