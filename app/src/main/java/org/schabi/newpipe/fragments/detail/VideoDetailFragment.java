@@ -308,7 +308,8 @@ public final class VideoDetailFragment
     private Disposable positionSubscriber = null;
 
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
-    private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
+    @Nullable
+    private DetailPlayerViewListeners bottomPlayerViewListeners;
     private BroadcastReceiver broadcastReceiver;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -871,7 +872,6 @@ public final class VideoDetailFragment
         positionSubscriber = null;
         currentWorker = null;
         updatePinnedPlayerLayout();
-        bottomSheetBehavior.removeBottomSheetCallback(bottomSheetCallback);
 
         if (activity.isFinishing()) {
             playQueue = null;
@@ -882,6 +882,7 @@ public final class VideoDetailFragment
 
     @Override
     public void onDestroyView() {
+        clearBottomPlayerViewListeners();
         if (sponsorshipBadge != null) {
             sponsorshipBadge.clear();
             sponsorshipBadge = null;
@@ -4054,6 +4055,7 @@ public final class VideoDetailFragment
     }
 
     private void setupBottomPlayer() {
+        clearBottomPlayerViewListeners();
         final CoordinatorLayout.LayoutParams params =
                 (CoordinatorLayout.LayoutParams) binding.appBarLayout.getLayoutParams();
         final AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
@@ -4083,7 +4085,7 @@ public final class VideoDetailFragment
             }
         }
 
-        bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
+        final var bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull final View bottomSheet, final int newState) {
                 updateBottomSheetState(newState);
@@ -4174,18 +4176,25 @@ public final class VideoDetailFragment
             }
         };
 
-        bottomSheetBehavior.addBottomSheetCallback(bottomSheetCallback);
+        bottomPlayerViewListeners = new DetailPlayerViewListeners(
+                getViewLifecycleOwner(), bottomSheetBehavior,
+                activity.getSupportFragmentManager(), bottomSheetCallback, () -> {
+                    // User opened a new page and the player will hide itself.
+                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                });
         if (DeviceUtils.isTv(activity)) {
             updateTvMiniPlayerFocus();
         }
         updateMinimizedVideo();
+    }
 
-        // User opened a new page and the player will hide itself
-        activity.getSupportFragmentManager().addOnBackStackChangedListener(() -> {
-            if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            }
-        });
+    private void clearBottomPlayerViewListeners() {
+        if (bottomPlayerViewListeners != null) {
+            bottomPlayerViewListeners.close();
+            bottomPlayerViewListeners = null;
+        }
     }
 
     public CommentsMiniPlayerAction getCommentsMiniPlayerAction() {

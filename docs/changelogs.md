@@ -4,6 +4,10 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Player lifecycle
+
+- Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.
+
 ## WizeStream 1.52.2 (`1052002`)
 
 ### Subscription editing and groups

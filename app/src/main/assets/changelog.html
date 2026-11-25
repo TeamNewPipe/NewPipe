@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#unreleased">Unreleased</a></li>
 <li><a href="#release-1052002">WizeStream 1.52.2 (2026-11-25)</a></li>
 <li><a href="#release-1052001">WizeStream 1.52.1 (2026-11-24)</a></li>
 <li><a href="#release-1052000">WizeStream 1.52.0 (2026-11-24)</a></li>
@@ -125,6 +126,15 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="unreleased">
+<h2>Unreleased</h2>
+<div class="release-notes">
+<h3>Player lifecycle</h3>
+<ul>
+<li>Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.</li>
+</ul>
+</div>
+</section>
 <section id="release-1052002" data-version="1.52.2" data-version-code="1052002">
 <h2>WizeStream 1.52.2 (<time datetime="2026-11-25">2026-11-25</time>)</h2>
 <div class="release-notes">
