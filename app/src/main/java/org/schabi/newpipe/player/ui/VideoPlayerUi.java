@@ -444,6 +444,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void initPlayer() {
         super.initPlayer();
+        dualCaptionController.attachPlayer();
+        onTextTracksChanged(player.getExoPlayer().getCurrentTracks());
         setupVideoSurfaceIfNeeded();
     }
 
@@ -464,6 +466,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     @Override
     public void destroyPlayer() {
         dismissPopupMenus();
+        dualCaptionController.detachPlayer();
         replayHeatmapController.clear();
         seekbarPreviewThumbnailHolder.cancelRequest();
         super.destroyPlayer();

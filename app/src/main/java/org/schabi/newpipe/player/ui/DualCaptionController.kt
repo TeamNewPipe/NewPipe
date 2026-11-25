@@ -1,16 +1,22 @@
 package org.schabi.newpipe.player.ui
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AlertDialog
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player as Media3Player
 import androidx.media3.common.text.Cue
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.extractor.text.Subtitle
 import androidx.media3.ui.SubtitleView
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.math.ceil
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +70,52 @@ class DualCaptionController internal constructor(
     private var request: Job? = null
     private var epoch = 0
     private var latestPrimary: List<Cue> = emptyList()
+    private var languagePicker: AlertDialog? = null
+    private var engine: Media3Player? = null
+    private var released = false
+    private var lastPositionMs = 0L
+    private val boundaryHandler = Handler(Looper.getMainLooper())
+    private val boundaryUpdate = Runnable { updateSecondary() }
+    private val timingChanged: () -> Unit = {
+        if (Looper.myLooper() == boundaryHandler.looper) {
+            updateSecondary()
+        } else {
+            boundaryHandler.post(boundaryUpdate)
+        }
+    }
+    private var playbackListener: Media3Player.Listener? = null
+
+    private fun listenerFor(playback: Media3Player) = object : Media3Player.Listener {
+        override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+            if (engine !== playback || released) return
+            // Clear before the next item's metadata loads, even if the queue index is reused.
+            if (reason != Media3Player.MEDIA_ITEM_TRANSITION_REASON_REPEAT) clear()
+        }
+
+        override fun onEvents(player: Media3Player, events: Media3Player.Events) {
+            if (engine !== player || released) return
+            // Cached/duplicate queue items may not emit another metadata callback. The owner's
+            // earlier onEvents listener has now settled metadata for the new media item.
+            if (streamInfo == null && events.contains(Media3Player.EVENT_MEDIA_ITEM_TRANSITION)) {
+                this@DualCaptionController.player.currentStreamInfo.ifPresent(::onMetadata)
+            }
+            if (
+                events.containsAny(
+                    Media3Player.EVENT_POSITION_DISCONTINUITY,
+                    Media3Player.EVENT_PLAYBACK_PARAMETERS_CHANGED,
+                    Media3Player.EVENT_PLAYBACK_STATE_CHANGED,
+                    Media3Player.EVENT_IS_PLAYING_CHANGED,
+                    Media3Player.EVENT_PLAY_WHEN_READY_CHANGED,
+                    Media3Player.EVENT_PLAYBACK_SUPPRESSION_REASON_CHANGED,
+                    Media3Player.EVENT_TIMELINE_CHANGED,
+                    Media3Player.EVENT_MEDIA_ITEM_TRANSITION,
+                    Media3Player.EVENT_TRACKS_CHANGED
+                )
+            ) {
+                updateSecondary()
+            }
+        }
+    }
 
     init {
         val index = content.indexOfChild(primary)
@@ -76,13 +128,36 @@ class DualCaptionController internal constructor(
             )
         )
         secondary.setCues(emptyList())
+        player.subtitleTiming.addOffsetListener(timingChanged)
         // MAIN/POPUP replacement can reuse the engine and its current metadata without another
         // metadata event. Restore the secondary track when the new UI attaches to that item.
-        player.currentStreamInfo.ifPresent(::onMetadata)
-        if (!player.exoPlayerIsNull()) renderPrimary(player.exoPlayer.currentCues.cues)
+        attachPlayer()
+    }
+
+    fun attachPlayer() {
+        if (released) return
+        val next = if (player.exoPlayerIsNull()) null else player.exoPlayer
+        if (engine !== next) {
+            boundaryHandler.removeCallbacks(boundaryUpdate)
+            playbackListener?.let { engine?.removeListener(it) }
+            engine = next
+            playbackListener = next?.let(::listenerFor)
+            playbackListener?.let { next?.addListener(it) }
+        }
+        if (streamInfo == null) player.currentStreamInfo.ifPresent(::onMetadata)
+        if (next != null) renderPrimary(next.currentCues.cues)
+        updateSecondary()
+    }
+
+    fun detachPlayer() {
+        playbackListener?.let { engine?.removeListener(it) }
+        playbackListener = null
+        engine = null
+        clear()
     }
 
     fun onMetadata(info: StreamInfo) {
+        if (released) return
         clear()
         streamInfo = info
         loadSelected()
@@ -90,23 +165,31 @@ class DualCaptionController internal constructor(
 
     fun clear() {
         epoch++
+        dismissLanguagePicker()
+        boundaryHandler.removeCallbacks(boundaryUpdate)
         request?.cancel()
         request = null
         streamInfo = null
         requestedStream = null
         subtitle = null
+        lastPositionMs = 0L
         latestPrimary = emptyList()
         secondary.setCues(emptyList())
         primary.setCues(emptyList())
     }
 
     fun release() {
-        clear()
+        if (released) return
+        released = true
+        detachPlayer()
+        player.subtitleTiming.removeOffsetListener(timingChanged)
         scope.cancel()
         content.removeView(secondary)
     }
 
     fun showLanguagePicker() {
+        dismissLanguagePicker()
+        if (released || !content.isAttachedToWindow || content.windowToken == null) return
         val info = streamInfo ?: return
         val options = info.subtitles.orEmpty().filter {
             it.format?.mimeType != null && it.content.isNotBlank()
@@ -116,26 +199,48 @@ class DualCaptionController internal constructor(
             options.map { PlayerHelper.captionLanguageOf(context, it) }
         val preference = prefs.getString(PREF_LANGUAGE, null)
         val selected = options.indexOfFirst { it.languageTag == preference }
-        MaterialAlertDialogBuilder(context)
+        val dialog = MaterialAlertDialogBuilder(PlayerPopupMenu.dialogContext(content))
             .setTitle(R.string.dual_captions_title)
             .setSingleChoiceItems(labels.toTypedArray(), selected + 1) { dialog, index ->
-                selectLanguage(if (index == 0) null else options[index - 1].languageTag)
+                // An old window must not apply a choice after replacement or a media transition.
+                if (
+                    languagePicker === dialog && languagePicker?.isShowing == true &&
+                    streamInfo === info && !released &&
+                    index in labels.indices
+                ) {
+                    selectLanguage(if (index == 0) null else options[index - 1].languageTag)
+                }
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel, null)
-            .show()
+            .create()
+        languagePicker = dialog
+        AnchoredPlaybackDialog.show(content, dialog) {
+            if (languagePicker === dialog) languagePicker = null
+        }
+        if (!dialog.isShowing && languagePicker === dialog) languagePicker = null
+    }
+
+    private fun dismissLanguagePicker() {
+        val previous = languagePicker
+        languagePicker = null
+        previous?.dismiss()
     }
 
     internal fun selectLanguage(language: String?) {
+        if (released) return
         prefs.edit().putString(PREF_LANGUAGE, language).apply()
         loadSelected(reload = true)
     }
 
     fun onPrimaryCaptionChanged() {
+        if (released) return
         loadSelected()
+        updateSecondary()
     }
 
     fun onPrimaryCaptionSelected(language: String?) {
+        if (released) return
         player.setCaptionPreference(language)
         onPrimaryCaptionChanged()
     }
@@ -157,6 +262,7 @@ class DualCaptionController internal constructor(
         if (!reload && candidate === requestedStream) return
         epoch++
         val generation = epoch
+        boundaryHandler.removeCallbacks(boundaryUpdate)
         request?.cancel()
         request = null
         requestedStream = candidate
@@ -172,12 +278,7 @@ class DualCaptionController internal constructor(
                 if (generation == epoch) {
                     subtitle = parsed
                     renderPrimary(latestPrimary)
-                    val position = if (player.exoPlayerIsNull()) {
-                        0L
-                    } else {
-                        player.exoPlayer.currentPosition
-                    }
-                    onProgress(position.toInt().coerceAtLeast(0))
+                    updateSecondary()
                 }
             } catch (e: CancellationException) {
                 throw e
@@ -190,6 +291,7 @@ class DualCaptionController internal constructor(
     }
 
     fun renderPrimary(cues: List<Cue>) {
+        if (released) return
         latestPrimary = cues
         val displayed = if (subtitle == null) {
             cues
@@ -205,9 +307,28 @@ class DualCaptionController internal constructor(
     }
 
     fun onProgress(positionMs: Int) {
+        updateSecondary(positionMs.toLong())
+    }
+
+    private fun updateSecondary(fallbackPositionMs: Long = lastPositionMs) {
+        boundaryHandler.removeCallbacks(boundaryUpdate)
+        if (released) return
         val active = subtitle ?: return
-        val timeUs = player.subtitleTiming.shift(positionMs.toLong().coerceAtLeast(0L) * 1_000L)
+        val playback = engine
+        lastPositionMs = (playback?.currentPosition ?: fallbackPositionMs).coerceAtLeast(0L)
+        val timeUs = player.subtitleTiming.shift(lastPositionMs * 1_000L)
         secondary.setCues(active.getCues(timeUs))
+        if (playback?.isPlaying != true) return
+
+        val nextEvent = active.getNextEventTimeIndex(timeUs)
+        if (nextEvent !in 0 until active.eventTimeCount) return
+        val speed = playback.playbackParameters.speed
+        if (!speed.isFinite() || speed <= 0f) return
+        // Convert caption time to wall time at the current speed, rounding up so an early
+        // millisecond callback cannot miss a cue. Re-read the engine clock when it fires.
+        val delayMs = ceil((active.getEventTime(nextEvent) - timeUs) / (1_000.0 * speed))
+            .toLong().coerceAtLeast(1L)
+        boundaryHandler.postDelayed(boundaryUpdate, delayMs)
     }
 
     private companion object {
