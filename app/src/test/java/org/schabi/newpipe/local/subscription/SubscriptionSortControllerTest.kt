@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -79,10 +82,83 @@ class SubscriptionSortControllerTest {
         controller.update(many, many.map { Entry(SubscriptionLayout.key(it)) }, scope)
         row(25)
         assertEquals(anchor, controller.scrollAnchor())
+        assertEquals(null, binding.subscriptionSortList.findViewHolderForAdapterPosition(0))
+        assertSame(binding.subscriptionSortList, FragmentSubscriptionBinding.bind(binding.root).subscriptionSortList)
         controller.update(many, many.reversed().map { Entry(SubscriptionLayout.key(it)) }, scope)
         controller.scrollTo(anchor)
         row(24)
         assertEquals(anchor, controller.scrollAnchor())
+    }
+
+    @Test
+    fun controlsAreExcludedFromTheChannelAnchorAndReattachAfterScrolling() {
+        val many = (0 until 30).map { index ->
+            SubscriptionEntity(uid = index.toLong(), serviceId = 0, url = "https://example.org/recycle/$index", name = "Channel $index")
+        }
+        controller.update(many, many.map { Entry(SubscriptionLayout.key(it)) }, scope)
+        val first = row(0)
+        val list = binding.subscriptionSortList
+        assertTrue("The scrolling controls precede the first channel", first.root.top > 0)
+        assertEquals(SubscriptionScrollAnchor(SubscriptionLayout.key(many[0]), first.root.top - list.paddingTop), controller.scrollAnchor())
+        controller.scrollTo(SubscriptionScrollAnchor(SubscriptionLayout.key(many[20]), 0))
+        row(20)
+        assertEquals(null, list.findViewHolderForAdapterPosition(0))
+        controller.scrollTo(null)
+        row(0)
+        val header = list.findViewHolderForAdapterPosition(0)!!
+        assertSame("Recycling must preserve the live controls and their listeners", header.itemView, controller.controls.root.parent)
+        controller.controls.subscriptionSortSelect.performClick()
+        assertEquals(many.map { it.uid }, controller.selectedChannels().map { it.uid })
+    }
+
+    @Test
+    fun savedScrollWaitsForChannelsAndANewerBrowseAnchorTakesPrecedence() {
+        val many = (0 until 50).map { index ->
+            SubscriptionEntity(uid = index.toLong(), serviceId = 0, url = "https://example.org/restore/$index", name = "Channel $index")
+        }
+        val entries = many.map { Entry(SubscriptionLayout.key(it)) }
+        val restoredAnchor = SubscriptionScrollAnchor(SubscriptionLayout.key(many[25]), -17)
+        controller.update(many, entries, scope)
+        controller.scrollTo(restoredAnchor)
+        row(25)
+        val saved = Bundle()
+        controller.saveState(saved)
+
+        for (newerAnchor in listOf(null, SubscriptionScrollAnchor(SubscriptionLayout.key(many[30]), -9))) {
+            controller.close()
+            controller = SubscriptionSortController(activity, profile, binding, saved)
+            controller.restoreScroll(saved)
+            if (newerAnchor != null) controller.scrollTo(newerAnchor)
+            layoutList()
+            assertEquals("Only the scrolling controls are available before the database emits", 1, binding.subscriptionSortList.adapter!!.itemCount)
+            assertEquals(RecyclerView.Adapter.StateRestorationPolicy.PREVENT, binding.subscriptionSortList.adapter!!.stateRestorationPolicy)
+            controller.update(many, entries, scope)
+            row(if (newerAnchor == null) 25 else 30)
+            assertEquals(newerAnchor ?: restoredAnchor, controller.scrollAnchor())
+            assertEquals(RecyclerView.Adapter.StateRestorationPolicy.ALLOW, binding.subscriptionSortList.adapter!!.stateRestorationPolicy)
+        }
+    }
+
+    @Test
+    fun scrollingControlsNeverBecomeAReorderSourceOrTarget() {
+        row(0)
+        val list = binding.subscriptionSortList
+        val header = list.findViewHolderForAdapterPosition(0)!!
+        val first = list.findViewHolderForAdapterPosition(1)!!
+        val second = list.findViewHolderForAdapterPosition(2)!!
+        val callback = controller.dragCallback
+        assertEquals(0, callback.getMovementFlags(list, header))
+        assertFalse(callback.canDropOver(list, first, header))
+        assertFalse(callback.canDropOver(list, header, first))
+        assertFalse(callback.onMove(list, first, header))
+        assertFalse(callback.onMove(list, header, first))
+        assertEquals(keys.map(::Entry) + separator, SubscriptionLayout(activity, profile).read())
+
+        assertTrue(callback.canDropOver(list, first, second))
+        callback.onSelectedChanged(first, ItemTouchHelper.ACTION_STATE_DRAG)
+        assertTrue(callback.onMove(list, first, second))
+        callback.clearView(list, first)
+        assertEquals(listOf(keys[1], keys[0], keys[2], separator.key), SubscriptionLayout(activity, profile).read().map { it.key })
     }
 
     @Test
@@ -91,14 +167,14 @@ class SubscriptionSortControllerTest {
         row(0).root.performLongClick()
         controller.setQuery("Cooking")
         row(0).sortSelected.performClick()
-        assertTrue(binding.subscriptionSortMove.isEnabled)
-        binding.subscriptionSortMove.performClick()
+        assertTrue(controller.controls.subscriptionSortMove.isEnabled)
+        controller.controls.subscriptionSortMove.performClick()
         shadowOf(Looper.getMainLooper()).idle()
         val dialog = ShadowDialog.getLatestDialog() as AlertDialog
         dialog.listView.performItemClick(null, 1, 1)
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(listOf(keys[1], separator.key, keys[0], keys[2]), SubscriptionLayout(activity, profile).read().map { it.key })
-        assertTrue(binding.subscriptionSortCount.text.toString().startsWith("0"))
+        assertTrue(controller.controls.subscriptionSortCount.text.toString().startsWith("0"))
     }
 
     @Test
@@ -121,7 +197,7 @@ class SubscriptionSortControllerTest {
     @Test
     fun newSeparatorMovesTheSelectionOnlyAfterItsNameIsConfirmed() {
         row(0).sortSelected.performClick()
-        binding.subscriptionSortMove.performClick()
+        controller.controls.subscriptionSortMove.performClick()
         shadowOf(Looper.getMainLooper()).idle()
         (ShadowDialog.getLatestDialog() as AlertDialog).listView.performItemClick(null, 0, 0)
         shadowOf(Looper.getMainLooper()).idle()
@@ -130,7 +206,7 @@ class SubscriptionSortControllerTest {
         shadowOf(Looper.getMainLooper()).idle()
         assertEquals(keys.map(::Entry) + separator, SubscriptionLayout(activity, profile).read())
 
-        binding.subscriptionSortMove.performClick()
+        controller.controls.subscriptionSortMove.performClick()
         shadowOf(Looper.getMainLooper()).idle()
         (ShadowDialog.getLatestDialog() as AlertDialog).listView.performItemClick(null, 0, 0)
         shadowOf(Looper.getMainLooper()).idle()
@@ -175,10 +251,14 @@ class SubscriptionSortControllerTest {
     }
 
     private fun row(position: Int): ItemSubscriptionSortBinding {
+        layoutList()
+        val holder: RecyclerView.ViewHolder = binding.subscriptionSortList.findViewHolderForAdapterPosition(position + 1)!!
+        return ItemSubscriptionSortBinding.bind(holder.itemView)
+    }
+
+    private fun layoutList() {
         shadowOf(Looper.getMainLooper()).idle()
         binding.root.measure(View.MeasureSpec.makeMeasureSpec(600, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(1000, View.MeasureSpec.EXACTLY))
         binding.root.layout(0, 0, 600, 1000)
-        val holder: RecyclerView.ViewHolder = binding.subscriptionSortList.findViewHolderForAdapterPosition(position)!!
-        return ItemSubscriptionSortBinding.bind(holder.itemView)
     }
 }

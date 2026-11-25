@@ -144,7 +144,13 @@ class SubscriptionFloatingActionsIntegrationTest {
                 binding.itemsList.findViewById<View>(R.id.channels_header_edit).performClick()
                 assertEquals(View.GONE, binding.subscriptionFloatingActions.visibility)
                 assertFalse(fragment.usesFloatingSearchAction())
-                binding.subscriptionSortHeader.channelsHeaderEdit.performClick()
+            }
+            awaitEditorHeader(scenario)
+            scenario.onActivity { activity ->
+                val host = host(activity)
+                val fragment = host.subscriptions()
+                val binding = FragmentSubscriptionBinding.bind(fragment.requireView())
+                binding.subscriptionSortList.findViewById<View>(R.id.channels_header_edit).performClick()
                 assertTrue(fragment.usesFloatingSearchAction())
 
                 host.childFragmentManager.beginTransaction().setMaxLifecycle(fragment, Lifecycle.State.STARTED).commitNow()
@@ -168,6 +174,20 @@ class SubscriptionFloatingActionsIntegrationTest {
                 dialog.dismissNow()
             }
         }
+    }
+
+    private fun awaitEditorHeader(scenario: ActivityScenario<AboutActivity>) {
+        val deadline = SystemClock.uptimeMillis() + 10_000
+        while (SystemClock.uptimeMillis() < deadline) {
+            var ready = false
+            scenario.onActivity { activity ->
+                val list = FragmentSubscriptionBinding.bind(host(activity).subscriptions().requireView()).subscriptionSortList
+                ready = list.findViewById<View>(R.id.channels_header_edit)?.isShown == true
+            }
+            if (ready) return
+            SystemClock.sleep(25)
+        }
+        throw AssertionError("The editor's scrolling header did not appear")
     }
 
     private fun awaitRows(

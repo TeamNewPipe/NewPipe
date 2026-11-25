@@ -4,6 +4,32 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+## WizeStream 1.52.2 (`1052002`)
+
+### Subscription editing and groups
+
+- Let subscription editing controls scroll with the channels so complete rows remain reachable above the mini-player, including short landscape windows.
+- Preserve channel selection, reordering and scroll position when moving between browsing and editing.
+- Remember the selected Grid/List layout for channel groups across app restarts and screen recreation.
+
+### Feeds and filters
+
+- Make pull-to-refresh consistent between Home and feeds opened from Subscriptions, including All and feeds with collapsed headers.
+- Preserve the optional floating Refresh/Cancel controls as the alternative refresh method.
+- Reduce shared stream filters from three rows to two and remove faded horizontal edges. Watch-status choices and the independent Downloaded filter share the second row.
+- Keep selected filters visible when restoring a screen, with support for longer labels, larger text and right-to-left layouts.
+- Use themed Material 3 buttons for publication-date selection and Clear in the What's New visibility dialog.
+
+### Captions
+
+- Fix opening the second-caption language picker in the main and floating players.
+- Display very short secondary captions at their cue boundaries and update timing after seeking, playback-speed changes and caption-offset adjustments.
+- Restore caption availability and menus when the video interface reconnects to an existing player.
+
+### YouTube Charts
+
+- Handle empty YouTube Charts groups and retain available videos from later result groups.
+
 ## WizeStream 1.52.1 (`1052001`)
 
 ### Upcoming visibility
@@ -11,11 +37,6 @@ Release history is listed newest first. The number beside each release is its An
 - Keep scheduled YouTube broadcasts in Upcoming while they are still waiting, including delayed events and cards without a start time.
 - Preserve confirmed upcoming status in saved feeds and update it when a broadcast starts or becomes a recording.
 - Apply the Upcoming visibility choice consistently while preserving explicit filter selections.
-
-### Subscription editing
-
-- Let subscription editing controls scroll with the channels so complete rows remain reachable above the mini-player, including short landscape windows.
-- Preserve channel selection, reordering and scroll position when moving between browsing and editing.
 
 ## WizeStream 1.52.0 (`1052000`)
 

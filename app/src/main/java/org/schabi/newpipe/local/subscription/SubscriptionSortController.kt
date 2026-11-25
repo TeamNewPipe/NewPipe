@@ -3,13 +3,16 @@ package org.schabi.newpipe.local.subscription
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +26,7 @@ import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.databinding.ItemSubscriptionSortBinding
+import org.schabi.newpipe.databinding.SubscriptionSortControlsBinding
 import org.schabi.newpipe.local.feed.FeedScope
 import org.schabi.newpipe.local.search.ContextualSearchHelper
 import org.schabi.newpipe.util.image.CoilHelper
@@ -36,6 +40,7 @@ internal class SubscriptionSortController(
     savedState: Bundle?,
     private val onSelectionChanged: () -> Unit = {}
 ) {
+    val controls = SubscriptionSortControlsBinding.inflate(LayoutInflater.from(context))
     private val store = SubscriptionLayout(context, profileId)
     private val disposables = CompositeDisposable()
     private val model = SubscriptionSortModel()
@@ -44,15 +49,21 @@ internal class SubscriptionSortController(
     private var query = ""
     private var rows = emptyList<SubscriptionLayout.Entry>()
     private var pendingAnchor: SubscriptionScrollAnchor? = null
+    private var pendingScrollState: Parcelable? = null
     private var loaded = false
     private var dragging = false
     private var dragChanged = false
     private val adapter = SortAdapter()
-    private val touchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0) {
+    private val headerAdapter = ControlsAdapter()
+    internal val dragCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0) {
         override fun isLongPressDragEnabled(): Boolean = false
 
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int = if (viewHolder.bindingAdapter === adapter) super.getMovementFlags(recyclerView, viewHolder) else 0
+
+        override fun canDropOver(recyclerView: RecyclerView, current: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = current.bindingAdapter === adapter && target.bindingAdapter === adapter
+
         override fun onMove(recyclerView: RecyclerView, source: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-            if (!loaded) return false
+            if (!loaded || source.bindingAdapter !== adapter || target.bindingAdapter !== adapter) return false
             val from = source.bindingAdapterPosition
             val to = target.bindingAdapterPosition
             val fromKey = rows.getOrNull(from)?.key ?: return false
@@ -78,22 +89,23 @@ internal class SubscriptionSortController(
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = Unit
-    })
+    }
+    private val touchHelper = ItemTouchHelper(dragCallback)
 
     init {
         if (savedState?.getString(PROFILE_KEY) == profileId) {
             model.selected.addAll(savedState?.getStringArrayList(SELECTION_KEY).orEmpty())
         }
         binding.subscriptionSortList.layoutManager = LinearLayoutManager(context)
-        binding.subscriptionSortList.adapter = adapter
+        binding.subscriptionSortList.adapter = ConcatAdapter(headerAdapter, adapter)
         binding.subscriptionSortList.itemAnimator = null
         touchHelper.attachToRecyclerView(binding.subscriptionSortList)
-        binding.subscriptionSortSelect.setOnClickListener {
+        controls.subscriptionSortSelect.setOnClickListener {
             model.selectVisible(rows.filter { it.separator == null }.map { it.key }.toSet())
             refresh()
         }
-        binding.subscriptionSortMove.setOnClickListener { showMoveDialog() }
-        binding.subscriptionSortCount.setOnClickListener {
+        controls.subscriptionSortMove.setOnClickListener { showMoveDialog() }
+        controls.subscriptionSortCount.setOnClickListener {
             model.selected.clear()
             refresh()
         }
@@ -140,6 +152,7 @@ internal class SubscriptionSortController(
     }
 
     fun scrollTo(anchor: SubscriptionScrollAnchor?) {
+        pendingScrollState = null
         pendingAnchor = anchor
         if (anchor == null) {
             (binding.subscriptionSortList.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(0, 0)
@@ -148,7 +161,7 @@ internal class SubscriptionSortController(
     }
 
     fun scrollAnchor(): SubscriptionScrollAnchor? = SubscriptionScrollAnchor.capture(binding.subscriptionSortList) { position ->
-        rows.getOrNull(position)?.key
+        rows.getOrNull(position - headerAdapter.itemCount)?.key
     }
 
     private fun applyPendingAnchor() {
@@ -156,7 +169,7 @@ internal class SubscriptionSortController(
         if (!loaded) return
         val position = rows.indexOfFirst { it.key == anchor.key }
         if (position >= 0) {
-            (binding.subscriptionSortList.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(position, anchor.offset)
+            (binding.subscriptionSortList.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(position + headerAdapter.itemCount, anchor.offset)
         }
         pendingAnchor = null
     }
@@ -177,19 +190,29 @@ internal class SubscriptionSortController(
     fun saveState(state: Bundle) {
         state.putString(PROFILE_KEY, profileId)
         state.putStringArrayList(SELECTION_KEY, ArrayList(model.selected))
-        state.putParcelable(SCROLL_KEY, binding.subscriptionSortList.layoutManager?.onSaveInstanceState())
+        state.putParcelable(SCROLL_KEY, pendingScrollState ?: binding.subscriptionSortList.layoutManager?.onSaveInstanceState())
     }
 
     fun restoreScroll(state: Bundle?) {
         @Suppress("DEPRECATION")
-        val scroll = state?.getParcelable<android.os.Parcelable>(SCROLL_KEY)
-        binding.subscriptionSortList.layoutManager?.onRestoreInstanceState(scroll)
+        val scroll = state?.getParcelable<Parcelable>(SCROLL_KEY)
+        pendingScrollState = scroll
+        applyPendingScrollState()
+    }
+
+    private fun applyPendingScrollState() {
+        if (!loaded) return
+        pendingScrollState?.let {
+            binding.subscriptionSortList.layoutManager?.onRestoreInstanceState(it)
+            pendingScrollState = null
+        }
     }
 
     fun close() {
         disposables.dispose()
         touchHelper.attachToRecyclerView(null)
         binding.subscriptionSortList.adapter = null
+        (controls.root.parent as? ViewGroup)?.removeView(controls.root)
     }
 
     private fun rebuildRows() {
@@ -203,10 +226,12 @@ internal class SubscriptionSortController(
     private fun refresh() {
         rebuildRows()
         adapter.notifyDataSetChanged()
+        adapter.stateRestorationPolicy = if (loaded) RecyclerView.Adapter.StateRestorationPolicy.ALLOW else RecyclerView.Adapter.StateRestorationPolicy.PREVENT
+        applyPendingScrollState()
         applyPendingAnchor()
-        binding.subscriptionSortCount.text = context.getString(R.string.subscription_sort_selected, model.selected.size)
-        binding.subscriptionSortSelect.isEnabled = loaded && rows.any { it.separator == null }
-        binding.subscriptionSortMove.isEnabled = loaded && model.selected.isNotEmpty()
+        controls.subscriptionSortCount.text = context.getString(R.string.subscription_sort_selected, model.selected.size)
+        controls.subscriptionSortSelect.isEnabled = loaded && rows.any { it.separator == null }
+        controls.subscriptionSortMove.isEnabled = loaded && model.selected.isNotEmpty()
         onSelectionChanged()
     }
 
@@ -260,7 +285,33 @@ internal class SubscriptionSortController(
         }
     }
 
+    /** Controls share the list's scrolling viewport, including when only one channel row fits. */
+    private inner class ControlsAdapter : RecyclerView.Adapter<ControlsHolder>() {
+        override fun getItemCount(): Int = 1
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ControlsHolder = ControlsHolder(
+            FrameLayout(parent.context).apply {
+                layoutParams = RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            }
+        )
+
+        override fun onBindViewHolder(holder: ControlsHolder, position: Int) {
+            // Each holder owns its container; the controller keeps listeners and header state
+            // on the controls when a data refresh replaces or recycles that container.
+            if (controls.root.parent !== holder.container) {
+                (controls.root.parent as? ViewGroup)?.removeView(controls.root)
+                holder.container.addView(controls.root, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            }
+        }
+    }
+
+    private class ControlsHolder(val container: FrameLayout) : RecyclerView.ViewHolder(container)
+
     private inner class SortAdapter : RecyclerView.Adapter<SortHolder>() {
+        init {
+            stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT
+        }
+
         override fun getItemCount(): Int = rows.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SortHolder {

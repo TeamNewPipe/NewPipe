@@ -19,6 +19,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <body>
 <header><h1>WizeStream changelog</h1><p>Release history, newest first.</p></header>
 <details><summary>Browse releases</summary><nav aria-label="Releases"><ul>
+<li><a href="#release-1052002">WizeStream 1.52.2 (2026-11-25)</a></li>
 <li><a href="#release-1052001">WizeStream 1.52.1 (2026-11-24)</a></li>
 <li><a href="#release-1052000">WizeStream 1.52.0 (2026-11-24)</a></li>
 <li><a href="#release-1051000">WizeStream 1.51.0 (2026-11-24)</a></li>
@@ -124,6 +125,35 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li><a href="#release-101201">WizeStream 0.28.7-m1</a></li>
 </ul></nav></details>
 <main>
+<section id="release-1052002" data-version="1.52.2" data-version-code="1052002">
+<h2>WizeStream 1.52.2 (<time datetime="2026-11-25">2026-11-25</time>)</h2>
+<div class="release-notes">
+<h3>Subscription editing and groups</h3>
+<ul>
+<li>Let subscription editing controls scroll with the channels so complete rows remain reachable above the mini-player, including short landscape windows.</li>
+<li>Preserve channel selection, reordering and scroll position when moving between browsing and editing.</li>
+<li>Remember the selected Grid/List layout for channel groups across app restarts and screen recreation.</li>
+</ul>
+<h3>Feeds and filters</h3>
+<ul>
+<li>Make pull-to-refresh consistent between Home and feeds opened from Subscriptions, including All and feeds with collapsed headers.</li>
+<li>Preserve the optional floating Refresh/Cancel controls as the alternative refresh method.</li>
+<li>Reduce shared stream filters from three rows to two and remove faded horizontal edges. Watch-status choices and the independent Downloaded filter share the second row.</li>
+<li>Keep selected filters visible when restoring a screen, with support for longer labels, larger text and right-to-left layouts.</li>
+<li>Use themed Material 3 buttons for publication-date selection and Clear in the What&#x27;s New visibility dialog.</li>
+</ul>
+<h3>Captions</h3>
+<ul>
+<li>Fix opening the second-caption language picker in the main and floating players.</li>
+<li>Display very short secondary captions at their cue boundaries and update timing after seeking, playback-speed changes and caption-offset adjustments.</li>
+<li>Restore caption availability and menus when the video interface reconnects to an existing player.</li>
+</ul>
+<h3>YouTube Charts</h3>
+<ul>
+<li>Handle empty YouTube Charts groups and retain available videos from later result groups.</li>
+</ul>
+</div>
+</section>
 <section id="release-1052001" data-version="1.52.1" data-version-code="1052001">
 <h2>WizeStream 1.52.1 (<time datetime="2026-11-24">2026-11-24</time>)</h2>
 <div class="release-notes">
@@ -132,11 +162,6 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li>Keep scheduled YouTube broadcasts in Upcoming while they are still waiting, including delayed events and cards without a start time.</li>
 <li>Preserve confirmed upcoming status in saved feeds and update it when a broadcast starts or becomes a recording.</li>
 <li>Apply the Upcoming visibility choice consistently while preserving explicit filter selections.</li>
-</ul>
-<h3>Subscription editing</h3>
-<ul>
-<li>Let subscription editing controls scroll with the channels so complete rows remain reachable above the mini-player, including short landscape windows.</li>
-<li>Preserve channel selection, reordering and scroll position when moving between browsing and editing.</li>
 </ul>
 </div>
 </section>

@@ -431,7 +431,18 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         sortController?.setEnabled(sortingEnabled)
         updateSortingVisibility()
         if (sortingEnabled) sortController?.scrollTo(anchor) else restoreBrowseScroll(anchor)
-        if (sortingEnabled) binding.subscriptionSortHeader.channelsHeaderEdit.requestFocus()
+        if (sortingEnabled) {
+            val list = binding.subscriptionSortList
+            list.doOnNextLayout {
+                if (_binding?.subscriptionSortList !== list || !sortingEnabled) return@doOnNextLayout
+                // Focusing a recycled header or partially visible channel would scroll away
+                // from the browsing anchor that was just restored.
+                val focusability = list.descendantFocusability
+                list.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
+                list.requestFocus()
+                list.descendantFocusability = focusability
+            }
+        }
         activity.invalidateOptionsMenu()
     }
 
@@ -469,7 +480,9 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
 
     private fun updateSortingHeader() {
         if (::subscriptionsHeader.isInitialized && _binding != null) {
-            subscriptionsHeader.bindControls(binding.subscriptionSortHeader, editing = true)
+            sortController?.controls?.subscriptionSortHeader?.let {
+                subscriptionsHeader.bindControls(it, editing = true)
+            }
         }
     }
 

@@ -35,13 +35,13 @@ class SubscriptionEditSelectionTest {
                     FeedScope(FeedScope.ALL_SERVICES, 0)
                 )
                 controller.setQuery("First")
-                binding.subscriptionSortSelect.performClick()
+                controller.controls.subscriptionSortSelect.performClick()
                 controller.setQuery("Second")
-                binding.subscriptionSortSelect.performClick()
+                controller.controls.subscriptionSortSelect.performClick()
                 assertEquals(listOf(2L, 1L), controller.selectedChannels().map { it.uid })
                 controller.update(listOf(first), emptyList(), FeedScope(FeedScope.ALL_SERVICES, 0))
                 assertEquals(listOf(1L), controller.selectedChannels().map { it.uid })
-                binding.subscriptionSortCount.performClick()
+                controller.controls.subscriptionSortCount.performClick()
                 assertTrue(controller.selectedChannels().isEmpty())
                 assertTrue(notifications > 0)
             } finally {
@@ -61,7 +61,7 @@ class SubscriptionEditSelectionTest {
             SubscriptionSortController(context, "first-profile", binding, null).also { controller ->
                 try {
                     controller.update(listOf(first), emptyList(), FeedScope(FeedScope.ALL_SERVICES, 0))
-                    binding.subscriptionSortSelect.performClick()
+                    controller.controls.subscriptionSortSelect.performClick()
                     controller.saveState(state)
                     controller.setEnabled(false)
                     assertTrue(controller.selectedChannels().isEmpty())
