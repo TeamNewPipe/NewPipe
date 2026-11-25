@@ -45,6 +45,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.evernote.android.state.State
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
 import com.xwray.groupie.GroupieAdapter
@@ -633,6 +634,8 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     private fun showStreamVisibilityDialog() {
         val context = requireContext()
+        val dialogBuilder = MaterialAlertDialogBuilder(context)
+        val dialogContext = dialogBuilder.context
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         fun preferenceItem(title: Int, key: Int, default: Boolean = true) = VisibilityDialogItem(title, key, preferences.getBoolean(getString(key), default))
 
@@ -669,8 +672,12 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
         val dateKey = getString(R.string.feed_date_filter_epoch_day_key)
         var selectedDate = readFeedCutoffDate(preferences)
         val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-        val dateButton = Button(context)
-        val clearButton = Button(context).apply { setText(R.string.feed_date_filter_clear) }
+        val dateButton = MaterialButton(dialogContext)
+        val clearButton = MaterialButton(
+            dialogContext,
+            null,
+            com.google.android.material.R.attr.materialButtonOutlinedStyle
+        ).apply { setText(R.string.feed_date_filter_clear) }
 
         fun updateDateControls() {
             dateButton.text = selectedDate?.let { getString(R.string.feed_date_filter_selected, it.format(formatter)) }
@@ -696,12 +703,12 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             updateDateControls()
         }
         updateDateControls()
-        val dateControls = LinearLayout(context).apply {
+        val dateControls = LinearLayout(dialogContext).apply {
             orientation = LinearLayout.VERTICAL
             val padding = (24 * resources.displayMetrics.density).toInt()
             setPaddingRelative(padding, 0, padding, 0)
             addView(
-                MaterialTextView(context).apply {
+                MaterialTextView(dialogContext).apply {
                     setTextAppearance(com.google.android.material.R.style.TextAppearance_Material3_BodyMedium)
                     text = getString(R.string.feed_default_visibility_help, getString(R.string.filter_all_visible))
                 }
@@ -710,7 +717,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             addView(clearButton)
         }
 
-        val dialog = MaterialAlertDialogBuilder(context)
+        val dialog = dialogBuilder
             .setTitle(R.string.feed_default_visibility_title)
             .setMultiChoiceItems(dialogItems.map { getString(it.title) }.toTypedArray(), checkedItems) { _, which, isChecked ->
                 checkedItems[which] = isChecked
