@@ -22,7 +22,7 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [ContentActions::class])
 class AndroidContentActions(private val context: Context) : ContentActions {
 
-    private val host: ContentHost? = loadHost(context)
+    private val host: ContentHost? = loadHost(context, HOST_CLASS)
 
     // Android 13 moved per-app languages into the system settings
     override val usesSystemAppLanguageSettings: Boolean
@@ -73,14 +73,6 @@ class AndroidContentActions(private val context: Context) : ContentActions {
     override fun applyPeertubeInstance(instance: PeertubeInstance) {
         host?.applyPeertubeInstance(instance.url, instance.name)
     }
-
-    private fun loadHost(context: Context): ContentHost? = runCatching {
-        Class.forName(HOST_CLASS)
-            .getDeclaredConstructor(Context::class.java)
-            .newInstance(context) as ContentHost
-    }.onFailure { error ->
-        Logger.w(messageString = "No host content actions found, skipping host-side changes", throwable = error)
-    }.getOrNull()
 
     private companion object {
         const val HOST_CLASS = "org.schabi.newpipe.settings.ComposeContentHost"

@@ -26,7 +26,7 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [DownloadStorageActions::class])
 class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
 
-    private val host: DownloadStorageHost? = loadHost(context)
+    private val host: DownloadStorageHost? = loadHost(context, HOST_CLASS)
 
     override val isAvailable: Boolean
         get() = host != null
@@ -99,15 +99,6 @@ class AndroidDownloadStorageActions(context: Context) : DownloadStorageActions {
     private fun newPipeFolderIn(directoryName: String): String {
         val directory = File(Environment.getExternalStorageDirectory(), directoryName)
         return File(directory, NEWPIPE_FOLDER).toURI().toString()
-    }
-
-    private fun loadHost(context: Context): DownloadStorageHost? = runCatching {
-        Class.forName(HOST_CLASS)
-            .getDeclaredConstructor(Context::class.java)
-            .newInstance(context) as DownloadStorageHost
-    }.getOrElse { error ->
-        Logger.w(messageString = "No host download storage found", throwable = error)
-        null
     }
 
     private companion object {

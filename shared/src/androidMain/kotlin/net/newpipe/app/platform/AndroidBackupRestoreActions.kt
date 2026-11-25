@@ -22,7 +22,7 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [BackupRestoreActions::class])
 class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
 
-    private val host: BackupRestoreHost? = loadHost(context)
+    private val host: BackupRestoreHost? = loadHost(context, HOST_CLASS)
 
     @Composable
     override fun rememberFilePicker(
@@ -83,17 +83,6 @@ class AndroidBackupRestoreActions(context: Context) : BackupRestoreActions {
     override fun importSubscriptions(file: String) {
         host?.importSubscriptions(file)
     }
-
-    private fun loadHost(context: Context): BackupRestoreHost? = runCatching {
-        Class.forName(HOST_CLASS)
-            .getDeclaredConstructor(Context::class.java)
-            .newInstance(context) as BackupRestoreHost
-    }.onFailure { error ->
-        Logger.w(
-            messageString = "No host backup and restore actions found, skipping host-side changes",
-            throwable = error
-        )
-    }.getOrNull()
 
     private companion object {
         const val HOST_CLASS = "org.schabi.newpipe.settings.ComposeBackupRestoreHost"
