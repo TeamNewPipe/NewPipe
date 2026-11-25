@@ -37,6 +37,8 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
     private JsonObject jsonResponse;
     private JsonObject tabData;
+    @Nullable
+    private String continuationTargetId;
 
     private String redirectedChannelId;
     @Nullable
@@ -137,6 +139,7 @@ public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
         Page nextPage = null;
 
         if (getTabData() != null) {
+            continuationTargetId = YoutubeChannelContinuationItems.targetId(tabData);
             final JsonArray items = getSelectedSortFilterIndex() > 0
                     ? getSortedItemsFrom(tabData)
                     : getInitialItemsFrom(tabData);
@@ -263,6 +266,7 @@ public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
 
         final JsonObject ajaxJson = JsonUtils.toJsonObject(getValidJsonResponseBody(response));
 
+        continuationTargetId = page.getId();
         final JsonObject continuation = collectItemsFrom(collector,
                 getContinuationItemsFrom(ajaxJson, "appendContinuationItemsAction"), channelIds);
         if (ServiceList.YouTube.getFilterTypes().contains("channels")) {
@@ -276,41 +280,10 @@ public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
     private JsonArray getContinuationItemsFrom(@Nonnull final JsonObject ajaxJson,
                                                @Nonnull final String commandName)
             throws ParsingException {
-        final JsonArray items = new JsonArray();
-        addContinuationItemsFrom(ajaxJson, commandName, items);
-
-        if (items.isEmpty() && "appendContinuationItemsAction".equals(commandName)) {
-            addContinuationItemsFrom(ajaxJson, "reloadContinuationItemsCommand", items);
-        } else if (items.isEmpty() && "reloadContinuationItemsCommand".equals(commandName)) {
-            addContinuationItemsFrom(ajaxJson, "appendContinuationItemsAction", items);
-        }
-
-        if (items.isEmpty()) {
-            throw new ParsingException("Could not get YouTube channel tab continuation items");
-        }
-
-        return items;
-    }
-
-    private void addContinuationItemsFrom(@Nonnull final Object object,
-                                          @Nonnull final String commandName,
-                                          @Nonnull final JsonArray targetItems) {
-        if (object instanceof JsonObject) {
-            final JsonObject jsonObject = (JsonObject) object;
-            final JsonArray continuationItems = jsonObject.getObject(commandName)
-                    .getArray("continuationItems");
-            for (final Object continuationItem : continuationItems) {
-                targetItems.add(continuationItem);
-            }
-
-            for (final Object value : jsonObject.values()) {
-                addContinuationItemsFrom(value, commandName, targetItems);
-            }
-        } else if (object instanceof JsonArray) {
-            for (final Object value : (JsonArray) object) {
-                addContinuationItemsFrom(value, commandName, targetItems);
-            }
-        }
+        final YoutubeChannelContinuationItems.Selection selection =
+                YoutubeChannelContinuationItems.select(ajaxJson, commandName, continuationTargetId);
+        continuationTargetId = selection.getTargetId();
+        return selection.getItems();
     }
 
     @Nullable
@@ -640,6 +613,6 @@ public class YoutubeChannelTabExtractor extends ChannelTabExtractor {
                 .getBytes(StandardCharsets.UTF_8);
 
         return new Page(YOUTUBEI_V1_URL + "browse?"
-                + DISABLE_PRETTY_PRINT_PARAMETER, null, channelIds, null, body);
+                + DISABLE_PRETTY_PRINT_PARAMETER, continuationTargetId, channelIds, null, body);
     }
 }

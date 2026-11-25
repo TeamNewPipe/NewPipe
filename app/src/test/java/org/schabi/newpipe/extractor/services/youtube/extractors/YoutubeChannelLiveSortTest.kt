@@ -123,6 +123,208 @@ class YoutubeChannelLiveSortTest {
         assertTrue(exchanges.isEmpty())
     }
 
+    @Test
+    fun separateHeaderCommandsDoNotHideSortedVideosOrFreshExtractorPagination() {
+        exchanges.add(Exchange(null, initialResponse("channel-feed")))
+        exchanges.add(
+            Exchange(
+                "sort-popular",
+                response(
+                    command("reloadContinuationItemsCommand", "sidebar", listOf(card("xxxxxxxxxxx"))),
+                    command("reloadContinuationItemsCommand", "channel-feed", listOf(header())),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb"))),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("ccccccccccc"), continuation("popular-next")))
+                )
+            )
+        )
+        exchanges.add(
+            Exchange(
+                "popular-next",
+                response(
+                    command("appendContinuationItemsAction", "sidebar", listOf(card("yyyyyyyyyyy"), continuation("sidebar-next"))),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(header())),
+                    command("reloadContinuationItemsCommand", "channel-feed", listOf(card("ddddddddddd")))
+                )
+            )
+        )
+        val handler = handler("popular")
+        val first = extractor(handler).initialPage
+        assertTrue(first.errors.toString(), first.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb", "https://www.youtube.com/watch?v=ccccccccccc"), first.items.map { it.url })
+        val next = requireNotNull(first.nextPage)
+        assertEquals("channel-feed", next.id)
+        assertEquals("popular-next", parse(requireNotNull(next.body).toString(Charsets.UTF_8)).getString("continuation"))
+
+        val second = YoutubeChannelTabExtractor(ServiceList.YouTube, handler).getPage(next)
+        assertTrue(second.errors.toString(), second.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=ddddddddddd"), second.items.map { it.url })
+        assertNull(second.nextPage)
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun repeatedReloadAndAppendBodiesAreNotCombinedOrGivenTheWrongContinuation() {
+        exchanges.add(Exchange(null, initialResponse("channel-feed")))
+        exchanges.add(
+            Exchange(
+                "sort-oldest",
+                response(
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb"), card("ccccccccccc"), continuation("unused-append-next"))),
+                    command("reloadContinuationItemsCommand", "channel-feed", listOf(card("bbbbbbbbbbb"), card("ccccccccccc"), continuation("oldest-next")))
+                )
+            )
+        )
+        exchanges.add(
+            Exchange(
+                "oldest-next",
+                response(
+                    command("reloadContinuationItemsCommand", "channel-feed", listOf(card("ddddddddddd"), continuation("unused-reload-next"))),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("ddddddddddd")))
+                )
+            )
+        )
+        val handler = handler("oldest")
+        val first = extractor(handler).initialPage
+        assertTrue(first.errors.toString(), first.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb", "https://www.youtube.com/watch?v=ccccccccccc"), first.items.map { it.url })
+        val second = YoutubeChannelTabExtractor(ServiceList.YouTube, handler).getPage(requireNotNull(first.nextPage))
+        assertTrue(second.errors.toString(), second.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=ddddddddddd"), second.items.map { it.url })
+        assertNull(second.nextPage)
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun returnedListTargetIsPreservedWhenTheInitialGridDoesNotSupplyOne() {
+        exchanges.add(Exchange(null, initialResponse()))
+        exchanges.add(Exchange("sort-popular", response(command("reloadContinuationItemsCommand", "channel-feed", listOf(card("bbbbbbbbbbb"), continuation("popular-next"))))))
+        exchanges.add(
+            Exchange(
+                "popular-next",
+                response(
+                    command("appendContinuationItemsAction", "sidebar", listOf(card("xxxxxxxxxxx"))),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("ccccccccccc")))
+                )
+            )
+        )
+        val handler = handler("popular")
+        val next = requireNotNull(extractor(handler).initialPage.nextPage)
+        assertEquals("channel-feed", next.id)
+        val second = YoutubeChannelTabExtractor(ServiceList.YouTube, handler).getPage(next)
+        assertEquals(listOf("https://www.youtube.com/watch?v=ccccccccccc"), second.items.map { it.url })
+        assertNull(second.nextPage)
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun anotherListsUpdateCannotReplaceTheRequestedChannelResults() {
+        exchanges.add(Exchange(null, initialResponse("channel-feed")))
+        exchanges.add(Exchange("sort-popular", response(command("reloadContinuationItemsCommand", "sidebar", listOf(card("xxxxxxxxxxx"))))))
+        val extractor = extractor(handler("popular"))
+        assertThrows(ParsingException::class.java) { extractor.initialPage }
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun ambiguousBodyTargetsAreRejectedWithoutAnInitialListIdentity() {
+        exchanges.add(Exchange(null, initialResponse()))
+        exchanges.add(
+            Exchange(
+                "sort-popular",
+                response(
+                    command("reloadContinuationItemsCommand", "sidebar", listOf(card("xxxxxxxxxxx"))),
+                    command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb")))
+                )
+            )
+        )
+        val extractor = extractor(handler("popular"))
+        assertThrows(ParsingException::class.java) { extractor.initialPage }
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun cardInteractionCommandsCannotBeMistakenForExecutedListUpdates() {
+        exchanges.add(Exchange(null, initialResponse("channel-feed")))
+        val chip = """{"chipBarViewModel":{"tapCommand":${command("reloadContinuationItemsCommand", "channel-feed", listOf(card("xxxxxxxxxxx")))}}}"""
+        val append = command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb")))
+        exchanges.add(
+            Exchange(
+                "sort-popular",
+                response(
+                    command("reloadContinuationItemsCommand", "channel-feed", listOf(chip)),
+                    """{"commandExecutorCommand":{"commands":[$append]}}"""
+                )
+            )
+        )
+        val first = extractor(handler("popular")).initialPage
+        assertTrue(first.errors.toString(), first.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb"), first.items.map { it.url })
+        assertNull(first.nextPage)
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun aContinuationOnlyBodyStillLoadsTheDeferredFirstVideoPage() {
+        exchanges.add(Exchange(null, initialResponse("channel-feed")))
+        val header = command("reloadContinuationItemsCommand", "channel-feed", listOf(header()))
+        val body = command("appendContinuationItemsAction", "channel-feed", listOf(continuation("deferred-first-page")))
+        exchanges.add(Exchange("sort-popular", """{"onResponseReceivedEndpoints":[$header,$body]}"""))
+        exchanges.add(Exchange("deferred-first-page", response(command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb"))))))
+
+        val first = extractor(handler("popular")).initialPage
+        assertTrue(first.errors.toString(), first.errors.isEmpty())
+        assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb"), first.items.map { it.url })
+        assertNull(first.nextPage)
+        assertEquals(3, requests.size)
+        assertTrue(exchanges.isEmpty())
+    }
+
+    @Test
+    fun matchingMessageAndHeaderUpdatesCanFinishPaginationWithoutAnError() {
+        val message = """{"messageRenderer":{"text":{"simpleText":"No more videos"}}}"""
+        for ((terminal, slot) in listOf(message to null, header() to null, header() to "RELOAD_CONTINUATION_SLOT_HEADER")) {
+            exchanges.add(Exchange(null, initialResponse("channel-feed")))
+            exchanges.add(Exchange("sort-popular", response(command("reloadContinuationItemsCommand", "channel-feed", listOf(card("bbbbbbbbbbb"), continuation("popular-next"))))))
+            val commandName = if (slot == null) "appendContinuationItemsAction" else "reloadContinuationItemsCommand"
+            exchanges.add(Exchange("popular-next", response(command(commandName, "channel-feed", listOf(terminal), slot))))
+            val handler = handler("popular")
+            val first = extractor(handler).initialPage
+            assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb"), first.items.map { it.url })
+            val terminalPage = YoutubeChannelTabExtractor(ServiceList.YouTube, handler).getPage(requireNotNull(first.nextPage))
+            assertTrue(terminalPage.errors.toString(), terminalPage.errors.isEmpty())
+            assertTrue(terminalPage.items.isEmpty())
+            assertNull(terminalPage.nextPage)
+            assertTrue(exchanges.isEmpty())
+        }
+    }
+
+    @Test
+    fun renderersIgnoredByTheCollectorCannotHideAnAlternativeVideoBody() {
+        val ignored = listOf(
+            """{"shortsLockupViewModel":{"entityId":"ignored-bare-short"}}""",
+            """{"reelItemRenderer":{"videoId":"xxxxxxxxxxx"}}""",
+            """{"lockupViewModel":{"contentType":"LOCKUP_CONTENT_TYPE_CHANNEL","contentId":"ignored-channel"}}""",
+            """{"backstagePostThreadRenderer":{"post":{}}}"""
+        )
+        for (renderer in ignored) {
+            exchanges.add(Exchange(null, initialResponse("channel-feed")))
+            exchanges.add(
+                Exchange(
+                    "sort-popular",
+                    response(
+                        command("reloadContinuationItemsCommand", "channel-feed", listOf(renderer)),
+                        command("appendContinuationItemsAction", "channel-feed", listOf(card("bbbbbbbbbbb")))
+                    )
+                )
+            )
+            val first = extractor(handler("popular")).initialPage
+            assertTrue(first.errors.toString(), first.errors.isEmpty())
+            assertEquals(listOf("https://www.youtube.com/watch?v=bbbbbbbbbbb"), first.items.map { it.url })
+            assertNull(first.nextPage)
+            assertTrue(exchanges.isEmpty())
+        }
+    }
+
     private fun assertSortedPages(sort: String, firstId: String) {
         exchanges.add(Exchange(null, initialResponse()))
         exchanges.add(Exchange("sort-$sort", continuationResponse("reloadContinuationItemsCommand", firstId, "$sort-next")))
@@ -151,7 +353,7 @@ class YoutubeChannelLiveSortTest {
 
     private fun parse(text: String): JsonObject = JsonParser.`object`().from(text)
 
-    private fun initialResponse(): String = """
+    private fun initialResponse(targetId: String? = null): String = """
         {
           "header": {"c4TabbedHeaderRenderer": {
             "channelId": "$CHANNEL_ID", "title": "Fixture channel",
@@ -160,6 +362,7 @@ class YoutubeChannelLiveSortTest {
           "contents": {"twoColumnBrowseResultsRenderer": {"tabs": [{"tabRenderer": {
             "endpoint": {"commandMetadata": {"webCommandMetadata": {"url": "/channel/$CHANNEL_ID/streams"}}},
             "content": {"richGridRenderer": {
+              ${targetId?.let { "\"targetId\":\"$it\"," }.orEmpty()}
               "header": {"chipBarViewModel": {"chips": [${listOf("latest", "popular", "oldest").joinToString(",", transform = ::chip)}]}},
               "contents": [${card("aaaaaaaaaaa")}]
             }}
@@ -173,6 +376,14 @@ class YoutubeChannelLiveSortTest {
           "tapCommand": {"innertubeCommand": {"continuationCommand": {"token": "sort-$sort"}}}
         }}
     """.trimIndent()
+
+    private fun response(vararg commands: String): String = """{"onResponseReceivedActions":[${commands.joinToString(",")}]}"""
+
+    private fun command(name: String, targetId: String, items: List<String>, slot: String? = null): String = """{"$name":{"targetId":"$targetId",${slot?.let { "\"slot\":\"$it\"," }.orEmpty()}"continuationItems":[${items.joinToString(",")}]}}"""
+
+    private fun header(): String = """{"chipBarViewModel":{"chips":[]}}"""
+
+    private fun continuation(token: String): String = """{"continuationItemRenderer":{"continuationEndpoint":{"continuationCommand":{"token":"$token"}}}}"""
 
     private fun continuationResponse(command: String, id: String, next: String?): String {
         val header = if (command == "reloadContinuationItemsCommand") {
