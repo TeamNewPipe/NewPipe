@@ -28,10 +28,12 @@ class GroupChannelsViewModel(application: Application) : AndroidViewModel(applic
     fun load(groupId: Long) {
         disposable?.dispose()
         mutableState.value = State(loading = true)
-        val source = if (groupId == FeedGroupEntity.GROUP_ALL_ID) {
-            subscriptionManager.subscriptions()
-        } else {
-            database.feedGroupDAO()
+        val source = when (groupId) {
+            FeedGroupEntity.GROUP_ALL_ID -> subscriptionManager.subscriptions()
+
+            FeedGroupEntity.GROUP_UNGROUPED_ID -> database.subscriptionDAO().getUngroupedSubscriptionsForProfile(profileId)
+
+            else -> database.feedGroupDAO()
                 .getSubscriptionIdsForProfile(profileId, groupId)
                 .switchMap { ids ->
                     subscriptionManager.subscriptions().map { subscriptions ->

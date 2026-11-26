@@ -280,7 +280,13 @@ class FeedDatabaseManager @JvmOverloads constructor(
     // /////////////////////////////////////////////////////////////////////////
 
     fun subscriptionIdsForGroup(groupId: Long): Flowable<List<Long>> {
-        return feedGroupTable.getSubscriptionIdsForProfile(activeProfileId, groupId)
+        val ids = if (groupId == FeedGroupEntity.GROUP_UNGROUPED_ID) {
+            database.subscriptionDAO().getUngroupedSubscriptionsForProfile(activeProfileId)
+                .map { subscriptions -> subscriptions.map { it.uid } }
+        } else {
+            feedGroupTable.getSubscriptionIdsForProfile(activeProfileId, groupId)
+        }
+        return ids
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

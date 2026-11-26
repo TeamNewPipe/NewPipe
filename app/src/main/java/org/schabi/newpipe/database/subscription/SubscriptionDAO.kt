@@ -46,6 +46,21 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     )
     abstract fun getAllForProfile(profileId: String): Flowable<List<SubscriptionEntity>>
 
+    /** Ungrouped is derived from real memberships; it never has a stored group or join row. */
+    @Query(
+        """
+        SELECT s.* FROM subscriptions s
+        WHERE s.profile_id = :profileId
+        AND NOT EXISTS (
+            SELECT 1 FROM feed_group_subscription_join membership
+            INNER JOIN feed_group g ON g.uid = membership.group_id
+            WHERE membership.subscription_id = s.uid AND g.profile_id = :profileId
+        )
+        ORDER BY s.name COLLATE NOCASE ASC
+        """
+    )
+    abstract fun getUngroupedSubscriptionsForProfile(profileId: String): Flowable<List<SubscriptionEntity>>
+
     @Query("SELECT * FROM subscriptions")
     abstract fun getAllDirect(): List<SubscriptionEntity>
 

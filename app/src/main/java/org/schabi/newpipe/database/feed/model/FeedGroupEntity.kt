@@ -44,5 +44,10 @@ data class FeedGroupEntity @JvmOverloads constructor(
         const val DEFAULT_PROFILE_ID = "00000000-0000-0000-0000-000000000000"
 
         const val GROUP_ALL_ID = -1L
+
+        // -2 is reserved for notification-enabled subscriptions in FeedLoadManager.
+        const val GROUP_UNGROUPED_ID = -3L
+
+        fun isVirtualGroup(groupId: Long): Boolean = groupId == GROUP_ALL_ID || groupId == GROUP_UNGROUPED_ID
     }
 }

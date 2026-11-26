@@ -26,6 +26,8 @@ import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.local.subscription.item.FeedGroupAddNewGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupAddNewItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardGridItem
+import org.schabi.newpipe.local.subscription.item.FeedGroupCardItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupImportGridItem
 import org.schabi.newpipe.local.subscription.item.FeedGroupImportItem
 import org.schabi.newpipe.profiles.ProfileManager
@@ -83,7 +85,7 @@ class SubscriptionImportShortcutTest {
                 }
                 val initial = awaitRows(scenario, listMode, showImport = true)
                 val remaining = initial.filterNot(::isImport)
-                assertEquals(3, remaining.size) // Create, All, and the existing channel group.
+                assertEquals(4, remaining.size) // Create, All, the existing channel group, and Ungrouped.
 
                 scenario.onActivity { preferences.edit().putBoolean(shortcutKey, false).commit() }
                 val hidden = awaitRows(scenario, listMode, showImport = false)
@@ -122,7 +124,17 @@ class SubscriptionImportShortcutTest {
                 rows = adapter?.let { (0 until it.itemCount).map(it::getItem) }.orEmpty()
             }
             val correctMode = if (listMode) rows.firstOrNull() is FeedGroupAddNewItem else rows.firstOrNull() is FeedGroupAddNewGridItem
-            if (correctMode && rows.size == (if (showImport) 4 else 3) && rows.any(::isImport) == showImport) return rows
+            if (correctMode && rows.size == (if (showImport) 5 else 4) && rows.any(::isImport) == showImport) {
+                val last = rows.last()
+                assertTrue("Ungrouped must use the selected group layout", if (listMode) last is FeedGroupCardItem else last is FeedGroupCardGridItem)
+                val lastGroupId = when (last) {
+                    is FeedGroupCardItem -> last.groupId
+                    is FeedGroupCardGridItem -> last.groupId
+                    else -> error("Ungrouped must follow the existing groups and shortcuts")
+                }
+                assertEquals(FeedGroupEntity.GROUP_UNGROUPED_ID, lastGroupId)
+                return rows
+            }
             SystemClock.sleep(25)
         }
         throw AssertionError("Expected list=$listMode, import=$showImport; received ${rows.map { it.javaClass.simpleName }}")
