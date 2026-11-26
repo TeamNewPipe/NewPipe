@@ -7,6 +7,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
+import org.schabi.newpipe.local.subscription.SubscriptionFeedMuteBadge
 import org.schabi.newpipe.local.subscription.SubscriptionNameScrolling
 import org.schabi.newpipe.util.Localization
 import org.schabi.newpipe.util.OnClickGesture
@@ -17,7 +18,8 @@ class ChannelItem(
     private val infoItem: ChannelInfoItem,
     private val subscriptionId: Long = -1L,
     var itemVersion: ItemVersion = ItemVersion.NORMAL,
-    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null
+    var gesturesListener: OnClickGesture<ChannelInfoItem>? = null,
+    private val feedMuted: Boolean? = null
 ) : Item<GroupieViewHolder>() {
     val layoutKey: String get() = "channel:${infoItem.serviceId}:${infoItem.url}"
 
@@ -38,6 +40,7 @@ class ChannelItem(
         val itemThumbnailView = viewHolder.root.findViewById<ImageView>(R.id.itemThumbnailView)
 
         itemTitleView.text = infoItem.name
+        SubscriptionFeedMuteBadge.bind(itemTitleView, feedMuted)
         SubscriptionNameScrolling.bind(itemTitleView)
         itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
         if (itemVersion == ItemVersion.NORMAL) {
@@ -56,6 +59,7 @@ class ChannelItem(
     }
 
     override fun unbind(viewHolder: GroupieViewHolder) {
+        SubscriptionFeedMuteBadge.bind(viewHolder.root.findViewById(R.id.itemTitleView), null)
         SubscriptionNameScrolling.unbind(viewHolder.root.findViewById(R.id.itemTitleView))
         super.unbind(viewHolder)
     }

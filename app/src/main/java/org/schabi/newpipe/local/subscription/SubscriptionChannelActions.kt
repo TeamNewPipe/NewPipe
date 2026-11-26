@@ -8,6 +8,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
@@ -32,9 +33,31 @@ internal class SubscriptionChannelActions(
     private val disposables = CompositeDisposable()
     private var dialog: androidx.appcompat.app.AlertDialog? = null
     private val groupMembershipActions = SubscriptionGroupMembershipActions(fragment)
+    private val feedMuteActions = SubscriptionFeedMuteActions(fragment, subscriptionManager)
+    private val profileId = ProfileManager.getActiveProfileId(fragment.requireContext())
+    private var lookup: Disposable? = null
 
     fun show(selectedItem: ChannelInfoItem) {
         if (fragment.view == null) return
+        lookup?.dispose()
+        dialog?.dismiss()
+        lookup = subscriptionManager.getSubscriptionFlowable(selectedItem.serviceId, selectedItem.url)
+            .firstOrError()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ channels ->
+                if (hasCurrentView()) showMenu(selectedItem, channels.firstOrNull())
+            }, { error ->
+                if (hasCurrentView()) {
+                    ErrorUtil.showSnackbar(fragment, ErrorInfo(error, UserAction.SUBSCRIPTION_CHANGE, "Reading subscription actions"))
+                }
+            })
+    }
+
+    private fun hasCurrentView(): Boolean = fragment.view != null &&
+        fragment.context?.let { ProfileManager.getActiveProfileId(it) == profileId } == true
+
+    private fun showMenu(selectedItem: ChannelInfoItem, subscription: SubscriptionEntity?) {
         val commands = mutableListOf<Pair<String, () -> Unit>>(
             fragment.getString(R.string.share) to {
                 ShareUtils.shareText(
@@ -57,6 +80,11 @@ internal class SubscriptionChannelActions(
         }
         commands += fragment.getString(R.string.subscription_groups_manage) to {
             groupMembershipActions.showSingle(selectedItem)
+        }
+        subscription?.let {
+            commands += fragment.getString(if (it.feedMuted) R.string.feed_unmute else R.string.feed_mute) to {
+                feedMuteActions.set(listOf(it), !it.feedMuted)
+            }
         }
         val activeProfileId = ProfileManager.getActiveProfileId(fragment.requireContext())
         val excluded = FeedAllExclusions.isExcluded(
@@ -113,7 +141,7 @@ internal class SubscriptionChannelActions(
         dialog = MaterialAlertDialogBuilder(fragment.requireContext())
             .setCustomTitle(dialogTitleBinding.root)
             .setItems(commands.map { it.first }.toTypedArray()) { _, which ->
-                commands[which].second.invoke()
+                if (hasCurrentView()) commands[which].second.invoke()
             }
             .show()
     }
@@ -214,6 +242,9 @@ internal class SubscriptionChannelActions(
     }
 
     fun close() {
+        lookup?.dispose()
+        lookup = null
+        feedMuteActions.close()
         groupMembershipActions.close()
         dialog?.dismiss()
         dialog = null

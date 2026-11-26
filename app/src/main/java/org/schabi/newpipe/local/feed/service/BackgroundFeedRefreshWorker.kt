@@ -78,7 +78,8 @@ class BackgroundFeedRefreshWorker(context: Context, parameters: WorkerParameters
         // Let the notification worker discover new videos for channels with active alerts.
         // Otherwise a silent refresh would mark those videos as old before alerts can be sent.
         internal fun subscriptionsToRefresh(subscriptions: List<SubscriptionEntity>, alertsActive: Boolean): Set<Long> = subscriptions.filter {
-            !alertsActive || it.notificationMode !in setOf(NotificationMode.ENABLED, NotificationMode.KEYWORDS_ONLY)
+            !it.feedMuted &&
+                (!alertsActive || it.notificationMode !in setOf(NotificationMode.ENABLED, NotificationMode.KEYWORDS_ONLY))
         }.mapTo(mutableSetOf()) { it.uid }
 
         internal fun intervalMinutes(value: String?): Long = value?.toLongOrNull()

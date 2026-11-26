@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="feed_mute">Mute feed updates</string>
+    <string name="feed_unmute">Unmute feed updates</string>
+    <string name="feed_mute_selected">Mute selected feeds</string>
+    <string name="feed_unmute_selected">Unmute selected feeds</string>
+    <string name="feed_muted_state">Feed muted</string>
+    <string name="feed_unmuted_state">Feed updates enabled</string>
+    <string name="feed_mute_done">Feed updates and new video alerts paused. You can still open and refresh the channel.</string>
+    <string name="feed_unmute_done">Feed updates and saved alert preferences resumed</string>
+</resources>

@@ -121,7 +121,7 @@ class SubscriptionViewModel(application: Application) : AndroidViewModel(applica
                     if (ContextualSearchHelper.isActive(query) || entities.isEmpty()) null else SubscriptionSeparatorItem(entry)
                 } else {
                     byKey[entry.key]?.let { entity ->
-                        ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI)
+                        ChannelItem(entity.toChannelInfoItem(), entity.uid, ChannelItem.ItemVersion.MINI, feedMuted = entity.feedMuted)
                     }
                 }
             }

@@ -30,6 +30,19 @@ class BackgroundFeedRefreshWorkerTest {
     }
 
     @Test
+    fun mutedSubscriptionsAreExcludedWithAndWithoutActiveAlerts() {
+        val subscriptions = listOf(
+            SubscriptionEntity(uid = 1, notificationMode = NotificationMode.DISABLED),
+            SubscriptionEntity(uid = 2, notificationMode = NotificationMode.ENABLED),
+            SubscriptionEntity(uid = 3, notificationMode = NotificationMode.DISABLED, feedMuted = true),
+            SubscriptionEntity(uid = 4, notificationMode = NotificationMode.ENABLED, feedMuted = true),
+            SubscriptionEntity(uid = 5, notificationMode = NotificationMode.KEYWORDS_ONLY, feedMuted = true)
+        )
+        assertEquals(setOf(1L), BackgroundFeedRefreshWorker.subscriptionsToRefresh(subscriptions, true))
+        assertEquals(setOf(1L, 2L), BackgroundFeedRefreshWorker.subscriptionsToRefresh(subscriptions, false))
+    }
+
+    @Test
     fun `schedule uses independent network and interval settings with safe defaults`() {
         val context = RuntimeEnvironment.getApplication()
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)

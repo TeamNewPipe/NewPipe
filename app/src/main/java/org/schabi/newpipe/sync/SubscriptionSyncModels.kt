@@ -54,7 +54,8 @@ internal data class SyncedSubscription(
             ?: existing?.notificationMode
             ?: NotificationMode.DISABLED,
         notificationKeywords = notificationKeywords
-            ?: existing?.notificationKeywords.orEmpty()
+            ?: existing?.notificationKeywords.orEmpty(),
+        feedMuted = existing?.feedMuted ?: false
     )
 
     companion object {

@@ -54,7 +54,8 @@ object Migrations {
     const val DB_VER_32 = 32
     const val DB_VER_33 = 33
     const val DB_VER_34 = 34
-    const val DB_VER_CURRENT = DB_VER_34
+    const val DB_VER_35 = 35
+    const val DB_VER_CURRENT = DB_VER_35
 
     private val TAG = Migrations::class.java.getName()
     private val isDebug = MainActivity.DEBUG
@@ -1095,5 +1096,9 @@ object Migrations {
     val MIGRATION_33_34 = Migration(DB_VER_33, DB_VER_34) { db ->
         // Legacy dates cannot prove whether a delayed broadcast has started. Keep them unknown.
         db.execSQL("ALTER TABLE streams ADD COLUMN upcoming_status INTEGER")
+    }
+
+    val MIGRATION_34_35 = Migration(DB_VER_34, DB_VER_35) { db ->
+        db.execSQL("ALTER TABLE subscriptions ADD COLUMN feed_muted INTEGER NOT NULL DEFAULT 0")
     }
 }

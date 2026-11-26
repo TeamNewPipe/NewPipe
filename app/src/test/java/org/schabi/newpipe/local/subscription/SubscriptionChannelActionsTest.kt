@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.plugins.RxJavaPlugins
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -16,6 +20,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.never
 import org.mockito.Mockito.verify
@@ -27,6 +33,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowDialog
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.local.feed.FeedAllExclusions
 import org.schabi.newpipe.profiles.ProfileManager
@@ -46,6 +53,8 @@ class SubscriptionChannelActionsTest {
 
     @Before
     fun setup() {
+        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+        RxAndroidPlugins.setMainThreadSchedulerHandler { Schedulers.trampoline() }
         activityController = Robolectric.buildActivity(FragmentActivity::class.java)
         activity = activityController.get()
         activity.setTheme(R.style.LightTheme)
@@ -53,6 +62,9 @@ class SubscriptionChannelActionsTest {
         val fragment = HostFragment()
         activity.supportFragmentManager.beginTransaction().add(android.R.id.content, fragment).commitNow()
         manager = mock(SubscriptionManager::class.java)
+        `when`(manager.getSubscriptionFlowable(anyInt(), anyString())).thenAnswer {
+            Flowable.just(listOf(SubscriptionEntity(uid = 1, serviceId = it.getArgument(0), url = it.getArgument(1))))
+        }
         actions = SubscriptionChannelActions(fragment, manager)
     }
 
@@ -60,6 +72,8 @@ class SubscriptionChannelActionsTest {
     fun teardown() {
         actions.close()
         activityController.pause().stop().destroy()
+        RxJavaPlugins.reset()
+        RxAndroidPlugins.reset()
     }
 
     @Test
@@ -73,6 +87,7 @@ class SubscriptionChannelActionsTest {
                 R.string.share,
                 R.string.open_in_browser,
                 R.string.subscription_groups_manage,
+                R.string.feed_mute,
                 R.string.feed_exclude_from_all,
                 R.string.unsubscribe
             ).map(activity::getString),

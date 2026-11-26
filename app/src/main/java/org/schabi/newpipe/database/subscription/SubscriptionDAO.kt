@@ -73,6 +73,31 @@ abstract class SubscriptionDAO : BasicDAO<SubscriptionEntity> {
     )
     abstract fun setNotificationModeForProfile(profileId: String, @NotificationMode mode: Int): Int
 
+    @Query(
+        """
+        UPDATE subscriptions SET feed_muted = :muted
+        WHERE profile_id = :profileId AND uid IN (:subscriptionIds)
+        """
+    )
+    abstract fun setFeedMutedForProfile(
+        profileId: String,
+        subscriptionIds: List<Long>,
+        muted: Boolean
+    ): Int
+
+    @Query(
+        """
+        UPDATE subscriptions SET notification_mode = :mode, notification_keywords = :keywords
+        WHERE profile_id = :profileId AND uid = :subscriptionId
+        """
+    )
+    abstract fun setNotificationSettingsForProfile(
+        profileId: String,
+        subscriptionId: Long,
+        @NotificationMode mode: Int,
+        keywords: String
+    )
+
     open fun getSubscriptionsFiltered(filter: String): Flowable<List<SubscriptionEntity>> = getAll().map { channels -> channels.filter { SubscriptionSearch.matches(filter, it) } }
 
     open fun getSubscriptionsFilteredForProfile(profileId: String, filter: String): Flowable<List<SubscriptionEntity>> = getAllForProfile(profileId).map { channels -> channels.filter { SubscriptionSearch.matches(filter, it) } }

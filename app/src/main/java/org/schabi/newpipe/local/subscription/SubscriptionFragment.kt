@@ -73,6 +73,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private lateinit var activeProfileId: String
     private lateinit var channelActions: SubscriptionChannelActions
     private lateinit var bulkActions: SubscriptionBulkActions
+    private lateinit var feedMuteActions: SubscriptionFeedMuteActions
     private lateinit var groupActions: SubscriptionGroupActions
     private lateinit var groupMembershipActions: SubscriptionGroupMembershipActions
     private lateinit var subscriptionManager: SubscriptionManager
@@ -95,6 +96,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private var bulkUnsubscribeMenuItem: MenuItem? = null
     private var addToGroupsMenuItem: MenuItem? = null
     private var removeFromGroupsMenuItem: MenuItem? = null
+    private var muteFeedsMenuItem: MenuItem? = null
+    private var unmuteFeedsMenuItem: MenuItem? = null
     private var pendingBrowseAnchor: SubscriptionScrollAnchor? = null
     private var countDisposable: io.reactivex.rxjava3.disposables.Disposable? = null
     private var fastScroller: ListFastScroller? = null
@@ -141,6 +144,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         subscriptionManager = SubscriptionManager(context, activeProfileId)
         channelActions = SubscriptionChannelActions(this, subscriptionManager)
         bulkActions = SubscriptionBulkActions(this, subscriptionManager)
+        feedMuteActions = SubscriptionFeedMuteActions(this, subscriptionManager, activeProfileId)
         groupActions = SubscriptionGroupActions(this, subscriptionManager)
         groupMembershipActions = SubscriptionGroupMembershipActions(this, activeProfileId)
         importExportHelper = SubscriptionsImportExportHelper(this)
@@ -173,6 +177,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         floatingActions = null
         channelActions.close()
         bulkActions.close()
+        feedMuteActions.close()
         groupActions.close()
         groupMembershipActions.close()
         sortController?.close()
@@ -180,6 +185,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         bulkUnsubscribeMenuItem = null
         addToGroupsMenuItem = null
         removeFromGroupsMenuItem = null
+        muteFeedsMenuItem = null
+        unmuteFeedsMenuItem = null
         pendingBrowseAnchor = null
         countDisposable?.dispose()
         countDisposable = null
@@ -223,6 +230,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         }
         removeFromGroupsMenuItem = setClickListenerToMenuItem(menu.add(R.string.subscription_groups_remove)) {
             groupMembershipActions.showBulk(sortController?.selectedChannels().orEmpty(), add = false)
+        }
+        muteFeedsMenuItem = setClickListenerToMenuItem(menu.add(R.string.feed_mute_selected)) {
+            feedMuteActions.set(sortController?.selectedChannels().orEmpty(), muted = true)
+        }
+        unmuteFeedsMenuItem = setClickListenerToMenuItem(menu.add(R.string.feed_unmute_selected)) {
+            feedMuteActions.set(sortController?.selectedChannels().orEmpty(), muted = false)
         }
         updateUnsubscribeAction()
 
@@ -439,7 +452,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private fun updateUnsubscribeAction() {
         val hasSelection = sortController?.selectedChannels()?.isNotEmpty() == true
         bulkUnsubscribeMenuItem?.isEnabled = !sortingEnabled || hasSelection
-        listOf(addToGroupsMenuItem, removeFromGroupsMenuItem).forEach { item ->
+        listOf(addToGroupsMenuItem, removeFromGroupsMenuItem, muteFeedsMenuItem, unmuteFeedsMenuItem).forEach { item ->
             item?.isVisible = sortingEnabled
             item?.isEnabled = sortingEnabled && hasSelection
         }

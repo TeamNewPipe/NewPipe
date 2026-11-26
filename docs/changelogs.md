@@ -4,6 +4,12 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Muted feeds
+
+- Pause feed updates for individual channels or selected subscriptions, with visible and accessible mute states in channel lists and the subscription editor.
+- Skip muted channels during All, group, Ungrouped and background refreshes, including forced refreshes and new-video alerts. Keep cached videos, saved alert preferences and direct channel browsing and refresh available.
+- Keep mute choices local to each profile, default existing subscriptions to unmuted on upgrade, and preserve choices during metadata updates or repeat imports. Portable subscription exports and device sync keep their current format.
+
 ### Download metadata
 
 - Keep download status and localized dates readable without overlapping uploader names or file sizes, including narrow layouts, large text and right-to-left languages.

@@ -137,7 +137,8 @@ class GroupChannelsFragment : Fragment() {
                 ChannelItem(
                     subscription.toChannelInfoItem(),
                     subscription.uid,
-                    if (gridMode) ChannelItem.ItemVersion.GRID else ChannelItem.ItemVersion.MINI
+                    if (gridMode) ChannelItem.ItemVersion.GRID else ChannelItem.ItemVersion.MINI,
+                    feedMuted = subscription.feedMuted
                 ).apply {
                     gesturesListener = object : OnClickGesture<ChannelInfoItem> {
                         override fun selected(

@@ -41,8 +41,8 @@ class NotificationHelper internal constructor(
      * Opening the summary notification will open the corresponding channel page. Opening the
      * individual notifications will open the corresponding video.
      */
-    fun displayNewStreamsNotifications(data: FeedUpdateInfo) {
-        if (!manager.areNotificationsEnabled() || data.newStreams.isEmpty()) return
+    fun displayNewStreamsNotifications(data: FeedUpdateInfo, canNotify: () -> Boolean = { true }) {
+        if (!manager.areNotificationsEnabled() || data.newStreams.isEmpty() || !canNotify()) return
         val newStreams = data.newStreams
         val summary = context.resources.getQuantityString(
             R.plurals.new_streams,
@@ -85,21 +85,25 @@ class NotificationHelper internal constructor(
         summaryBuilder.setLargeIcon(avatarIcon)
 
         // Show individual stream notifications, set channel icon only if there is actually one
-        showStreamNotifications(data, avatarIcon)
+        showStreamNotifications(data, avatarIcon, canNotify)
         // Show summary notification
-        if (manager.areNotificationsEnabled()) {
+        if (manager.areNotificationsEnabled() && canNotify()) {
             manager.notify(data.pseudoId, summaryBuilder.build())
         }
     }
 
     private fun showStreamNotifications(
         data: FeedUpdateInfo,
-        channelIcon: Bitmap?
+        channelIcon: Bitmap?,
+        canNotify: () -> Boolean
     ) {
         if (manager.areNotificationsEnabled()) {
             data.newStreams.forEach { stream ->
+                if (!canNotify()) return
                 val notification =
                     createStreamNotification(stream, data, channelIcon)
+                // Artwork may finish after the channel was muted or the active profile changed.
+                if (!canNotify()) return
                 manager.notify(stream.url.hashCode(), notification)
             }
         }

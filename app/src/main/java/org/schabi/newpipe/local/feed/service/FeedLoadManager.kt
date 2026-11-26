@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Notification
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
+import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -72,7 +73,7 @@ class FeedLoadManager @JvmOverloads constructor(
      * Using an id of a group created by the user results in that specific group to be loaded.
      * @param ignoreOutdatedThreshold When `false`, only subscriptions which have not been updated
      * within the `feed_update_threshold` are checked for updates. This threshold can be set by
-     * the user in the app settings. When `true`, all subscriptions are checked for new streams.
+     * the user in the app settings. Muted subscriptions are skipped even when `true`.
      */
     fun startLoading(
         groupId: Long = FeedGroupEntity.GROUP_ALL_ID,
@@ -129,7 +130,7 @@ class FeedLoadManager @JvmOverloads constructor(
             .map { subscriptions ->
                 val availableServices = ServiceList.all().mapTo(mutableSetOf()) { it.serviceId }
                 subscriptions.filter {
-                    (onlySubscriptions == null || it.uid in onlySubscriptions) &&
+                    !it.feedMuted && (onlySubscriptions == null || it.uid in onlySubscriptions) &&
                         SavedServicePolicy.canRefresh(
                             it.serviceId,
                             availableServices,
@@ -185,7 +186,7 @@ class FeedLoadManager @JvmOverloads constructor(
             .observeOn(Schedulers.io())
             // Persist each completed channel before announcing progress. Slow or failed
             // channels must not hold back content already retrieved from other channels.
-            .doOnNext(DatabaseConsumer())
+            .map(DatabaseWriter())
             .doOnNext(NotificationConsumer())
             .subscribeOn(Schedulers.io())
 
@@ -299,6 +300,10 @@ class FeedLoadManager @JvmOverloads constructor(
         }
 
         try {
+            // Requests may wait in a batch after candidate selection. Do not start fetching a
+            // channel muted in the meantime; completion still advances this batch's progress.
+            val current = subscriptionManager.getSubscriptionById(subscriptionEntity.uid)
+            if (current == null || current.feedMuted) return Notification.createOnComplete()
             // check for and load new streams
             // either by using the dedicated feed method or by getting the channel info
             var originalInfo: Info? = null
@@ -410,17 +415,21 @@ class FeedLoadManager @JvmOverloads constructor(
         }
     }
 
-    private inner class DatabaseConsumer : Consumer<Notification<FeedUpdateInfo>> {
+    private inner class DatabaseWriter : Function<Notification<FeedUpdateInfo>, Notification<FeedUpdateInfo>> {
 
-        override fun accept(notification: Notification<FeedUpdateInfo>) {
+        override fun apply(notification: Notification<FeedUpdateInfo>): Notification<FeedUpdateInfo> {
             var archiveItems: List<StreamInfoItem>? = null
+            var discarded = false
             feedDatabaseManager.database().runInTransaction {
                 when {
                     notification.isOnNext -> {
                         val info = notification.value!!
-                        // A user can unsubscribe while this channel is still fetching.
-                        if (subscriptionManager.getSubscriptionById(info.uid) == null) {
+                        // A user can unsubscribe or mute while this channel is still fetching.
+                        // Reread under the write transaction so its result cannot undo that choice.
+                        val subscription = subscriptionManager.getSubscriptionById(info.uid)
+                        if (subscription == null || subscription.feedMuted) {
                             info.newStreams = emptyList()
+                            discarded = true
                             return@runInTransaction
                         }
                         val updateModeMask = feedScope?.takeUnless { it.serviceId == FeedScope.ALL_SERVICES }?.youtubeModeMask
@@ -454,13 +463,15 @@ class FeedLoadManager @JvmOverloads constructor(
 
                     notification.isOnError -> {
                         val error = notification.error
-                        feedResultsHolder.addError(error!!)
-
                         if (error is FeedLoadService.RequestException) {
                             val subscription =
                                 subscriptionManager.getSubscriptionById(
                                     error.subscriptionId
-                                ) ?: return@runInTransaction
+                                )
+                            if (subscription == null || subscription.feedMuted) {
+                                discarded = true
+                                return@runInTransaction
+                            }
                             val updateModeMask = feedScope?.takeUnless { it.serviceId == FeedScope.ALL_SERVICES }?.youtubeModeMask
                                 ?: subscription.youtubeModeMask
                             feedDatabaseManager.markAsOutdated(
@@ -468,6 +479,7 @@ class FeedLoadManager @JvmOverloads constructor(
                                 updateModeMask
                             )
                         }
+                        feedResultsHolder.addError(error!!)
                     }
                 }
             }
@@ -479,6 +491,9 @@ class FeedLoadManager @JvmOverloads constructor(
                     }
                 }
             }
+            // Keep progress moving, but do not make a worker retry an intentionally skipped
+            // channel because its stale result contains a partial or complete fetch failure.
+            return if (discarded) Notification.createOnComplete() else notification
         }
 
         private fun filterNewStreams(list: List<StreamInfoItem>): List<StreamInfoItem> {

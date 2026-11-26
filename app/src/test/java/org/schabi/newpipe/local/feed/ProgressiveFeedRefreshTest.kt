@@ -143,6 +143,56 @@ class ProgressiveFeedRefreshTest {
     }
 
     @Test
+    fun mutingDuringFetchDiscardsTheLateResultButRetainsCachedItemsAndOtherUpdates() {
+        feed.upsertAll(subscriptions[0], update(0, "cached", 2).streams)
+        val previousMemberships = database.feedDAO().getMemberships(subscriptions[0])
+        val previousUpdate = feed.oldestSubscriptionUpdate(-1, scope).blockingFirst()
+        val source = PublishProcessor.create<Notification<FeedUpdateInfo>>()
+        val result = manager.storeResults(source).test()
+        val late = update(0, "muted late result", 0)
+        database.subscriptionDAO().setFeedMutedForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, listOf(subscriptions[0]), true)
+        source.onNext(Notification.createOnNext(late))
+        assertTrue(late.newStreams.isEmpty())
+        assertEquals(previousMemberships, database.feedDAO().getMemberships(subscriptions[0]))
+        assertEquals(listOf("cached"), titles())
+        source.onNext(Notification.createOnNext(update(1, "unmuted channel", 1)))
+        source.onComplete()
+        result.assertComplete().assertNoErrors()
+        assertEquals(listOf("unmuted channel", "cached"), titles())
+        val stored = database.subscriptionDAO().getSubscriptionForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, subscriptions[0])!!
+        assertTrue(stored.feedMuted)
+        assertEquals("Channel 0", stored.name)
+
+        database.subscriptionDAO().setFeedMutedForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, listOf(subscriptions[0]), false)
+        assertEquals(previousUpdate, feed.oldestSubscriptionUpdate(-1, scope).blockingFirst())
+        FeedLoadManager(context).storeResults(io.reactivex.rxjava3.core.Flowable.just(Notification.createOnNext(late)))
+            .test().assertComplete().assertNoErrors()
+        assertEquals(listOf("muted late result", "unmuted channel", "cached"), titles())
+    }
+
+    @Test
+    fun mutedPartialAndFailedResultsCompleteProgressWithoutBecomingWorkerFailures() {
+        feed.upsertAll(subscriptions[0], update(0, "cached", 2).streams)
+        val previousUpdate = feed.oldestSubscriptionUpdate(-1, scope).blockingFirst()
+        val source = PublishProcessor.create<Notification<FeedUpdateInfo>>()
+        val result = manager.storeResults(source).test()
+        val partial = update(0, "discarded partial", 0, listOf(java.io.IOException("tab failed")))
+        database.subscriptionDAO().setFeedMutedForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, listOf(subscriptions[0]), true)
+        source.onNext(Notification.createOnNext(partial))
+        source.onNext(Notification.createOnError(FeedLoadService.RequestException(subscriptions[0], "muted", java.io.IOException("offline"))))
+        source.onNext(Notification.createOnNext(update(1, "kept", 1)))
+        source.onComplete()
+        result.assertComplete().assertNoErrors().assertValue { updates ->
+            updates.size == 3 && updates.take(2).all { it.isOnComplete } &&
+                updates.none { it.isOnError || it.value?.errors?.isNotEmpty() == true }
+        }
+        assertTrue(partial.newStreams.isEmpty())
+        assertEquals(listOf("kept", "cached"), titles())
+        database.subscriptionDAO().setFeedMutedForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, listOf(subscriptions[0]), false)
+        assertEquals(previousUpdate, feed.oldestSubscriptionUpdate(-1, scope).blockingFirst())
+    }
+
+    @Test
     fun observedFutureFilterUsesQueryTimeWhileFixedCutoffQueriesStaySupported() {
         database.runInTransaction {
             feed.upsertAll(subscriptions[0], update(0, "published", 1).streams)

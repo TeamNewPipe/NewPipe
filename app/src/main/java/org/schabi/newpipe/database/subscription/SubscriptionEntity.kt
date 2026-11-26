@@ -69,7 +69,11 @@ data class SubscriptionEntity(
     var profileId: String = DEFAULT_PROFILE_ID,
 
     @ColumnInfo(name = "handle")
-    var handle: String? = null
+    var handle: String? = null,
+
+    /** Local to this profile; pauses aggregate refreshes without hiding cached feed items. */
+    @ColumnInfo(name = SUBSCRIPTION_FEED_MUTED, defaultValue = "0")
+    var feedMuted: Boolean = false
 ) {
     @Ignore
     fun toChannelInfoItem(): ChannelInfoItem {
@@ -95,6 +99,7 @@ data class SubscriptionEntity(
         const val SUBSCRIPTION_NOTIFICATION_MODE: String = "notification_mode"
         const val SUBSCRIPTION_NOTIFICATION_KEYWORDS: String = "notification_keywords"
         const val SUBSCRIPTION_YOUTUBE_MODE_MASK: String = "youtube_mode_mask"
+        const val SUBSCRIPTION_FEED_MUTED: String = "feed_muted"
         const val SUBSCRIPTION_PROFILE_ID: String = "profile_id"
         const val DEFAULT_PROFILE_ID: String = "00000000-0000-0000-0000-000000000000"
 

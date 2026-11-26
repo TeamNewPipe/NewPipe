@@ -372,6 +372,7 @@ internal class SubscriptionSortController(
                 sortSelected.isEnabled = loaded
                 sortDrag.isEnabled = loaded
                 sortLabel.text = entry.separator ?: channel?.name.orEmpty()
+                SubscriptionFeedMuteBadge.bind(sortLabel, channel?.feedMuted.takeIf { entry.separator == null })
                 sortLabel.setTypeface(null, if (entry.separator != null) Typeface.BOLD else Typeface.NORMAL)
                 sortSelected.visibility = if (entry.separator != null) View.INVISIBLE else View.VISIBLE
                 sortSelected.isChecked = entry.key in model.selected

@@ -305,6 +305,7 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (
             fgs.group_id = :groupId
             OR (
@@ -340,6 +341,7 @@ abstract class FeedDAO {
         FROM feed_last_updated lu
         INNER JOIN subscriptions s ON s.uid = lu.subscription_id
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND (
             :serviceId <> ${SubscriptionEntity.YOUTUBE_SERVICE_ID}
@@ -368,6 +370,7 @@ abstract class FeedDAO {
             OR (lu.youtube_mode_mask & :youtubeModeMask) <> 0
         )
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND lu.last_updated IS NULL
         AND (
@@ -398,6 +401,7 @@ abstract class FeedDAO {
 
         WHERE lu.last_updated IS NULL
         AND s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (
             fgs.group_id = :groupId
             OR (
@@ -431,6 +435,7 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id 
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold)
         """
     )
@@ -451,6 +456,7 @@ abstract class FeedDAO {
         )
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold)
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND (
@@ -477,6 +483,7 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (
             fgs.group_id = :groupId
             OR (
@@ -512,6 +519,7 @@ abstract class FeedDAO {
         )
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
         AND (
             fgs.group_id = :groupId
             OR (
@@ -547,6 +555,7 @@ abstract class FeedDAO {
         ON s.uid = lu.subscription_id
 
         WHERE s.profile_id = :profileId
+        AND s.feed_muted = 0
             AND (lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold)
             AND s.notification_mode IN (:notificationModes)
         """

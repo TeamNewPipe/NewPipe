@@ -112,6 +112,7 @@ class SubscriptionManager @JvmOverloads constructor(
                         entity.handle = entity.handle ?: existing.handle
                         entity.notificationMode = existing.notificationMode
                         entity.notificationKeywords = existing.notificationKeywords
+                        entity.feedMuted = existing.feedMuted
                         entity.youtubeModeMask = existing.youtubeModeMask or
                             currentYoutubeModeMask
                     }
@@ -225,24 +226,38 @@ class SubscriptionManager @JvmOverloads constructor(
         @NotificationMode mode: Int,
         keywords: String
     ): Completable {
-        return subscriptionTable().getSubscriptionForProfile(profileId, serviceId, url)
-            .flatMapCompletable { entity: SubscriptionEntity ->
-                val notificationsWereDisabled =
-                    entity.notificationMode == NotificationMode.DISABLED
-                val update = Completable.fromAction {
-                    entity.notificationMode = mode
-                    entity.notificationKeywords = keywords
-                    subscriptionTable().update(entity)
-                    recordSubscriptionUpsert(entity)
+        return Completable.defer {
+            var firstEnabled = false
+            val entity = database.runInTransaction<SubscriptionEntity?> {
+                val current = subscriptionTable.getSubscriptionDirectForProfile(profileId, serviceId, url)
+                    ?: return@runInTransaction null
+                firstEnabled = current.notificationMode == NotificationMode.DISABLED &&
+                    mode != NotificationMode.DISABLED
+                subscriptionTable.setNotificationSettingsForProfile(profileId, current.uid, mode, keywords)
+                current.apply {
+                    notificationMode = mode
+                    notificationKeywords = keywords
                 }
-                if (notificationsWereDisabled && mode != NotificationMode.DISABLED) {
-                    // Notifications have just been enabled, mark all streams as "old".
-                    update.andThen(rememberAllStreams(entity))
-                } else {
-                    update
-                }
+            } ?: return@defer Completable.complete()
+            recordSubscriptionUpsert(entity)
+            if (firstEnabled) {
+                // Notifications have just been enabled, mark all streams as "old".
+                rememberAllStreams(entity)
+            } else {
+                Completable.complete()
             }
+        }.subscribeOn(Schedulers.io())
     }
+
+    /** Local-only state: do not publish a subscription-sync change or alter alert preferences. */
+    fun setFeedMuted(subscriptionIds: List<Long>, muted: Boolean): Completable = Completable.fromAction {
+        database.runInTransaction {
+            // Stay below the bind limit on older Android SQLite versions, even for a large library.
+            subscriptionIds.distinct().chunked(900).forEach { ids ->
+                subscriptionTable.setFeedMutedForProfile(profileId, ids, muted)
+            }
+        }
+    }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
     fun updateFromInfo(info: FeedUpdateInfo) {
         val subscriptionEntity =
@@ -389,7 +404,8 @@ class SubscriptionManager @JvmOverloads constructor(
                             uid = 0,
                             profileId = targetProfileId,
                             notificationMode = 0,
-                            notificationKeywords = ""
+                            notificationKeywords = "",
+                            feedMuted = false
                         ).also {
                             it.uid = subscriptionTable.insert(it)
                             changedSubscriptions += it
