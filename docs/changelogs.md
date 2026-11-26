@@ -7,6 +7,7 @@ Release history is listed newest first. The number beside each release is its An
 ### Player lifecycle
 
 - Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.
+- Keep the mini-player thumbnail loading during detail refreshes so switching a video to background playback shows its artwork.
 
 ### YouTube channel lists
 

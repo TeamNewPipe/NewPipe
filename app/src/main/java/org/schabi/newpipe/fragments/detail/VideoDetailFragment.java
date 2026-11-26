@@ -913,6 +913,7 @@ public final class VideoDetailFragment
         appBarBaseStartMargin = 0;
         viewPagerBaseStartMargin = 0;
         viewPagerBaseBottomMargin = 0;
+        CoilUtils.dispose(binding.overlayThumbnail);
         super.onDestroyView();
         detailNavigation = null;
         binding = null;
@@ -2872,7 +2873,8 @@ public final class VideoDetailFragment
 
         CoilUtils.dispose(binding.detailThumbnailImageView);
         CoilUtils.dispose(binding.detailSubChannelThumbnailView);
-        CoilUtils.dispose(binding.overlayThumbnail);
+        // The overlay belongs to active playback, which can outlive this detail refresh.
+        // Its request is replaced by playback metadata or canceled when the view is destroyed.
         CoilUtils.dispose(binding.detailUploaderThumbnailView);
         binding.detailThumbnailImageView.setImageBitmap(null);
         binding.detailSubChannelThumbnailView.setImageBitmap(null);

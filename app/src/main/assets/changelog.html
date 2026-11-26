@@ -132,6 +132,7 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <h3>Player lifecycle</h3>
 <ul>
 <li>Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.</li>
+<li>Keep the mini-player thumbnail loading during detail refreshes so switching a video to background playback shows its artwork.</li>
 </ul>
 <h3>YouTube channel lists</h3>
 <ul>
