@@ -19,6 +19,7 @@ public class DebugSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
         addPreferencesFromResourceRegistry();
+        RenderingDiagnosticsSettings.bind(this);
 
         final Preference allowHeapDumpingPreference =
                 requirePreference(R.string.allow_heap_dumping_key);

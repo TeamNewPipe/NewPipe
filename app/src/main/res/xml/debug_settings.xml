@@ -64,4 +64,18 @@
         android:title="@string/create_error_notification"
         app:singleLineTitle="false"
         app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/rendering_diagnostics_capture_key"
+        android:title="@string/rendering_diagnostics_capture_title"
+        android:summary="@string/rendering_diagnostics_capture_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/rendering_diagnostics_report_key"
+        android:title="@string/rendering_diagnostics_report_title"
+        android:summary="@string/rendering_diagnostics_report_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

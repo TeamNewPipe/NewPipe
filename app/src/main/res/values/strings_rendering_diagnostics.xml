@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="rendering_diagnostics_capture_key" translatable="false">rendering_diagnostics_capture</string>
+    <string name="rendering_diagnostics_report_key" translatable="false">rendering_diagnostics_report</string>
+    <string name="rendering_diagnostics_capture_title">Capture Android 10 detail rendering</string>
+    <string name="rendering_diagnostics_capture_summary">Start, then return to the affected video details within two minutes. Records view and display state for up to 30 seconds, only while that screen is active. No media text, URLs, screenshots, or automatic uploads. The report stays in memory until cleared or the app closes.</string>
+    <string name="rendering_diagnostics_started">Return to video details and reproduce the disappearing content. Then open Debug settings to view the report.</string>
+    <string name="rendering_diagnostics_report_title">View rendering report</string>
+    <string name="rendering_diagnostics_report_summary">Review the captured state, then choose whether to copy or clear it. This diagnostic does not change rendering.</string>
+    <string name="rendering_diagnostics_clear">Clear report</string>
+</resources>
