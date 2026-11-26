@@ -61,7 +61,8 @@ class FeedDatabaseManager @JvmOverloads constructor(
         scope: FeedScope,
         sortByDiscovery: Boolean = false,
         limit: Int = 500,
-        offset: Int = 0
+        offset: Int = 0,
+        sortByViews: Boolean = false
     ): Maybe<List<StreamWithState>> {
         return observeStreams(
             groupId,
@@ -71,7 +72,8 @@ class FeedDatabaseManager @JvmOverloads constructor(
             scope,
             sortByDiscovery,
             limit,
-            offset
+            offset,
+            sortByViews
         ).firstElement()
     }
 
@@ -83,7 +85,8 @@ class FeedDatabaseManager @JvmOverloads constructor(
         scope: FeedScope,
         sortByDiscovery: Boolean = false,
         limit: Int = 500,
-        offset: Int = 0
+        offset: Int = 0,
+        sortByViews: Boolean = false
     ): Flowable<List<StreamWithState>> {
         val query: (List<Long>) -> Flowable<List<StreamWithState>> = { excluded ->
             feedTable.observeStreams(
@@ -99,7 +102,8 @@ class FeedDatabaseManager @JvmOverloads constructor(
                 useCurrentTime = !includeFutureStreams,
                 limit = limit.coerceAtLeast(1),
                 offset = offset.coerceAtLeast(0),
-                excludedSubscriptions = excluded
+                excludedSubscriptions = excluded,
+                sortByViews = sortByViews
             )
         }
         if (groupId != FeedGroupEntity.GROUP_ALL_ID) return query(listOf(-1L))

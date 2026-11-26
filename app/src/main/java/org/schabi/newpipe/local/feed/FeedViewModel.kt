@@ -146,9 +146,11 @@ class FeedViewModel(
                 query.partial,
                 query.future,
                 query.scope,
-                query.sortMode == FeedSortMode.DISCOVERY,
+                // The enum keeps the two optional SQL orderings mutually exclusive.
+                sortByDiscovery = query.sortMode == FeedSortMode.DISCOVERY,
                 limit = query.window.limit,
-                offset = query.window.offset
+                offset = query.window.offset,
+                sortByViews = query.sortMode == FeedSortMode.VIEWS_DESC
             )
                 .throttleLatestDropOverflow(FEED_SNAPSHOT_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()

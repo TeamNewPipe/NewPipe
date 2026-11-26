@@ -47,6 +47,8 @@ abstract class FeedDAO {
     /**
      * Publication ordering prioritizes source-dated items before applying the 500-item limit.
      * Synthetic first-seen timestamps must not displace published videos from the result.
+     * View-count ordering also runs before pagination and treats every missing/negative count
+     * as unknown, after real counts (including zero), with the existing order breaking ties.
      *
      * @param groupId          the group id to get feed streams of; use
      *                         [FeedGroupEntity.GROUP_ALL_ID] to not filter by group
@@ -126,7 +128,10 @@ abstract class FeedDAO {
         )
 
         GROUP BY s.uid
-        ORDER BY CASE WHEN :sortByDiscovery THEN MIN(f.first_discovered_at) ELSE 0 END DESC,
+        ORDER BY CASE WHEN :sortByViews AND (s.view_count IS NULL OR s.view_count < 0)
+                THEN 1 ELSE 0 END ASC,
+            CASE WHEN :sortByViews AND s.view_count >= 0 THEN s.view_count ELSE 0 END DESC,
+            CASE WHEN :sortByDiscovery THEN MIN(f.first_discovered_at) ELSE 0 END DESC,
             CASE WHEN NOT :sortByDiscovery
                 AND s.service_id = ${SubscriptionEntity.YOUTUBE_SERVICE_ID}
                 AND s.is_upload_date_approximation = 1
@@ -148,7 +153,8 @@ abstract class FeedDAO {
         useCurrentTime: Boolean = false,
         limit: Int = 500,
         offset: Int = 0,
-        excludedSubscriptions: List<Long> = listOf(-1L)
+        excludedSubscriptions: List<Long> = listOf(-1L),
+        sortByViews: Boolean = false
     ): Flowable<List<StreamWithState>>
 
     fun getStreams(
@@ -162,7 +168,8 @@ abstract class FeedDAO {
         sortByDiscovery: Boolean = false,
         limit: Int = 500,
         offset: Int = 0,
-        excludedSubscriptions: List<Long> = listOf(-1L)
+        excludedSubscriptions: List<Long> = listOf(-1L),
+        sortByViews: Boolean = false
     ): Maybe<List<StreamWithState>> = observeStreams(
         profileId,
         groupId,
@@ -174,7 +181,8 @@ abstract class FeedDAO {
         sortByDiscovery,
         limit = limit,
         offset = offset,
-        excludedSubscriptions = excludedSubscriptions
+        excludedSubscriptions = excludedSubscriptions,
+        sortByViews = sortByViews
     ).firstElement()
 
     /**

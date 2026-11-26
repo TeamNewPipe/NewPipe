@@ -2,4 +2,6 @@
 <resources>
     <string name="feed_older_cached_page">Browse older cached videos</string>
     <string name="feed_newer_cached_page">Back toward recent cached videos</string>
+    <string name="feed_next_cached_page">Next cached videos</string>
+    <string name="feed_previous_cached_page">Previous cached videos</string>
 </resources>

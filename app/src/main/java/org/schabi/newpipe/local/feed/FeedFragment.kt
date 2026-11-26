@@ -529,6 +529,13 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
+        val chronological = viewModel.getSortMode() in listOf(FeedSortMode.PUBLICATION, FeedSortMode.DISCOVERY)
+        menu.findItem(R.id.menu_item_feed_older_cached)?.setTitle(
+            if (chronological) R.string.feed_older_cached_page else R.string.feed_next_cached_page
+        )
+        menu.findItem(R.id.menu_item_feed_newer_cached)?.setTitle(
+            if (chronological) R.string.feed_newer_cached_page else R.string.feed_previous_cached_page
+        )
         menu.findItem(R.id.menu_item_feed_older_cached)?.isVisible =
             viewModel.hasOlderCachedPage()
         menu.findItem(R.id.menu_item_feed_newer_cached)?.isVisible =
@@ -577,6 +584,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
             val modes = buildList {
                 add(FeedSortMode.PUBLICATION)
                 add(FeedSortMode.DISCOVERY)
+                add(FeedSortMode.VIEWS_DESC)
                 if (LocalRecommendations.enabled(requireContext())) {
                     add(FeedSortMode.RELEVANCE)
                 }
@@ -587,6 +595,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                         FeedSortMode.PUBLICATION -> R.string.feed_sort_publication
                         FeedSortMode.DISCOVERY -> R.string.feed_sort_discovery
                         FeedSortMode.RELEVANCE -> R.string.feed_sort_relevance
+                        FeedSortMode.VIEWS_DESC -> R.string.feed_sort_views
                     }
                 )
             }.toTypedArray()
@@ -597,6 +606,7 @@ class FeedFragment : BaseStateFragment<FeedState>(), ContextualSearchable {
                     modes.indexOf(viewModel.getSortMode()).coerceAtLeast(0)
                 ) { dialog, which ->
                     viewModel.setSortMode(modes[which])
+                    activity.invalidateOptionsMenu()
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.cancel, null)

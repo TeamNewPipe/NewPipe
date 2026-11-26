@@ -6,5 +6,6 @@
     <string name="feed_sort_publication">Publication date (newest first)</string>
     <string name="feed_sort_discovery">First discovered (newest first)</string>
     <string name="feed_sort_relevance">Relevance (Your Taste)</string>
+    <string name="feed_sort_views">Most viewed first</string>
 </resources>
 

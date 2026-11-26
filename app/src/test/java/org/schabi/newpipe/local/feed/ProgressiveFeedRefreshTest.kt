@@ -31,6 +31,8 @@ import org.robolectric.annotation.Config
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.AppDatabase
+import org.schabi.newpipe.database.feed.model.FeedEntity
+import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.localization.DateWrapper
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -39,6 +41,8 @@ import org.schabi.newpipe.local.feed.service.FeedEventManager
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.local.feed.service.FeedUpdateInfo
+import org.schabi.newpipe.profiles.ProfileManager
+import org.schabi.newpipe.recommendations.LocalRecommendations
 import org.schabi.newpipe.util.ServiceHelper
 
 @RunWith(RobolectricTestRunner::class)
@@ -351,6 +355,84 @@ class ProgressiveFeedRefreshTest {
         } finally {
             selector.dispose()
         }
+    }
+
+    @Test
+    fun mostViewedSelectionPersistsAlongsideLegacyDiscoveryAndTheRelevanceGate() {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val modeKey = context.getString(R.string.feed_sort_mode_key)
+        val discoveryKey = context.getString(R.string.feed_sort_by_discovery_key)
+        val recommendationPreferences = context.getSharedPreferences(LocalRecommendations.PREFERENCES, android.content.Context.MODE_PRIVATE)
+        val enabledKey = "${ProfileManager.getActiveProfileId(context)}:enabled"
+        val previousEnabled = recommendationPreferences.all[enabledKey] as? Boolean
+        try {
+            preferences.edit().putBoolean(discoveryKey, true).commit()
+            assertEquals(FeedSortMode.DISCOVERY, model().getSortMode())
+            model().setSortMode(FeedSortMode.VIEWS_DESC)
+            assertEquals("VIEWS_DESC", preferences.getString(modeKey, null))
+            assertFalse(preferences.getBoolean(discoveryKey, true))
+            assertEquals(FeedSortMode.VIEWS_DESC, model().getSortMode())
+
+            preferences.edit().putString(modeKey, "REMOVED_MODE").putBoolean(discoveryKey, true).commit()
+            assertEquals(FeedSortMode.DISCOVERY, model().getSortMode())
+            preferences.edit().putBoolean(discoveryKey, false).commit()
+            assertEquals(FeedSortMode.PUBLICATION, model().getSortMode())
+
+            recommendationPreferences.edit().putBoolean(enabledKey, true).commit()
+            model().setSortMode(FeedSortMode.RELEVANCE)
+            assertEquals(FeedSortMode.RELEVANCE, model().getSortMode())
+            recommendationPreferences.edit().putBoolean(enabledKey, false).commit()
+            assertEquals(FeedSortMode.PUBLICATION, model().getSortMode())
+            model().setSortMode(FeedSortMode.VIEWS_DESC)
+            assertEquals(FeedSortMode.VIEWS_DESC, model().getSortMode())
+        } finally {
+            recommendationPreferences.edit().apply {
+                previousEnabled?.let { putBoolean(enabledKey, it) } ?: remove(enabledKey)
+            }.commit()
+        }
+    }
+
+    @Test
+    fun switchingToMostViewedResetsTheCachedWindowAndObservesUpdatedCounts() {
+        val published = OffsetDateTime.now()
+        val streams = (1L..3_001L).map { id ->
+            StreamEntity(
+                uid = id,
+                serviceId = 0,
+                url = "https://example.com/sort/$id",
+                title = "Video $id",
+                streamType = StreamType.VIDEO_STREAM,
+                duration = 60,
+                uploader = "Channel 0",
+                viewCount = id,
+                uploadDate = published.minusSeconds(id)
+            )
+        }
+        database.runInTransaction {
+            database.streamDAO().insertAll(streams)
+            database.feedDAO().insertAll(streams.map { FeedEntity(it.uid, subscriptions[0]) })
+        }
+        val model = model()
+        tick()
+        repeat(10) {
+            model.loadMoreCachedItems()
+            tick()
+        }
+        assertTrue(model.showOlderCachedPage())
+        tick()
+        assertTrue(model.hasNewerCachedPage())
+        assertEquals(listOf(3_001L), state(model).items.map { it.streamWithState.stream.uid })
+
+        model.setSortMode(FeedSortMode.VIEWS_DESC)
+        tick()
+        assertFalse(model.hasNewerCachedPage())
+        assertEquals(FeedPagination.INITIAL_LIMIT, state(model).items.size)
+        assertEquals(3_001L, state(model).items.first().streamWithState.stream.uid)
+
+        database.streamDAO().update(streams.first().copy(viewCount = 99_000))
+        tick()
+        assertEquals(1L, state(model).items.first().streamWithState.stream.uid)
+        assertEquals(FeedSortMode.VIEWS_DESC, model().getSortMode())
     }
 
     private fun model(owner: LifecycleOwner? = null): FeedViewModel = FeedViewModel(context, initialShowPlayedItems = true, initialShowPartiallyPlayedItems = true, initialShowFutureItems = true).also {

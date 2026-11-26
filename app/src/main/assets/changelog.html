@@ -134,6 +134,10 @@ nav ul { columns: 2 14rem; } code { white-space: pre-wrap; }
 <li>Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.</li>
 <li>Keep the mini-player thumbnail loading during detail refreshes so switching a video to background playback shows its artwork.</li>
 </ul>
+<h3>Feed sorting</h3>
+<ul>
+<li>Add Most viewed first to the subscription feed, sorting cached view counts before pagination while keeping videos with unknown counts last.</li>
+</ul>
 <h3>YouTube channel lists</h3>
 <ul>
 <li>Keep channel sorting and pagination results visible when YouTube sends a separate filter-header update alongside the video list.</li>

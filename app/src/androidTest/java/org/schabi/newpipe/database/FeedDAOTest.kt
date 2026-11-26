@@ -17,9 +17,11 @@ import org.schabi.newpipe.database.feed.dao.FeedDAO
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity
 import org.schabi.newpipe.database.stream.StreamWithState
 import org.schabi.newpipe.database.stream.dao.StreamDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
+import org.schabi.newpipe.database.stream.model.StreamStateEntity
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.extractor.ServiceList
@@ -533,10 +535,110 @@ class FeedDAOTest {
         assertEquals((599L downTo 100L).toList(), feedIds(sortByDiscovery = true))
     }
 
+    @Test
+    fun mostViewedOrderingPrecedesPaginationAndKeepsTiedPagesDisjoint() {
+        clearAndFillTables()
+        feedDAO.deleteAll()
+        val published = OffsetDateTime.parse("2026-09-30T12:00:00Z")
+        val streams = (10L..610L).map { id ->
+            stream1.copy(
+                uid = id,
+                url = "https://youtube.com/watch?v=$id",
+                viewCount = if (id == 610L) 1_000_000 else 20,
+                uploadDate = if (id == 610L) published.minusYears(1) else published
+            )
+        }
+        streamDAO.insertAll(streams)
+        feedDAO.insertAll(streams.map { FeedEntity(it.uid, 1) })
+        // Duplicate subscription membership must not duplicate a ranked video or shift a page.
+        feedDAO.insert(FeedEntity(610, 2))
+
+        assertFalse(feedIds().contains(610L))
+        val first = feedIds(sortByViews = true)
+        val second = feedIds(sortByViews = true, limit = 500, offset = 500)
+        assertEquals(500, first.size)
+        assertEquals(610L, first.first())
+        assertEquals(listOf(610L) + (609L downTo 10L), first + second)
+        assertTrue(first.toSet().intersect(second.toSet()).isEmpty())
+        assertEquals(first, feedIds(sortByViews = true))
+    }
+
+    @Test
+    fun mostViewedTreatsZeroAsKnownAndAllMissingCountsAsOneStableBucket() {
+        clearAndFillTables()
+        feedDAO.deleteAll()
+        val published = OffsetDateTime.parse("2026-09-30T12:00:00Z")
+        val streams = listOf(
+            stream1.copy(viewCount = null, uploadDate = published.plusDays(4)),
+            stream2.copy(viewCount = -1, uploadDate = published.plusDays(2)),
+            stream3.copy(viewCount = -999, uploadDate = published.plusDays(3)),
+            stream4.copy(viewCount = 0, uploadDate = published.minusYears(1)),
+            stream5.copy(viewCount = 10, uploadDate = published, uploader = "Tie"),
+            stream6.copy(viewCount = 10, uploadDate = published, uploader = "Tie"),
+            stream7.copy(viewCount = -1, uploadDate = published.plusDays(5), streamType = StreamType.AUDIO_STREAM)
+        )
+        streamDAO.update(streams)
+        feedDAO.insertAll(streams.map { FeedEntity(it.uid, 1) })
+
+        assertEquals(listOf(6L, 5L, 4L, 7L, 1L, 3L, 2L), feedIds(sortByViews = true))
+        assertEquals(streams.map { it.uid }.toSet(), feedIds(sortByViews = true).toSet())
+    }
+
+    @Test
+    fun mostViewedKeepsProfileGroupVisibilityAndExclusionsAheadOfTheLimit() {
+        clearAndFillTables()
+        feedDAO.deleteAll()
+        val now = OffsetDateTime.now()
+        val otherProfile = "11111111-1111-1111-1111-111111111111"
+        subscriptionDAO.insertAll(
+            listOf(
+                SubscriptionEntity(uid = 20, serviceId = serviceId, url = "https://example.com/private", name = "Private", profileId = otherProfile),
+                SubscriptionEntity(uid = 21, serviceId = 1, url = "https://example.com/other", name = "Other service")
+            )
+        )
+        streamDAO.update(allStreams.map { it.copy(viewCount = it.uid * 10) })
+        val extra = (8L..13L).map { id ->
+            stream1.copy(
+                uid = id,
+                url = "https://example.com/$id",
+                serviceId = if (id == 9L) 1 else serviceId,
+                viewCount = if (id == 9L) 100_000 else id * 1_000,
+                uploadDate = if (id == 10L) now.plusDays(1) else now.minusDays(1)
+            )
+        }
+        streamDAO.insertAll(extra)
+        feedDAO.insertAll(
+            listOf(
+                FeedEntity(1, 1), FeedEntity(2, 1), FeedEntity(3, 1),
+                FeedEntity(4, 2), FeedEntity(5, 2), FeedEntity(6, 3), FeedEntity(7, 4),
+                FeedEntity(8, 20), FeedEntity(9, 21), FeedEntity(10, 1),
+                FeedEntity(11, 1, youtubeModeMask = SubscriptionEntity.YOUTUBE_MODE_MUSIC),
+                FeedEntity(12, 1), FeedEntity(13, 1)
+            )
+        )
+        db.streamHistoryDAO().insertAll(listOf(StreamHistoryEntity(12, now, 1), StreamHistoryEntity(13, now, 1)))
+        db.streamStateDAO().insertAll(listOf(StreamStateEntity(12, 500_000), StreamStateEntity(13, 1_000_000)))
+        val group = db.feedGroupDAO().insert(
+            FeedGroupEntity(0, "Excluded only from All", org.schabi.newpipe.local.subscription.FeedGroupIcon.NEWS)
+        )
+        db.feedGroupDAO().updateSubscriptionsForGroupForProfile(SubscriptionEntity.DEFAULT_PROFILE_ID, group, listOf(2L))
+        fun ids(profile: String = SubscriptionEntity.DEFAULT_PROFILE_ID, groupId: Long = FeedGroupEntity.GROUP_ALL_ID, service: Int = serviceId, limit: Int = 500) = feedDAO.getStreams(
+            profile, groupId, false, false, now, service, SubscriptionEntity.YOUTUBE_MODE_REGULAR,
+            limit = limit, excludedSubscriptions = listOf(2L), sortByViews = true
+        ).blockingGet()!!.map { it.stream.uid }
+
+        assertEquals(listOf(7L, 6L, 3L, 2L, 1L), ids())
+        assertEquals(listOf(7L), ids(limit = 1))
+        assertEquals(listOf(5L, 4L), ids(groupId = group))
+        assertEquals(listOf(8L), ids(profile = otherProfile))
+        assertEquals(listOf(9L), ids(service = -1, limit = 1))
+    }
+
     private fun feedIds(
         sortByDiscovery: Boolean = false,
         limit: Int = 500,
-        offset: Int = 0
+        offset: Int = 0,
+        sortByViews: Boolean = false
     ) = feedDAO.getStreams(
         SubscriptionEntity.DEFAULT_PROFILE_ID,
         FeedGroupEntity.GROUP_ALL_ID,
@@ -547,7 +649,8 @@ class FeedDAOTest {
         youtubeModeMask = SubscriptionEntity.YOUTUBE_MODE_REGULAR,
         sortByDiscovery = sortByDiscovery,
         limit = limit,
-        offset = offset
+        offset = offset,
+        sortByViews = sortByViews
     ).blockingGet()!!.map { it.stream.uid }
 
     private fun assertEqual(streams: List<StreamWithState>?, allowedStreams: List<StreamEntity>) {
