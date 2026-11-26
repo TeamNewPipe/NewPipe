@@ -39,6 +39,10 @@ Release history is listed newest first. The number beside each release is its An
   and preserve exact custom colors in version 3 theme exports. Older Android devices use the closest
   built-in accent when generated palettes are unavailable.
 
+### Casting diagnostics
+
+- Show receiver command failures and add bounded casting error reports identifying the protocol, source format and failing stage while keeping playback on the phone until the receiver starts.
+
 ### Plugin sources
 
 - Add repositories or install individual plugins from public GitHub and GitLab projects, releases,

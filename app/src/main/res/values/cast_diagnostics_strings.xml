@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="cast_connection_report_failed">Could not connect to the TV</string>
+    <string name="cast_receiver_command_failed">The TV could not complete the casting command</string>
+</resources>

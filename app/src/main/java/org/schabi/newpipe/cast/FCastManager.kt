@@ -28,6 +28,8 @@ import org.fcast.sender_sdk.Source
 import org.fcast.sender_sdk.TrackList
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
+import org.schabi.newpipe.cast.CastLoadDiagnostics.SourceKind
+import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.extractor.stream.AudioStream
 import org.schabi.newpipe.extractor.stream.DeliveryMethod
 import org.schabi.newpipe.extractor.stream.StreamInfo
@@ -225,6 +227,11 @@ object FCastManager {
         source: CastSource,
         handoff: PlaybackHandoff?
     ) {
+        val applicationContext = context.applicationContext
+        val diagnostics = CastLoadDiagnostics(deviceInfo.protocol, source.kind, source.contentType, source.serviceId) { report, message ->
+            Log.e(TAG, report.request)
+            mainHandler.post { ErrorUtil.createNotification(applicationContext, report, message) }
+        }
         Toast.makeText(
             context,
             context.getString(R.string.cast_connecting, deviceInfo.name),
@@ -238,7 +245,8 @@ object FCastManager {
                 device,
                 deviceInfo,
                 source,
-                handoff
+                handoff,
+                diagnostics
             )
             activeDevice = device
             activeDeviceName = deviceInfo.name
@@ -255,9 +263,8 @@ object FCastManager {
             )
         }.onFailure {
             handoff?.cancel()
-            Log.e(TAG, "Unable to connect to casting receiver", it)
             clearActiveDevice()
-            showToast(context, context.getString(R.string.cast_failed, deviceInfo.name))
+            diagnostics.connectionFailed(it)
         }
     }
 
@@ -298,12 +305,13 @@ object FCastManager {
             .show()
     }
 
-    private fun playbackHandler(
+    internal fun playbackHandler(
         context: Context,
         device: CastingDevice,
         deviceInfo: DeviceInfo,
         source: CastSource,
-        handoff: PlaybackHandoff?
+        handoff: PlaybackHandoff?,
+        diagnostics: CastLoadDiagnostics
     ): DeviceEventHandler = object : DeviceEventHandler {
         private var pendingHandoff = handoff
 
@@ -316,6 +324,7 @@ object FCastManager {
                             cancelHandoff()
                             return@post
                         }
+                        diagnostics.beginLoad()
                         runCatching {
                             device.load(
                                 LoadRequest.Video(
@@ -331,11 +340,7 @@ object FCastManager {
                             )
                         }.onFailure {
                             cancelHandoff()
-                            Log.e(TAG, "Unable to load cast media", it)
-                            showToast(
-                                context,
-                                context.getString(R.string.cast_failed, deviceInfo.name)
-                            )
+                            diagnostics.loadFailed(it)
                         }
                     }
                 }
@@ -364,8 +369,7 @@ object FCastManager {
         override fun sourceChanged(source: Source) = Unit
         override fun playbackError(message: String) {
             cancelHandoff()
-            Log.e(TAG, "Receiver playback error: $message")
-            showToast(context, context.getString(R.string.cast_playback_failed))
+            if (activeDevice === device) diagnostics.playbackFailed()
         }
         override fun tracksAvailable(tracks: List<MediaTrack>) = Unit
         override fun trackSelected(id: UInt?, typ: MediaTrackType) = Unit
@@ -374,7 +378,7 @@ object FCastManager {
         override fun queueChanged(queue: QueueState) = Unit
         override fun commandError(error: ReceiverError) {
             cancelHandoff()
-            Log.e(TAG, "Receiver command error: $error")
+            if (activeDevice === device) diagnostics.commandFailed(error)
         }
 
         private fun confirmHandoff() {
@@ -439,7 +443,7 @@ object FCastManager {
     private fun selectSource(context: Context, info: StreamInfo): CastSource? {
         val hlsUrl: String? = info.hlsUrl
         if (!hlsUrl.isNullOrBlank()) {
-            return CastSource(hlsUrl, "application/vnd.apple.mpegurl")
+            return CastSource(hlsUrl, "application/vnd.apple.mpegurl", SourceKind.HLS, info.serviceId)
         }
 
         val videoStreams = info.videoStreams
@@ -449,25 +453,29 @@ object FCastManager {
         if (videoStreams.isNotEmpty()) {
             val index = ListHelper.getDefaultResolutionIndex(context, videoStreams)
                 .coerceIn(0, videoStreams.lastIndex)
-            return sourceFrom(videoStreams[index])
+            return sourceFrom(videoStreams[index], info.serviceId)
         }
 
         val dashMpdUrl: String? = info.dashMpdUrl
         if (!dashMpdUrl.isNullOrBlank()) {
-            return CastSource(dashMpdUrl, "application/dash+xml")
+            return CastSource(dashMpdUrl, "application/dash+xml", SourceKind.DASH, info.serviceId)
         }
 
-        return info.audioStreams.firstOrNull { it.isUrl }?.let(::sourceFrom)
+        return info.audioStreams.firstOrNull { it.isUrl }?.let { sourceFrom(it, info.serviceId) }
     }
 
-    private fun sourceFrom(stream: VideoStream): CastSource = CastSource(
+    private fun sourceFrom(stream: VideoStream, serviceId: Int): CastSource = CastSource(
         stream.content,
-        stream.format?.mimeType ?: "video/mp4"
+        stream.format?.mimeType ?: "video/mp4",
+        SourceKind.PROGRESSIVE,
+        serviceId
     )
 
-    private fun sourceFrom(stream: AudioStream): CastSource = CastSource(
+    private fun sourceFrom(stream: AudioStream, serviceId: Int): CastSource = CastSource(
         stream.content,
-        stream.format?.mimeType ?: "audio/mp4"
+        stream.format?.mimeType ?: "audio/mp4",
+        SourceKind.AUDIO,
+        serviceId
     )
 
     private fun isResolved(deviceInfo: DeviceInfo): Boolean = deviceInfo.port != 0.toUShort() && deviceInfo.addresses.isNotEmpty()
@@ -490,7 +498,7 @@ object FCastManager {
         notifySessionChanged()
     }
 
-    private data class CastSource(val url: String, val contentType: String)
+    internal data class CastSource(val url: String, val contentType: String, val kind: SourceKind, val serviceId: Int)
 
     /** A picker entry that is not a discovered receiver. */
     private class FixedRow(val label: String, val action: () -> Unit)
