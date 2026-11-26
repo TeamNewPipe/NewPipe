@@ -7,11 +7,14 @@ import android.util.Base64
 import android.view.SurfaceView
 import androidx.media3.common.C
 import androidx.media3.common.Player as Media3Player
+import androidx.media3.common.Timeline
 import androidx.media3.datasource.ByteArrayDataSource
 import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DataSpec
 import androidx.media3.datasource.TransferListener
+import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.LoadControl
 import androidx.media3.exoplayer.dash.DashMediaSource
 import androidx.media3.exoplayer.hls.HlsMediaSource
 import androidx.media3.exoplayer.source.MediaSource
@@ -152,6 +155,49 @@ class LiveDvrPlaybackTest {
     }
 
     @Test
+    fun implicitDashWindowAdvancesAndKeepsRewoundPositionWithoutMpdReloads() {
+        val fixture = Fixture(implicit = true, refreshManifest = false)
+        // Start inside the bundled media and cap paused buffering. The clock-based window may
+        // grow during a slow test run, but it must not load beyond the 32-second fixture.
+        val loadControl = DefaultLoadControl.Builder()
+            .setBufferDurationsMs(2_000, 4_000, 500, 500)
+            .build()
+        withPlayer(fixture, initialPositionMs = 4_000, loadControl = loadControl) { player ->
+            awaitPlayer(player) { it.playbackState == Media3Player.STATE_READY && it.currentPosition == 4_000L }
+            assertEquals(0, fixture.hlsLoads.get())
+            var duration = 0L
+            var windowStart = 0L
+            instrumentation.runOnMainSync {
+                assertTrue(player.isCurrentMediaItemSeekable)
+                duration = player.duration
+                assertTrue(duration >= 12_000L)
+                windowStart = player.currentTimeline.getWindow(0, Timeline.Window()).windowStartTimeMs
+            }
+            // Media3 derives newly available segments from the parsed index and the clock.
+            // The already published MPD has no minimumUpdatePeriod and is never reloaded.
+            awaitPlayer(player) { it.duration >= duration + 2_000L }
+            instrumentation.runOnMainSync {
+                assertEquals(windowStart, player.currentTimeline.getWindow(0, Timeline.Window()).windowStartTimeMs)
+                assertEquals(4_000L, player.currentPosition)
+                player.seekTo(8_000)
+            }
+            awaitPlayer(player) { it.playbackState == Media3Player.STATE_READY && it.currentPosition == 8_000L }
+            assertEquals(1, fixture.dashLoads.get())
+            assertEquals(0, fixture.hlsLoads.get())
+        }
+    }
+
+    @Test
+    fun explicitDynamicSnapshotWithoutMpdRefreshStillFallsBackToHls() {
+        val fixture = Fixture(refreshManifest = false)
+        withPlayer(fixture) { player ->
+            awaitPlayer(player) { it.playbackState == Media3Player.STATE_READY }
+            assertTrue(fixture.hlsLoads.get() > 0)
+            assertEquals(1, fixture.dashLoads.get())
+        }
+    }
+
+    @Test
     fun normalModeSelectsHlsWithoutPreparingDash() {
         val fixture = Fixture(normal = true)
         withPlayer(fixture) { player ->
@@ -207,11 +253,19 @@ class LiveDvrPlaybackTest {
         assertEquals(16000L, manifest.durationMs)
     }
 
-    private fun withPlayer(fixture: Fixture, test: (ExoPlayer) -> Unit) {
+    private fun withPlayer(
+        fixture: Fixture,
+        initialPositionMs: Long? = null,
+        loadControl: LoadControl? = null,
+        test: (ExoPlayer) -> Unit
+    ) {
         lateinit var player: ExoPlayer
         instrumentation.runOnMainSync {
-            player = ExoPlayer.Builder(context).build().apply {
+            val builder = ExoPlayer.Builder(context)
+            if (loadControl != null) builder.setLoadControl(loadControl)
+            player = builder.build().apply {
                 setMediaSource(fixture.source())
+                if (initialPositionMs != null) seekTo(initialPositionMs)
                 prepare()
             }
         }
@@ -244,12 +298,19 @@ class LiveDvrPlaybackTest {
         }
     }
 
-    private inner class Fixture(private val dynamic: Boolean = true, private val broken: Boolean = false, private val normal: Boolean = false) {
+    private inner class Fixture(
+        private val dynamic: Boolean = true,
+        private val broken: Boolean = false,
+        private val normal: Boolean = false,
+        private val implicit: Boolean = false,
+        private val refreshManifest: Boolean = true
+    ) {
         val segmentCount = AtomicInteger(8)
         val dashLoads = AtomicInteger()
         val hlsLoads = AtomicInteger()
         val rotatedLoads = AtomicInteger()
         lateinit var preparedSource: MediaSource
+        private val implicitPeriodStart by lazy { Instant.now().epochSecond - 16 }
 
         // Generated 32-second, 64x64 blue video: ffmpeg color source, libx264, 5 fps,
         // keyframes every 10 frames, DASH segments of 2 seconds. No external media or network.
@@ -266,19 +327,25 @@ class LiveDvrPlaybackTest {
         fun manifest(): ByteArray {
             val count = segmentCount.get()
             val liveAttributes = if (dynamic) {
-                "availabilityStartTime=\"1970-01-01T00:00:00Z\" minimumUpdatePeriod=\"PT1S\""
+                "availabilityStartTime=\"1970-01-01T00:00:00Z\" " +
+                    (if (refreshManifest) "minimumUpdatePeriod=\"PT1S\" " else "") +
+                    (if (implicit) "timeShiftBufferDepth=\"PT120S\"" else "")
             } else {
                 ""
             }
+            val declaredDuration = if (implicit) "" else "mediaPresentationDuration=\"PT${count * 2}S\""
+            val periodStart = if (implicit) implicitPeriodStart else 0
+            val segmentDuration = if (implicit) "duration=\"20480\"" else ""
+            val segmentTimeline = if (implicit) "" else "<SegmentTimeline><S t=\"0\" d=\"20480\" r=\"${count - 1}\"/></SegmentTimeline>"
             return """
                 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="${if (dynamic) "dynamic" else "static"}"
-                  $liveAttributes mediaPresentationDuration="PT${count * 2}S" minBufferTime="PT2S">
+                  $liveAttributes $declaredDuration minBufferTime="PT2S">
                   <UTCTiming schemeIdUri="urn:mpeg:dash:utc:direct:2014" value="${Instant.now()}"/>
-                  <Period id="0" start="PT0S"><AdaptationSet contentType="video" segmentAlignment="true">
+                  <Period id="0" start="PT${periodStart}S"><AdaptationSet contentType="video" segmentAlignment="true">
                     <Representation id="0" mimeType="video/mp4" codecs="avc1.42c00a" bandwidth="2000" width="64" height="64">
                       <SegmentTemplate timescale="10240" initialization="init-stream${'$'}RepresentationID${'$'}.m4s"
-                        media="chunk-stream${'$'}RepresentationID${'$'}-${'$'}Number%05d${'$'}.m4s" startNumber="1">
-                        <SegmentTimeline><S t="0" d="20480" r="${count - 1}"/></SegmentTimeline>
+                        media="chunk-stream${'$'}RepresentationID${'$'}-${'$'}Number%05d${'$'}.m4s" startNumber="1" $segmentDuration>
+                        $segmentTimeline
                       </SegmentTemplate>
                     </Representation>
                   </AdaptationSet></Period>

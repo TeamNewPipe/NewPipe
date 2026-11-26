@@ -11,6 +11,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Timeline
 import androidx.media3.datasource.TransferListener
 import androidx.media3.exoplayer.dash.DashMediaSource
+import androidx.media3.exoplayer.dash.DashSegmentIndex
 import androidx.media3.exoplayer.dash.manifest.DashManifest
 import androidx.media3.exoplayer.source.CompositeMediaSource
 import androidx.media3.exoplayer.source.MediaPeriod
@@ -121,8 +122,27 @@ class YoutubeLiveMediaSource @JvmOverloads constructor(
         private const val DASH = 0
         private const val HLS = 1
 
-        internal fun isRefreshable(manifest: DashManifest): Boolean = manifest.dynamic && manifest.durationMs == C.TIME_UNSET &&
-            manifest.minUpdatePeriodMs != C.TIME_UNSET
+        internal fun isRefreshable(manifest: DashManifest): Boolean {
+            if (!manifest.dynamic || manifest.durationMs != C.TIME_UNSET) return false
+            if (manifest.minUpdatePeriodMs != C.TIME_UNSET) return true
+            if (manifest.availabilityStartTimeMs == C.TIME_UNSET || manifest.periodCount == 0) return false
+
+            // Media3 also advances a live window from clock-based, unbounded segment indexes
+            // without reloading the MPD. A finite SegmentTimeline or bounded template still
+            // needs explicit manifest refreshes; accepting it would freeze the DVR snapshot.
+            val lastPeriod = manifest.periodCount - 1
+            val periodDurationUs = manifest.getPeriodDurationUs(lastPeriod)
+            val adaptationSets = manifest.getPeriod(lastPeriod).adaptationSets
+            // Media3's implicit-refresh check includes text adaptation sets. Check every
+            // representation too, so an adaptive switch cannot select a finite alternative.
+            return adaptationSets.isNotEmpty() && adaptationSets.all { adaptation ->
+                adaptation.representations.isNotEmpty() && adaptation.representations.all { representation ->
+                    val index = representation.index
+                    index != null && !index.isExplicit &&
+                        index.getSegmentCount(periodDurationUs) == DashSegmentIndex.INDEX_UNBOUNDED.toLong()
+                }
+            }
+        }
     }
 }
 
