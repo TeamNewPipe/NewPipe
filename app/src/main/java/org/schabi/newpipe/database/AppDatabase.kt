@@ -111,6 +111,7 @@ import org.schabi.newpipe.database.sync.SubscriptionSyncRecordEntity
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun feedDAO(): FeedDAO
+    abstract fun channelActivityDAO(): org.schabi.newpipe.database.feed.dao.ChannelActivityDAO
     abstract fun feedGroupDAO(): FeedGroupDAO
     abstract fun savedSearchFeedDAO(): SavedSearchFeedDAO
     abstract fun playlistDAO(): PlaylistDAO

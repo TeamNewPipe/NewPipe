@@ -105,5 +105,7 @@ public class ChannelAboutFragment extends BaseDescriptionFragment {
                 channelInfo.getAvatars());
         addImagesMetadataItem(inflater, layout, R.string.metadata_banners,
                 channelInfo.getBanners());
+        org.schabi.newpipe.local.subscription.activity.ChannelActivityDialog.addButton(
+                this, layout, channelInfo);
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="channel_activity_title" tools:ignore="MissingTranslation">Channel activity</string>
+    <string name="channel_activity_open" tools:ignore="MissingTranslation">View local channel statistics</string>
+    <string name="channel_activity_loading" tools:ignore="MissingTranslation">Loading saved activity…</string>
+    <string name="channel_activity_empty" tools:ignore="MissingTranslation">No dated uploads are saved for this period. Subscribe to this channel and refresh the feed to collect recent activity.</string>
+    <string name="channel_activity_error" tools:ignore="MissingTranslation">Saved activity could not be loaded. Please try again.</string>
+    <string name="channel_activity_coverage" tools:ignore="MissingTranslation">Observed uploads from %1$s to %2$s: %3$s</string>
+    <string name="channel_activity_latest" tools:ignore="MissingTranslation">Latest known upload: %1$s</string>
+    <string name="channel_activity_oldest" tools:ignore="MissingTranslation">Oldest upload observed in this period: %1$s</string>
+    <string name="channel_activity_refresh" tools:ignore="MissingTranslation">Last successful feed refresh: %1$s</string>
+    <string name="channel_activity_dates" tools:ignore="MissingTranslation">Approximate dates included: %1$s. Saved items without a publication date: %2$s.</string>
+    <string name="channel_activity_notice" tools:ignore="MissingTranslation">Based only on this profile’s retained feed items. Fetching and filtering can leave gaps; zero means no uploads were observed. This is not the channel’s complete history. Dates use your device’s time zone.</string>
+    <string name="channel_activity_weekly" tools:ignore="MissingTranslation">Weekly</string>
+    <string name="channel_activity_monthly" tools:ignore="MissingTranslation">Monthly</string>
+    <string name="channel_activity_bucket" tools:ignore="MissingTranslation">%1$s: %2$s</string>
+    <string name="channel_activity_week" tools:ignore="MissingTranslation">%1$s – %2$s</string>
+</resources>

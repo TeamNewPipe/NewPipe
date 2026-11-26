@@ -29,6 +29,10 @@ Release history is listed newest first. The number beside each release is its An
 
 - Keep channel sorting and pagination results visible when YouTube sends a separate filter-header update alongside the video list.
 
+### Channel activity
+
+- View weekly or monthly activity for a subscribed channel using retained feed history, with the latest observed upload, the configured feed time window and clear notices when local history is incomplete.
+
 ### Live playback
 
 - Include coarse network availability, background restrictions and power state in playback error reports to help diagnose cellular and background failures.
