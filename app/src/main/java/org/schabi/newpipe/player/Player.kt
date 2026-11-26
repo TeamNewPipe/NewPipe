@@ -222,7 +222,8 @@ class Player(
         videoResolver,
         streamItemDisposable
     )
-    private val errorController = PlayerErrorController(this, eventDispatcher, videoResolver)
+    private val networkDiagnostics = PlaybackNetworkDiagnostics(appContext)
+    private val errorController = PlayerErrorController(this, eventDispatcher, videoResolver, networkDiagnostics)
     private val media3ListenerController = PlayerMedia3ListenerController(
         this,
         audioController,
@@ -389,6 +390,7 @@ class Player(
     }
 
     fun destroy() {
+        networkDiagnostics.close()
         queueRecovery.close()
         lifecycleController.destroy()
     }

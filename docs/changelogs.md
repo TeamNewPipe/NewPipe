@@ -31,6 +31,7 @@ Release history is listed newest first. The number beside each release is its An
 
 ### Live playback
 
+- Include coarse network availability, background restrictions and power state in playback error reports to help diagnose cellular and background failures.
 - Preserve DVR playback for live DASH windows that advance from unbounded segment templates without periodic manifest reloads.
 
 ### Custom colors and theme packs

@@ -49,8 +49,10 @@ import org.schabi.newpipe.util.InfoCache
 internal class PlayerErrorController(
     private val player: Player,
     private val eventDispatcher: PlayerEventDispatcher,
-    private val videoResolver: VideoPlaybackResolver
+    private val videoResolver: VideoPlaybackResolver,
+    private val networkDiagnostics: PlaybackNetworkDiagnostics? = null
 ) {
+    private var networkFailure: Pair<PlaybackException, PlaybackNetworkDiagnostics.Snapshot>? = null
     private val recoveryGuard = PlayerHttpErrorRecovery.RecoveryGuard()
     private val rejectedFormatRecoveryGuard = PlayerHttpErrorRecovery.OneShotRecoveryGuard()
     private val decoderRecoveryGuard = PlayerHttpErrorRecovery.OneShotRecoveryGuard()
@@ -91,6 +93,14 @@ internal class PlayerErrorController(
     )
 
     fun onPlayerError(error: PlaybackException) {
+        networkFailure = if (PlaybackNetworkDiagnostics.isRelevant(error)) {
+            networkDiagnostics?.snapshot(player.playbackPresentationMode, player.playWhenReady)?.let { snapshot ->
+                Log.i(Player.TAG, "Playback network context: ${snapshot.describe()}")
+                error to snapshot
+            }
+        } else {
+            null
+        }
         liveUrlRecoveryHealth.reset()
         liveReadySince = null
         cancelPendingLiveStallRecovery()
@@ -322,6 +332,7 @@ internal class PlayerErrorController(
     }
 
     fun resetRecovery() {
+        networkFailure = null
         liveUrlRecoveryHealth.reset()
         livePreparationRecovery.reset()
         cancelPendingMediaUrlRecovery()
@@ -801,6 +812,14 @@ internal class PlayerErrorController(
             }
             recoveryDiagnostic?.let { diagnostic ->
                 append(" [$diagnostic]")
+            }
+            if (PlaybackNetworkDiagnostics.isRelevant(error)) {
+                networkFailure?.takeIf { it.first === error }?.second?.let {
+                    append(" [networkAtError: ${it.describe()}]")
+                }
+                networkDiagnostics?.snapshot(player.playbackPresentationMode, player.playWhenReady)?.let {
+                    append(" [networkAtReport: ${it.describe()}]")
+                }
             }
         }
 
