@@ -4,6 +4,10 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Download metadata
+
+- Keep download status and localized dates readable without overlapping uploader names or file sizes, including narrow layouts, large text and right-to-left languages.
+
 ### Player lifecycle
 
 - Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.

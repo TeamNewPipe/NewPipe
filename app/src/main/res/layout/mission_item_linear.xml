@@ -66,45 +66,50 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/item_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_name"
-            android:layout_toEndOf="@id/item_icon"
-            android:padding="6dp"
-            android:singleLine="true"
-            android:text="100.00MB"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:textSize="12sp" />
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/item_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_name"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@+id/item_more"
-            android:layout_toEndOf="@id/item_size"
-            android:padding="6dp"
-            android:singleLine="true"
-            android:text="0%"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <org.schabi.newpipe.views.NewPipeTextView
-            android:id="@+id/item_date"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_name"
             android:layout_toStartOf="@id/item_more"
-            android:padding="6dp"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:textSize="12sp" />
+            android:layout_toEndOf="@id/item_icon"
+            android:orientation="vertical">
+
+            <org.schabi.newpipe.views.NewPipeTextView
+                android:id="@+id/item_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="100.00MB"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="12sp" />
+
+            <us.shandian.giga.ui.common.DownloadMetadataLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="start">
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/item_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text="0%"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <org.schabi.newpipe.views.NewPipeTextView
+                    android:id="@+id/item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:text=""
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="12sp" />
+
+            </us.shandian.giga.ui.common.DownloadMetadataLayout>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/item_more"

@@ -260,22 +260,35 @@ class SubscriptionChannelsHeaderLayoutTest {
             text = if (rtl) "دروس اللغة للمستوى الأول" else "Language lessons for the first level"
         }
         val size = download.findViewById<TextView>(R.id.item_size).apply { text = "100 MB" }
-        val status = download.findViewById<TextView>(R.id.item_status).apply { text = "45%" }
+        val status = download.findViewById<TextView>(R.id.item_status).apply { text = "100%" }
+        val date = download.findViewById<TextView>(R.id.item_date).apply {
+            text = if (rtl) "٢٦ نوفمبر ٢٠٢٦" else "26 Nov 2026"
+        }
         activity.setContentView(download)
         measure(download, 360)
         assertEquals(direction, download.layoutDirection)
         val downloadBounds = Rect(0, 0, download.width, download.height)
-        for (label in listOf(name, size, status)) {
+        for (label in listOf(name, size, status, date)) {
             assertTrue("Download text needs positive space: rtl=$rtl", label.width > 0 && label.height > 0)
             assertTrue("Download text must stay inside its row: rtl=$rtl", downloadBounds.contains(bounds(download, label)))
         }
         val icon = bounds(download, download.findViewById(R.id.item_icon))
         val more = bounds(download, download.findViewById(R.id.item_more))
-        for (row in listOf(listOf(icon, bounds(download, name), more), listOf(icon, bounds(download, size), bounds(download, status), more))) {
+        for (label in listOf(name, size, status, date)) {
+            val row = listOf(icon, bounds(download, label), more)
             row.zipWithNext().forEach { (first, second) ->
                 assertTrue("Download text must stay between icon and menu: rtl=$rtl", if (rtl) first.left >= second.right else first.right <= second.left)
             }
         }
+        val sizeBounds = bounds(download, size)
+        val statusBounds = bounds(download, status)
+        val dateBounds = bounds(download, date)
+        assertTrue("Uploader/size must precede the status/date row", sizeBounds.bottom <= statusBounds.top)
+        assertFalse("Download status and date must not overlap", Rect.intersects(statusBounds, dateBounds))
+        assertTrue(
+            "Status must precede the date in row or stacked order: rtl=$rtl",
+            statusBounds.bottom <= dateBounds.top || if (rtl) statusBounds.left >= dateBounds.right else statusBounds.right <= dateBounds.left
+        )
 
         for (wide in listOf(false, true)) {
             val configuration = Configuration(activity.resources.configuration).apply {
