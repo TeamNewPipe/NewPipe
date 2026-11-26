@@ -151,6 +151,22 @@ abstract class FeedGroupDAO {
 
     @Query(
         """
+        SELECT fgs.group_id
+        FROM feed_group_subscription_join fgs
+        INNER JOIN feed_group g ON g.uid = fgs.group_id
+        INNER JOIN subscriptions s ON s.uid = fgs.subscription_id
+        WHERE g.profile_id = :profileId AND s.profile_id = :profileId
+        AND fgs.subscription_id = :subscriptionId
+        ORDER BY g.sort_order ASC
+        """
+    )
+    abstract fun getGroupIdsForSubscriptionDirectForProfile(
+        profileId: String,
+        subscriptionId: Long
+    ): List<Long>
+
+    @Query(
+        """
         SELECT fgs.subscription_id
         FROM feed_group_subscription_join fgs
         INNER JOIN feed_group g
@@ -264,6 +280,48 @@ abstract class FeedGroupDAO {
         insertSubscriptionsToGroup(
             validGroups.map { FeedGroupSubscriptionEntity(it, subscriptionId) }
         )
+    }
+
+    @Query(
+        """
+        DELETE FROM feed_group_subscription_join
+        WHERE subscription_id IN (:subscriptionIds) AND group_id IN (:groupIds)
+        """
+    )
+    protected abstract fun removeSubscriptionsFromGroups(
+        subscriptionIds: List<Long>,
+        groupIds: List<Long>
+    ): Int
+
+    /** Applies only explicit membership changes, preserving unrelated and concurrently added groups. */
+    @Transaction
+    open fun changeGroupsForSubscriptionsForProfile(
+        profileId: String,
+        subscriptionIds: List<Long>,
+        addedGroupIds: List<Long>,
+        removedGroupIds: List<Long>
+    ): Int {
+        require(addedGroupIds.toSet().intersect(removedGroupIds.toSet()).isEmpty())
+        // Keep each query below the older Android SQLite bind limit, even for large selections.
+        val subscriptions = subscriptionIds.distinct().chunked(400)
+            .flatMap { validSubscriptionIds(profileId, it) }
+        if (subscriptions.isEmpty()) return 0
+        val added = addedGroupIds.distinct().chunked(400)
+            .flatMap { validGroupIds(profileId, it) }
+        val removed = removedGroupIds.distinct().chunked(400)
+            .flatMap { validGroupIds(profileId, it) }
+        var changed = 0
+        subscriptions.chunked(400).forEach { selected ->
+            removed.chunked(400).forEach { groups ->
+                changed += removeSubscriptionsFromGroups(selected, groups)
+            }
+            added.forEach { group ->
+                changed += insertSubscriptionsToGroup(
+                    selected.map { FeedGroupSubscriptionEntity(group, it) }
+                ).count { it != -1L }
+            }
+        }
+        return changed
     }
 
     @Transaction

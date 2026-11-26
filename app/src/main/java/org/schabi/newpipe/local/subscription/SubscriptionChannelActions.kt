@@ -31,6 +31,7 @@ internal class SubscriptionChannelActions(
 ) {
     private val disposables = CompositeDisposable()
     private var dialog: androidx.appcompat.app.AlertDialog? = null
+    private val groupMembershipActions = SubscriptionGroupMembershipActions(fragment)
 
     fun show(selectedItem: ChannelInfoItem) {
         if (fragment.view == null) return
@@ -53,6 +54,9 @@ internal class SubscriptionChannelActions(
             commands += fragment.getString(R.string.channel_subscribe_to_profile) to {
                 showSubscribeToProfileDialog(selectedItem)
             }
+        }
+        commands += fragment.getString(R.string.subscription_groups_manage) to {
+            groupMembershipActions.showSingle(selectedItem)
         }
         val activeProfileId = ProfileManager.getActiveProfileId(fragment.requireContext())
         val excluded = FeedAllExclusions.isExcluded(
@@ -210,6 +214,7 @@ internal class SubscriptionChannelActions(
     }
 
     fun close() {
+        groupMembershipActions.close()
         dialog?.dismiss()
         dialog = null
         disposables.clear()

@@ -72,6 +72,7 @@ class SubscriptionChannelActionsTest {
             listOf(
                 R.string.share,
                 R.string.open_in_browser,
+                R.string.subscription_groups_manage,
                 R.string.feed_exclude_from_all,
                 R.string.unsubscribe
             ).map(activity::getString),

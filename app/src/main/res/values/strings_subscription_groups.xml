@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="subscription_groups_manage">Add to or remove from groups</string>
+    <string name="subscription_groups_add">Add selected to groups</string>
+    <string name="subscription_groups_remove">Remove selected from groups</string>
+    <string name="subscription_groups_create_first">Create a channel group from Subscriptions first, then choose the groups for these channels.</string>
+    <plurals name="subscription_groups_add_title">
+        <item quantity="one">Add %d channel to groups</item>
+        <item quantity="other">Add %d channels to groups</item>
+    </plurals>
+    <plurals name="subscription_groups_remove_title">
+        <item quantity="one">Remove %d channel from groups</item>
+        <item quantity="other">Remove %d channels from groups</item>
+    </plurals>
+</resources>

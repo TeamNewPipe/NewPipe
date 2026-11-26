@@ -9,6 +9,10 @@ Release history is listed newest first. The number beside each release is its An
 - Release detail-view player and navigation listeners when the view is destroyed so recreating it does not accumulate callbacks.
 - Keep the mini-player thumbnail loading during detail refreshes so switching a video to background playback shows its artwork.
 
+### Subscription group actions
+
+- Manage a channel's groups directly from Subscriptions, or add and remove groups for several selected channels while preserving their other memberships.
+
 ### Feed sorting
 
 - Add Most viewed first to the subscription feed, sorting cached view counts before pagination while keeping videos with unknown counts last.

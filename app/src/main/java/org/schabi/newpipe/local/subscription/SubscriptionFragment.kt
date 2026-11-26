@@ -72,6 +72,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private lateinit var channelActions: SubscriptionChannelActions
     private lateinit var bulkActions: SubscriptionBulkActions
     private lateinit var groupActions: SubscriptionGroupActions
+    private lateinit var groupMembershipActions: SubscriptionGroupMembershipActions
     private lateinit var subscriptionManager: SubscriptionManager
     private lateinit var importExportHelper: SubscriptionsImportExportHelper
     private lateinit var savedSearchFeedManager: SavedSearchFeedManager
@@ -90,6 +91,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     private var sortingEnabled = false
     private var sortController: SubscriptionSortController? = null
     private var bulkUnsubscribeMenuItem: MenuItem? = null
+    private var addToGroupsMenuItem: MenuItem? = null
+    private var removeFromGroupsMenuItem: MenuItem? = null
     private var pendingBrowseAnchor: SubscriptionScrollAnchor? = null
     private var countDisposable: io.reactivex.rxjava3.disposables.Disposable? = null
     private var fastScroller: ListFastScroller? = null
@@ -137,6 +140,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         channelActions = SubscriptionChannelActions(this, subscriptionManager)
         bulkActions = SubscriptionBulkActions(this, subscriptionManager)
         groupActions = SubscriptionGroupActions(this, subscriptionManager)
+        groupMembershipActions = SubscriptionGroupMembershipActions(this, activeProfileId)
         importExportHelper = SubscriptionsImportExportHelper(this)
         savedSearchFeedManager = SavedSearchFeedManager(context, activeProfileId)
     }
@@ -168,9 +172,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
         channelActions.close()
         bulkActions.close()
         groupActions.close()
+        groupMembershipActions.close()
         sortController?.close()
         sortController = null
         bulkUnsubscribeMenuItem = null
+        addToGroupsMenuItem = null
+        removeFromGroupsMenuItem = null
         pendingBrowseAnchor = null
         countDisposable?.dispose()
         countDisposable = null
@@ -208,6 +215,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
             } else {
                 bulkActions.show(contextualSearchQuery)
             }
+        }
+        addToGroupsMenuItem = setClickListenerToMenuItem(menu.add(R.string.subscription_groups_add)) {
+            groupMembershipActions.showBulk(sortController?.selectedChannels().orEmpty(), add = true)
+        }
+        removeFromGroupsMenuItem = setClickListenerToMenuItem(menu.add(R.string.subscription_groups_remove)) {
+            groupMembershipActions.showBulk(sortController?.selectedChannels().orEmpty(), add = false)
         }
         updateUnsubscribeAction()
 
@@ -422,7 +435,12 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
     }
 
     private fun updateUnsubscribeAction() {
-        bulkUnsubscribeMenuItem?.isEnabled = !sortingEnabled || sortController?.selectedChannels()?.isNotEmpty() == true
+        val hasSelection = sortController?.selectedChannels()?.isNotEmpty() == true
+        bulkUnsubscribeMenuItem?.isEnabled = !sortingEnabled || hasSelection
+        listOf(addToGroupsMenuItem, removeFromGroupsMenuItem).forEach { item ->
+            item?.isVisible = sortingEnabled
+            item?.isEnabled = sortingEnabled && hasSelection
+        }
     }
 
     private fun toggleSorting() {
