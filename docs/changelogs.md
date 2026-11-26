@@ -4,6 +4,11 @@ Release history is listed newest first. The number beside each release is its An
 
 ## Unreleased
 
+### Retained subscription alerts
+
+- Optionally keep future new-video subscription alerts until closed, with offline, silent restoration after restarting the app, rebooting or updating. Close one video, a channel or all retained alerts for the current profile; opening content keeps its alert. System swipes, where Android permits them, also close alerts permanently. Turning the option or new-video notifications off clears retained alerts.
+- Store pending alerts independently of the feed cache and isolate them by profile. Existing notifications keep their current behavior unless this option is enabled.
+
 ### Download metadata
 
 - Keep download status and localized dates readable without overlapping uploader names or file sizes, including narrow layouts, large text and right-to-left languages.

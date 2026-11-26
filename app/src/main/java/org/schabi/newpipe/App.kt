@@ -150,6 +150,7 @@ open class App :
             org.schabi.newpipe.download.schedule.DownloadWindow.schedule(this)
             AiSListSyncWorker.initialize(this)
             org.schabi.newpipe.learning.LearningReminders.initialize(this)
+            org.schabi.newpipe.local.feed.notifications.StickyNotificationCoordinator.initialize(this)
         }
 
         ServiceHelper.initServices(this)

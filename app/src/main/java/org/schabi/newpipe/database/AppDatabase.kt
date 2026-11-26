@@ -30,6 +30,8 @@ import org.schabi.newpipe.database.learning.model.LearningContentSourceEntity
 import org.schabi.newpipe.database.learning.model.LearningContentStreamEntity
 import org.schabi.newpipe.database.learning.model.LearningNoteEntity
 import org.schabi.newpipe.database.learning.model.LearningSessionEntity
+import org.schabi.newpipe.database.notification.PendingStreamNotification
+import org.schabi.newpipe.database.notification.PendingStreamNotificationDAO
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO
 import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO
 import org.schabi.newpipe.database.playlist.dao.PlaylistStreamDAO
@@ -106,7 +108,8 @@ import org.schabi.newpipe.database.sync.SubscriptionSyncRecordEntity
         LearningNoteEntity::class,
         LearningSessionEntity::class,
         LearningContentSourceEntity::class,
-        LearningContentStreamEntity::class
+        LearningContentStreamEntity::class,
+        PendingStreamNotification::class
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -131,6 +134,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun learningContentDAO(): LearningContentDAO
     abstract fun learningNoteDAO(): LearningNoteDAO
     abstract fun learningSessionDAO(): LearningSessionDAO
+    abstract fun pendingStreamNotificationDAO(): PendingStreamNotificationDAO
 
     companion object {
         const val DATABASE_NAME: String = "newpipe.db"

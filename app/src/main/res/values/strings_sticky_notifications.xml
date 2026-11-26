@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="sticky_stream_notifications_key" translatable="false">sticky_stream_notifications</string>
+    <string name="sticky_stream_notifications_title">Keep new-video alerts until closed</string>
+    <string name="sticky_stream_notifications_summary">Keep future subscription alerts across restarts and updates. Opening a video keeps its alert. Use Close to remove it. Android may also allow individual swipes, which close the alert permanently. Turning this off clears retained alerts.</string>
+    <string name="sticky_stream_notifications_close_all_key" translatable="false">sticky_stream_notifications_close_all</string>
+    <string name="sticky_stream_notifications_close_all_title">Close all retained alerts</string>
+    <string name="sticky_stream_notifications_close_all_summary">Remove retained new-video alerts for the current profile, including alerts hidden from the notification shade.</string>
+</resources>

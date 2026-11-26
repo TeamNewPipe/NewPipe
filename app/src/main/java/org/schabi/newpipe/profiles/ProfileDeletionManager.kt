@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.learning.LearningReminders
 import org.schabi.newpipe.local.bookmark.PlaylistCategories
+import org.schabi.newpipe.local.feed.notifications.StickyNotificationCoordinator
 
 object ProfileDeletionManager {
     // Delete only data that has become profile-scoped so later phases can extend cleanup safely.
@@ -26,6 +27,7 @@ object ProfileDeletionManager {
             org.schabi.newpipe.local.feed.archive.forgetProfileFeedArchive(appContext, profileId)
             val database = NewPipeDatabase.getInstance(appContext)
             database.runInTransaction {
+                database.pendingStreamNotificationDAO().deleteProfile(profileId)
                 database.savedSearchFeedDAO().deleteAllForProfile(profileId)
                 database.playlistRemoteDAO().deleteAllForProfile(profileId)
                 database.playlistDAO().deleteAllForProfile(profileId)
@@ -50,6 +52,7 @@ object ProfileDeletionManager {
             database.streamDAO().deleteOrphans()
             LearningReminders.cancelNotification(appContext, profileId)
             LearningReminders.initialize(appContext)
+            StickyNotificationCoordinator.requestReconcile(appContext)
         }.subscribeOn(Schedulers.io())
     }
 }

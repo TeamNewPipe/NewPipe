@@ -24,6 +24,7 @@ import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.service.FeedLoadManager
 import org.schabi.newpipe.local.feed.service.FeedLoadService
+import org.schabi.newpipe.profiles.ProfileManager
 
 /*
  * Worker which checks for new streams of subscribed channels
@@ -37,7 +38,14 @@ class NotificationWorker(
     private val notificationHelper by lazy {
         NotificationHelper(appContext)
     }
-    private val feedLoadManager = FeedLoadManager(appContext)
+    private val profileId = ProfileManager.getActiveProfileId(appContext)
+    private val stickySession = StickyNotificationSettings.capture(appContext, profileId)
+    private val stickyCapture = stickySession?.let { StickyNotificationCapture(appContext, it) }
+    private val feedLoadManager = FeedLoadManager(
+        appContext,
+        profileId,
+        stickyCapture?.let { it::persist }
+    )
 
     override fun createWork(): Single<Result> = if (areNotificationsEnabled(applicationContext)) {
         feedLoadManager.startLoading(
@@ -59,9 +67,24 @@ class NotificationWorker(
             }
             .observeOn(Schedulers.io()) // Decode notification artwork away from the UI thread.
             .map { feedUpdateInfoList ->
-                // display notifications for each feedUpdateInfo (i.e. channel)
-                feedUpdateInfoList.forEach { feedUpdateInfo ->
-                    notificationHelper.displayNewStreamsNotifications(feedUpdateInfo)
+                if (stickySession != null) {
+                    // Every eligible item is already durable with its feed transaction. Rendering
+                    // is outside that transaction and never reconstructs missed alerts from cache.
+                    if (StickyNotificationSettings.isCurrent(applicationContext, stickySession)) {
+                        val channels = stickyCapture?.newlyInsertedChannels().orEmpty()
+                        StickyNotificationCoordinator.reconcile(
+                            applicationContext,
+                            silent = channels.isEmpty(),
+                            alertChannels = channels
+                        )
+                    }
+                } else if (!StickyNotificationSettings.isEnabled(applicationContext) &&
+                    profileId == ProfileManager.getActiveProfileId(applicationContext)
+                ) {
+                    // Preserve the existing default behavior while the optional mode is off.
+                    feedUpdateInfoList.forEach { feedUpdateInfo ->
+                        notificationHelper.displayNewStreamsNotifications(feedUpdateInfo)
+                    }
                 }
                 return@map Result.success()
             }
@@ -109,6 +132,7 @@ class NotificationWorker(
          */
         @JvmStatic
         fun initialize(context: Context) {
+            StickyNotificationCoordinator.requestReconcile(context)
             if (areNotificationsEnabled(context)) {
                 schedule(context)
             } else {

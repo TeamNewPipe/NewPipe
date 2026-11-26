@@ -21,6 +21,23 @@
 		app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:dependency="@string/enable_streams_notifications"
+        android:key="@string/sticky_stream_notifications_key"
+        android:title="@string/sticky_stream_notifications_title"
+        android:summary="@string/sticky_stream_notifications_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <Preference
+        android:dependency="@string/sticky_stream_notifications_key"
+        android:key="@string/sticky_stream_notifications_close_all_key"
+        android:title="@string/sticky_stream_notifications_close_all_title"
+        android:summary="@string/sticky_stream_notifications_close_all_summary"
+        app:singleLineTitle="false"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="true"
         android:dependency="@string/enable_streams_notifications"
         android:key="@string/streams_notifications_thumbnails_key"

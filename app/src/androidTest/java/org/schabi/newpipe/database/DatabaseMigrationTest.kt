@@ -51,6 +51,41 @@ class DatabaseMigrationTest {
     )
 
     @Test
+    fun migrate34to35PreservesCachedContentWithoutInventingPendingAlerts() {
+        testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_34).use { database ->
+            database.execSQL(
+                "INSERT INTO streams (uid, service_id, url, title, stream_type, duration, uploader) " +
+                    "VALUES (42, 0, 'https://example.com/cached', 'Cached video', 'VIDEO_STREAM', 60, 'Cached channel')"
+            )
+        }
+        testHelper.runMigrationsAndValidate(
+            AppDatabase.DATABASE_NAME,
+            Migrations.DB_VER_35,
+            true,
+            Migrations.MIGRATION_34_35
+        ).use { migrated ->
+            migrated.query("SELECT title FROM streams WHERE uid = 42").use { cursor ->
+                assertTrue(cursor.moveToFirst())
+                assertEquals("Cached video", cursor.getString(0))
+            }
+            migrated.query("SELECT COUNT(*) FROM pending_stream_notifications").use { cursor ->
+                assertTrue(cursor.moveToFirst())
+                assertEquals(0, cursor.getInt(0))
+            }
+            migrated.execSQL(
+                "INSERT INTO pending_stream_notifications " +
+                    "(profile_id, generation, service_id, stream_url, channel_url, channel_name, stream_title, created_at) " +
+                    "VALUES ('profile-a', 'generation-a', 0, 'https://example.com/video', 'https://example.com/channel', 'Channel', 'New video', 123)"
+            )
+            migrated.query("SELECT dismissed FROM pending_stream_notifications").use { cursor ->
+                assertTrue(cursor.moveToFirst())
+                assertEquals(0, cursor.getInt(0))
+            }
+            migrated.query("PRAGMA foreign_key_check").use { cursor -> assertFalse(cursor.moveToFirst()) }
+        }
+    }
+
+    @Test
     fun migrate33to34PreservesStreamsAndHistoryWithoutGuessingUpcomingStatus() {
         testHelper.createDatabase(AppDatabase.DATABASE_NAME, Migrations.DB_VER_33).use { database ->
             for ((index, date) in listOf<Long?>(null, 0L, 4_102_444_800_000L).withIndex()) {
@@ -1461,7 +1496,8 @@ class DatabaseMigrationTest {
                 Migrations.MIGRATION_30_31,
                 Migrations.MIGRATION_31_32,
                 Migrations.MIGRATION_32_33,
-                Migrations.MIGRATION_33_34
+                Migrations.MIGRATION_33_34,
+                Migrations.MIGRATION_34_35
             )
             .build()
         testHelper.closeWhenFinished(database)

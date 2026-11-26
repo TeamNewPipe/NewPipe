@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sticky_notification_close">Close</string>
+    <string name="sticky_notification_close_channel">Close channel</string>
+    <string name="sticky_notification_close_all">Close all</string>
+    <string name="sticky_notification_all_pending">All pending stream notifications</string>
+    <plurals name="sticky_notification_streams_in_other_channels">
+        <item quantity="one">Includes %1$d stream from another channel</item>
+        <item quantity="other">Includes %1$d streams from other channels</item>
+    </plurals>
+    <string name="sticky_notification_service">Service %1$d</string>
+</resources>

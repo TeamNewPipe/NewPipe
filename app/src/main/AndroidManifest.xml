@@ -164,6 +164,26 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".local.feed.notifications.StickyNotificationBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".local.feed.notifications.StickyNotificationActionReceiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".local.feed.notifications.StickyNotificationActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:theme="@style/RouterActivityThemeDark" />
+
         <service
             android:name=".player.PlayerService"
             android:exported="true"

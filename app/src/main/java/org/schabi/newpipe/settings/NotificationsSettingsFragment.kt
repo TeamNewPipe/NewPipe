@@ -18,7 +18,10 @@ import org.schabi.newpipe.error.UserAction
 import org.schabi.newpipe.local.feed.notifications.NotificationHelper
 import org.schabi.newpipe.local.feed.notifications.NotificationWorker
 import org.schabi.newpipe.local.feed.notifications.ScheduleOptions
+import org.schabi.newpipe.local.feed.notifications.StickyNotificationCoordinator
+import org.schabi.newpipe.local.feed.notifications.StickyNotificationSettings
 import org.schabi.newpipe.local.subscription.SubscriptionManager
+import org.schabi.newpipe.profiles.ProfileManager
 
 class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferenceChangeListener {
 
@@ -29,6 +32,29 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.notifications_settings)
         streamsNotificationsPreference = requirePreference(R.string.enable_streams_notifications)
+        streamsNotificationsPreference?.setOnPreferenceChangeListener { preference, value ->
+            StickyNotificationSettings.setMasterEnabled(requireContext(), value as Boolean)
+            (preference as SwitchPreferenceCompat).isChecked = value
+            false
+        }
+        requirePreference<SwitchPreferenceCompat>(R.string.sticky_stream_notifications_key)
+            .setOnPreferenceChangeListener { preference, value ->
+                StickyNotificationSettings.setEnabled(requireContext(), value as Boolean)
+                (preference as SwitchPreferenceCompat).isChecked = value
+                false
+            }
+        requirePreference<Preference>(R.string.sticky_stream_notifications_close_all_key)
+            .setOnPreferenceClickListener {
+                val appContext = requireContext().applicationContext
+                StickyNotificationCoordinator.closeAll(
+                    appContext,
+                    ProfileManager.getActiveProfileId(appContext),
+                    StickyNotificationSettings.generation(appContext)
+                ).subscribe({}, { error ->
+                    android.util.Log.w("StickyNotifications", "Could not close retained alerts", error)
+                })
+                true
+            }
 
         // main check is done in onResume, but also do it here to prevent flickering
         updateEnabledState(NotificationHelper.areNotificationsEnabledOnDevice(requireContext()))
@@ -65,6 +91,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
 
     override fun onResume() {
         super.onResume()
+        StickyNotificationCoordinator.requestReconcile(requireContext())
 
         // Check whether the notifications are disabled in the device's app settings.
         // If they are disabled, show a snackbar informing the user about that

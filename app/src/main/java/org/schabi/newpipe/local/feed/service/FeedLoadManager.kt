@@ -17,6 +17,7 @@ import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.stream.StreamUploadDate
 import org.schabi.newpipe.database.subscription.NotificationMode
@@ -42,7 +43,8 @@ import org.schabi.newpipe.util.SavedServicePolicy
 
 class FeedLoadManager @JvmOverloads constructor(
     private val context: Context,
-    private val profileId: String = ProfileManager.getActiveProfileId(context)
+    private val profileId: String = ProfileManager.getActiveProfileId(context),
+    private val notificationRecorder: ((AppDatabase, FeedUpdateInfo, SubscriptionEntity) -> (() -> Unit)?)? = null
 ) {
 
     private val subscriptionManager = SubscriptionManager(context, profileId)
@@ -414,12 +416,14 @@ class FeedLoadManager @JvmOverloads constructor(
 
         override fun accept(notification: Notification<FeedUpdateInfo>) {
             var archiveItems: List<StreamInfoItem>? = null
+            var notificationCommitted: (() -> Unit)? = null
             feedDatabaseManager.database().runInTransaction {
                 when {
                     notification.isOnNext -> {
                         val info = notification.value!!
                         // A user can unsubscribe while this channel is still fetching.
-                        if (subscriptionManager.getSubscriptionById(info.uid) == null) {
+                        val subscription = subscriptionManager.getSubscriptionById(info.uid)
+                        if (subscription == null) {
                             info.newStreams = emptyList()
                             return@runInTransaction
                         }
@@ -427,6 +431,9 @@ class FeedLoadManager @JvmOverloads constructor(
                             ?: info.youtubeModeMask
 
                         notification.value!!.newStreams = filterNewStreams(info.streams)
+                        // The optional notification snapshot commits atomically with this feed
+                        // update. It must not take any coordinator lock while Room owns the DB.
+                        notificationCommitted = notificationRecorder?.invoke(feedDatabaseManager.database(), info, subscription)
 
                         feedDatabaseManager.upsertAll(
                             info.uid,
@@ -471,6 +478,7 @@ class FeedLoadManager @JvmOverloads constructor(
                     }
                 }
             }
+            notificationCommitted?.invoke()
             // Archive only after the Room write succeeds, without retaining it in the feed UI.
             archiveItems?.let { streams ->
                 runCatching {
