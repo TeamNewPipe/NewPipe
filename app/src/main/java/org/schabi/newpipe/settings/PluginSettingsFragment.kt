@@ -3,9 +3,9 @@
  */
 package org.schabi.newpipe.settings
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
@@ -20,7 +20,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.BuildConfig
 import org.schabi.newpipe.R
-import org.schabi.newpipe.databinding.DialogEditTextBinding
 import org.schabi.newpipe.extractor.plugin.PluginRepository
 import org.schabi.newpipe.plugin.PluginInstallPolicy
 import org.schabi.newpipe.plugin.PluginManager
@@ -40,8 +39,21 @@ class PluginSettingsFragment : BasePreferenceFragment() {
     private var repositoryFetch: Disposable? = null
     private var refreshing = false
     private var installing = false
+    private val sourceActions = PluginSourceActions(
+        fragment = this,
+        knownRepositories = { repositories },
+        onChanged = {
+            rebuild()
+            refreshRepositories()
+        },
+        onBusyChanged = { rebuild() },
+        installRemote = ::install,
+        installLocal = ::installLocal
+    )
+    private val busy: Boolean get() = installing || sourceActions.isBusy
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        sourceActions.restoreState(savedInstanceState)
         setPreferencesFromResource(R.xml.plugin_settings, rootKey)
 
         val enabledSwitch = requirePreference<SwitchPreferenceCompat>(R.string.plugins_enabled_key)
@@ -70,6 +82,7 @@ class PluginSettingsFragment : BasePreferenceFragment() {
     }
 
     override fun onDestroyView() {
+        sourceActions.onDestroyView()
         repositoryFetch?.dispose()
         refreshing = false
         disposables.clear()
@@ -77,6 +90,11 @@ class PluginSettingsFragment : BasePreferenceFragment() {
         restartSnackbar?.dismiss()
         restartSnackbar = null
         super.onDestroyView()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        sourceActions.saveState(outState)
     }
 
     override fun onResume() {
@@ -120,7 +138,13 @@ class PluginSettingsFragment : BasePreferenceFragment() {
             }
         }
         val context = requireContext()
-        requirePreference<SwitchPreferenceCompat>(R.string.plugins_show_nsfw_key).isVisible = PluginManager.isEnabled(context) && PluginManager.canManage(context)
+        val enabled = PluginManager.isEnabled(context)
+        val canManage = PluginManager.canManage(context)
+        requirePreference<SwitchPreferenceCompat>(R.string.plugins_enabled_key).apply {
+            isChecked = enabled
+            isEnabled = PluginManager.isPlatformSupported() && canManage
+        }
+        requirePreference<SwitchPreferenceCompat>(R.string.plugins_show_nsfw_key).isVisible = enabled && canManage
         if (!PluginManager.isEnabled(context)) {
             return
         }
@@ -134,6 +158,23 @@ class PluginSettingsFragment : BasePreferenceFragment() {
             screen.addPreference(info(getString(R.string.plugin_state_failed, error)))
             return
         }
+        val sources = category(R.string.plugins_add_sources)
+        sources.addPreference(
+            sourceAction("plugins_add_repository", R.string.plugins_add_repository, R.string.plugins_add_repository_summary) {
+                sourceActions.showAddRepository()
+            }
+        )
+        sources.addPreference(
+            sourceAction("plugins_install_project", R.string.plugins_install_project, R.string.plugins_install_project_summary) {
+                sourceActions.showInstallFromProject()
+            }
+        )
+        sources.addPreference(
+            sourceAction("plugins_install_file", R.string.plugins_install_file, R.string.plugins_install_file_summary) {
+                sourceActions.chooseLocalPackage()
+            }
+        )
+        if (sourceActions.isBusy) sources.addPreference(info(getString(R.string.plugins_source_loading)))
         val installedCategory = category(R.string.plugins_installed)
         if (installed.isEmpty()) {
             installedCategory.addPreference(info(getString(R.string.plugins_none_installed)))
@@ -160,7 +201,7 @@ class PluginSettingsFragment : BasePreferenceFragment() {
 
                         else -> getString(R.string.plugin_status_pending, plugin.versionName)
                     } + if (updatable) " · " + getString(R.string.plugin_update) + " " + available!!.second.versionName else ""
-                    isEnabled = !installing
+                    isEnabled = !busy
                     setOnPreferenceClickListener {
                         showInstalledActions(plugin, if (updatable) available else null)
                         true
@@ -197,7 +238,7 @@ class PluginSettingsFragment : BasePreferenceFragment() {
                         else -> entry.description ?: entry.pluginId
                     }
                     isEnabled = compatibilityError == null && otherAuthor == null && builtIn == null &&
-                        !differentPublisher && !installing
+                        !differentPublisher && !busy
                     setOnPreferenceClickListener {
                         confirmInstall(repoUrl, entry)
                         true
@@ -220,7 +261,7 @@ class PluginSettingsFragment : BasePreferenceFragment() {
             Preference(context).apply {
                 title = getString(R.string.plugins_refresh)
                 isIconSpaceReserved = false
-                isEnabled = !refreshing && !installing
+                isEnabled = !refreshing && !busy
                 setOnPreferenceClickListener {
                     refreshRepositories()
                     true
@@ -233,21 +274,24 @@ class PluginSettingsFragment : BasePreferenceFragment() {
         }
         for (url in repoUrls) {
             val result = repositories[url]
+            val local = PluginManager.isLocalRepository(url)
+            val label = if (local) result?.getOrNull()?.name ?: getString(R.string.plugins_local_repository) else url
             repoCategory.addPreference(
                 Preference(context).apply {
                     isIconSpaceReserved = false
                     isSingleLineTitle = false
-                    title = result?.getOrNull()?.name ?: url
+                    title = result?.getOrNull()?.name ?: label
                     summary = result?.exceptionOrNull()?.let {
-                        getString(R.string.plugin_repository_failed, url, it.message ?: it.javaClass.simpleName)
-                    } ?: url
+                        getString(R.string.plugin_repository_failed, label, it.message ?: it.javaClass.simpleName)
+                    } ?: if (local) getString(R.string.plugins_local_repository_summary) else url
+                    isEnabled = !busy
                     setOnPreferenceClickListener {
                         if (url == PluginManager.BUILTIN_REPOSITORY) {
                             return@setOnPreferenceClickListener true
                         }
                         AlertDialog.Builder(context)
                             .setTitle(R.string.plugins_remove_repository)
-                            .setMessage(url)
+                            .setMessage(label)
                             .setNegativeButton(R.string.cancel, null)
                             .setPositiveButton(R.string.delete) { _, _ ->
                                 PluginManager.removeRepository(context, url)
@@ -263,29 +307,32 @@ class PluginSettingsFragment : BasePreferenceFragment() {
         if (PluginManager.AWESOME_REPOSITORY !in repoUrls) {
             repoCategory.addPreference(
                 Preference(context).apply {
+                    key = "plugins_add_awesome_repository"
                     isIconSpaceReserved = false
                     isSingleLineTitle = false
                     title = getString(R.string.plugins_add_awesome_repository)
                     summary = getString(R.string.plugins_add_awesome_repository_summary)
+                    isEnabled = !busy
                     setOnPreferenceClickListener {
-                        PluginManager.addRepository(context, PluginManager.AWESOME_REPOSITORY)
-                        rebuild()
-                        refreshRepositories()
+                        sourceActions.addRepository(PluginManager.AWESOME_REPOSITORY)
                         true
                     }
                 }
             )
         }
-        repoCategory.addPreference(
-            Preference(context).apply {
-                isIconSpaceReserved = false
-                title = getString(R.string.plugins_add_repository)
-                setOnPreferenceClickListener {
-                    showAddRepository()
-                    true
-                }
-            }
-        )
+    }
+
+    private fun sourceAction(key: String, title: Int, summary: Int, action: () -> Unit) = Preference(requireContext()).apply {
+        this.key = key
+        setTitle(title)
+        setSummary(summary)
+        isIconSpaceReserved = false
+        isSingleLineTitle = false
+        isEnabled = !busy
+        setOnPreferenceClickListener {
+            action()
+            true
+        }
     }
 
     /** "by xxx" followed by a line break, or nothing when the author is unknown. */
@@ -322,8 +369,8 @@ class PluginSettingsFragment : BasePreferenceFragment() {
     }
 
     private fun refreshRepositories() {
-        val context = requireContext()
-        if (!PluginManager.isEnabled(context)) {
+        val context = requireContext().applicationContext
+        if (!PluginManager.isEnabled(context) || !PluginManager.canManage(context)) {
             return
         }
         val urls = PluginManager.getRepositories(context)
@@ -331,7 +378,7 @@ class PluginSettingsFragment : BasePreferenceFragment() {
         refreshing = true
         rebuild()
         repositoryFetch = Single.fromCallable {
-            urls.associateWith { url -> runCatching { PluginManager.fetchRepository(url) } }
+            urls.associateWith { url -> runCatching { PluginManager.fetchRepository(context, url) } }
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -346,29 +393,11 @@ class PluginSettingsFragment : BasePreferenceFragment() {
             })
     }
 
-    private fun showAddRepository() {
-        val binding = DialogEditTextBinding.inflate(layoutInflater)
-        binding.dialogEditText.hint = getString(R.string.plugins_repository_url_hint)
-        binding.dialogEditText.inputType = InputType.TYPE_TEXT_VARIATION_URI
-        AlertDialog.Builder(requireContext())
-            .setTitle(R.string.plugins_add_repository)
-            .setView(binding.root)
-            .setNegativeButton(R.string.cancel, null)
-            .setPositiveButton(R.string.ok) { _, _ ->
-                val url = binding.dialogEditText.text.toString().trim()
-                try {
-                    PluginManager.addRepository(requireContext(), url)
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.message ?: getString(R.string.plugins_repository_https_only), Toast.LENGTH_LONG).show()
-                    return@setPositiveButton
-                }
-                rebuild()
-                refreshRepositories()
-            }
-            .show()
-    }
-
     private fun confirmInstall(repoUrl: String, entry: PluginRepository.Entry) {
+        if (PluginManager.requiresLocalPackage(repoUrl, entry)) {
+            sourceActions.chooseLocalPackage(repoUrl, entry)
+            return
+        }
         AlertDialog.Builder(requireContext())
             .setTitle(entry.name)
             .setMessage(getString(R.string.plugin_install_from, entry.name, repoUrl))
@@ -378,13 +407,34 @@ class PluginSettingsFragment : BasePreferenceFragment() {
     }
 
     private fun install(repoUrl: String, entry: PluginRepository.Entry) {
+        if (PluginManager.requiresLocalPackage(repoUrl, entry)) {
+            sourceActions.chooseLocalPackage(repoUrl, entry)
+            return
+        }
         val context = requireContext().applicationContext
-        if (installing) return
+        performInstall(entry) { PluginManager.install(context, repoUrl, entry) }
+    }
+
+    private fun installLocal(source: String, entry: PluginRepository.Entry, uri: Uri) {
+        val context = requireContext().applicationContext
+        performInstall(entry) {
+            val input = context.contentResolver.openInputStream(uri) ?: error(context.getString(R.string.plugins_local_catalog_mismatch))
+            input.use {
+                PluginManager.prepareLocalPackage(context, it).use { prepared ->
+                    PluginManager.installLocalPackage(context, source, entry, prepared)
+                }
+            }
+        }
+    }
+
+    private fun performInstall(entry: PluginRepository.Entry, action: () -> Unit) {
+        val context = requireContext().applicationContext
+        if (busy || !PluginManager.isEnabled(context) || !PluginManager.canManage(context)) return
         installing = true
         rebuild()
         Toast.makeText(context, getString(R.string.plugin_installing, entry.name), Toast.LENGTH_SHORT).show()
         disposables.add(
-            Single.fromCallable { PluginManager.install(context, repoUrl, entry) }
+            Single.fromCallable { action() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

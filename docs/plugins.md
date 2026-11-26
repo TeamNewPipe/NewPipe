@@ -13,6 +13,9 @@ This guide was checked against its source commit
 on 25 November 2026. External plugins require Android **7/API 24 or newer**; the app and
 built-in services remain available on Android **6/API 23**.
 
+The [new source actions](#unreleased-source-actions) below are **Unreleased** additions to
+that baseline; they are not included in 1.52.2.
+
 ## Install and manage plugins
 
 1. Open **Settings → Plugins** and enable **Allow plugins**.
@@ -33,7 +36,8 @@ https://raw.githubusercontent.com/wizdom13/WizeStream-Plugins/main/index.json
 This replaces the former PipePipe built-in catalog. The default is supplied by the app;
 updating WizeStream changes it without reinstalling plugins or changing their publisher pins.
 On an earlier build that already supports plugins, add the JSON URL with **Add repository**.
-Use the raw JSON URL, not GitHub's `blob/main/index.json` page, which returns HTML.
+Released builds through 1.52.2 require the raw JSON URL. The Unreleased source actions also
+recognize supported project, release, and browser catalog links.
 
 An optional publisher repository for Twitch is:
 
@@ -66,6 +70,50 @@ Plugin packages, repository URLs, publisher pins, and profile-specific plugin se
 remain local to the device; full backups and Device Sync do not transfer those files. Reinstall
 the same plugin and reconfigure its settings on the destination device to use restored service
 records. A full backup can restore the master enable switch, but that does not install any code.
+
+### Unreleased source actions
+
+With **Allow plugins** enabled, the Plugins screen provides these actions near the top.
+They require Android 7/API 24 or newer and parent access when Kids Mode protects settings.
+
+| Action | What to select |
+| --- | --- |
+| **Add repository** | Enter a public HTTPS catalog or supported GitHub/GitLab project, release, or catalog link, then choose the repository to save. Choose **From storage** in this dialog to import an `index.json` file. |
+| **Install from project or URL** | Enter a supported public project, release, catalog, or `.ppp` URL and choose a signed plugin from the discovered catalog entries. This installs an individual plugin without adding its repository to the configured list. |
+| **Install from file** | Select a `.ppp` package from storage. Supply its companion `index.json`, or use a matching signed entry from a repository already loaded on this screen. This also installs an individual plugin without adding a repository. |
+
+Package-file matching uses the catalogs already loaded on the Plugins screen. Refresh the
+repositories first or supply the companion catalog if the matching entry is unavailable.
+
+Before saving an unofficial repository, WizeStream names the source and asks you to accept a
+warning. The optional community-repository shortcut uses the same warning. Every direct project,
+URL, or storage installation also requires source confirmation. The warning explains that plugins
+run with WizeStream's permissions and can access its data, including saved logins. Canceling leaves
+the configured repositories and installed plugins unchanged. The global **Allow plugins** choice
+does not replace these source confirmations.
+
+Project discovery supports public projects hosted on **github.com** and **gitlab.com**, including
+GitLab projects inside nested groups. You can use a project root, a supported release page or
+release asset, or a browser/raw link to a catalog. WizeStream looks for published catalogs in the
+project and its releases; a direct `.ppp` URL needs a corresponding catalog that can be found
+alongside the package or through its project/release. Private projects, authenticated downloads,
+and self-hosted GitLab project discovery are unsupported. Discovery examines a limited set of
+published releases; provide the exact catalog link if an older release is not found.
+
+A project must publish compiled `.ppp` packages and signed catalog entries. WizeStream does not
+build source-code repositories, and a `.ppp` filename alone does not establish its publisher or
+signature. Local and remote installs retain the same digest, signature, publisher-key, version,
+compatibility, and built-in-service checks. Keep a downloaded package and its matching catalog
+together when transferring them to another device.
+
+An imported local repository is a **snapshot** saved on this device. **Refresh repositories**
+rereads that snapshot; it does not follow later changes to the original file or subscribe to a
+remote repository. Import a newer catalog to discover its updated entries, and select the newer
+package when installing from storage. Every entry from a local catalog requires you to select
+the matching `.ppp` file. Package URLs inside that imported JSON are metadata for this path;
+WizeStream does not download them, even when they use HTTPS. To receive updates for a plugin
+installed directly, add its publisher's repository
+separately or repeat the direct installation with a newer signed version. Restart when prompted.
 
 ### Android support
 
@@ -118,7 +166,7 @@ profile-aware APIs provide the supported storage behavior, not a sandbox for unt
 | `.ppp` | ZIP containing the plugin's `classes.dex`, JVM `.class` files, resources, and root manifest. |
 | `plugin.json` | Plugin identity, entry class, host/API requirement, optional settings and display metadata. |
 
-Downloads and every redirect must use HTTPS. WizeStream verifies the complete package's
+Network downloads and every redirect must use HTTPS. WizeStream verifies the complete package's
 SHA-256 digest and an Ed25519 signature over the **raw 32 digest bytes**. The catalog stores
 the signature and raw 32-byte public key as Base64. The installed package is made read-only
 and its receipt is checked again before loading.

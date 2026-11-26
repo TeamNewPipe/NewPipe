@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="plugins_add_sources">Add plugins</string>
+    <string name="plugins_add_repository_summary">Browse a GitHub or GitLab project, a catalog URL, or a local index.json</string>
+    <string name="plugins_install_project">Install from project or URL</string>
+    <string name="plugins_install_project_summary">Choose one plugin from a public GitHub or GitLab project or a signed package URL</string>
+    <string name="plugins_install_file">Install from file</string>
+    <string name="plugins_install_file_summary">Choose a .ppp package from storage and its signed index.json when needed</string>
+    <string name="plugins_source_url_hint">GitHub, GitLab, or HTTPS catalog URL</string>
+    <string name="plugins_add_repository_help">Paste a public project or index.json URL, or choose an index.json file from storage. The project must publish a compatible plugin catalog.</string>
+    <string name="plugins_install_project_help">Paste a public project, release, catalog, or .ppp package URL. A matching signed catalog is required. This installs one plugin without adding a repository.</string>
+    <string name="plugins_source_continue">Continue</string>
+    <string name="plugins_from_storage">From storage</string>
+    <string name="plugins_source_https_only">Enter a complete HTTPS project, catalog, or package URL</string>
+    <string name="plugins_choose_repository">Choose a repository</string>
+    <string name="plugins_choose_plugin">Choose a plugin</string>
+    <string name="plugins_unofficial_repository_title">Add an unofficial repository?</string>
+    <string name="plugins_unofficial_repository_warning">Repository: %1$s\nSource: %2$s\n\nThis source is not WizeStream’s built-in repository. Its plugins are not reviewed by WizeStream or your app store. Installing them allows executable code to run with WizeStream’s permissions and access its data, including saved logins.\n\nOnly add this repository if you trust its publisher. Adding it does not install its plugins.</string>
+    <string name="plugins_direct_install_title">Install a plugin from this source?</string>
+    <string name="plugins_direct_install_warning">Plugin: %1$s\nSource: %2$s\n\nThis plugin is supplied directly by this source. Third-party plugins are not reviewed by WizeStream or your app store. They run executable code with WizeStream’s permissions and can access its data, including saved logins.\n\nA valid signature identifies the signing key; it does not establish that a plugin is safe. Install only if you trust the publisher.</string>
+    <string name="plugins_local_repository">Local repository</string>
+    <string name="plugins_local_repository_source">Local storage · %s</string>
+    <string name="plugins_local_repository_summary">Imported catalog snapshot. Choose package files from storage to install or update.</string>
+    <string name="plugins_local_file_source">Local storage\n%s</string>
+    <string name="plugins_repository_already_added">This repository is already added</string>
+    <string name="plugins_choose_companion_title">Choose the signing catalog</string>
+    <string name="plugins_choose_companion_message">This package does not match a loaded repository. Select the publisher’s accompanying index.json file, which contains its checksum, signature, and public key. No plugin will be installed until you review and confirm the source.</string>
+    <string name="plugins_choose_index">Choose index.json</string>
+    <string name="plugins_local_catalog_mismatch">The selected package does not match this catalog. Choose the matching .ppp and index.json files from the same publisher release.</string>
+    <string name="plugins_file_picker_failed">Could not open the file picker: %s</string>
+    <string name="plugins_source_failed">Could not open this plugin source: %s</string>
+    <string name="plugins_source_loading">Opening plugin source…</string>
+    <string name="plugins_source_no_plugins">No plugins to show in this source. Plugins marked as NSFW are hidden unless Show NSFW plugins is enabled.</string>
+    <string name="plugins_source_disabled">Enable plugins before adding a source or installing a package</string>
+</resources>

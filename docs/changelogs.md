@@ -18,6 +18,15 @@ Release history is listed newest first. The number beside each release is its An
   and preserve exact custom colors in version 3 theme exports. Older Android devices use the closest
   built-in accent when generated palettes are unavailable.
 
+### Plugin sources
+
+- Add repositories or install individual plugins from public GitHub and GitLab projects, releases,
+  and HTTPS catalog links directly from the Plugins screen.
+- Import a local repository snapshot or choose a plugin package from storage with its matching signed
+  catalog. Keep signature, publisher-key, compatibility, and update checks on every installation path.
+- Show a source-specific warning before adding an unofficial repository, including the community
+  shortcut, or installing a plugin directly from a project, URL, or local file.
+
 ## WizeStream 1.52.2 (`1052002`)
 
 ### Subscription editing and groups

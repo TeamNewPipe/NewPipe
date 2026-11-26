@@ -40,6 +40,8 @@ Service plugins are disabled until you enable them in **Settings → Plugins**. 
 
 Plugin packages, repository addresses and publisher pins stay on the device. Supported plugin preferences and optional login cookies are separated by profile, and switching profiles restarts the process when plugins are loaded. Backups and Device Sync do not transfer plugin packages or configuration; a restored enable switch does not install code. See [service plugins](services-discovery.html#add-a-service-plugin).
 
+**Unreleased source actions:** resolving a public GitHub or GitLab project contacts that host's project/release APIs and discovered HTTPS catalog locations. Direct catalog and package URLs contact their respective hosts. These additions are not included in the reviewed 1.52.2 release. Reading a package or catalog selected from storage does not upload that file. A saved local catalog is a snapshot; installing one of its entries requires a matching file selected from storage, and package URLs inside the imported JSON are not downloaded. Adding an unofficial repository and each direct project/storage installation require a source warning before the change; accepting a warning does not sandbox the plugin or remove its access to app data and saved logins.
+
 ## Proxy connections
 
 Open **Settings → Proxy** to configure HTTP or SOCKS5 with optional authentication. Supported new remote browsing, image, playback, download, update and community-service connections use the selected proxy configuration.

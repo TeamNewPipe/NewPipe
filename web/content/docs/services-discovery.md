@@ -43,6 +43,20 @@ Packages and repositories belong to the device. Plugin settings and optional log
 
 Plugins execute inside the app with its permissions; a valid package signature identifies the publisher and verifies the downloaded bytes, but does not sandbox the code. Read the [plugin installation and authoring guide](https://github.com/wizdom13/WizeStream/blob/pipe/docs/plugins.md) for trust, update and compatibility rules. The [native Kotlin template](https://github.com/wizdom13/WizeStream-Plugin-Template) is available to service authors.
 
+### Unreleased source actions
+
+The following options are development additions and are **not included in the reviewed 1.52.2 release**. They appear near the top of **Settings → Plugins** when plugins are enabled and parent access permits changes.
+
+- **Add repository** accepts a public HTTPS catalog or supported GitHub/GitLab project, release, or catalog link. Choose **From storage** in that dialog to import a local `index.json` snapshot.
+- **Install from project or URL** finds signed plugin entries in a public project's catalogs and releases, or through a catalog/package URL. Installing this way does not add a repository.
+- **Install from file** accepts a local `.ppp` with its companion `index.json` or a matching signed entry from a repository already loaded on the Plugins screen. Refresh repositories first or supply the companion catalog if that entry is unavailable. This installation does not add a repository either.
+
+Before an unofficial repository is saved, including the optional community shortcut, WizeStream shows a warning identifying its source. Every direct project, URL, or storage install also requires confirmation. Plugins can access app data, including saved logins, with WizeStream's permissions; canceling leaves repositories and installed plugins unchanged.
+
+Project discovery supports public **github.com** and **gitlab.com** projects, including nested GitLab groups and supported browser/raw catalog and release links. The project must publish compiled packages and signed catalog entries. Private projects, authenticated downloads, self-hosted GitLab discovery, and building arbitrary source-code projects are unsupported. A direct `.ppp` URL still needs a discoverable matching catalog; all installation paths verify the package signature and publisher identity.
+
+Local repositories are saved snapshots. **Refresh repositories** rereads the imported snapshot; import a newer catalog for updated entries. Each local-catalog entry requires you to select its matching `.ppp` file, even if the imported JSON contains an HTTPS package URL. For updates after a direct install, add the publisher's repository separately or install a newer signed package directly. Restart WizeStream when prompted.
+
 ## Explore a channel
 
 Channel tabs can expose videos, Shorts, playlists, past live streams, Courses, Podcasts and album/release content where the service provides them. Channel sorting can offer latest, popular or oldest ordering.

@@ -19,6 +19,7 @@ import dalvik.system.DexClassLoader
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InputStream
 import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
@@ -51,7 +52,7 @@ object PluginManager {
     private const val KEY_INSTALLED = "installed"
     private const val KEY_REPOSITORIES = "repositories"
     private const val KEY_PUBLISHERS = "trusted_publishers"
-    private const val MAX_PACKAGE_SIZE = 32L * 1024 * 1024
+    private const val MAX_PACKAGE_SIZE = PluginLocalSources.MAX_PACKAGE_BYTES
     private val mutationLock = Any()
     private val validPluginId = Regex("[A-Za-z0-9][A-Za-z0-9_.-]{0,199}")
 
@@ -225,14 +226,15 @@ object PluginManager {
 
     private fun userRepositories(context: Context): List<String> = runCatching {
         val array = JsonParser.array().from(state(context).getString(KEY_REPOSITORIES, "[]"))
-        (0 until array.size).map { PluginInstallPolicy.requireHttps(array.getString(it)) }
+        (0 until array.size).map { PluginLocalSources.requireSource(array.getString(it)) }
     }.getOrDefault(emptyList())
 
     @JvmStatic
     fun addRepository(context: Context, url: String) = synchronized(mutationLock) {
         requireManagementAccess(context)
-        val canonical = PluginInstallPolicy.requireHttps(url.trim())
+        val canonical = PluginLocalSources.requireRemoteUrl(url.trim())
         val updated = (userRepositories(context) + canonical).distinct().filter { it != BUILTIN_REPOSITORY }
+        if (!isEnabled(context)) throw PluginException("Plugins are disabled")
         check(state(context).edit().putString(KEY_REPOSITORIES, JsonWriter.string(JsonArray(updated))).commit())
     }
 
@@ -241,6 +243,34 @@ object PluginManager {
         requireManagementAccess(context)
         val updated = userRepositories(context).filter { it != url }
         check(state(context).edit().putString(KEY_REPOSITORIES, JsonWriter.string(JsonArray(updated))).commit())
+        if (isLocalRepository(url) && !PluginLocalSources.deleteCatalog(context, url)) {
+            Log.w(TAG, "Could not remove an unused local repository snapshot")
+        }
+    }
+
+    fun isLocalRepository(source: String): Boolean = PluginLocalSources.isLocal(source)
+
+    fun requiresLocalPackage(entry: PluginRepository.Entry): Boolean = PluginLocalSources.isLocalPackage(entry.packageUrl)
+
+    fun requiresLocalPackage(source: String, entry: PluginRepository.Entry): Boolean = isLocalRepository(source) || requiresLocalPackage(entry)
+
+    /** The caller owns the stream; no repository is saved until addLocalRepository is called. */
+    fun prepareLocalCatalog(input: InputStream, displayName: String = "Local repository"): PreparedLocalPluginCatalog = PluginLocalSources.prepareCatalog(input, displayName)
+
+    fun addLocalRepository(context: Context, catalog: PreparedLocalPluginCatalog): String = synchronized(mutationLock) {
+        requireManagementAccess(context)
+        if (!isEnabled(context)) throw PluginException("Plugins are disabled")
+        val created = PluginLocalSources.saveCatalog(context, catalog)
+        try {
+            val updated = (userRepositories(context) + catalog.source).distinct()
+            requireManagementAccess(context)
+            if (!isEnabled(context)) throw PluginException("Plugins are disabled")
+            check(state(context).edit().putString(KEY_REPOSITORIES, JsonWriter.string(JsonArray(updated))).commit())
+            catalog.source
+        } catch (error: Exception) {
+            if (created) PluginLocalSources.deleteCatalog(context, catalog.source)
+            throw error
+        }
     }
 
     /** Call after NewPipe.init and before any services or saved extractor objects are used. */
@@ -359,22 +389,47 @@ object PluginManager {
         override fun findClass(name: String): Class<*> = PluginRuntimeLoader.findRuntimeClass(name) ?: findPluginClass(name) ?: throw ClassNotFoundException(name)
     }
 
-    fun fetchRepository(url: String): PluginRepository = PluginRepository.parse(
-        PluginInstallPolicy.requireHttps(url),
-        download(url, 2L * 1024 * 1024).toString(Charsets.UTF_8)
-    )
+    internal fun fetchSourceText(url: String): String = download(url, PluginLocalSources.MAX_CATALOG_BYTES, "application/json").toString(Charsets.UTF_8)
+
+    fun fetchRepository(url: String): PluginRepository = PluginRepository.parse(PluginLocalSources.requireRemoteUrl(url), fetchSourceText(url))
+
+    /** Keep source as the identity: a local repository's SDK URL is an internal resolution base. */
+    fun fetchRepository(context: Context, source: String): PluginRepository = if (isLocalRepository(source)) {
+        PluginLocalSources.readCatalog(context, source)
+    } else {
+        fetchRepository(source)
+    }
+
+    /** The caller owns the stream and must close the prepared package after use or cancellation. */
+    fun prepareLocalPackage(context: Context, input: InputStream): PreparedPluginPackage {
+        requireManagementAccess(context)
+        if (!isEnabled(context)) throw PluginException("Plugins are disabled")
+        return PluginLocalSources.preparePackage(context, input)
+    }
+
+    fun installLocalPackage(context: Context, source: String, entry: PluginRepository.Entry, prepared: PreparedPluginPackage) {
+        PluginLocalSources.requireSource(source)
+        if (requiresLocalPackage(entry) && !isLocalRepository(source)) throw PluginException("Local package metadata requires a local repository identity")
+        installVerified(context, source, entry, prepared::openStream)
+    }
+
+    fun installLocalPackage(context: Context, source: String, entry: PluginRepository.Entry, input: InputStream) {
+        prepareLocalPackage(context, input).use { installLocalPackage(context, source, entry, it) }
+    }
 
     @Throws(IOException::class, PluginException::class)
     fun install(context: Context, repositoryUrl: String, entry: PluginRepository.Entry) {
         requireManagementAccess(context)
         if (!isEnabled(context)) throw PluginException("Plugins are disabled")
+        val source = PluginLocalSources.requireSource(repositoryUrl)
+        if (requiresLocalPackage(source, entry)) throw PluginException("Select the local plugin package for this catalog entry")
         builtInServiceName(entry.pluginId, entry.name)?.let {
             throw PluginException(context.getString(R.string.plugin_already_builtin, it))
         }
         PluginInstallPolicy.requireCompatible(entry, BuildConfig.VERSION_CODE, Build.VERSION.SDK_INT)
         PluginInstallPolicy.checkPublisher(trustedPublisher(context, entry.pluginId), entry.publicKey)
         val bytes = download(entry.packageUrl, MAX_PACKAGE_SIZE)
-        installDownloaded(context, repositoryUrl, entry, bytes)
+        installVerified(context, source, entry) { bytes.inputStream() }
     }
 
     /** Also used by instrumentation tests with signed fixture bytes; never executes a package. */
@@ -383,13 +438,23 @@ object PluginManager {
         repositoryUrl: String,
         entry: PluginRepository.Entry,
         bytes: ByteArray
+    ) {
+        PluginLocalSources.requireRemoteUrl(repositoryUrl)
+        PluginLocalSources.requireRemoteUrl(entry.packageUrl)
+        if (bytes.size > MAX_PACKAGE_SIZE) throw PluginException("Package is too large")
+        installVerified(context, repositoryUrl, entry) { bytes.inputStream() }
+    }
+
+    private fun installVerified(
+        context: Context,
+        source: String,
+        entry: PluginRepository.Entry,
+        openInput: () -> InputStream
     ) = synchronized(mutationLock) {
         requireManagementAccess(context)
         if (!isEnabled(context)) throw PluginException("Plugins are disabled")
-        PluginInstallPolicy.requireHttps(repositoryUrl)
         PluginInstallPolicy.requireHttps(entry.packageUrl)
         PluginInstallPolicy.requireCompatible(entry, BuildConfig.VERSION_CODE, Build.VERSION.SDK_INT)
-        if (bytes.size > MAX_PACKAGE_SIZE) throw PluginException("Package is too large")
         val existing = checkedInstalled(context).firstOrNull { it.pluginId == entry.pluginId }
         PluginInstallPolicy.checkPublisher(trustedPublisher(context, entry.pluginId) ?: existing?.publicKey, entry.publicKey)
         if (existing != null && entry.versionCode <= existing.versionCode) {
@@ -400,7 +465,7 @@ object PluginManager {
         try {
             FileOutputStream(temporary).use { output ->
                 if (!temporary.setReadOnly()) throw IOException("Cannot protect plugin package")
-                output.write(bytes)
+                openInput().use { PluginLocalSources.copyLimited(it, output, MAX_PACKAGE_SIZE, "Plugin package") }
                 output.fd.sync()
             }
             PluginPackage.verify(temporary, entry.sha256, entry.signature, entry.publicKey)
@@ -426,10 +491,11 @@ object PluginManager {
             // Old loaded files stay until process restart, including lazily resolved classes.
             val updated = getInstalled(context).filter { it.pluginId != entry.pluginId } + InstalledPlugin(
                 manifest.pluginId, manifest.name, manifest.versionCode, manifest.versionName,
-                entry.publicKey, repositoryUrl, fileName, manifest.author, entry.sha256, entry.signature,
+                entry.publicKey, source, fileName, manifest.author, entry.sha256, entry.signature,
                 manifest.host
             )
             requireManagementAccess(context)
+            if (!isEnabled(context)) throw PluginException("Plugins are disabled")
             saveInstalled(context, updated, entry.pluginId to entry.publicKey)
         } finally {
             temporary.delete()
@@ -449,8 +515,8 @@ object PluginManager {
         pluginDir(context).listFiles()?.filter { it.name !in keep }?.forEach { it.delete() }
     }
 
-    private fun download(url: String, maxBytes: Long): ByteArray {
-        var current = PluginInstallPolicy.requireHttps(url)
+    private fun download(url: String, maxBytes: Long, accept: String? = null): ByteArray {
+        var current = PluginLocalSources.requireRemoteUrl(url)
         val client = DownloaderImpl.getInstance().client.newBuilder().apply {
             // Catalog/package requests never receive a logged-in service's cookies or interceptors.
             interceptors().clear()
@@ -460,12 +526,14 @@ object PluginManager {
             followSslRedirects(false)
         }.build()
         repeat(6) {
-            val request = Request.Builder().url(current).header("User-Agent", DownloaderImpl.USER_AGENT).build()
+            val request = Request.Builder().url(current).header("User-Agent", DownloaderImpl.USER_AGENT).apply {
+                if (accept != null) header("Accept", accept)
+            }.build()
             client.newCall(request).execute().use { response ->
                 if (response.code in 300..399) {
                     val location = response.header("Location") ?: throw IOException("Redirect has no destination")
                     val target = response.request.url.resolve(location) ?: throw IOException("Invalid redirect")
-                    current = PluginInstallPolicy.requireHttps(target.toString())
+                    current = PluginLocalSources.requireRemoteUrl(target.toString())
                 } else {
                     if (!response.isSuccessful) throw IOException("HTTP ${response.code} for $current")
                     val body = response.body ?: throw IOException("Empty response")
