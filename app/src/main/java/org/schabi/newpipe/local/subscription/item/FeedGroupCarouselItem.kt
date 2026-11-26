@@ -29,8 +29,8 @@ class FeedGroupCarouselItem(
     override fun getLayout() = R.layout.feed_item_carousel
 
     fun onSaveInstanceState(): Parcelable? {
-        listState = carouselLayoutManager?.onSaveInstanceState()
-        return listState
+        // Saving a snapshot must not queue it for a later rebind of the still-visible list.
+        return carouselLayoutManager?.onSaveInstanceState() ?: listState
     }
 
     fun onRestoreInstanceState(state: Parcelable?) {
@@ -61,33 +61,39 @@ class FeedGroupCarouselItem(
     }
 
     override fun bind(viewBinding: FeedItemCarouselBinding, position: Int) {
-        viewBinding.recyclerView.apply { adapter = carouselAdapter }
-        carouselLayoutManager?.onRestoreInstanceState(listState)
+        updateViewMode(viewBinding)
     }
 
     override fun unbind(viewHolder: GroupieViewHolder<FeedItemCarouselBinding>) {
         super.unbind(viewHolder)
-        listState = carouselLayoutManager?.onSaveInstanceState()
+        val boundManager = viewHolder.binding.recyclerView.layoutManager as? LinearLayoutManager
+        if (boundManager === carouselLayoutManager) listState = boundManager?.onSaveInstanceState()
     }
 
     private fun updateViewMode(viewBinding: FeedItemCarouselBinding) {
-        viewBinding.recyclerView.apply { adapter = carouselAdapter }
-
         val context = viewBinding.root.context
-        carouselLayoutManager = if (listViewMode) {
-            LinearLayoutManager(context)
+        val spanCount = SubscriptionGridSpanPolicy.resolve(
+            SubscriptionGridColumns.get(context),
+            getGridSpanCount(context, DeviceUtils.dpToPx(112, context))
+        )
+        val current = carouselLayoutManager
+        val sameLayout = if (listViewMode) {
+            current != null && current !is GridLayoutManager
         } else {
-            val configuredColumns = SubscriptionGridColumns.get(context)
-            val spanCount = SubscriptionGridSpanPolicy.resolve(
-                configuredColumns,
-                getGridSpanCount(context, DeviceUtils.dpToPx(112, context))
-            )
-            GridLayoutManager(context, spanCount)
+            current is GridLayoutManager && current.spanCount == spanCount
         }
-
-        viewBinding.recyclerView.apply {
-            layoutManager = carouselLayoutManager
-            adapter = carouselAdapter
+        if (!sameLayout || viewBinding.recyclerView.layoutManager !== current) {
+            val savedState = listState ?: current?.onSaveInstanceState()
+            carouselLayoutManager = if (listViewMode) LinearLayoutManager(context) else GridLayoutManager(context, spanCount)
+            viewBinding.recyclerView.layoutManager = carouselLayoutManager
+            listState = savedState
+        }
+        if (viewBinding.recyclerView.adapter !== carouselAdapter) {
+            viewBinding.recyclerView.adapter = carouselAdapter
+        }
+        listState?.let {
+            carouselLayoutManager?.onRestoreInstanceState(it)
+            listState = null
         }
     }
 }

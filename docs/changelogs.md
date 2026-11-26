@@ -34,6 +34,10 @@ Release history is listed newest first. The number beside each release is its An
 - Include coarse network availability, background restrictions and power state in playback error reports to help diagnose cellular and background failures.
 - Preserve DVR playback for live DASH windows that advance from unbounded segment templates without periodic manifest reloads.
 
+### Scrollable channel groups
+
+- Choose how many channel-group rows remain visible in Subscriptions and scroll within longer group lists, while keeping Unlimited as the default and preserving the current group position.
+
 ### Custom colors and theme packs
 
 - Apply custom accent seeds consistently to the app and player, refresh seekbar colors after HEX edits,

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="subscription_group_rows_key" translatable="false">subscription_group_visible_rows</string>
+    <string name="subscription_group_rows_title" tools:ignore="MissingTranslation">Visible channel group rows</string>
+    <string name="subscription_group_rows_unlimited" tools:ignore="MissingTranslation">Unlimited</string>
+    <string-array name="subscription_group_rows_entries" tools:ignore="MissingTranslation">
+        <item>@string/subscription_group_rows_unlimited</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="subscription_group_rows_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+    </string-array>
+</resources>
