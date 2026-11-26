@@ -29,6 +29,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_ALL_ID
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.GROUP_UNGROUPED_ID
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.isVirtualGroup
 import org.schabi.newpipe.databinding.FeedItemCarouselBinding
 import org.schabi.newpipe.databinding.FragmentSubscriptionBinding
 import org.schabi.newpipe.error.ErrorInfo
@@ -527,8 +529,8 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
                 }
             }
             carouselAdapter.setOnItemLongClickListener { item, _ ->
-                if ((item is FeedGroupCardItem && item.groupId == GROUP_ALL_ID) ||
-                    (item is FeedGroupCardGridItem && item.groupId == GROUP_ALL_ID)
+                if ((item is FeedGroupCardItem && isVirtualGroup(item.groupId)) ||
+                    (item is FeedGroupCardGridItem && isVirtualGroup(item.groupId))
                 ) {
                     return@setOnItemLongClickListener false
                 }
@@ -759,6 +761,11 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>(), ContextualS
                     add(FeedGroupCardGridItem(GROUP_ALL_ID, getString(R.string.all), FeedGroupIcon.WHATS_NEW))
                 }
                 addAll(groups)
+                if (listViewMode) {
+                    add(FeedGroupCardItem(GROUP_UNGROUPED_ID, getString(R.string.feed_group_ungrouped), FeedGroupIcon.ALL))
+                } else {
+                    add(FeedGroupCardGridItem(GROUP_UNGROUPED_ID, getString(R.string.feed_group_ungrouped), FeedGroupIcon.ALL))
+                }
             }
             updateGroupShortcuts()
         }

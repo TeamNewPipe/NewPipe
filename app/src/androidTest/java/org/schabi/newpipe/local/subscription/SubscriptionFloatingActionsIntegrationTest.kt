@@ -161,7 +161,7 @@ class SubscriptionFloatingActionsIntegrationTest {
             }
 
             database.feedGroupDAO().deleteAll()
-            awaitRows(scenario, listMode = false, showCreate = false, showImport = true, groupCount = 1)
+            awaitRows(scenario, listMode = false, showCreate = false, showImport = true, groupCount = 2)
             scenario.onActivity { activity ->
                 val fragment = host(activity).subscriptions()
                 val binding = FragmentSubscriptionBinding.bind(fragment.requireView())
@@ -195,7 +195,7 @@ class SubscriptionFloatingActionsIntegrationTest {
         listMode: Boolean,
         showCreate: Boolean,
         showImport: Boolean,
-        groupCount: Int = 2
+        groupCount: Int = 3
     ): List<Item<*>> {
         val deadline = SystemClock.uptimeMillis() + 10_000
         var rows = emptyList<Item<*>>()
@@ -208,6 +208,12 @@ class SubscriptionFloatingActionsIntegrationTest {
             val correctMode = rows.filter(::isGroup).all { if (listMode) it is FeedGroupCardItem else it is FeedGroupCardGridItem }
             if (correctMode && rows.count(::isGroup) == groupCount && rows.any(::isCreate) == showCreate && rows.any(::isImport) == showImport) {
                 InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+                val lastGroupId = when (val last = rows.last()) {
+                    is FeedGroupCardItem -> last.groupId
+                    is FeedGroupCardGridItem -> last.groupId
+                    else -> error("Ungrouped must follow the real groups and shortcuts")
+                }
+                assertEquals(FeedGroupEntity.GROUP_UNGROUPED_ID, lastGroupId)
                 return rows
             }
             SystemClock.sleep(25)

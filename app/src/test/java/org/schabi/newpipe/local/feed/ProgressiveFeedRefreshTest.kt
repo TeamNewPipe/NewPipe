@@ -351,7 +351,7 @@ class ProgressiveFeedRefreshTest {
             org.mockito.Mockito.verify(actionBar, org.mockito.Mockito.times(2)).setDisplayShowCustomEnabled(true)
             dao.delete(id)
             assertEquals(-1L, selected)
-            assertEquals(android.view.View.GONE, button.visibility)
+            assertEquals(android.view.View.VISIBLE, button.visibility)
         } finally {
             selector.dispose()
         }

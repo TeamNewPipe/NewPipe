@@ -38,24 +38,25 @@ internal class FeedGroupSelector(
                 // Avoid accepting a stale item if a group is renamed/deleted by sync.
                 dialog?.dismiss()
                 val selected = groups.firstOrNull { it.uid == selectedId() }
-                if (selectedId() != FeedGroupEntity.GROUP_ALL_ID) {
+                if (!FeedGroupEntity.isVirtualGroup(selectedId())) {
                     onSelected(selected?.uid ?: FeedGroupEntity.GROUP_ALL_ID, selected?.name.orEmpty())
                 }
-                button.isEnabled = groups.isNotEmpty()
-                label.isVisible = groups.isNotEmpty()
+                button.isEnabled = true
+                label.isVisible = true
                 updateLabel()
             }, { error -> Log.e("FeedGroupSelector", "Unable to load channel groups", error) })
     }
 
     private fun updateLabel() {
-        val name = groups.firstOrNull { it.uid == selectedId() }?.name
-            ?: context.getString(R.string.feed_group_filter_all)
-        label.text = name
-        button.contentDescription = if (groups.isEmpty()) {
-            context.getString(R.string.fragment_feed_title)
+        val name = if (selectedId() == FeedGroupEntity.GROUP_UNGROUPED_ID) {
+            context.getString(R.string.feed_group_ungrouped)
         } else {
-            context.getString(R.string.fragment_feed_title) + ", " + context.getString(R.string.feed_group_filter_description, name)
+            groups.firstOrNull { it.uid == selectedId() }?.name
+                ?: context.getString(R.string.feed_group_filter_all)
         }
+        label.text = name
+        button.contentDescription = context.getString(R.string.fragment_feed_title) + ", " +
+            context.getString(R.string.feed_group_filter_description, name)
     }
 
     fun attach(searching: Boolean = false) {
@@ -71,15 +72,17 @@ internal class FeedGroupSelector(
     }
 
     private fun showPicker() {
-        val snapshot = groups.toList()
-        val labels = arrayOf(context.getString(R.string.feed_group_filter_all), *snapshot.map { it.name }.toTypedArray())
-        val selectedIndex = snapshot.indexOfFirst { it.uid == selectedId() } + 1
+        val choices = listOf(FeedGroupEntity.GROUP_ALL_ID to context.getString(R.string.feed_group_filter_all)) +
+            groups.map { it.uid to it.name } +
+            (FeedGroupEntity.GROUP_UNGROUPED_ID to context.getString(R.string.feed_group_ungrouped))
+        val labels = choices.map { it.second }.toTypedArray()
+        val selectedIndex = choices.indexOfFirst { it.first == selectedId() }
         dialog = MaterialAlertDialogBuilder(context)
             .setTitle(R.string.feed_groups_header_title)
             .setSingleChoiceItems(labels, selectedIndex) { picker, index ->
                 picker.dismiss()
-                val group = snapshot.getOrNull(index - 1)
-                onSelected(group?.uid ?: FeedGroupEntity.GROUP_ALL_ID, group?.name.orEmpty())
+                val (id, name) = choices[index]
+                onSelected(id, if (id == FeedGroupEntity.GROUP_ALL_ID) "" else name)
                 updateLabel()
             }
             .setNegativeButton(R.string.cancel, null)

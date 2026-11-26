@@ -13,6 +13,10 @@ Release history is listed newest first. The number beside each release is its An
 
 - Add Most viewed first to the subscription feed, sorting cached view counts before pagination while keeping videos with unknown counts last.
 
+### Ungrouped subscriptions
+
+- Add a built-in Ungrouped entry for channels without a group, with matching feed refresh, channel navigation and filters that update as memberships change.
+
 ### YouTube channel lists
 
 - Keep channel sorting and pagination results visible when YouTube sends a separate filter-header update alongside the video list.

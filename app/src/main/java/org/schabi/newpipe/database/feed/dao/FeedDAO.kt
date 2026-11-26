@@ -51,7 +51,8 @@ abstract class FeedDAO {
      * as unknown, after real counts (including zero), with the existing order breaking ties.
      *
      * @param groupId          the group id to get feed streams of; use
-     *                         [FeedGroupEntity.GROUP_ALL_ID] to not filter by group
+     *                         [FeedGroupEntity.GROUP_ALL_ID] to not filter by group, or
+     *                         [FeedGroupEntity.GROUP_UNGROUPED_ID] for subscriptions without a group
      * @param includePlayed    if false, only return all of the live, never-played or non-finished
      *                         feed streams (see `@see` items); if true no filter is applied
      * @param uploadDateBefore get only streams uploaded before this date (useful to filter out
@@ -80,13 +81,21 @@ abstract class FeedDAO {
 
         LEFT JOIN feed_group_subscription_join fgs
         ON (
-            :groupId <> ${FeedGroupEntity.GROUP_ALL_ID}
+            :groupId NOT IN (${FeedGroupEntity.GROUP_ALL_ID}, ${FeedGroupEntity.GROUP_UNGROUPED_ID})
             AND fgs.subscription_id = f.subscription_id
         )
 
         WHERE (
             :groupId = ${FeedGroupEntity.GROUP_ALL_ID}
             OR fgs.group_id = :groupId
+            OR (
+                :groupId = ${FeedGroupEntity.GROUP_UNGROUPED_ID}
+                AND NOT EXISTS (
+                    SELECT 1 FROM feed_group_subscription_join membership
+                    INNER JOIN feed_group g ON g.uid = membership.group_id
+                    WHERE membership.subscription_id = sub.uid AND g.profile_id = :profileId
+                )
+            )
         )
         AND sub.profile_id = :profileId
         -- Exclude by subscription before LIMIT/OFFSET, only in the All feed.
@@ -289,13 +298,24 @@ abstract class FeedDAO {
         """
         SELECT MIN(lu.last_updated) FROM feed_last_updated lu
 
-        INNER JOIN feed_group_subscription_join fgs
+        LEFT JOIN feed_group_subscription_join fgs
         ON fgs.subscription_id = lu.subscription_id AND fgs.group_id = :groupId
 
         INNER JOIN subscriptions s
         ON s.uid = lu.subscription_id
 
         WHERE s.profile_id = :profileId
+        AND (
+            fgs.group_id = :groupId
+            OR (
+                :groupId = ${FeedGroupEntity.GROUP_UNGROUPED_ID}
+                AND NOT EXISTS (
+                    SELECT 1 FROM feed_group_subscription_join membership
+                    INNER JOIN feed_group g ON g.uid = membership.group_id
+                    WHERE membership.subscription_id = s.uid AND g.profile_id = :profileId
+                )
+            )
+        )
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND (
             :serviceId <> ${SubscriptionEntity.YOUTUBE_SERVICE_ID}
@@ -366,7 +386,7 @@ abstract class FeedDAO {
         """
         SELECT COUNT(DISTINCT s.uid) FROM subscriptions s
         
-        INNER JOIN feed_group_subscription_join fgs
+        LEFT JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id AND fgs.group_id = :groupId
 
         LEFT JOIN feed_last_updated lu
@@ -378,6 +398,17 @@ abstract class FeedDAO {
 
         WHERE lu.last_updated IS NULL
         AND s.profile_id = :profileId
+        AND (
+            fgs.group_id = :groupId
+            OR (
+                :groupId = ${FeedGroupEntity.GROUP_UNGROUPED_ID}
+                AND NOT EXISTS (
+                    SELECT 1 FROM feed_group_subscription_join membership
+                    INNER JOIN feed_group g ON g.uid = membership.group_id
+                    WHERE membership.subscription_id = s.uid AND g.profile_id = :profileId
+                )
+            )
+        )
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND (
             :serviceId <> ${SubscriptionEntity.YOUTUBE_SERVICE_ID}
@@ -439,13 +470,24 @@ abstract class FeedDAO {
         """
         SELECT DISTINCT s.* FROM subscriptions s
 
-        INNER JOIN feed_group_subscription_join fgs
+        LEFT JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id AND fgs.group_id = :groupId
 
         LEFT JOIN feed_last_updated lu
         ON s.uid = lu.subscription_id
 
         WHERE s.profile_id = :profileId
+        AND (
+            fgs.group_id = :groupId
+            OR (
+                :groupId = ${FeedGroupEntity.GROUP_UNGROUPED_ID}
+                AND NOT EXISTS (
+                    SELECT 1 FROM feed_group_subscription_join membership
+                    INNER JOIN feed_group g ON g.uid = membership.group_id
+                    WHERE membership.subscription_id = s.uid AND g.profile_id = :profileId
+                )
+            )
+        )
         AND (lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold)
         """
     )
@@ -459,7 +501,7 @@ abstract class FeedDAO {
         """
         SELECT DISTINCT s.* FROM subscriptions s
 
-        INNER JOIN feed_group_subscription_join fgs
+        LEFT JOIN feed_group_subscription_join fgs
         ON s.uid = fgs.subscription_id AND fgs.group_id = :groupId
 
         LEFT JOIN feed_last_updated lu
@@ -470,6 +512,17 @@ abstract class FeedDAO {
         )
 
         WHERE s.profile_id = :profileId
+        AND (
+            fgs.group_id = :groupId
+            OR (
+                :groupId = ${FeedGroupEntity.GROUP_UNGROUPED_ID}
+                AND NOT EXISTS (
+                    SELECT 1 FROM feed_group_subscription_join membership
+                    INNER JOIN feed_group g ON g.uid = membership.group_id
+                    WHERE membership.subscription_id = s.uid AND g.profile_id = :profileId
+                )
+            )
+        )
         AND (lu.last_updated IS NULL OR lu.last_updated < :outdatedThreshold)
         AND (:serviceId = -1 OR s.service_id = :serviceId)
         AND (

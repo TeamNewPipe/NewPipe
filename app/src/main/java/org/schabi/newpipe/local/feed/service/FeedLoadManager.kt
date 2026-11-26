@@ -68,8 +68,8 @@ class FeedLoadManager @JvmOverloads constructor(
      * @param groupId The ID of the subscription group to load. When using
      * [FeedGroupEntity.GROUP_ALL_ID], all subscriptions are loaded. When using
      * [GROUP_NOTIFICATION_ENABLED], only subscriptions with enabled notifications for new streams
-     * are loaded. Using an id of a group created by the user results in that specific group to be
-     * loaded.
+     * are loaded. [FeedGroupEntity.GROUP_UNGROUPED_ID] loads subscriptions without a group.
+     * Using an id of a group created by the user results in that specific group to be loaded.
      * @param ignoreOutdatedThreshold When `false`, only subscriptions which have not been updated
      * within the `feed_update_threshold` are checked for updates. This threshold can be set by
      * the user in the app settings. When `true`, all subscriptions are checked for new streams.

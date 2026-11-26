@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.error.ErrorInfo
 import org.schabi.newpipe.error.ErrorUtil
 import org.schabi.newpipe.error.UserAction
@@ -23,6 +24,7 @@ internal class SubscriptionGroupActions(
     private var dialog: androidx.appcompat.app.AlertDialog? = null
 
     fun show(groupId: Long, name: String) {
+        if (FeedGroupEntity.isVirtualGroup(groupId)) return
         val profiles = ProfileManager.getProfiles(fragment.requireContext())
             .filter { it.id != sourceProfileId }
         if (profiles.isEmpty()) {
