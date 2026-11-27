@@ -13,14 +13,26 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,6 +46,7 @@ import net.newpipe.app.composable.TopAppBar
 import net.newpipe.app.navigation.Destination
 import net.newpipe.app.navigation.Navigator
 import net.newpipe.app.platform.PlayerSettingsSections
+import net.newpipe.app.platform.PopupPermissionActions
 import net.newpipe.app.preferences.VideoAudioPreferences
 import net.newpipe.app.preferences.VideoAudioPreferences.AUDIO_FORMATS
 import net.newpipe.app.preferences.VideoAudioPreferences.AUTOPLAY_ALWAYS
@@ -125,6 +138,10 @@ import newpipe.shared.generated.resources.minimize_on_exit_title
 import newpipe.shared.generated.resources.never
 import newpipe.shared.generated.resources.new_seek_duration_toast
 import newpipe.shared.generated.resources.none
+import newpipe.shared.generated.resources.ok
+import newpipe.shared.generated.resources.permission_display_over_apps
+import newpipe.shared.generated.resources.permission_display_over_apps_message
+import newpipe.shared.generated.resources.permission_display_over_apps_permission_name
 import newpipe.shared.generated.resources.popup_player
 import newpipe.shared.generated.resources.popup_remember_size_pos_summary
 import newpipe.shared.generated.resources.popup_remember_size_pos_title
@@ -141,6 +158,7 @@ import newpipe.shared.generated.resources.right_gesture_control_title
 import newpipe.shared.generated.resources.seconds
 import newpipe.shared.generated.resources.seek_duration_title
 import newpipe.shared.generated.resources.seekbar_preview_thumbnail_title
+import newpipe.shared.generated.resources.settings
 import newpipe.shared.generated.resources.settings_category_exoplayer_summary
 import newpipe.shared.generated.resources.settings_category_exoplayer_title
 import newpipe.shared.generated.resources.settings_category_player_behavior_title
@@ -171,7 +189,8 @@ import org.koin.compose.viewmodel.koinViewModel
 fun VideoAudioSettingsScreen(
     navigator: Navigator = koinInject(),
     viewModel: VideoAudioSettingsViewModel = koinViewModel(),
-    playerSettings: PlayerSettingsSections = koinInject()
+    playerSettings: PlayerSettingsSections = koinInject(),
+    popupPermissionActions: PopupPermissionActions = koinInject()
 ) {
     val defaultResolution by viewModel.defaultResolution.collectAsStateWithLifecycle()
     val defaultPopupResolution by viewModel.defaultPopupResolution.collectAsStateWithLifecycle()
@@ -269,6 +288,10 @@ fun VideoAudioSettingsScreen(
         onIgnoreHardwareMediaButtonsChange = viewModel::setIgnoreHardwareMediaButtons,
         playerSettingsAvailable = playerSettingsAvailable,
         onOpenPlayerSettings = { navigator.navigateTo(Destination.PlayerSettings) },
+        canDrawOverlays = popupPermissionActions::canDrawOverlays,
+        needsPopupPermissionGuide = popupPermissionActions.needsPermissionGuide,
+        appLabel = popupPermissionActions.appLabel,
+        onOpenPopupPermissionSettings = popupPermissionActions::openOverlayPermissionSettings,
         onNavigateUp = { navigator.navigateUp() }
     )
 }
@@ -330,10 +353,15 @@ fun VideoAudioSettingsScreenContent(
     onIgnoreHardwareMediaButtonsChange: (Boolean) -> Unit = {},
     playerSettingsAvailable: Boolean = true,
     onOpenPlayerSettings: () -> Unit = {},
+    canDrawOverlays: () -> Boolean = { true },
+    needsPopupPermissionGuide: Boolean = false,
+    appLabel: String = "",
+    onOpenPopupPermissionSettings: () -> Unit = {},
     onNavigateUp: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
+    var showPopupPermissionGuide by rememberSaveable { mutableStateOf(false) }
 
     val bestResolutionLabel = stringResource(Res.string.best_resolution)
     val noLimitLabel = stringResource(Res.string.limit_data_usage_none_description)
@@ -348,8 +376,7 @@ fun VideoAudioSettingsScreenContent(
         title = if (value == LIMIT_DATA_USAGE_NONE) noLimitLabel else value
     )
 
-    fun selectedTitle(entries: List<ListPreferenceEntry>, value: String) =
-        entries.firstOrNull { it.value == value }?.title.orEmpty()
+    fun selectedTitle(entries: List<ListPreferenceEntry>, value: String) = entries.firstOrNull { it.value == value }?.title.orEmpty()
 
     val resolutionEntries = resolutionValues.map(::resolutionEntry)
     val mobileDataEntries = mobileDataResolutionValues.map(::mobileDataEntry)
@@ -531,14 +558,29 @@ fun VideoAudioSettingsScreenContent(
                     selectedTitle(openActionEntries, preferredOpenAction)
                 )
             )
-            // TODO(follow-up): when popup is selected without draw-over-apps permission, the
-            // legacy screen shows a snackbar linking to the system permission settings. Needs a
-            // platform actions interface (like AppearanceActions) and is deliberately deferred.
             ListPreference(
                 title = stringResource(Res.string.minimize_on_exit_title),
                 entries = minimizeOnExitEntries,
                 selectedValue = minimizeOnExit,
-                onValueSelected = onMinimizeOnExitChange,
+                onValueSelected = { value ->
+                    onMinimizeOnExitChange(value)
+                    if (value == MINIMIZE_ON_EXIT_POPUP && !canDrawOverlays()) {
+                        scope.launch {
+                            val result = snackbarHostState.showSnackbar(
+                                message = getString(Res.string.permission_display_over_apps),
+                                actionLabel = getString(Res.string.settings),
+                                duration = SnackbarDuration.Long
+                            )
+                            if (result == SnackbarResult.ActionPerformed) {
+                                if (needsPopupPermissionGuide) {
+                                    showPopupPermissionGuide = true
+                                } else {
+                                    onOpenPopupPermissionSettings()
+                                }
+                            }
+                        }
+                    }
+                },
                 summary = stringResource(
                     Res.string.minimize_on_exit_summary,
                     selectedTitle(minimizeOnExitEntries, minimizeOnExit)
@@ -599,13 +641,13 @@ fun VideoAudioSettingsScreenContent(
                 onCheckedChange = { checked ->
                     VideoAudioPreferences.adjustedSeekDurationMs(seekDuration, checked)
                         ?.let { adjustedMs ->
-                        val newSeconds = VideoAudioPreferences.seekDurationSeconds(adjustedMs)
-                        scope.launch {
-                            snackbarHostState.showSnackbar(
-                                getString(Res.string.new_seek_duration_toast, newSeconds)
-                            )
+                            val newSeconds = VideoAudioPreferences.seekDurationSeconds(adjustedMs)
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    getString(Res.string.new_seek_duration_toast, newSeconds)
+                                )
+                            }
                         }
-                    }
                     onUseInexactSeekChange(checked)
                 }
             )
@@ -629,6 +671,52 @@ fun VideoAudioSettingsScreenContent(
             )
         }
     }
+    if (showPopupPermissionGuide) {
+        PopupPermissionGuideDialog(
+            appLabel = appLabel,
+            onConfirm = {
+                showPopupPermissionGuide = false
+                onOpenPopupPermissionSettings()
+            },
+            onDismiss = { showPopupPermissionGuide = false }
+        )
+    }
+}
+
+@Composable
+private fun PopupPermissionGuideDialog(
+    appLabel: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val permissionName = stringResource(Res.string.permission_display_over_apps_permission_name)
+    val message = stringResource(
+        Res.string.permission_display_over_apps_message,
+        appLabel,
+        permissionName
+    )
+    val styledMessage = remember(message, appLabel, permissionName) {
+        buildAnnotatedString {
+            append(message)
+            listOf(appLabel, permissionName).forEach { name ->
+                val start = message.indexOf(name)
+                if (name.isNotEmpty() && start >= 0) {
+                    addStyle(SpanStyle(fontStyle = FontStyle.Italic), start, start + name.length)
+                }
+            }
+        }
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = stringResource(Res.string.permission_display_over_apps)) },
+        text = { Text(text = styledMessage) },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text(text = stringResource(Res.string.ok))
+            }
+        }
+    )
 }
 
 @PreviewWrapper(ThemePreviewProvider::class)

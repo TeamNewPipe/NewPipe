@@ -15,13 +15,14 @@ import android.provider.Settings as AndroidSettings
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import co.touchlab.kermit.Logger
+import net.newpipe.app.model.PeertubeInstance
 import net.newpipe.app.preferences.ContentPreferences
 import org.koin.core.annotation.Singleton
 
 @Singleton(binds = [ContentActions::class])
 class AndroidContentActions(private val context: Context) : ContentActions {
 
-    private val host: ContentHost? = loadHost(context)
+    private val host: ContentHost? = loadHost(context, HOST_CLASS)
 
     // Android 13 moved per-app languages into the system settings
     override val usesSystemAppLanguageSettings: Boolean
@@ -67,13 +68,11 @@ class AndroidContentActions(private val context: Context) : ContentActions {
         host?.applyContentLocalization()
     }
 
-    private fun loadHost(context: Context): ContentHost? = runCatching {
-        Class.forName(HOST_CLASS)
-            .getDeclaredConstructor(Context::class.java)
-            .newInstance(context) as ContentHost
-    }.onFailure { error ->
-        Logger.w(messageString = "No host content actions found, skipping host-side changes", throwable = error)
-    }.getOrNull()
+    override suspend fun fetchPeertubeInstanceName(url: String): String? = host?.fetchPeertubeInstanceName(url)
+
+    override fun applyPeertubeInstance(instance: PeertubeInstance) {
+        host?.applyPeertubeInstance(instance.url, instance.name)
+    }
 
     private companion object {
         const val HOST_CLASS = "org.schabi.newpipe.settings.ComposeContentHost"

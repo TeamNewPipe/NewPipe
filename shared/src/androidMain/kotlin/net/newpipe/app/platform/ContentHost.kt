@@ -15,4 +15,8 @@ interface ContentHost {
     fun applyYoutubeRestrictedMode(enabled: Boolean)
 
     fun applyContentLocalization()
+
+    suspend fun fetchPeertubeInstanceName(url: String): String?
+
+    fun applyPeertubeInstance(url: String, name: String)
 }

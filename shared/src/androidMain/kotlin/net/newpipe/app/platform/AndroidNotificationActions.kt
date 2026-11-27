@@ -20,7 +20,7 @@ import org.koin.core.annotation.Singleton
 @Singleton(binds = [NotificationActions::class])
 class AndroidNotificationActions(private val context: Context) : NotificationActions {
 
-    private val host: NotificationHost? = loadHost(context)
+    private val host: NotificationHost? = loadHost(context, HOST_CLASS)
 
     override val isPlayerNotificationExempt: Boolean
         get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
@@ -65,17 +65,6 @@ class AndroidNotificationActions(private val context: Context) : NotificationAct
     override suspend fun setChannelNotificationsEnabled(channel: ChannelNotification, enabled: Boolean) {
         host?.setChannelNotificationsEnabled(channel, enabled)
     }
-
-    private fun loadHost(context: Context): NotificationHost? = runCatching {
-        Class.forName(HOST_CLASS)
-            .getDeclaredConstructor(Context::class.java)
-            .newInstance(context) as NotificationHost
-    }.onFailure { error ->
-        Logger.w(
-            messageString = "No host notification actions found, skipping host-side changes",
-            throwable = error
-        )
-    }.getOrNull()
 
     private companion object {
         const val HOST_CLASS = "org.schabi.newpipe.settings.ComposeNotificationHost"

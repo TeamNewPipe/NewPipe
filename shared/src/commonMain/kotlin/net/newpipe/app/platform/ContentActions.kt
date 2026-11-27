@@ -6,6 +6,7 @@
 package net.newpipe.app.platform
 
 import co.touchlab.kermit.Logger
+import net.newpipe.app.model.PeertubeInstance
 
 interface ContentActions {
     val usesSystemAppLanguageSettings: Boolean
@@ -21,6 +22,10 @@ interface ContentActions {
     fun applyYoutubeRestrictedMode(enabled: Boolean)
 
     fun applyContentLocalization()
+
+    suspend fun fetchPeertubeInstanceName(url: String): String?
+
+    fun applyPeertubeInstance(instance: PeertubeInstance)
 }
 
 internal object NoOpContentActions : ContentActions {
@@ -38,6 +43,10 @@ internal object NoOpContentActions : ContentActions {
     override fun applyYoutubeRestrictedMode(enabled: Boolean) = logUnsupported("applyYoutubeRestrictedMode")
 
     override fun applyContentLocalization() = logUnsupported("applyContentLocalization")
+
+    override suspend fun fetchPeertubeInstanceName(url: String): String? = null
+
+    override fun applyPeertubeInstance(instance: PeertubeInstance) = logUnsupported("applyPeertubeInstance")
 
     private fun logUnsupported(action: String) = Logger.w(messageString = "Content action '$action' is unsupported on this platform")
 }
