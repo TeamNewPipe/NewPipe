@@ -9,14 +9,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import org.schabi.newpipe.util.NavigationHelper
+import kotlin.system.exitProcess
 
 class ExitActivity : Activity() {
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         finishAndRemoveTask()
-        NavigationHelper.restartApp(this)
+        exitProcess(0)
     }
 
     companion object {
