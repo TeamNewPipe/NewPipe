@@ -22,8 +22,6 @@ object PeertubePreferences {
 
     val DEFAULT_INSTANCE = PeertubeInstance(name = "FramaTube", url = "https://framatube.org")
 
-    private val json = Json { ignoreUnknownKeys = true }
-
     /**
      * Adds https when no scheme is given and drops a trailing slash.
      *
@@ -35,16 +33,16 @@ object PeertubePreferences {
         return withScheme.removeSuffix("/").takeIf { url -> url.startsWith("https://") }
     }
 
-    fun encodeInstance(instance: PeertubeInstance): String = json.encodeToString(instance)
+    fun encodeInstance(json: Json, instance: PeertubeInstance): String = json.encodeToString(instance)
 
-    fun decodeInstance(value: String): PeertubeInstance? = runCatching {
+    fun decodeInstance(json: Json, value: String): PeertubeInstance? = runCatching {
         json.decodeFromString<PeertubeInstance>(value)
     }.getOrNull()
 
-    fun encodeInstanceList(instances: List<PeertubeInstance>): String = json
+    fun encodeInstanceList(json: Json, instances: List<PeertubeInstance>): String = json
         .encodeToString(InstanceList(instances))
 
-    fun decodeInstanceList(value: String): List<PeertubeInstance>? = runCatching {
+    fun decodeInstanceList(json: Json, value: String): List<PeertubeInstance>? = runCatching {
         json.decodeFromString<InstanceList>(value).instances
     }.getOrNull()
 

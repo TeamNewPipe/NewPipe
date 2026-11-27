@@ -11,6 +11,7 @@ import com.russhwolf.settings.Settings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import net.newpipe.app.model.PeertubeInstance
 import net.newpipe.app.platform.ContentActions
 import net.newpipe.app.preferences.PeertubePreferences
@@ -24,13 +25,14 @@ import org.koin.core.annotation.KoinViewModel
 @KoinViewModel
 class PeertubeInstanceSettingsViewModel(
     private val settings: Settings,
-    private val contentActions: ContentActions
+    private val contentActions: ContentActions,
+    private val json: Json
 ) : ViewModel() {
 
     val selectedInstance: StateFlow<PeertubeInstance>
         field = MutableStateFlow(
             settings.getStringOrNull(KEY_SELECTED_INSTANCE)
-                ?.let(PeertubePreferences::decodeInstance)
+                ?.let { value -> PeertubePreferences.decodeInstance(json, value) }
                 ?: DEFAULT_INSTANCE
         )
 
@@ -38,7 +40,7 @@ class PeertubeInstanceSettingsViewModel(
     val instances: StateFlow<List<PeertubeInstance>>
         field = MutableStateFlow(
             settings.getStringOrNull(KEY_INSTANCE_LIST)
-                ?.let(PeertubePreferences::decodeInstanceList)
+                ?.let { value -> PeertubePreferences.decodeInstanceList(json, value) }
                 ?: listOf(selectedInstance.value)
         )
 
@@ -49,7 +51,7 @@ class PeertubeInstanceSettingsViewModel(
         field = MutableStateFlow<PeertubeInstanceMessage?>(null)
 
     fun select(instance: PeertubeInstance) {
-        settings.putString(KEY_SELECTED_INSTANCE, PeertubePreferences.encodeInstance(instance))
+        settings.putString(KEY_SELECTED_INSTANCE, PeertubePreferences.encodeInstance(json, instance))
         settings.putBoolean(KEY_MAIN_PAGE_CHANGE, true)
         contentActions.applyPeertubeInstance(instance)
         selectedInstance.value = instance
@@ -109,7 +111,7 @@ class PeertubeInstanceSettingsViewModel(
     }
 
     private fun saveInstances(newInstances: List<PeertubeInstance>) {
-        settings.putString(KEY_INSTANCE_LIST, PeertubePreferences.encodeInstanceList(newInstances))
+        settings.putString(KEY_INSTANCE_LIST, PeertubePreferences.encodeInstanceList(json, newInstances))
         instances.value = newInstances
     }
 }

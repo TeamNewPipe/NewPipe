@@ -7,6 +7,10 @@ package net.newpipe.app.screen.settings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -38,7 +42,6 @@ import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -180,7 +183,7 @@ fun PeertubeInstanceSettingsScreenContent(
                 title = stringResource(Res.string.peertube_instance_url_title),
                 onNavigateUp = onNavigateUp,
                 actions = {
-                    IconButton(onClick = { showRestoreDialog = true }) {
+                    IconButton(onClick = { showRestoreDialog = true }, enabled = !isAdding) {
                         Icon(
                             painter = painterResource(Res.drawable.ic_settings_backup_restore),
                             contentDescription = stringResource(Res.string.restore_defaults)
@@ -190,11 +193,13 @@ fun PeertubeInstanceSettingsScreenContent(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { showAddDialog = true }) {
-                Icon(
-                    painter = painterResource(Res.drawable.ic_add),
-                    contentDescription = stringResource(Res.string.peertube_instance_add_title)
-                )
+            if (!isAdding) {
+                FloatingActionButton(onClick = { showAddDialog = true }) {
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_add),
+                        contentDescription = stringResource(Res.string.peertube_instance_add_title)
+                    )
+                }
             }
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
@@ -231,7 +236,14 @@ fun PeertubeInstanceSettingsScreenContent(
             }
 
             if (isAdding) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
+                        .clickable(onClick = {})
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
             }
         }
     }
@@ -363,6 +375,8 @@ private fun AddInstanceDialog(
 ) {
     val textFieldState = rememberTextFieldState()
     val focusRequester = remember { FocusRequester() }
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
 
     LaunchedEffect(focusRequester) { focusRequester.requestFocus() }
 
@@ -388,11 +402,18 @@ private fun AddInstanceDialog(
                     color = MaterialTheme.colorScheme.onSurface
                 ),
                 cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
+                interactionSource = interactionSource,
                 decorator = { innerTextField ->
+                    // Drawn by hand because material3 1.11.0-alpha07 text fields crash with foundation 1.12
                     Box(
                         modifier = Modifier
-                            .background(
-                                color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                            .border(
+                                width = if (isFocused) 2.dp else 1.dp,
+                                color = if (isFocused) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.outline
+                                },
                                 shape = MaterialTheme.shapes.extraSmall
                             )
                             .padding(16.dp)
@@ -429,7 +450,26 @@ private fun PeertubeInstanceSettingsScreenPreview() {
     PeertubeInstanceSettingsScreenContent(
         instances = listOf(
             DEFAULT_INSTANCE,
-            PeertubeInstance(name = "Tilvids", url = "https://tilvids.com")
+            PeertubeInstance(name = "Tilvids", url = "https://tilvids.com"),
+            PeertubeInstance(name = "Action Éducative", url = "https://tube-action-educative.apps.education.fr/"),
+            PeertubeInstance(name = "Random Instance with a very long name", url = "https://example.com")
+        )
+    )
+}
+
+@PreviewWrapper(ThemePreviewProvider::class)
+@PreviewLightDark
+@Composable
+private fun PeertubeInstanceSettingsScreenAddingPreview() {
+    PeertubeInstanceSettingsScreenContent(
+        isAdding = true,
+        instances = listOf(
+            DEFAULT_INSTANCE,
+            PeertubeInstance(name = "Tilvids", url = "https://tilvids.com"),
+            PeertubeInstance(name = "Action Éducative", url = "https://tube-action-educative.apps.education.fr/"),
+            PeertubeInstance(name = "Random Instance with a very long name", url = "https://example.com"),
+            PeertubeInstance(name = "PeerTube Instance", url = "https://i-love-peertu.be"),
+            PeertubeInstance(name = "NewPipe Media", url = "https://media.assassinate-you.net")
         )
     )
 }
