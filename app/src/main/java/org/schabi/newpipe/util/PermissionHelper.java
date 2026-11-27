@@ -4,14 +4,18 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -21,6 +25,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 
 public final class PermissionHelper {
+    private static final String TAG = PermissionHelper.class.getSimpleName();
     public static final int POST_NOTIFICATIONS_REQUEST_CODE = 779;
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
     public static final int DOWNLOADS_REQUEST_CODE = 777;
@@ -129,6 +134,14 @@ public final class PermissionHelper {
             // from Android R the ACTION_MANAGE_OVERLAY_PERMISSION will only point to the menu,
             // so let’s add a dialog that points the user to the right setting.
             } else {
+                // TODO: Remove the activity workaround once the AlertDialogs are migrated
+                //       to compose.
+                final Activity activity = findActivity(context);
+                if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                    Log.w(TAG, "Cannot get activity. Skipping explanatory dialog.");
+                    openSystemAlertPermissionWindow(context);
+                    return false;
+                }
                 final String appName = context.getApplicationInfo()
                         .loadLabel(context.getPackageManager()).toString();
                 final String title = context.getString(R.string.permission_display_over_apps);
@@ -141,17 +154,11 @@ public final class PermissionHelper {
                                 appNameItalic,
                                 permissionNameItalic
                         );
-                new AlertDialog.Builder(context)
+                new AlertDialog.Builder(activity)
                         .setTitle(title)
                         .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
                         .setPositiveButton("OK", (dialog, which) -> {
-                            // we don’t need the package name here, since it won’t do anything on >R
-                            final Intent intent =
-                                    new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                            try {
-                                context.startActivity(intent);
-                            } catch (final ActivityNotFoundException ignored) {
-                            }
+                            openSystemAlertPermissionWindow(activity);
                         })
                         .setCancelable(true)
                         .show();
@@ -161,6 +168,41 @@ public final class PermissionHelper {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Opens the system alert permission window to let the user grant the permission on Android R
+     * and newer.
+     * @param context the context to use
+     */
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    private static void openSystemAlertPermissionWindow(final Context context) {
+        // we don’t need the package name here, since it won’t do anything on >R
+        final Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        if (!(context instanceof Activity)) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        try {
+            context.startActivity(intent);
+        } catch (final ActivityNotFoundException ignored) {
+            Log.d(TAG, "Could not open system alert permission window", ignored);
+        }
+    }
+
+    @Nullable
+    private static Activity findActivity(final Context context) {
+        Context current = context;
+        while (current instanceof ContextWrapper wrappedContext) {
+            if (wrappedContext instanceof Activity activity) {
+                return activity;
+            }
+            final Context base = wrappedContext.getBaseContext();
+            if (base == current) {
+                break;
+            }
+            current = base;
+        }
+        return null;
     }
 
     /**

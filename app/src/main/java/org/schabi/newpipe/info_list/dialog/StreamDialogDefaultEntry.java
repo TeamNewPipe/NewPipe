@@ -5,11 +5,13 @@ import static org.schabi.newpipe.util.SparseItemUtil.fetchItemInfoIfSparse;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchUploaderUrlIfSparse;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -24,6 +26,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -76,9 +79,24 @@ public enum StreamDialogDefaultEntry {
     }),
 
     START_HERE_ON_POPUP(R.string.start_here_on_popup, (fragment, item) -> {
+            // An AlertDialog is shown when the Android overlay permission on Android R and later
+            // is not granted. This causes a crash because the app context cannot be used as
+            // AppCompat theme (see #13597). We cannot use the fragment context itself
+            // because that could be null, e.g. when the device is rotated.
+            // TODO: Remove this temporary fix once AppCompat for AlertDialogs is dropped.
+            //       This is done by migrating to Compose.
             final Context ctx = fragment.requireContext().getApplicationContext();
-            fetchItemInfoIfSparse(ctx, item, singlePlayQueue ->
-                NavigationHelper.playOnPopupPlayer(ctx, singlePlayQueue, true));
+            final WeakReference<Fragment> fragmentRef = new WeakReference<>(fragment);
+            fetchItemInfoIfSparse(ctx, item, singlePlayQueue -> {
+                Context context = ctx;
+                if (fragment.isAdded() && !fragment.isStateSaved()) {
+                    final Activity activity = fragment.getActivity();
+                    if (activity != null && !activity.isFinishing() && !activity.isDestroyed()) {
+                        context = activity;
+                    }
+                }
+                NavigationHelper.playOnPopupPlayer(context, singlePlayQueue, true);
+            });
     }),
 
     SET_AS_PLAYLIST_THUMBNAIL(R.string.set_as_playlist_thumbnail, (fragment, item) -> {
