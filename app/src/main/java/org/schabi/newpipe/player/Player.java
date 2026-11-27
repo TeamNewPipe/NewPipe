@@ -74,6 +74,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
+import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.text.CueGroup;
@@ -181,6 +182,11 @@ public final class Player implements PlaybackListener, Listener {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int RENDERER_UNAVAILABLE = -1;
+
+    private static final AudioAttributes AUDIO_ATTRIBUTES = new AudioAttributes.Builder()
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+            .build();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -418,6 +424,7 @@ public final class Player implements PlaybackListener, Listener {
                             // we can just seek to the appropriate timestamp
                             if (oldPlayQueue != null
                                     && playQueueItem.isSameItem(oldPlayQueue.getItem())) {
+                                updateAudioFocusHandling();
                                 // Player can have state = IDLE when playback is stopped or failed
                                 // and we should retry in this case
                                 if (simpleExoPlayer.getPlaybackState()
@@ -483,6 +490,7 @@ public final class Player implements PlaybackListener, Listener {
                 && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
                 && newQueue.getItem().isSameItem(playQueue.getItem())
                 && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+            updateAudioFocusHandling();
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
@@ -497,6 +505,7 @@ public final class Player implements PlaybackListener, Listener {
                 && playQueue != null
                 && !playQueue.isDisposed()) {
             // Do not re-init the same PlayQueue. Save time
+            updateAudioFocusHandling();
             // Player can have state = IDLE when playback is stopped or failed
             // and we should retry in this case
             if (simpleExoPlayer.getPlaybackState()
@@ -638,15 +647,9 @@ public final class Player implements PlaybackListener, Listener {
         simpleExoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
         simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
-        // Enable ExoPlayer automatic audio focus management
-        simpleExoPlayer.setAudioAttributes(
-            new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
-                .setUsage(C.USAGE_MEDIA)
-                .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                .build(),
-            true);
-
         audioReactor = new AudioReactor(context, simpleExoPlayer);
+        // Enable ExoPlayer automatic audio focus management, unless a call is active
+        updateAudioFocusHandling();
 
         registerBroadcastReceiver();
 
@@ -1337,16 +1340,8 @@ public final class Player implements PlaybackListener, Listener {
         final boolean wasMuted = isMuted();
         simpleExoPlayer.setVolume(wasMuted ? 1 : 0);
 
-        // Update audio focus
-        // When wasMuted is true, we want to play sound, so ExoPlayer has to handle audio focus in
-        // this case; when wasMuted is false, we don't want to play sound, so no audio focus should
-        // be done
-        simpleExoPlayer.setAudioAttributes(
-                new com.google.android.exoplayer2.audio.AudioAttributes.Builder()
-                        .setUsage(C.USAGE_MEDIA)
-                        .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
-                        .build(),
-                wasMuted);
+        // Muted playback doesn't need audio focus, so this has to be updated
+        updateAudioFocusHandling();
 
         UIs.call(playerUi -> playerUi.onMuteUnmuteChanged(!wasMuted));
         notifyPlaybackUpdateToListeners();
@@ -1354,6 +1349,36 @@ public final class Player implements PlaybackListener, Listener {
 
     public boolean isMuted() {
         return !exoPlayerIsNull() && simpleExoPlayer.getVolume() == 0;
+    }
+    //endregion
+
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Audio focus
+    //////////////////////////////////////////////////////////////////////////*/
+    //region Audio focus
+
+    /**
+     * Enables ExoPlayer's automatic audio focus management, except during calls and while muted.
+     *
+     * <p>ExoPlayer doesn't start playback if its audio focus request is denied. During a phone
+     * call, or a VoIP call managed through Android's Telecom framework, the system holds audio
+     * focus with a lock, so the request is always denied and playback started by the user during
+     * a call would never begin. Android doesn't mute players which are started during a call, so
+     * in that case the stream plays alongside the call without audio focus, as the user
+     * requested. Muted playback doesn't need audio focus either.</p>
+     *
+     * <p>Call this right before starting playback, so that the current call state is taken into
+     * account. Don't call it when a call starts: the transient audio focus loss is expected to
+     * pause playback in that case.</p>
+     */
+    private void updateAudioFocusHandling() {
+        if (exoPlayerIsNull() || audioReactor == null) {
+            return;
+        }
+        simpleExoPlayer.setAudioAttributes(AUDIO_ATTRIBUTES,
+                !isMuted() && !audioReactor.isInCall());
     }
     //endregion
 
@@ -1773,6 +1798,7 @@ public final class Player implements PlaybackListener, Listener {
             reloadPlayQueueManager();
         }
 
+        updateAudioFocusHandling();
         simpleExoPlayer.play();
         saveStreamProgressState();
     }
