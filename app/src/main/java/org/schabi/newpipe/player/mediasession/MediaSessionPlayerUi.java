@@ -24,6 +24,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.notification.NotificationActionData;
 import org.schabi.newpipe.player.notification.NotificationConstants;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.ui.PlayerUi;
 import org.schabi.newpipe.player.ui.VideoPlayerUi;
 import org.schabi.newpipe.util.StreamTypeUtil;
@@ -33,6 +36,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MediaSessionPlayerUi extends PlayerUi
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -48,6 +53,8 @@ public class MediaSessionPlayerUi extends PlayerUi
 
     // used to check whether any notification action changed, before sending costly updates
     private List<NotificationActionData> prevNotificationActions = List.of();
+    @Nullable
+    private Disposable playQueueDisposable;
 
 
     public MediaSessionPlayerUi(@NonNull final Player player,
@@ -88,8 +95,37 @@ public class MediaSessionPlayerUi extends PlayerUi
     }
 
     @Override
+    public void initPlayback() {
+        super.initPlayback();
+        if (playQueueDisposable != null) {
+            playQueueDisposable.dispose();
+            playQueueDisposable = null;
+        }
+
+        final PlayQueue queue = player.getPlayQueue();
+        if (queue == null || queue.getBroadcastReceiver() == null) {
+            return;
+        }
+
+        // SelectEvent is emitted from PlayQueue.setIndex, after the index has changed.
+        // The session connector's own transition callback runs too early and publishes the
+        // previous item, which Android then keeps for the rest of the queue.
+        playQueueDisposable = queue.getBroadcastReceiver().subscribe(event -> {
+            if (event instanceof PlayQueueEvent.SelectEvent selectEvent
+                    && selectEvent.getOldIndex() != selectEvent.getNewIndex()) {
+                publishCurrentQueueItem();
+            }
+        }, throwable -> Log.e(TAG, "Play queue event error", throwable));
+        publishCurrentQueueItem();
+    }
+
+    @Override
     public void destroyPlayer() {
         super.destroyPlayer();
+        if (playQueueDisposable != null) {
+            playQueueDisposable.dispose();
+            playQueueDisposable = null;
+        }
         player.getPrefs().unregisterOnSharedPreferenceChangeListener(this);
         sessionConnector.setMediaButtonEventHandler(null);
         sessionConnector.setPlayer(null);
@@ -153,29 +189,74 @@ public class MediaSessionPlayerUi extends PlayerUi
             Log.d(TAG, "buildMediaMetadata called");
         }
 
-        // set title and artist
+        // Queue item, not Player.currentMetadata. The connector reads metadata before that
+        // field catches up, and Android keeps the previous card if the media id does not change.
+        final PlayQueueItem item = Optional.ofNullable(player.getPlayQueue())
+                .map(PlayQueue::getItem)
+                .orElse(null);
+        final String title = item == null ? player.getVideoTitle() : item.getTitle();
+        final String artist = item == null ? player.getUploaderName() : item.getUploader();
+
         final MediaMetadataCompat.Builder builder = new MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, player.getVideoTitle())
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, player.getUploaderName());
+                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+                .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_TITLE, title)
+                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, artist);
+        if (item != null && !item.getUrl().isEmpty()) {
+            builder.putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, item.getUrl());
+        }
+        builder.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, durationMillis(item));
 
-        // set duration (-1 for livestreams or if unknown, see the METADATA_KEY_DURATION docs)
-        final long duration = player.getCurrentStreamInfo()
-                .filter(info -> !StreamTypeUtil.isLiveStream(info.getStreamType()))
-                .map(info -> info.getDuration() * 1000L)
-                .orElse(-1L);
-        builder.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
-
-        // set album art, unless the user asked not to, or there is no thumbnail available
+        // Attach art only when this bitmap was loaded for the same stream.
         final boolean showThumbnail = player.getPrefs().getBoolean(
                 context.getString(R.string.show_thumbnail_key), true);
-        Optional.ofNullable(player.getThumbnail())
-                .filter(bitmap -> showThumbnail)
-                .ifPresent(bitmap -> {
-                    builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap);
-                    builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, bitmap);
-                });
+        if (showThumbnail && item != null && item.getUrl().equals(player.getThumbnailStreamUrl())) {
+            Optional.ofNullable(player.getThumbnail())
+                    .ifPresent(bitmap -> {
+                        builder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap);
+                        builder.putBitmap(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON, bitmap);
+                    });
+        }
 
         return builder.build();
+    }
+
+    /**
+     * Duration in milliseconds for the system media card, or {@code -1} when unknown.
+     * Uses the queue item immediately, then {@link StreamInfo#getDuration()} once that info is
+     * for the same URL. Livestreams stay {@code -1}.
+     *
+     * @param item the current queue item, or null when the queue is not ready
+     * @return duration in milliseconds, or {@code -1}
+     */
+    private long durationMillis(@Nullable final PlayQueueItem item) {
+        if (item != null && StreamTypeUtil.isLiveStream(item.getStreamType())) {
+            return -1L;
+        }
+
+        final Optional<StreamInfo> matchingInfo = player.getCurrentStreamInfo()
+                .filter(info -> item == null || item.getUrl().equals(info.getUrl()));
+        if (matchingInfo.isPresent()) {
+            final StreamInfo info = matchingInfo.get();
+            if (StreamTypeUtil.isLiveStream(info.getStreamType())) {
+                return -1L;
+            }
+            final long seconds = info.getDuration();
+            return seconds > 0 ? seconds * 1000L : -1L;
+        }
+        if (item == null) {
+            return -1L;
+        }
+        final long seconds = item.getDuration();
+        return seconds > 0 ? seconds * 1000L : -1L;
+    }
+
+    private void publishCurrentQueueItem() {
+        if (!mediaSession.isActive() || player.exoPlayerIsNull()) {
+            return;
+        }
+        sessionConnector.invalidateMediaSessionPlaybackState();
+        sessionConnector.invalidateMediaSessionQueue();
+        sessionConnector.invalidateMediaSessionMetadata();
     }
 
 
@@ -280,6 +361,9 @@ public class MediaSessionPlayerUi extends PlayerUi
     public void onMetadataChanged(@NonNull final StreamInfo info) {
         super.onMetadataChanged(info);
         updateMediaSessionActions();
+        // Stream details (and a cleared thumbnail) are available now. Republish duration and art
+        // for the same media id; the queue index was already published from SelectEvent.
+        publishCurrentQueueItem();
     }
 
     @Override
