@@ -25,10 +25,10 @@
 *Read this document in other languages: [Deutsch](/doc/README.de.md), [English](/doc/README.md),
 [Español](/doc/README.es.md), [Français](/doc/README.fr.md), [हिन्दी](/doc/README.hi.md),
 [Italiano](/doc/README.it.md), [한국어](/doc/README.ko.md), [Português Brasil](/doc/README.pt_BR.md),
-[Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md), [日本語](/doc/README.ja.md),
-[Română](/doc/README.ro.md), [Soomaali](/doc/README.so.md), [Türkçe](/doc/README.tr.md),
-[正體中文](/doc/README.zh_TW.md), [অসমীয়া](/doc/README.asm.md), [うちなーぐち](/doc/README.sr.md),
-[Српски](/doc/README.ar.md) , [العربية]{19}*
+[Português Portugal](/doc/README.pt_PT.md), [Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md),
+[日本語](/doc/README.ja.md), [Română](/doc/README.ro.md), [Soomaali](/doc/README.so.md),
+[Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md), [অসমীয়া](/doc/README.asm.md),
+[うちなーぐち](/doc/README.sr.md), [Српски](/doc/README.ar.md) , [العربية]{19}*
 
 > [!warning]\
 > <b>이 버전은 베타 버전이므로, 버그가 발생할 수도 있습니다. 만약 버그가 발생하였다면, 우리의 GitHub 저장소에서 Issue를 열람하여 주십시오.</b>

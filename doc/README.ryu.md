@@ -22,11 +22,12 @@
 <p align="center"><a href="https://newpipe.net">Website</a> &bull; <a href="https://newpipe.net/blog/">Blog</a> &bull; <a href="https://newpipe.net/FAQ/">FAQ</a> &bull; <a href="https://newpipe.net/press/">Press</a></p>
 <hr>
 
-*ふかぬぎんぐっしゆむん： [English](/doc/README.de.md), [Español](/doc/README.md), [हिन्दी](/doc/README.es.md),
-[한국어](/doc/README.fr.md), [Soomaali](/doc/README.hi.md), [Português Brasil](/doc/README.it.md),
-[Polski](/doc/README.ko.md), [日本語](/doc/README.pt_BR.md), [Română](/doc/README.pl.md),
-[Türkçe](/doc/README.pa.md), [正體中文](/doc/README.ja.md), [うちなーぐち](/doc/README.ro.md),
-[Српски](/doc/README.so.md) , [العربية](/doc/README.tr.md)*
+*ふかぬぎんぐっしゆむん： [Deutsch](/doc/README.de.md), [English](/doc/README.md), [Español](/doc/README.es.md),
+[Français](/doc/README.fr.md), [हिन्दी](/doc/README.hi.md), [Italiano](/doc/README.it.md),
+[한국어](/doc/README.ko.md), [Português Brasil](/doc/README.pt_BR.md), [Português Portugal](/doc/README.pt_PT.md),
+[Polski](/doc/README.pl.md), [ਪੰਜਾਬੀ ](/doc/README.pa.md), [日本語](/doc/README.ja.md), [Română](/doc/README.ro.md),
+[Soomaali](/doc/README.so.md), [Türkçe](/doc/README.tr.md), [正體中文](/doc/README.zh_TW.md),
+[অসমীয়া](/doc/README.asm.md), [Српски](/doc/README.sr.md), [العربية](/doc/README.ar.md)*
 
 > [!warning]\
 > <b>くれーベータばんぬたみ、バグぬはっせいすがのうゆいがあいびーん。むしバグぬはっせいさーあい、GitHubぬリポジトリっしIssueふぃらちくぃみそーれー。</b>
