@@ -9,6 +9,8 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
 
     void onScreenRotationButtonClicked();
 
+    void onPortraitFullscreenRequested();
+
     void onMoreOptionsLongClicked();
 
     void onPlayerError(PlaybackException error, boolean isCatchableException);

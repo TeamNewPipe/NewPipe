@@ -1940,6 +1940,11 @@ public final class VideoDetailFragment
     }
 
     @Override
+    public void onPortraitFullscreenRequested() {
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
     public void onScreenRotationButtonClicked() {
         // On Android TV screen rotation is not supported
         // In tablet user experience will be better if screen will not be rotated
