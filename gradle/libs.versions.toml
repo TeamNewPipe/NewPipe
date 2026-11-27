@@ -27,6 +27,7 @@ espresso = "3.7.0"
 exoplayer = "2.19.1"
 fragment = "1.9.1"
 groupie = "2.10.1"
+guardianprojectPanic = "1.0"
 jsoup = "1.24.1"
 junit = "4.13.2"
 junit-ext = "1.3.0"
@@ -129,6 +130,7 @@ google-exoplayer-hls = { module = "com.google.android.exoplayer:exoplayer-hls", 
 google-exoplayer-mediasession = { module = "com.google.android.exoplayer:extension-mediasession", version.ref = "exoplayer" }
 google-exoplayer-smoothstreaming = { module = "com.google.android.exoplayer:exoplayer-smoothstreaming", version.ref = "exoplayer" }
 google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer" }
+guardianproject-panic = { module = "info.guardianproject.panic:panic", version.ref = "guardianprojectPanic" }
 jakewharton-phoenix = { module = "com.jakewharton:process-phoenix", version.ref = "phoenix" }
 jakewharton-rxbinding = { module = "com.jakewharton.rxbinding4:rxbinding", version.ref = "rxbinding" }
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "multiplatform" }

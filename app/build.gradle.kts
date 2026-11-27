@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.legacy.kapt)
     alias(libs.plugins.google.ksp)
+    alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
     alias(libs.plugins.sonarqube)
@@ -254,11 +255,20 @@ dependencies {
     implementation(libs.google.android.material)
     implementation(libs.androidx.webkit)
 
+    // Compose
+    implementation(libs.jetbrains.compose.material3)
+    implementation(libs.jetbrains.compose.ui)
+    implementation(libs.jetbrains.compose.preview)
+    implementation(libs.jetbrains.compose.tooling)
+
     // Coroutines interop
     implementation(libs.kotlinx.coroutines.rx3)
 
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
+
+    // Koin Dependency Injection
+    implementation(libs.koin.compose.viewmodel)
 
     // Third-party libraries
     implementation(libs.livefront.bridge)
@@ -299,6 +309,11 @@ dependencies {
     compileOnly(libs.google.autoservice.annotations)
     ksp(libs.zacsweers.autoservice.compiler)
 
+    implementation(libs.russhwolf.settings.core)
+
+    // Panic trigger
+    implementation(libs.guardianproject.panic)
+
     // Properly restarting
     implementation(libs.jakewharton.phoenix)
 
@@ -324,6 +339,7 @@ dependencies {
     testImplementation(libs.mockito.core)
 
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.compose.test.ui.junit)
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.room.testing)
     androidTestImplementation(libs.assertj.core)

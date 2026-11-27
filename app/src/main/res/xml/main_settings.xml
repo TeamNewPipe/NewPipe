@@ -54,6 +54,12 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.PanicSettingsFragment"
+        android:icon="@drawable/ic_panic"
+        android:title="@string/panic_settings_category"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
         android:icon="@drawable/ic_bug_report"
         android:key="@string/debug_pref_screen_key"

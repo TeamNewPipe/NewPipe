@@ -107,11 +107,25 @@
             tools:node="merge" />
 
         <activity
-            android:name=".PanicResponderActivity"
+            android:name=".panic.PanicActivity"
+            android:exported="true"
+            android:label="@string/panic_settings_category"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="info.guardianproject.panic.action.CONNECT" />
+                <action android:name="info.guardianproject.panic.action.DISCONNECT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".panic.PanicResponderActivity"
             android:exported="true"
             android:launchMode="singleInstance"
             android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay">
+            android:theme="@android:style/Theme.NoDisplay"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
 
@@ -120,10 +134,11 @@
         </activity>
 
         <activity
-            android:name=".ExitActivity"
+            android:name=".panic.ExitActivity"
             android:exported="false"
             android:label="@string/general_error"
-            android:theme="@android:style/Theme.NoDisplay" />
+            android:theme="@android:style/Theme.NoDisplay"
+            android:excludeFromRecents="true" />
 
         <activity
             android:name=".error.ErrorActivity"

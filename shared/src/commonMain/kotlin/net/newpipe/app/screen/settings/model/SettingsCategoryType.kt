@@ -11,8 +11,10 @@ import newpipe.shared.generated.resources.ic_history
 import newpipe.shared.generated.resources.ic_language
 import newpipe.shared.generated.resources.ic_notifications
 import newpipe.shared.generated.resources.ic_palette
+import newpipe.shared.generated.resources.ic_panic
 import newpipe.shared.generated.resources.ic_settings_backup_restore
 import newpipe.shared.generated.resources.notifications
+import newpipe.shared.generated.resources.panic_settings_category
 import newpipe.shared.generated.resources.settings_category_appearance_title
 import newpipe.shared.generated.resources.settings_category_backup_restore_title
 import newpipe.shared.generated.resources.settings_category_debug_title
@@ -70,6 +72,11 @@ enum class SettingsCategoryType(
         title = Res.string.settings_category_backup_restore_title,
         icon = Res.drawable.ic_settings_backup_restore,
         destination = Destination.BackupRestoreSettings
+    ),
+    PANIC(
+        title = Res.string.panic_settings_category,
+        icon = Res.drawable.ic_panic,
+        destination = Destination.PanicSettings
     ),
     DEBUG(
         title = Res.string.settings_category_debug_title,
