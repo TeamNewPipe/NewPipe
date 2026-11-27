@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import coil3.executeBlocking
 import coil3.imageLoader
 import coil3.request.Disposable
 import coil3.request.ImageRequest
@@ -18,6 +17,7 @@ import coil3.target.Target
 import coil3.toBitmap
 import coil3.transform.Transformation
 import kotlin.math.min
+import kotlinx.coroutines.runBlocking
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.Image
@@ -31,10 +31,18 @@ object CoilHelper {
         context: Context,
         url: String?,
         @DrawableRes placeholderResId: Int = 0
-    ): Bitmap? = context.imageLoader
-        .executeBlocking(getImageRequest(context, url, placeholderResId).build())
-        .image
-        ?.toBitmap()
+    ): Bitmap? = runBlocking {
+        loadBitmap(context, url, placeholderResId)
+    }
+
+    suspend fun loadBitmap(
+        context: Context,
+        url: String?,
+        @DrawableRes placeholderResId: Int = 0
+    ): Bitmap? {
+        val request = getImageRequest(context, url, placeholderResId).build()
+        return context.imageLoader.execute(request).image?.toBitmap()
+    }
 
     fun loadAvatar(
         target: ImageView,
