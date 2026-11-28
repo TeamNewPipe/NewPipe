@@ -33,6 +33,8 @@ import java.lang.reflect.Method;
 public final class DeviceUtils {
 
     private static final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
+    /** Smallest screen width (in dp) from which a device is treated as a tablet. */
+    private static final int TABLET_SMALLEST_WIDTH_DP = 600;
     private static final boolean SAMSUNG = Build.MANUFACTURER.equals("samsung");
     private static Boolean isTV = null;
     private static Boolean isFireTV = null;
@@ -258,9 +260,11 @@ public final class DeviceUtils {
             return false;
         }
 
-        // else automatically determine whether we are in a tablet or not
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        // else automatically determine whether we are in a tablet or not. Use the same
+        // 600dp smallest-width breakpoint as the Android guidelines and System UI, since
+        // SCREENLAYOUT_SIZE_LARGE (~480dp) also matches some large phones.
+        return context.getResources().getConfiguration().smallestScreenWidthDp
+                >= TABLET_SMALLEST_WIDTH_DP;
     }
 
     public static boolean isConfirmKey(final int keyCode) {
