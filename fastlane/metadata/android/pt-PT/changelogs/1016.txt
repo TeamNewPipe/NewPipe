@@ -1,0 +1,7 @@
+Mostrar os capítulos na barra de navegação do leitor de vídeo
+[YouTube] Adicionar apoio para os separadores «Podcasts» e «Cursos»
+Melhorar a apresentação dos títulos do menu de pesquisa
+Mostrar os nomes completos das legendas, quando disponibilizados pelo serviço
+Várias correções no leitor, incluindo redução do volume de áudio, ecrãs pretos e abertura de ligações com marcas temporais
+[YouTube] Pequenas correções e ajustes de manutenção
+Muitas melhorias internas e correções de erros
