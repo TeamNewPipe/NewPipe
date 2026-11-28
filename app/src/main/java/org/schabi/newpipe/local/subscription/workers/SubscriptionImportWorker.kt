@@ -48,6 +48,7 @@ class SubscriptionImportWorker(
 
     private val subscriptionManager = SubscriptionManager(context)
     private val mutex = Mutex()
+    private var importedCount = 0
     private val size: Int
         get() = subscriptions.size
 
@@ -104,6 +105,7 @@ class SubscriptionImportWorker(
                         }.onFailure { exception ->
                             Log.e(TAG, "Failed to fetch subscription", exception)
                         }.onSuccess { (channelInfo, channelTab) ->
+                            mutex.withLock { importedCount++ }
                             setForeground(createForegroundInfo(title, channelInfo.name, index))
                             emit(channelInfo to channelTab)
                         }
@@ -124,8 +126,15 @@ class SubscriptionImportWorker(
 
         setForeground(createForegroundInfo(title = title, progress = size))
         withContext(Dispatchers.Main) {
-            Toast.makeText(applicationContext, R.string.import_complete_toast, LENGTH_SHORT)
-                .show()
+            // Show how many subscriptions were actually imported, so users can compare it with
+            // the count on the original service and spot channels that failed to import.
+            val message = context.resources.getQuantityString(
+                R.plurals.import_subscriptions_complete,
+                size,
+                importedCount,
+                size
+            )
+            Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
         }
 
         return Result.success()
