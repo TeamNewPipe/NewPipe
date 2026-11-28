@@ -513,6 +513,10 @@
         <item quantity="one">Importing %d subscription…</item>
         <item quantity="other">Importing %d subscriptions…</item>
     </plurals>
+    <plurals name="import_subscriptions_complete">
+        <item quantity="one">Imported %1$d of %2$d subscription</item>
+        <item quantity="other">Imported %1$d of %2$d subscriptions</item>
+    </plurals>
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
     <string name="export_to">Export to</string>
