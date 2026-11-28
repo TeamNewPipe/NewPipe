@@ -386,7 +386,7 @@
     <string name="switch_to_main">Mudar para principal</string>
     <string name="msg_popup_permission">Esta permissão é necessária \npara o modo popup</string>
     <string name="no_videos">Sem vídeos</string>
-    <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do canal</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do enviador</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
     <string name="enable_disposed_exceptions_title">Relatar erros fora do ciclo de vida</string>
     <string name="kore_not_found">Instalar Kore?</string>
@@ -844,4 +844,5 @@
     <string name="api23_requirement_dialog_blogpost">Postagem no blog</string>
     <string name="channel_tab_courses">Cursos</string>
     <string name="channel_tab_podcasts">Podcasts</string>
+    <string name="kao_dialog_warning">O Google começou a aplicar uma nova exigência de verificação para programadores do Android, o que faz difícil a instalação do NewPipe no Brasil, na Indonésia, em Singapura e na Tailândia — com uma implementação global prevista para 2027.\n\nA menos que essas exigências sejam alteradas, o NewPipe poderá ficar difícil ou até impossível de ser instalado em dispositivos Android certificados num futuro próximo.</string>
 </resources>

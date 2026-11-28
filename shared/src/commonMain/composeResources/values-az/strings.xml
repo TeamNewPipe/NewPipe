@@ -339,4 +339,6 @@
     <string name="notification_action_repeat">Təkrarla</string>
     <string name="notification_action_shuffle">Qarışdır</string>
     <string name="close">Bağla</string>
+    <string name="toggle_all">Hamısın dəyişdir</string>
+    <string name="channel_notifications_description">Yeni yayımlar haqqında bildiriş almaq istədiyiniz kanalları seçin</string>
 </resources>

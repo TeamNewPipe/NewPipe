@@ -389,7 +389,7 @@
     <string name="start_downloads">Почати завантаження</string>
     <string name="pause_downloads">Призупинити завантаження</string>
     <string name="downloads_storage_ask_title">Запитувати, куди завантажувати</string>
-    <string name="downloads_storage_ask_summary">Вам буде запропоновано вибрати місце для збереження кожного завантаження.\nУвімкніть системний вибір папки (SAF), якщо хочете завантажувати файли на зовнішню SD-карту.</string>
+    <string name="downloads_storage_ask_summary">Вам буде запропоновано вибрати місце для збереження кожного завантаження.\nУвімкніть системний вибір теки (SAF), якщо хочете завантажувати файли на зовнішню SD-карту.</string>
     <string name="downloads_storage_use_saf_title">Використовувати системний вибір папки (SAF)</string>
     <string name="downloads_storage_use_saf_summary">«Storage Access Framework» дає змогу завантажувати на зовнішню SD-картку</string>
     <string name="clear_playback_states_title">Видалити позиції відтворення</string>
